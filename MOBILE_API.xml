@@ -253,68 +253,65 @@
     
     <enum name="UpdateMode">
         <description>Describes how the media clock timer should behave on the platform</description>
-        <element name="COUNTUP" />
-        <description>Starts the media clock timer counting upwards, as in time elapsed.</description>
-        <element name="COUNTDOWN" />
-        <description>Starts the media clock timer counting downwards, as in time remaining.</description>
-        <element name="PAUSE" />
-        <description>Pauses the media clock timer</description>
-        <element name="RESUME" />
-        <description>Resume the media clock timer</description>
-        <element name="CLEAR" />
-        <description>Clears the media clock timer (previously done through Show->mediaClock)</description>
+        <element name="COUNTUP" >
+            <description>Starts the media clock timer counting upwards, as in time elapsed.</description>
+        </element>
+        <element name="COUNTDOWN" >
+            <description>Starts the media clock timer counting downwards, as in time remaining.</description>
+        </element>
+        <element name="PAUSE" >
+            <description>Pauses the media clock timer</description>
+        </element>
+        <element name="RESUME" >
+            <description>Resume the media clock timer</description>
+        </element>
+        <element name="CLEAR" >
+            <description>Clears the media clock timer (previously done through Show->mediaClock)</description>
+        </element>
     </enum>
     
     <enum name="TimerMode">
-        <element name="UP" />
-        <description>Causes the media clock timer to update from 0:00 to a specified time</description>
-        <element name="DOWN" />
-        <description>Causes the media clock timer to update from a specified time to 0:00</description>
-        <element name="NONE" />
-        <description>Indicates to not use the media clock timer</description>
+        <element name="UP" >
+            <description>Causes the media clock timer to update from 0:00 to a specified time</description>
+        </element>
+        <element name="DOWN" >
+            <description>Causes the media clock timer to update from a specified time to 0:00</description>
+        </element>
+        <element name="NONE" >
+            <description>Indicates to not use the media clock timer</description>
+        </element>
     </enum>
     
     <enum name="InteractionMode">
         <description>For application-requested interactions, this mode indicates the method in which the user is notified and uses the interaction.</description>
-        <element name="MANUAL_ONLY" />
-        <description>
-            This mode causes the interaction to only occur on the display, meaning the choices are provided only via the display.
-            Selections are made with the OK and Seek Right and Left, Tune Up and Down buttons.
-        </description>
-        <element name="VR_ONLY" />
-        <description>
-            This mode causes the interaction to only occur using V4.
-            Selections are made by saying the command.
-        </description>
-        <element name="BOTH" />
-        <description>
-            This mode causes both a VR and display selection option for an interaction.
-            Selections can be made either from the menu display or by speaking the command.
-        </description>
+        <element name="MANUAL_ONLY" >
+            <description>This mode causes the interaction to only occur on the display, meaning the choices are provided only via the display.Selections are made with the OK and Seek Right and Left, Tune Up and Down buttons.</description>
+        </element>
+        <element name="VR_ONLY" >
+            <description>This mode causes the interaction to only occur using V4. Selections are made by saying the command.</description>
+        </element>
+        <element name="BOTH" >
+            <description>This mode causes both a VR and display selection option for an interaction. Selections can be made either from the menu display or by speaking the command.</description>
+        </element>
     </enum>
     
     <enum name="LayoutMode">
         <description>For touchscreen interactions, the mode of how the choices are presented.</description>
-        <element name="ICON_ONLY" />
-        <description>
-            This mode causes the interaction to display the previous set of choices as icons.
-        </description>
-        <element name="ICON_WITH_SEARCH" />
-        <description>
-            This mode causes the interaction to display the previous set of choices as icons along with a search field in the HMI.
-        </description>
-        <element name="LIST_ONLY" />
-        <description>
-            This mode causes the interaction to display the previous set of choices as a list.
-        </description>
-        <element name="LIST_WITH_SEARCH" />
-        <description>
-            This mode causes the interaction to display the previous set of choices as a list along with a search field in the HMI.
-        </description>
-        <element name="KEYBOARD" />
-        <description>
-            This mode causes the interaction to immediately display a keyboard entry through the HMI.
-        </description>
+        <element name="ICON_ONLY" >
+            <description>This mode causes the interaction to display the previous set of choices as icons.</description>
+        </element>
+        <element name="ICON_WITH_SEARCH" >
+            <description>This mode causes the interaction to display the previous set of choices as icons along with a search field in the HMI.</description>
+        </element>
+        <element name="LIST_ONLY" >
+            <description>This mode causes the interaction to display the previous set of choices as a list.</description>
+        </element>
+        <element name="LIST_WITH_SEARCH" >
+            <description>This mode causes the interaction to display the previous set of choices as a list along with a search field in the HMI.</description>
+        </element>
+        <element name="KEYBOARD" >
+            <description>This mode causes the interaction to immediately display a keyboard entry through the HMI.</description>
+        </element>
     </enum>
     
     <enum name="HMILevel">
@@ -346,8 +343,7 @@
     </enum>
     
     <enum name="SystemContext">
-        <description>Enumeration that describes possible contexts an app's HMI might be in.</description>
-        <description>Communicated to whichever app is in HMI FULL, except Alert.</description>
+        <description>Enumeration that describes possible contexts an app's HMI might be in. Communicated to whichever app is in HMI FULL, except Alert.</description>
         <element name="MAIN" internal_name="SYSCTXT_MAIN">
             <description>The app's persistent display (whether media/non-media/navigation) is fully visible onscreen.</description>
         </element>
@@ -399,8 +395,7 @@
     </enum>
     
     <enum name="HmiZoneCapabilities">
-        <description>Contains information about the HMI zone capabilities.</description>
-        <description>For future use.</description>
+        <description>Contains information about the HMI zone capabilities. (For future use.)</description>
         <element name="FRONT" />
         <element name="BACK" />
     </enum>
@@ -2185,8 +2180,7 @@
          </enum>
          
          <enum name="FunctionID" internal_scope="base">
-         <description>Enumeration linking function names with function IDs in AppLink protocol.</description>
-         <description>Assumes enumeration starts at value 0.</description>
+         <description>Enumeration linking function names with function IDs in AppLink protocol. Assumes enumeration starts at value 0.</description>
          <element name="RESERVED" value="0" />
          <!--
          Base Request / Response RPCs
@@ -2541,7 +2535,7 @@
         <param name="presetBankCapabilities" type="PresetBankCapabilities" mandatory="false">
             <description>If returned, the platform supports custom on-screen Presets; see PresetBankCapabilities.</description >
         </param>
-        
+
         <param name="hmiZoneCapabilities" type="HmiZoneCapabilities" minsize="1" maxsize="100" array="true" mandatory="false">
             <issue creator="rs">If not used yet => remove</issue>
             <description>See HmiZoneCapabilities</description>
