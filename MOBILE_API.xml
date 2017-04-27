@@ -398,6 +398,13 @@
         <element name="KEYBOARD" internal_name="TS_KEYBOARD" />
     </enum>
     
+    <enum name="HmiZoneCapabilities">
+        <description>Contains information about the HMI zone capabilities.</description>
+        <description>For future use.</description>
+        <element name="FRONT" />
+        <element name="BACK" />
+    </enum>
+
     <enum name="SpeechCapabilities">
         <description>Contains information about the TTS capabilities.</description>
         <element name="TEXT" internal_name="SC_TEXT"/>
@@ -2534,6 +2541,12 @@
         <param name="presetBankCapabilities" type="PresetBankCapabilities" mandatory="false">
             <description>If returned, the platform supports custom on-screen Presets; see PresetBankCapabilities.</description >
         </param>
+        
+        <param name="hmiZoneCapabilities" type="HmiZoneCapabilities" minsize="1" maxsize="100" array="true" mandatory="false">
+            <issue creator="rs">If not used yet => remove</issue>
+            <description>See HmiZoneCapabilities</description>
+        </param>
+
         <param name="speechCapabilities" type="SpeechCapabilities" minsize="1" maxsize="100" array="true" mandatory="false">
             <description>See SpeechCapabilities</description>
         </param>
