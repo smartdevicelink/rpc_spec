@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="no"?>
 <?xml-stylesheet type="text/xml" href="protocol2html.xsl"?>
 
-<interface name="Ford Sync RAPI" version="4.4.0" date="2017-04-20">
+<interface name="Ford Sync RAPI" version="4.5.0" date="2017-04-28">
     
     <enum name="Result" internal_scope="base">
         <element name="SUCCESS">
