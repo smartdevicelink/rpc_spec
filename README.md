@@ -151,7 +151,7 @@ For touchscreen interactions, the mode of how the choices are presented.
 
 
 ### HMILevel
-Enumeraction that describes current levels of HMI.
+Enumeration that describes current levels of HMI.
 
 ##### Elements
 
@@ -164,7 +164,7 @@ Enumeraction that describes current levels of HMI.
 
 
 ### AudioStreamingState
-Enumeraction that describes possible states of audio streaming.
+Enumeration that describes possible states of audio streaming.
 
 ##### Elements
 
@@ -3366,5 +3366,3 @@ Callback including encoded data of any SyncP packets that SYNC needs to send bac
 |`data`|Contains base64 encoded string of SyncP packets.|
 |`URL`|If blank, the SyncP data shall be forwarded to the app.                If not blank, the SyncP data shall be forwarded to the provided URL.            |
 |`Timeout`|If blank, the SyncP data shall be forwarded to the app.                If not blank, the SyncP data shall be forwarded with the provided timeout in seconds.            |
-
-
