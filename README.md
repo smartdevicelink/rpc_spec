@@ -1424,8 +1424,8 @@ Struct with the GPS data.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`longitudeDegrees`||
-|`latitudeDegrees`||
+|`longitudeDegrees`| Longitude in Decimal degrees|
+|`latitudeDegrees`| Latitude in Decimal degrees|
 |`utcYear`|The current UTC year.|
 |`utcMonth`|The current UTC month.|
 |`utcDay`|The current UTC day.|
@@ -1433,14 +1433,14 @@ Struct with the GPS data.
 |`utcMinutes`|The current UTC minute.|
 |`utcSeconds`|The current UTC second.|
 |`compassDirection`|See CompassDirection.|
-|`pdop`|PDOP.  If undefined or unavailable, then value shall be set to 0.|
-|`hdop`|HDOP.  If value is unknown, value shall be set to 0.|
-|`vdop`|VDOP.  If value is unknown, value shall be set to 0.|
-|`actual`|True, if actual.                False, if infered.            |
+|`pdop`| Position dilution of precision. If unavailable: 0.|
+|`hdop`| Horizontal dilution of precision. If unavailable: 0.|
+|`vdop`|Vertical dilution of precision. If unavailable: 0.|
+|`actual`|True, if GPS fix is available. False, if dead-reckoning is used.|
 |`satellites`|Number of satellites in view|
 |`dimension`|See Dimension|
 |`altitude`|Altitude in meters|
-|`heading`|The heading. North is 0. Resolution is 0.01|
+|`heading`|The true north heading. North is 0. Resolution is 0.01|
 |`speed`|The speed in KPH|
 
 
