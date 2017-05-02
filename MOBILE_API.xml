@@ -521,60 +521,37 @@
     <enum name="MediaClockFormat">
         <element name="CLOCK1">
             <description>
-                minutesFieldWidth = 2;minutesFieldMax = 19;secondsFieldWidth = 2;secondsFieldMax = 99;maxHours = 19;maxMinutes = 59;maxSeconds = 59;
-                used for Type II and CID headunits
+                Deprecated
             </description>
         </element>
         <element name="CLOCK2">
             <description>
-                minutesFieldWidth = 3;minutesFieldMax = 199;secondsFieldWidth = 2;secondsFieldMax = 99;maxHours = 59;maxMinutes = 59;maxSeconds = 59;
-                used for Type V headunit
+                Deprecated
             </description>
         </element>
         <element name="CLOCK3">
             <description>
-                minutesFieldWidth = 2;minutesFieldMax = 59;secondsFieldWidth = 2;secondsFieldMax = 59;maxHours = 9;maxMinutes = 59;maxSeconds = 59;
-                used for GEN1.1 MFD3/4/5 headunits
+                Deprecated
             </description>
         </element>
         <element name="CLOCKTEXT1">
             <description>
-                5 characters possible
-                Format:      1|sp   c   :|sp   c   c
-                1|sp : digit "1" or space
-                c    : character out of following character set: sp|0-9|[letters, see TypeII column in XLS. See [@TODO: create file ref]]
-                :|sp : colon or space
-                used for Type II headunit
+                Deprecated
             </description>
         </element>
         <element name="CLOCKTEXT2">
             <description>
-                5 chars possible
-                Format:      1|sp   c   :|sp   c   c
-                1|sp : digit "1" or space
-                c    : character out of following character set: sp|0-9|[letters, see CID column in XLS. See [@TODO: create file ref]]
-                :|sp : colon or space
-                used for CID headunit
-                NOTE: difference between CLOCKTEXT1 and CLOCKTEXT2 is the supported character set
+                Deprecated
             </description>
         </element>
         <element name="CLOCKTEXT3">
             <description>
-                6 chars possible
-                Format:      1|sp   c   c   :|sp   c   c
-                1|sp : digit "1" or space
-                c    : character out of following character set: sp|0-9|[letters, see Type 5 column in XLS]. See [@TODO: create file ref]
-                :|sp : colon or space
-                used for Type V headunit
+                Deprecated
             </description>
         </element>
         <element name="CLOCKTEXT4">
             <description>
-                6 chars possible
-                Format:      c   :|sp   c   c   :   c   c
-                :|sp : colon or space
-                c    : character out of following character set: sp|0-9|[letters].
-                used for GEN1.1 MFD3/4/5 headunits
+                Deprecated
             </description>
         </element>
     </enum>
