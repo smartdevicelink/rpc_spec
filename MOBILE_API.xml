@@ -4512,7 +4512,6 @@
     <function name="ListFiles" functionID="ListFilesID" messagetype="request">
         <description>
             Requests the current list of resident filenames for the registered app.
-            Not supported on first generation the headunit vehicles.
         </description>
     </function>
     
