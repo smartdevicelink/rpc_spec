@@ -4483,7 +4483,6 @@
     <function name="DeleteFile" functionID="DeleteFileID" messagetype="response">
         <description>
             Response is sent, when the file data was deleted (success case). Or when an error occured.
-            Not supported on First generation the headunit vehicles.
         </description>
         <param name="success" type="Boolean" platform="documentation">
             <description> true if successful; false, if failed </description>
