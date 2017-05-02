@@ -1412,18 +1412,10 @@
     </struct>
     
     <struct name="ClusterModeStatus">
-        <param name="powerModeActive" type="Boolean">
-            <description>References signal "PowerMode_UB".</description>
-        </param>
-        <param name="powerModeQualificationStatus" type="PowerModeQualificationStatus">
-            <description>References signal "PowerModeQF". See PowerModeQualificationStatus.</description>
-        </param>
-        <param name="carModeStatus" type="CarModeStatus">
-            <description>References signal "CarMode". See CarMode.</description>
-        </param>
-        <param name="powerModeStatus" type="PowerModeStatus">
-            <description>References signal "PowerMode". See PowerMode.</description>
-        </param>
+        <param name="powerModeActive" type="Boolean"></param>
+        <param name="powerModeQualificationStatus" type="PowerModeQualificationStatus"></param>
+        <param name="carModeStatus" type="CarModeStatus"></param>
+        <param name="powerModeStatus" type="PowerModeStatus"></param>
     </struct>
     
     <struct name="MyKey">
