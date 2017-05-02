@@ -409,7 +409,7 @@
     </enum>
     
     <enum name="HmiZoneCapabilities">
-        <description>Contains information about the HMI zone capabilities. (For future use.)</description>
+        <description>Contains information about the HMI zone capabilities.</description>
         <element name="FRONT" />
         <element name="BACK" />
     </enum>
