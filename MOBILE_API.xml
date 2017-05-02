@@ -1402,26 +1402,13 @@
     </struct>
     
     <struct name="EmergencyEvent">
-        <param name="emergencyEventType" type="EmergencyEventType">
-            <description>References signal "VedsEvntType_D_Ltchd". See EmergencyEventType.</description>
-        </param>
-        <param name="fuelCutoffStatus" type="FuelCutoffStatus">
-            <description>References signal "RCM_FuelCutoff". See FuelCutoffStatus.</description>
-        </param>
-        <param name="rolloverEvent" type="VehicleDataEventStatus">
-            <description>References signal "VedsEvntRoll_D_Ltchd". See VehicleDataEventStatus.</description>
-        </param>
-        
+        <param name="emergencyEventType" type="EmergencyEventType"></param>
+        <param name="fuelCutoffStatus" type="FuelCutoffStatus"></param>
+        <param name="rolloverEvent" type="VehicleDataEventStatus"></param>
         <param name="maximumChangeVelocity" type="Integer" minvalue="0" maxvalue="255">
-            <description>References signal "VedsMaxDeltaV_D_Ltchd". Change in velocity in KPH.  Additional reserved values:
-                0x00 No event
-                0xFE Not supported
-                0xFF Fault
-            </description>
+            <description>Change in velocity in KPH.</description>
         </param>
-        <param name="multipleEvents" type="VehicleDataEventStatus">
-            <description>References signal "VedsMultiEvnt_D_Ltchd". See VehicleDataEventStatus.</description>
-        </param>
+        <param name="multipleEvents" type="VehicleDataEventStatus"></param>
     </struct>
     
     <struct name="ClusterModeStatus">
