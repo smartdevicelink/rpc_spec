@@ -4029,13 +4029,12 @@
         </param>
         
         <param name="ecuHeader" type="Integer" minvalue="0" maxvalue="65535" mandatory="true">
-            <description>2 byte ECU Header for DTC response (as defined in VHR_Layout_Specification_DTCs.pdf)</description>
+            <description>2 byte ECU Header for DTC response</description>
         </param>
         
         <param name="dtc" type="String" mandatory="false" minsize="1" maxsize="15" maxlength="10" array="true">
             <description>
-                Array of all reported DTCs on module (ecuHeader contains information if list is truncated).
-                Each DTC is represented by 4 bytes (3 bytes of data and 1 byte status as defined in VHR_Layout_Specification_DTCs.pdf).
+                Array of all reported DTCs on module.
             </description>
         </param>
         
