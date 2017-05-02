@@ -272,10 +272,10 @@
     
     <enum name="TimerMode">
         <element name="UP" >
-            <description>Causes the media clock timer to update from 0:00 to a specified time</description>
+            <description>Causes the media clock to run forwards.</description>
         </element>
         <element name="DOWN" >
-            <description>Causes the media clock timer to update from a specified time to 0:00</description>
+            <description>Causes the media clock to run backwards.</description>
         </element>
         <element name="NONE" >
             <description>Indicates to not use the media clock timer</description>
