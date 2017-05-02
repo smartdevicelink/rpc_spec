@@ -917,13 +917,13 @@
     <enum name="Dimension">
         <description>The supported dimensions of the GPS</description>
         <element name="NO_FIX" internal_name="Dimension_NO_FIX">
-            <description>No GPS at all</description>
+            <description>No GPS Fix</description>
         </element>
         <element name="2D" internal_name="Dimension_2D">
-            <description>Longitude and lattitude</description>
+            <description>GPS fix with Longitude and lattitude</description>
         </element>
         <element name="3D" internal_name="Dimension_3D">
-            <description>Longitude and lattitude and altitude</description>
+            <description>GPS fix with Longitude and lattitude and altitude</description>
         </element>
     </enum>
     
