@@ -1788,7 +1788,7 @@
          <description>Availability of build in Nav. True: Available, False: Not Available</description>
          </param>
          <param name="phoneCall" type="Boolean" mandatory="false">
-         <description>Availability of build in phone. True: Available, False: Not Available </description>
+         <description>Availability of build in hands free functionality. True: Available, False: Not Available </description>
          </param>
          </struct>
          
