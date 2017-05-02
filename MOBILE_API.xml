@@ -2902,33 +2902,31 @@
         
         <param name="choiceID" type="Integer" minvalue="0" maxvalue="2000000000" mandatory="false">
             <description>
-                ID of the choice that was selected in response to PerformInteraction.
-                Only is valid if general result is "success:true".
+                ID of the choice which the user selected.
             </description>
         </param>
         
         <param name="manualTextEntry" type="String" maxlength="500" mandatory="false">
             <description>
-                Manually entered text selection, e.g. through keyboard
-                Can be returned in lieu of choiceID, depending on trigger source
+                If input was done via Keyboard, this will include the string.
             </description>
         </param>
         
         <param name="triggerSource" type="TriggerSource" mandatory="false">
             <description>
                 See TriggerSource
-                Only is valid if resultCode is SUCCESS.
             </description>
         </param>
         
     </function>
     
     <function name="DeleteInteractionChoiceSet" functionID="DeleteInteractionChoiceSetID" messagetype="request">
-        <description>Deletes interaction choice set that has been created with "CreateInteractionChoiceSet".</description>
-        <description>The interaction may only be deleted when not currently in use by a "performInteraction".</description>
+        <description>
+            Deletes an interactionChoiceSet. The interaction may only be deleted when not currently in use by a "performInteraction".
+        </description>
         
         <param name="interactionChoiceSetID" type="Integer" minvalue="0" maxvalue="2000000000">
-            <description>ID of the interaction choice set to delete.</description>
+            <description>ID of the interactionChoiceSet to be deleted.</description>
         </param>
     </function>
     
