@@ -2100,7 +2100,7 @@
          </enum>
          
          <enum name="FunctionID" internal_scope="base">
-         <description>Enumeration linking function names with function IDs in AppLink protocol. Assumes enumeration starts at value 0.</description>
+         <description>Enumeration linking function names with function IDs in the SmartDeviceLink protocol. Assumes enumeration starts at value 0.</description>
          <element name="RESERVED" value="0" />
          <!--
          Base Request / Response RPCs
