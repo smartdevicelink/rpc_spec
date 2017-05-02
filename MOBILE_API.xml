@@ -2970,23 +2970,19 @@
         
         <param name="ttsChunks" type="TTSChunk" minsize="1" maxsize="100" array="true" mandatory="false">
             <description>
-                An array of text chunks of type TTSChunk. See TTSChunk.
-                The array must have at least one item.
+                An array of text chunks of type TTSChunk. See TTSChunk. The array must have at least one item.
             </description>
         </param>
         
         <param name="duration" type="Integer" minvalue="3000" maxvalue="10000" defvalue="5000" mandatory="false">
             <description>
-                Timeout in milliseconds.
-                Typical timeouts are 3-5 seconds.
-                If omitted, timeout is set to 5s.
+                Timeout in milliseconds. Typical timeouts are 3-5 seconds. If omitted, timeout is set to headunit defaults.
             </description>
         </param>
         
         <param name="playTone" type="Boolean" mandatory="false">
             <description>
-                Defines if tone should be played. Tone is played before TTS.
-                If omitted, no tone is played.
+                Defines if tone should be played. Tone is played before TTS. If omitted, no tone is played.
             </description>
         </param>
         
@@ -2998,8 +2994,7 @@
         
         <param name="softButtons" type="SoftButton" minsize="0" maxsize="4" array="true" mandatory="false">
             <description>
-                App defined SoftButtons.
-                If omitted on supported displays, the displayed alert shall not have any SoftButtons.
+                App defined SoftButtons. If omitted on supported displays, the displayed alert shall not have any SoftButtons.
             </description>
         </param>
         
