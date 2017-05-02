@@ -2434,7 +2434,6 @@
         </param>
 
         <param name="hmiZoneCapabilities" type="HmiZoneCapabilities" minsize="1" maxsize="100" array="true" mandatory="false">
-            <issue creator="rs">If not used yet => remove</issue>
             <description>See HmiZoneCapabilities</description>
         </param>
 
@@ -2464,13 +2463,12 @@
         
         <param name="supportedDiagModes" type="Integer" minvalue="0" maxvalue="255" array="true" minsize="1" maxsize="100" mandatory="false" >
             <description>
-                Specifies the white-list of supported diagnostic modes (0x00-0xFF) capable for DiagnosticMessage requests.
-                If a mode outside this list is requested, it will be rejected.
+                Specifies the white-list of supported diagnostic modes (0x00-0xFF) capable for DiagnosticMessage requests. If a mode outside this list is requested, it will be rejected.
             </description>
         </param>
         
         <param name="hmiCapabilities" type="HMICapabilities" mandatory="false">
-            <description>Specifies the HMIÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢s capabilities. See HMICapabilities.</description>
+            <description>Specifies the HMI capabilities. See HMICapabilities.</description>
         </param>
         
         <param name="sdlVersion" type="String" maxlength="100" mandatory="false" platform="documentation">
@@ -2481,8 +2479,7 @@
             <description>The software version of the system that implements the SmartDeviceLink core.</description>
         </param>
         <param name="iconResumed" type="Boolean" mandatory="false">
-            
-            <description>Existence of apps icon at system. If true, apps icon was resumed at system. If false, apps icon is not resumed at system</description>
+            <description>True: Cached App Icon was used. - No need to set App Icon False: Using of cached App Icon failed. - The App has to set the App Icon.</description>
         </param>
     </function>
     
