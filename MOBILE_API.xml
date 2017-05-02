@@ -2238,10 +2238,10 @@
     
     <struct name="Coordinate">
         <param name="latitudeDegrees" minvalue="-90" maxvalue="90" type="Float" mandatory="true">
-            <description>Latitude of the location.</description>
+            <description>Latitude in Decimal Degrees.</description>
         </param>
         <param name="longitudeDegrees" minvalue="-180" maxvalue="180" type="Float" mandatory="true">
-            <description>Longitude of the location.</description>
+            <description>Longitude in Decimal Degrees.</description>
         </param>
     </struct>
     
