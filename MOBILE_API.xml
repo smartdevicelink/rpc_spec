@@ -2821,7 +2821,7 @@
     </function>
     
     <function name="PerformInteraction" functionID="PerformInteractionID" messagetype="request">
-        <description>Triggers an interaction (e.g. "Permit GPS?" - Yes, no, Always Allow).</description>
+        <description>Triggers an interaction. The platform will ask the user to choose from the provided choiseSet(s)</description>
         
         <param name="initialText" type="String" maxlength="500" >
             <description>
@@ -2831,9 +2831,7 @@
         
         <param name="initialPrompt" type="TTSChunk" minsize="1" maxsize="100" array="true" mandatory="false">
             <description>
-                This is the intial prompt spoken to the user at the start of an interaction.
-                An array of text chunks of type TTSChunk. See TTSChunk.
-                The array must have at least one item.
+                This is the intial prompt spoken to the user at the start of an interaction. An array of text chunks of type TTSChunk. See TTSChunk. The array must have at least one item.
             </description>
         </param>
         
@@ -2847,32 +2845,25 @@
         
         <param name="helpPrompt" type="TTSChunk" minsize="1" maxsize="100" array="true" mandatory="false">
             <description>
-                Help text. This is the spoken string when a user speaks "help" when the interaction is occuring.
-                An array of text chunks of type TTSChunk. See TTSChunk.
-                The array must have at least one item.
+                Help text. This is the spoken string when a user speaks "help" when the interaction is occuring. An array of text chunks of type TTSChunk. See TTSChunk. The array must have at least one item.
             </description>
         </param>
         
         <param name="timeoutPrompt" type="TTSChunk" minsize="1" maxsize="100" array="true" mandatory="false">
             <description>
-                Timeout text. This text is spoken when a VR interaction times out.
-                An array of text chunks of type TTSChunk. See TTSChunk.
-                The array must have at least one item.
+                Timeout text. This text is spoken when a VR interaction times out. An array of text chunks of type TTSChunk. See TTSChunk. The array must have at least one item.
             </description>
         </param>
         
         <param name="timeout" type="Integer" minvalue="5000" maxvalue="100000" defvalue="10000" mandatory="false">
             <description>
-                Timeout in milliseconds.
-                If omitted a standard value of 10000 milliseconds is used.
-                Applies only to the menu portion of the interaction. The VR timeout will be handled by the platform.
+                Timeout in milliseconds. If omitted a standard value defined by the headunit is used. Applies only to the menu portion of the interaction. The VR timeout will be handled by the headunit.
             </description>
         </param>
         
         <param name="vrHelp" type="VrHelpItem" minsize="1" maxsize="100" array="true" mandatory="false">
             <description>
-                Ability to send suggested VR Help Items to display on-screen during Perform Interaction.
-                If omitted on supported displays, the default the headunit generated list of suggested choices shall be displayed.
+                Ability to send suggested VR Help Items to display on-screen during Perform Interaction. If omitted on supported displays, the default the headunit generated list of suggested choices shall be displayed.
             </description>
         </param>
         
