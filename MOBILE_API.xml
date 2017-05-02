@@ -4689,8 +4689,10 @@
     
     <function name="SendLocation" functionID="SendLocationID" messagetype="request">
         <param name="longitudeDegrees" type="Float" minvalue="-180" maxvalue="180" mandatory="false">
+            <description>Longitude in Decimal Degrees.</description>
         </param>
         <param name="latitudeDegrees" type="Float" minvalue="-90" maxvalue="90" mandatory="false">
+            <description>Latitude in Decimal Degrees.</description>
         </param>
         <param name="locationName" type="String" maxlength="500" mandatory="false">
             <description>
@@ -4719,9 +4721,6 @@
         </param>
         
         <param name="timeStamp" type="DateTime" mandatory="false">
-            <description>
-                timestamp in ISO 8601 format
-            </description>
         </param>
         
         <param name="address" type="OASISAddress" mandatory="false">
