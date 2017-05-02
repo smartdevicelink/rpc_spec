@@ -1722,8 +1722,6 @@
         <param name="numCustomPresetsAvailable" type="Integer" minvalue="1" maxvalue="100" mandatory="false">
             <description>The number of on-screen custom presets available (if any); otherwise omitted.</description>
         </param>
-        
-        <!-- TODO:  Add pixel density? -->
          </struct>
          
          <struct name="ButtonCapabilities">
