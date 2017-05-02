@@ -1567,14 +1567,9 @@
     </struct>
     
     <struct name="StartTime">
-        <param name="hours" type="Integer" minvalue="0" maxvalue="59">
-            <description>
-                The hour of the media clock.
-                Some radios only support a max of 19 hours. If out of range, it will be rejected.
-            </description>
-        </param>
-        <param name="minutes" type="Integer" minvalue="0" maxvalue="59" />
-        <param name="seconds" type="Integer" minvalue="0" maxvalue="59" />
+        <param name="hours" type="Integer" minvalue="0" maxvalue="59"/>
+        <param name="minutes" type="Integer" minvalue="0" maxvalue="59"/>
+        <param name="seconds" type="Integer" minvalue="0" maxvalue="59"/>
     </struct>
     
     <struct name="TextField">
