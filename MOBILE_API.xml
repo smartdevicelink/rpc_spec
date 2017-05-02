@@ -2192,7 +2192,7 @@
     
     <enum name="messageType">
         <description>
-            Enumeration linking message types with function types in WiPro protocol.
+            Enumeration linking message types with function types.
             Assumes enumeration starts at value 0.
         </description>
         <element name="request" value="0" />
