@@ -4392,9 +4392,7 @@
     
     <function name="PutFile" functionID="PutFileID" messagetype="request">
         <description>
-            Used to push a binary data onto the the headunit module from a mobile device, such as icons and album art
-            Not supported on first generation the headunit vehicles.
-            Binary data is in binary part of hybrid msg.
+            Used to push a binary data onto the the headunit module from a mobile device, such as icons and album art.
         </description>
         
         <param name="syncFileName" type="String" maxlength="255" mandatory="true">
