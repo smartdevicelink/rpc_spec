@@ -1900,9 +1900,9 @@
          </param>
          
          <param name="limitedCharacterList" type="String" maxlength="1" minsize="1" maxsize="100" array="true" mandatory="false">
-         <description>Array of keyboard characters to enable.</description>
-         <description>All omitted characters will be greyed out (disabled) on the keyboard.</description>
-         <description>If omitted, the entire keyboard will be enabled.</description>
+         <description>
+           Array of keyboard characters to enable. All omitted characters will be greyed out (disabled) on the keyboard.If omitted, the entire keyboard will be enabled.
+         </description>
          </param>
          
          <param name="autoCompleteText" type="String" maxlength="1000" mandatory="false">
