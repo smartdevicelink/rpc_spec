@@ -1391,30 +1391,14 @@
     </struct>
     
     <struct name="AirbagStatus">
-        <param name="driverAirbagDeployed" type="VehicleDataEventStatus">
-            <description>References signal "VedsDrvBag_D_Ltchd". See VehicleDataEventStatus.</description>
-        </param>
-        <param name="driverSideAirbagDeployed" type="VehicleDataEventStatus">
-            <description>References signal "VedsDrvSideBag_D_Ltchd". See VehicleDataEventStatus.</description>
-        </param>
-        <param name="driverCurtainAirbagDeployed" type="VehicleDataEventStatus">
-            <description>References signal "VedsDrvCrtnBag_D_Ltchd". See VehicleDataEventStatus.</description>
-        </param>
-        <param name="passengerAirbagDeployed" type="VehicleDataEventStatus">
-            <description>References signal "VedsPasBag_D_Ltchd". See VehicleDataEventStatus.</description>
-        </param>
-        <param name="passengerCurtainAirbagDeployed" type="VehicleDataEventStatus">
-            <description>References signal "VedsPasCrtnBag_D_Ltchd". See VehicleDataEventStatus.</description>
-        </param>
-        <param name="driverKneeAirbagDeployed" type="VehicleDataEventStatus">
-            <description>References signal "VedsKneeDrvBag_D_Ltchd". See VehicleDataEventStatus.</description>
-        </param>
-        <param name="passengerSideAirbagDeployed" type="VehicleDataEventStatus">
-            <description>References signal "VedsPasSideBag_D_Ltchd". See VehicleDataEventStatus.</description>
-        </param>
-        <param name="passengerKneeAirbagDeployed" type="VehicleDataEventStatus">
-            <description>References signal "VedsKneePasBag_D_Ltchd". See VehicleDataEventStatus.</description>
-        </param>
+        <param name="driverAirbagDeployed" type="VehicleDataEventStatus"></param>
+        <param name="driverSideAirbagDeployed" type="VehicleDataEventStatus"></param>
+        <param name="driverCurtainAirbagDeployed" type="VehicleDataEventStatus"></param>
+        <param name="passengerAirbagDeployed" type="VehicleDataEventStatus"></param>
+        <param name="passengerCurtainAirbagDeployed" type="VehicleDataEventStatus"></param>
+        <param name="driverKneeAirbagDeployed" type="VehicleDataEventStatus"></param>
+        <param name="passengerSideAirbagDeployed" type="VehicleDataEventStatus"></param>
+        <param name="passengerKneeAirbagDeployed" type="VehicleDataEventStatus"></param>
     </struct>
     
     <struct name="EmergencyEvent">
