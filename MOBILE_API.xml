@@ -469,9 +469,7 @@
     
     <enum name="VehicleDataType">
         <description>Defines the data types that can be published and subscribed to.</description>
-        <element name="VEHICLEDATA_GPS">
-            <description>Notifies GPSData may be subscribed</description>
-        </element>
+        <element name="VEHICLEDATA_GPS" />
         <element name="VEHICLEDATA_SPEED" />
         <element name="VEHICLEDATA_RPM" />
         <element name="VEHICLEDATA_FUELLEVEL" />
