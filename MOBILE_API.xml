@@ -738,18 +738,14 @@
     </enum>
     
     <enum name="CharacterSet">
-        <description>The list of potential character sets</description>
+        <description>The list of potential character sets.</description>
         <element name="TYPE2SET">
-            <description>See [@TODO: create file ref]</description>
         </element>
         <element name="TYPE5SET">
-            <description>See [@TODO: create file ref]</description>
         </element>
         <element name="CID1SET">
-            <description>See [@TODO: create file ref]</description>
         </element>
         <element name="CID2SET">
-            <description>See [@TODO: create file ref]</description>
         </element>
     </enum>
     
