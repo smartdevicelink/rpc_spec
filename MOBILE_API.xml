@@ -1437,7 +1437,7 @@
             <description>DTC / DID request successful, however, not all active DTCs or full contents of DID location available</description>
         </element>
         <element name="DISALLOWED" internal_name="VDRC_DISALLOWED">
-            <description>This vehicle data item is not allowed for this app by Ford.</description>
+            <description>This vehicle data item is not allowed for this app.</description>
         </element>
         <element name="USER_DISALLOWED" internal_name="VDRC_USER_DISALLOWED">
             <description>The user has not granted access to this type of vehicle data item at this time.</description>
