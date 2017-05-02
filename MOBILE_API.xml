@@ -1205,25 +1205,25 @@
     
     <struct name="BodyInformation">
         <param name="parkBrakeActive" type="Boolean">
-            <description>References signal "PrkBrkActv_B_Actl".</description>
+            <description>Parking brake status. True = Parking brake active. False = Parking brake deactivated.</description>
         </param>
         <param name="ignitionStableStatus" type="IgnitionStableStatus">
-            <description>References signal "Ignition_Switch_Stable". See IgnitionStableStatus.</description>
+            <description>Status of the Ignition switch stability.</description>
         </param>
         <param name="ignitionStatus" type="IgnitionStatus">
-            <description>References signal "Ignition_status". See IgnitionStatus.</description>
+            <description>Current status of the Ignition.</description>
         </param>
         <param name="driverDoorAjar" type="Boolean" mandatory="false">
-            <description>References signal "DrStatDrv_B_Actl".</description>
+            <description>Driver Door Status. True = open. False = closed.</description>
         </param>
         <param name="passengerDoorAjar" type="Boolean" mandatory="false">
-            <description>References signal "DrStatPsngr_B_Actl".</description>
+            <description>Passenger Door Status. True = open. False = closed.</description>
         </param>
         <param name="rearLeftDoorAjar" type="Boolean" mandatory="false">
-            <description>References signal "DrStatRl_B_Actl".</description>
+            <description>Rear Left Door Status. True = open. False = closed.</description>
         </param>
         <param name="rearRightDoorAjar" type="Boolean" mandatory="false">
-            <description>References signal "DrStatRr_B_Actl".</description>
+            <description>Rear Right Door Status. True = open. False = closed.</description>
         </param>
     </struct>
     
