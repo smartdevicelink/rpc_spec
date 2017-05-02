@@ -4554,7 +4554,6 @@
     <function name="SetAppIcon" functionID="SetAppIconID" messagetype="request">
         <description>
             Used to set existing local file on the headunit as the app's icon
-            Not supported on first generation the headunit vehicles.
         </description>
         
         <param name="syncFileName" type="String" maxlength="500" mandatory="true">
