@@ -4155,7 +4155,7 @@
         <param name="timeout" type="Integer" minvalue="1000" maxvalue="65535" defvalue="10000" mandatory="false">
             <description>
                 App defined timeout.  Indicates how long of a timeout from the last action (i.e. sliding control resets timeout).
-                If omitted, the value is set to 10000.
+                If omitted, the value is determined by headunit.
             </description>
         </param>
     </function>
