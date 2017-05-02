@@ -4518,7 +4518,6 @@
     <function name="ListFiles" functionID="ListFilesID" messagetype="response">
         <description>
             Returns the current list of resident filenames for the registered app along with the current space available
-            Not supported on First generation the headunit vehicles.
         </description>
         <param name="success" type="Boolean" platform="documentation">
             <description> true, if successful; false, if failed </description>
