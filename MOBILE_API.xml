@@ -573,47 +573,47 @@
     
     <enum name="TextFieldName">
         <element name="mainField1">
-            <description>The first line of first set of main fields of the persistent display; applies to "Show"</description>
+            <description>The first line of first set of main fields of the persistent display.</description>
         </element>
         
         <element name="mainField2">
-            <description>The second line of first set of main fields of the persistent display; applies to "Show"</description>
+            <description>The second line of first set of main fields of the persistent display.</description>
         </element>
         
         <element name="mainField3">
-            <description>The first line of second set of main fields of persistent display; applies to "Show"</description>
+            <description>The first line of second set of main fields of persistent display.</description>
         </element>
         
         <element name="mainField4">
-            <description>The second line of second set of main fields of the persistent display; applies to "Show"</description>
+            <description>The second line of second set of main fields of the persistent display.</description>
         </element>
         
         <element name="statusBar">
-            <description>The status bar on NGN; applies to "Show"</description>
+            <description>The status bar (if available).</description>
         </element>
         
         <element name="mediaClock">
-            <description>Text value for MediaClock field; applies to "Show"</description>
+            <description>Text value for MediaClock field.</description>
         </element>
         
         <element name="mediaTrack">
-            <description>The track field of NGN and GEN1.1 MFD displays. This field is only available for media applications; applies to "Show"</description>
+            <description>The track field. This field is only available for media applications.</description>
         </element>
         
         <element name="alertText1">
-            <description>The first line of the alert text field; applies to "Alert"</description>
+            <description>The first line of the alert text field.</description>
         </element>
         
         <element name="alertText2">
-            <description>The second line of the alert text field; applies to "Alert"</description>
+            <description>The second line of the alert text field.</description>
         </element>
         
         <element name="alertText3">
-            <description>The third line of the alert text field; applies to "Alert"</description>
+            <description>The third line of the alert text field.</description>
         </element>
         
         <element name="scrollableMessageBody">
-            <description>Long form body of text that can include newlines and tabs; applies to "ScrollableMessage"</description>
+            <description>Long form body of text that can include newlines and tabs.</description>
         </element>
         
         <element name="initialInteractionText">
