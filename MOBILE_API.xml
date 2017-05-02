@@ -1420,7 +1420,7 @@
     
     <struct name="MyKey">
         <param name="e911Override" type="VehicleDataStatus">
-            <description>Indicates whether e911 override is on.  References signal "MyKey_e911Override_St". See VehicleDataStatus.</description>
+            <description>Indicates whether e911 override is on.</description>
         </param>
     </struct>
     
