@@ -316,10 +316,18 @@
     
     <enum name="HMILevel">
         <description>Enumeraction that describes current levels of HMI.</description>
-        <element name="FULL" internal_name="HMI_FULL" />
-        <element name="LIMITED" internal_name="HMI_LIMITED" />
-        <element name="BACKGROUND" internal_name="HMI_BACKGROUND" />
-        <element name="NONE" internal_name="HMI_NONE" />
+        <element name="FULL" internal_name="HMI_FULL">
+          <description>The App is in foreground on the display.</description>
+        </element>
+        <element name="LIMITED" internal_name="HMI_LIMITED">
+          <description>The App is active, but temporarily not visible on the screen.</description>
+        </element>
+        <element name="BACKGROUND" internal_name="HMI_BACKGROUND">
+          <description>The App is in background. This can be the default mode after connecting for Apps with Background permissions.</description>
+        </element>
+        <element name="NONE" internal_name="HMI_NONE">
+          <description>The App has been connected but not started, or has been exited by the user. The app should not send RPC requests other than the setup of the AppIcon in this mode.</description>
+        </element>
     </enum>
     
     <enum name="AudioStreamingState">
