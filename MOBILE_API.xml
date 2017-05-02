@@ -2620,12 +2620,11 @@
     
     <function name="AddCommand" functionID="AddCommandID" messagetype="request">
         <description>
-            Adds a command to the in application menu.
-            Either menuParams or vrCommands must be provided.
+            Adds a command to the in application menu. Either menuParams (only shown in menu) or vrCommands (only reachable via Voice Recognition) or both must be provided.
         </description>
         
         <param name="cmdID" type="Integer" minvalue="0" maxvalue="2000000000" mandatory="true">
-            <description>unique ID of the command to add.</description>
+            <description>Unique ID of the command to add.</description>
         </param>
         
         <param name="menuParams" type="MenuParams" mandatory="false">
@@ -2634,15 +2633,13 @@
         
         <param name="vrCommands" type="String" minsize="1" maxsize="100" maxlength="99" array="true" mandatory="false">
             <description>
-                An array of strings to be used as VR synonyms for this command.
-                If this array is provided, it may not be empty.
+                An array of strings to be used as VR synonyms for this command. If this array is provided, it may not be empty.
             </description>
         </param>
         
         <param name="cmdIcon" type="Image" mandatory="false">
             <description>
-                Image struct determining whether static or dynamic icon.
-                If omitted on supported displays, no (or the default if applicable) icon shall be displayed.
+                Image struct determining whether static or dynamic icon. If omitted on supported displays, no (or the default if applicable) icon shall be displayed.
             </description>
         </param>
         
