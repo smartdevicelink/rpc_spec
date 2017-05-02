@@ -332,9 +332,15 @@
     
     <enum name="AudioStreamingState">
         <description>Enumeraction that describes possible states of audio streaming.</description>
-        <element name="AUDIBLE" />
-        <element name="ATTENUATED" />
-        <element name="NOT_AUDIBLE" />
+        <element name="AUDIBLE">
+          <description>The App is the current audio source. The App is responsible for starting/stopping audio at appropiate times.</description>
+        </element>
+        <element name="ATTENUATED">
+          <description>The App is currently not audible, because the headunit is playing a prompt.</description>
+        </element>
+        <element name="NOT_AUDIBLE">
+          <description>The app is not audible.</description>
+        </element>
     </enum>
     
     <enum name="SystemAction">
