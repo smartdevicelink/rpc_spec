@@ -3041,7 +3041,6 @@
         
         <param name="mainField1" type="String" minlength="0" maxlength="500" mandatory="false">
             <description>
-                The text that should be displayed in a single or upper display line.
                 If this text is not set, the text of mainField1 stays unchanged.
                 If this text is empty "", the field will be cleared.
             </description>
@@ -3049,7 +3048,6 @@
         
         <param name="mainField2" type="String" minlength="0" maxlength="500" mandatory="false">
             <description>
-                The text that should be displayed on the second display line.
                 If this text is not set, the text of mainField2 stays unchanged.
                 If this text is empty "", the field will be cleared.
             </description>
@@ -3057,7 +3055,6 @@
         
         <param name="mainField3" type="String" minlength="0" maxlength="500" mandatory="false">
             <description>
-                The text that should be displayed on the second "page" first display line.
                 If this text is not set, the text of mainField3 stays unchanged.
                 If this text is empty "", the field will be cleared.
             </description>
@@ -3065,7 +3062,6 @@
         
         <param name="mainField4" type="String" minlength="0" maxlength="500" mandatory="false">
             <description>
-                The text that should be displayed on the second "page" second display line.
                 If this text is not set, the text of mainField4 stays unchanged.
                 If this text is empty "", the field will be cleared.
             </description>
@@ -3074,24 +3070,20 @@
         <param name="alignment" type="TextAlignment" mandatory="false">
             <description>
                 Specifies how mainField1 and mainField2 texts should be aligned on display.
-                If omitted, texts will be centered.
             </description>
         </param>
         
         <param name="statusBar" type="String" minlength="0" maxlength="500" mandatory="false">
-            <description>Requires investigation regarding the nav display capabilities. Potentially lower lowerStatusBar, upperStatusBar, titleBar, etc.</description>
         </param>
         
         <param name="mediaClock" type="String" minlength="0" maxlength="500" mandatory="false">
             <description>
-                Text value for MediaClock field. Has to be properly formatted by Mobile App according to the headunit capabilities.
-                If this text is set, any automatic media clock updates previously set with SetMediaClockTimer will be stopped.
+              Deprecated
             </description>
         </param>
         
         <param name="mediaTrack" type="String" minlength="0" maxlength="500" mandatory="false">
             <description>
-                The text that should be displayed in the track field.
                 If this text is not set, the text of mediaTrack stays unchanged.
                 If this text is empty "", the field will be cleared.
             </description>
@@ -3099,14 +3091,14 @@
         
         <param name="graphic" type="Image" mandatory="false">
             <description>
-                Image struct determining whether static or dynamic image to display in app.
+                Image struct determining whether static or dynamic image should be displayed. Dynamic images have to uploaded via putFile before being used here.
                 If omitted on supported displays, the displayed graphic shall not change.
             </description>
         </param>
         
         <param name="secondaryGraphic" type="Image" mandatory="false">
             <description>
-                Image struct determining whether static or dynamic secondary image to display in app.
+                Image struct determining whether static or dynamic secondary image should be displayed. Dynamic images have to uploaded via putFile before being used here.
                 If omitted on supported displays, the displayed secondary graphic shall not change.
             </description>
         </param>
@@ -3116,13 +3108,14 @@
             <description>
                 App defined SoftButtons.
                 If omitted on supported displays, the currently displayed SoftButton values will not change.
+                If array without items is send, softbuttons will be cleared. 
             </description>
         </param>
         
         <param name="customPresets" type="String" maxlength="500" minsize="0" maxsize="10" array="true" mandatory="false">
             <description>
-                App labeled on-screen presets (i.e. on-screen media presets or dynamic search suggestions).
-                If omitted on supported displays, the presets will be shown as not defined.
+                App labeled on-screen presets. Presets have to be subscribed to via subscribeButton. 
+                If omitted on supported displays, the presets will be shown as "Preset 1", "Preset 2" etc...
             </description>
         </param>
         
