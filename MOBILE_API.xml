@@ -1247,10 +1247,10 @@
     
     <struct name="HeadLampStatus">
         <param name="lowBeamsOn" type="Boolean">
-            <description>Status of the low beam lamps.  References signal "HeadLampLoActv_B_Stat".</description>
+            <description>Status of the low beam lamps.</description>
         </param>
         <param name="highBeamsOn" type="Boolean">
-            <description>Status of the high beam lamps.  References signal "HeadLghtHiOn_B_Stat".</description>
+            <description>Status of the high beam lamps.</description>
         </param>
         <param name="ambientLightSensorStatus" type="AmbientLightStatus" mandatory="false">
             <description>Status of the ambient light sensor.</description>
