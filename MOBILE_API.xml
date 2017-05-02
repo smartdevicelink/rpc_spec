@@ -4438,7 +4438,7 @@
     
     <function name="PutFile" functionID="PutFileID" messagetype="response">
         <description>Response is sent, when the file data was copied (success case). Or when an error occured.</description>
-        <description>Not supported on First generation the headunit vehicles. </description>
+        
         <param name="success" type="Boolean" platform="documentation">
             <description> true, if successful; false, if failed </description>
         </param>
