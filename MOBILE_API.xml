@@ -1293,7 +1293,7 @@
     </enum>
     
     <enum name="FuelCutoffStatus" >
-        <description>Reflects the status of the RCM fuel cutoff.</description>
+        <description>Reflects the status of the fuel cutoff.</description>
         <element name="TERMINATE_FUEL" internal_name="FCS_TERMINATE_FUEL">
         </element>
         <element name="NORMAL_OPERATION" internal_name="FCS_NORMAL_OPERATION">
