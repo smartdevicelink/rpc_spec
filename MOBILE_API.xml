@@ -298,16 +298,16 @@
     <enum name="LayoutMode">
         <description>For touchscreen interactions, the mode of how the choices are presented.</description>
         <element name="ICON_ONLY" >
-            <description>This mode causes the interaction to display the previous set of choices as icons.</description>
+            <description>This mode causes the interaction to display the selected set of choices as icons.</description>
         </element>
         <element name="ICON_WITH_SEARCH" >
-            <description>This mode causes the interaction to display the previous set of choices as icons along with a search field in the HMI.</description>
+            <description>This mode causes the interaction to display the selected set of choices as icons along with a search field in the HMI.</description>
         </element>
         <element name="LIST_ONLY" >
-            <description>This mode causes the interaction to display the previous set of choices as a list.</description>
+            <description>This mode causes the interaction to display the selected set of choices as a list.</description>
         </element>
         <element name="LIST_WITH_SEARCH" >
-            <description>This mode causes the interaction to display the previous set of choices as a list along with a search field in the HMI.</description>
+            <description>This mode causes the interaction to display the selected set of choices as a list along with a search field in the HMI.</description>
         </element>
         <element name="KEYBOARD" >
             <description>This mode causes the interaction to immediately display a keyboard entry through the HMI.</description>
