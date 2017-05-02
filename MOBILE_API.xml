@@ -1385,15 +1385,9 @@
     </enum>
     
     <struct name="ECallInfo">
-        <param name="eCallNotificationStatus" type="VehicleDataNotificationStatus">
-            <description>References signal "eCallNotification_4A". See VehicleDataNotificationStatus.</description>
-        </param>
-        <param name="auxECallNotificationStatus" type="VehicleDataNotificationStatus">
-            <description>References signal "eCallNotification". See VehicleDataNotificationStatus.</description>
-        </param>
-        <param name="eCallConfirmationStatus" type="ECallConfirmationStatus">
-            <description>References signal "eCallConfirmation". See ECallConfirmationStatus.</description>
-        </param>
+        <param name="eCallNotificationStatus" type="VehicleDataNotificationStatus"></param>
+        <param name="auxECallNotificationStatus" type="VehicleDataNotificationStatus"></param>
+        <param name="eCallConfirmationStatus" type="ECallConfirmationStatus"></param>
     </struct>
     
     <struct name="AirbagStatus">
