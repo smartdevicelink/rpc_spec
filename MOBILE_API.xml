@@ -757,7 +757,7 @@
     </enum>
     
     <enum name="TBTState">
-        <description>Enumeration that describes possible states of turn-by-turn client or AppLink app.</description>
+        <description>Enumeration that describes possible states of turn-by-turn client or SmartDeviceLink app.</description>
         <element name="ROUTE_UPDATE_REQUEST" />
         <element name="ROUTE_ACCEPTED" />
         <element name="ROUTE_REFUSED" />
@@ -2543,7 +2543,7 @@
         <param name="vrHelp" type="VrHelpItem" minsize="1" maxsize="100" array="true" mandatory="false">
             <description>
                 VR Help Items.
-                If omitted on supported displays, the default AppLink VR help / What Can I Say? screen shall be used.
+                If omitted on supported displays, the default headunit VR help / What Can I Say? screen shall be used.
                 If the list of VR Help Items contains nonsequential positions (e.g. [1,2,4]), the RPC shall be rejected.
                 If omitted and a vrHelpTitle is provided, the request will be rejected.
             </description>
