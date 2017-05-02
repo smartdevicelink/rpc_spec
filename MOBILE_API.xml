@@ -3210,7 +3210,7 @@
         <param name="updateMode" type="UpdateMode" mandatory="true">
             <description>
                 Enumeration to control the media clock.
-                In case of pause, resume, or clear, the start time value is ignored and shall be left out.  For resume, the time continues with the same value as it was when paused.
+                In case of resume, or clear, the start time value is ignored and shall be left out.  For resume, the time continues with the same value as it was when paused.
             </description>
         </param>
     </function>
