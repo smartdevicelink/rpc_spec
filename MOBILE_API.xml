@@ -1,8 +1,7 @@
 <?xml version="1.0" standalone="no"?>
 <?xml-stylesheet type="text/xml" href="protocol2html.xsl"?>
 
-<interface name="Ford Sync RAPI" version="4.4.0" date="2017-04-27">
-    
+<interface name="Ford Sync RAPI" version="4.5.0" date="2017-04-28">
     <enum name="Result" internal_scope="base">
         <element name="SUCCESS">
             <description>The request succeeded</description>
@@ -132,6 +131,9 @@
         <element name="RESUME_FAILED">
             <description>The provided hash ID does not match the hash of the current set of registered data or the core could not resume the previous data.</description>
         </element>
+        <element name="CORRUPTED_DATA">
+            <description>The data sent failed to pass CRC check in receiver end</description>
+        </element>
     </enum>
     
     <enum name="ButtonPressMode">
@@ -250,68 +252,65 @@
     
     <enum name="UpdateMode">
         <description>Describes how the media clock timer should behave on the platform</description>
-        <element name="COUNTUP" />
-        <description>Starts the media clock timer counting upwards, as in time elapsed.</description>
-        <element name="COUNTDOWN" />
-        <description>Starts the media clock timer counting downwards, as in time remaining.</description>
-        <element name="PAUSE" />
-        <description>Pauses the media clock timer</description>
-        <element name="RESUME" />
-        <description>Resume the media clock timer</description>
-        <element name="CLEAR" />
-        <description>Clears the media clock timer (previously done through Show->mediaClock)</description>
+        <element name="COUNTUP" >
+            <description>Starts the media clock timer counting upwards, as in time elapsed.</description>
+        </element>
+        <element name="COUNTDOWN" >
+            <description>Starts the media clock timer counting downwards, as in time remaining.</description>
+        </element>
+        <element name="PAUSE" >
+            <description>Pauses the media clock timer</description>
+        </element>
+        <element name="RESUME" >
+            <description>Resume the media clock timer</description>
+        </element>
+        <element name="CLEAR" >
+            <description>Clears the media clock timer (previously done through Show->mediaClock)</description>
+        </element>
     </enum>
     
     <enum name="TimerMode">
-        <element name="UP" />
-        <description>Causes the media clock timer to update from 0:00 to a specified time</description>
-        <element name="DOWN" />
-        <description>Causes the media clock timer to update from a specified time to 0:00</description>
-        <element name="NONE" />
-        <description>Indicates to not use the media clock timer</description>
+        <element name="UP" >
+            <description>Causes the media clock timer to update from 0:00 to a specified time</description>
+        </element>
+        <element name="DOWN" >
+            <description>Causes the media clock timer to update from a specified time to 0:00</description>
+        </element>
+        <element name="NONE" >
+            <description>Indicates to not use the media clock timer</description>
+        </element>
     </enum>
     
     <enum name="InteractionMode">
         <description>For application-requested interactions, this mode indicates the method in which the user is notified and uses the interaction.</description>
-        <element name="MANUAL_ONLY" />
-        <description>
-            This mode causes the interaction to only occur on the display, meaning the choices are provided only via the display.
-            Selections are made with the OK and Seek Right and Left, Tune Up and Down buttons.
-        </description>
-        <element name="VR_ONLY" />
-        <description>
-            This mode causes the interaction to only occur using V4.
-            Selections are made by saying the command.
-        </description>
-        <element name="BOTH" />
-        <description>
-            This mode causes both a VR and display selection option for an interaction.
-            Selections can be made either from the menu display or by speaking the command.
-        </description>
+        <element name="MANUAL_ONLY" >
+            <description>This mode causes the interaction to only occur on the display, meaning the choices are provided only via the display.Selections are made with the OK and Seek Right and Left, Tune Up and Down buttons.</description>
+        </element>
+        <element name="VR_ONLY" >
+            <description>This mode causes the interaction to only occur using V4. Selections are made by saying the command.</description>
+        </element>
+        <element name="BOTH" >
+            <description>This mode causes both a VR and display selection option for an interaction. Selections can be made either from the menu display or by speaking the command.</description>
+        </element>
     </enum>
     
     <enum name="LayoutMode">
         <description>For touchscreen interactions, the mode of how the choices are presented.</description>
-        <element name="ICON_ONLY" />
-        <description>
-            This mode causes the interaction to display the previous set of choices as icons.
-        </description>
-        <element name="ICON_WITH_SEARCH" />
-        <description>
-            This mode causes the interaction to display the previous set of choices as icons along with a search field in the HMI.
-        </description>
-        <element name="LIST_ONLY" />
-        <description>
-            This mode causes the interaction to display the previous set of choices as a list.
-        </description>
-        <element name="LIST_WITH_SEARCH" />
-        <description>
-            This mode causes the interaction to display the previous set of choices as a list along with a search field in the HMI.
-        </description>
-        <element name="KEYBOARD" />
-        <description>
-            This mode causes the interaction to immediately display a keyboard entry through the HMI.
-        </description>
+        <element name="ICON_ONLY" >
+            <description>This mode causes the interaction to display the previous set of choices as icons.</description>
+        </element>
+        <element name="ICON_WITH_SEARCH" >
+            <description>This mode causes the interaction to display the previous set of choices as icons along with a search field in the HMI.</description>
+        </element>
+        <element name="LIST_ONLY" >
+            <description>This mode causes the interaction to display the previous set of choices as a list.</description>
+        </element>
+        <element name="LIST_WITH_SEARCH" >
+            <description>This mode causes the interaction to display the previous set of choices as a list along with a search field in the HMI.</description>
+        </element>
+        <element name="KEYBOARD" >
+            <description>This mode causes the interaction to immediately display a keyboard entry through the HMI.</description>
+        </element>
     </enum>
     
     <enum name="HMILevel">
@@ -343,8 +342,7 @@
     </enum>
     
     <enum name="SystemContext">
-        <description>Enumeration that describes possible contexts an app's HMI might be in.</description>
-        <description>Communicated to whichever app is in HMI FULL, except Alert.</description>
+        <description>Enumeration that describes possible contexts an app's HMI might be in. Communicated to whichever app is in HMI FULL, except Alert.</description>
         <element name="MAIN" internal_name="SYSCTXT_MAIN">
             <description>The app's persistent display (whether media/non-media/navigation) is fully visible onscreen.</description>
         </element>
@@ -409,6 +407,7 @@
         <element name="LHPLUS_PHONEMES" />
         <element name="PRE_RECORDED" />
         <element name="SILENCE" />
+        <element name="FILE" />
     </enum>
     
     <enum name="VrCapabilities">
@@ -1700,6 +1699,7 @@
         <element name="BEGIN"/>
         <element name="MOVE"/>
         <element name="END"/>
+        <element name="CANCEL"/>
     </enum>
     
     <struct name="TouchEvent">
@@ -1904,7 +1904,7 @@
          </description>
          </param>
          <param name="type" type="SpeechCapabilities">
-         <description>Describes, whether it is text or a specific phoneme set. See SpeechCapabilities</description>
+            <description>Describes, whether it is text,a specific phoneme set, or a file. See SpeechCapabilities</description>
          </param>
          </struct>
          
@@ -2051,6 +2051,7 @@
          <element name="BACKGROUND_PROCESS" />
          <element name="TESTING" />
          <element name="SYSTEM" />
+         <element name="PROJECTION" />
          </enum>
          
          <enum name="PredefinedLayout" platform="documentation">
@@ -2179,8 +2180,7 @@
          </enum>
          
          <enum name="FunctionID" internal_scope="base">
-         <description>Enumeration linking function names with function IDs in AppLink protocol.</description>
-         <description>Assumes enumeration starts at value 0.</description>
+         <description>Enumeration linking function names with function IDs in AppLink protocol. Assumes enumeration starts at value 0.</description>
          <element name="RESERVED" value="0" />
          <!--
          Base Request / Response RPCs
@@ -2535,12 +2535,9 @@
         <param name="presetBankCapabilities" type="PresetBankCapabilities" mandatory="false">
             <description>If returned, the platform supports custom on-screen Presets; see PresetBankCapabilities.</description >
         </param>
-        
         <param name="hmiZoneCapabilities" type="HmiZoneCapabilities" minsize="1" maxsize="100" array="true" mandatory="false">
-            <issue creator="rs">If not used yet => remove</issue>
             <description>See HmiZoneCapabilities</description>
         </param>
-        
         <param name="speechCapabilities" type="SpeechCapabilities" minsize="1" maxsize="100" array="true" mandatory="false">
             <description>See SpeechCapabilities</description>
         </param>
@@ -2583,7 +2580,10 @@
         <param name="systemSoftwareVersion" type="String" maxlength="100" mandatory="false" platform="documentation">
             <description>The software version of the system that implements the SmartDeviceLink core.</description>
         </param>
-        
+        <param name="iconResumed" type="Boolean" mandatory="false">
+            
+            <description>Existence of apps icon at system. If true, apps icon was resumed at system. If false, apps icon is not resumed at system</description>
+        </param>
     </function>
     
     <function name="UnregisterAppInterface" functionID="UnregisterAppInterfaceID" messagetype="request">
@@ -4562,7 +4562,9 @@
                 If offset is set to 0, then length is the total length of the file to be downloaded
             </description>
         </param>
-        
+        <param name="crc" type="Integer" minvalue="0" maxvalue="4294967295" mandatory="false">
+            <description> Additional CRC32 checksum to protect data integrity up to 512 Mbits . </description>
+        </param>     
     </function>
     
     <function name="PutFile" functionID="PutFileID" messagetype="response">
@@ -4582,6 +4584,7 @@
             <element name="GENERIC_ERROR"/>
             <element name="REJECTED"/>
             <element name="UNSUPPORTED_REQUEST"/>
+            <element name=" CORRUPTED_DATA "/>
         </param>
         
         <param name="spaceAvailable" type="Integer" minvalue="0" maxvalue="2000000000">
