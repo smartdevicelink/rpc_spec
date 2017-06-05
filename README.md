@@ -3366,5 +3366,3 @@ Callback including encoded data of any SyncP packets that SYNC needs to send bac
 |`data`|Contains base64 encoded string of SyncP packets.|
 |`URL`|If blank, the SyncP data shall be forwarded to the app.                If not blank, the SyncP data shall be forwarded to the provided URL.            |
 |`Timeout`|If blank, the SyncP data shall be forwarded to the app.                If not blank, the SyncP data shall be forwarded with the provided timeout in seconds.            |
-
-

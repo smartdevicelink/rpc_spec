@@ -2,7 +2,6 @@
 <?xml-stylesheet type="text/xml" href="protocol2html.xsl"?>
 
 <interface name="Ford Sync RAPI" version="4.5.0" date="2017-04-28">
-    
     <enum name="Result" internal_scope="base">
         <element name="SUCCESS">
             <description>The request succeeded</description>
@@ -395,11 +394,12 @@
     </enum>
     
     <enum name="HmiZoneCapabilities">
-        <description>Contains information about the HMI zone capabilities. (For future use.)</description>
+        <description>Contains information about the HMI zone capabilities.</description>
+        <description>For future use.</description>
         <element name="FRONT" />
         <element name="BACK" />
     </enum>
-
+    
     <enum name="SpeechCapabilities">
         <description>Contains information about the TTS capabilities.</description>
         <element name="TEXT" internal_name="SC_TEXT"/>
@@ -1904,7 +1904,7 @@
          </description>
          </param>
          <param name="type" type="SpeechCapabilities">
-         <description>Describes, whether it is text,a specific phoneme set, or a file. See SpeechCapabilities</description>
+            <description>Describes, whether it is text,a specific phoneme set, or a file. See SpeechCapabilities</description>
          </param>
          </struct>
          
@@ -2535,12 +2535,9 @@
         <param name="presetBankCapabilities" type="PresetBankCapabilities" mandatory="false">
             <description>If returned, the platform supports custom on-screen Presets; see PresetBankCapabilities.</description >
         </param>
-
         <param name="hmiZoneCapabilities" type="HmiZoneCapabilities" minsize="1" maxsize="100" array="true" mandatory="false">
-            <issue creator="rs">If not used yet => remove</issue>
             <description>See HmiZoneCapabilities</description>
         </param>
-
         <param name="speechCapabilities" type="SpeechCapabilities" minsize="1" maxsize="100" array="true" mandatory="false">
             <description>See SpeechCapabilities</description>
         </param>
@@ -4567,8 +4564,7 @@
         </param>
         <param name="crc" type="Integer" minvalue="0" maxvalue="4294967295" mandatory="false">
             <description> Additional CRC32 checksum to protect data integrity up to 512 Mbits . </description>
-        </param>
-        
+        </param>     
     </function>
     
     <function name="PutFile" functionID="PutFileID" messagetype="response">
