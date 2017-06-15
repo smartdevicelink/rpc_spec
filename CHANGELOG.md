@@ -10,5 +10,6 @@
 - [0031](https://github.com/smartdevicelink/sdl_evolution/issues/97): Added `PROJECTION` element to `AppHMIType` 
 - [0041](https://github.com/smartdevicelink/sdl_evolution/issues/127) : Added param `iconResumed` to the `RegisterAppInterface` response.
 - [0049](https://github.com/smartdevicelink/sdl_evolution/issues/144) : Added `CANCEL` element to `TouchType`
+- [0023](https://github.com/smartdevicelink/sdl_evolution/issues/82) : Updated Mobile API to include the `mandatory` flag on all parameters
 
 ### New RPCs, Structs, and Enums 
