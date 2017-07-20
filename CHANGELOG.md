@@ -9,3 +9,15 @@
 - [0049](https://github.com/smartdevicelink/sdl_evolution/issues/144) : Added `CANCEL` element to `TouchType`
 
 ### New RPCs, Structs, and Enums 
+- [0055](https://github.com/smartdevicelink/sdl_evolution/issues/166): Added the following
+ - *Functions:*
+     - `GetSystemCapability`
+ - *Structs:*
+     - `SystemCapability`
+     - `NavigationCapability`
+     - `PhoneCapability`
+ - *Enums:*
+     - `SystemCapabilityType`
+ - *Modifications:*
+     - Added `DATA_NOT_AVAILABLE` to `Result`
+  

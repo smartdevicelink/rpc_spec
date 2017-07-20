@@ -12,7 +12,6 @@
         <element name="UNSUPPORTED_RESOURCE">
             <description>
                 A button that was requested for subscription is not supported under the current system.
-                NOTE: could become a more generic UNSUPPORTED_RESOURCE by merging with VEHICLE_DATA_NOT_AVAILABLE.
             </description>
         </element>
         <element name="DISALLOWED">
@@ -130,6 +129,9 @@
         </element>
         <element name="RESUME_FAILED">
             <description>The provided hash ID does not match the hash of the current set of registered data or the core could not resume the previous data.</description>
+        </element>
+        <element name="DATA_NOT_AVAILABLE">
+            <description>The requested information is currently nnot available. This is different than UNSUPPORTED_RESOURCE because it implies the data is at some point available. </description>
         </element>
     </enum>
     
@@ -2374,6 +2376,46 @@
             <description>Address to be used by navigation engines for search</description>
         </param>
     </struct>
+
+    <enum name="SystemCapabilityType">
+        <description>Enumerations of all available system capability types</description>
+        <element name="NAVIGATION"/>
+        <element name="PHONE_CALL"/>
+        <element name="VIDEO_STREAMING"/>
+        <element name="AUDIO_STREAMING"/>
+    </enum>
+
+    <struct name="NavigationCapability">
+        <description>Extended capabilities for an onboard navigation system</description>
+        <param name="sendLocationEnabled" type="Boolean" mandatory="false">
+            <description>If the module has the ability to add locations to the onboard nav</description>
+        </param>
+        <param name="getWayPointsEnabled" type="Boolean" mandatory="false">
+            <description>If the module has the ability to return way points from onboard nav</description>
+        </param>
+    </struct>
+
+    <struct name="PhoneCapability">
+        <description>Extended capabilities of the module's phone feature</description>
+        <param name="dialNumberEnabled" type="Boolean" mandatory="false">
+            <description>If the module has the abiulity to perform dial number</description>
+        </param>
+    </struct>
+
+    <struct name="SystemCapability">
+        <description>The systemCapabilityType indicates which type of data should be changed and identifies which data object exists in this struct. For example, if the SystemCapability Type is NAVIGATION then a "navigationCapability" should exist</description>
+        <param name="systemCapabilityType" type="SystemCapabilityType" mandatory="true">
+            <description>Used as a descriptor of what data to expect in this struct. The corresponding param to this enum should be included and the only other para included.</description>
+        </param>
+        <param name="navigationCapability" type="NavigationCapability" mandatory="false">
+            <description>Describes extended capabilities for onboard navigation system </description>
+        </param>
+        <param name="phoneCapability" type="PhoneCapability" mandatory="false">
+            <description>Describes extended capabilities of the module's phone feature</description>
+        </param>
+    </struct>
+
+
     <!-- Requests/Responses -->
     
     <function name="RegisterAppInterface" functionID="RegisterAppInterfaceID" messagetype="request">
@@ -4990,6 +5032,42 @@
         </param>
         <param name="wayPoints" type="LocationDetails" mandatory="false" array="true" minsize="1" maxsize="10">
             <description>See LocationDetails</description>
+        </param>
+    </function>
+
+    <function name="GetSystemCapability" functionID="GetSystemCapabilityID" messagetype="request">
+        <description>Request for expanded information about a supported system/HMI capability</description>
+        <param name="systemCapabilityType" type="SystemCapabilityType" mandatory="true">
+            <description>The type of system capability to get more information on</description>
+        </param>
+    </function>
+
+    <function name="GetSystemCapability" functionID="GetSystemCapabilityID" messagetype="response">
+        <param name="systemCapability" type="SystemCapability" mandatory="true">    
+        </param>
+        <param name="resultCode" type="Result" platform="documentation" mandatory="true">
+            <description>See Result</description>
+            <element name="SUCCESS"/>
+            <element name="INVALID_DATA"/>
+            <element name="OUT_OF_MEMORY"/>
+            <element name="TOO_MANY_PENDING_REQUESTS"/>
+            <element name="APPLICATION_NOT_REGISTERED"/>
+            <element name="GENERIC_ERROR"/>
+            <element name="REJECTED"/>
+            <element name="IGNORED"/>
+            <element name="DISALLOWED"/>
+            <element name="USER_DISALLOWED"/>
+            <element name="UNSUPPORTED_RESOURCE">
+                <description>The capability does not exist on the module</description>
+            </element>
+            <element name="DATA_NOT_AVAILABLE">
+                <description>The capability should exist on the module but there was an error retrieving the data.</description>
+            </element>
+        </param>
+        <param name="info" type="String" maxlength="1000" mandatory="false">
+        </param>
+        <param name="success" type="Boolean" platform="documentation" mandatory="true">
+            <description> true if successful; false, if failed </description>
         </param>
     </function>
     
