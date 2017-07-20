@@ -1,11 +1,11 @@
-# RPC Spec 4.4.0
+# RPC Spec 4.5.0
 
 
 ### Breaking Changes
 
 
 ### Modifications
-- [0050](https://github.com/smartdevicelink/sdl_evolution/issues/151) :`SyncMsgVersion`  now includes a patch version
-
+- [0031](https://github.com/smartdevicelink/sdl_evolution/issues/97): Added `PROJECTION` element to `AppHMIType` 
+- [0049](https://github.com/smartdevicelink/sdl_evolution/issues/144) : Added `CANCEL` element to `TouchType`
 
 ### New RPCs, Structs, and Enums 
