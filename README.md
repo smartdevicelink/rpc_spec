@@ -12,7 +12,7 @@
 | ---------- |:-----------:|
 |`SUCCESS`|The request succeeded|
 |`UNSUPPORTED_REQUEST`|The request is not supported by Sync|
-|`UNSUPPORTED_RESOURCE`|A button that was requested for subscription is not supported under the current system.                NOTE: could become a more generic UNSUPPORTED_RESOURCE by merging with VEHICLE_DATA_NOT_AVAILABLE.            |
+|`UNSUPPORTED_RESOURCE`|A button that was requested for subscription is not supported under the current system.            |
 |`DISALLOWED`|RPC is not authorized in local policy table.|
 |`REJECTED`|The requested command was rejected, e.g. because mobile app is in background and cannot perform any HMI commands.                Or an HMI command (e.g. Speak) is rejected because a higher priority HMI command (e.g. Alert) is playing.            |
 |`ABORTED`|A command was aborted, for example due to user interaction (e.g. user pressed button).                Or an HMI command (e.g. Speak) is aborted because a higher priority HMI command (e.g. Alert) was requested.            |
@@ -43,6 +43,7 @@
 |`INVALID_CERT`|The certificate provided during authentication is invalid.|
 |`EXPIRED_CERT`|The certificate provided during authentication is expired.|
 |`RESUME_FAILED`|The provided hash ID does not match the hash of the current set of registered data or the core could not resume the previous data.|
+|`DATA_NOT_AVAILABLE`|The requested information is currently nnot available. This is different than UNSUPPORTED_RESOURCE because it implies the data is at some point available. |
 
 
 ### ButtonPressMode
@@ -97,6 +98,16 @@
 |`HU-HU`|Hungarian - Hungary|
 |`FI-FI`|Finnish - Finland|
 |`SK-SK`|Slovak - Slovakia|
+|`EN-IN`|English - India|
+|`TH-TH`|Thai - Thailand|
+|`EN-SA`|English - Middle East|
+|`HE-IL`|Hebrew - Israel|
+|`RO-RO`|Romanian - Romania|
+|`UK-UA`|Ukrainian - Ukraine|
+|`ID-ID`|Indonesian - Indonesia|
+|`VI-VN`|Vietnamese - Vietnam|
+|`MS-MY`|Malay - Malaysia|
+|`HI-IN`|Hindi - India|
 
 
 ### UpdateMode
@@ -387,6 +398,24 @@ Defines the hard (physical) and soft (touchscreen) buttons available from SYNC
 |`PRESET_9`||
 |`CUSTOM_BUTTON`||
 |`SEARCH`||
+|`AC_MAX`||
+|`AC`||
+|`RECIRCULATE`||
+|`FAN_UP`||
+|`FAN_DOWN`||
+|`TEMP_UP`||
+|`TEMP_DOWN`||
+|`DEFROST_MAX`||
+|`DEFROST`||
+|`DEFROST_REAR`||
+|`UPPER_VENT`||
+|`LOWER_VENT`||
+|`VOLUME_UP`||
+|`VOLUME_DOWN`||
+|`EJECT`||
+|`SOURCE`||
+|`SHUFFLE`||
+|`REPEAT`||
 
 
 ### MediaClockFormat
@@ -1050,6 +1079,7 @@ Enumeration listing possible app types.
 |`TESTING`||
 |`SYSTEM`||
 |`PROJECTION`||
+|`REMOTE_CONTROL`||
 
 
 ### PredefinedLayout
@@ -1129,9 +1159,13 @@ Enumeration linking function names with function IDs in AppLink protocol. Assume
 |`SystemRequestID`||
 |`SendLocationID`||
 |`DialNumberID`||
+|`ButtonPressID`||
+|`GetInteriorVehicleDataID`||
+|`SetInteriorVehicleDataID`||
 |`GetWayPointsID`||
 |`SubscribeWayPointsID`||
 |`UnsubscribeWayPointsID`||
+|`GetSystemCapabilityID`||
 |`OnHMIStatusID`||
 |`OnAppInterfaceUnregisteredID`||
 |`OnButtonEventID`||
@@ -1147,6 +1181,7 @@ Enumeration linking function names with function IDs in AppLink protocol. Assume
 |`OnTouchEventID`||
 |`OnSystemRequestID`||
 |`OnHashChangeID`||
+|`OnInteriorVehicleDataID`||
 |`OnWayPointChangeID`||
 |`EncodedSyncPDataID`||
 |`SyncPDataID`||
@@ -1177,6 +1212,127 @@ Describes what kind of waypoint is requested/provided.
 | ---------- |:-----------:|
 |`ALL`||
 |`DESTINATION`||
+
+
+### SystemCapabilityType
+Enumerations of all available system capability types
+
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`NAVIGATION`||
+|`PHONE_CALL`||
+|`VIDEO_STREAMING`||
+|`REMOTE_CONTROL`||
+
+
+### VideoStreamingProtocol
+Enum for each type of video streaming protocol type.
+
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`RAW`|Raw stream bytes that contains no timestamp data and is the lowest supported video streaming|
+|`RTP`|RTP facilitates the transfer of real-time data. Information provided by this protocol include timestamps (for synchronization), sequence numbers (for packet loss and reordering detection) and the payload format which indicates the encoded format of the data.|
+|`RTSP`|The transmission of streaming data itself is not a task of RTSP. Most RTSP servers use the Real-time Transport Protocol (RTP) in conjunction with Real-time Control Protocol (RTCP) for media stream delivery. However, some vendors implement proprietary transport protocols. |
+|`RTMP`|Real-Time Messaging Protocol (RTMP) was initially a proprietary protocol developed by Macromedia for streaming audio, video and data over the Internet, between a Flash player and a server. Macromedia is now owned by Adobe, which has released an incomplete version of the specification of the protocol for public use.|
+|`WEBM`|The WebM container is based on a profile of Matroska. WebM initially supported VP8 video and Vorbis audio streams. In 2013 it was updated to accommodate VP9 video and Opus audio.|
+
+
+### VideoStreamingCodec
+Enum for each type of video streaming codec.
+
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`H264`|A block-oriented motion-compensation-based video compression standard. As of 2014 it is one of the most commonly used formats for the recording, compression, and distribution of video content.|
+|`H265`|High Efficiency Video Coding (HEVC), also known as H.265 and MPEG-H Part 2, is a video compression standard, one of several potential successors to the widely used AVC (H.264 or MPEG-4 Part 10). In comparison to AVC, HEVC offers about double the data compression ratio at the same level of video quality, or substantially improved video quality at the same bit rate. It supports resolutions up to 8192x4320, including 8K UHD.|
+|`Theora`|Theora is derived from the formerly proprietary VP3 codec, released into the public domain by On2 Technologies. It is broadly comparable in design and bitrate efficiency to MPEG-4 Part 2, early versions of Windows Media Video, and RealVideo while lacking some of the features present in some of these other codecs. It is comparable in open standards philosophy to the BBC's Dirac codec.|
+|`VP8`|VP8 can be multiplexed into the Matroska-based container format WebM along with Vorbis and Opus audio. The image format WebP is based on VP8's intra-frame coding. VP8's direct successor, VP9, and the emerging royalty-free internet video format AV1 from the Alliance for Open Media (AOMedia) are based on VP8.|
+|`VP9`|Similar to VP8, but VP9 is customized for video resolutions beyond high-definition video (UHD) and also enables lossless compression.|
+
+
+### ModuleType
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`CLIMATE`||
+|`RADIO`||
+
+
+### DefrostZone
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`FRONT`||
+|`REAR`||
+|`ALL`||
+|`NONE`||
+
+
+### VentilationMode
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`UPPER`||
+|`LOWER`||
+|`BOTH`||
+|`NONE`||
+
+
+### RadioBand
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`AM`||
+|`FM`||
+|`XM`||
+
+
+### RadioState
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`ACQUIRING`||
+|`ACQUIRED`||
+|`MULTICAST`||
+|`NOT_FOUND`||
+
+
+### TemperatureUnit
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`FAHRENHEIT`||
+|`CELSIUS`||
+
+
+### TextFieldType
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`mediaTitle`|The data in this field contains the title of the currently playing audio track.|
+|`mediaArtist`|The data in this field contains the artist or creator of the currently playing audio track.|
+|`mediaAlbum`|The data in this field contains the album title of the currently playing audio track.|
+|`mediaYear`|The data in this field contains the creation year of the currently playing audio track.|
+|`mediaGenre`|The data in this field contains the genre of the currently playing audio track.|
+|`mediaStation`|The data in this field contains the name of the current source for the media.|
+|`rating`|The data in this field is a rating.|
+|`currentTemperature`|The data in this field is the current temperature.|
+|`maximumTemperature`|The data in this field is the maximum temperature for the day.|
+|`minimumTemperature`|The data in this field is the minimum temperature for the day.|
+|`weatherTerm`|The data in this field describes the current weather (ex. cloudy, clear, etc.).|
+|`humidity`|The data in this field describes the current humidity value.|
 
 
 
@@ -1631,6 +1787,7 @@ Contains information about on-screen preset capabilities.
 | ---------- |:-----------:|
 |`navigation`|Availability of build in Nav. True: Available, False: Not Available|
 |`phoneCall`|Availability of build in phone. True: Available, False: Not Available |
+|`videoStreaming`|Availability of video streaming. |
 
 
 ### MenuParams
@@ -1756,6 +1913,195 @@ Various information abount connecting device.
 |`phoneNumber`|Phone number of location / establishment.|
 |`locationImage`|Image / icon of intended location.|
 |`searchAddress`|Address to be used by navigation engines for search|
+
+
+### NavigationCapability
+Extended capabilities for an onboard navigation system
+
+##### Parameters
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`sendLocationEnabled`|If the module has the ability to add locations to the onboard nav|
+|`getWayPointsEnabled`|If the module has the ability to return way points from onboard nav|
+
+
+### PhoneCapability
+Extended capabilities of the module's phone feature
+
+##### Parameters
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`dialNumberEnabled`|If the module has the abiulity to perform dial number|
+
+
+### VideoStreamingCapability
+Contains information about this system's video streaming capabilities.
+
+##### Parameters
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`preferredResolution`|The preferred resolution of a video stream for decoding and rendering on HMI.|
+|`maxBitrate`|The maximum bitrate of video stream that is supported, in kbps.|
+|`supportedFormats`|Detailed information on each format supported by this system, in its preferred order (i.e. the first element in the array is most preferable to the system). Each object will contain a VideoStreamingFormat that describes what can be expected.|
+
+
+### VideoStreamingFormat
+Video streaming formats and their specifications.
+
+##### Parameters
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`protocol`|Protocol type, see VideoStreamingProtocol|
+|`codec`|Codec type, see VideoStreamingCodec|
+
+
+### Temperature
+##### Parameters
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`unit`|Temperature Unit|
+|`value`|Temperature Value in TemperatureUnit specified unit. Range depends on OEM and is not checked by SDL.|
+
+
+### RdsData
+##### Parameters
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`PS`|Program Service Name|
+|`RT`|Radio Text|
+|`CT`|The clock text in UTC format as YYYY-MM-DDThh:mm:ss.sTZD|
+|`PI`|Program Identification - the call sign for the radio station|
+|`PTY`|The program type - The region should be used to differentiate between EU and North America program types|
+|`TP`|Traffic Program Identification - Identifies a station that offers traffic|
+|`TA`|Traffic Announcement Identification - Indicates an ongoing traffic announcement|
+|`REG`|Region|
+
+
+### RadioControlData
+##### Parameters
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`frequencyInteger`|The integer part of the frequency ie for 101.7 this value should be 101|
+|`frequencyFraction`|The fractional part of the frequency for 101.7 is 7|
+|`band`||
+|`rdsData`||
+|`availableHDs`|number of HD sub-channels if available|
+|`hdChannel`|Current HD sub-channel if available|
+|`signalStrength`||
+|`signalChangeThreshold`|If the signal strength falls below the set value for this parameter, the radio will tune to an alternative frequency|
+|`radioEnable`|True if the radio is on, false is the radio is off|
+|`state`||
+
+
+### ClimateControlData
+##### Parameters
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`fanSpeed`||
+|`currentTemperature`||
+|`desiredTemperature`||
+|`acEnable`||
+|`circulateAirEnable`||
+|`autoModeEnable`||
+|`defrostZone`||
+|`dualModeEnable`||
+|`acMaxEnable`||
+|`ventilationMode`||
+
+
+### ModuleData
+The moduleType indicates which type of data should be changed and identifies which data object exists in this struct. For example, if the moduleType is CLIMATE then a "climateControlData" should exist
+
+##### Parameters
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`moduleType`||
+|`radioControlData`||
+|`climateControlData`||
+
+
+### RemoteControlCapabilities
+##### Parameters
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`climateControlCapabilities`|If included, the platform supports RC climate controls. For this baseline version, maxsize=1. i.e. only one climate control module is supported.|
+|`radioControlCapabilities`|If included, the platform supports RC radio controls.For this baseline version, maxsize=1. i.e. only one radio control module is supported.|
+|`buttonCapabilities`|If included, the platform supports RC button controls with the included button names.|
+
+
+### RadioControlCapabilities
+Contains information about a radio control module's capabilities.
+
+##### Parameters
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`moduleName`|The short friendly name of the climate control module.            It should not be used to identify a module by mobile application.        |
+|`radioEnableAvailable`|Availability of the control of enable/disable radio.        True: Available, False: Not Available, Not present: Not Available.    |
+|`radioBandAvailable`|Availability of the control of radio band.        True: Available, False: Not Available, Not present: Not Available.    |
+|`radioFrequencyAvailable`|Availability of the control of radio frequency.        True: Available, False: Not Available, Not present: Not Available.    |
+|`hdChannelAvailable`|Availability of the control of HD radio channel.        True: Available, False: Not Available, Not present: Not Available.    |
+|`rdsDataAvailable`|Availability of the getting Radio Data System (RDS) data.        True: Available, False: Not Available, Not present: Not Available.    |
+|`availableHDsAvailable`|Availability of the getting the number of available HD channels.        True: Available, False: Not Available, Not present: Not Available.    |
+|`stateAvailable`|Availability of the getting the Radio state.        True: Available, False: Not Available, Not present: Not Available.    |
+|`signalStrengthAvailable`|Availability of the getting the signal strength.        True: Available, False: Not Available, Not present: Not Available.    |
+|`signalChangeThresholdAvailable`|Availability of the getting the signal Change Threshold.        True: Available, False: Not Available, Not present: Not Available.    |
+
+
+### ClimateControlCapabilities
+Contains information about a climate control module's capabilities.
+
+##### Parameters
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`moduleName`|The short friendly name of the climate control module.            It should not be used to identify a module by mobile application.|
+|`fanSpeedAvailable`|Availability of the control of fan speed.        True: Available, False: Not Available, Not present: Not Available.    |
+|`desiredTemperatureAvailable`|Availability of the control of desired temperature.        True: Available, False: Not Available, Not present: Not Available.    |
+|`acEnableAvailable`|Availability of the control of turn on/off AC.        True: Available, False: Not Available, Not present: Not Available.    |
+|`acMaxEnableAvailable`|Availability of the control of enable/disable air conditioning is ON on the maximum level.        True: Available, False: Not Available, Not present: Not Available.    |
+|`circulateAirEnableAvailable`|Availability of the control of enable/disable circulate Air mode.        True: Available, False: Not Available, Not present: Not Available.    |
+|`autoModeEnableAvailable`|Availability of the control of enable/disable auto mode.        True: Available, False: Not Available, Not present: Not Available.    |
+|`dualModeEnableAvailable`|Availability of the control of enable/disable dual mode.        True: Available, False: Not Available, Not present: Not Available.    |
+|`defrostZoneAvailable`|Availability of the control of defrost zones.        True: Available, False: Not Available, Not present: Not Available.    |
+|`defrostZone`|A set of all defrost zones that are controllable.    |
+|`ventilationModeAvailable`|Availability of the control of air ventilation mode.        True: Available, False: Not Available, Not present: Not Available.    |
+|`ventilationMode`|A set of all ventilation modes that are controllable.    |
+
+
+### SystemCapability
+The systemCapabilityType indicates which type of data should be changed and identifies which data object exists in this struct. For example, if the SystemCapability Type is NAVIGATION then a "navigationCapability" should exist
+
+##### Parameters
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`systemCapabilityType`|Used as a descriptor of what data to expect in this struct. The corresponding param to this enum should be included and the only other para included.|
+|`navigationCapability`|Describes extended capabilities for onboard navigation system |
+|`phoneCapability`|Describes extended capabilities of the module's phone feature|
+|`videoStreamingCapability`|Describes extended capabilities of the module's phone feature|
+|`remoteControlCapability`|Describes extended capabilities of the module's phone feature|
+
+
+### MetadataStruct
+##### Parameters
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`mainField1`|The type of data contained in the "mainField1" text field.|
+|`mainField2`|The type of data contained in the "mainField2" text field.|
+|`mainField3`|The type of data contained in the "MainField3" text field.|
+|`mainField4`|The type of data contained in the "mainField4" text field.|
 
 
 
@@ -2142,6 +2488,7 @@ Updates the persistent display. Supported fields depend on display capabilities.
 |`secondaryGraphic`|Image struct determining whether static or dynamic secondary image to display in app.                If omitted on supported displays, the displayed secondary graphic shall not change.            |
 |`softButtons`|App defined SoftButtons.                If omitted on supported displays, the currently displayed SoftButton values will not change.            |
 |`customPresets`|App labeled on-screen presets (i.e. on-screen media presets or dynamic search suggestions).                If omitted on supported displays, the presets will be shown as not defined.            |
+|`textFieldMetadata`|App defined metadata information. See MetadataStruct. Uses mainField1, mainField2, mainField3, mainField4.                If omitted on supported displays, the currently set metadata tags will not change.                If any text field contains no tags or the none tag, the metadata tag for that textfield should be removed.|
 
 
 ### Show
@@ -3094,6 +3441,105 @@ Message Type: **response**
 |`wayPoints`|See LocationDetails|
 
 
+### GetSystemCapability
+Message Type: **request**
+
+Request for expanded information about a supported system/HMI capability
+
+##### Parameters
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`systemCapabilityType`|The type of system capability to get more information on|
+
+
+### GetSystemCapability
+Message Type: **response**
+
+##### Parameters
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`systemCapability`||
+|`resultCode`|See Result|
+|`info`||
+|`success`|true if successful; false, if failed |
+
+
+### ButtonPress
+Message Type: **request**
+
+##### Parameters
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`moduleType`|The module where the button should be pressed|
+|`buttonName`|The name of supported RC climate or radio button.|
+|`buttonPressMode`|Indicates whether this is a LONG or SHORT button press event.|
+
+
+### ButtonPress
+Message Type: **response**
+
+##### Parameters
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`resultCode`|See Result|
+|`info`||
+|`success`|true if successful; false, if failed |
+
+
+### GetInteriorVehicleData
+Message Type: **request**
+
+##### Parameters
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`moduleType`|The type of a RC module to retrieve module data from the vehicle.        In the future, this should be the Identification of a module.      |
+|`subscribe`|If subscribe is true, the head unit will register onInteriorVehicleData notifications for the requested moduelType.        If subscribe is false, the head unit will unregister onInteriorVehicleData notifications for the requested moduelType.      |
+
+
+### GetInteriorVehicleData
+Message Type: **response**
+
+##### Parameters
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`moduleData`||
+|`resultCode`|See Result|
+|`info`||
+|`success`|true if successful; false, if failed |
+|`isSubscribed`|It is a conditional-mandatory parameter: must be returned in case "subscribe" parameter was present in the related request.       if "true" - the "moduleType" from request is successfully subscribed and the head unit will send onInteriorVehicleData notifications for the moduleType.       if "false" - the "moduleType" from request is either unsubscribed or failed to subscribe.     |
+
+
+### SetInteriorVehicleData
+Message Type: **request**
+
+##### Parameters
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`moduleData`|The module data to set for the requested RC module.|
+
+
+### SetInteriorVehicleData
+Message Type: **response**
+
+Used to set the values of one remote control module 
+
+##### Parameters
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`moduleData`||
+|`resultCode`|See Result|
+|`info`||
+|`success`|true if successful; false, if failed |
+
+
 ### OnHMIStatus
 Message Type: **notification**
 
@@ -3318,6 +3764,16 @@ Notification which provides the entire LocationDetails when there is a change to
 | Value | Description | 
 | ---------- |:-----------:|
 |`wayPoints`|See LocationDetails|
+
+
+### OnInteriorVehicleData
+Message Type: **notification**
+
+##### Parameters
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`moduleData`||
 
 
 ### EncodedSyncPData
