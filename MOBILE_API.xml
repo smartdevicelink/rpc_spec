@@ -2661,19 +2661,14 @@
 
     <struct name="RemoteControlCapabilities">
         <param name="climateControlCapabilities" type="ClimateControlCapabilities" mandatory="false" minsize="1" maxsize="100" array="true">
-          <description>
-            If included, the platform supports RC climate controls.
-            For this baseline version, maxsize=1. i.e. only one climate control module is supported.
-        </description >
-    </param>
-    <param name="radioControlCapabilities" type="RadioControlCapabilities" mandatory="false" minsize="1" maxsize="100" array="true">
-      <description>
-        If included, the platform supports RC radio controls.
-        For this baseline version, maxsize=1. i.e. only one radio control module is supported.
-    </description >
-    <param name="buttonCapabilities" type="ButtonCapabilities"  mandatory="false" minsize="1" maxsize="100" array="true" >
-      <description>If included, the platform supports RC button controls with the included button names.</description >
-    </param>
+            <description>If included, the platform supports RC climate controls. For this baseline version, maxsize=1. i.e. only one climate control module is supported.</description >
+        </param>
+        <param name="radioControlCapabilities" type="RadioControlCapabilities" mandatory="false" minsize="1" maxsize="100" array="true">
+            <description>If included, the platform supports RC radio controls.For this baseline version, maxsize=1. i.e. only one radio control module is supported.</description >
+        </param>
+        <param name="buttonCapabilities" type="ButtonCapabilities"  mandatory="false" minsize="1" maxsize="100" array="true" >
+            <description>If included, the platform supports RC button controls with the included button names.</description >
+        </param>
     </struct>
 
     <struct name="RadioControlCapabilities">
