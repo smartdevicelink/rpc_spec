@@ -1,13 +1,13 @@
 <?xml version="1.0" standalone="no"?>
 <?xml-stylesheet type="text/xml" href="protocol2html.xsl"?>
 
-<interface name="Ford Sync RAPI" version="4.5.0" date="2017-04-28">
+<interface name="SmartDeviceLink RAPI" version="4.5.0" date="2017-04-28">
     <enum name="Result" internal_scope="base">
         <element name="SUCCESS">
             <description>The request succeeded</description>
         </element>
         <element name="UNSUPPORTED_REQUEST">
-            <description>The request is not supported by Sync</description>
+            <description>The request is not supported by the headunit</description>
         </element>
         <element name="UNSUPPORTED_RESOURCE">
             <description>
@@ -78,7 +78,7 @@
         <element name="WRONG_LANGUAGE">
             <description>
                 The requested language is currently not supported.
-                Might be because of a mismatch of the currently active language on Sync and the requested language
+                Might be because of a mismatch of the currently active language on the headunit and the requested language
             </description>
         </element>
         <element name="OUT_OF_MEMORY">
@@ -113,7 +113,7 @@
             <description>The user has turned off access to vehicle data, and it is globally unavailable to mobile applications.</description>
         </element>
         <element name="FILE_NOT_FOUND">
-            <description>A specified file could not be found on Sync.</description>
+            <description>A specified file could not be found on the headunit.</description>
         </element>
         <element name="CANCEL_ROUTE">
             <description>User selected to Cancel Route.</description>
@@ -139,13 +139,13 @@
         <element name="LONG">
             <description>
                 A button was released, after it was pressed for a long time
-                Actual timing is defined by Sync and may vary
+                Actual timing is defined by the headunit and may vary
             </description>
         </element>
         <element name="SHORT">
             <description>
                 A button was released, after it was pressed for a short time
-                Actual timing is defined by Sync and may vary
+                Actual timing is defined by the headunit and may vary
             </description>
         </element>
     </enum>
@@ -397,7 +397,7 @@
     </enum>
     
     <enum name="AppInterfaceUnregisteredReason">
-        <description>Error code, which comes from sync side.</description>
+        <description>Error code, which comes from the module side.</description>
         <!-- Deprecate
          <element name="USER_EXIT" />
          -->
@@ -514,7 +514,7 @@
     </enum>
     
     <enum name="ButtonName">
-        <description>Defines the hard (physical) and soft (touchscreen) buttons available from SYNC</description>
+        <description>Defines the hard (physical) and soft (touchscreen) buttons available from the module</description>
         <element name="OK" />
         <element name="SEEKLEFT" />
         <element name="SEEKRIGHT" />
@@ -915,7 +915,7 @@
     </struct>
     
     <struct name="SyncMsgVersion">
-        <description>Specifies the version number of the SYNC V4 protocol, that is supported by the mobile application</description>
+        <description>Specifies the version number of the SmartDeviceLink protocol that is supported by the mobile application</description>
         
         <param name="majorVersion" type="Integer" minvalue="1" maxvalue="10" mandatory="true">
             <description>The major version indicates versions that is not-compatible to previous versions.</description>
@@ -2957,21 +2957,21 @@
         <param name="isMediaApplication" type="Boolean" mandatory="true">
             <description>
                 Indicates if the application is a media or a non-media application.
-                Only media applications will be able to stream audio to Sync that is audible outside of the BT media source.
+                Only media applications will be able to stream audio to the module that is audible outside of the BT media source.
             </description>
         </param>
         <param name="languageDesired" type="Language" mandatory="true">
             <description>
                 See Language
                 Current app's expected VR+TTS language
-                If there is a mismatch with SYNC, the app will be able to change this registration with changeRegistration prior to app being brought into focus.
+                If there is a mismatch with the module, the app will be able to change this registration with changeRegistration prior to app being brought into focus.
             </description>
         </param>
         <param name="hmiDisplayLanguageDesired" type="Language" mandatory="true">
             <description>
                 See Language
                 Current app's expected display language
-                If there is a mismatch with SYNC, the app will be able to change this registration with changeRegistration prior to app being brought into focus.
+                If there is a mismatch with the module, the app will be able to change this registration with changeRegistration prior to app being brought into focus.
             </description>
         </param>
         
@@ -3038,11 +3038,11 @@
         </param>
         
         <param name="language" type="Language" mandatory="false">
-            <description>The currently active VR+TTS language on Sync. See "Language" for options.</description>
+            <description>The currently active VR+TTS language on the module. See "Language" for options.</description>
         </param>
         
         <param name="hmiDisplayLanguage" type="Language" mandatory="false">
-            <description>The currently active display language on Sync. See "Language" for options.</description>
+            <description>The currently active display language on the module. See "Language" for options.</description>
         </param>
         
         <param name="displayCapabilities" type="DisplayCapabilities" mandatory="false">
@@ -3159,7 +3159,7 @@
         <param name="vrHelpTitle" type="String" maxlength="500" mandatory="false">
             <description>
                 VR Help Title text.
-                If omitted on supported displays, the default SYNC help title shall be used.
+                If omitted on supported displays, the default module help title shall be used.
                 If omitted and one or more vrHelp items are provided, the request will be rejected.
             </description>
         </param>
@@ -3499,7 +3499,7 @@
         <param name="vrHelp" type="VrHelpItem" minsize="1" maxsize="100" array="true" mandatory="false">
             <description>
                 Ability to send suggested VR Help Items to display on-screen during Perform Interaction.
-                If omitted on supported displays, the default SYNC generated list of suggested choices shall be displayed.
+                If omitted on supported displays, the default generated list of suggested choices shall be displayed.
             </description>
         </param>
         
@@ -3727,7 +3727,7 @@
         
         <param name="mediaClock" type="String" minlength="0" maxlength="500" mandatory="false">
             <description>
-                Text value for MediaClock field. Has to be properly formatted by Mobile App according to Sync capabilities.
+                Text value for MediaClock field. Has to be properly formatted by Mobile App according to the module's capabilities.
                 If this text is set, any automatic media clock updates previously set with SetMediaClockTimer will be stopped.
             </description>
         </param>
@@ -3896,7 +3896,7 @@
         <description>Starts audio pass thru session </description>
         <param name="initialPrompt" type="TTSChunk" minsize="1" maxsize="100" array="true" mandatory="false">
             <description>
-                SYNC will speak this prompt before opening the audio pass thru session.
+                The module will speak this prompt before opening the audio pass thru session.
                 An array of text chunks of type TTSChunk. See TTSChunk.
                 The array must have at least one item.
                 If omitted, then no initial prompt is spoken.
@@ -5048,8 +5048,8 @@
     
     <function name="PutFile" functionID="PutFileID" messagetype="request">
         <description>
-            Used to push a binary data onto the SYNC module from a mobile device, such as icons and album art
-            Not supported on first generation SYNC vehicles.
+            Used to push a binary data onto the module from a mobile device, such as icons and album art
+            Not supported on first generation of SDL enabled modules.
             Binary data is in binary part of hybrid msg.
         </description>
         
@@ -5092,7 +5092,7 @@
     
     <function name="PutFile" functionID="PutFileID" messagetype="response">
         <description>Response is sent, when the file data was copied (success case). Or when an error occured.</description>
-        <description>Not supported on First generation SYNC vehicles. </description>
+        <description>Not supported on first generation SDL enabled vehicles. </description>
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
             <description> true, if successful; false, if failed </description>
         </param>
@@ -5124,8 +5124,8 @@
     
     <function name="DeleteFile" functionID="DeleteFileID" messagetype="request">
         <description>
-            Used to delete a file resident on the SYNC module in the app's local cache.
-            Not supported on first generation SYNC vehicles.
+            Used to delete a file resident on the module in the app's local cache.
+            Not supported on first generation SDL enabled vehicles.
         </description>
         
         <param name="syncFileName" type="String" maxlength="500" mandatory="true">
@@ -5137,7 +5137,7 @@
     <function name="DeleteFile" functionID="DeleteFileID" messagetype="response">
         <description>
             Response is sent, when the file data was deleted (success case). Or when an error occured.
-            Not supported on First generation SYNC vehicles.
+            Not supported on First generation SDL enabled vehicles.
         </description>
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
             <description> true if successful; false, if failed </description>
@@ -5156,7 +5156,7 @@
         </param>
         
         <param name="spaceAvailable" type="Integer" minvalue="0" maxvalue="2000000000" mandatory="true">
-            <description>Provides the total local space available on SYNC for the registered app.</description>
+            <description>Provides the total local space available on the module for the registered app.</description>
         </param>
         
         <param name="info" type="String" maxlength="1000" mandatory="false" platform="documentation">
@@ -5167,14 +5167,14 @@
     <function name="ListFiles" functionID="ListFilesID" messagetype="request">
         <description>
             Requests the current list of resident filenames for the registered app.
-            Not supported on first generation SYNC vehicles.
+            Not supported on first generation SDL enabled vehicles.
         </description>
     </function>
     
     <function name="ListFiles" functionID="ListFilesID" messagetype="response">
         <description>
             Returns the current list of resident filenames for the registered app along with the current space available
-            Not supported on First generation SYNC vehicles.
+            Not supported on First generation SDL enabled vehicles.
         </description>
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
             <description> true, if successful; false, if failed </description>
@@ -5194,13 +5194,13 @@
         
         <param name="filenames" type="String" maxlength="500" minsize="0" maxsize="1000" array="true" mandatory="false">
             <description>
-                An array of all filenames resident on SYNC for the given registered app.
+                An array of all filenames resident on the module for the given registered app.
                 If omitted, then no files currently reside on the system.
             </description>
         </param>
         
         <param name="spaceAvailable" type="Integer" minvalue="0" maxvalue="2000000000" mandatory="true">
-            <description>Provides the total local space available on SYNC for the registered app.</description>
+            <description>Provides the total local space available on the module for the registered app.</description>
         </param>
         
         <param name="info" type="String" maxlength="1000" mandatory="false" platform="documentation">
@@ -5210,8 +5210,8 @@
     
     <function name="SetAppIcon" functionID="SetAppIconID" messagetype="request">
         <description>
-            Used to set existing local file on SYNC as the app's icon
-            Not supported on first generation SYNC vehicles.
+            Used to set existing local file on the module as the app's icon
+            Not supported on first generation SDL enabled vehicles.
         </description>
         
         <param name="syncFileName" type="String" maxlength="500" mandatory="true">
@@ -5223,7 +5223,7 @@
     <function name="SetAppIcon" functionID="SetAppIconID" messagetype="response">
         <description>
             Response is sent, when the file data was copied (success case). Or when an error occured.
-            Not supported on First generation SYNC vehicles.
+            Not supported on First generation SDL enabled vehicles.
         </description>
         
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
@@ -5858,7 +5858,7 @@
     
     <function name="OnLanguageChange" functionID="OnLanguageChangeID" messagetype="notification">
         <param name="language" type="Language" mandatory="true">
-            <description>Current SYNC voice engine (VR+TTS) language</description>
+            <description>Current SDL voice engine (VR+TTS) language</description>
         </param>
         <param name="hmiDisplayLanguage" type="Language" mandatory="true">
             <description>Current display language</description>
