@@ -22,6 +22,7 @@
 - [0071] : `SetInteriorVehicleData`
 - [0071] : `OnInteriorVehicleData`
 - [0071] : `ButtonPress`
+- [0075] : `SendHapticData`
 
 #### Structs
 - [0055] , [0058] , [0076] : `SystemCapability`
@@ -39,6 +40,7 @@
 - [0071] : `ClimateControlData `
 - [0071] : `ModuleData`
 - [0073] : `MetadataStruct`
+- [0075] : `SpatialStruct`
 
 #### Enums
 - [0055] , [0058] , [0076] : `SystemCapabilityType`
@@ -60,4 +62,5 @@
 [0060]:https://github.com/smartdevicelink/sdl_evolution/issues/178
 [0071]:https://github.com/smartdevicelink/sdl_evolution/issues/206
 [0073]:https://github.com/smartdevicelink/sdl_evolution/issues/208
+[0075]:https://github.com/smartdevicelink/sdl_evolution/issues/219
 [0076]:https://github.com/smartdevicelink/sdl_evolution/issues/220

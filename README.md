@@ -1166,6 +1166,7 @@ Enumeration linking function names with function IDs in AppLink protocol. Assume
 |`SubscribeWayPointsID`||
 |`UnsubscribeWayPointsID`||
 |`GetSystemCapabilityID`||
+|`SendHapticDataID`||
 |`OnHMIStatusID`||
 |`OnAppInterfaceUnregisteredID`||
 |`OnButtonEventID`||
@@ -2102,6 +2103,20 @@ The systemCapabilityType indicates which type of data should be changed and iden
 |`mainField2`|The type of data contained in the "mainField2" text field.|
 |`mainField3`|The type of data contained in the "MainField3" text field.|
 |`mainField4`|The type of data contained in the "mainField4" text field.|
+
+
+### SpatialStruct
+Defines spatial for each user control object for video streaming application
+
+##### Parameters
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`id`|A user control spatial identifier|
+|`x`|The X-coordinate of the user control|
+|`y`|The Y-coordinate of the user control|
+|`width`|The width of the user control's bounding rectangle|
+|`height`|The height of the user control's bounding rectangle|
 
 
 
@@ -3538,6 +3553,29 @@ Used to set the values of one remote control module
 |`resultCode`|See Result|
 |`info`||
 |`success`|true if successful; false, if failed |
+
+
+### SendHapticData
+Message Type: **request**
+
+Send the spatial data gathered from SDLCarWindow or VirtualDisplayEncoder to the HMI. This data will be utilized by the HMI to determine how and when haptic events should occur
+
+##### Parameters
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`HapticSpatialData`|Array of spatial data structures that represent the locations of all user controls present on the HMI. This data should be updated if/when the application presents a new screen. When a request is sent, if successful, it will replace all spatial data previously sent through RPC. If an empty array is sent, the existing spatial data will be cleared|
+
+
+### SendHapticData
+Message Type: **response**
+
+##### Parameters
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`success`|true if successful; false if failed |
+|`resultCode`|See Result|
 
 
 ### OnHMIStatus
