@@ -313,13 +313,13 @@
     <enum name="InteractionMode">
         <description>For application-requested interactions, this mode indicates the method in which the user is notified and uses the interaction.</description>
         <element name="MANUAL_ONLY" >
-            <description>This mode causes the interaction to only occur on the display, meaning the choices are provided only via the display.Selections are made with the OK and Seek Right and Left, Tune Up and Down buttons.</description>
+            <description>This mode causes the interaction to only occur on the display, meaning the choices are provided only via the display. No Voice Interaction.</description>
         </element>
         <element name="VR_ONLY" >
-            <description>This mode causes the interaction to only occur using V4. Selections are made by saying the command.</description>
+            <description>This mode causes the interaction to only occur using the headunits VR system. Selections are made by saying the command.</description>
         </element>
         <element name="BOTH" >
-            <description>This mode causes both a VR and display selection option for an interaction. Selections can be made either from the menu display or by speaking the command.</description>
+            <description>This mode causes both a VR and display selection option for an interaction. The user will first be asked via Voice Interaction (if available). If this is unsuccessfull, the system will switch to manual input.</description>
         </element>
     </enum>
     
