@@ -28,7 +28,7 @@
 |`APPLICATION_NOT_REGISTERED`|||An command can not be executed because no application has been registered with RegisterApplication.|
 |`WRONG_LANGUAGE`|||The requested language is currently not supported.                Might be because of a mismatch of the currently active language on the headunit and the requested language            |
 |`OUT_OF_MEMORY`|||The system could not process the request because the necessary memory couldn't be allocated|
-|`TOO_MANY_PENDING_REQUESTS`|||There are too many requests pending (means, that the response has not been delivered, yet).|
+|`TOO_MANY_PENDING_REQUESTS`|||There are too many requests pending (means, that the response has not been delivered, yet).There may be a maximum of 1000 pending requests at a time.|
 |`TOO_MANY_APPLICATIONS`|||There are already too many registered applications|
 |`APPLICATION_REGISTERED_ALREADY`|||RegisterApplication has been called again, after a RegisterApplication was successful before.|
 |`WARNINGS`|||The RPC (e.g. SubscribeVehicleData) executed successfully but one or more items have a warning or failure.|
@@ -43,7 +43,7 @@
 |`INVALID_CERT`|||The certificate provided during authentication is invalid.|
 |`EXPIRED_CERT`|||The certificate provided during authentication is expired.|
 |`RESUME_FAILED`|||The provided hash ID does not match the hash of the current set of registered data or the core could not resume the previous data.|
-|`DATA_NOT_AVAILABLE`|||The requested information is currently nnot available. This is different than UNSUPPORTED_RESOURCE because it implies the data is at some point available. |
+|`DATA_NOT_AVAILABLE`|||The requested information is currently not available. This is different than UNSUPPORTED_RESOURCE because it implies the data is at some point available. |
 
 
 ### ButtonPressMode
@@ -143,7 +143,7 @@ For application-requested interactions, this mode indicates the method in which 
 | ---------- |:-----------:|
 |`MANUAL_ONLY`|||This mode causes the interaction to only occur on the display, meaning the choices are provided only via the display. No Voice Interaction.|
 |`VR_ONLY`|||This mode causes the interaction to only occur using the headunits VR system. Selections are made by saying the command.|
-|`BOTH`|||This mode causes both a VR and display selection option for an interaction. The user will first be asked via Voice Interaction (if available). If this is unsuccessfull, the system will switch to manual input.|
+|`BOTH`|||This mode causes both a VR and display selection option for an interaction. The user will first be asked via Voice Interaction (if available). If this is unsuccessful, the system will switch to manual input.|
 
 
 ### LayoutMode
@@ -161,7 +161,7 @@ For touchscreen interactions, the mode of how the choices are presented.
 
 
 ### HMILevel
-Enumeraction that describes current levels of HMI.
+Enumeration that describes current levels of HMI.
 
 ##### Elements
 
@@ -174,7 +174,7 @@ Enumeraction that describes current levels of HMI.
 
 
 ### AudioStreamingState
-Enumeraction that describes possible states of audio streaming.
+Enumeration that describes possible states of audio streaming.
 
 ##### Elements
 
@@ -625,8 +625,8 @@ The supported dimensions of the GPS
 | Value | Description | 
 | ---------- |:-----------:|
 |`NO_FIX`|||No GPS at all|
-|`2D`|||Longitude and lattitude|
-|`3D`|||Longitude and lattitude and altitude|
+|`2D`|||Longitude and latitude|
+|`3D`|||Longitude and latitude and altitude|
 
 
 ### PRNDL
@@ -1591,7 +1591,7 @@ Struct with the GPS data.
 |`pdop`|Float|True|PDOP.  If undefined or unavailable, then value shall be set to 0.|
 |`hdop`|Float|True|HDOP.  If value is unknown, value shall be set to 0.|
 |`vdop`|Float|True|VDOP.  If value is unknown, value shall be set to 0.|
-|`actual`|Boolean|True|True, if actual.                False, if infered.            |
+|`actual`|Boolean|True|True, if actual.                False, if inferred.            |
 |`satellites`|Integer|True|Number of satellites in view|
 |`dimension`|Dimension|True|See Dimension|
 |`altitude`|Float|True|Altitude in meters|
@@ -1847,7 +1847,7 @@ Configuration of on-screen keyboard (if available).
 
 
 ### DeviceInfo
-Various information abount connecting device.
+Various information about connecting device.
 
 ##### Parameters
 
@@ -1934,7 +1934,7 @@ Extended capabilities of the module's phone feature
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`dialNumberEnabled`|Boolean|False|If the module has the abiulity to perform dial number|
+|`dialNumberEnabled`|Boolean|False|If the module has the ability to perform dial number|
 
 
 ### VideoStreamingCapability
@@ -2048,16 +2048,16 @@ Contains information about a radio control module's capabilities.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`moduleName`|String||The short friendly name of the climate control module.            It should not be used to identify a module by mobile application.        |
-|`radioEnableAvailable`|Boolean|False|Availability of the control of enable/disable radio.        True: Available, False: Not Available, Not present: Not Available.    |
-|`radioBandAvailable`|Boolean|False|Availability of the control of radio band.        True: Available, False: Not Available, Not present: Not Available.    |
-|`radioFrequencyAvailable`|Boolean|False|Availability of the control of radio frequency.        True: Available, False: Not Available, Not present: Not Available.    |
-|`hdChannelAvailable`|Boolean|False|Availability of the control of HD radio channel.        True: Available, False: Not Available, Not present: Not Available.    |
-|`rdsDataAvailable`|Boolean|False|Availability of the getting Radio Data System (RDS) data.        True: Available, False: Not Available, Not present: Not Available.    |
-|`availableHDsAvailable`|Boolean|False|Availability of the getting the number of available HD channels.        True: Available, False: Not Available, Not present: Not Available.    |
-|`stateAvailable`|Boolean|False|Availability of the getting the Radio state.        True: Available, False: Not Available, Not present: Not Available.    |
-|`signalStrengthAvailable`|Boolean|False|Availability of the getting the signal strength.        True: Available, False: Not Available, Not present: Not Available.    |
-|`signalChangeThresholdAvailable`|Boolean|False|Availability of the getting the signal Change Threshold.        True: Available, False: Not Available, Not present: Not Available.    |
+|`moduleName`|String||The short friendly name of the climate control module.                It should not be used to identify a module by mobile application.            |
+|`radioEnableAvailable`|Boolean|False|Availability of the control of enable/disable radio.                True: Available, False: Not Available, Not present: Not Available.            |
+|`radioBandAvailable`|Boolean|False|Availability of the control of radio band.                True: Available, False: Not Available, Not present: Not Available.            |
+|`radioFrequencyAvailable`|Boolean|False|Availability of the control of radio frequency.                True: Available, False: Not Available, Not present: Not Available.            |
+|`hdChannelAvailable`|Boolean|False|Availability of the control of HD radio channel.                True: Available, False: Not Available, Not present: Not Available.            |
+|`rdsDataAvailable`|Boolean|False|Availability of the getting Radio Data System (RDS) data.                True: Available, False: Not Available, Not present: Not Available.            |
+|`availableHDsAvailable`|Boolean|False|Availability of the getting the number of available HD channels.                True: Available, False: Not Available, Not present: Not Available.            |
+|`stateAvailable`|Boolean|False|Availability of the getting the Radio state.                True: Available, False: Not Available, Not present: Not Available.            |
+|`signalStrengthAvailable`|Boolean|False|Availability of the getting the signal strength.                True: Available, False: Not Available, Not present: Not Available.            |
+|`signalChangeThresholdAvailable`|Boolean|False|Availability of the getting the signal Change Threshold.                True: Available, False: Not Available, Not present: Not Available.            |
 
 
 ### ClimateControlCapabilities
@@ -2067,18 +2067,18 @@ Contains information about a climate control module's capabilities.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`moduleName`|String||The short friendly name of the climate control module.            It should not be used to identify a module by mobile application.|
-|`fanSpeedAvailable`|Boolean|False|Availability of the control of fan speed.        True: Available, False: Not Available, Not present: Not Available.    |
-|`desiredTemperatureAvailable`|Boolean|False|Availability of the control of desired temperature.        True: Available, False: Not Available, Not present: Not Available.    |
-|`acEnableAvailable`|Boolean|False|Availability of the control of turn on/off AC.        True: Available, False: Not Available, Not present: Not Available.    |
-|`acMaxEnableAvailable`|Boolean|False|Availability of the control of enable/disable air conditioning is ON on the maximum level.        True: Available, False: Not Available, Not present: Not Available.    |
-|`circulateAirEnableAvailable`|Boolean|False|Availability of the control of enable/disable circulate Air mode.        True: Available, False: Not Available, Not present: Not Available.    |
-|`autoModeEnableAvailable`|Boolean|False|Availability of the control of enable/disable auto mode.        True: Available, False: Not Available, Not present: Not Available.    |
-|`dualModeEnableAvailable`|Boolean|False|Availability of the control of enable/disable dual mode.        True: Available, False: Not Available, Not present: Not Available.    |
-|`defrostZoneAvailable`|Boolean|False|Availability of the control of defrost zones.        True: Available, False: Not Available, Not present: Not Available.    |
-|`defrostZone`|DefrostZone[]|False|A set of all defrost zones that are controllable.    |
-|`ventilationModeAvailable`|Boolean|False|Availability of the control of air ventilation mode.        True: Available, False: Not Available, Not present: Not Available.    |
-|`ventilationMode`|VentilationMode[]|False|A set of all ventilation modes that are controllable.    |
+|`moduleName`|String||The short friendly name of the climate control module.                It should not be used to identify a module by mobile application.|
+|`fanSpeedAvailable`|Boolean|False|Availability of the control of fan speed.                True: Available, False: Not Available, Not present: Not Available.            |
+|`desiredTemperatureAvailable`|Boolean|False|Availability of the control of desired temperature.                True: Available, False: Not Available, Not present: Not Available.            |
+|`acEnableAvailable`|Boolean|False|Availability of the control of turn on/off AC.                True: Available, False: Not Available, Not present: Not Available.            |
+|`acMaxEnableAvailable`|Boolean|False|Availability of the control of enable/disable air conditioning is ON on the maximum level.                True: Available, False: Not Available, Not present: Not Available.            |
+|`circulateAirEnableAvailable`|Boolean|False|Availability of the control of enable/disable circulate Air mode.                True: Available, False: Not Available, Not present: Not Available.            |
+|`autoModeEnableAvailable`|Boolean|False|Availability of the control of enable/disable auto mode.                True: Available, False: Not Available, Not present: Not Available.            |
+|`dualModeEnableAvailable`|Boolean|False|Availability of the control of enable/disable dual mode.                True: Available, False: Not Available, Not present: Not Available.            |
+|`defrostZoneAvailable`|Boolean|False|Availability of the control of defrost zones.                True: Available, False: Not Available, Not present: Not Available.            |
+|`defrostZone`|DefrostZone[]|False|A set of all defrost zones that are controllable.            |
+|`ventilationModeAvailable`|Boolean|False|Availability of the control of air ventilation mode.                True: Available, False: Not Available, Not present: Not Available.            |
+|`ventilationMode`|VentilationMode[]|False|A set of all ventilation modes that are controllable.            |
 
 
 ### SystemCapability
@@ -2225,7 +2225,7 @@ Allows setting global properties.
 |`vrHelp`|VrHelpItem[]|False|VR Help Items.                If omitted on supported displays, the default AppLink VR help / What Can I Say? screen shall be used.                If the list of VR Help Items contains nonsequential positions (e.g. [1,2,4]), the RPC shall be rejected.                If omitted and a vrHelpTitle is provided, the request will be rejected.            |
 |`menuTitle`|String|False|Optional text to label an app menu button (for certain touchscreen platforms).|
 |`menuIcon`|Image|False|>Optional icon to draw on an app menu button (for certain touchscreen platforms).|
-|`keyboardProperties`|KeyboardProperties|False|On-screen keybaord configuration (if available).|
+|`keyboardProperties`|KeyboardProperties|False|On-screen keyboard configuration (if available).|
 
 
 ### SetGlobalProperties
@@ -2402,10 +2402,10 @@ Triggers an interaction (e.g. "Permit GPS?" - Yes, no, Always Allow).
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`initialText`|String|True|Text to be displayed first.            |
-|`initialPrompt`|TTSChunk[]|False|This is the intial prompt spoken to the user at the start of an interaction.                An array of text chunks of type TTSChunk. See TTSChunk.                The array must have at least one item.            |
+|`initialPrompt`|TTSChunk[]|False|This is the initial prompt spoken to the user at the start of an interaction.                An array of text chunks of type TTSChunk. See TTSChunk.                The array must have at least one item.            |
 |`interactionMode`|InteractionMode|True|See InteractionMode.|
 |`interactionChoiceSetIDList`|Integer[]|True|List of interaction choice set IDs to use with an interaction.|
-|`helpPrompt`|TTSChunk[]|False|Help text. This is the spoken string when a user speaks "help" when the interaction is occuring.                An array of text chunks of type TTSChunk. See TTSChunk.                The array must have at least one item.            |
+|`helpPrompt`|TTSChunk[]|False|Help text. This is the spoken string when a user speaks "help" when the interaction is occurring.                An array of text chunks of type TTSChunk. See TTSChunk.                The array must have at least one item.            |
 |`timeoutPrompt`|TTSChunk[]|False|Timeout text. This text is spoken when a VR interaction times out.                An array of text chunks of type TTSChunk. See TTSChunk.                The array must have at least one item.            |
 |`timeout`|Integer|False|Timeout in milliseconds.                If omitted a standard value of 10000 milliseconds is used.                Applies only to the menu portion of the interaction. The VR timeout will be handled by the platform.            |
 |`vrHelp`|VrHelpItem[]|False|Ability to send suggested VR Help Items to display on-screen during Perform Interaction.                If omitted on supported displays, the default generated list of suggested choices shall be displayed.            |
@@ -2581,7 +2581,7 @@ Starts audio pass thru session
 |`initialPrompt`|TTSChunk[]|False|The module will speak this prompt before opening the audio pass thru session.                An array of text chunks of type TTSChunk. See TTSChunk.                The array must have at least one item.                If omitted, then no initial prompt is spoken.            |
 |`audioPassThruDisplayText1`|String|False|First line of text displayed during audio capture.|
 |`audioPassThruDisplayText2`|String|False|Second line of text displayed during audio capture.|
-|`samplingRate`|SamplingRate|True|This value shall be allowed at 8 khz or 16 or 22 or 44 khz.|
+|`samplingRate`|SamplingRate|True|This value shall be allowed at 8 kHz or 16 or 22 or 44 kHz.|
 |`maxDuration`|Integer|True|The maximum duration of audio recording in milliseconds. |
 |`bitsPerSample`|BitsPerSample|True|Specifies the quality the audio is recorded. Currently 8 bit or 16 bit.|
 |`audioType`|AudioType|True|Specifies the type of audio data being requested.|
@@ -3172,7 +3172,7 @@ Used to push a binary data onto the module from a mobile device, such as icons a
 ### PutFile
 Message Type: **response**
 
-Response is sent, when the file data was copied (success case). Or when an error occured.
+Response is sent, when the file data was copied (success case). Or when an error occurred.
 
 ##### Parameters
 
@@ -3201,7 +3201,7 @@ Used to delete a file resident on the module in the app's local cache.
 ### DeleteFile
 Message Type: **response**
 
-Response is sent, when the file data was deleted (success case). Or when an error occured.
+Response is sent, when the file data was deleted (success case). Or when an error occurred.
             Not supported on First generation SDL enabled vehicles.
         
 
@@ -3263,7 +3263,7 @@ Used to set existing local file on the module as the app's icon
 ### SetAppIcon
 Message Type: **response**
 
-Response is sent, when the file data was copied (success case). Or when an error occured.
+Response is sent, when the file data was copied (success case). Or when an error occurred.
             Not supported on First generation SDL enabled vehicles.
         
 
@@ -3513,8 +3513,8 @@ Message Type: **request**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`moduleType`|ModuleType||The type of a RC module to retrieve module data from the vehicle.        In the future, this should be the Identification of a module.      |
-|`subscribe`|Boolean|False|If subscribe is true, the head unit will register onInteriorVehicleData notifications for the requested moduelType.        If subscribe is false, the head unit will unregister onInteriorVehicleData notifications for the requested moduelType.      |
+|`moduleType`|ModuleType||The type of a RC module to retrieve module data from the vehicle.                In the future, this should be the Identification of a module.            |
+|`subscribe`|Boolean|False|If subscribe is true, the head unit will register onInteriorVehicleData notifications for the requested moduelType.                If subscribe is false, the head unit will unregister onInteriorVehicleData notifications for the requested moduelType.            |
 
 
 ### GetInteriorVehicleData
@@ -3528,7 +3528,7 @@ Message Type: **response**
 |`resultCode`|Result||See Result|
 |`info`|String|False||
 |`success`|Boolean||true if successful; false, if failed |
-|`isSubscribed`|Boolean|False|It is a conditional-mandatory parameter: must be returned in case "subscribe" parameter was present in the related request.       if "true" - the "moduleType" from request is successfully subscribed and the head unit will send onInteriorVehicleData notifications for the moduleType.       if "false" - the "moduleType" from request is either unsubscribed or failed to subscribe.     |
+|`isSubscribed`|Boolean|False|It is a conditional-mandatory parameter: must be returned in case "subscribe" parameter was present in the related request.                if "true" - the "moduleType" from request is successfully subscribed and the head unit will send onInteriorVehicleData notifications for the moduleType.                if "false" - the "moduleType" from request is either unsubscribed or failed to subscribe.            |
 
 
 ### SetInteriorVehicleData
