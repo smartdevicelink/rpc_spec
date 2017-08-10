@@ -10,40 +10,40 @@
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`SUCCESS`|||The request succeeded|
-|`UNSUPPORTED_REQUEST`|||The request is not supported by the headunit|
-|`UNSUPPORTED_RESOURCE`|||A button that was requested for subscription is not supported under the current system.            |
-|`DISALLOWED`|||RPC is not authorized in local policy table.|
-|`REJECTED`|||The requested command was rejected, e.g. because mobile app is in background and cannot perform any HMI commands.                Or an HMI command (e.g. Speak) is rejected because a higher priority HMI command (e.g. Alert) is playing.            |
-|`ABORTED`|||A command was aborted, for example due to user interaction (e.g. user pressed button).                Or an HMI command (e.g. Speak) is aborted because a higher priority HMI command (e.g. Alert) was requested.            |
-|`IGNORED`|||A command was ignored, because the intended result is already in effect.                For example, SetMediaClockTimer was used to pause the media clock although the clock is paused already.                NOTE: potentially replaces SUBSCRIBED_ALREADY            |
-|`RETRY`|||The user interrupted the RPC (e.g. PerformAudioPassThru) and indicated to start over.  Note, the app must issue the new RPC.|
-|`IN_USE`|||The data may not be changed, because it is currently in use.                For example when trying to delete a command set that is currently involved in an interaction.            |
-|`VEHICLE_DATA_NOT_AVAILABLE`|||The requested vehicle data is not available on this vehicle or is not published.|
-|`TIMED_OUT`|||Overlay reached the maximum timeout and closed.|
-|`INVALID_DATA`|||The data sent is invalid. For example:                Invalid Json syntax                Parameters out of bounds (number or enum range)                Mandatory parameters not provided                Parameter provided with wrong type                Invalid characters                Empty string            |
-|`CHAR_LIMIT_EXCEEDED`||||
-|`INVALID_ID`|||One of the provided IDs is not valid. For example                This applies to CorrelationID, SubscriptionID, CommandID, MenuID, etc.            |
-|`DUPLICATE_NAME`|||There was a conflict with an registered name (application or menu item) or vr command|
-|`APPLICATION_NOT_REGISTERED`|||An command can not be executed because no application has been registered with RegisterApplication.|
-|`WRONG_LANGUAGE`|||The requested language is currently not supported.                Might be because of a mismatch of the currently active language on the headunit and the requested language            |
-|`OUT_OF_MEMORY`|||The system could not process the request because the necessary memory couldn't be allocated|
-|`TOO_MANY_PENDING_REQUESTS`|||There are too many requests pending (means, that the response has not been delivered, yet).There may be a maximum of 1000 pending requests at a time.|
-|`TOO_MANY_APPLICATIONS`|||There are already too many registered applications|
-|`APPLICATION_REGISTERED_ALREADY`|||RegisterApplication has been called again, after a RegisterApplication was successful before.|
-|`WARNINGS`|||The RPC (e.g. SubscribeVehicleData) executed successfully but one or more items have a warning or failure.|
-|`GENERIC_ERROR`|||Provided data is valid but something went wrong in the lower layers.|
-|`USER_DISALLOWED`|||RPC is included in a functional group explicitly blocked by the user.|
-|`TRUNCATED_DATA`|||The RPC (e.g. ReadDID) executed successfully but the data exceeded the platform maximum threshold and thus, only part of the data is available.|
-|`UNSUPPORTED_VERSION`|||Sync doesn't support the protocol that is requested by the mobile application|
-|`VEHICLE_DATA_NOT_ALLOWED`|||The user has turned off access to vehicle data, and it is globally unavailable to mobile applications.|
-|`FILE_NOT_FOUND`|||A specified file could not be found on the headunit.|
-|`CANCEL_ROUTE`|||User selected to Cancel Route.|
-|`SAVED`|||The RPC (e.g. Slider) executed successfully and the user elected to save the current position / value.|
-|`INVALID_CERT`|||The certificate provided during authentication is invalid.|
-|`EXPIRED_CERT`|||The certificate provided during authentication is expired.|
-|`RESUME_FAILED`|||The provided hash ID does not match the hash of the current set of registered data or the core could not resume the previous data.|
-|`DATA_NOT_AVAILABLE`|||The requested information is currently not available. This is different than UNSUPPORTED_RESOURCE because it implies the data is at some point available. |
+|`SUCCESS`|The request succeeded|
+|`UNSUPPORTED_REQUEST`|The request is not supported by the headunit|
+|`UNSUPPORTED_RESOURCE`|A button that was requested for subscription is not supported under the current system.            |
+|`DISALLOWED`|RPC is not authorized in local policy table.|
+|`REJECTED`|The requested command was rejected, e.g. because mobile app is in background and cannot perform any HMI commands.                Or an HMI command (e.g. Speak) is rejected because a higher priority HMI command (e.g. Alert) is playing.            |
+|`ABORTED`|A command was aborted, for example due to user interaction (e.g. user pressed button).                Or an HMI command (e.g. Speak) is aborted because a higher priority HMI command (e.g. Alert) was requested.            |
+|`IGNORED`|A command was ignored, because the intended result is already in effect.                For example, SetMediaClockTimer was used to pause the media clock although the clock is paused already.                NOTE: potentially replaces SUBSCRIBED_ALREADY            |
+|`RETRY`|The user interrupted the RPC (e.g. PerformAudioPassThru) and indicated to start over.  Note, the app must issue the new RPC.|
+|`IN_USE`|The data may not be changed, because it is currently in use.                For example when trying to delete a command set that is currently involved in an interaction.            |
+|`VEHICLE_DATA_NOT_AVAILABLE`|The requested vehicle data is not available on this vehicle or is not published.|
+|`TIMED_OUT`|Overlay reached the maximum timeout and closed.|
+|`INVALID_DATA`|The data sent is invalid. For example:                Invalid Json syntax                Parameters out of bounds (number or enum range)                Mandatory parameters not provided                Parameter provided with wrong type                Invalid characters                Empty string            |
+|`CHAR_LIMIT_EXCEEDED`||
+|`INVALID_ID`|One of the provided IDs is not valid. For example                This applies to CorrelationID, SubscriptionID, CommandID, MenuID, etc.            |
+|`DUPLICATE_NAME`|There was a conflict with an registered name (application or menu item) or vr command|
+|`APPLICATION_NOT_REGISTERED`|An command can not be executed because no application has been registered with RegisterApplication.|
+|`WRONG_LANGUAGE`|The requested language is currently not supported.                Might be because of a mismatch of the currently active language on the headunit and the requested language            |
+|`OUT_OF_MEMORY`|The system could not process the request because the necessary memory couldn't be allocated|
+|`TOO_MANY_PENDING_REQUESTS`|There are too many requests pending (means, that the response has not been delivered, yet).There may be a maximum of 1000 pending requests at a time.|
+|`TOO_MANY_APPLICATIONS`|There are already too many registered applications|
+|`APPLICATION_REGISTERED_ALREADY`|RegisterApplication has been called again, after a RegisterApplication was successful before.|
+|`WARNINGS`|The RPC (e.g. SubscribeVehicleData) executed successfully but one or more items have a warning or failure.|
+|`GENERIC_ERROR`|Provided data is valid but something went wrong in the lower layers.|
+|`USER_DISALLOWED`|RPC is included in a functional group explicitly blocked by the user.|
+|`TRUNCATED_DATA`|The RPC (e.g. ReadDID) executed successfully but the data exceeded the platform maximum threshold and thus, only part of the data is available.|
+|`UNSUPPORTED_VERSION`|Sync doesn't support the protocol that is requested by the mobile application|
+|`VEHICLE_DATA_NOT_ALLOWED`|The user has turned off access to vehicle data, and it is globally unavailable to mobile applications.|
+|`FILE_NOT_FOUND`|A specified file could not be found on the headunit.|
+|`CANCEL_ROUTE`|User selected to Cancel Route.|
+|`SAVED`|The RPC (e.g. Slider) executed successfully and the user elected to save the current position / value.|
+|`INVALID_CERT`|The certificate provided during authentication is invalid.|
+|`EXPIRED_CERT`|The certificate provided during authentication is expired.|
+|`RESUME_FAILED`|The provided hash ID does not match the hash of the current set of registered data or the core could not resume the previous data.|
+|`DATA_NOT_AVAILABLE`|The requested information is currently not available. This is different than UNSUPPORTED_RESOURCE because it implies the data is at some point available. |
 
 
 ### ButtonPressMode
@@ -51,8 +51,8 @@
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`LONG`|||A button was released, after it was pressed for a long time                Actual timing is defined by the headunit and may vary            |
-|`SHORT`|||A button was released, after it was pressed for a short time                Actual timing is defined by the headunit and may vary            |
+|`LONG`|A button was released, after it was pressed for a long time                Actual timing is defined by the headunit and may vary            |
+|`SHORT`|A button was released, after it was pressed for a short time                Actual timing is defined by the headunit and may vary            |
 
 
 ### ButtonEventMode
@@ -60,8 +60,8 @@
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`BUTTONUP`|||A button has been released up|
-|`BUTTONDOWN`|||A button has been pressed down|
+|`BUTTONUP`|A button has been released up|
+|`BUTTONDOWN`|A button has been pressed down|
 
 
 ### Language
@@ -69,45 +69,45 @@
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`EN-US`|||English - US|
-|`ES-MX`|||Spanish - Mexico|
-|`FR-CA`|||French - Canada|
-|`DE-DE`|||German - Germany|
-|`ES-ES`|||Spanish - Spain|
-|`EN-GB`|||English - GB|
-|`RU-RU`|||Russian - Russia|
-|`TR-TR`|||Turkish - Turkey|
-|`PL-PL`|||Polish - Poland|
-|`FR-FR`|||French - France|
-|`IT-IT`|||Italian - Italy|
-|`SV-SE`|||Swedish - Sweden|
-|`PT-PT`|||Portuguese - Portugal|
-|`NL-NL`|||Dutch (Standard) - Netherlands|
-|`EN-AU`|||English - Australia|
-|`ZH-CN`|||Mandarin - China|
-|`ZH-TW`|||Mandarin - Taiwan|
-|`JA-JP`|||Japanese - Japan|
-|`AR-SA`|||Arabic - Saudi Arabia|
-|`KO-KR`|||Korean - South Korea|
-|`PT-BR`|||Portuguese - Brazil|
-|`CS-CZ`|||Czech - Czech Republic|
-|`DA-DK`|||Danish - Denmark|
-|`NO-NO`|||Norwegian - Norway|
-|`NL-BE`|||Dutch (Flemish) - Belgium|
-|`EL-GR`|||Greek - Greece|
-|`HU-HU`|||Hungarian - Hungary|
-|`FI-FI`|||Finnish - Finland|
-|`SK-SK`|||Slovak - Slovakia|
-|`EN-IN`|||English - India|
-|`TH-TH`|||Thai - Thailand|
-|`EN-SA`|||English - Middle East|
-|`HE-IL`|||Hebrew - Israel|
-|`RO-RO`|||Romanian - Romania|
-|`UK-UA`|||Ukrainian - Ukraine|
-|`ID-ID`|||Indonesian - Indonesia|
-|`VI-VN`|||Vietnamese - Vietnam|
-|`MS-MY`|||Malay - Malaysia|
-|`HI-IN`|||Hindi - India|
+|`EN-US`|English - US|
+|`ES-MX`|Spanish - Mexico|
+|`FR-CA`|French - Canada|
+|`DE-DE`|German - Germany|
+|`ES-ES`|Spanish - Spain|
+|`EN-GB`|English - GB|
+|`RU-RU`|Russian - Russia|
+|`TR-TR`|Turkish - Turkey|
+|`PL-PL`|Polish - Poland|
+|`FR-FR`|French - France|
+|`IT-IT`|Italian - Italy|
+|`SV-SE`|Swedish - Sweden|
+|`PT-PT`|Portuguese - Portugal|
+|`NL-NL`|Dutch (Standard) - Netherlands|
+|`EN-AU`|English - Australia|
+|`ZH-CN`|Mandarin - China|
+|`ZH-TW`|Mandarin - Taiwan|
+|`JA-JP`|Japanese - Japan|
+|`AR-SA`|Arabic - Saudi Arabia|
+|`KO-KR`|Korean - South Korea|
+|`PT-BR`|Portuguese - Brazil|
+|`CS-CZ`|Czech - Czech Republic|
+|`DA-DK`|Danish - Denmark|
+|`NO-NO`|Norwegian - Norway|
+|`NL-BE`|Dutch (Flemish) - Belgium|
+|`EL-GR`|Greek - Greece|
+|`HU-HU`|Hungarian - Hungary|
+|`FI-FI`|Finnish - Finland|
+|`SK-SK`|Slovak - Slovakia|
+|`EN-IN`|English - India|
+|`TH-TH`|Thai - Thailand|
+|`EN-SA`|English - Middle East|
+|`HE-IL`|Hebrew - Israel|
+|`RO-RO`|Romanian - Romania|
+|`UK-UA`|Ukrainian - Ukraine|
+|`ID-ID`|Indonesian - Indonesia|
+|`VI-VN`|Vietnamese - Vietnam|
+|`MS-MY`|Malay - Malaysia|
+|`HI-IN`|Hindi - India|
 
 
 ### UpdateMode
@@ -117,11 +117,11 @@ Describes how the media clock timer should behave on the platform
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`COUNTUP`|||Starts the media clock timer counting upwards, as in time elapsed.|
-|`COUNTDOWN`|||Starts the media clock timer counting downwards, as in time remaining.|
-|`PAUSE`|||Pauses the media clock timer|
-|`RESUME`|||Resume the media clock timer|
-|`CLEAR`|||Clears the media clock timer (previously done through Show->mediaClock)|
+|`COUNTUP`|Starts the media clock timer counting upwards, as in time elapsed.|
+|`COUNTDOWN`|Starts the media clock timer counting downwards, as in time remaining.|
+|`PAUSE`|Pauses the media clock timer|
+|`RESUME`|Resume the media clock timer|
+|`CLEAR`|Clears the media clock timer (previously done through Show->mediaClock)|
 
 
 ### TimerMode
@@ -129,9 +129,9 @@ Describes how the media clock timer should behave on the platform
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`UP`|||Causes the media clock timer to update from 0:00 to a specified time|
-|`DOWN`|||Causes the media clock timer to update from a specified time to 0:00|
-|`NONE`|||Indicates to not use the media clock timer|
+|`UP`|Causes the media clock timer to update from 0:00 to a specified time|
+|`DOWN`|Causes the media clock timer to update from a specified time to 0:00|
+|`NONE`|Indicates to not use the media clock timer|
 
 
 ### InteractionMode
@@ -141,9 +141,9 @@ For application-requested interactions, this mode indicates the method in which 
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`MANUAL_ONLY`|||This mode causes the interaction to only occur on the display, meaning the choices are provided only via the display. No Voice Interaction.|
-|`VR_ONLY`|||This mode causes the interaction to only occur using the headunits VR system. Selections are made by saying the command.|
-|`BOTH`|||This mode causes both a VR and display selection option for an interaction. The user will first be asked via Voice Interaction (if available). If this is unsuccessful, the system will switch to manual input.|
+|`MANUAL_ONLY`|This mode causes the interaction to only occur on the display, meaning the choices are provided only via the display. No Voice Interaction.|
+|`VR_ONLY`|This mode causes the interaction to only occur using the headunits VR system. Selections are made by saying the command.|
+|`BOTH`|This mode causes both a VR and display selection option for an interaction. The user will first be asked via Voice Interaction (if available). If this is unsuccessful, the system will switch to manual input.|
 
 
 ### LayoutMode
@@ -153,11 +153,11 @@ For touchscreen interactions, the mode of how the choices are presented.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`ICON_ONLY`|||This mode causes the interaction to display the previous set of choices as icons.|
-|`ICON_WITH_SEARCH`|||This mode causes the interaction to display the previous set of choices as icons along with a search field in the HMI.|
-|`LIST_ONLY`|||This mode causes the interaction to display the previous set of choices as a list.|
-|`LIST_WITH_SEARCH`|||This mode causes the interaction to display the previous set of choices as a list along with a search field in the HMI.|
-|`KEYBOARD`|||This mode causes the interaction to immediately display a keyboard entry through the HMI.|
+|`ICON_ONLY`|This mode causes the interaction to display the previous set of choices as icons.|
+|`ICON_WITH_SEARCH`|This mode causes the interaction to display the previous set of choices as icons along with a search field in the HMI.|
+|`LIST_ONLY`|This mode causes the interaction to display the previous set of choices as a list.|
+|`LIST_WITH_SEARCH`|This mode causes the interaction to display the previous set of choices as a list along with a search field in the HMI.|
+|`KEYBOARD`|This mode causes the interaction to immediately display a keyboard entry through the HMI.|
 
 
 ### HMILevel
@@ -167,10 +167,10 @@ Enumeration that describes current levels of HMI.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`FULL`||||
-|`LIMITED`||||
-|`BACKGROUND`||||
-|`NONE`||||
+|`FULL`||
+|`LIMITED`||
+|`BACKGROUND`||
+|`NONE`||
 
 
 ### AudioStreamingState
@@ -180,9 +180,9 @@ Enumeration that describes possible states of audio streaming.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`AUDIBLE`||||
-|`ATTENUATED`||||
-|`NOT_AUDIBLE`||||
+|`AUDIBLE`||
+|`ATTENUATED`||
+|`NOT_AUDIBLE`||
 
 
 ### SystemAction
@@ -192,9 +192,9 @@ Enumeration that describes system actions that can be triggered.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`DEFAULT_ACTION`|||Default action occurs.  Standard behavior (e.g. SoftButton clears overlay).|
-|`STEAL_FOCUS`|||App is brought into HMI_FULL.|
-|`KEEP_CONTEXT`|||Current system context is maintained.  An overlay is persisted even though a SoftButton has been pressed and the notification sent.|
+|`DEFAULT_ACTION`|Default action occurs.  Standard behavior (e.g. SoftButton clears overlay).|
+|`STEAL_FOCUS`|App is brought into HMI_FULL.|
+|`KEEP_CONTEXT`|Current system context is maintained.  An overlay is persisted even though a SoftButton has been pressed and the notification sent.|
 
 
 ### SystemContext
@@ -204,11 +204,11 @@ Enumeration that describes possible contexts an app's HMI might be in. Communica
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`MAIN`|||The app's persistent display (whether media/non-media/navigation) is fully visible onscreen.|
-|`VRSESSION`|||The system is currently in a VR session (with whatever dedicated VR screen being overlaid onscreen).|
-|`MENU`|||The system is currently displaying an in-App menu onscreen.|
-|`HMI_OBSCURED`|||The app's display HMI is currently being obscured by either a system or other app's overlay.|
-|`ALERT`|||Broadcast only to whichever app has an alert currently being displayed.|
+|`MAIN`|The app's persistent display (whether media/non-media/navigation) is fully visible onscreen.|
+|`VRSESSION`|The system is currently in a VR session (with whatever dedicated VR screen being overlaid onscreen).|
+|`MENU`|The system is currently displaying an in-App menu onscreen.|
+|`HMI_OBSCURED`|The app's display HMI is currently being obscured by either a system or other app's overlay.|
+|`ALERT`|Broadcast only to whichever app has an alert currently being displayed.|
 
 
 ### SoftButtonType
@@ -218,9 +218,9 @@ Contains information about the SoftButton capabilities.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`TEXT`||||
-|`IMAGE`||||
-|`BOTH`||||
+|`TEXT`||
+|`IMAGE`||
+|`BOTH`||
 
 
 ### AppInterfaceUnregisteredReason
@@ -230,18 +230,18 @@ Error code, which comes from the module side.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`IGNITION_OFF`||||
-|`BLUETOOTH_OFF`||||
-|`USB_DISCONNECTED`||||
-|`REQUEST_WHILE_IN_NONE_HMI_LEVEL`||||
-|`TOO_MANY_REQUESTS`||||
-|`DRIVER_DISTRACTION_VIOLATION`||||
-|`LANGUAGE_CHANGE`||||
-|`MASTER_RESET`||||
-|`FACTORY_DEFAULTS`||||
-|`APP_UNAUTHORIZED`||||
-|`PROTOCOL_VIOLATION`||||
-|`UNSUPPORTED_HMI_RESOURCE`||||
+|`IGNITION_OFF`||
+|`BLUETOOTH_OFF`||
+|`USB_DISCONNECTED`||
+|`REQUEST_WHILE_IN_NONE_HMI_LEVEL`||
+|`TOO_MANY_REQUESTS`||
+|`DRIVER_DISTRACTION_VIOLATION`||
+|`LANGUAGE_CHANGE`||
+|`MASTER_RESET`||
+|`FACTORY_DEFAULTS`||
+|`APP_UNAUTHORIZED`||
+|`PROTOCOL_VIOLATION`||
+|`UNSUPPORTED_HMI_RESOURCE`||
 
 
 ### TriggerSource
@@ -251,9 +251,9 @@ Indicates the source from where the command was triggered.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`MENU`||||
-|`VR`||||
-|`KEYBOARD`||||
+|`MENU`||
+|`VR`||
+|`KEYBOARD`||
 
 
 ### HmiZoneCapabilities
@@ -263,8 +263,8 @@ Contains information about the HMI zone capabilities.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`FRONT`||||
-|`BACK`||||
+|`FRONT`||
+|`BACK`||
 
 
 ### SpeechCapabilities
@@ -274,11 +274,11 @@ Contains information about the TTS capabilities.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`TEXT`||||
-|`SAPI_PHONEMES`||||
-|`LHPLUS_PHONEMES`||||
-|`PRE_RECORDED`||||
-|`SILENCE`||||
+|`TEXT`||
+|`SAPI_PHONEMES`||
+|`LHPLUS_PHONEMES`||
+|`PRE_RECORDED`||
+|`SILENCE`||
 
 
 ### VrCapabilities
@@ -288,7 +288,7 @@ Contains information about the VR capabilities.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`TEXT`||||
+|`TEXT`||
 
 
 ### PrerecordedSpeech
@@ -298,11 +298,11 @@ Contains a list of prerecorded speech items present on the platform.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`HELP_JINGLE`||||
-|`INITIAL_JINGLE`||||
-|`LISTEN_JINGLE`||||
-|`POSITIVE_JINGLE`||||
-|`NEGATIVE_JINGLE`||||
+|`HELP_JINGLE`||
+|`INITIAL_JINGLE`||
+|`LISTEN_JINGLE`||
+|`POSITIVE_JINGLE`||
+|`NEGATIVE_JINGLE`||
 
 
 ### SamplingRate
@@ -312,10 +312,10 @@ Describes different sampling options for PerformAudioPassThru.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`8KHZ`||||
-|`16KHZ`||||
-|`22KHZ`||||
-|`44KHZ`||||
+|`8KHZ`||
+|`16KHZ`||
+|`22KHZ`||
+|`44KHZ`||
 
 
 ### BitsPerSample
@@ -325,8 +325,8 @@ Describes different quality options for PerformAudioPassThru.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`8_BIT`||||
-|`16_BIT`||||
+|`8_BIT`||
+|`16_BIT`||
 
 
 ### AudioType
@@ -336,7 +336,7 @@ Describes different audio type options for PerformAudioPassThru.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`PCM`||||
+|`PCM`||
 
 
 ### VehicleDataType
@@ -346,32 +346,32 @@ Defines the data types that can be published and subscribed to.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`VEHICLEDATA_GPS`|||Notifies GPSData may be subscribed|
-|`VEHICLEDATA_SPEED`||||
-|`VEHICLEDATA_RPM`||||
-|`VEHICLEDATA_FUELLEVEL`||||
-|`VEHICLEDATA_FUELLEVEL_STATE`||||
-|`VEHICLEDATA_FUELCONSUMPTION`||||
-|`VEHICLEDATA_EXTERNTEMP`||||
-|`VEHICLEDATA_VIN`||||
-|`VEHICLEDATA_PRNDL`||||
-|`VEHICLEDATA_TIREPRESSURE`||||
-|`VEHICLEDATA_ODOMETER`||||
-|`VEHICLEDATA_BELTSTATUS`||||
-|`VEHICLEDATA_BODYINFO`||||
-|`VEHICLEDATA_DEVICESTATUS`||||
-|`VEHICLEDATA_ECALLINFO`||||
-|`VEHICLEDATA_AIRBAGSTATUS`||||
-|`VEHICLEDATA_EMERGENCYEVENT`||||
-|`VEHICLEDATA_CLUSTERMODESTATUS`||||
-|`VEHICLEDATA_MYKEY`||||
-|`VEHICLEDATA_BRAKING`||||
-|`VEHICLEDATA_WIPERSTATUS`||||
-|`VEHICLEDATA_HEADLAMPSTATUS`||||
-|`VEHICLEDATA_BATTVOLTAGE`||||
-|`VEHICLEDATA_ENGINETORQUE`||||
-|`VEHICLEDATA_ACCPEDAL`||||
-|`VEHICLEDATA_STEERINGWHEEL`||||
+|`VEHICLEDATA_GPS`|Notifies GPSData may be subscribed|
+|`VEHICLEDATA_SPEED`||
+|`VEHICLEDATA_RPM`||
+|`VEHICLEDATA_FUELLEVEL`||
+|`VEHICLEDATA_FUELLEVEL_STATE`||
+|`VEHICLEDATA_FUELCONSUMPTION`||
+|`VEHICLEDATA_EXTERNTEMP`||
+|`VEHICLEDATA_VIN`||
+|`VEHICLEDATA_PRNDL`||
+|`VEHICLEDATA_TIREPRESSURE`||
+|`VEHICLEDATA_ODOMETER`||
+|`VEHICLEDATA_BELTSTATUS`||
+|`VEHICLEDATA_BODYINFO`||
+|`VEHICLEDATA_DEVICESTATUS`||
+|`VEHICLEDATA_ECALLINFO`||
+|`VEHICLEDATA_AIRBAGSTATUS`||
+|`VEHICLEDATA_EMERGENCYEVENT`||
+|`VEHICLEDATA_CLUSTERMODESTATUS`||
+|`VEHICLEDATA_MYKEY`||
+|`VEHICLEDATA_BRAKING`||
+|`VEHICLEDATA_WIPERSTATUS`||
+|`VEHICLEDATA_HEADLAMPSTATUS`||
+|`VEHICLEDATA_BATTVOLTAGE`||
+|`VEHICLEDATA_ENGINETORQUE`||
+|`VEHICLEDATA_ACCPEDAL`||
+|`VEHICLEDATA_STEERINGWHEEL`||
 
 
 ### ButtonName
@@ -381,41 +381,41 @@ Defines the hard (physical) and soft (touchscreen) buttons available from the mo
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`OK`||||
-|`SEEKLEFT`||||
-|`SEEKRIGHT`||||
-|`TUNEUP`||||
-|`TUNEDOWN`||||
-|`PRESET_0`||||
-|`PRESET_1`||||
-|`PRESET_2`||||
-|`PRESET_3`||||
-|`PRESET_4`||||
-|`PRESET_5`||||
-|`PRESET_6`||||
-|`PRESET_7`||||
-|`PRESET_8`||||
-|`PRESET_9`||||
-|`CUSTOM_BUTTON`||||
-|`SEARCH`||||
-|`AC_MAX`||||
-|`AC`||||
-|`RECIRCULATE`||||
-|`FAN_UP`||||
-|`FAN_DOWN`||||
-|`TEMP_UP`||||
-|`TEMP_DOWN`||||
-|`DEFROST_MAX`||||
-|`DEFROST`||||
-|`DEFROST_REAR`||||
-|`UPPER_VENT`||||
-|`LOWER_VENT`||||
-|`VOLUME_UP`||||
-|`VOLUME_DOWN`||||
-|`EJECT`||||
-|`SOURCE`||||
-|`SHUFFLE`||||
-|`REPEAT`||||
+|`OK`||
+|`SEEKLEFT`||
+|`SEEKRIGHT`||
+|`TUNEUP`||
+|`TUNEDOWN`||
+|`PRESET_0`||
+|`PRESET_1`||
+|`PRESET_2`||
+|`PRESET_3`||
+|`PRESET_4`||
+|`PRESET_5`||
+|`PRESET_6`||
+|`PRESET_7`||
+|`PRESET_8`||
+|`PRESET_9`||
+|`CUSTOM_BUTTON`||
+|`SEARCH`||
+|`AC_MAX`||
+|`AC`||
+|`RECIRCULATE`||
+|`FAN_UP`||
+|`FAN_DOWN`||
+|`TEMP_UP`||
+|`TEMP_DOWN`||
+|`DEFROST_MAX`||
+|`DEFROST`||
+|`DEFROST_REAR`||
+|`UPPER_VENT`||
+|`LOWER_VENT`||
+|`VOLUME_UP`||
+|`VOLUME_DOWN`||
+|`EJECT`||
+|`SOURCE`||
+|`SHUFFLE`||
+|`REPEAT`||
 
 
 ### MediaClockFormat
@@ -423,13 +423,13 @@ Defines the hard (physical) and soft (touchscreen) buttons available from the mo
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`CLOCK1`|||minutesFieldWidth = 2;minutesFieldMax = 19;secondsFieldWidth = 2;secondsFieldMax = 99;maxHours = 19;maxMinutes = 59;maxSeconds = 59;                used for Type II and CID headunits            |
-|`CLOCK2`|||minutesFieldWidth = 3;minutesFieldMax = 199;secondsFieldWidth = 2;secondsFieldMax = 99;maxHours = 59;maxMinutes = 59;maxSeconds = 59;                used for Type V headunit            |
-|`CLOCK3`|||minutesFieldWidth = 2;minutesFieldMax = 59;secondsFieldWidth = 2;secondsFieldMax = 59;maxHours = 9;maxMinutes = 59;maxSeconds = 59;                used for GEN1.1 MFD3/4/5 headunits            |
-|`CLOCKTEXT1`|||5 characters possible                Format:      1|sp   c   :|sp   c   c                1|sp : digit "1" or space                c    : character out of following character set: sp|0-9|[letters, see TypeII column in XLS. See [@TODO: create file ref]]                :|sp : colon or space                used for Type II headunit            |
-|`CLOCKTEXT2`|||5 chars possible                Format:      1|sp   c   :|sp   c   c                1|sp : digit "1" or space                c    : character out of following character set: sp|0-9|[letters, see CID column in XLS. See [@TODO: create file ref]]                :|sp : colon or space                used for CID headunit                NOTE: difference between CLOCKTEXT1 and CLOCKTEXT2 is the supported character set            |
-|`CLOCKTEXT3`|||6 chars possible                Format:      1|sp   c   c   :|sp   c   c                1|sp : digit "1" or space                c    : character out of following character set: sp|0-9|[letters, see Type 5 column in XLS]. See [@TODO: create file ref]                :|sp : colon or space                used for Type V headunit            |
-|`CLOCKTEXT4`|||6 chars possible                Format:      c   :|sp   c   c   :   c   c                :|sp : colon or space                c    : character out of following character set: sp|0-9|[letters].                used for GEN1.1 MFD3/4/5 headunits            |
+|`CLOCK1`|minutesFieldWidth = 2;minutesFieldMax = 19;secondsFieldWidth = 2;secondsFieldMax = 99;maxHours = 19;maxMinutes = 59;maxSeconds = 59;                used for Type II and CID headunits            |
+|`CLOCK2`|minutesFieldWidth = 3;minutesFieldMax = 199;secondsFieldWidth = 2;secondsFieldMax = 99;maxHours = 59;maxMinutes = 59;maxSeconds = 59;                used for Type V headunit            |
+|`CLOCK3`|minutesFieldWidth = 2;minutesFieldMax = 59;secondsFieldWidth = 2;secondsFieldMax = 59;maxHours = 9;maxMinutes = 59;maxSeconds = 59;                used for GEN1.1 MFD3/4/5 headunits            |
+|`CLOCKTEXT1`|5 characters possible                Format:      1|sp   c   :|sp   c   c                1|sp : digit "1" or space                c    : character out of following character set: sp|0-9|[letters, see TypeII column in XLS. See [@TODO: create file ref]]                :|sp : colon or space                used for Type II headunit            |
+|`CLOCKTEXT2`|5 chars possible                Format:      1|sp   c   :|sp   c   c                1|sp : digit "1" or space                c    : character out of following character set: sp|0-9|[letters, see CID column in XLS. See [@TODO: create file ref]]                :|sp : colon or space                used for CID headunit                NOTE: difference between CLOCKTEXT1 and CLOCKTEXT2 is the supported character set            |
+|`CLOCKTEXT3`|6 chars possible                Format:      1|sp   c   c   :|sp   c   c                1|sp : digit "1" or space                c    : character out of following character set: sp|0-9|[letters, see Type 5 column in XLS]. See [@TODO: create file ref]                :|sp : colon or space                used for Type V headunit            |
+|`CLOCKTEXT4`|6 chars possible                Format:      c   :|sp   c   c   :   c   c                :|sp : colon or space                c    : character out of following character set: sp|0-9|[letters].                used for GEN1.1 MFD3/4/5 headunits            |
 
 
 ### DisplayType
@@ -439,17 +439,17 @@ See DAES for further infos regarding the displays
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`CID`||||
-|`TYPE2`||||
-|`TYPE5`||||
-|`NGN`||||
-|`GEN2_8_DMA`||||
-|`GEN2_6_DMA`||||
-|`MFD3`||||
-|`MFD4`||||
-|`MFD5`||||
-|`GEN3_8-INCH`||||
-|`SDL_GENERIC`||||
+|`CID`||
+|`TYPE2`||
+|`TYPE5`||
+|`NGN`||
+|`GEN2_8_DMA`||
+|`GEN2_6_DMA`||
+|`MFD3`||
+|`MFD4`||
+|`MFD5`||
+|`GEN3_8-INCH`||
+|`SDL_GENERIC`||
 
 
 ### TextFieldName
@@ -457,34 +457,34 @@ See DAES for further infos regarding the displays
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`mainField1`|||The first line of first set of main fields of the persistent display; applies to "Show"|
-|`mainField2`|||The second line of first set of main fields of the persistent display; applies to "Show"|
-|`mainField3`|||The first line of second set of main fields of persistent display; applies to "Show"|
-|`mainField4`|||The second line of second set of main fields of the persistent display; applies to "Show"|
-|`statusBar`|||The status bar on NGN; applies to "Show"|
-|`mediaClock`|||Text value for MediaClock field; applies to "Show"|
-|`mediaTrack`|||The track field of NGN and GEN1.1 MFD displays. This field is only available for media applications; applies to "Show"|
-|`alertText1`|||The first line of the alert text field; applies to "Alert"|
-|`alertText2`|||The second line of the alert text field; applies to "Alert"|
-|`alertText3`|||The third line of the alert text field; applies to "Alert"|
-|`scrollableMessageBody`|||Long form body of text that can include newlines and tabs; applies to "ScrollableMessage"|
-|`initialInteractionText`|||First line suggestion for a user response (in the case of VR enabled interaction)|
-|`navigationText1`|||First line of navigation text|
-|`navigationText2`|||Second line of navigation text|
-|`ETA`|||Estimated Time of Arrival time for navigation|
-|`totalDistance`|||Total distance to destination for navigation|
-|`audioPassThruDisplayText1`|||First line of text for audio pass thru|
-|`audioPassThruDisplayText2`|||Second line of text for audio pass thru|
-|`sliderHeader`|||Header text for slider|
-|`sliderFooter`|||Footer text for slider|
-|`menuName`|||Primary text for Choice|
-|`secondaryText`|||Secondary text for Choice|
-|`tertiaryText`|||Tertiary text for Choice|
-|`menuTitle`|||Optional text to label an app menu button (for certain touchscreen platforms).|
-|`locationName`|||Optional name / title of intended location for SendLocation.|
-|`locationDescription`|||Optional description of intended location / establishment (if applicable) for SendLocation.|
-|`addressLines`|||Optional location address (if applicable) for SendLocation.|
-|`phoneNumber`|||Optional hone number of intended location / establishment (if applicable) for SendLocation.|
+|`mainField1`|The first line of first set of main fields of the persistent display; applies to "Show"|
+|`mainField2`|The second line of first set of main fields of the persistent display; applies to "Show"|
+|`mainField3`|The first line of second set of main fields of persistent display; applies to "Show"|
+|`mainField4`|The second line of second set of main fields of the persistent display; applies to "Show"|
+|`statusBar`|The status bar on NGN; applies to "Show"|
+|`mediaClock`|Text value for MediaClock field; applies to "Show"|
+|`mediaTrack`|The track field of NGN and GEN1.1 MFD displays. This field is only available for media applications; applies to "Show"|
+|`alertText1`|The first line of the alert text field; applies to "Alert"|
+|`alertText2`|The second line of the alert text field; applies to "Alert"|
+|`alertText3`|The third line of the alert text field; applies to "Alert"|
+|`scrollableMessageBody`|Long form body of text that can include newlines and tabs; applies to "ScrollableMessage"|
+|`initialInteractionText`|First line suggestion for a user response (in the case of VR enabled interaction)|
+|`navigationText1`|First line of navigation text|
+|`navigationText2`|Second line of navigation text|
+|`ETA`|Estimated Time of Arrival time for navigation|
+|`totalDistance`|Total distance to destination for navigation|
+|`audioPassThruDisplayText1`|First line of text for audio pass thru|
+|`audioPassThruDisplayText2`|Second line of text for audio pass thru|
+|`sliderHeader`|Header text for slider|
+|`sliderFooter`|Footer text for slider|
+|`menuName`|Primary text for Choice|
+|`secondaryText`|Secondary text for Choice|
+|`tertiaryText`|Tertiary text for Choice|
+|`menuTitle`|Optional text to label an app menu button (for certain touchscreen platforms).|
+|`locationName`|Optional name / title of intended location for SendLocation.|
+|`locationDescription`|Optional description of intended location / establishment (if applicable) for SendLocation.|
+|`addressLines`|Optional location address (if applicable) for SendLocation.|
+|`phoneNumber`|Optional hone number of intended location / establishment (if applicable) for SendLocation.|
 
 
 ### ImageFieldName
@@ -492,18 +492,18 @@ See DAES for further infos regarding the displays
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`softButtonImage`|||The image field for SoftButton|
-|`choiceImage`|||The first image field for Choice|
-|`choiceSecondaryImage`|||The secondary image field for Choice|
-|`vrHelpItem`|||The image field for vrHelpItem|
-|`turnIcon`|||The image field for Turn|
-|`menuIcon`|||The image field for the menu icon in SetGlobalProperties|
-|`cmdIcon`|||The image field for AddCommand|
-|`appIcon`|||The image field for the app icon (set by setAppIcon)|
-|`graphic`|||The image field for Show|
-|`showConstantTBTIcon`|||The primary image field for ShowConstantTBT|
-|`showConstantTBTNextTurnIcon`|||The secondary image field for ShowConstantTBT|
-|`locationImage`|||The optional image of a destination / location|
+|`softButtonImage`|The image field for SoftButton|
+|`choiceImage`|The first image field for Choice|
+|`choiceSecondaryImage`|The secondary image field for Choice|
+|`vrHelpItem`|The image field for vrHelpItem|
+|`turnIcon`|The image field for Turn|
+|`menuIcon`|The image field for the menu icon in SetGlobalProperties|
+|`cmdIcon`|The image field for AddCommand|
+|`appIcon`|The image field for the app icon (set by setAppIcon)|
+|`graphic`|The image field for Show|
+|`showConstantTBTIcon`|The primary image field for ShowConstantTBT|
+|`showConstantTBTNextTurnIcon`|The secondary image field for ShowConstantTBT|
+|`locationImage`|The optional image of a destination / location|
 
 
 ### CharacterSet
@@ -513,10 +513,10 @@ The list of potential character sets
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`TYPE2SET`|||See [@TODO: create file ref]|
-|`TYPE5SET`|||See [@TODO: create file ref]|
-|`CID1SET`|||See [@TODO: create file ref]|
-|`CID2SET`|||See [@TODO: create file ref]|
+|`TYPE2SET`|See [@TODO: create file ref]|
+|`TYPE5SET`|See [@TODO: create file ref]|
+|`CID1SET`|See [@TODO: create file ref]|
+|`CID2SET`|See [@TODO: create file ref]|
 
 
 ### TextAlignment
@@ -526,9 +526,9 @@ The list of possible alignments, left, right, or centered
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`LEFT_ALIGNED`||||
-|`RIGHT_ALIGNED`||||
-|`CENTERED`||||
+|`LEFT_ALIGNED`||
+|`RIGHT_ALIGNED`||
+|`CENTERED`||
 
 
 ### TBTState
@@ -538,16 +538,16 @@ Enumeration that describes possible states of turn-by-turn client or AppLink app
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`ROUTE_UPDATE_REQUEST`||||
-|`ROUTE_ACCEPTED`||||
-|`ROUTE_REFUSED`||||
-|`ROUTE_CANCELLED`||||
-|`ETA_REQUEST`||||
-|`NEXT_TURN_REQUEST`||||
-|`ROUTE_STATUS_REQUEST`||||
-|`ROUTE_SUMMARY_REQUEST`||||
-|`TRIP_STATUS_REQUEST`||||
-|`ROUTE_UPDATE_REQUEST_TIMEOUT`||||
+|`ROUTE_UPDATE_REQUEST`||
+|`ROUTE_ACCEPTED`||
+|`ROUTE_REFUSED`||
+|`ROUTE_CANCELLED`||
+|`ETA_REQUEST`||
+|`NEXT_TURN_REQUEST`||
+|`ROUTE_STATUS_REQUEST`||
+|`ROUTE_SUMMARY_REQUEST`||
+|`TRIP_STATUS_REQUEST`||
+|`ROUTE_UPDATE_REQUEST_TIMEOUT`||
 
 
 ### DriverDistractionState
@@ -557,8 +557,8 @@ Enumeration that describes possible states of driver distraction.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`DD_ON`||||
-|`DD_OFF`||||
+|`DD_ON`||
+|`DD_OFF`||
 
 
 ### ImageType
@@ -568,8 +568,8 @@ Contains information about the type of image.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`STATIC`||||
-|`DYNAMIC`||||
+|`STATIC`||
+|`DYNAMIC`||
 
 
 ### DeliveryMode
@@ -579,9 +579,9 @@ The mode in which the SendLocation request is sent
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`PROMPT`||||
-|`DESTINATION`||||
-|`QUEUE`||||
+|`PROMPT`||
+|`DESTINATION`||
+|`QUEUE`||
 
 
 ### GlobalProperty
@@ -591,13 +591,13 @@ The different global properties.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`HELPPROMPT`|||The property helpPrompt of setGlobalProperties|
-|`TIMEOUTPROMPT`|||The property timeoutPrompt of setGlobalProperties|
-|`VRHELPTITLE`|||The property vrHelpTitle of setGlobalProperties|
-|`VRHELPITEMS`|||The property array of vrHelp of setGlobalProperties|
-|`MENUNAME`|||The property in-app menu name of setGlobalProperties|
-|`MENUICON`|||The property in-app menu icon of setGlobalProperties|
-|`KEYBOARDPROPERTIES`|||The on-screen keyboard configuration of setGlobalProperties|
+|`HELPPROMPT`|The property helpPrompt of setGlobalProperties|
+|`TIMEOUTPROMPT`|The property timeoutPrompt of setGlobalProperties|
+|`VRHELPTITLE`|The property vrHelpTitle of setGlobalProperties|
+|`VRHELPITEMS`|The property array of vrHelp of setGlobalProperties|
+|`MENUNAME`|The property in-app menu name of setGlobalProperties|
+|`MENUICON`|The property in-app menu icon of setGlobalProperties|
+|`KEYBOARDPROPERTIES`|The on-screen keyboard configuration of setGlobalProperties|
 
 
 ### CompassDirection
@@ -607,14 +607,14 @@ The list of potential compass directions
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`NORTH`||||
-|`NORTHWEST`||||
-|`WEST`||||
-|`SOUTHWEST`||||
-|`SOUTH`||||
-|`SOUTHEAST`||||
-|`EAST`||||
-|`NORTHEAST`||||
+|`NORTH`||
+|`NORTHWEST`||
+|`WEST`||
+|`SOUTHWEST`||
+|`SOUTH`||
+|`SOUTHEAST`||
+|`EAST`||
+|`NORTHEAST`||
 
 
 ### Dimension
@@ -624,9 +624,9 @@ The supported dimensions of the GPS
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`NO_FIX`|||No GPS at all|
-|`2D`|||Longitude and latitude|
-|`3D`|||Longitude and latitude and altitude|
+|`NO_FIX`|No GPS at all|
+|`2D`|Longitude and latitude|
+|`3D`|Longitude and latitude and altitude|
 
 
 ### PRNDL
@@ -636,22 +636,22 @@ The selected gear.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`PARK`|||Parking|
-|`REVERSE`|||Reverse gear|
-|`NEUTRAL`|||No gear|
-|`DRIVE`||||
-|`SPORT`|||Drive Sport mode|
-|`LOWGEAR`|||1st gear hold|
-|`FIRST`||||
-|`SECOND`||||
-|`THIRD`||||
-|`FOURTH`||||
-|`FIFTH`||||
-|`SIXTH`||||
-|`SEVENTH`||||
-|`EIGHTH`||||
-|`UNKNOWN`||||
-|`FAULT`||||
+|`PARK`|Parking|
+|`REVERSE`|Reverse gear|
+|`NEUTRAL`|No gear|
+|`DRIVE`||
+|`SPORT`|Drive Sport mode|
+|`LOWGEAR`|1st gear hold|
+|`FIRST`||
+|`SECOND`||
+|`THIRD`||
+|`FOURTH`||
+|`FIFTH`||
+|`SIXTH`||
+|`SEVENTH`||
+|`EIGHTH`||
+|`UNKNOWN`||
+|`FAULT`||
 
 
 ### ComponentVolumeStatus
@@ -661,12 +661,12 @@ The volume status of a vehicle component.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`UNKNOWN`||||
-|`NORMAL`||||
-|`LOW`||||
-|`FAULT`||||
-|`ALERT`||||
-|`NOT_SUPPORTED`||||
+|`UNKNOWN`||
+|`NORMAL`||
+|`LOW`||
+|`FAULT`||
+|`ALERT`||
+|`NOT_SUPPORTED`||
 
 
 ### WarningLightStatus
@@ -676,10 +676,10 @@ Reflects the status of a cluster instrument warning light.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`OFF`||||
-|`ON`||||
-|`FLASH`||||
-|`NOT_USED`||||
+|`OFF`||
+|`ON`||
+|`FLASH`||
+|`NOT_USED`||
 
 
 ### VehicleDataNotificationStatus
@@ -689,10 +689,10 @@ Reflects the status of a vehicle data notification.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`NOT_SUPPORTED`||||
-|`NORMAL`||||
-|`ACTIVE`||||
-|`NOT_USED`||||
+|`NOT_SUPPORTED`||
+|`NORMAL`||
+|`ACTIVE`||
+|`NOT_USED`||
 
 
 ### IgnitionStableStatus
@@ -702,9 +702,9 @@ Reflects the ignition switch stability.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`IGNITION_SWITCH_NOT_STABLE`||||
-|`IGNITION_SWITCH_STABLE`||||
-|`MISSING_FROM_TRANSMITTER`||||
+|`IGNITION_SWITCH_NOT_STABLE`||
+|`IGNITION_SWITCH_STABLE`||
+|`MISSING_FROM_TRANSMITTER`||
 
 
 ### IgnitionStatus
@@ -714,12 +714,12 @@ Reflects the status of ignition.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`UNKNOWN`||||
-|`OFF`||||
-|`ACCESSORY`||||
-|`RUN`||||
-|`START`||||
-|`INVALID`||||
+|`UNKNOWN`||
+|`OFF`||
+|`ACCESSORY`||
+|`RUN`||
+|`START`||
+|`INVALID`||
 
 
 ### VehicleDataEventStatus
@@ -729,11 +729,11 @@ Reflects the status of a vehicle data event; e.g. a seat belt event status.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`NO_EVENT`||||
-|`NO`||||
-|`YES`||||
-|`NOT_SUPPORTED`||||
-|`FAULT`||||
+|`NO_EVENT`||
+|`NO`||
+|`YES`||
+|`NOT_SUPPORTED`||
+|`FAULT`||
 
 
 ### DeviceLevelStatus
@@ -743,12 +743,12 @@ Reflects the reported battery status of the connected device, if reported.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`ZERO_LEVEL_BARS`||||
-|`ONE_LEVEL_BARS`||||
-|`TWO_LEVEL_BARS`||||
-|`THREE_LEVEL_BARS`||||
-|`FOUR_LEVEL_BARS`||||
-|`NOT_PROVIDED`||||
+|`ZERO_LEVEL_BARS`||
+|`ONE_LEVEL_BARS`||
+|`TWO_LEVEL_BARS`||
+|`THREE_LEVEL_BARS`||
+|`FOUR_LEVEL_BARS`||
+|`NOT_PROVIDED`||
 
 
 ### PrimaryAudioSource
@@ -758,13 +758,13 @@ Reflects the current primary audio source (if selected).
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`NO_SOURCE_SELECTED`||||
-|`USB`||||
-|`USB2`||||
-|`BLUETOOTH_STEREO_BTST`||||
-|`LINE_IN`||||
-|`IPOD`||||
-|`MOBILE_APP`||||
+|`NO_SOURCE_SELECTED`||
+|`USB`||
+|`USB2`||
+|`BLUETOOTH_STEREO_BTST`||
+|`LINE_IN`||
+|`IPOD`||
+|`MOBILE_APP`||
 
 
 ### WiperStatus
@@ -774,21 +774,21 @@ Reflects the status of the wipers.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`OFF`||||
-|`AUTO_OFF`||||
-|`OFF_MOVING`||||
-|`MAN_INT_OFF`||||
-|`MAN_INT_ON`||||
-|`MAN_LOW`||||
-|`MAN_HIGH`||||
-|`MAN_FLICK`||||
-|`WASH`||||
-|`AUTO_LOW`||||
-|`AUTO_HIGH`||||
-|`COURTESYWIPE`||||
-|`AUTO_ADJUST`||||
-|`STALLED`||||
-|`NO_DATA_EXISTS`||||
+|`OFF`||
+|`AUTO_OFF`||
+|`OFF_MOVING`||
+|`MAN_INT_OFF`||
+|`MAN_INT_ON`||
+|`MAN_LOW`||
+|`MAN_HIGH`||
+|`MAN_FLICK`||
+|`WASH`||
+|`AUTO_LOW`||
+|`AUTO_HIGH`||
+|`COURTESYWIPE`||
+|`AUTO_ADJUST`||
+|`STALLED`||
+|`NO_DATA_EXISTS`||
 
 
 ### VehicleDataStatus
@@ -798,9 +798,9 @@ Reflects the status of a binary vehicle data item.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`NO_DATA_EXISTS`||||
-|`OFF`||||
-|`ON`||||
+|`NO_DATA_EXISTS`||
+|`OFF`||
+|`ON`||
 
 
 ### MaintenanceModeStatus
@@ -810,10 +810,10 @@ Reflects the status of a vehicle maintenance mode.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`NORMAL`||||
-|`NEAR`||||
-|`ACTIVE`||||
-|`FEATURE_NOT_PRESENT`||||
+|`NORMAL`||
+|`NEAR`||
+|`ACTIVE`||
+|`FEATURE_NOT_PRESENT`||
 
 
 ### VehicleDataActiveStatus
@@ -823,11 +823,11 @@ Reflects the status of given vehicle component.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`INACTIVE_NOT_CONFIRMED`||||
-|`INACTIVE_CONFIRMED`||||
-|`ACTIVE_NOT_CONFIRMED`||||
-|`ACTIVE_CONFIRMED`||||
-|`FAULT`||||
+|`INACTIVE_NOT_CONFIRMED`||
+|`INACTIVE_CONFIRMED`||
+|`ACTIVE_NOT_CONFIRMED`||
+|`ACTIVE_CONFIRMED`||
+|`FAULT`||
 
 
 ### AmbientLightStatus
@@ -837,14 +837,14 @@ Reflects the status of the ambient light sensor.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`NIGHT`||||
-|`TWILIGHT_1`||||
-|`TWILIGHT_2`||||
-|`TWILIGHT_3`||||
-|`TWILIGHT_4`||||
-|`DAY`||||
-|`UNKNOWN`||||
-|`INVALID`||||
+|`NIGHT`||
+|`TWILIGHT_1`||
+|`TWILIGHT_2`||
+|`TWILIGHT_3`||
+|`TWILIGHT_4`||
+|`DAY`||
+|`UNKNOWN`||
+|`INVALID`||
 
 
 ### FileType
@@ -854,14 +854,14 @@ Enumeration listing possible file types.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`GRAPHIC_BMP`||||
-|`GRAPHIC_JPEG`||||
-|`GRAPHIC_PNG`||||
-|`AUDIO_WAVE`||||
-|`AUDIO_MP3`||||
-|`AUDIO_AAC`||||
-|`BINARY`||||
-|`JSON`||||
+|`GRAPHIC_BMP`||
+|`GRAPHIC_JPEG`||
+|`GRAPHIC_PNG`||
+|`AUDIO_WAVE`||
+|`AUDIO_MP3`||
+|`AUDIO_AAC`||
+|`BINARY`||
+|`JSON`||
 
 
 ### FuelCutoffStatus
@@ -871,9 +871,9 @@ Reflects the status of the RCM fuel cutoff.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`TERMINATE_FUEL`||||
-|`NORMAL_OPERATION`||||
-|`FAULT`||||
+|`TERMINATE_FUEL`||
+|`NORMAL_OPERATION`||
+|`FAULT`||
 
 
 ### EmergencyEventType
@@ -883,13 +883,13 @@ Reflects the emergency event status of the vehicle.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`NO_EVENT`||||
-|`FRONTAL`||||
-|`SIDE`||||
-|`REAR`||||
-|`ROLLOVER`||||
-|`NOT_SUPPORTED`||||
-|`FAULT`||||
+|`NO_EVENT`||
+|`FRONTAL`||
+|`SIDE`||
+|`REAR`||
+|`ROLLOVER`||
+|`NOT_SUPPORTED`||
+|`FAULT`||
 
 
 ### ECallConfirmationStatus
@@ -899,13 +899,13 @@ Reflects the status of the eCall Notification.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`NORMAL`||||
-|`CALL_IN_PROGRESS`||||
-|`CALL_CANCELLED`||||
-|`CALL_COMPLETED`||||
-|`CALL_UNSUCCESSFUL`||||
-|`ECALL_CONFIGURED_OFF`||||
-|`CALL_COMPLETE_DTMF_TIMEOUT`||||
+|`NORMAL`||
+|`CALL_IN_PROGRESS`||
+|`CALL_CANCELLED`||
+|`CALL_COMPLETED`||
+|`CALL_UNSUCCESSFUL`||
+|`ECALL_CONFIGURED_OFF`||
+|`CALL_COMPLETE_DTMF_TIMEOUT`||
 
 
 ### PowerModeQualificationStatus
@@ -915,10 +915,10 @@ Reflects the status of the current power mode qualification.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`POWER_MODE_UNDEFINED`||||
-|`POWER_MODE_EVALUATION_IN_PROGRESS`||||
-|`NOT_DEFINED`||||
-|`POWER_MODE_OK`||||
+|`POWER_MODE_UNDEFINED`||
+|`POWER_MODE_EVALUATION_IN_PROGRESS`||
+|`NOT_DEFINED`||
+|`POWER_MODE_OK`||
 
 
 ### PowerModeStatus
@@ -928,15 +928,15 @@ Reflects the status of the current power mode.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`KEY_OUT`||||
-|`KEY_RECENTLY_OUT`||||
-|`KEY_APPROVED_0`||||
-|`POST_ACCESORY_0`||||
-|`ACCESORY_1`||||
-|`POST_IGNITION_1`||||
-|`IGNITION_ON_2`||||
-|`RUNNING_2`||||
-|`CRANK_3`||||
+|`KEY_OUT`||
+|`KEY_RECENTLY_OUT`||
+|`KEY_APPROVED_0`||
+|`POST_ACCESORY_0`||
+|`ACCESORY_1`||
+|`POST_IGNITION_1`||
+|`IGNITION_ON_2`||
+|`RUNNING_2`||
+|`CRANK_3`||
 
 
 ### CarModeStatus
@@ -946,10 +946,10 @@ Reflects the status of the current car mode.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`NORMAL`||||
-|`FACTORY`||||
-|`TRANSPORT`||||
-|`CRASH`||||
+|`NORMAL`||
+|`FACTORY`||
+|`TRANSPORT`||
+|`CRASH`||
 
 
 ### VehicleDataResultCode
@@ -959,15 +959,15 @@ Enumeration that describes possible result codes of a vehicle data entry request
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`SUCCESS`|||Individual vehicle data item / DTC / DID request or subscription successful|
-|`TRUNCATED_DATA`|||DTC / DID request successful, however, not all active DTCs or full contents of DID location available|
-|`DISALLOWED`|||This vehicle data item is not allowed for this app by Ford.|
-|`USER_DISALLOWED`|||The user has not granted access to this type of vehicle data item at this time.|
-|`INVALID_ID`|||The ECU ID referenced is not a valid ID on the bus / system.|
-|`VEHICLE_DATA_NOT_AVAILABLE`|||The requested vehicle data item / DTC / DID is not currently available or responding on the bus / system.|
-|`DATA_ALREADY_SUBSCRIBED`|||The vehicle data item is already subscribed.|
-|`DATA_NOT_SUBSCRIBED`|||The vehicle data item cannot be unsubscribed because it is not currently subscribed.|
-|`IGNORED`|||The request for this item is ignored because it is already in progress.|
+|`SUCCESS`|Individual vehicle data item / DTC / DID request or subscription successful|
+|`TRUNCATED_DATA`|DTC / DID request successful, however, not all active DTCs or full contents of DID location available|
+|`DISALLOWED`|This vehicle data item is not allowed for this app by Ford.|
+|`USER_DISALLOWED`|The user has not granted access to this type of vehicle data item at this time.|
+|`INVALID_ID`|The ECU ID referenced is not a valid ID on the bus / system.|
+|`VEHICLE_DATA_NOT_AVAILABLE`|The requested vehicle data item / DTC / DID is not currently available or responding on the bus / system.|
+|`DATA_ALREADY_SUBSCRIBED`|The vehicle data item is already subscribed.|
+|`DATA_NOT_SUBSCRIBED`|The vehicle data item cannot be unsubscribed because it is not currently subscribed.|
+|`IGNORED`|The request for this item is ignored because it is already in progress.|
 
 
 ### TouchType
@@ -975,10 +975,10 @@ Enumeration that describes possible result codes of a vehicle data entry request
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`BEGIN`||||
-|`MOVE`||||
-|`END`||||
-|`CANCEL`||||
+|`BEGIN`||
+|`MOVE`||
+|`END`||
+|`CANCEL`||
 
 
 ### PermissionStatus
@@ -988,10 +988,10 @@ Enumeration that describes possible permission states of a policy table entry.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`ALLOWED`||||
-|`DISALLOWED`||||
-|`USER_DISALLOWED`||||
-|`USER_CONSENT_PENDING`||||
+|`ALLOWED`||
+|`DISALLOWED`||
+|`USER_DISALLOWED`||
+|`USER_CONSENT_PENDING`||
 
 
 ### KeyboardLayout
@@ -1001,9 +1001,9 @@ Enumeration listing possible keyboard layouts.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`QWERTY`||||
-|`QWERTZ`||||
-|`AZERTY`||||
+|`QWERTY`||
+|`QWERTZ`||
+|`AZERTY`||
 
 
 ### KeyboardEvent
@@ -1013,11 +1013,11 @@ Enumeration listing possible keyboard events.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`KEYPRESS`||||
-|`ENTRY_SUBMITTED`||||
-|`ENTRY_VOICE`||||
-|`ENTRY_CANCELLED`||||
-|`ENTRY_ABORTED`||||
+|`KEYPRESS`||
+|`ENTRY_SUBMITTED`||
+|`ENTRY_VOICE`||
+|`ENTRY_CANCELLED`||
+|`ENTRY_ABORTED`||
 
 
 ### KeypressMode
@@ -1027,9 +1027,9 @@ Enumeration listing possible keyboard events.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`SINGLE_KEYPRESS`|||Each keypress is individually sent as the user presses the keyboard keys.|
-|`QUEUE_KEYPRESSES`|||The keypresses are queued and a string is eventually sent once the user chooses to submit their entry.|
-|`RESEND_CURRENT_ENTRY`|||The keypresses are queue and a string is sent each time the user presses a keyboard key; the string contains the entire current entry.|
+|`SINGLE_KEYPRESS`|Each keypress is individually sent as the user presses the keyboard keys.|
+|`QUEUE_KEYPRESSES`|The keypresses are queued and a string is eventually sent once the user chooses to submit their entry.|
+|`RESEND_CURRENT_ENTRY`|The keypresses are queue and a string is sent each time the user presses a keyboard key; the string contains the entire current entry.|
 
 
 ### RequestType
@@ -1039,26 +1039,26 @@ Enumeration listing possible asynchronous requests.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`HTTP`||||
-|`FILE_RESUME`||||
-|`AUTH_REQUEST`||||
-|`AUTH_CHALLENGE`||||
-|`AUTH_ACK`||||
-|`PROPRIETARY`||||
-|`QUERY_APPS`||||
-|`LAUNCH_APP`||||
-|`LOCK_SCREEN_ICON_URL`||||
-|`TRAFFIC_MESSAGE_CHANNEL`||||
-|`DRIVER_PROFILE`||||
-|`VOICE_SEARCH`||||
-|`NAVIGATION`||||
-|`PHONE`||||
-|`CLIMATE`||||
-|`SETTINGS`||||
-|`VEHICLE_DIAGNOSTICS`||||
-|`EMERGENCY`||||
-|`MEDIA`||||
-|`FOTA`||||
+|`HTTP`||
+|`FILE_RESUME`||
+|`AUTH_REQUEST`||
+|`AUTH_CHALLENGE`||
+|`AUTH_ACK`||
+|`PROPRIETARY`||
+|`QUERY_APPS`||
+|`LAUNCH_APP`||
+|`LOCK_SCREEN_ICON_URL`||
+|`TRAFFIC_MESSAGE_CHANNEL`||
+|`DRIVER_PROFILE`||
+|`VOICE_SEARCH`||
+|`NAVIGATION`||
+|`PHONE`||
+|`CLIMATE`||
+|`SETTINGS`||
+|`VEHICLE_DIAGNOSTICS`||
+|`EMERGENCY`||
+|`MEDIA`||
+|`FOTA`||
 
 
 ### AppHMIType
@@ -1068,18 +1068,18 @@ Enumeration listing possible app types.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`DEFAULT`||||
-|`COMMUNICATION`||||
-|`MEDIA`||||
-|`MESSAGING`||||
-|`NAVIGATION`||||
-|`INFORMATION`||||
-|`SOCIAL`||||
-|`BACKGROUND_PROCESS`||||
-|`TESTING`||||
-|`SYSTEM`||||
-|`PROJECTION`||||
-|`REMOTE_CONTROL`||||
+|`DEFAULT`||
+|`COMMUNICATION`||
+|`MEDIA`||
+|`MESSAGING`||
+|`NAVIGATION`||
+|`INFORMATION`||
+|`SOCIAL`||
+|`BACKGROUND_PROCESS`||
+|`TESTING`||
+|`SYSTEM`||
+|`PROJECTION`||
+|`REMOTE_CONTROL`||
 
 
 ### PredefinedLayout
@@ -1089,26 +1089,26 @@ Predefined screen layout.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`DEFAULT`|||Default media / non-media screen.         Can be set as a root screen.         |
-|`MEDIA`|||Default Media screen.         Can be set as a root screen.         |
-|`NON-MEDIA`|||Default Non-media screen.         Can be set as a root screen.         |
-|`ONSCREEN_PRESETS`|||Custom root media screen containing app-defined onscreen presets.         Can be set as a root screen.         |
-|`NAV_FULLSCREEN_MAP`|||Custom root template screen containing full screen map with navigation controls.         Can be set as a root screen.         |
-|`NAV_LIST`|||Custom root template screen containing video represented list.         Can be set as a root screen.         |
-|`NAV_KEYBOARD`|||Custom root template screen containing video represented keyboard.         Can be set as a root screen.         |
-|`GRAPHIC_WITH_TEXT`|||Custom root template screen containing half-screen graphic with lines of text.         Can be set as a root screen.         |
-|`TEXT_WITH_GRAPHIC`|||Custom root template screen containing lines of text with half-screen graphic.         Can be set as a root screen.         |
-|`TILES_ONLY`|||Custom root template screen containing only tiled SoftButtons.         Can be set as a root screen.         |
-|`TEXTBUTTONS_ONLY`|||Custom root template screen containing only text SoftButtons.         Can be set as a root screen.         |
-|`GRAPHIC_WITH_TILES`|||Custom root template screen containing half-screen graphic with tiled SoftButtons.         Can be set as a root screen.         |
-|`TILES_WITH_GRAPHIC`|||Custom root template screen containing tiled SoftButtons with half-screen graphic.         Can be set as a root screen.         |
-|`GRAPHIC_WITH_TEXT_AND_SOFTBUTTONS`|||Custom root template screen containing half-screen graphic with text and SoftButtons.         Can be set as a root screen.         |
-|`TEXT_AND_SOFTBUTTONS_WITH_GRAPHIC`|||Custom root template screen containing text and SoftButtons with half-screen graphic.         Can be set as a root screen.         |
-|`GRAPHIC_WITH_TEXTBUTTONS`|||Custom root template screen containing half-screen graphic with text only SoftButtons.         Can be set as a root screen.         |
-|`TEXTBUTTONS_WITH_GRAPHIC`|||Custom root template screen containing text only SoftButtons with half-screen graphic.         Can be set as a root screen.         |
-|`LARGE_GRAPHIC_WITH_SOFTBUTTONS`|||Custom root template screen containing a large graphic and SoftButtons.         Can be set as a root screen.         |
-|`DOUBLE_GRAPHIC_WITH_SOFTBUTTONS`|||Custom root template screen containing two graphics and SoftButtons.         Can be set as a root screen.         |
-|`LARGE_GRAPHIC_ONLY`|||Custom root template screen containing only a large graphic.         Can be set as a root screen.         |
+|`DEFAULT`|Default media / non-media screen.         Can be set as a root screen.         |
+|`MEDIA`|Default Media screen.         Can be set as a root screen.         |
+|`NON-MEDIA`|Default Non-media screen.         Can be set as a root screen.         |
+|`ONSCREEN_PRESETS`|Custom root media screen containing app-defined onscreen presets.         Can be set as a root screen.         |
+|`NAV_FULLSCREEN_MAP`|Custom root template screen containing full screen map with navigation controls.         Can be set as a root screen.         |
+|`NAV_LIST`|Custom root template screen containing video represented list.         Can be set as a root screen.         |
+|`NAV_KEYBOARD`|Custom root template screen containing video represented keyboard.         Can be set as a root screen.         |
+|`GRAPHIC_WITH_TEXT`|Custom root template screen containing half-screen graphic with lines of text.         Can be set as a root screen.         |
+|`TEXT_WITH_GRAPHIC`|Custom root template screen containing lines of text with half-screen graphic.         Can be set as a root screen.         |
+|`TILES_ONLY`|Custom root template screen containing only tiled SoftButtons.         Can be set as a root screen.         |
+|`TEXTBUTTONS_ONLY`|Custom root template screen containing only text SoftButtons.         Can be set as a root screen.         |
+|`GRAPHIC_WITH_TILES`|Custom root template screen containing half-screen graphic with tiled SoftButtons.         Can be set as a root screen.         |
+|`TILES_WITH_GRAPHIC`|Custom root template screen containing tiled SoftButtons with half-screen graphic.         Can be set as a root screen.         |
+|`GRAPHIC_WITH_TEXT_AND_SOFTBUTTONS`|Custom root template screen containing half-screen graphic with text and SoftButtons.         Can be set as a root screen.         |
+|`TEXT_AND_SOFTBUTTONS_WITH_GRAPHIC`|Custom root template screen containing text and SoftButtons with half-screen graphic.         Can be set as a root screen.         |
+|`GRAPHIC_WITH_TEXTBUTTONS`|Custom root template screen containing half-screen graphic with text only SoftButtons.         Can be set as a root screen.         |
+|`TEXTBUTTONS_WITH_GRAPHIC`|Custom root template screen containing text only SoftButtons with half-screen graphic.         Can be set as a root screen.         |
+|`LARGE_GRAPHIC_WITH_SOFTBUTTONS`|Custom root template screen containing a large graphic and SoftButtons.         Can be set as a root screen.         |
+|`DOUBLE_GRAPHIC_WITH_SOFTBUTTONS`|Custom root template screen containing two graphics and SoftButtons.         Can be set as a root screen.         |
+|`LARGE_GRAPHIC_ONLY`|Custom root template screen containing only a large graphic.         Can be set as a root screen.         |
 
 
 ### FunctionID
@@ -1118,76 +1118,76 @@ Enumeration linking function names with function IDs in AppLink protocol. Assume
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`RESERVED`||||
-|`RegisterAppInterfaceID`||||
-|`UnregisterAppInterfaceID`||||
-|`SetGlobalPropertiesID`||||
-|`ResetGlobalPropertiesID`||||
-|`AddCommandID`||||
-|`DeleteCommandID`||||
-|`AddSubMenuID`||||
-|`DeleteSubMenuID`||||
-|`CreateInteractionChoiceSetID`||||
-|`PerformInteractionID`||||
-|`DeleteInteractionChoiceSetID`||||
-|`AlertID`||||
-|`ShowID`||||
-|`SpeakID`||||
-|`SetMediaClockTimerID`||||
-|`PerformAudioPassThruID`||||
-|`EndAudioPassThruID`||||
-|`SubscribeButtonID`||||
-|`UnsubscribeButtonID`||||
-|`SubscribeVehicleDataID`||||
-|`UnsubscribeVehicleDataID`||||
-|`GetVehicleDataID`||||
-|`ReadDIDID`||||
-|`GetDTCsID`||||
-|`ScrollableMessageID`||||
-|`SliderID`||||
-|`ShowConstantTBTID`||||
-|`AlertManeuverID`||||
-|`UpdateTurnListID`||||
-|`ChangeRegistrationID`||||
-|`GenericResponseID`||||
-|`PutFileID`||||
-|`DeleteFileID`||||
-|`ListFilesID`||||
-|`SetAppIconID`||||
-|`SetDisplayLayoutID`||||
-|`DiagnosticMessageID`||||
-|`SystemRequestID`||||
-|`SendLocationID`||||
-|`DialNumberID`||||
-|`ButtonPressID`||||
-|`GetInteriorVehicleDataID`||||
-|`SetInteriorVehicleDataID`||||
-|`GetWayPointsID`||||
-|`SubscribeWayPointsID`||||
-|`UnsubscribeWayPointsID`||||
-|`GetSystemCapabilityID`||||
-|`SendHapticDataID`||||
-|`OnHMIStatusID`||||
-|`OnAppInterfaceUnregisteredID`||||
-|`OnButtonEventID`||||
-|`OnButtonPressID`||||
-|`OnVehicleDataID`||||
-|`OnCommandID`||||
-|`OnTBTClientStateID`||||
-|`OnDriverDistractionID`||||
-|`OnPermissionsChangeID`||||
-|`OnAudioPassThruID`||||
-|`OnLanguageChangeID`||||
-|`OnKeyboardInputID`||||
-|`OnTouchEventID`||||
-|`OnSystemRequestID`||||
-|`OnHashChangeID`||||
-|`OnInteriorVehicleDataID`||||
-|`OnWayPointChangeID`||||
-|`EncodedSyncPDataID`||||
-|`SyncPDataID`||||
-|`OnEncodedSyncPDataID`||||
-|`OnSyncPDataID`||||
+|`RESERVED`||
+|`RegisterAppInterfaceID`||
+|`UnregisterAppInterfaceID`||
+|`SetGlobalPropertiesID`||
+|`ResetGlobalPropertiesID`||
+|`AddCommandID`||
+|`DeleteCommandID`||
+|`AddSubMenuID`||
+|`DeleteSubMenuID`||
+|`CreateInteractionChoiceSetID`||
+|`PerformInteractionID`||
+|`DeleteInteractionChoiceSetID`||
+|`AlertID`||
+|`ShowID`||
+|`SpeakID`||
+|`SetMediaClockTimerID`||
+|`PerformAudioPassThruID`||
+|`EndAudioPassThruID`||
+|`SubscribeButtonID`||
+|`UnsubscribeButtonID`||
+|`SubscribeVehicleDataID`||
+|`UnsubscribeVehicleDataID`||
+|`GetVehicleDataID`||
+|`ReadDIDID`||
+|`GetDTCsID`||
+|`ScrollableMessageID`||
+|`SliderID`||
+|`ShowConstantTBTID`||
+|`AlertManeuverID`||
+|`UpdateTurnListID`||
+|`ChangeRegistrationID`||
+|`GenericResponseID`||
+|`PutFileID`||
+|`DeleteFileID`||
+|`ListFilesID`||
+|`SetAppIconID`||
+|`SetDisplayLayoutID`||
+|`DiagnosticMessageID`||
+|`SystemRequestID`||
+|`SendLocationID`||
+|`DialNumberID`||
+|`ButtonPressID`||
+|`GetInteriorVehicleDataID`||
+|`SetInteriorVehicleDataID`||
+|`GetWayPointsID`||
+|`SubscribeWayPointsID`||
+|`UnsubscribeWayPointsID`||
+|`GetSystemCapabilityID`||
+|`SendHapticDataID`||
+|`OnHMIStatusID`||
+|`OnAppInterfaceUnregisteredID`||
+|`OnButtonEventID`||
+|`OnButtonPressID`||
+|`OnVehicleDataID`||
+|`OnCommandID`||
+|`OnTBTClientStateID`||
+|`OnDriverDistractionID`||
+|`OnPermissionsChangeID`||
+|`OnAudioPassThruID`||
+|`OnLanguageChangeID`||
+|`OnKeyboardInputID`||
+|`OnTouchEventID`||
+|`OnSystemRequestID`||
+|`OnHashChangeID`||
+|`OnInteriorVehicleDataID`||
+|`OnWayPointChangeID`||
+|`EncodedSyncPDataID`||
+|`SyncPDataID`||
+|`OnEncodedSyncPDataID`||
+|`OnSyncPDataID`||
 
 
 ### messageType
@@ -1199,9 +1199,9 @@ Enumeration linking message types with function types in WiPro protocol.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`request`||||
-|`response`||||
-|`notification`||||
+|`request`||
+|`response`||
+|`notification`||
 
 
 ### WayPointType
@@ -1211,8 +1211,8 @@ Describes what kind of waypoint is requested/provided.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`ALL`||||
-|`DESTINATION`||||
+|`ALL`||
+|`DESTINATION`||
 
 
 ### SystemCapabilityType
@@ -1222,10 +1222,10 @@ Enumerations of all available system capability types
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`NAVIGATION`||||
-|`PHONE_CALL`||||
-|`VIDEO_STREAMING`||||
-|`REMOTE_CONTROL`||||
+|`NAVIGATION`||
+|`PHONE_CALL`||
+|`VIDEO_STREAMING`||
+|`REMOTE_CONTROL`||
 
 
 ### VideoStreamingProtocol
@@ -1235,11 +1235,11 @@ Enum for each type of video streaming protocol type.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`RAW`|||Raw stream bytes that contains no timestamp data and is the lowest supported video streaming|
-|`RTP`|||RTP facilitates the transfer of real-time data. Information provided by this protocol include timestamps (for synchronization), sequence numbers (for packet loss and reordering detection) and the payload format which indicates the encoded format of the data.|
-|`RTSP`|||The transmission of streaming data itself is not a task of RTSP. Most RTSP servers use the Real-time Transport Protocol (RTP) in conjunction with Real-time Control Protocol (RTCP) for media stream delivery. However, some vendors implement proprietary transport protocols. |
-|`RTMP`|||Real-Time Messaging Protocol (RTMP) was initially a proprietary protocol developed by Macromedia for streaming audio, video and data over the Internet, between a Flash player and a server. Macromedia is now owned by Adobe, which has released an incomplete version of the specification of the protocol for public use.|
-|`WEBM`|||The WebM container is based on a profile of Matroska. WebM initially supported VP8 video and Vorbis audio streams. In 2013 it was updated to accommodate VP9 video and Opus audio.|
+|`RAW`|Raw stream bytes that contains no timestamp data and is the lowest supported video streaming|
+|`RTP`|RTP facilitates the transfer of real-time data. Information provided by this protocol include timestamps (for synchronization), sequence numbers (for packet loss and reordering detection) and the payload format which indicates the encoded format of the data.|
+|`RTSP`|The transmission of streaming data itself is not a task of RTSP. Most RTSP servers use the Real-time Transport Protocol (RTP) in conjunction with Real-time Control Protocol (RTCP) for media stream delivery. However, some vendors implement proprietary transport protocols. |
+|`RTMP`|Real-Time Messaging Protocol (RTMP) was initially a proprietary protocol developed by Macromedia for streaming audio, video and data over the Internet, between a Flash player and a server. Macromedia is now owned by Adobe, which has released an incomplete version of the specification of the protocol for public use.|
+|`WEBM`|The WebM container is based on a profile of Matroska. WebM initially supported VP8 video and Vorbis audio streams. In 2013 it was updated to accommodate VP9 video and Opus audio.|
 
 
 ### VideoStreamingCodec
@@ -1249,11 +1249,11 @@ Enum for each type of video streaming codec.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`H264`|||A block-oriented motion-compensation-based video compression standard. As of 2014 it is one of the most commonly used formats for the recording, compression, and distribution of video content.|
-|`H265`|||High Efficiency Video Coding (HEVC), also known as H.265 and MPEG-H Part 2, is a video compression standard, one of several potential successors to the widely used AVC (H.264 or MPEG-4 Part 10). In comparison to AVC, HEVC offers about double the data compression ratio at the same level of video quality, or substantially improved video quality at the same bit rate. It supports resolutions up to 8192x4320, including 8K UHD.|
-|`Theora`|||Theora is derived from the formerly proprietary VP3 codec, released into the public domain by On2 Technologies. It is broadly comparable in design and bitrate efficiency to MPEG-4 Part 2, early versions of Windows Media Video, and RealVideo while lacking some of the features present in some of these other codecs. It is comparable in open standards philosophy to the BBC's Dirac codec.|
-|`VP8`|||VP8 can be multiplexed into the Matroska-based container format WebM along with Vorbis and Opus audio. The image format WebP is based on VP8's intra-frame coding. VP8's direct successor, VP9, and the emerging royalty-free internet video format AV1 from the Alliance for Open Media (AOMedia) are based on VP8.|
-|`VP9`|||Similar to VP8, but VP9 is customized for video resolutions beyond high-definition video (UHD) and also enables lossless compression.|
+|`H264`|A block-oriented motion-compensation-based video compression standard. As of 2014 it is one of the most commonly used formats for the recording, compression, and distribution of video content.|
+|`H265`|High Efficiency Video Coding (HEVC), also known as H.265 and MPEG-H Part 2, is a video compression standard, one of several potential successors to the widely used AVC (H.264 or MPEG-4 Part 10). In comparison to AVC, HEVC offers about double the data compression ratio at the same level of video quality, or substantially improved video quality at the same bit rate. It supports resolutions up to 8192x4320, including 8K UHD.|
+|`Theora`|Theora is derived from the formerly proprietary VP3 codec, released into the public domain by On2 Technologies. It is broadly comparable in design and bitrate efficiency to MPEG-4 Part 2, early versions of Windows Media Video, and RealVideo while lacking some of the features present in some of these other codecs. It is comparable in open standards philosophy to the BBC's Dirac codec.|
+|`VP8`|VP8 can be multiplexed into the Matroska-based container format WebM along with Vorbis and Opus audio. The image format WebP is based on VP8's intra-frame coding. VP8's direct successor, VP9, and the emerging royalty-free internet video format AV1 from the Alliance for Open Media (AOMedia) are based on VP8.|
+|`VP9`|Similar to VP8, but VP9 is customized for video resolutions beyond high-definition video (UHD) and also enables lossless compression.|
 
 
 ### ModuleType
@@ -1261,8 +1261,8 @@ Enum for each type of video streaming codec.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`CLIMATE`||||
-|`RADIO`||||
+|`CLIMATE`||
+|`RADIO`||
 
 
 ### DefrostZone
@@ -1270,10 +1270,10 @@ Enum for each type of video streaming codec.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`FRONT`||||
-|`REAR`||||
-|`ALL`||||
-|`NONE`||||
+|`FRONT`||
+|`REAR`||
+|`ALL`||
+|`NONE`||
 
 
 ### VentilationMode
@@ -1281,10 +1281,10 @@ Enum for each type of video streaming codec.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`UPPER`||||
-|`LOWER`||||
-|`BOTH`||||
-|`NONE`||||
+|`UPPER`||
+|`LOWER`||
+|`BOTH`||
+|`NONE`||
 
 
 ### RadioBand
@@ -1292,9 +1292,9 @@ Enum for each type of video streaming codec.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`AM`||||
-|`FM`||||
-|`XM`||||
+|`AM`||
+|`FM`||
+|`XM`||
 
 
 ### RadioState
@@ -1302,10 +1302,10 @@ Enum for each type of video streaming codec.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`ACQUIRING`||||
-|`ACQUIRED`||||
-|`MULTICAST`||||
-|`NOT_FOUND`||||
+|`ACQUIRING`||
+|`ACQUIRED`||
+|`MULTICAST`||
+|`NOT_FOUND`||
 
 
 ### TemperatureUnit
@@ -1313,8 +1313,8 @@ Enum for each type of video streaming codec.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`FAHRENHEIT`||||
-|`CELSIUS`||||
+|`FAHRENHEIT`||
+|`CELSIUS`||
 
 
 ### TextFieldType
@@ -1322,18 +1322,18 @@ Enum for each type of video streaming codec.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`mediaTitle`|||The data in this field contains the title of the currently playing audio track.|
-|`mediaArtist`|||The data in this field contains the artist or creator of the currently playing audio track.|
-|`mediaAlbum`|||The data in this field contains the album title of the currently playing audio track.|
-|`mediaYear`|||The data in this field contains the creation year of the currently playing audio track.|
-|`mediaGenre`|||The data in this field contains the genre of the currently playing audio track.|
-|`mediaStation`|||The data in this field contains the name of the current source for the media.|
-|`rating`|||The data in this field is a rating.|
-|`currentTemperature`|||The data in this field is the current temperature.|
-|`maximumTemperature`|||The data in this field is the maximum temperature for the day.|
-|`minimumTemperature`|||The data in this field is the minimum temperature for the day.|
-|`weatherTerm`|||The data in this field describes the current weather (ex. cloudy, clear, etc.).|
-|`humidity`|||The data in this field describes the current humidity value.|
+|`mediaTitle`|The data in this field contains the title of the currently playing audio track.|
+|`mediaArtist`|The data in this field contains the artist or creator of the currently playing audio track.|
+|`mediaAlbum`|The data in this field contains the album title of the currently playing audio track.|
+|`mediaYear`|The data in this field contains the creation year of the currently playing audio track.|
+|`mediaGenre`|The data in this field contains the genre of the currently playing audio track.|
+|`mediaStation`|The data in this field contains the name of the current source for the media.|
+|`rating`|The data in this field is a rating.|
+|`currentTemperature`|The data in this field is the current temperature.|
+|`maximumTemperature`|The data in this field is the maximum temperature for the day.|
+|`minimumTemperature`|The data in this field is the minimum temperature for the day.|
+|`weatherTerm`|The data in this field describes the current weather (ex. cloudy, clear, etc.).|
+|`humidity`|The data in this field describes the current humidity value.|
 
 
 

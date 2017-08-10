@@ -62,24 +62,23 @@ def write_iter_section(markdown, child, elem_or_param):
 
         if value:
             markdown.write('|`' + value + '`|')
-
-            if 'type' in element.attrib:
-                type = element.attrib['type']
-                if type:
-                    markdown.write(type)
-                    if 'array' in element.attrib and element.attrib['array']:
-                        markdown.write('[]')
+            if elem_or_param == 'Parameters':
+                if 'type' in element.attrib:
+                    type = element.attrib['type']
+                    if type:
+                        markdown.write(type)
+                        if 'array' in element.attrib and element.attrib['array']:
+                            markdown.write('[]')
+                        markdown.write('|')
+                else:
                     markdown.write('|')
 
-            else:
-                markdown.write('|')
-
-            if 'mandatory' in element.attrib:
-                mandatory = element.attrib['mandatory']
-                if mandatory:
-                    markdown.write(mandatory.capitalize() + '|')
-            else:
-                markdown.write('|')
+                if 'mandatory' in element.attrib:
+                    mandatory = element.attrib['mandatory']
+                    if mandatory:
+                        markdown.write(mandatory.capitalize() + '|')
+                else:
+                    markdown.write('|')
 
             description = element.find('description')
 
