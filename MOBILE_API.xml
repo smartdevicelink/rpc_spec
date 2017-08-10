@@ -2511,6 +2511,9 @@
         <param name="supportedFormats" type="VideoStreamingFormat" array="true" mandatory="false">
             <description>Detailed information on each format supported by this system, in its preferred order (i.e. the first element in the array is most preferable to the system). Each object will contain a VideoStreamingFormat that describes what can be expected.</description>
         </param>
+        <param name="hapticSpatialDataSupported" type="Boolean" mandatory="false">
+            <description>True if the system can utilize the haptic spatial data from the source being streamed. If not included, it can be assumed the module doesn't support haptic spatial data'. </description>
+        </param>
     </struct>
 
     <struct name="VideoStreamingFormat">

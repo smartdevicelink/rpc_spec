@@ -11,7 +11,7 @@
 | Value | Description | 
 | ---------- |:-----------:|
 |`SUCCESS`|The request succeeded|
-|`UNSUPPORTED_REQUEST`|The request is not supported by Sync|
+|`UNSUPPORTED_REQUEST`|The request is not supported by the headunit|
 |`UNSUPPORTED_RESOURCE`|A button that was requested for subscription is not supported under the current system.            |
 |`DISALLOWED`|RPC is not authorized in local policy table.|
 |`REJECTED`|The requested command was rejected, e.g. because mobile app is in background and cannot perform any HMI commands.                Or an HMI command (e.g. Speak) is rejected because a higher priority HMI command (e.g. Alert) is playing.            |
@@ -26,7 +26,7 @@
 |`INVALID_ID`|One of the provided IDs is not valid. For example                This applies to CorrelationID, SubscriptionID, CommandID, MenuID, etc.            |
 |`DUPLICATE_NAME`|There was a conflict with an registered name (application or menu item) or vr command|
 |`APPLICATION_NOT_REGISTERED`|An command can not be executed because no application has been registered with RegisterApplication.|
-|`WRONG_LANGUAGE`|The requested language is currently not supported.                Might be because of a mismatch of the currently active language on Sync and the requested language            |
+|`WRONG_LANGUAGE`|The requested language is currently not supported.                Might be because of a mismatch of the currently active language on the headunit and the requested language            |
 |`OUT_OF_MEMORY`|The system could not process the request because the necessary memory couldn't be allocated|
 |`TOO_MANY_PENDING_REQUESTS`|There are too many requests pending (means, that the response has not been delivered, yet).|
 |`TOO_MANY_APPLICATIONS`|There are already too many registered applications|
@@ -37,7 +37,7 @@
 |`TRUNCATED_DATA`|The RPC (e.g. ReadDID) executed successfully but the data exceeded the platform maximum threshold and thus, only part of the data is available.|
 |`UNSUPPORTED_VERSION`|Sync doesn't support the protocol that is requested by the mobile application|
 |`VEHICLE_DATA_NOT_ALLOWED`|The user has turned off access to vehicle data, and it is globally unavailable to mobile applications.|
-|`FILE_NOT_FOUND`|A specified file could not be found on Sync.|
+|`FILE_NOT_FOUND`|A specified file could not be found on the headunit.|
 |`CANCEL_ROUTE`|User selected to Cancel Route.|
 |`SAVED`|The RPC (e.g. Slider) executed successfully and the user elected to save the current position / value.|
 |`INVALID_CERT`|The certificate provided during authentication is invalid.|
@@ -51,8 +51,8 @@
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`LONG`|A button was released, after it was pressed for a long time                Actual timing is defined by Sync and may vary            |
-|`SHORT`|A button was released, after it was pressed for a short time                Actual timing is defined by Sync and may vary            |
+|`LONG`|A button was released, after it was pressed for a long time                Actual timing is defined by the headunit and may vary            |
+|`SHORT`|A button was released, after it was pressed for a short time                Actual timing is defined by the headunit and may vary            |
 
 
 ### ButtonEventMode
@@ -141,9 +141,9 @@ For application-requested interactions, this mode indicates the method in which 
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`MANUAL_ONLY`|This mode causes the interaction to only occur on the display, meaning the choices are provided only via the display.Selections are made with the OK and Seek Right and Left, Tune Up and Down buttons.|
-|`VR_ONLY`|This mode causes the interaction to only occur using V4. Selections are made by saying the command.|
-|`BOTH`|This mode causes both a VR and display selection option for an interaction. Selections can be made either from the menu display or by speaking the command.|
+|`MANUAL_ONLY`|This mode causes the interaction to only occur on the display, meaning the choices are provided only via the display. No Voice Interaction.|
+|`VR_ONLY`|This mode causes the interaction to only occur using the headunits VR system. Selections are made by saying the command.|
+|`BOTH`|This mode causes both a VR and display selection option for an interaction. The user will first be asked via Voice Interaction (if available). If this is unsuccessfull, the system will switch to manual input.|
 
 
 ### LayoutMode
@@ -224,7 +224,7 @@ Contains information about the SoftButton capabilities.
 
 
 ### AppInterfaceUnregisteredReason
-Error code, which comes from sync side.
+Error code, which comes from the module side.
 
 ##### Elements
 
@@ -375,7 +375,7 @@ Defines the data types that can be published and subscribed to.
 
 
 ### ButtonName
-Defines the hard (physical) and soft (touchscreen) buttons available from SYNC
+Defines the hard (physical) and soft (touchscreen) buttons available from the module
 
 ##### Elements
 
@@ -1404,7 +1404,7 @@ A choice is an option given to the user, which can be selected either by menu, o
 
 
 ### SyncMsgVersion
-Specifies the version number of the SYNC V4 protocol, that is supported by the mobile application
+Specifies the version number of the SmartDeviceLink protocol that is supported by the mobile application
 
 ##### Parameters
 
@@ -1947,6 +1947,7 @@ Contains information about this system's video streaming capabilities.
 |`preferredResolution`|The preferred resolution of a video stream for decoding and rendering on HMI.|
 |`maxBitrate`|The maximum bitrate of video stream that is supported, in kbps.|
 |`supportedFormats`|Detailed information on each format supported by this system, in its preferred order (i.e. the first element in the array is most preferable to the system). Each object will contain a VideoStreamingFormat that describes what can be expected.|
+|`hapticSpatialDataSupported`|True if the system can utilize the haptic spatial data from the source being streamed. If not included, it can be assumed the module doesn't support haptic spatial data'. |
 
 
 ### VideoStreamingFormat
@@ -2141,9 +2142,9 @@ Establishes an interface with a mobile application.
 |`ttsName`|TTS string for VR recognition of the mobile application name, e.g. "Ford Drive Green".                Meant to overcome any failing on speech engine in properly pronouncing / understanding app name.                Needs to be unique over all applications.                May not be empty.                May not start with a new line character.                Only characters from char set [@TODO: Create char set (character/hex value) for each ACM and refer to] are supported.            |
 |`ngnMediaScreenAppName`|Provides an abbreviated version of the app name (if needed), that will be displayed on the NGN media screen.                If not provided, the appName is used instead (and will be truncated if too long)                Only characters from char set [@TODO: Create char set (character/hex value) for each ACM and refer to] are supported.            |
 |`vrSynonyms`|Defines an additional voice recognition command.                May not interfere with any app name of previously registered applications and any predefined blacklist of words (global commands)                Only characters from char set [@TODO: Create char set (character/hex value) for each ACM and refer to] are supported.            |
-|`isMediaApplication`|Indicates if the application is a media or a non-media application.                Only media applications will be able to stream audio to Sync that is audible outside of the BT media source.            |
-|`languageDesired`|See Language                Current app's expected VR+TTS language                If there is a mismatch with SYNC, the app will be able to change this registration with changeRegistration prior to app being brought into focus.            |
-|`hmiDisplayLanguageDesired`|See Language                Current app's expected display language                If there is a mismatch with SYNC, the app will be able to change this registration with changeRegistration prior to app being brought into focus.            |
+|`isMediaApplication`|Indicates if the application is a media or a non-media application.                Only media applications will be able to stream audio to the module that is audible outside of the BT media source.            |
+|`languageDesired`|See Language                Current app's expected VR+TTS language                If there is a mismatch with the module, the app will be able to change this registration with changeRegistration prior to app being brought into focus.            |
+|`hmiDisplayLanguageDesired`|See Language                Current app's expected display language                If there is a mismatch with the module, the app will be able to change this registration with changeRegistration prior to app being brought into focus.            |
 |`appHMIType`|See AppHMIType                List of all applicable app HMI types stating which HMI classifications to be given to the app.            |
 |`hashID`|ID used to uniquely identify current state of all app data that can persist through connection cycles (e.g. ignition cycles).                This registered data (commands, submenus, choice sets, etc.) can be reestablished without needing to explicitly reregister each piece.                If omitted, then the previous state of an app's commands, etc. will not be restored.                When sending hashID, all RegisterAppInterface parameters should still be provided (e.g. ttsName, etc.).            |
 |`deviceInfo`|See DeviceInfo.            |
@@ -2164,8 +2165,8 @@ The response to registerAppInterface
 |`resultCode`|See Result|
 |`info`|Provides additional human readable info regarding the result.|
 |`syncMsgVersion`|See SyncMsgVersion|
-|`language`|The currently active VR+TTS language on Sync. See "Language" for options.|
-|`hmiDisplayLanguage`|The currently active display language on Sync. See "Language" for options.|
+|`language`|The currently active VR+TTS language on the module. See "Language" for options.|
+|`hmiDisplayLanguage`|The currently active display language on the module. See "Language" for options.|
 |`displayCapabilities`|See DisplayCapabilities|
 |`buttonCapabilities`|See ButtonCapabilities|
 |`softButtonCapabilities`|If returned, the platform supports on-screen SoftButtons; see SoftButtonCapabilities.|
@@ -2220,7 +2221,7 @@ Allows setting global properties.
 | ---------- |:-----------:|
 |`helpPrompt`|The help prompt.                An array of text chunks of type TTSChunk. See TTSChunk.                The array must have at least one item.            |
 |`timeoutPrompt`|Help text for a wait timeout.                An array of text chunks of type TTSChunk. See TTSChunk.                The array must have at least one item.            |
-|`vrHelpTitle`|VR Help Title text.                If omitted on supported displays, the default SYNC help title shall be used.                If omitted and one or more vrHelp items are provided, the request will be rejected.            |
+|`vrHelpTitle`|VR Help Title text.                If omitted on supported displays, the default module help title shall be used.                If omitted and one or more vrHelp items are provided, the request will be rejected.            |
 |`vrHelp`|VR Help Items.                If omitted on supported displays, the default AppLink VR help / What Can I Say? screen shall be used.                If the list of VR Help Items contains nonsequential positions (e.g. [1,2,4]), the RPC shall be rejected.                If omitted and a vrHelpTitle is provided, the request will be rejected.            |
 |`menuTitle`|Optional text to label an app menu button (for certain touchscreen platforms).|
 |`menuIcon`|>Optional icon to draw on an app menu button (for certain touchscreen platforms).|
@@ -2407,7 +2408,7 @@ Triggers an interaction (e.g. "Permit GPS?" - Yes, no, Always Allow).
 |`helpPrompt`|Help text. This is the spoken string when a user speaks "help" when the interaction is occuring.                An array of text chunks of type TTSChunk. See TTSChunk.                The array must have at least one item.            |
 |`timeoutPrompt`|Timeout text. This text is spoken when a VR interaction times out.                An array of text chunks of type TTSChunk. See TTSChunk.                The array must have at least one item.            |
 |`timeout`|Timeout in milliseconds.                If omitted a standard value of 10000 milliseconds is used.                Applies only to the menu portion of the interaction. The VR timeout will be handled by the platform.            |
-|`vrHelp`|Ability to send suggested VR Help Items to display on-screen during Perform Interaction.                If omitted on supported displays, the default SYNC generated list of suggested choices shall be displayed.            |
+|`vrHelp`|Ability to send suggested VR Help Items to display on-screen during Perform Interaction.                If omitted on supported displays, the default generated list of suggested choices shall be displayed.            |
 |`interactionLayout`|See LayoutMode.|
 
 
@@ -2497,7 +2498,7 @@ Updates the persistent display. Supported fields depend on display capabilities.
 |`mainField4`|The text that should be displayed on the second "page" second display line.                If this text is not set, the text of mainField4 stays unchanged.                If this text is empty "", the field will be cleared.            |
 |`alignment`|Specifies how mainField1 and mainField2 texts should be aligned on display.                If omitted, texts will be centered.            |
 |`statusBar`|Requires investigation regarding the nav display capabilities. Potentially lower lowerStatusBar, upperStatusBar, titleBar, etc.|
-|`mediaClock`|Text value for MediaClock field. Has to be properly formatted by Mobile App according to Sync capabilities.                If this text is set, any automatic media clock updates previously set with SetMediaClockTimer will be stopped.            |
+|`mediaClock`|Text value for MediaClock field. Has to be properly formatted by Mobile App according to the module's capabilities.                If this text is set, any automatic media clock updates previously set with SetMediaClockTimer will be stopped.            |
 |`mediaTrack`|The text that should be displayed in the track field.                If this text is not set, the text of mediaTrack stays unchanged.                If this text is empty "", the field will be cleared.            |
 |`graphic`|Image struct determining whether static or dynamic image to display in app.                If omitted on supported displays, the displayed graphic shall not change.            |
 |`secondaryGraphic`|Image struct determining whether static or dynamic secondary image to display in app.                If omitted on supported displays, the displayed secondary graphic shall not change.            |
@@ -2577,7 +2578,7 @@ Starts audio pass thru session
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`initialPrompt`|SYNC will speak this prompt before opening the audio pass thru session.                An array of text chunks of type TTSChunk. See TTSChunk.                The array must have at least one item.                If omitted, then no initial prompt is spoken.            |
+|`initialPrompt`|The module will speak this prompt before opening the audio pass thru session.                An array of text chunks of type TTSChunk. See TTSChunk.                The array must have at least one item.                If omitted, then no initial prompt is spoken.            |
 |`audioPassThruDisplayText1`|First line of text displayed during audio capture.|
 |`audioPassThruDisplayText2`|Second line of text displayed during audio capture.|
 |`samplingRate`|This value shall be allowed at 8 khz or 16 or 22 or 44 khz.|
@@ -3151,8 +3152,8 @@ Generic Response is sent, when the name of a received msg cannot be retrieved. O
 ### PutFile
 Message Type: **request**
 
-Used to push a binary data onto the SYNC module from a mobile device, such as icons and album art
-            Not supported on first generation SYNC vehicles.
+Used to push a binary data onto the module from a mobile device, such as icons and album art
+            Not supported on first generation of SDL enabled modules.
             Binary data is in binary part of hybrid msg.
         
 
@@ -3186,8 +3187,8 @@ Response is sent, when the file data was copied (success case). Or when an error
 ### DeleteFile
 Message Type: **request**
 
-Used to delete a file resident on the SYNC module in the app's local cache.
-            Not supported on first generation SYNC vehicles.
+Used to delete a file resident on the module in the app's local cache.
+            Not supported on first generation SDL enabled vehicles.
         
 
 ##### Parameters
@@ -3201,7 +3202,7 @@ Used to delete a file resident on the SYNC module in the app's local cache.
 Message Type: **response**
 
 Response is sent, when the file data was deleted (success case). Or when an error occured.
-            Not supported on First generation SYNC vehicles.
+            Not supported on First generation SDL enabled vehicles.
         
 
 ##### Parameters
@@ -3210,7 +3211,7 @@ Response is sent, when the file data was deleted (success case). Or when an erro
 | ---------- |:-----------:|
 |`success`|true if successful; false, if failed |
 |`resultCode`|See Result|
-|`spaceAvailable`|Provides the total local space available on SYNC for the registered app.|
+|`spaceAvailable`|Provides the total local space available on the module for the registered app.|
 |`info`|Provides additional human readable info regarding the result.|
 
 
@@ -3218,7 +3219,7 @@ Response is sent, when the file data was deleted (success case). Or when an erro
 Message Type: **request**
 
 Requests the current list of resident filenames for the registered app.
-            Not supported on first generation SYNC vehicles.
+            Not supported on first generation SDL enabled vehicles.
         
 
 ##### Parameters
@@ -3231,7 +3232,7 @@ Requests the current list of resident filenames for the registered app.
 Message Type: **response**
 
 Returns the current list of resident filenames for the registered app along with the current space available
-            Not supported on First generation SYNC vehicles.
+            Not supported on First generation SDL enabled vehicles.
         
 
 ##### Parameters
@@ -3240,16 +3241,16 @@ Returns the current list of resident filenames for the registered app along with
 | ---------- |:-----------:|
 |`success`|true, if successful; false, if failed |
 |`resultCode`|See Result|
-|`filenames`|An array of all filenames resident on SYNC for the given registered app.                If omitted, then no files currently reside on the system.            |
-|`spaceAvailable`|Provides the total local space available on SYNC for the registered app.|
+|`filenames`|An array of all filenames resident on the module for the given registered app.                If omitted, then no files currently reside on the system.            |
+|`spaceAvailable`|Provides the total local space available on the module for the registered app.|
 |`info`|Provides additional human readable info regarding the result.|
 
 
 ### SetAppIcon
 Message Type: **request**
 
-Used to set existing local file on SYNC as the app's icon
-            Not supported on first generation SYNC vehicles.
+Used to set existing local file on the module as the app's icon
+            Not supported on first generation SDL enabled vehicles.
         
 
 ##### Parameters
@@ -3263,7 +3264,7 @@ Used to set existing local file on SYNC as the app's icon
 Message Type: **response**
 
 Response is sent, when the file data was copied (success case). Or when an error occured.
-            Not supported on First generation SYNC vehicles.
+            Not supported on First generation SDL enabled vehicles.
         
 
 ##### Parameters
@@ -3729,7 +3730,7 @@ Message Type: **notification**
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`language`|Current SYNC voice engine (VR+TTS) language|
+|`language`|Current SDL voice engine (VR+TTS) language|
 |`hmiDisplayLanguage`|Current display language|
 
 
