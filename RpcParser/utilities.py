@@ -1,6 +1,6 @@
 NEW_LINE = '\n'
 TABLE_DIVIDER_2 = '| ---------- |:-----------:|'
-TABLE_DIVIDER_3 = '| ---------- |:-----------: |:-----------:|'
+TABLE_DIVIDER_4 = '| ---------- | ---------- |:-----------: |:-----------:|'
 PAGE_BREAK = '\n<div style="page-break-after: always;"></div>\n'
 
 
@@ -25,8 +25,8 @@ def write_header(outfile, elem_param):
     outfile.write('| Value | ')
 
     if elem_param == 'Parameters':
-        outfile.write('Mandatory | Description | \n')
-        outfile.write(TABLE_DIVIDER_3)
+        outfile.write(' Type | Mandatory | Description | \n')
+        outfile.write(TABLE_DIVIDER_4)
     else:
         outfile.write('Description | \n')
         outfile.write(TABLE_DIVIDER_2)
@@ -62,10 +62,24 @@ def write_iter_section(markdown, child, elem_or_param):
 
         if value:
             markdown.write('|`' + value + '`|')
+
+            if 'type' in element.attrib:
+                type = element.attrib['type']
+                if type:
+                    markdown.write(type)
+                    if 'array' in element.attrib and element.attrib['array']:
+                        markdown.write('[]')
+                    markdown.write('|')
+
+            else:
+                markdown.write('|')
+
             if 'mandatory' in element.attrib:
                 mandatory = element.attrib['mandatory']
                 if mandatory:
                     markdown.write(mandatory.capitalize() + '|')
+            else:
+                markdown.write('|')
 
             description = element.find('description')
 
