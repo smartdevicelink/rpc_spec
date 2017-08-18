@@ -2892,10 +2892,10 @@
             <description>A user control spatial identifier</description>
         </param>
         <param name="x" type="float" mandatory="true">
-            <description>The X-coordinate of the user control</description>
+            <description>The X-coordinate of the top-left corner of the user control</description>
         </param>
         <param name="y" type="float" mandatory="true">
-            <description>The Y-coordinate of the user control</description>
+            <description>The Y-coordinate of the top-left corner of the user control</description>
         </param>
         <param name="width" type="float" mandatory="true">
             <description>The width of the user control's bounding rectangle</description>
