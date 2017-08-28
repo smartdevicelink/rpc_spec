@@ -1317,7 +1317,7 @@ Enum for each type of video streaming codec.
 |`CELSIUS`||
 
 
-### TextFieldType
+### MetadataType
 ##### Elements
 
 | Value | Description | 
@@ -2095,15 +2095,15 @@ The systemCapabilityType indicates which type of data should be changed and iden
 |`remoteControlCapability`|RemoteControlCapabilities|False|Describes extended capabilities of the module's phone feature|
 
 
-### MetadataStruct
+### MetadataTags
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`mainField1`|TextFieldType[]|False|The type of data contained in the "mainField1" text field.|
-|`mainField2`|TextFieldType[]|False|The type of data contained in the "mainField2" text field.|
-|`mainField3`|TextFieldType[]|False|The type of data contained in the "MainField3" text field.|
-|`mainField4`|TextFieldType[]|False|The type of data contained in the "mainField4" text field.|
+|`mainField1`|MetadataType[]|False|The type of data contained in the "mainField1" text field.|
+|`mainField2`|MetadataType[]|False|The type of data contained in the "mainField2" text field.|
+|`mainField3`|MetadataType[]|False|The type of data contained in the "MainField3" text field.|
+|`mainField4`|MetadataType[]|False|The type of data contained in the "mainField4" text field.|
 
 
 ### SpatialStruct
@@ -2504,7 +2504,7 @@ Updates the persistent display. Supported fields depend on display capabilities.
 |`secondaryGraphic`|Image|False|Image struct determining whether static or dynamic secondary image to display in app.                If omitted on supported displays, the displayed secondary graphic shall not change.            |
 |`softButtons`|SoftButton[]|False|App defined SoftButtons.                If omitted on supported displays, the currently displayed SoftButton values will not change.            |
 |`customPresets`|String[]|False|App labeled on-screen presets (i.e. on-screen media presets or dynamic search suggestions).                If omitted on supported displays, the presets will be shown as not defined.            |
-|`textFieldMetadata`|MetadataStruct|False|App defined metadata information. See MetadataStruct. Uses mainField1, mainField2, mainField3, mainField4.                If omitted on supported displays, the currently set metadata tags will not change.                If any text field contains no tags or the none tag, the metadata tag for that textfield should be removed.|
+|`metadataTags`|MetadataTags|False|App defined metadata information. See MetadataStruct. Uses mainField1, mainField2, mainField3, mainField4.                If omitted on supported displays, the currently set metadata tags will not change.                If any text field contains no tags or the none tag, the metadata tag for that textfield should be removed.|
 
 
 ### Show
