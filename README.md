@@ -2106,18 +2106,26 @@ The systemCapabilityType indicates which type of data should be changed and iden
 |`mainField4`|MetadataType[]|False|The type of data contained in the "mainField4" text field.|
 
 
-### SpatialStruct
-Defines spatial for each user control object for video streaming application
+### Rectangle
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`x`|float|True|The upper left X-coordinate of the rectangle|
+|`y`|float|True|The upper left Y-coordinate of the rectangle|
+|`width`|float|True|The width of the rectangle|
+|`height`|float|True|The height of the rectangle|
+
+
+### HapticRect
+Defines haptic data for each user control object for video streaming application
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`id`|Integer|True|A user control spatial identifier|
-|`x`|float|True|The X-coordinate of the user control|
-|`y`|float|True|The Y-coordinate of the user control|
-|`width`|float|True|The width of the user control's bounding rectangle|
-|`height`|float|True|The height of the user control's bounding rectangle|
+|`rect`|Rectangle|True|The position of the haptic rectangle to be highlighted. The center of this rectangle will be "touched" when a press occurs.|
 
 
 
@@ -3565,7 +3573,7 @@ Send the spatial data gathered from SDLCarWindow or VirtualDisplayEncoder to the
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`HapticSpatialData`|SpatialStruct[]|False|Array of spatial data structures that represent the locations of all user controls present on the HMI. This data should be updated if/when the application presents a new screen. When a request is sent, if successful, it will replace all spatial data previously sent through RPC. If an empty array is sent, the existing spatial data will be cleared|
+|`hapticRectData`|HapticRect[]|False|Array of spatial data structures that represent the locations of all user controls present on the HMI. This data should be updated if/when the application presents a new screen. When a request is sent, if successful, it will replace all spatial data previously sent through RPC. If an empty array is sent, the existing spatial data will be cleared|
 
 
 ### SendHapticData
