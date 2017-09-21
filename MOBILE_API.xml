@@ -132,6 +132,9 @@
         <element name="DATA_NOT_AVAILABLE">
             <description>The requested information is currently not available. This is different than UNSUPPORTED_RESOURCE because it implies the data is at some point available. </description>
         </element>
+        <element name="READ_ONLY">
+            <description>The value being set is read only</description>
+        </element>
     </enum>
     
     <enum name="ButtonPressMode">
@@ -851,6 +854,44 @@
         <element name="QUEUE" />
     </enum>
     
+    <enum name="VideoStreamingProtocol">
+        <description>Enum for each type of video streaming protocol type.</description>
+        <element name="RAW">
+            <description>Raw stream bytes that contains no timestamp data and is the lowest supported video streaming</description>
+        </element>
+        <element name="RTP">
+            <description>RTP facilitates the transfer of real-time data. Information provided by this protocol include timestamps (for synchronization), sequence numbers (for packet loss and reordering detection) and the payload format which indicates the encoded format of the data.</description>
+        </element>
+        <element name="RTSP">
+            <description>The transmission of streaming data itself is not a task of RTSP. Most RTSP servers use the Real-time Transport Protocol (RTP) in conjunction with Real-time Control Protocol (RTCP) for media stream delivery. However, some vendors implement proprietary transport protocols. </description>
+        </element>
+        <element name="RTMP">
+            <description> Real-Time Messaging Protocol (RTMP) was initially a proprietary protocol developed by Macromedia for streaming audio, video and data over the Internet, between a Flash player and a server. Macromedia is now owned by Adobe, which has released an incomplete version of the specification of the protocol for public use.</description>
+        </element>
+        <element name="WEBM">
+            <description>The WebM container is based on a profile of Matroska. WebM initially supported VP8 video and Vorbis audio streams. In 2013 it was updated to accommodate VP9 video and Opus audio.</description>
+        </element>
+    </enum>
+    
+    <enum name="VideoStreamingCodec">
+        <description>Enum for each type of video streaming codec.</description>
+        <element name="H264">
+            <description>A block-oriented motion-compensation-based video compression standard. As of 2014 it is one of the most commonly used formats for the recording, compression, and distribution of video content.</description>
+        </element>
+        <element name="H265">
+            <description>High Efficiency Video Coding (HEVC), also known as H.265 and MPEG-H Part 2, is a video compression standard, one of several potential successors to the widely used AVC (H.264 or MPEG-4 Part 10). In comparison to AVC, HEVC offers about double the data compression ratio at the same level of video quality, or substantially improved video quality at the same bit rate. It supports resolutions up to 8192x4320, including 8K UHD.</description>
+        </element>
+        <element name="Theora">
+            <description>Theora is derived from the formerly proprietary VP3 codec, released into the public domain by On2 Technologies. It is broadly comparable in design and bitrate efficiency to MPEG-4 Part 2, early versions of Windows Media Video, and RealVideo while lacking some of the features present in some of these other codecs. It is comparable in open standards philosophy to the BBC's Dirac codec.</description>
+        </element>
+        <element name="VP8">
+            <description>VP8 can be multiplexed into the Matroska-based container format WebM along with Vorbis and Opus audio. The image format WebP is based on VP8's intra-frame coding. VP8's direct successor, VP9, and the emerging royalty-free internet video format AV1 from the Alliance for Open Media (AOMedia) are based on VP8.</description>
+        </element>
+        <element name="VP9">
+            <description>Similar to VP8, but VP9 is customized for video resolutions beyond high-definition video (UHD) and also enables lossless compression.</description>
+        </element>
+    </enum>
+    
     <struct name="Image">
         <param name="value" minlength="0" maxlength="65535" type="String" mandatory="true">
             <description>Either the static hex icon value or the binary image file name identifier (sent by PutFile).</description>
@@ -1213,6 +1254,43 @@
         <element name="INVALID" />
     </enum>
     
+    <enum name="ModuleType">
+        <element name="CLIMATE"/>
+        <element name="RADIO"/>
+    </enum>
+    
+    <enum name="DefrostZone">
+        <element name="FRONT"/>
+        <element name="REAR"/>
+        <element name="ALL"/>
+        <element name="NONE"/>
+    </enum>
+    
+    <enum name="VentilationMode">
+        <element name="UPPER"/>
+        <element name="LOWER"/>
+        <element name="BOTH"/>
+        <element name="NONE"/>
+    </enum>
+    
+    <enum name="RadioBand">
+        <element name="AM"/>
+        <element name="FM"/>
+        <element name="XM"/>
+    </enum>
+    
+    <enum name="RadioState">
+        <element name="ACQUIRING"/>
+        <element name="ACQUIRED"/>
+        <element name="MULTICAST"/>
+        <element name="NOT_FOUND"/>
+    </enum>
+    
+    <enum name="TemperatureUnit">
+        <element name="FAHRENHEIT"/>
+        <element name="CELSIUS"/>
+    </enum>
+
     <struct name="BeltStatus">
         <param name="driverBeltDeployed" type="VehicleDataEventStatus" mandatory="true">
             <description>References signal "VedsDrvBelt_D_Ltchd". See VehicleDataEventStatus.</description>
@@ -1849,390 +1927,362 @@
         </param>
         
         <!-- TODO:  Add pixel density? -->
-         </struct>
-         
-         <struct name="ButtonCapabilities">
-         <description>Contains information about a button's capabilities.</description>
-         <param name="name" type="ButtonName" mandatory="true">
-         <description>The name of the button. See ButtonName.</description>
-         </param>
-         <param name="shortPressAvailable" type="Boolean" mandatory="true">
-         <description>
-         The button supports a short press.
-         Whenever the button is pressed short, onButtonPressed( SHORT) will be invoked.
-         </description>
-         </param>
-         <param name="longPressAvailable" type="Boolean" mandatory="true">
-         <description>
-         The button supports a LONG press.
-         Whenever the button is pressed long, onButtonPressed( LONG) will be invoked.
-         </description>
-         </param>
-         <param name="upDownAvailable" type="Boolean" mandatory="true">
-         <description>
-         The button supports "button down" and "button up".
-         Whenever the button is pressed, onButtonEvent( DOWN) will be invoked.
-         Whenever the button is released, onButtonEvent( UP) will be invoked.
-         </description>
-         </param>
-         </struct>
-         
-         <struct name="SoftButtonCapabilities">
-         <description>Contains information about a SoftButton's capabilities.</description>
-         <param name="shortPressAvailable" type="Boolean" mandatory="true">
-         <description>
-         The button supports a short press.
-         Whenever the button is pressed short, onButtonPressed( SHORT) will be invoked.
-         </description>
-         </param>
-         <param name="longPressAvailable" type="Boolean" mandatory="true">
-         <description>
-         The button supports a LONG press.
-         Whenever the button is pressed long, onButtonPressed( LONG) will be invoked.
-         </description>
-         </param>
-         <param name="upDownAvailable" type="Boolean" mandatory="true">
-         <description>
-         The button supports "button down" and "button up".
-         Whenever the button is pressed, onButtonEvent( DOWN) will be invoked.
-         Whenever the button is released, onButtonEvent( UP) will be invoked.
-         </description>
-         </param>
-         <param name="imageSupported" type="Boolean" mandatory="true">
-         <description>The button supports referencing a static or dynamic image.</description>
-         </param>
-         </struct>
-         
-         <struct name="PresetBankCapabilities">
-         <description>Contains information about on-screen preset capabilities.</description>
-         <param name="onScreenPresetsAvailable" type="Boolean" mandatory="true">
-         <description>Onscreen custom presets are available.</description>
-         </param>
-         </struct>
-         
-         <struct name="HMICapabilities">
-         <param name="navigation" type="Boolean" mandatory="false">
-         <description>Availability of build in Nav. True: Available, False: Not Available</description>
-         </param>
-         <param name="phoneCall" type="Boolean" mandatory="false">
-         <description>Availability of build in phone. True: Available, False: Not Available </description>
-         </param>
-         <param name="videoStreaming" type="Boolean" mandatory="false">
-         <description>Availability of video streaming. </description>
-         </param>
-         </struct>
-         
-         <struct name="MenuParams">
-         <param name="parentID" type="Integer" minvalue="0" maxvalue="2000000000" defvalue="0" mandatory="false">
-         <description>
-         unique ID of the sub menu, the command will be added to.
-         If not provided, it will be provided to the top level of the in application menu.
-         </description>
-         </param>
-         
-         <param name="position" type="Integer" minvalue="0" maxvalue="1000" mandatory="false">
-         <description>
-         Position within the items that are are at top level of the in application menu.
-         0 will insert at the front.
-         1 will insert at the second position.
-         if position is greater or equal than the number of items on top level, the sub menu will be appended to the end.
-         If this param was omitted the entry will be added at the end.
-         </description>
-         </param>
-         
-         <param name="menuName" type="String" maxlength="500" mandatory="true">
-         <description>Text to show in the menu for this sub menu.</description>
-         </param>
-         </struct>
-         
-         <struct name="TTSChunk">
-         <description>A TTS chunk, that consists of the text/phonemes to speak and the type (like text or SAPI)</description>
-         <param name="text" minlength="0" maxlength="500" type="String" mandatory="true">
-         <description>
-         The text or phonemes to speak.
-         May not be empty.
-         </description>
-         </param>
-         <param name="type" type="SpeechCapabilities" mandatory="true">
-         <description>Describes, whether it is text or a specific phoneme set. See SpeechCapabilities</description>
-         </param>
-         </struct>
-         
-         <struct name="Turn">
-         <param name="navigationText" type="String" maxlength="500" mandatory="false">
-         <description>Individual turn text.  Must provide at least text or icon for a given turn.</description>
-         </param>
-         <param name="turnIcon" type="Image" mandatory="false">
-         <description>Individual turn icon.  Must provide at least text or icon for a given turn.</description>
-         </param>
-         </struct>
-         
-         <struct name="VehicleType">
-         <param name="make" type="String" maxlength="500" mandatory="false">
-         <description>Make of the vehicle, e.g. Ford</description>
-         </param>
-         <param name="model" type="String" maxlength="500" mandatory="false">
-         <description>Model of the vehicle, e.g. Fiesta</description>
-         </param>
-         <param name="modelYear" type="String" maxlength="500" mandatory="false">
-         <description>Model Year of the vehicle, e.g. 2013</description>
-         </param>
-         <param name="trim" type="String" maxlength="500" mandatory="false">
-         <description>Trim of the vehicle, e.g. SE</description>
-         </param>
-         </struct>
-         
-         <enum name="KeyboardLayout">
-         <description>Enumeration listing possible keyboard layouts.</description>
-         <element name="QWERTY" />
-         <element name="QWERTZ" />
-         <element name="AZERTY" />
-         </enum>
-         
-         <enum name="KeyboardEvent" >
-         <description>Enumeration listing possible keyboard events.</description>
-         <element name="KEYPRESS" />
-         <element name="ENTRY_SUBMITTED" />
-         <element name="ENTRY_VOICE" />
-         <element name="ENTRY_CANCELLED" />
-         <element name="ENTRY_ABORTED" />
-         </enum>
-         
-         <enum name="KeypressMode">
-         <description>Enumeration listing possible keyboard events.</description>
-         <element name="SINGLE_KEYPRESS">
-         <description>Each keypress is individually sent as the user presses the keyboard keys.</description>
-         </element>
-         <element name="QUEUE_KEYPRESSES">
-         <description>The keypresses are queued and a string is eventually sent once the user chooses to submit their entry.</description>
-         </element>
-         <element name="RESEND_CURRENT_ENTRY">
-         <description>The keypresses are queue and a string is sent each time the user presses a keyboard key; the string contains the entire current entry.</description>
-         </element>
-         </enum>
-         
-         <struct name="KeyboardProperties">
-         <description>Configuration of on-screen keyboard (if available).</description>
-         
-         <param name="language" type="Language" mandatory="false">
-         <description>The keyboard language.</description>
-         </param>
-         
-         <param name="keyboardLayout" type="KeyboardLayout" mandatory="false" >
-         <description>Desired keyboard layout.</description>
-         </param>
-         
-         <param name="keypressMode" type="KeypressMode" mandatory="false" >
-         <description>
-         Desired keypress mode.
-         If omitted, this value will be set to RESEND_CURRENT_ENTRY.
-         </description>
-         </param>
-         
-         <param name="limitedCharacterList" type="String" maxlength="1" minsize="1" maxsize="100" array="true" mandatory="false">
-         <description>Array of keyboard characters to enable.</description>
-         <description>All omitted characters will be greyed out (disabled) on the keyboard.</description>
-         <description>If omitted, the entire keyboard will be enabled.</description>
-         </param>
-         
-         <param name="autoCompleteText" type="String" maxlength="1000" mandatory="false">
-         <description>Allows an app to prepopulate the text field with a suggested or completed entry as the user types</description>
-         </param>
-         
-         </struct>
-         
-         <struct name="DeviceInfo">
-         <description>Various information about connecting device.</description>
-         
-         <param name="hardware" type="String"  minlength="0" maxlength="500" mandatory="false">
-         <description>Device model</description>
-         </param>
-         <param name="firmwareRev" type="String" minlength="0" maxlength="500" mandatory="false">
-         <description>Device firmware revision</description>
-         </param>
-         <param name="os" type="String" minlength="0" maxlength="500" mandatory="false">
-         <description>Device OS</description>
-         </param>
-         <param name="osVersion" type="String" minlength="0" maxlength="500" mandatory="false">
-         <description>Device OS version</description>
-         </param>
-         <param name="carrier" type="String" minlength="0" maxlength="500" mandatory="false">
-         <description>Device mobile carrier (if applicable)</description>
-         </param>
-         <param name="maxNumberRFCOMMPorts" type="Integer" minvalue="0" maxvalue="100" mandatory="false">
-         <description>Omitted if connected not via BT.</description>
-         </param>
-         
-         </struct>
-         
-         <enum name="RequestType">
-         <description>Enumeration listing possible asynchronous requests.</description>
-         <element name="HTTP" />
-         <element name="FILE_RESUME" />
-         <element name="AUTH_REQUEST" />
-         <element name="AUTH_CHALLENGE" />
-         <element name="AUTH_ACK" />
-         <element name="PROPRIETARY" />
-         <element name="QUERY_APPS" />
-         <element name="LAUNCH_APP" />
-         <element name="LOCK_SCREEN_ICON_URL" />
-         <element name="TRAFFIC_MESSAGE_CHANNEL" />
-         <element name="DRIVER_PROFILE" />
-         <element name="VOICE_SEARCH" />
-         <element name="NAVIGATION" />
-         <element name="PHONE" />
-         <element name="CLIMATE" />
-         <element name="SETTINGS" />
-         <element name="VEHICLE_DIAGNOSTICS" />
-         <element name="EMERGENCY" />
-         <element name="MEDIA" />
-         <element name="FOTA" />
-         </enum>
-         
-         <enum name="AppHMIType">
-         <description>Enumeration listing possible app types.</description>
-         <element name="DEFAULT" />
-         <element name="COMMUNICATION" />
-         <element name="MEDIA" />
-         <element name="MESSAGING" />
-         <element name="NAVIGATION" />
-         <element name="INFORMATION" />
-         <element name="SOCIAL" />
-         <element name="BACKGROUND_PROCESS" />
-         <element name="TESTING" />
-         <element name="SYSTEM" />
-         <element name="PROJECTION" />
-         <element name="REMOTE_CONTROL" />
-         </enum>
-         
-         <enum name="PredefinedLayout" platform="documentation">
-         <description>Predefined screen layout.</description>
-         
-         <element name="DEFAULT" rootscreen="true">
-         <description>
-         Default media / non-media screen.
-         Can be set as a root screen.
-         </description>
-         </element>
-         <element name="MEDIA" rootscreen="true">
-         <description>
-         Default Media screen.
-         Can be set as a root screen.
-         </description>
-         </element>
-         <element name="NON-MEDIA" internal_name="NON_MEDIA" rootscreen="true">
-         <description>
-         Default Non-media screen.
-         Can be set as a root screen.
-         </description>
-         </element>
-         <element name="ONSCREEN_PRESETS" rootscreen="true">
-         <description>
-         Custom root media screen containing app-defined onscreen presets.
-         Can be set as a root screen.
-         </description>
-         </element>
-         <element name="NAV_FULLSCREEN_MAP" rootscreen="true" >
-         <description>
-         Custom root template screen containing full screen map with navigation controls.
-         Can be set as a root screen.
-         </description>
-         </element>
-         <element name="NAV_LIST" rootscreen="true" >
-         <description>
-         Custom root template screen containing video represented list.
-         Can be set as a root screen.
-         </description>
-         </element>
-         <element name="NAV_KEYBOARD" rootscreen="true" >
-         <description>
-         Custom root template screen containing video represented keyboard.
-         Can be set as a root screen.
-         </description>
-         </element>
-         <element name="GRAPHIC_WITH_TEXT" rootscreen="true">
-         <description>
-         Custom root template screen containing half-screen graphic with lines of text.
-         Can be set as a root screen.
-         </description>
-         </element>
-         <element name="TEXT_WITH_GRAPHIC" rootscreen="true">
-         <description>
-         Custom root template screen containing lines of text with half-screen graphic.
-         Can be set as a root screen.
-         </description>
-         </element>
-         <element name="TILES_ONLY" rootscreen="true">
-         <description>
-         Custom root template screen containing only tiled SoftButtons.
-         Can be set as a root screen.
-         </description>
-         </element>
-         <element name="TEXTBUTTONS_ONLY" rootscreen="true">
-         <description>
-         Custom root template screen containing only text SoftButtons.
-         Can be set as a root screen.
-         </description>
-         </element>
-         <element name="GRAPHIC_WITH_TILES" rootscreen="true">
-         <description>
-         Custom root template screen containing half-screen graphic with tiled SoftButtons.
-         Can be set as a root screen.
-         </description>
-         </element>
-         <element name="TILES_WITH_GRAPHIC" rootscreen="true">
-         <description>
-         Custom root template screen containing tiled SoftButtons with half-screen graphic.
-         Can be set as a root screen.
-         </description>
-         </element>
-         <element name="GRAPHIC_WITH_TEXT_AND_SOFTBUTTONS" rootscreen="true">
-         <description>
-         Custom root template screen containing half-screen graphic with text and SoftButtons.
-         Can be set as a root screen.
-         </description>
-         </element>
-         <element name="TEXT_AND_SOFTBUTTONS_WITH_GRAPHIC" rootscreen="true">
-         <description>
-         Custom root template screen containing text and SoftButtons with half-screen graphic.
-         Can be set as a root screen.
-         </description>
-         </element>
-         <element name="GRAPHIC_WITH_TEXTBUTTONS" rootscreen="true">
-         <description>
-         Custom root template screen containing half-screen graphic with text only SoftButtons.
-         Can be set as a root screen.
-         </description>
-         </element>
-         <element name="TEXTBUTTONS_WITH_GRAPHIC" rootscreen="true">
-         <description>
-         Custom root template screen containing text only SoftButtons with half-screen graphic.
-         Can be set as a root screen.
-         </description>
-         </element>
-         <element name="LARGE_GRAPHIC_WITH_SOFTBUTTONS" rootscreen="true">
-         <description>
-         Custom root template screen containing a large graphic and SoftButtons.
-         Can be set as a root screen.
-         </description>
-         </element>
-         <element name="DOUBLE_GRAPHIC_WITH_SOFTBUTTONS" rootscreen="true">
-         <description>
-         Custom root template screen containing two graphics and SoftButtons.
-         Can be set as a root screen.
-         </description>
-         </element>
-         <element name="LARGE_GRAPHIC_ONLY" rootscreen="true">
-         <description>
-         Custom root template screen containing only a large graphic.
-         Can be set as a root screen.
-         </description>
-         </element>
-         </enum>
-         
-         <enum name="FunctionID" internal_scope="base">
-         <description>Enumeration linking function names with function IDs in AppLink protocol. Assumes enumeration starts at value 0.</description>
-         <element name="RESERVED" value="0" />
+    </struct>
+    <struct name="ButtonCapabilities">
+        <description>Contains information about a button's capabilities.</description>
+        <param name="name" type="ButtonName" mandatory="true">
+            <description>The name of the button. See ButtonName.</description>
+        </param>
+        <param name="shortPressAvailable" type="Boolean" mandatory="true">
+            <description>
+                The button supports a short press.
+                Whenever the button is pressed short, onButtonPressed( SHORT) will be invoked.
+            </description>
+        </param>
+        <param name="longPressAvailable" type="Boolean" mandatory="true">
+            <description>
+                The button supports a LONG press.
+                Whenever the button is pressed long, onButtonPressed( LONG) will be invoked.
+            </description>
+        </param>
+        <param name="upDownAvailable" type="Boolean" mandatory="true">
+            <description>
+                The button supports "button down" and "button up".
+                Whenever the button is pressed, onButtonEvent( DOWN) will be invoked.
+                Whenever the button is released, onButtonEvent( UP) will be invoked.
+            </description>
+        </param>
+    </struct>         
+    <struct name="SoftButtonCapabilities">
+        <description>Contains information about a SoftButton's capabilities.</description>
+        <param name="shortPressAvailable" type="Boolean" mandatory="true">
+            <description>
+                The button supports a short press.
+                Whenever the button is pressed short, onButtonPressed( SHORT) will be invoked.
+            </description>
+        </param>
+        <param name="longPressAvailable" type="Boolean" mandatory="true">
+            <description>
+                The button supports a LONG press.
+                Whenever the button is pressed long, onButtonPressed( LONG) will be invoked.
+            </description>
+        </param>
+        <param name="upDownAvailable" type="Boolean" mandatory="true">
+            <description>
+                The button supports "button down" and "button up".
+                Whenever the button is pressed, onButtonEvent( DOWN) will be invoked.
+                Whenever the button is released, onButtonEvent( UP) will be invoked.
+            </description>
+        </param>
+        <param name="imageSupported" type="Boolean" mandatory="true">
+            <description>The button supports referencing a static or dynamic image.</description>
+        </param>
+    </struct>         
+    <struct name="PresetBankCapabilities">
+        <description>Contains information about on-screen preset capabilities.</description>
+        <param name="onScreenPresetsAvailable" type="Boolean" mandatory="true">
+            <description>Onscreen custom presets are available.</description>
+        </param>
+    </struct>         
+    <struct name="HMICapabilities">
+        <param name="navigation" type="Boolean" mandatory="false">
+            <description>Availability of build in Nav. True: Available, False: Not Available</description>
+        </param>
+        <param name="phoneCall" type="Boolean" mandatory="false">
+            <description>Availability of build in phone. True: Available, False: Not Available </description>
+        </param>
+        <param name="videoStreaming" type="Boolean" mandatory="false">
+            <description>Availability of video streaming. </description>
+        </param>
+    </struct>         
+    <struct name="MenuParams">
+        <param name="parentID" type="Integer" minvalue="0" maxvalue="2000000000" defvalue="0" mandatory="false">
+            <description>
+                unique ID of the sub menu, the command will be added to.
+                If not provided, it will be provided to the top level of the in application menu.
+            </description>
+        </param>         
+        <param name="position" type="Integer" minvalue="0" maxvalue="1000" mandatory="false">
+            <description>
+                Position within the items that are are at top level of the in application menu.
+                0 will insert at the front.
+                1 will insert at the second position.
+                if position is greater or equal than the number of items on top level, the sub menu will be appended to the end.
+                If this param was omitted the entry will be added at the end.
+            </description>
+        </param>         
+        <param name="menuName" type="String" maxlength="500" mandatory="true">
+            <description>Text to show in the menu for this sub menu.</description>
+        </param>
+    </struct>         
+    <struct name="TTSChunk">
+        <description>A TTS chunk, that consists of the text/phonemes to speak and the type (like text or SAPI)</description>
+        <param name="text" minlength="0" maxlength="500" type="String" mandatory="true">
+            <description>
+                The text or phonemes to speak.
+                May not be empty.
+            </description>
+        </param>
+        <param name="type" type="SpeechCapabilities" mandatory="true">
+            <description>Describes, whether it is text or a specific phoneme set. See SpeechCapabilities</description>
+        </param>
+    </struct>         
+    <struct name="Turn">
+        <param name="navigationText" type="String" maxlength="500" mandatory="false">
+            <description>Individual turn text.  Must provide at least text or icon for a given turn.</description>
+        </param>
+        <param name="turnIcon" type="Image" mandatory="false">
+            <description>Individual turn icon.  Must provide at least text or icon for a given turn.</description>
+        </param>
+    </struct>         
+    <struct name="VehicleType">
+        <param name="make" type="String" maxlength="500" mandatory="false">
+            <description>Make of the vehicle, e.g. Ford</description>
+        </param>
+        <param name="model" type="String" maxlength="500" mandatory="false">
+            <description>Model of the vehicle, e.g. Fiesta</description>
+        </param>
+        <param name="modelYear" type="String" maxlength="500" mandatory="false">
+            <description>Model Year of the vehicle, e.g. 2013</description>
+        </param>
+        <param name="trim" type="String" maxlength="500" mandatory="false">
+            <description>Trim of the vehicle, e.g. SE</description>
+        </param>
+    </struct>         
+    <enum name="KeyboardLayout">
+        <description>Enumeration listing possible keyboard layouts.</description>
+        <element name="QWERTY" />
+        <element name="QWERTZ" />
+        <element name="AZERTY" />
+    </enum>         
+    <enum name="KeyboardEvent" >
+        <description>Enumeration listing possible keyboard events.</description>
+        <element name="KEYPRESS" />
+        <element name="ENTRY_SUBMITTED" />
+        <element name="ENTRY_VOICE" />
+        <element name="ENTRY_CANCELLED" />
+        <element name="ENTRY_ABORTED" />
+    </enum>         
+    <enum name="KeypressMode">
+        <description>Enumeration listing possible keyboard events.</description>
+        <element name="SINGLE_KEYPRESS">
+            <description>Each keypress is individually sent as the user presses the keyboard keys.</description>
+        </element>
+        <element name="QUEUE_KEYPRESSES">
+            <description>The keypresses are queued and a string is eventually sent once the user chooses to submit their entry.</description>
+        </element>
+        <element name="RESEND_CURRENT_ENTRY">
+            <description>The keypresses are queue and a string is sent each time the user presses a keyboard key; the string contains the entire current entry.</description>
+        </element>
+    </enum>         
+    <struct name="KeyboardProperties">
+        <description>Configuration of on-screen keyboard (if available).</description>         
+        <param name="language" type="Language" mandatory="false">
+            <description>The keyboard language.</description>
+        </param>         
+        <param name="keyboardLayout" type="KeyboardLayout" mandatory="false" >
+            <description>Desired keyboard layout.</description>
+        </param>         
+        <param name="keypressMode" type="KeypressMode" mandatory="false" >
+            <description>
+                Desired keypress mode.
+                If omitted, this value will be set to RESEND_CURRENT_ENTRY.
+            </description>
+        </param>         
+        <param name="limitedCharacterList" type="String" maxlength="1" minsize="1" maxsize="100" array="true" mandatory="false">
+            <description>Array of keyboard characters to enable.</description>
+            <description>All omitted characters will be greyed out (disabled) on the keyboard.</description>
+            <description>If omitted, the entire keyboard will be enabled.</description>
+        </param>         
+        <param name="autoCompleteText" type="String" maxlength="1000" mandatory="false">
+            <description>Allows an app to prepopulate the text field with a suggested or completed entry as the user types</description>
+        </param>         
+    </struct>         
+    <struct name="DeviceInfo">
+        <description>Various information about connecting device.</description>         
+        <param name="hardware" type="String"  minlength="0" maxlength="500" mandatory="false">
+            <description>Device model</description>
+        </param>
+        <param name="firmwareRev" type="String" minlength="0" maxlength="500" mandatory="false">
+            <description>Device firmware revision</description>
+        </param>
+        <param name="os" type="String" minlength="0" maxlength="500" mandatory="false">
+            <description>Device OS</description>
+        </param>
+        <param name="osVersion" type="String" minlength="0" maxlength="500" mandatory="false">
+            <description>Device OS version</description>
+        </param>
+        <param name="carrier" type="String" minlength="0" maxlength="500" mandatory="false">
+            <description>Device mobile carrier (if applicable)</description>
+        </param>
+        <param name="maxNumberRFCOMMPorts" type="Integer" minvalue="0" maxvalue="100" mandatory="false">
+            <description>Omitted if connected not via BT.</description>
+        </param>         
+    </struct>         
+    <enum name="RequestType">
+        <description>Enumeration listing possible asynchronous requests.</description>
+        <element name="HTTP" />
+        <element name="FILE_RESUME" />
+        <element name="AUTH_REQUEST" />
+        <element name="AUTH_CHALLENGE" />
+        <element name="AUTH_ACK" />
+        <element name="PROPRIETARY" />
+        <element name="QUERY_APPS" />
+        <element name="LAUNCH_APP" />
+        <element name="LOCK_SCREEN_ICON_URL" />
+        <element name="TRAFFIC_MESSAGE_CHANNEL" />
+        <element name="DRIVER_PROFILE" />
+        <element name="VOICE_SEARCH" />
+        <element name="NAVIGATION" />
+        <element name="PHONE" />
+        <element name="CLIMATE" />
+        <element name="SETTINGS" />
+        <element name="VEHICLE_DIAGNOSTICS" />
+        <element name="EMERGENCY" />
+        <element name="MEDIA" />
+        <element name="FOTA" />
+    </enum>         
+    <enum name="AppHMIType">
+        <description>Enumeration listing possible app types.</description>
+        <element name="DEFAULT" />
+        <element name="COMMUNICATION" />
+        <element name="MEDIA" />
+        <element name="MESSAGING" />
+        <element name="NAVIGATION" />
+        <element name="INFORMATION" />
+        <element name="SOCIAL" />
+        <element name="BACKGROUND_PROCESS" />
+        <element name="TESTING" />
+        <element name="SYSTEM" />
+        <element name="PROJECTION" />
+        <element name="REMOTE_CONTROL" />
+    </enum>         
+    <enum name="PredefinedLayout" platform="documentation">
+        <description>Predefined screen layout.</description>         
+        <element name="DEFAULT" rootscreen="true">
+            <description>
+                Default media / non-media screen.
+                Can be set as a root screen.
+            </description>
+        </element>
+        <element name="MEDIA" rootscreen="true">
+            <description>
+                Default Media screen.
+                Can be set as a root screen.
+            </description>
+        </element>
+        <element name="NON-MEDIA" internal_name="NON_MEDIA" rootscreen="true">
+            <description>
+                Default Non-media screen.
+                Can be set as a root screen.
+            </description>
+        </element>
+        <element name="ONSCREEN_PRESETS" rootscreen="true">
+            <description>
+                Custom root media screen containing app-defined onscreen presets.
+                Can be set as a root screen.
+            </description>
+        </element>
+        <element name="NAV_FULLSCREEN_MAP" rootscreen="true" >
+            <description>
+                Custom root template screen containing full screen map with navigation controls.
+                Can be set as a root screen.
+            </description>
+        </element>
+        <element name="NAV_LIST" rootscreen="true" >
+            <description>
+                Custom root template screen containing video represented list.
+                Can be set as a root screen.
+            </description>
+        </element>
+        <element name="NAV_KEYBOARD" rootscreen="true" >
+            <description>
+                Custom root template screen containing video represented keyboard.
+                Can be set as a root screen.
+            </description>
+        </element>
+        <element name="GRAPHIC_WITH_TEXT" rootscreen="true">
+            <description>
+                Custom root template screen containing half-screen graphic with lines of text.
+                Can be set as a root screen.
+            </description>
+        </element>
+        <element name="TEXT_WITH_GRAPHIC" rootscreen="true">
+            <description>
+                Custom root template screen containing lines of text with half-screen graphic.
+                Can be set as a root screen.
+            </description>
+        </element>
+        <element name="TILES_ONLY" rootscreen="true">
+            <description>
+                Custom root template screen containing only tiled SoftButtons.
+                Can be set as a root screen.
+            </description>
+        </element>
+        <element name="TEXTBUTTONS_ONLY" rootscreen="true">
+            <description>
+                Custom root template screen containing only text SoftButtons.
+                Can be set as a root screen.
+            </description>
+        </element>
+        <element name="GRAPHIC_WITH_TILES" rootscreen="true">
+            <description>
+                Custom root template screen containing half-screen graphic with tiled SoftButtons.
+                Can be set as a root screen.
+            </description>
+        </element>
+        <element name="TILES_WITH_GRAPHIC" rootscreen="true">
+            <description>
+                Custom root template screen containing tiled SoftButtons with half-screen graphic.
+                Can be set as a root screen.
+            </description>
+        </element>
+        <element name="GRAPHIC_WITH_TEXT_AND_SOFTBUTTONS" rootscreen="true">
+            <description>
+                Custom root template screen containing half-screen graphic with text and SoftButtons.
+                Can be set as a root screen.
+            </description>
+        </element>
+        <element name="TEXT_AND_SOFTBUTTONS_WITH_GRAPHIC" rootscreen="true">
+            <description>
+                Custom root template screen containing text and SoftButtons with half-screen graphic.
+                Can be set as a root screen.
+            </description>
+        </element>
+        <element name="GRAPHIC_WITH_TEXTBUTTONS" rootscreen="true">
+            <description>
+                Custom root template screen containing half-screen graphic with text only SoftButtons.
+                Can be set as a root screen.
+            </description>
+        </element>
+        <element name="TEXTBUTTONS_WITH_GRAPHIC" rootscreen="true">
+            <description>
+                Custom root template screen containing text only SoftButtons with half-screen graphic.
+                Can be set as a root screen.
+            </description>
+        </element>
+        <element name="LARGE_GRAPHIC_WITH_SOFTBUTTONS" rootscreen="true">
+            <description>
+                Custom root template screen containing a large graphic and SoftButtons.
+                Can be set as a root screen.
+            </description>
+        </element>
+        <element name="DOUBLE_GRAPHIC_WITH_SOFTBUTTONS" rootscreen="true">
+            <description>
+                Custom root template screen containing two graphics and SoftButtons.
+                Can be set as a root screen.
+            </description>
+        </element>
+        <element name="LARGE_GRAPHIC_ONLY" rootscreen="true">
+            <description>
+                Custom root template screen containing only a large graphic.
+                Can be set as a root screen.
+            </description>
+        </element>
+    </enum>         
+    <enum name="FunctionID" internal_scope="base">
+        <description>Enumeration linking function names with function IDs in AppLink protocol. Assumes enumeration starts at value 0.</description>
+        <element name="RESERVED" value="0" />
          <!--
          Base Request / Response RPCs
          Range = 0x 0000 0001 - 0x 0000 7FFF
@@ -2281,10 +2331,10 @@
         <element name="GetInteriorVehicleDataID" value="43" hexvalue="2B" />
         <element name="SetInteriorVehicleDataID" value="44" hexvalue="2C" />
         <element name="GetWayPointsID" value="45" hexvalue="2D" />
-        <element name="SubscribeWayPointsID" value="46" hexvalue="2E"/>
-        <element name="UnsubscribeWayPointsID" value="47" hexvalue="2F"/>
-        <element name="GetSystemCapabilityID" value="48" hexvalue="30"/>
-        <element name="SendHapticDataID" value="49" hexvalue="31"/>
+        <element name="SubscribeWayPointsID" value="46" hexvalue="2E" />
+        <element name="UnsubscribeWayPointsID" value="47" hexvalue="2F" />
+        <element name="GetSystemCapabilityID" value="48" hexvalue="30" />
+        <element name="SendHapticDataID" value="49" hexvalue="31" />
         
         <!--
          Base Notifications
@@ -2324,7 +2374,6 @@
         
         <element name="OnEncodedSyncPDataID" value="98304" hexvalue="18000" />
         <element name="OnSyncPDataID" value="98305" hexvalue="18001" />
-        
     </enum>
     
     <enum name="messageType">
@@ -2461,44 +2510,16 @@
         </param>
     </struct>
     
-    <enum name="VideoStreamingProtocol">
-        <description>Enum for each type of video streaming protocol type.</description>
-        <element name="RAW">
-            <description>Raw stream bytes that contains no timestamp data and is the lowest supported video streaming</description>
-        </element>
-        <element name="RTP">
-            <description>RTP facilitates the transfer of real-time data. Information provided by this protocol include timestamps (for synchronization), sequence numbers (for packet loss and reordering detection) and the payload format which indicates the encoded format of the data.</description>
-        </element>
-        <element name="RTSP">
-            <description>The transmission of streaming data itself is not a task of RTSP. Most RTSP servers use the Real-time Transport Protocol (RTP) in conjunction with Real-time Control Protocol (RTCP) for media stream delivery. However, some vendors implement proprietary transport protocols. </description>
-        </element>
-        <element name="RTMP">
-            <description> Real-Time Messaging Protocol (RTMP) was initially a proprietary protocol developed by Macromedia for streaming audio, video and data over the Internet, between a Flash player and a server. Macromedia is now owned by Adobe, which has released an incomplete version of the specification of the protocol for public use.</description>
-        </element>
-        <element name="WEBM">
-            <description>The WebM container is based on a profile of Matroska. WebM initially supported VP8 video and Vorbis audio streams. In 2013 it was updated to accommodate VP9 video and Opus audio.</description>
-        </element>
-    </enum>
-    
-    <enum name="VideoStreamingCodec">
-        <description>Enum for each type of video streaming codec.</description>
-        <element name="H264">
-            <description>A block-oriented motion-compensation-based video compression standard. As of 2014 it is one of the most commonly used formats for the recording, compression, and distribution of video content.</description>
-        </element>
-        <element name="H265">
-            <description>High Efficiency Video Coding (HEVC), also known as H.265 and MPEG-H Part 2, is a video compression standard, one of several potential successors to the widely used AVC (H.264 or MPEG-4 Part 10). In comparison to AVC, HEVC offers about double the data compression ratio at the same level of video quality, or substantially improved video quality at the same bit rate. It supports resolutions up to 8192x4320, including 8K UHD.</description>
-        </element>
-        <element name="Theora">
-            <description>Theora is derived from the formerly proprietary VP3 codec, released into the public domain by On2 Technologies. It is broadly comparable in design and bitrate efficiency to MPEG-4 Part 2, early versions of Windows Media Video, and RealVideo while lacking some of the features present in some of these other codecs. It is comparable in open standards philosophy to the BBC's Dirac codec.</description>
-        </element>
-        <element name="VP8">
-            <description>VP8 can be multiplexed into the Matroska-based container format WebM along with Vorbis and Opus audio. The image format WebP is based on VP8's intra-frame coding. VP8's direct successor, VP9, and the emerging royalty-free internet video format AV1 from the Alliance for Open Media (AOMedia) are based on VP8.</description>
-        </element>
-        <element name="VP9">
-            <description>Similar to VP8, but VP9 is customized for video resolutions beyond high-definition video (UHD) and also enables lossless compression.</description>
-        </element>
-    </enum>
-    
+    <struct name="VideoStreamingFormat">
+        <description>Video streaming formats and their specifications.</description>
+        <param name="protocol" type="VideoStreamingProtocol" mandatory="true">
+            <description>Protocol type, see VideoStreamingProtocol</description>
+        </param>
+        <param name="codec" type="VideoStreamingCodec" mandatory="true">
+            <description>Codec type, see VideoStreamingCodec</description>
+        </param>
+    </struct>
+
     <struct name="VideoStreamingCapability">
         <description>Contains information about this system's video streaming capabilities.</description>
         <param name="preferredResolution" type="ImageResolution" mandatory="false">
@@ -2515,60 +2536,13 @@
         </param>
     </struct>
     
-    <struct name="VideoStreamingFormat">
-        <description>Video streaming formats and their specifications.</description>
-        <param name="protocol" type="VideoStreamingProtocol" mandatory="true">
-            <description>Protocol type, see VideoStreamingProtocol</description>
-        </param>
-        <param name="codec" type="VideoStreamingCodec" mandatory="true">
-            <description>Codec type, see VideoStreamingCodec</description>
-        </param>
-    </struct>
-    
     <!---Remote control  -->
     
-    <enum name="ModuleType">
-        <element name="CLIMATE"/>
-        <element name="RADIO"/>
-    </enum>
-    
-    <enum name="DefrostZone">
-        <element name="FRONT"/>
-        <element name="REAR"/>
-        <element name="ALL"/>
-        <element name="NONE"/>
-    </enum>
-    
-    <enum name="VentilationMode">
-        <element name="UPPER"/>
-        <element name="LOWER"/>
-        <element name="BOTH"/>
-        <element name="NONE"/>
-    </enum>
-    
-    <enum name="RadioBand">
-        <element name="AM"/>
-        <element name="FM"/>
-        <element name="XM"/>
-    </enum>
-    
-    <enum name="RadioState">
-        <element name="ACQUIRING"/>
-        <element name="ACQUIRED"/>
-        <element name="MULTICAST"/>
-        <element name="NOT_FOUND"/>
-    </enum>
-    
-    <enum name="TemperatureUnit">
-        <element name="FAHRENHEIT"/>
-        <element name="CELSIUS"/>
-    </enum>
-    
     <struct name="Temperature">
-        <param name="unit" type="TemperatureUnit">
+        <param name="unit" type="TemperatureUnit" mandatory="true">
             <description>Temperature Unit</description>
         </param>
-        <param name="value" type="Float">
+        <param name="value" type="Float" mandatory="true">
             <description>Temperature Value in TemperatureUnit specified unit. Range depends on OEM and is not checked by SDL.</description>
         </param>
     </struct>
@@ -2654,7 +2628,7 @@
     
     <struct name="ModuleData">
         <description>The moduleType indicates which type of data should be changed and identifies which data object exists in this struct. For example, if the moduleType is CLIMATE then a "climateControlData" should exist</description>
-        <param name="moduleType" type="ModuleType">
+        <param name="moduleType" type="ModuleType" mandatory="true">
         </param>
         <param name="radioControlData" type="RadioControlData" mandatory="false">
         </param>
@@ -2662,22 +2636,10 @@
         </param>
     </struct>
     
-    <struct name="RemoteControlCapabilities">
-        <param name="climateControlCapabilities" type="ClimateControlCapabilities" mandatory="false" minsize="1" maxsize="100" array="true">
-            <description>If included, the platform supports RC climate controls. For this baseline version, maxsize=1. i.e. only one climate control module is supported.</description >
-        </param>
-        <param name="radioControlCapabilities" type="RadioControlCapabilities" mandatory="false" minsize="1" maxsize="100" array="true">
-            <description>If included, the platform supports RC radio controls.For this baseline version, maxsize=1. i.e. only one radio control module is supported.</description >
-        </param>
-        <param name="buttonCapabilities" type="ButtonCapabilities"  mandatory="false" minsize="1" maxsize="100" array="true" >
-            <description>If included, the platform supports RC button controls with the included button names.</description >
-        </param>
-    </struct>
-    
     <struct name="RadioControlCapabilities">
         <description>Contains information about a radio control module's capabilities.</description>
         <!-- need an ID in the future -->
-        <param name="moduleName" type="String" maxlength="100">
+        <param name="moduleName" type="String" maxlength="100" mandatory="true">
             <description>
                 The short friendly name of the climate control module.
                 It should not be used to identify a module by mobile application.
@@ -2742,7 +2704,7 @@
     <struct name="ClimateControlCapabilities">
         <description>Contains information about a climate control module's capabilities.</description>
         <!-- need an ID in the future -->
-        <param name="moduleName" type="String" maxlength="100">
+        <param name="moduleName" type="String" maxlength="100" mandatory="true">
             <description>The short friendly name of the climate control module.
                 It should not be used to identify a module by mobile application.</description>
         </param>
@@ -2809,6 +2771,18 @@
             <description>
                 A set of all ventilation modes that are controllable.
             </description>
+        </param>
+    </struct>
+    
+    <struct name="RemoteControlCapabilities">
+        <param name="climateControlCapabilities" type="ClimateControlCapabilities" mandatory="false" minsize="1" maxsize="100" array="true">
+            <description>If included, the platform supports RC climate controls. For this baseline version, maxsize=1. i.e. only one climate control module is supported.</description >
+        </param>
+        <param name="radioControlCapabilities" type="RadioControlCapabilities" mandatory="false" minsize="1" maxsize="100" array="true">
+            <description>If included, the platform supports RC radio controls.For this baseline version, maxsize=1. i.e. only one radio control module is supported.</description >
+        </param>
+        <param name="buttonCapabilities" type="ButtonCapabilities"  mandatory="false" minsize="1" maxsize="100" array="true" >
+            <description>If included, the platform supports RC button controls with the included button names.</description >
         </param>
     </struct>
     
@@ -2879,7 +2853,7 @@
             <description>The type of data contained in the "mainField2" text field.</description>
         </param>
         <param name="mainField3" type="MetadataType" minsize="0" maxsize="5" array="true" mandatory="false">
-            <description>The type of data contained in the "MainField3" text field.</description>
+            <description>The type of data contained in the "mainField3" text field.</description>
         </param>
         <param name="mainField4" type="MetadataType" minsize="0" maxsize="5" array="true" mandatory="false">
             <description>The type of data contained in the "mainField4" text field.</description>
@@ -2887,16 +2861,16 @@
     </struct>
     
     <struct name="Rectangle">
-        <param name="x" type="float" mandatory="true">
+        <param name="x" type="Float" mandatory="true">
             <description>The upper left X-coordinate of the rectangle</description>
         </param>
-        <param name="y" type="float" mandatory="true">
+        <param name="y" type="Float" mandatory="true">
             <description>The upper left Y-coordinate of the rectangle</description>
         </param>
-        <param name="width" type="float" mandatory="true">
+        <param name="width" type="Float" mandatory="true">
             <description>The width of the rectangle</description>
         </param>
-        <param name="height" type="float" mandatory="true">
+        <param name="height" type="Float" mandatory="true">
             <description>The height of the rectangle</description>
         </param>
     </struct>
@@ -5115,7 +5089,6 @@
             <element name="GENERIC_ERROR"/>
             <element name="REJECTED"/>
             <element name="UNSUPPORTED_REQUEST"/>
-            <element name=" CORRUPTED_DATA "/>
         </param>
         
         <param name="spaceAvailable" type="Integer" minvalue="0" maxvalue="2000000000" mandatory="true">
@@ -5455,6 +5428,118 @@
         </param>
     </function>
     
+    <function name="ButtonPress" functionID="ButtonPressID" messagetype="request">
+        <param name="moduleType" type="ModuleType" mandatory="true">
+            <description>The module where the button should be pressed</description>
+        </param>
+        <param name="buttonName" type="ButtonName" mandatory="true">
+            <description>The name of supported RC climate or radio button.</description>
+        </param>
+        <param name="buttonPressMode" type="ButtonPressMode" mandatory="true">
+            <description>Indicates whether this is a LONG or SHORT button press event.</description>
+        </param>
+    </function>
+    
+    <function name="ButtonPress" functionID="ButtonPressID" messagetype="response">
+        <param name="resultCode" type="Result" platform="documentation" mandatory="true">
+            <description>See Result</description>
+            <element name="SUCCESS"/>
+            <element name="OUT_OF_MEMORY"/>
+            <element name="TOO_MANY_PENDING_REQUESTS"/>
+            <element name="APPLICATION_NOT_REGISTERED"/>
+            <element name="GENERIC_ERROR"/>
+            <element name="REJECTED"/>
+            <element name="IGNORED"/>
+            <element name="DISALLOWED"/>
+            <element name="USER_DISALLOWED"/>
+            <element name="IN_USE"/>
+        </param>
+        <param name="info" type="String" maxlength="1000" mandatory="false">
+        </param>
+        <param name="success" type="Boolean" platform="documentation" mandatory="true">
+            <description> true if successful; false, if failed </description>
+        </param>
+    </function>
+    
+    <function name="GetInteriorVehicleData" functionID="GetInteriorVehicleDataID" messagetype="request">
+        <param name="moduleType" type="ModuleType" mandatory="true">
+            <description>
+                The type of a RC module to retrieve module data from the vehicle.
+                In the future, this should be the Identification of a module.
+            </description>
+        </param>
+        <param name="subscribe" type="Boolean" mandatory="false" defvalue="false">
+            <description>
+                If subscribe is true, the head unit will register onInteriorVehicleData notifications for the requested moduelType.
+                If subscribe is false, the head unit will unregister onInteriorVehicleData notifications for the requested moduelType.
+            </description>
+        </param>
+    </function>
+    
+    <function name="GetInteriorVehicleData" functionID="GetInteriorVehicleDataID" messagetype="response">
+        <param name="moduleData" type="ModuleData" mandatory="true">
+        </param>
+        <param name="resultCode" type="Result" platform="documentation" mandatory="true">
+            <description>See Result</description>
+            <element name="SUCCESS"/>
+            <element name="INVALID_DATA"/>
+            <element name="OUT_OF_MEMORY"/>
+            <element name="TOO_MANY_PENDING_REQUESTS"/>
+            <element name="APPLICATION_NOT_REGISTERED"/>
+            <element name="GENERIC_ERROR"/>
+            <element name="REJECTED"/>
+            <element name="IGNORED"/>
+            <element name="DISALLOWED"/>
+            <element name="USER_DISALLOWED"/>
+            <element name="UNSUPPORTED_RESOURCE"/>
+        </param>
+        <param name="info" type="String" maxlength="1000" mandatory="false">
+        </param>
+        <param name="success" type="Boolean" platform="documentation" mandatory="true">
+            <description> true if successful; false, if failed </description>
+        </param>
+        <param name="isSubscribed" type="Boolean" mandatory="false" >
+            <description>
+                It is a conditional-mandatory parameter: must be returned in case "subscribe" parameter was present in the related request.
+                if "true" - the "moduleType" from request is successfully subscribed and the head unit will send onInteriorVehicleData notifications for the moduleType.
+                if "false" - the "moduleType" from request is either unsubscribed or failed to subscribe.
+            </description>
+        </param>
+    </function>
+    
+    <function name="SetInteriorVehicleData" functionID="SetInteriorVehicleDataID" messagetype="request">
+        <param name="moduleData" type="ModuleData" mandatory="true">
+            <description>The module data to set for the requested RC module.</description>
+        </param>
+    </function>
+    
+    <function name="SetInteriorVehicleData" functionID="SetInteriorVehicleDataID" messagetype="response">
+        <description>Used to set the values of one remote control module </description>
+        <param name="moduleData" type="ModuleData" mandatory="true">
+        </param>
+        <param name="resultCode" type="Result" platform="documentation" mandatory="true">
+            <description>See Result</description>
+            <element name="SUCCESS"/>
+            <element name="INVALID_DATA"/>
+            <element name="OUT_OF_MEMORY"/>
+            <element name="TOO_MANY_PENDING_REQUESTS"/>
+            <element name="APPLICATION_NOT_REGISTERED"/>
+            <element name="GENERIC_ERROR"/>
+            <element name="REJECTED"/>
+            <element name="IGNORED"/>
+            <element name="DISALLOWED"/>
+            <element name="USER_DISALLOWED"/>
+            <element name="READ_ONLY"/>
+            <element name="UNSUPPORTED_RESOURCE"/>
+            <element name="IN_USE"/>
+        </param>
+        <param name="info" type="String" maxlength="1000" mandatory="false">
+        </param>
+        <param name="success" type="Boolean" platform="documentation" mandatory="true">
+            <description> true if successful; false, if failed </description>
+        </param>
+    </function>
+    
     <function name="SubscribeWayPoints" functionID="SubscribeWayPointsID" messagetype="request">
         <description>To subscribe in getting changes for Waypoints/destinations</description>
     </function>
@@ -5565,124 +5650,12 @@
             </element>
         </param>
         <param name="info" type="String" maxlength="1000" mandatory="false">
+            <description>Provides additional human readable info regarding the result.</description>
         </param>
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
             <description> true if successful; false, if failed </description>
         </param>
     </function>
-    
-    <function name="ButtonPress" functionID="ButtonPressID" messagetype="request">
-        <param name="moduleType" type="ModuleType">
-            <description>The module where the button should be pressed</description>
-        </param>
-        <param name="buttonName" type="ButtonName">
-            <description>The name of supported RC climate or radio button.</description>
-        </param>
-        <param name="buttonPressMode" type="ButtonPressMode">
-            <description>Indicates whether this is a LONG or SHORT button press event.</description>
-        </param>
-    </function>
-    
-    <function name="ButtonPress" functionID="ButtonPressID" messagetype="response">
-        <param name="resultCode" type="Result" platform="documentation">
-            <description>See Result</description>
-            <element name="SUCCESS"/>
-            <element name="OUT_OF_MEMORY"/>
-            <element name="TOO_MANY_PENDING_REQUESTS"/>
-            <element name="APPLICATION_NOT_REGISTERED"/>
-            <element name="GENERIC_ERROR"/>
-            <element name="REJECTED"/>
-            <element name="IGNORED"/>
-            <element name="DISALLOWED"/>
-            <element name="USER_DISALLOWED"/>
-            <element name="IN_USE"/>
-        </param>
-        <param name="info" type="String" maxlength="1000" mandatory="false">
-        </param>
-        <param name="success" type="Boolean" platform="documentation">
-            <description> true if successful; false, if failed </description>
-        </param>
-    </function>
-    
-    <function name="GetInteriorVehicleData" functionID="GetInteriorVehicleDataID" messagetype="request">
-        <param name="moduleType" type="ModuleType">
-            <description>
-                The type of a RC module to retrieve module data from the vehicle.
-                In the future, this should be the Identification of a module.
-            </description>
-        </param>
-        <param name="subscribe" type="Boolean" mandatory="false" defvalue="false">
-            <description>
-                If subscribe is true, the head unit will register onInteriorVehicleData notifications for the requested moduelType.
-                If subscribe is false, the head unit will unregister onInteriorVehicleData notifications for the requested moduelType.
-            </description>
-        </param>
-    </function>
-    
-    <function name="GetInteriorVehicleData" functionID="GetInteriorVehicleDataID" messagetype="response">
-        <param name="moduleData" type="ModuleData">
-        </param>
-        <param name="resultCode" type="Result" platform="documentation">
-            <description>See Result</description>
-            <element name="SUCCESS"/>
-            <element name="INVALID_DATA"/>
-            <element name="OUT_OF_MEMORY"/>
-            <element name="TOO_MANY_PENDING_REQUESTS"/>
-            <element name="APPLICATION_NOT_REGISTERED"/>
-            <element name="GENERIC_ERROR"/>
-            <element name="REJECTED"/>
-            <element name="IGNORED"/>
-            <element name="DISALLOWED"/>
-            <element name="USER_DISALLOWED"/>
-            <element name="UNSUPPORTED_RESOURCE"/>
-        </param>
-        <param name="info" type="String" maxlength="1000" mandatory="false">
-        </param>
-        <param name="success" type="Boolean" platform="documentation">
-            <description> true if successful; false, if failed </description>
-        </param>
-        <param name="isSubscribed" type="Boolean" mandatory="false" >
-            <description>
-                It is a conditional-mandatory parameter: must be returned in case "subscribe" parameter was present in the related request.
-                if "true" - the "moduleType" from request is successfully subscribed and the head unit will send onInteriorVehicleData notifications for the moduleType.
-                if "false" - the "moduleType" from request is either unsubscribed or failed to subscribe.
-            </description>
-        </param>
-    </function>
-    
-    <function name="SetInteriorVehicleData" functionID="SetInteriorVehicleDataID" messagetype="request">
-        <param name="moduleData" type="ModuleData">
-            <description>The module data to set for the requested RC module.</description>
-        </param>
-    </function>
-    
-    <function name="SetInteriorVehicleData" functionID="SetInteriorVehicleDataID" messagetype="response">
-        <description>Used to set the values of one remote control module </description>
-        <param name="moduleData" type="ModuleData">
-        </param>
-        <param name="resultCode" type="Result" platform="documentation">
-            <description>See Result</description>
-            <element name="SUCCESS"/>
-            <element name="INVALID_DATA"/>
-            <element name="OUT_OF_MEMORY"/>
-            <element name="TOO_MANY_PENDING_REQUESTS"/>
-            <element name="APPLICATION_NOT_REGISTERED"/>
-            <element name="GENERIC_ERROR"/>
-            <element name="REJECTED"/>
-            <element name="IGNORED"/>
-            <element name="DISALLOWED"/>
-            <element name="USER_DISALLOWED"/>
-            <element name="READ_ONLY"/>
-            <element name="UNSUPPORTED_RESOURCE"/>
-            <element name="IN_USE"/>
-        </param>
-        <param name="info" type="String" maxlength="1000" mandatory="false">
-        </param>
-        <param name="success" type="Boolean" platform="documentation">
-            <description> true if successful; false, if failed </description>
-        </param>
-    </function>
-    
     
     <function name="SendHapticData" functionID="SendHapticDataID" messagetype="request">
         <description>Send the spatial data gathered from SDLCarWindow or VirtualDisplayEncoder to the HMI. This data will be utilized by the HMI to determine how and when haptic events should occur</description>
@@ -5692,10 +5665,13 @@
     </function>
     
     <function name="SendHapticData" functionID="SendHapticDataID" messagetype="response">
-        <param name="success" type="Boolean" platform="documentation">
+        <param name="success" type="Boolean" platform="documentation" mandatory="true">
             <description> true if successful; false if failed </description>
         </param>
-        <param name="resultCode" type="Result" platform="documentation">
+        <param name="info" type="String" maxlength="1000" mandatory="false">
+            <description>Provides additional human readable info regarding the result.</description>
+        </param>
+        <param name="resultCode" type="Result" platform="documentation" mandatory="true">
             <description>See Result</description>
             <element name="SUCCESS"/>
             <element name="GENERIC_ERROR"/>

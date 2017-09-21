@@ -44,6 +44,7 @@
 |`EXPIRED_CERT`|The certificate provided during authentication is expired.|
 |`RESUME_FAILED`|The provided hash ID does not match the hash of the current set of registered data or the core could not resume the previous data.|
 |`DATA_NOT_AVAILABLE`|The requested information is currently not available. This is different than UNSUPPORTED_RESOURCE because it implies the data is at some point available. |
+|`READ_ONLY`|The value being set is read only|
 
 
 ### ButtonPressMode
@@ -584,6 +585,34 @@ The mode in which the SendLocation request is sent
 |`QUEUE`||
 
 
+### VideoStreamingProtocol
+Enum for each type of video streaming protocol type.
+
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`RAW`|Raw stream bytes that contains no timestamp data and is the lowest supported video streaming|
+|`RTP`|RTP facilitates the transfer of real-time data. Information provided by this protocol include timestamps (for synchronization), sequence numbers (for packet loss and reordering detection) and the payload format which indicates the encoded format of the data.|
+|`RTSP`|The transmission of streaming data itself is not a task of RTSP. Most RTSP servers use the Real-time Transport Protocol (RTP) in conjunction with Real-time Control Protocol (RTCP) for media stream delivery. However, some vendors implement proprietary transport protocols. |
+|`RTMP`|Real-Time Messaging Protocol (RTMP) was initially a proprietary protocol developed by Macromedia for streaming audio, video and data over the Internet, between a Flash player and a server. Macromedia is now owned by Adobe, which has released an incomplete version of the specification of the protocol for public use.|
+|`WEBM`|The WebM container is based on a profile of Matroska. WebM initially supported VP8 video and Vorbis audio streams. In 2013 it was updated to accommodate VP9 video and Opus audio.|
+
+
+### VideoStreamingCodec
+Enum for each type of video streaming codec.
+
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`H264`|A block-oriented motion-compensation-based video compression standard. As of 2014 it is one of the most commonly used formats for the recording, compression, and distribution of video content.|
+|`H265`|High Efficiency Video Coding (HEVC), also known as H.265 and MPEG-H Part 2, is a video compression standard, one of several potential successors to the widely used AVC (H.264 or MPEG-4 Part 10). In comparison to AVC, HEVC offers about double the data compression ratio at the same level of video quality, or substantially improved video quality at the same bit rate. It supports resolutions up to 8192x4320, including 8K UHD.|
+|`Theora`|Theora is derived from the formerly proprietary VP3 codec, released into the public domain by On2 Technologies. It is broadly comparable in design and bitrate efficiency to MPEG-4 Part 2, early versions of Windows Media Video, and RealVideo while lacking some of the features present in some of these other codecs. It is comparable in open standards philosophy to the BBC's Dirac codec.|
+|`VP8`|VP8 can be multiplexed into the Matroska-based container format WebM along with Vorbis and Opus audio. The image format WebP is based on VP8's intra-frame coding. VP8's direct successor, VP9, and the emerging royalty-free internet video format AV1 from the Alliance for Open Media (AOMedia) are based on VP8.|
+|`VP9`|Similar to VP8, but VP9 is customized for video resolutions beyond high-definition video (UHD) and also enables lossless compression.|
+
+
 ### GlobalProperty
 The different global properties.
 
@@ -847,6 +876,67 @@ Reflects the status of the ambient light sensor.
 |`INVALID`||
 
 
+### ModuleType
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`CLIMATE`||
+|`RADIO`||
+
+
+### DefrostZone
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`FRONT`||
+|`REAR`||
+|`ALL`||
+|`NONE`||
+
+
+### VentilationMode
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`UPPER`||
+|`LOWER`||
+|`BOTH`||
+|`NONE`||
+
+
+### RadioBand
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`AM`||
+|`FM`||
+|`XM`||
+
+
+### RadioState
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`ACQUIRING`||
+|`ACQUIRED`||
+|`MULTICAST`||
+|`NOT_FOUND`||
+
+
+### TemperatureUnit
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`FAHRENHEIT`||
+|`CELSIUS`||
+
+
 ### FileType
 Enumeration listing possible file types.
 
@@ -1089,26 +1179,26 @@ Predefined screen layout.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`DEFAULT`|Default media / non-media screen.         Can be set as a root screen.         |
-|`MEDIA`|Default Media screen.         Can be set as a root screen.         |
-|`NON-MEDIA`|Default Non-media screen.         Can be set as a root screen.         |
-|`ONSCREEN_PRESETS`|Custom root media screen containing app-defined onscreen presets.         Can be set as a root screen.         |
-|`NAV_FULLSCREEN_MAP`|Custom root template screen containing full screen map with navigation controls.         Can be set as a root screen.         |
-|`NAV_LIST`|Custom root template screen containing video represented list.         Can be set as a root screen.         |
-|`NAV_KEYBOARD`|Custom root template screen containing video represented keyboard.         Can be set as a root screen.         |
-|`GRAPHIC_WITH_TEXT`|Custom root template screen containing half-screen graphic with lines of text.         Can be set as a root screen.         |
-|`TEXT_WITH_GRAPHIC`|Custom root template screen containing lines of text with half-screen graphic.         Can be set as a root screen.         |
-|`TILES_ONLY`|Custom root template screen containing only tiled SoftButtons.         Can be set as a root screen.         |
-|`TEXTBUTTONS_ONLY`|Custom root template screen containing only text SoftButtons.         Can be set as a root screen.         |
-|`GRAPHIC_WITH_TILES`|Custom root template screen containing half-screen graphic with tiled SoftButtons.         Can be set as a root screen.         |
-|`TILES_WITH_GRAPHIC`|Custom root template screen containing tiled SoftButtons with half-screen graphic.         Can be set as a root screen.         |
-|`GRAPHIC_WITH_TEXT_AND_SOFTBUTTONS`|Custom root template screen containing half-screen graphic with text and SoftButtons.         Can be set as a root screen.         |
-|`TEXT_AND_SOFTBUTTONS_WITH_GRAPHIC`|Custom root template screen containing text and SoftButtons with half-screen graphic.         Can be set as a root screen.         |
-|`GRAPHIC_WITH_TEXTBUTTONS`|Custom root template screen containing half-screen graphic with text only SoftButtons.         Can be set as a root screen.         |
-|`TEXTBUTTONS_WITH_GRAPHIC`|Custom root template screen containing text only SoftButtons with half-screen graphic.         Can be set as a root screen.         |
-|`LARGE_GRAPHIC_WITH_SOFTBUTTONS`|Custom root template screen containing a large graphic and SoftButtons.         Can be set as a root screen.         |
-|`DOUBLE_GRAPHIC_WITH_SOFTBUTTONS`|Custom root template screen containing two graphics and SoftButtons.         Can be set as a root screen.         |
-|`LARGE_GRAPHIC_ONLY`|Custom root template screen containing only a large graphic.         Can be set as a root screen.         |
+|`DEFAULT`|Default media / non-media screen.                Can be set as a root screen.            |
+|`MEDIA`|Default Media screen.                Can be set as a root screen.            |
+|`NON-MEDIA`|Default Non-media screen.                Can be set as a root screen.            |
+|`ONSCREEN_PRESETS`|Custom root media screen containing app-defined onscreen presets.                Can be set as a root screen.            |
+|`NAV_FULLSCREEN_MAP`|Custom root template screen containing full screen map with navigation controls.                Can be set as a root screen.            |
+|`NAV_LIST`|Custom root template screen containing video represented list.                Can be set as a root screen.            |
+|`NAV_KEYBOARD`|Custom root template screen containing video represented keyboard.                Can be set as a root screen.            |
+|`GRAPHIC_WITH_TEXT`|Custom root template screen containing half-screen graphic with lines of text.                Can be set as a root screen.            |
+|`TEXT_WITH_GRAPHIC`|Custom root template screen containing lines of text with half-screen graphic.                Can be set as a root screen.            |
+|`TILES_ONLY`|Custom root template screen containing only tiled SoftButtons.                Can be set as a root screen.            |
+|`TEXTBUTTONS_ONLY`|Custom root template screen containing only text SoftButtons.                Can be set as a root screen.            |
+|`GRAPHIC_WITH_TILES`|Custom root template screen containing half-screen graphic with tiled SoftButtons.                Can be set as a root screen.            |
+|`TILES_WITH_GRAPHIC`|Custom root template screen containing tiled SoftButtons with half-screen graphic.                Can be set as a root screen.            |
+|`GRAPHIC_WITH_TEXT_AND_SOFTBUTTONS`|Custom root template screen containing half-screen graphic with text and SoftButtons.                Can be set as a root screen.            |
+|`TEXT_AND_SOFTBUTTONS_WITH_GRAPHIC`|Custom root template screen containing text and SoftButtons with half-screen graphic.                Can be set as a root screen.            |
+|`GRAPHIC_WITH_TEXTBUTTONS`|Custom root template screen containing half-screen graphic with text only SoftButtons.                Can be set as a root screen.            |
+|`TEXTBUTTONS_WITH_GRAPHIC`|Custom root template screen containing text only SoftButtons with half-screen graphic.                Can be set as a root screen.            |
+|`LARGE_GRAPHIC_WITH_SOFTBUTTONS`|Custom root template screen containing a large graphic and SoftButtons.                Can be set as a root screen.            |
+|`DOUBLE_GRAPHIC_WITH_SOFTBUTTONS`|Custom root template screen containing two graphics and SoftButtons.                Can be set as a root screen.            |
+|`LARGE_GRAPHIC_ONLY`|Custom root template screen containing only a large graphic.                Can be set as a root screen.            |
 
 
 ### FunctionID
@@ -1226,95 +1316,6 @@ Enumerations of all available system capability types
 |`PHONE_CALL`||
 |`VIDEO_STREAMING`||
 |`REMOTE_CONTROL`||
-
-
-### VideoStreamingProtocol
-Enum for each type of video streaming protocol type.
-
-##### Elements
-
-| Value | Description | 
-| ---------- |:-----------:|
-|`RAW`|Raw stream bytes that contains no timestamp data and is the lowest supported video streaming|
-|`RTP`|RTP facilitates the transfer of real-time data. Information provided by this protocol include timestamps (for synchronization), sequence numbers (for packet loss and reordering detection) and the payload format which indicates the encoded format of the data.|
-|`RTSP`|The transmission of streaming data itself is not a task of RTSP. Most RTSP servers use the Real-time Transport Protocol (RTP) in conjunction with Real-time Control Protocol (RTCP) for media stream delivery. However, some vendors implement proprietary transport protocols. |
-|`RTMP`|Real-Time Messaging Protocol (RTMP) was initially a proprietary protocol developed by Macromedia for streaming audio, video and data over the Internet, between a Flash player and a server. Macromedia is now owned by Adobe, which has released an incomplete version of the specification of the protocol for public use.|
-|`WEBM`|The WebM container is based on a profile of Matroska. WebM initially supported VP8 video and Vorbis audio streams. In 2013 it was updated to accommodate VP9 video and Opus audio.|
-
-
-### VideoStreamingCodec
-Enum for each type of video streaming codec.
-
-##### Elements
-
-| Value | Description | 
-| ---------- |:-----------:|
-|`H264`|A block-oriented motion-compensation-based video compression standard. As of 2014 it is one of the most commonly used formats for the recording, compression, and distribution of video content.|
-|`H265`|High Efficiency Video Coding (HEVC), also known as H.265 and MPEG-H Part 2, is a video compression standard, one of several potential successors to the widely used AVC (H.264 or MPEG-4 Part 10). In comparison to AVC, HEVC offers about double the data compression ratio at the same level of video quality, or substantially improved video quality at the same bit rate. It supports resolutions up to 8192x4320, including 8K UHD.|
-|`Theora`|Theora is derived from the formerly proprietary VP3 codec, released into the public domain by On2 Technologies. It is broadly comparable in design and bitrate efficiency to MPEG-4 Part 2, early versions of Windows Media Video, and RealVideo while lacking some of the features present in some of these other codecs. It is comparable in open standards philosophy to the BBC's Dirac codec.|
-|`VP8`|VP8 can be multiplexed into the Matroska-based container format WebM along with Vorbis and Opus audio. The image format WebP is based on VP8's intra-frame coding. VP8's direct successor, VP9, and the emerging royalty-free internet video format AV1 from the Alliance for Open Media (AOMedia) are based on VP8.|
-|`VP9`|Similar to VP8, but VP9 is customized for video resolutions beyond high-definition video (UHD) and also enables lossless compression.|
-
-
-### ModuleType
-##### Elements
-
-| Value | Description | 
-| ---------- |:-----------:|
-|`CLIMATE`||
-|`RADIO`||
-
-
-### DefrostZone
-##### Elements
-
-| Value | Description | 
-| ---------- |:-----------:|
-|`FRONT`||
-|`REAR`||
-|`ALL`||
-|`NONE`||
-
-
-### VentilationMode
-##### Elements
-
-| Value | Description | 
-| ---------- |:-----------:|
-|`UPPER`||
-|`LOWER`||
-|`BOTH`||
-|`NONE`||
-
-
-### RadioBand
-##### Elements
-
-| Value | Description | 
-| ---------- |:-----------:|
-|`AM`||
-|`FM`||
-|`XM`||
-
-
-### RadioState
-##### Elements
-
-| Value | Description | 
-| ---------- |:-----------:|
-|`ACQUIRING`||
-|`ACQUIRED`||
-|`MULTICAST`||
-|`NOT_FOUND`||
-
-
-### TemperatureUnit
-##### Elements
-
-| Value | Description | 
-| ---------- |:-----------:|
-|`FAHRENHEIT`||
-|`CELSIUS`||
 
 
 ### MetadataType
@@ -1753,9 +1754,9 @@ Contains information about a button's capabilities.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`name`|ButtonName|True|The name of the button. See ButtonName.|
-|`shortPressAvailable`|Boolean|True|The button supports a short press.         Whenever the button is pressed short, onButtonPressed( SHORT) will be invoked.         |
-|`longPressAvailable`|Boolean|True|The button supports a LONG press.         Whenever the button is pressed long, onButtonPressed( LONG) will be invoked.         |
-|`upDownAvailable`|Boolean|True|The button supports "button down" and "button up".         Whenever the button is pressed, onButtonEvent( DOWN) will be invoked.         Whenever the button is released, onButtonEvent( UP) will be invoked.         |
+|`shortPressAvailable`|Boolean|True|The button supports a short press.                Whenever the button is pressed short, onButtonPressed( SHORT) will be invoked.            |
+|`longPressAvailable`|Boolean|True|The button supports a LONG press.                Whenever the button is pressed long, onButtonPressed( LONG) will be invoked.            |
+|`upDownAvailable`|Boolean|True|The button supports "button down" and "button up".                Whenever the button is pressed, onButtonEvent( DOWN) will be invoked.                Whenever the button is released, onButtonEvent( UP) will be invoked.            |
 
 
 ### SoftButtonCapabilities
@@ -1765,9 +1766,9 @@ Contains information about a SoftButton's capabilities.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`shortPressAvailable`|Boolean|True|The button supports a short press.         Whenever the button is pressed short, onButtonPressed( SHORT) will be invoked.         |
-|`longPressAvailable`|Boolean|True|The button supports a LONG press.         Whenever the button is pressed long, onButtonPressed( LONG) will be invoked.         |
-|`upDownAvailable`|Boolean|True|The button supports "button down" and "button up".         Whenever the button is pressed, onButtonEvent( DOWN) will be invoked.         Whenever the button is released, onButtonEvent( UP) will be invoked.         |
+|`shortPressAvailable`|Boolean|True|The button supports a short press.                Whenever the button is pressed short, onButtonPressed( SHORT) will be invoked.            |
+|`longPressAvailable`|Boolean|True|The button supports a LONG press.                Whenever the button is pressed long, onButtonPressed( LONG) will be invoked.            |
+|`upDownAvailable`|Boolean|True|The button supports "button down" and "button up".                Whenever the button is pressed, onButtonEvent( DOWN) will be invoked.                Whenever the button is released, onButtonEvent( UP) will be invoked.            |
 |`imageSupported`|Boolean|True|The button supports referencing a static or dynamic image.|
 
 
@@ -1796,8 +1797,8 @@ Contains information about on-screen preset capabilities.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`parentID`|Integer|False|unique ID of the sub menu, the command will be added to.         If not provided, it will be provided to the top level of the in application menu.         |
-|`position`|Integer|False|Position within the items that are are at top level of the in application menu.         0 will insert at the front.         1 will insert at the second position.         if position is greater or equal than the number of items on top level, the sub menu will be appended to the end.         If this param was omitted the entry will be added at the end.         |
+|`parentID`|Integer|False|unique ID of the sub menu, the command will be added to.                If not provided, it will be provided to the top level of the in application menu.            |
+|`position`|Integer|False|Position within the items that are are at top level of the in application menu.                0 will insert at the front.                1 will insert at the second position.                if position is greater or equal than the number of items on top level, the sub menu will be appended to the end.                If this param was omitted the entry will be added at the end.            |
 |`menuName`|String|True|Text to show in the menu for this sub menu.|
 
 
@@ -1808,7 +1809,7 @@ A TTS chunk, that consists of the text/phonemes to speak and the type (like text
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`text`|String|True|The text or phonemes to speak.         May not be empty.         |
+|`text`|String|True|The text or phonemes to speak.                May not be empty.            |
 |`type`|SpeechCapabilities|True|Describes, whether it is text or a specific phoneme set. See SpeechCapabilities|
 
 
@@ -1841,7 +1842,7 @@ Configuration of on-screen keyboard (if available).
 | ---------- | ---------- |:-----------: |:-----------:|
 |`language`|Language|False|The keyboard language.|
 |`keyboardLayout`|KeyboardLayout|False|Desired keyboard layout.|
-|`keypressMode`|KeypressMode|False|Desired keypress mode.         If omitted, this value will be set to RESEND_CURRENT_ENTRY.         |
+|`keypressMode`|KeypressMode|False|Desired keypress mode.                If omitted, this value will be set to RESEND_CURRENT_ENTRY.            |
 |`limitedCharacterList`|String[]|False|Array of keyboard characters to enable.|
 |`autoCompleteText`|String|False|Allows an app to prepopulate the text field with a suggested or completed entry as the user types|
 
@@ -1937,6 +1938,17 @@ Extended capabilities of the module's phone feature
 |`dialNumberEnabled`|Boolean|False|If the module has the ability to perform dial number|
 
 
+### VideoStreamingFormat
+Video streaming formats and their specifications.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`protocol`|VideoStreamingProtocol|True|Protocol type, see VideoStreamingProtocol|
+|`codec`|VideoStreamingCodec|True|Codec type, see VideoStreamingCodec|
+
+
 ### VideoStreamingCapability
 Contains information about this system's video streaming capabilities.
 
@@ -1950,24 +1962,13 @@ Contains information about this system's video streaming capabilities.
 |`hapticSpatialDataSupported`|Boolean|False|True if the system can utilize the haptic spatial data from the source being streamed. If not included, it can be assumed the module doesn't support haptic spatial data'. |
 
 
-### VideoStreamingFormat
-Video streaming formats and their specifications.
-
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-|`protocol`|VideoStreamingProtocol|True|Protocol type, see VideoStreamingProtocol|
-|`codec`|VideoStreamingCodec|True|Codec type, see VideoStreamingCodec|
-
-
 ### Temperature
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`unit`|TemperatureUnit||Temperature Unit|
-|`value`|Float||Temperature Value in TemperatureUnit specified unit. Range depends on OEM and is not checked by SDL.|
+|`unit`|TemperatureUnit|True|Temperature Unit|
+|`value`|Float|True|Temperature Value in TemperatureUnit specified unit. Range depends on OEM and is not checked by SDL.|
 
 
 ### RdsData
@@ -2026,19 +2027,9 @@ The moduleType indicates which type of data should be changed and identifies whi
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`moduleType`|ModuleType|||
+|`moduleType`|ModuleType|True||
 |`radioControlData`|RadioControlData|False||
 |`climateControlData`|ClimateControlData|False||
-
-
-### RemoteControlCapabilities
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-|`climateControlCapabilities`|ClimateControlCapabilities[]|False|If included, the platform supports RC climate controls. For this baseline version, maxsize=1. i.e. only one climate control module is supported.|
-|`radioControlCapabilities`|RadioControlCapabilities[]|False|If included, the platform supports RC radio controls.For this baseline version, maxsize=1. i.e. only one radio control module is supported.|
-|`buttonCapabilities`|ButtonCapabilities[]|False|If included, the platform supports RC button controls with the included button names.|
 
 
 ### RadioControlCapabilities
@@ -2048,7 +2039,7 @@ Contains information about a radio control module's capabilities.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`moduleName`|String||The short friendly name of the climate control module.                It should not be used to identify a module by mobile application.            |
+|`moduleName`|String|True|The short friendly name of the climate control module.                It should not be used to identify a module by mobile application.            |
 |`radioEnableAvailable`|Boolean|False|Availability of the control of enable/disable radio.                True: Available, False: Not Available, Not present: Not Available.            |
 |`radioBandAvailable`|Boolean|False|Availability of the control of radio band.                True: Available, False: Not Available, Not present: Not Available.            |
 |`radioFrequencyAvailable`|Boolean|False|Availability of the control of radio frequency.                True: Available, False: Not Available, Not present: Not Available.            |
@@ -2067,7 +2058,7 @@ Contains information about a climate control module's capabilities.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`moduleName`|String||The short friendly name of the climate control module.                It should not be used to identify a module by mobile application.|
+|`moduleName`|String|True|The short friendly name of the climate control module.                It should not be used to identify a module by mobile application.|
 |`fanSpeedAvailable`|Boolean|False|Availability of the control of fan speed.                True: Available, False: Not Available, Not present: Not Available.            |
 |`desiredTemperatureAvailable`|Boolean|False|Availability of the control of desired temperature.                True: Available, False: Not Available, Not present: Not Available.            |
 |`acEnableAvailable`|Boolean|False|Availability of the control of turn on/off AC.                True: Available, False: Not Available, Not present: Not Available.            |
@@ -2079,6 +2070,16 @@ Contains information about a climate control module's capabilities.
 |`defrostZone`|DefrostZone[]|False|A set of all defrost zones that are controllable.            |
 |`ventilationModeAvailable`|Boolean|False|Availability of the control of air ventilation mode.                True: Available, False: Not Available, Not present: Not Available.            |
 |`ventilationMode`|VentilationMode[]|False|A set of all ventilation modes that are controllable.            |
+
+
+### RemoteControlCapabilities
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`climateControlCapabilities`|ClimateControlCapabilities[]|False|If included, the platform supports RC climate controls. For this baseline version, maxsize=1. i.e. only one climate control module is supported.|
+|`radioControlCapabilities`|RadioControlCapabilities[]|False|If included, the platform supports RC radio controls.For this baseline version, maxsize=1. i.e. only one radio control module is supported.|
+|`buttonCapabilities`|ButtonCapabilities[]|False|If included, the platform supports RC button controls with the included button names.|
 
 
 ### SystemCapability
@@ -2102,7 +2103,7 @@ The systemCapabilityType indicates which type of data should be changed and iden
 | ---------- | ---------- |:-----------: |:-----------:|
 |`mainField1`|MetadataType[]|False|The type of data contained in the "mainField1" text field.|
 |`mainField2`|MetadataType[]|False|The type of data contained in the "mainField2" text field.|
-|`mainField3`|MetadataType[]|False|The type of data contained in the "MainField3" text field.|
+|`mainField3`|MetadataType[]|False|The type of data contained in the "mainField3" text field.|
 |`mainField4`|MetadataType[]|False|The type of data contained in the "mainField4" text field.|
 
 
@@ -2111,10 +2112,10 @@ The systemCapabilityType indicates which type of data should be changed and iden
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`x`|float|True|The upper left X-coordinate of the rectangle|
-|`y`|float|True|The upper left Y-coordinate of the rectangle|
-|`width`|float|True|The width of the rectangle|
-|`height`|float|True|The height of the rectangle|
+|`x`|Float|True|The upper left X-coordinate of the rectangle|
+|`y`|Float|True|The upper left Y-coordinate of the rectangle|
+|`width`|Float|True|The width of the rectangle|
+|`height`|Float|True|The height of the rectangle|
 
 
 ### HapticRect
@@ -3393,6 +3394,80 @@ Message Type: **response**
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
 
+### ButtonPress
+Message Type: **request**
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`moduleType`|ModuleType|True|The module where the button should be pressed|
+|`buttonName`|ButtonName|True|The name of supported RC climate or radio button.|
+|`buttonPressMode`|ButtonPressMode|True|Indicates whether this is a LONG or SHORT button press event.|
+
+
+### ButtonPress
+Message Type: **response**
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`resultCode`|Result|True|See Result|
+|`info`|String|False||
+|`success`|Boolean|True|true if successful; false, if failed |
+
+
+### GetInteriorVehicleData
+Message Type: **request**
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`moduleType`|ModuleType|True|The type of a RC module to retrieve module data from the vehicle.                In the future, this should be the Identification of a module.            |
+|`subscribe`|Boolean|False|If subscribe is true, the head unit will register onInteriorVehicleData notifications for the requested moduelType.                If subscribe is false, the head unit will unregister onInteriorVehicleData notifications for the requested moduelType.            |
+
+
+### GetInteriorVehicleData
+Message Type: **response**
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`moduleData`|ModuleData|True||
+|`resultCode`|Result|True|See Result|
+|`info`|String|False||
+|`success`|Boolean|True|true if successful; false, if failed |
+|`isSubscribed`|Boolean|False|It is a conditional-mandatory parameter: must be returned in case "subscribe" parameter was present in the related request.                if "true" - the "moduleType" from request is successfully subscribed and the head unit will send onInteriorVehicleData notifications for the moduleType.                if "false" - the "moduleType" from request is either unsubscribed or failed to subscribe.            |
+
+
+### SetInteriorVehicleData
+Message Type: **request**
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`moduleData`|ModuleData|True|The module data to set for the requested RC module.|
+
+
+### SetInteriorVehicleData
+Message Type: **response**
+
+Used to set the values of one remote control module 
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`moduleData`|ModuleData|True||
+|`resultCode`|Result|True|See Result|
+|`info`|String|False||
+|`success`|Boolean|True|true if successful; false, if failed |
+
+
 ### SubscribeWayPoints
 Message Type: **request**
 
@@ -3486,82 +3561,8 @@ Message Type: **response**
 | ---------- | ---------- |:-----------: |:-----------:|
 |`systemCapability`|SystemCapability|True||
 |`resultCode`|Result|True|See Result|
-|`info`|String|False||
+|`info`|String|False|Provides additional human readable info regarding the result.|
 |`success`|Boolean|True|true if successful; false, if failed |
-
-
-### ButtonPress
-Message Type: **request**
-
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-|`moduleType`|ModuleType||The module where the button should be pressed|
-|`buttonName`|ButtonName||The name of supported RC climate or radio button.|
-|`buttonPressMode`|ButtonPressMode||Indicates whether this is a LONG or SHORT button press event.|
-
-
-### ButtonPress
-Message Type: **response**
-
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-|`resultCode`|Result||See Result|
-|`info`|String|False||
-|`success`|Boolean||true if successful; false, if failed |
-
-
-### GetInteriorVehicleData
-Message Type: **request**
-
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-|`moduleType`|ModuleType||The type of a RC module to retrieve module data from the vehicle.                In the future, this should be the Identification of a module.            |
-|`subscribe`|Boolean|False|If subscribe is true, the head unit will register onInteriorVehicleData notifications for the requested moduelType.                If subscribe is false, the head unit will unregister onInteriorVehicleData notifications for the requested moduelType.            |
-
-
-### GetInteriorVehicleData
-Message Type: **response**
-
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-|`moduleData`|ModuleData|||
-|`resultCode`|Result||See Result|
-|`info`|String|False||
-|`success`|Boolean||true if successful; false, if failed |
-|`isSubscribed`|Boolean|False|It is a conditional-mandatory parameter: must be returned in case "subscribe" parameter was present in the related request.                if "true" - the "moduleType" from request is successfully subscribed and the head unit will send onInteriorVehicleData notifications for the moduleType.                if "false" - the "moduleType" from request is either unsubscribed or failed to subscribe.            |
-
-
-### SetInteriorVehicleData
-Message Type: **request**
-
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-|`moduleData`|ModuleData||The module data to set for the requested RC module.|
-
-
-### SetInteriorVehicleData
-Message Type: **response**
-
-Used to set the values of one remote control module 
-
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-|`moduleData`|ModuleData|||
-|`resultCode`|Result||See Result|
-|`info`|String|False||
-|`success`|Boolean||true if successful; false, if failed |
 
 
 ### SendHapticData
@@ -3583,8 +3584,9 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean||true if successful; false if failed |
-|`resultCode`|Result||See Result|
+|`success`|Boolean|True|true if successful; false if failed |
+|`info`|String|False|Provides additional human readable info regarding the result.|
+|`resultCode`|Result|True|See Result|
 
 
 ### OnHMIStatus
