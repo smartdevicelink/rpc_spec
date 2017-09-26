@@ -1790,6 +1790,7 @@ Contains information about on-screen preset capabilities.
 |`navigation`|Boolean|False|Availability of build in Nav. True: Available, False: Not Available|
 |`phoneCall`|Boolean|False|Availability of build in phone. True: Available, False: Not Available |
 |`videoStreaming`|Boolean|False|Availability of video streaming. |
+|`remoteControl`|Boolean|False|Availability of remote control feature. True: Available, False: Not Available|
 
 
 ### MenuParams
