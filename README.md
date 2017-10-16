@@ -2000,7 +2000,7 @@ Contains information about this system's video streaming capabilities.
 |`hdChannel`|Integer|False|Current HD sub-channel if available|
 |`signalStrength`|Integer|False||
 |`signalChangeThreshold`|Integer|False|If the signal strength falls below the set value for this parameter, the radio will tune to an alternative frequency|
-|`radioEnable`|Boolean|False|True if the radio is on, false is the radio is off|
+|`radioEnable`|Boolean|False|True if the radio is on, false is the radio is off. If set to false, no other data will be included.|
 |`state`|RadioState|False||
 
 
