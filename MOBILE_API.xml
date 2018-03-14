@@ -4874,40 +4874,40 @@
         </param>
     </function>
     
-    <function name="ShowConstantTBT" functionID="ShowConstantTBTID" messagetype="request">
-        <param name="navigationText1" type="String" minlength="0" maxlength="500" mandatory="false">
+    <function name="ShowConstantTBT" functionID="ShowConstantTBTID" messagetype="request" since="2.0">
+        <param name="navigationText1" type="String" minlength="0" maxlength="500" mandatory="false" since="2.0">
         </param>
-        <param name="navigationText2" type="String" minlength="0" maxlength="500" mandatory="false">
+        <param name="navigationText2" type="String" minlength="0" maxlength="500" mandatory="false" since="2.0">
         </param>
-        <param name="eta" type="String" minlength="0" maxlength="500" mandatory="false">
+        <param name="eta" type="String" minlength="0" maxlength="500" mandatory="false" since="2.0">
         </param>
-        <param name="timeToDestination" type="String" minlength="0" maxlength="500" mandatory="false">
+        <param name="timeToDestination" type="String" minlength="0" maxlength="500" mandatory="false" since="3.0">
         </param>
-        <param name="totalDistance" type="String" minlength="0" maxlength="500" mandatory="false">
+        <param name="totalDistance" type="String" minlength="0" maxlength="500" mandatory="false" since="2.0">
         </param>
-        <param name="turnIcon" type="Image" mandatory="false">
+        <param name="turnIcon" type="Image" mandatory="false" since="2.0">
         </param>
-        <param name="nextTurnIcon" type="Image" mandatory="false">
+        <param name="nextTurnIcon" type="Image" mandatory="false" since="3.0">
         </param>
-        <param name="distanceToManeuver" type="Float" minvalue="0" maxvalue="1000000000" mandatory="false">
+        <param name="distanceToManeuver" type="Float" minvalue="0" maxvalue="1000000000" mandatory="false" since="2.0">
             <description>
                 Fraction of distance till next maneuver (starting from when AlertManeuver is triggered).
                 Used to calculate progress bar.
             </description>
         </param>
-        <param name="distanceToManeuverScale" type="Float" minvalue="0" maxvalue="1000000000" mandatory="false">
+        <param name="distanceToManeuverScale" type="Float" minvalue="0" maxvalue="1000000000" mandatory="false" since="2.0">
             <description>
                 Distance till next maneuver (starting from) from previous maneuver.
                 Used to calculate progress bar.
             </description>
         </param>
-        <param name="maneuverComplete" type="Boolean" mandatory="false">
+        <param name="maneuverComplete" type="Boolean" mandatory="false" since="2.0">
             <description>
                 If and when a maneuver has completed while an AlertManeuver is active, the app must send this value set to TRUE in order to clear the AlertManeuver overlay.
                 If omitted the value will be assumed as FALSE.
             </description>
         </param>
-        <param name="softButtons" type="SoftButton" minsize="0" maxsize="3" array="true" mandatory="false">
+        <param name="softButtons" type="SoftButton" minsize="0" maxsize="3" array="true" mandatory="false" since="2.0">
             <description>
                 Three dynamic SoftButtons available (first SoftButton is fixed to "Turns").
                 If omitted on supported displays, the currently displayed SoftButton values will not change.
@@ -4915,7 +4915,7 @@
         </param>
     </function>
     
-    <function name="ShowConstantTBT" functionID="ShowConstantTBTID" messagetype="response">
+    <function name="ShowConstantTBT" functionID="ShowConstantTBTID" messagetype="response" since="2.0">
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
             <description> true, if successful; false, if failed </description>
         </param>
@@ -4937,7 +4937,7 @@
         </param>
     </function>
     
-    <function name="AlertManeuver" functionID="AlertManeuverID" messagetype="request">
+    <function name="AlertManeuver" functionID="AlertManeuverID" messagetype="request" since="2.0">
         <param name="ttsChunks" type="TTSChunk" minsize="1" maxsize="100" array="true" mandatory="false">
             <description>An array of text chunks of type TTSChunk. See TTSChunk</description>
         </param>
@@ -4946,7 +4946,7 @@
         </param>
     </function>
     
-    <function name="AlertManeuver" functionID="AlertManeuverID" messagetype="response">
+    <function name="AlertManeuver" functionID="AlertManeuverID" messagetype="response" since="2.0">
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
             <description> true, if successful; false, if failed </description>
         </param>
@@ -4971,7 +4971,7 @@
         </param>
     </function>
     
-    <function name="UpdateTurnList" functionID="UpdateTurnListID" messagetype="request">
+    <function name="UpdateTurnList" functionID="UpdateTurnListID" messagetype="request" since="2.0">
         <param name="turnList" type="Turn" minsize="1" maxsize="100" array="true" mandatory="false">
         </param>
         <param name="softButtons" type="SoftButton" minsize="0" maxsize="1" array="true" mandatory="false">
@@ -4979,7 +4979,7 @@
         </param>
     </function>
     
-    <function name="UpdateTurnList" functionID="UpdateTurnListID" messagetype="response">
+    <function name="UpdateTurnList" functionID="UpdateTurnListID" messagetype="response" since="2.0">
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
             <description> true, if successful; false, if failed </description>
         </param>
@@ -5001,32 +5001,29 @@
         </param>
     </function>
     
-    <function name="ChangeRegistration" functionID="ChangeRegistrationID" messagetype="request">
+    <function name="ChangeRegistration" functionID="ChangeRegistrationID" messagetype="request" since="2.0">
         <param name="language" type="Language" mandatory="true">
             <description>Requested voice engine (VR+TTS) language registration</description>
         </param>
         <param name="hmiDisplayLanguage" type="Language" mandatory="true">
             <description>Request display language registration</description>
         </param>
-        <param name="appName" type="String" maxlength="100" mandatory="false">
+        <param name="appName" type="String" maxlength="100" mandatory="false" since="3.0">
             <description>Request new app name registration</description>
         </param>
-        <param name="ttsName" type="TTSChunk" minsize="1" maxsize="100" array="true" mandatory="false" >
+        <param name="ttsName" type="TTSChunk" minsize="1" maxsize="100" array="true" mandatory="false" since="3.0">
             <description>Request new ttsName registration</description>
         </param>
-        <param name="ngnMediaScreenAppName" type="String" maxlength="100" mandatory="false">
+        <param name="ngnMediaScreenAppName" type="String" maxlength="100" mandatory="false" since="3.0">
             <description>Request new app short name registration</description>
         </param>
-        <param name="vrSynonyms" type="String" maxlength="40" minsize="1" maxsize="100" array="true" mandatory="false">
+        <param name="vrSynonyms" type="String" maxlength="40" minsize="1" maxsize="100" array="true" mandatory="false" since="3.0">
             <description>Request new VR synonyms registration</description>
         </param>
         
     </function>
     
-    
-    
-    <function name="ChangeRegistration" functionID="ChangeRegistrationID" messagetype="response">
-        
+    <function name="ChangeRegistration" functionID="ChangeRegistrationID" messagetype="response" since="2.0">
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
             <description>
                 true, if successful
@@ -5052,7 +5049,7 @@
         
     </function>
     
-    <function name="GenericResponse" functionID="GenericResponseID" messagetype="response">
+    <function name="GenericResponse" functionID="GenericResponseID" messagetype="response" since="1.0">
         <description>
             Generic Response is sent, when the name of a received msg cannot be retrieved. Only used in case of an error.
             Currently, only resultCode INVALID_DATA is used.
@@ -5071,7 +5068,7 @@
         </param>
     </function>
     
-    <function name="PutFile" functionID="PutFileID" messagetype="request">
+    <function name="PutFile" functionID="PutFileID" messagetype="request" since="3.0">
         <description>
             Used to push a binary data onto the module from a mobile device, such as icons and album art
             Not supported on first generation of SDL enabled modules.
@@ -5115,7 +5112,7 @@
         </param>
     </function>
     
-    <function name="PutFile" functionID="PutFileID" messagetype="response">
+    <function name="PutFile" functionID="PutFileID" messagetype="response" since="3.0">
         <description>Response is sent, when the file data was copied (success case). Or when an error occurred.</description>
         <description>Not supported on first generation SDL enabled vehicles. </description>
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
@@ -5146,7 +5143,7 @@
         </param>
     </function>
     
-    <function name="DeleteFile" functionID="DeleteFileID" messagetype="request">
+    <function name="DeleteFile" functionID="DeleteFileID" messagetype="request" since="3.0">
         <description>
             Used to delete a file resident on the module in the app's local cache.
             Not supported on first generation SDL enabled vehicles.
@@ -5158,7 +5155,7 @@
         
     </function>
     
-    <function name="DeleteFile" functionID="DeleteFileID" messagetype="response">
+    <function name="DeleteFile" functionID="DeleteFileID" messagetype="response" since="3.0">
         <description>
             Response is sent, when the file data was deleted (success case). Or when an error occurred.
             Not supported on First generation SDL enabled vehicles.
@@ -5188,14 +5185,14 @@
         </param>
     </function>
     
-    <function name="ListFiles" functionID="ListFilesID" messagetype="request">
+    <function name="ListFiles" functionID="ListFilesID" messagetype="request" since="3.0">
         <description>
             Requests the current list of resident filenames for the registered app.
             Not supported on first generation SDL enabled vehicles.
         </description>
     </function>
     
-    <function name="ListFiles" functionID="ListFilesID" messagetype="response">
+    <function name="ListFiles" functionID="ListFilesID" messagetype="response" since="3.0">
         <description>
             Returns the current list of resident filenames for the registered app along with the current space available
             Not supported on First generation SDL enabled vehicles.
@@ -5232,7 +5229,7 @@
         </param>
     </function>
     
-    <function name="SetAppIcon" functionID="SetAppIconID" messagetype="request">
+    <function name="SetAppIcon" functionID="SetAppIconID" messagetype="request" since="3.0">
         <description>
             Used to set existing local file on the module as the app's icon
             Not supported on first generation SDL enabled vehicles.
@@ -5244,7 +5241,7 @@
         
     </function>
     
-    <function name="SetAppIcon" functionID="SetAppIconID" messagetype="response">
+    <function name="SetAppIcon" functionID="SetAppIconID" messagetype="response" since="3.0">
         <description>
             Response is sent, when the file data was copied (success case). Or when an error occurred.
             Not supported on First generation SDL enabled vehicles.
@@ -5272,7 +5269,7 @@
         
     </function>
     
-    <function name="SetDisplayLayout" functionID="SetDisplayLayoutID" messagetype="request">
+    <function name="SetDisplayLayout" functionID="SetDisplayLayoutID" messagetype="request" since="3.0">
         <description>
             Used to set an alternate display layout.
             If not sent, default screen for given platform will be shown
@@ -5287,7 +5284,7 @@
         
     </function>
     
-    <function name="SetDisplayLayout" functionID="SetDisplayLayoutID" messagetype="response">
+    <function name="SetDisplayLayout" functionID="SetDisplayLayoutID" messagetype="response" since="3.0">
         
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
             <description> true, if successful; false, if failed </description>
@@ -5314,11 +5311,11 @@
         </param>
         
         <param name="softButtonCapabilities" type="SoftButtonCapabilities" minsize="1" maxsize="100" array="true" mandatory="false">
-            <description>If returned, the platform supports on-screen SoftButtons; see SoftButtonCapabilities.</description >
+            <description>If returned, the platform supports on-screen SoftButtons; see SoftButtonCapabilities.</description>
         </param>
         
         <param name="presetBankCapabilities" type="PresetBankCapabilities" mandatory="false">
-            <description>If returned, the platform supports custom on-screen Presets; see PresetBankCapabilities.</description >
+            <description>If returned, the platform supports custom on-screen Presets; see PresetBankCapabilities.</description>
         </param>
         
         <param name="info" type="String" maxlength="1000" mandatory="false" platform="documentation">
@@ -5327,7 +5324,7 @@
         
     </function>
     
-    <function name="SystemRequest" functionID="SystemRequestID" messagetype="request" >
+    <function name="SystemRequest" functionID="SystemRequestID" messagetype="request" since="3.0">
         <description>An asynchronous request from the device; binary data can be included in hybrid part of message for some requests (such as HTTP, Proprietary, or Authentication requests)</description>
         <param name="requestType" type="RequestType" mandatory="true">
             <description>
@@ -5344,7 +5341,7 @@
         </param>
     </function>
     
-    <function name="SystemRequest" functionID="SystemRequestID" messagetype="response" >
+    <function name="SystemRequest" functionID="SystemRequestID" messagetype="response" since="3.0">
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
             <description> true, if successful; false, if failed </description>
         </param>
@@ -5370,7 +5367,7 @@
         </param>
     </function>
     
-    <function name="SendLocation" functionID="SendLocationID" messagetype="request">
+    <function name="SendLocation" functionID="SendLocationID" messagetype="request" since="3.0">
         <param name="longitudeDegrees" type="Float" minvalue="-180" maxvalue="180" mandatory="false">
         </param>
         <param name="latitudeDegrees" type="Float" minvalue="-90" maxvalue="90" mandatory="false">
@@ -5401,21 +5398,21 @@
             </description>
         </param>
         
-        <param name="timeStamp" type="DateTime" mandatory="false">
+        <param name="timeStamp" type="DateTime" mandatory="false" since="4.1">
             <description>
                 timestamp in ISO 8601 format
             </description>
         </param>
         
-        <param name="address" type="OASISAddress" mandatory="false">
+        <param name="address" type="OASISAddress" mandatory="false" since="4.1">
             <description>Address to be used for setting destination</description>
         </param>
-        <param name="deliveryMode" type="DeliveryMode" mandatory="false">
+        <param name="deliveryMode" type="DeliveryMode" mandatory="false" since="4.1">
             <description>Defines the mode of prompt for user</description>
         </param>
     </function>
     
-    <function name="SendLocation" functionID="SendLocationID" messagetype="response" >
+    <function name="SendLocation" functionID="SendLocationID" messagetype="response" since="3.0">
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
             <description> true, if successful; false, if failed </description>
         </param>
@@ -5438,7 +5435,7 @@
         </param>
     </function>
     
-    <function name="DialNumber" functionID="DialNumberID" messagetype="request">
+    <function name="DialNumber" functionID="DialNumberID" messagetype="request" since="3.0">
         <description>Dials a phone number and switches to phone application.</description>
         
         <param name="number" type="String" maxlength="40" mandatory="true">
@@ -5449,7 +5446,7 @@
         </param>
     </function>
     
-    <function name="DialNumber" functionID="DialNumberID" messagetype="response">
+    <function name="DialNumber" functionID="DialNumberID" messagetype="response" since="3.0">
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
             <description>true, if successful</description>
             <description>false, if failed</description>
@@ -5471,7 +5468,7 @@
         </param>
     </function>
     
-    <function name="ButtonPress" functionID="ButtonPressID" messagetype="request">
+    <function name="ButtonPress" functionID="ButtonPressID" messagetype="request" since="4.4">
         <param name="moduleType" type="ModuleType" mandatory="true">
             <description>The module where the button should be pressed</description>
         </param>
@@ -5483,7 +5480,7 @@
         </param>
     </function>
     
-    <function name="ButtonPress" functionID="ButtonPressID" messagetype="response">
+    <function name="ButtonPress" functionID="ButtonPressID" messagetype="response" since="4.4">
         <param name="resultCode" type="Result" platform="documentation" mandatory="true">
             <description>See Result</description>
             <element name="SUCCESS"/>
@@ -5504,7 +5501,7 @@
         </param>
     </function>
     
-    <function name="GetInteriorVehicleData" functionID="GetInteriorVehicleDataID" messagetype="request">
+    <function name="GetInteriorVehicleData" functionID="GetInteriorVehicleDataID" messagetype="request" since="4.4">
         <param name="moduleType" type="ModuleType" mandatory="true">
             <description>
                 The type of a RC module to retrieve module data from the vehicle.
@@ -5519,7 +5516,7 @@
         </param>
     </function>
     
-    <function name="GetInteriorVehicleData" functionID="GetInteriorVehicleDataID" messagetype="response">
+    <function name="GetInteriorVehicleData" functionID="GetInteriorVehicleDataID" messagetype="response" since="4.4">
         <param name="moduleData" type="ModuleData" mandatory="true">
         </param>
         <param name="resultCode" type="Result" platform="documentation" mandatory="true">
@@ -5550,13 +5547,13 @@
         </param>
     </function>
     
-    <function name="SetInteriorVehicleData" functionID="SetInteriorVehicleDataID" messagetype="request">
+    <function name="SetInteriorVehicleData" functionID="SetInteriorVehicleDataID" messagetype="request" since="4.4">
         <param name="moduleData" type="ModuleData" mandatory="true">
             <description>The module data to set for the requested RC module.</description>
         </param>
     </function>
     
-    <function name="SetInteriorVehicleData" functionID="SetInteriorVehicleDataID" messagetype="response">
+    <function name="SetInteriorVehicleData" functionID="SetInteriorVehicleDataID" messagetype="response" since="4.4">
         <description>Used to set the values of one remote control module </description>
         <param name="moduleData" type="ModuleData" mandatory="true">
         </param>
@@ -5583,11 +5580,11 @@
         </param>
     </function>
     
-    <function name="SubscribeWayPoints" functionID="SubscribeWayPointsID" messagetype="request">
+    <function name="SubscribeWayPoints" functionID="SubscribeWayPointsID" messagetype="request" since="4.1">
         <description>To subscribe in getting changes for Waypoints/destinations</description>
     </function>
     
-    <function name="SubscribeWayPoints" functionID="SubscribeWayPointsID" messagetype="response">
+    <function name="SubscribeWayPoints" functionID="SubscribeWayPointsID" messagetype="response" since="4.1">
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
             <description> true, if successful; false, if failed </description>
         </param>
@@ -5606,14 +5603,14 @@
         </param>
     </function>
     
-    <function name="GetWayPoints" functionID="GetWayPointsID" messagetype="request">
+    <function name="GetWayPoints" functionID="GetWayPointsID" messagetype="request" since="4.1">
         <description>Request for getting waypoint/destination data.</description>
         <param name="wayPointType" type="WayPointType" mandatory="true">
             <description>To request for either the destination only or for all waypoints including destination</description>
         </param>
     </function>
     
-    <function name="GetWayPoints" functionID="GetWayPointsID" messagetype="response">
+    <function name="GetWayPoints" functionID="GetWayPointsID" messagetype="response" since="4.1">
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
             <description> true, if successful; false, if failed </description>
         </param>
@@ -5637,11 +5634,11 @@
         </param>
     </function>
     
-    <function name="UnsubscribeWayPoints" functionID="UnsubscribeWayPointsID" messagetype="request">
+    <function name="UnsubscribeWayPoints" functionID="UnsubscribeWayPointsID" messagetype="request" since="4.1">
         <description>Request to unsubscribe from WayPoints and Destination</description>
     </function>
     
-    <function name="UnsubscribeWayPoints" functionID="UnsubscribeWayPointsID" messagetype="response">
+    <function name="UnsubscribeWayPoints" functionID="UnsubscribeWayPointsID" messagetype="response" since="4.1">
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
             <description> true, if successful; false, if failed </description>
         </param>
@@ -5663,7 +5660,7 @@
         </param>
     </function>
     
-    <function name="GetSystemCapability" functionID="GetSystemCapabilityID" messagetype="request">
+    <function name="GetSystemCapability" functionID="GetSystemCapabilityID" messagetype="request" since="4.4">
         <description>Request for expanded information about a supported system/HMI capability</description>
         <param name="systemCapabilityType" type="SystemCapabilityType" mandatory="true">
             <description>The type of system capability to get more information on</description>
@@ -5700,14 +5697,14 @@
         </param>
     </function>
     
-    <function name="SendHapticData" functionID="SendHapticDataID" messagetype="request">
+    <function name="SendHapticData" functionID="SendHapticDataID" messagetype="request" since="4.4">
         <description>Send the spatial data gathered from SDLCarWindow or VirtualDisplayEncoder to the HMI. This data will be utilized by the HMI to determine how and when haptic events should occur</description>
         <param name="hapticRectData" type="HapticRect" minsize="0" maxsize="1000"  mandatory="false" array="true">
             <description>Array of spatial data structures that represent the locations of all user controls present on the HMI. This data should be updated if/when the application presents a new screen. When a request is sent, if successful, it will replace all spatial data previously sent through RPC. If an empty array is sent, the existing spatial data will be cleared</description>
         </param>
     </function>
     
-    <function name="SendHapticData" functionID="SendHapticDataID" messagetype="response">
+    <function name="SendHapticData" functionID="SendHapticDataID" messagetype="response" since="4.4">
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
             <description> true if successful; false if failed </description>
         </param>
@@ -5723,7 +5720,7 @@
     
     <!-- Notifications -->
     
-    <function name="OnHMIStatus" functionID="OnHMIStatusID" messagetype="notification">
+    <function name="OnHMIStatus" functionID="OnHMIStatusID" messagetype="notification" since="1.0">
         <param name="hmiLevel" type="HMILevel" mandatory="true">
             <description>See HMILevel</description>
         </param>
@@ -5737,35 +5734,35 @@
         </param>
     </function>
     
-    <function name="OnAppInterfaceUnregistered" functionID="OnAppInterfaceUnregisteredID" messagetype="notification">
+    <function name="OnAppInterfaceUnregistered" functionID="OnAppInterfaceUnregisteredID" messagetype="notification" since="1.0">
         <param name="reason" type="AppInterfaceUnregisteredReason" mandatory="true">
             <description>See AppInterfaceUnregisteredReason</description>
         </param>
     </function>
     
-    <function name="OnButtonEvent" functionID="OnButtonEventID" messagetype="notification">
+    <function name="OnButtonEvent" functionID="OnButtonEventID" messagetype="notification" since="1.0">
         <description>Notifies application of UP/DOWN events for buttons to which the application is subscribed.</description>
         <param name="buttonName" type="ButtonName" mandatory="true"/>
         <param name="buttonEventMode" type="ButtonEventMode" mandatory="true">
             <description>Indicates whether this is an UP or DOWN event.</description>
         </param>
-        <param name="customButtonID" type="Integer" minvalue="0" maxvalue="65536" mandatory="false">
+        <param name="customButtonID" type="Integer" minvalue="0" maxvalue="65536" mandatory="false" since="2.0">
             <description>If ButtonName is "CUSTOM_BUTTON", this references the integer ID passed by a custom button. (e.g. softButton ID)</description>
         </param>
     </function>
     
-    <function name="OnButtonPress" functionID="OnButtonPressID" messagetype="notification">
+    <function name="OnButtonPress" functionID="OnButtonPressID" messagetype="notification" since="1.0">
         <description>Notifies application of LONG/SHORT press events for buttons to which the application is subscribed.</description>
         <param name="buttonName" type="ButtonName" mandatory="true"/>
         <param name="buttonPressMode" type="ButtonPressMode" mandatory="true">
             <description>Indicates whether this is a LONG or SHORT button press event.</description>
         </param>
-        <param name="customButtonID" type="Integer" minvalue="0" maxvalue="65536" mandatory="false">
+        <param name="customButtonID" type="Integer" minvalue="0" maxvalue="65536" mandatory="false" since="2.0">
             <description>If ButtonName is "CUSTOM_BUTTON", this references the integer ID passed by a custom button. (e.g. softButton ID)</description>
         </param>
     </function>
     
-    <function name="OnVehicleData" functionID="OnVehicleDataID" messagetype="notification">
+    <function name="OnVehicleData" functionID="OnVehicleDataID" messagetype="notification" since="2.0">
         <description>Callback for the periodic and non periodic vehicle data read function.</description>
         <param name="gps" type="GPSData" mandatory="false">
             <description>See GPSData</description>
@@ -5848,7 +5845,7 @@
         
     </function>
     
-    <function name="OnCommand" functionID="OnCommandID" messagetype="notification">
+    <function name="OnCommand" functionID="OnCommandID" messagetype="notification" since="1.0">
         <param name="cmdID" type="Integer" minvalue="0" maxvalue="2000000000" mandatory="true">
             <description>Command ID, which is related to a specific menu entry</description>
         </param>
@@ -5858,32 +5855,32 @@
         </param>
     </function>
     
-    <function name="OnTBTClientState" functionID="OnTBTClientStateID" messagetype="notification" >
+    <function name="OnTBTClientState" functionID="OnTBTClientStateID" messagetype="notification" since="1.0">
         <description>Provides applications with notifications specific to the current TBT client status on the module</description>
         <param name="state" type="TBTState" mandatory="true">
             <description>Current State of TBT client</description>
         </param>
     </function>
     
-    <function name="OnDriverDistraction" functionID="OnDriverDistractionID" messagetype="notification" >
+    <function name="OnDriverDistraction" functionID="OnDriverDistractionID" messagetype="notification" since="1.0">
         <description>Provides driver distraction state to mobile applications</description>
         <param name="state" type="DriverDistractionState" mandatory="true">
             <description>Current State of Driver Distraction</description>
         </param>
     </function>
     
-    <function name="OnPermissionsChange" functionID="OnPermissionsChangeID" messagetype="notification" >
+    <function name="OnPermissionsChange" functionID="OnPermissionsChangeID" messagetype="notification" since="2.0">
         <description>Provides update to app of which policy-table-enabled functions are available</description>
         <param name="permissionItem" type="PermissionItem" minsize="0" maxsize="500" array="true" mandatory="true">
             <description>Change in permissions for a given set of RPCs</description>
         </param>
     </function>
     
-    <function name="OnAudioPassThru" functionID="OnAudioPassThruID" messagetype="notification">
+    <function name="OnAudioPassThru" functionID="OnAudioPassThruID" messagetype="notification" since="2.0">
         <description>Binary data is in binary part of hybrid msg</description>
     </function>
     
-    <function name="OnLanguageChange" functionID="OnLanguageChangeID" messagetype="notification">
+    <function name="OnLanguageChange" functionID="OnLanguageChangeID" messagetype="notification" since="2.0">
         <param name="language" type="Language" mandatory="true">
             <description>Current SDL voice engine (VR+TTS) language</description>
         </param>
@@ -5892,7 +5889,7 @@
         </param>
     </function>
     
-    <function name="OnKeyboardInput" functionID="OnKeyboardInputID" messagetype="notification" >
+    <function name="OnKeyboardInput" functionID="OnKeyboardInputID" messagetype="notification" since="3.0">
         
         <description>On-screen keyboard event.</description>
         <description>Can be full string or individual keypresses depending on keyboard mode.</description>
@@ -5910,7 +5907,7 @@
         
     </function>
     
-    <function name="OnTouchEvent" functionID="OnTouchEventID" messagetype="notification" >
+    <function name="OnTouchEvent" functionID="OnTouchEventID" messagetype="notification" since="3.0">
         <description>Notifies about touch events on the screen's prescribed area</description>
         <param name="type" type="TouchType" mandatory="true">
             <description>The type of touch event.</description>
@@ -5920,7 +5917,7 @@
         </param>
     </function>
     
-    <function name="OnSystemRequest" functionID="OnSystemRequestID" messagetype="notification" >
+    <function name="OnSystemRequest" functionID="OnSystemRequestID" messagetype="notification" since="3.0">
         <description>
             An asynchronous request from the system for specific data from the device or the cloud or response to a request from the device or cloud
             Binary data can be included in hybrid part of message for some requests (such as Authentication request responses)
@@ -5952,7 +5949,7 @@
         </param>
     </function>
     
-    <function name="OnHashChange" functionID="OnHashChangeID" messagetype="notification">
+    <function name="OnHashChange" functionID="OnHashChangeID" messagetype="notification" since="3.0">
         <description>
             Notification containing an updated hashID which can be used over connection cycles (i.e. loss of connection, ignition cycles, etc.).
             Sent after initial registration and subsequently after any change in the calculated hash of all persisted app data.
@@ -5962,14 +5959,14 @@
         </param>
     </function>
     
-    <function name="OnWayPointChange" functionID="OnWayPointChangeID" messagetype="notification">
+    <function name="OnWayPointChange" functionID="OnWayPointChangeID" messagetype="notification" since="4.1">
         <description>Notification which provides the entire LocationDetails when there is a change to any waypoints or destination.</description>
         <param name="wayPoints" type="LocationDetails" mandatory="true" array="true" minsize="1" maxsize="10">
             <description>See LocationDetails</description>
         </param>
     </function>
     
-    <function name="OnInteriorVehicleData" functionID="OnInteriorVehicleDataID" messagetype="notification">
+    <function name="OnInteriorVehicleData" functionID="OnInteriorVehicleDataID" messagetype="notification" since="4.4">
         <param name="moduleData" type="ModuleData"  mandatory="true">
         </param>
     </function>
@@ -5978,7 +5975,7 @@
     <!-- Ford Specific APIs -->
     <!-- ~~~~~~~~~~~~~~~~~~ -->
     
-    <function name="EncodedSyncPData" functionID="EncodedSyncPDataID" messagetype="request" >
+    <function name="EncodedSyncPData" functionID="EncodedSyncPDataID" messagetype="request" since="1.0">
         <description>
             Allows encoded data in the form of SyncP packets to be sent to the SYNC module.
             Legacy / v1 Protocol implementation; use SyncPData instead.
@@ -5991,7 +5988,7 @@
         </param>
     </function>
     
-    <function name="EncodedSyncPData" functionID="EncodedSyncPDataID" messagetype="response" >
+    <function name="EncodedSyncPData" functionID="EncodedSyncPDataID" messagetype="response" since="1.0">
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
             <description> true, if successful; false, if failed </description>
         </param>
@@ -6042,7 +6039,7 @@
      </function>
      -->
     
-    <function name="OnEncodedSyncPData" functionID="OnEncodedSyncPDataID" messagetype="notification" >
+    <function name="OnEncodedSyncPData" functionID="OnEncodedSyncPDataID" messagetype="notification" since="1.0">
         <description>
             Callback including encoded data of any SyncP packets that SYNC needs to send back to the mobile device.
             Legacy / v1 Protocol implementation; responds to EncodedSyncPData.
