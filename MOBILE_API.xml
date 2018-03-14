@@ -2642,7 +2642,7 @@
             <description>If the signal strength falls below the set value for this parameter, the radio will tune to an alternative frequency</description>
         </param>
         <param name="radioEnable" type="Boolean" mandatory="false">
-            <description> True if the radio is on, false is the radio is off</description>
+            <description> True if the radio is on, false is the radio is off. If set to false, no other data will be included.</description>
         </param>
         <param name="state" type="RadioState" mandatory="false">
         </param>
