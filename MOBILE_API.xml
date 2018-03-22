@@ -535,25 +535,25 @@
         <element name="CUSTOM_BUTTON" />
         <element name="SEARCH" />
         <!-- Climate Buttons -->
-        <element name="AC_MAX" since="4.4" />
-        <element name="AC" since="4.4" />
-        <element name="RECIRCULATE" since="4.4" />
-        <element name="FAN_UP" since="4.4" />
-        <element name="FAN_DOWN" since="4.4" />
-        <element name="TEMP_UP" since="4.4" />
-        <element name="TEMP_DOWN" since="4.4" />
-        <element name="DEFROST_MAX" since="4.4" />
-        <element name="DEFROST" since="4.4" />
-        <element name="DEFROST_REAR" since="4.4" />
-        <element name="UPPER_VENT" since="4.4" />
-        <element name="LOWER_VENT" since="4.4" />
+        <element name="AC_MAX" since="4.5" />
+        <element name="AC" since="4.5" />
+        <element name="RECIRCULATE" since="4.5" />
+        <element name="FAN_UP" since="4.5" />
+        <element name="FAN_DOWN" since="4.5" />
+        <element name="TEMP_UP" since="4.5" />
+        <element name="TEMP_DOWN" since="4.5" />
+        <element name="DEFROST_MAX" since="4.5" />
+        <element name="DEFROST" since="4.5" />
+        <element name="DEFROST_REAR" since="4.5" />
+        <element name="UPPER_VENT" since="4.5" />
+        <element name="LOWER_VENT" since="4.5" />
         <!-- Radio Buttons -->
-        <element name="VOLUME_UP" since="4.4" />
-        <element name="VOLUME_DOWN" since="4.4" />
-        <element name="EJECT" since="4.4" />
-        <element name="SOURCE" since="4.4" />
-        <element name="SHUFFLE" since="4.4" />
-        <element name="REPEAT" since="4.4" />
+        <element name="VOLUME_UP" since="4.5" />
+        <element name="VOLUME_DOWN" since="4.5" />
+        <element name="EJECT" since="4.5" />
+        <element name="SOURCE" since="4.5" />
+        <element name="SHUFFLE" since="4.5" />
+        <element name="REPEAT" since="4.5" />
     </enum>
     
     <enum name="MediaClockFormat" since="1.0">
@@ -854,7 +854,7 @@
         <element name="QUEUE" />
     </enum>
     
-    <enum name="VideoStreamingProtocol" since="4.4">
+    <enum name="VideoStreamingProtocol" since="4.5">
         <description>Enum for each type of video streaming protocol type.</description>
         <element name="RAW">
             <description>Raw stream bytes that contains no timestamp data and is the lowest supported video streaming</description>
@@ -873,7 +873,7 @@
         </element>
     </enum>
     
-    <enum name="VideoStreamingCodec" since="4.4">
+    <enum name="VideoStreamingCodec" since="4.5">
         <description>Enum for each type of video streaming codec.</description>
         <element name="H264">
             <description>A block-oriented motion-compensation-based video compression standard. As of 2014 it is one of the most commonly used formats for the recording, compression, and distribution of video content.</description>
@@ -1254,39 +1254,39 @@
         <element name="INVALID" />
     </enum>
     
-    <enum name="ModuleType" since="4.4">
+    <enum name="ModuleType" since="4.5">
         <element name="CLIMATE"/>
         <element name="RADIO"/>
     </enum>
     
-    <enum name="DefrostZone" since="4.4">
+    <enum name="DefrostZone" since="4.5">
         <element name="FRONT"/>
         <element name="REAR"/>
         <element name="ALL"/>
         <element name="NONE"/>
     </enum>
     
-    <enum name="VentilationMode" since="4.4">
+    <enum name="VentilationMode" since="4.5">
         <element name="UPPER"/>
         <element name="LOWER"/>
         <element name="BOTH"/>
         <element name="NONE"/>
     </enum>
     
-    <enum name="RadioBand" since="4.4">
+    <enum name="RadioBand" since="4.5">
         <element name="AM"/>
         <element name="FM"/>
         <element name="XM"/>
     </enum>
     
-    <enum name="RadioState" since="4.4">
+    <enum name="RadioState" since="4.5">
         <element name="ACQUIRING"/>
         <element name="ACQUIRED"/>
         <element name="MULTICAST"/>
         <element name="NOT_FOUND"/>
     </enum>
     
-    <enum name="TemperatureUnit" since="4.4">
+    <enum name="TemperatureUnit" since="4.5">
         <element name="FAHRENHEIT"/>
         <element name="CELSIUS"/>
     </enum>
@@ -1824,7 +1824,7 @@
         <element name="BEGIN"/>
         <element name="MOVE"/>
         <element name="END"/>
-        <element name="CANCEL"/>
+        <element name="CANCEL" since="4.5"/>
     </enum>
     
     <struct name="TouchEvent" since="3.0">
@@ -1995,10 +1995,10 @@
         <param name="phoneCall" type="Boolean" mandatory="false">
             <description>Availability of build in phone. True: Available, False: Not Available </description>
         </param>
-        <param name="videoStreaming" type="Boolean" mandatory="false" since="4.4">
+        <param name="videoStreaming" type="Boolean" mandatory="false" since="4.5">
             <description>Availability of video streaming. </description>
         </param>
-         <param name="remoteControl" type="Boolean" mandatory="false" since="4.4">
+         <param name="remoteControl" type="Boolean" mandatory="false" since="4.5">
             <description>Availability of remote control feature. True: Available, False: Not Available</description>
          </param>
     </struct>
@@ -2173,8 +2173,8 @@
         <element name="BACKGROUND_PROCESS" />
         <element name="TESTING" />
         <element name="SYSTEM" />
-        <element name="PROJECTION" />
-        <element name="REMOTE_CONTROL" />
+        <element name="PROJECTION" since="4.5" />
+        <element name="REMOTE_CONTROL" since="4.5" />
     </enum>         
 
     <enum name="PredefinedLayout" platform="documentation" since="3.0">
@@ -2348,14 +2348,14 @@
         <element name="SystemRequestID" value="38" hexvalue="26" since="3.0" />
         <element name="SendLocationID" value="39" hexvalue="27" since="3.0" />
         <element name="DialNumberID" value="40" hexvalue="28" since="3.0" />
-        <element name="ButtonPressID" value="41" hexvalue="29" since="4.4" />
-        <element name="GetInteriorVehicleDataID" value="43" hexvalue="2B" since="4.4" />
-        <element name="SetInteriorVehicleDataID" value="44" hexvalue="2C" since="4.4" />
+        <element name="ButtonPressID" value="41" hexvalue="29" since="4.5" />
+        <element name="GetInteriorVehicleDataID" value="43" hexvalue="2B" since="4.5" />
+        <element name="SetInteriorVehicleDataID" value="44" hexvalue="2C" since="4.5" />
         <element name="GetWayPointsID" value="45" hexvalue="2D" since="4.1" />
         <element name="SubscribeWayPointsID" value="46" hexvalue="2E" since="4.1" />
         <element name="UnsubscribeWayPointsID" value="47" hexvalue="2F" since="4.1" />
-        <element name="GetSystemCapabilityID" value="48" hexvalue="30" since="4.4" />
-        <element name="SendHapticDataID" value="49" hexvalue="31" since="4.4" />
+        <element name="GetSystemCapabilityID" value="48" hexvalue="30" since="4.5" />
+        <element name="SendHapticDataID" value="49" hexvalue="31" since="4.5" />
         
         <!--
          Base Notifications
@@ -2377,7 +2377,7 @@
         <element name="OnTouchEventID" value="32780" hexvalue="800C" since="3.0" />
         <element name="OnSystemRequestID" value="32781" hexvalue="800D" since="3.0" />
         <element name="OnHashChangeID" value="32782" hexvalue="800E" since="3.0" />
-        <element name="OnInteriorVehicleDataID" value="32783" hexvalue="800F" since="4.4" />
+        <element name="OnInteriorVehicleDataID" value="32783" hexvalue="800F" since="4.5" />
         <element name="OnWayPointChangeID" value="32784" hexvalue="8010" since="4.1" />
         
         <!--
@@ -2530,7 +2530,7 @@
         </param>
     </struct>
     
-    <enum name="SystemCapabilityType" since="4.4">
+    <enum name="SystemCapabilityType" since="4.5">
         <description>Enumerations of all available system capability types</description>
         <element name="NAVIGATION"/>
         <element name="PHONE_CALL"/>
@@ -2538,7 +2538,7 @@
         <element name="REMOTE_CONTROL"/>
     </enum>
     
-    <struct name="NavigationCapability" since="4.4">
+    <struct name="NavigationCapability" since="4.5">
         <description>Extended capabilities for an onboard navigation system</description>
         <param name="sendLocationEnabled" type="Boolean" mandatory="false">
             <description>If the module has the ability to add locations to the onboard nav</description>
@@ -2548,14 +2548,14 @@
         </param>
     </struct>
     
-    <struct name="PhoneCapability" since="4.4">
+    <struct name="PhoneCapability" since="4.5">
         <description>Extended capabilities of the module's phone feature</description>
         <param name="dialNumberEnabled" type="Boolean" mandatory="false">
             <description>If the module has the ability to perform dial number</description>
         </param>
     </struct>
     
-    <struct name="VideoStreamingFormat" since="4.4">
+    <struct name="VideoStreamingFormat" since="4.5">
         <description>Video streaming formats and their specifications.</description>
         <param name="protocol" type="VideoStreamingProtocol" mandatory="true">
             <description>Protocol type, see VideoStreamingProtocol</description>
@@ -2565,7 +2565,7 @@
         </param>
     </struct>
 
-    <struct name="VideoStreamingCapability" since="4.4">
+    <struct name="VideoStreamingCapability" since="4.5">
         <description>Contains information about this system's video streaming capabilities.</description>
         <param name="preferredResolution" type="ImageResolution" mandatory="false">
             <description>The preferred resolution of a video stream for decoding and rendering on HMI.</description>
@@ -2583,7 +2583,7 @@
     
     <!---Remote control  -->
     
-    <struct name="Temperature" since="4.4">
+    <struct name="Temperature" since="4.5">
         <param name="unit" type="TemperatureUnit" mandatory="true">
             <description>Temperature Unit</description>
         </param>
@@ -2592,7 +2592,7 @@
         </param>
     </struct>
     
-    <struct name="RdsData" since="4.4">
+    <struct name="RdsData" since="4.5">
         <param name="PS" type="String" minlength="0" maxlength="8" mandatory="false">
             <description>Program Service Name</description>
         </param>
@@ -2619,7 +2619,7 @@
         </param>
     </struct>
     
-    <struct name="RadioControlData" since="4.4">
+    <struct name="RadioControlData" since="4.5">
         <param name="frequencyInteger" type="Integer" minvalue="0" maxvalue="1710" mandatory="false">
             <description>The integer part of the frequency ie for 101.7 this value should be 101</description>
         </param>
@@ -2648,7 +2648,7 @@
         </param>
     </struct>
     
-    <struct name="ClimateControlData" since="4.4">
+    <struct name="ClimateControlData" since="4.5">
         <param name="fanSpeed" type="Integer" minvalue="0" maxvalue="100" mandatory="false">
         </param>
         <param name="currentTemperature" type="Temperature" mandatory="false">
@@ -2671,7 +2671,7 @@
         </param>
     </struct>
     
-    <struct name="ModuleData" since="4.4">
+    <struct name="ModuleData" since="4.5">
         <description>The moduleType indicates which type of data should be changed and identifies which data object exists in this struct. For example, if the moduleType is CLIMATE then a "climateControlData" should exist</description>
         <param name="moduleType" type="ModuleType" mandatory="true">
         </param>
@@ -2681,7 +2681,7 @@
         </param>
     </struct>
     
-    <struct name="RadioControlCapabilities" since="4.4">
+    <struct name="RadioControlCapabilities" since="4.5">
         <description>Contains information about a radio control module's capabilities.</description>
         <!-- need an ID in the future -->
         <param name="moduleName" type="String" maxlength="100" mandatory="true">
@@ -2746,7 +2746,7 @@
         </param>
     </struct>
     
-    <struct name="ClimateControlCapabilities" since="4.4">
+    <struct name="ClimateControlCapabilities" since="4.5">
         <description>Contains information about a climate control module's capabilities.</description>
         <!-- need an ID in the future -->
         <param name="moduleName" type="String" maxlength="100" mandatory="true">
@@ -2819,7 +2819,7 @@
         </param>
     </struct>
     
-    <struct name="RemoteControlCapabilities" since="4.4">
+    <struct name="RemoteControlCapabilities" since="4.5">
         <param name="climateControlCapabilities" type="ClimateControlCapabilities" mandatory="false" minsize="1" maxsize="100" array="true">
             <description>If included, the platform supports RC climate controls. For this baseline version, maxsize=1. i.e. only one climate control module is supported.</description >
         </param>
@@ -2832,7 +2832,7 @@
     </struct>
     
     <!-- End of RC -->
-    <struct name="SystemCapability" since="4.4">
+    <struct name="SystemCapability" since="4.5">
         <description>The systemCapabilityType indicates which type of data should be changed and identifies which data object exists in this struct. For example, if the SystemCapability Type is NAVIGATION then a "navigationCapability" should exist</description>
         <param name="systemCapabilityType" type="SystemCapabilityType" mandatory="true">
             <description>Used as a descriptor of what data to expect in this struct. The corresponding param to this enum should be included and the only other para included.</description>
@@ -2851,7 +2851,7 @@
         </param>
     </struct>
     
-    <enum name="MetadataType" since="4.4">
+    <enum name="MetadataType" since="4.5">
         <element name="mediaTitle">
             <description>The data in this field contains the title of the currently playing audio track.</description>
         </element>
@@ -2890,7 +2890,7 @@
         </element>
     </enum>
     
-    <struct name="MetadataTags" since="4.4">
+    <struct name="MetadataTags" since="4.5">
         <param name="mainField1" type="MetadataType" minsize="0" maxsize="5" array="true" mandatory="false">
             <description>The type of data contained in the "mainField1" text field.</description>
         </param>
@@ -2905,7 +2905,7 @@
         </param>
     </struct>
     
-    <struct name="Rectangle" since="4.4">
+    <struct name="Rectangle" since="4.5">
         <param name="x" type="Float" mandatory="true">
             <description>The upper left X-coordinate of the rectangle</description>
         </param>
@@ -2920,7 +2920,7 @@
         </param>
     </struct>
     
-    <struct name="HapticRect" since="4.4">
+    <struct name="HapticRect" since="4.5">
         <description>Defines haptic data for each user control object for video streaming application</description>
         <param name="id" type="Integer" minvalue="0" maxvalue="2000000000" mandatory="true">
             <description>A user control spatial identifier</description>
@@ -3794,7 +3794,7 @@
             </description>
         </param>
         
-        <param name="metadataTags" type="MetadataTags" mandatory="false" since="4.4">
+        <param name="metadataTags" type="MetadataTags" mandatory="false" since="4.5">
             <description>App defined metadata information. See MetadataStruct. Uses mainField1, mainField2, mainField3, mainField4.
                 If omitted on supported displays, the currently set metadata tags will not change.
                 If any text field contains no tags or the none tag, the metadata tag for that textfield should be removed.</description>
@@ -5468,7 +5468,7 @@
         </param>
     </function>
     
-    <function name="ButtonPress" functionID="ButtonPressID" messagetype="request" since="4.4">
+    <function name="ButtonPress" functionID="ButtonPressID" messagetype="request" since="4.5">
         <param name="moduleType" type="ModuleType" mandatory="true">
             <description>The module where the button should be pressed</description>
         </param>
@@ -5480,7 +5480,7 @@
         </param>
     </function>
     
-    <function name="ButtonPress" functionID="ButtonPressID" messagetype="response" since="4.4">
+    <function name="ButtonPress" functionID="ButtonPressID" messagetype="response" since="4.5">
         <param name="resultCode" type="Result" platform="documentation" mandatory="true">
             <description>See Result</description>
             <element name="SUCCESS"/>
@@ -5501,7 +5501,7 @@
         </param>
     </function>
     
-    <function name="GetInteriorVehicleData" functionID="GetInteriorVehicleDataID" messagetype="request" since="4.4">
+    <function name="GetInteriorVehicleData" functionID="GetInteriorVehicleDataID" messagetype="request" since="4.5">
         <param name="moduleType" type="ModuleType" mandatory="true">
             <description>
                 The type of a RC module to retrieve module data from the vehicle.
@@ -5516,7 +5516,7 @@
         </param>
     </function>
     
-    <function name="GetInteriorVehicleData" functionID="GetInteriorVehicleDataID" messagetype="response" since="4.4">
+    <function name="GetInteriorVehicleData" functionID="GetInteriorVehicleDataID" messagetype="response" since="4.5">
         <param name="moduleData" type="ModuleData" mandatory="true">
         </param>
         <param name="resultCode" type="Result" platform="documentation" mandatory="true">
@@ -5547,13 +5547,13 @@
         </param>
     </function>
     
-    <function name="SetInteriorVehicleData" functionID="SetInteriorVehicleDataID" messagetype="request" since="4.4">
+    <function name="SetInteriorVehicleData" functionID="SetInteriorVehicleDataID" messagetype="request" since="4.5">
         <param name="moduleData" type="ModuleData" mandatory="true">
             <description>The module data to set for the requested RC module.</description>
         </param>
     </function>
     
-    <function name="SetInteriorVehicleData" functionID="SetInteriorVehicleDataID" messagetype="response" since="4.4">
+    <function name="SetInteriorVehicleData" functionID="SetInteriorVehicleDataID" messagetype="response" since="4.5">
         <description>Used to set the values of one remote control module </description>
         <param name="moduleData" type="ModuleData" mandatory="true">
         </param>
@@ -5660,14 +5660,14 @@
         </param>
     </function>
     
-    <function name="GetSystemCapability" functionID="GetSystemCapabilityID" messagetype="request" since="4.4">
+    <function name="GetSystemCapability" functionID="GetSystemCapabilityID" messagetype="request" since="4.5">
         <description>Request for expanded information about a supported system/HMI capability</description>
         <param name="systemCapabilityType" type="SystemCapabilityType" mandatory="true">
             <description>The type of system capability to get more information on</description>
         </param>
     </function>
     
-    <function name="GetSystemCapability" functionID="GetSystemCapabilityID" messagetype="response">
+    <function name="GetSystemCapability" functionID="GetSystemCapabilityID" messagetype="response" since="4.5">
         <param name="systemCapability" type="SystemCapability" mandatory="true">
         </param>
         <param name="resultCode" type="Result" platform="documentation" mandatory="true">
@@ -5697,14 +5697,14 @@
         </param>
     </function>
     
-    <function name="SendHapticData" functionID="SendHapticDataID" messagetype="request" since="4.4">
+    <function name="SendHapticData" functionID="SendHapticDataID" messagetype="request" since="4.5">
         <description>Send the spatial data gathered from SDLCarWindow or VirtualDisplayEncoder to the HMI. This data will be utilized by the HMI to determine how and when haptic events should occur</description>
         <param name="hapticRectData" type="HapticRect" minsize="0" maxsize="1000"  mandatory="false" array="true">
             <description>Array of spatial data structures that represent the locations of all user controls present on the HMI. This data should be updated if/when the application presents a new screen. When a request is sent, if successful, it will replace all spatial data previously sent through RPC. If an empty array is sent, the existing spatial data will be cleared</description>
         </param>
     </function>
     
-    <function name="SendHapticData" functionID="SendHapticDataID" messagetype="response" since="4.4">
+    <function name="SendHapticData" functionID="SendHapticDataID" messagetype="response" since="4.5">
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
             <description> true if successful; false if failed </description>
         </param>
@@ -5966,7 +5966,7 @@
         </param>
     </function>
     
-    <function name="OnInteriorVehicleData" functionID="OnInteriorVehicleDataID" messagetype="notification" since="4.4">
+    <function name="OnInteriorVehicleData" functionID="OnInteriorVehicleDataID" messagetype="notification" since="4.5">
         <param name="moduleData" type="ModuleData"  mandatory="true">
         </param>
     </function>
