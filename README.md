@@ -501,7 +501,8 @@ See DAES for further infos regarding the displays
 |`menuIcon`|The image field for the menu icon in SetGlobalProperties|
 |`cmdIcon`|The image field for AddCommand|
 |`appIcon`|The image field for the app icon (set by setAppIcon)|
-|`graphic`|The image field for Show|
+|`graphic`|The primary image field for Show|
+|`secondaryGraphic`|The secondary image field for Show|
 |`showConstantTBTIcon`|The primary image field for ShowConstantTBT|
 |`showConstantTBTNextTurnIcon`|The secondary image field for ShowConstantTBT|
 |`locationImage`|The optional image of a destination / location|
