@@ -373,6 +373,7 @@ Defines the data types that can be published and subscribed to.
 |`VEHICLEDATA_ENGINETORQUE`||
 |`VEHICLEDATA_ACCPEDAL`||
 |`VEHICLEDATA_STEERINGWHEEL`||
+|`VEHICLEDATA_ENGINEOILLIFE`||
 
 
 ### ButtonName
@@ -2716,6 +2717,7 @@ Subscribes for specific published data items.
 |`engineTorque`|Boolean|False|Torque value for engine (in Nm) on non-diesel variants|
 |`accPedalPosition`|Boolean|False|Accelerator pedal position (percentage depressed)|
 |`steeringWheelAngle`|Boolean|False|Current angle of the steering wheel (in deg)|
+|`engineOilLife`|Boolean|False|The estimated percentage of remaining oil life of the engine.|
 |`eCallInfo`|Boolean|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|Boolean|False|The status of the air bags|
 |`emergencyEvent`|Boolean|False|Information related to an emergency event (and if it occurred)|
@@ -2752,6 +2754,7 @@ Message Type: **response**
 |`engineTorque`|VehicleDataResult|False|Torque value for engine (in Nm) on non-diesel variants|
 |`accPedalPosition`|VehicleDataResult|False|Accelerator pedal position (percentage depressed)|
 |`steeringWheelAngle`|VehicleDataResult|False|Current angle of the steering wheel (in deg)|
+|`engineOilLife`|VehicleDataResult|False|The estimated percentage of remaining oil life of the engine.|
 |`eCallInfo`|VehicleDataResult|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|VehicleDataResult|False|The status of the air bags|
 |`emergencyEvent`|VehicleDataResult|False|Information related to an emergency event (and if it occurred)|
@@ -2787,6 +2790,7 @@ This function is used to unsubscribe the notifications from the subscribeVehicle
 |`engineTorque`|Boolean|False|Torque value for engine (in Nm) on non-diesel variants|
 |`accPedalPosition`|Boolean|False|Accelerator pedal position (percentage depressed)|
 |`steeringWheelAngle`|Boolean|False|Current angle of the steering wheel (in deg)|
+|`engineOilLife`|Boolean|False|The estimated percentage of remaining oil life of the engine.|
 |`eCallInfo`|Boolean|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|Boolean|False|The status of the air bags|
 |`emergencyEvent`|Boolean|False|Information related to an emergency event (and if it occurred)|
@@ -2823,6 +2827,7 @@ Message Type: **response**
 |`engineTorque`|VehicleDataResult|False|Torque value for engine (in Nm) on non-diesel variants|
 |`accPedalPosition`|VehicleDataResult|False|Accelerator pedal position (percentage depressed)|
 |`steeringWheelAngle`|VehicleDataResult|False|Current angle of the steering wheel (in deg)|
+|`engineOilLife`|VehicleDataResult|False|The estimated percentage of remaining oil life of the engine.|
 |`eCallInfo`|VehicleDataResult|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|VehicleDataResult|False|The status of the air bags|
 |`emergencyEvent`|VehicleDataResult|False|Information related to an emergency event (and if it occurred)|
@@ -2859,6 +2864,7 @@ Non periodic vehicle data read request.
 |`engineTorque`|Boolean|False|Torque value for engine (in Nm) on non-diesel variants|
 |`accPedalPosition`|Boolean|False|Accelerator pedal position (percentage depressed)|
 |`steeringWheelAngle`|Boolean|False|Current angle of the steering wheel (in deg)|
+|`engineOilLife`|Boolean|False|The estimated percentage of remaining oil life of the engine.|
 |`eCallInfo`|Boolean|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|Boolean|False|The status of the air bags|
 |`emergencyEvent`|Boolean|False|Information related to an emergency event (and if it occurred)|
@@ -2896,6 +2902,7 @@ Message Type: **response**
 |`engineTorque`|Float|False|Torque value for engine (in Nm) on non-diesel variants|
 |`accPedalPosition`|Float|False|Accelerator pedal position (percentage depressed)|
 |`steeringWheelAngle`|Float|False|Current angle of the steering wheel (in deg)|
+|`engineOilLife`|Float|False|The estimated percentage of remaining oil life of the engine.|
 |`eCallInfo`|ECallInfo|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|AirbagStatus|False|The status of the air bags|
 |`emergencyEvent`|EmergencyEvent|False|Information related to an emergency event (and if it occurred)|
@@ -3669,6 +3676,7 @@ Callback for the periodic and non periodic vehicle data read function.
 |`engineTorque`|Float|False|Torque value for engine (in Nm) on non-diesel variants|
 |`accPedalPosition`|Float|False|Accelerator pedal position (percentage depressed)|
 |`steeringWheelAngle`|Float|False|Current angle of the steering wheel (in deg)|
+|`engineOilLife`|Float|False|The estimated percentage of remaining oil life of the engine.|
 |`eCallInfo`|ECallInfo|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|AirbagStatus|False|The status of the air bags|
 |`emergencyEvent`|EmergencyEvent|False|Information related to an emergency event (and if it occurred)|
