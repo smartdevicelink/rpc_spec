@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="no"?>
 <?xml-stylesheet type="text/xml" href="protocol2html.xsl"?>
 
-<interface name="SmartDeviceLink RAPI" version="4.5.0" date="2017-04-28">
+<interface name="SmartDeviceLink RAPI" version="4.5.0" date="2017-09-22">
     <enum name="Result" internal_scope="base">
         <element name="SUCCESS">
             <description>The request succeeded</description>
@@ -1994,9 +1994,9 @@
         <param name="videoStreaming" type="Boolean" mandatory="false">
             <description>Availability of video streaming. </description>
         </param>
-         <param name="remoteControl" type="Boolean" mandatory="false">
+        <param name="remoteControl" type="Boolean" mandatory="false">
             <description>Availability of remote control feature. True: Available, False: Not Available</description>
-         </param>
+        </param>
     </struct>
     <struct name="MenuParams">
         <param name="parentID" type="Integer" minvalue="0" maxvalue="2000000000" defvalue="0" mandatory="false">
