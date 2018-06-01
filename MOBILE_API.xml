@@ -899,6 +899,9 @@
         <param name="imageType" type="ImageType" mandatory="true">
             <description>Describes, whether it is a static or dynamic image.</description>
         </param>
+        <param name="isTemplate" type="Boolean" mandatory="false" since="4.6">
+            <description>If true, the image is a template image and can be recolored by the HMI</description>
+        </param>
     </struct>
     
     <struct name="SoftButton" since="2.0">
