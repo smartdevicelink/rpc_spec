@@ -1149,6 +1149,7 @@ Enumeration listing possible asynchronous requests.
 |`EMERGENCY`||
 |`MEDIA`||
 |`FOTA`||
+|`OEM_SPECIFIC`||
 
 
 ### AppHMIType
@@ -3326,6 +3327,7 @@ An asynchronous request from the device; binary data can be included in hybrid p
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`requestType`|RequestType|True|The type of system request.                Note that Proprietary requests should forward the binary data to the known proprietary module on the system.            |
+|`requestSubType`|String|False|This parameter is filled for supporting OEM proprietary data exchanges.            |
 |`fileName`|String|False|Filename of HTTP data to store in predefined system staging area.                Mandatory if requestType is HTTP.                PROPRIETARY requestType should ignore this parameter.            |
 
 
@@ -3783,6 +3785,7 @@ An asynchronous request from the system for specific data from the device or the
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`requestType`|RequestType|True|The type of system request.|
+|`requestSubType`|String|False|This parameter is filled for supporting OEM proprietary data exchanges.            |
 |`url`|String|False|Optional URL for HTTP requests.                If blank, the binary data shall be forwarded to the app.                If not blank, the binary data shall be forwarded to the url with a provided timeout in seconds.            |
 |`timeout`|Integer|False|Optional timeout for HTTP requests                Required if a URL is provided            |
 |`fileType`|FileType|False|Optional file type (meant for HTTP file requests).|
