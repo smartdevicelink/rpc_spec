@@ -1492,7 +1492,7 @@
         </element>
     </enum>
     
-    <enum name="PowerModeQualificationStatus" since="2.0"->
+    <enum name="PowerModeQualificationStatus" since="2.0">
         <description>Reflects the status of the current power mode qualification.</description>
         <element name="POWER_MODE_UNDEFINED">
         </element>
