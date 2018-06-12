@@ -2192,6 +2192,7 @@ The response to registerAppInterface
 |`hmiCapabilities`|HMICapabilities|False|Specifies the HMIÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢s capabilities. See HMICapabilities.|
 |`sdlVersion`|String|False|The SmartDeviceLink version.|
 |`systemSoftwareVersion`|String|False|The software version of the system that implements the SmartDeviceLink core.|
+|`iconResumed`|Boolean|True|Existence of apps icon at system. If true, apps icon            was resumed at system. If false, apps icon is not resumed at system|
 
 
 ### UnregisterAppInterface
