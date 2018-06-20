@@ -513,6 +513,7 @@
         <element name="VEHICLEDATA_ENGINETORQUE" />
         <element name="VEHICLEDATA_ACCPEDAL" />
         <element name="VEHICLEDATA_STEERINGWHEEL" />
+        <element name="VEHICLEDATA_ELECTRONICPARKBRAKESTATUS" />
     </enum>
     
     <enum name="ButtonName">
@@ -1081,6 +1082,34 @@
         </element>
         <element name="NOT_SUPPORTED" internal_name="CVS_NOT_SUPPORTED">
         </element>
+    </enum>
+    
+    <enum name="ElectronicParkBrakeStatus">
+      <element name="CLOSED" />
+        <description>
+          Park brake actuators have been fully applied.
+        </description>		
+        </element>
+      <element name="TRANSITION">
+        <description>
+          Park brake actuators are transitioning to either Apply/Closed or Release/Open state.
+        </description>
+      </element>
+      <element name="OPEN">
+        <description>
+          Park brake actuators are released.
+        </description>		
+      </element>
+      <element name="DRIVE_ACTIVE">
+        <description>
+          When driver pulls the Electronic Park Brake switch while driving "at speed".
+        </description>
+      </element>
+     <element name="FAULT">
+        <description>
+          When system has a fault or is under maintenance.
+        </description>
+     </element>
     </enum>
     
     <struct name="SingleTireStatus">
@@ -4095,6 +4124,9 @@
         <param name="steeringWheelAngle" type="Boolean" mandatory="false">
             <description>Current angle of the steering wheel (in deg)</description>
         </param>
+        <param name="electronicParkBrakeStatus" type="Boolean" mandatory="false">
+            <description>The status of the park brake as provided by Electric Park Brake (EPB) system.</description>
+        </param>
         
         <!-- Ford Specific Data Items -->
         <param name="eCallInfo" type="Boolean" mandatory="false">
@@ -4199,6 +4231,9 @@
             <description>Current angle of the steering wheel (in deg)</description>
         </param>
         
+        <param name="electronicParkBrakeStatus" type="VehicleDataResult" mandatory="false">
+            <description>The status of the park brake as provided by Electric Park Brake (EPB) system.</description>
+        </param>
         <!-- Ford Specific Data Items -->
         <param name="eCallInfo" type="VehicleDataResult" mandatory="false">
             <description>Emergency Call notification and confirmation data</description>
@@ -4278,6 +4313,10 @@
         </param>
         <param name="steeringWheelAngle" type="Boolean" mandatory="false">
             <description>Current angle of the steering wheel (in deg)</description>
+        </param>
+        
+        <param name="electronicParkBrakeStatus" type="Boolean" mandatory="false">
+            <description>The status of the park brake as provided by Electric Park Brake (EPB) system.</description>
         </param>
         
         <!-- Ford Specific Data Items -->
@@ -4381,6 +4420,10 @@
             <description>Current angle of the steering wheel (in deg)</description>
         </param>
         
+        <param name="electronicParkBrakeStatus" type="VehicleDataResult" mandatory="false">
+            <description>The status of the park brake as provided by Electric Park Brake (EPB) system.</description>
+        </param>
+        
         <!-- Ford Specific Data Items -->
         <param name="eCallInfo" type="VehicleDataResult" mandatory="false">
             <description>Emergency Call notification and confirmation data</description>
@@ -4463,6 +4506,9 @@
         </param>
         <param name="steeringWheelAngle" type="Boolean" mandatory="false">
             <description>Current angle of the steering wheel (in deg)</description>
+        </param>
+        <param name="electronicParkBrakeStatus" type="Boolean" mandatory="false">
+            <description>The status of the park brake as provided by Electric Park Brake (EPB) system.</description>
         </param>
         
         <!-- Ford Specific Data Items -->
@@ -4568,6 +4614,9 @@
         </param>
         <param name="steeringWheelAngle" type="Float" minvalue="-2000" maxvalue="2000" mandatory="false">
             <description>Current angle of the steering wheel (in deg)</description>
+        </param>
+        <param name="electronicParkBrakeStatus" type="ElectronicParkBrakeStatus" mandatory="false">
+            <description>The status of the park brake as provided by Electric Park Brake (EPB) system.</description>
         </param>
         
         <!-- Ford Specific Data Items -->
@@ -5786,6 +5835,9 @@
         </param>
         <param name="steeringWheelAngle" type="Float" minvalue="-2000" maxvalue="2000" mandatory="false">
             <description>Current angle of the steering wheel (in deg)</description>
+        </param>
+        <param name="electronicParkBrakeStatus" type="ElectronicParkBrakeStatus" mandatory="false">
+            <description>The status of the park brake as provided by Electric Park Brake (EPB) system.</description>
         </param>
         
         <!-- Ford Specific Vehicle Data -->
