@@ -2339,6 +2339,7 @@ Adds a sub menu to the in-application menu.
 |`menuID`|Integer|True|unique ID of the sub menu to add.|
 |`position`|Integer|False|Position within the items that are are at top level of the in application menu.                0 will insert at the front.                1 will insert at the second position.                If position is greater or equal than the number of items on top level, the sub menu will be appended to the end.                Position of any submenu will always be located before the return and exit options                If this param was omitted the entry will be added at the end.            |
 |`menuName`|String|True|Text to show in the menu for this sub menu.|
+|`menuIcon`|Image|False|The image field for AddSubMenu|
 
 
 ### AddSubMenu
