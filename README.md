@@ -1387,7 +1387,7 @@ A choice is an option given to the user, which can be selected either by menu, o
 | ---------- | ---------- |:-----------: |:-----------:|
 |`choiceID`|Integer|True||
 |`menuName`|String|True||
-|`vrCommands`|String[]|True||
+|`vrCommands`|String[]|False||
 |`image`|Image|False||
 |`secondaryText`|String|False|Optional secondary text to display; e.g. address of POI in a search result entry|
 |`tertiaryText`|String|False|Optional tertiary text to display; e.g. distance to POI for a search result entry|
