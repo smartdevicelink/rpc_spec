@@ -3133,9 +3133,11 @@
             <description>The software version of the system that implements the SmartDeviceLink core.</description>
         </param>
 
-        <param name="iconResumed" type="Boolean" mandatory="true" since="5.0">
-            <description>Existence of apps icon at system. If true, apps icon
-            was resumed at system. If false, apps icon is not resumed at system</description>
+        <param name="iconResumed" type="Boolean" mandatory="false" since="5.0">
+            <description>
+                Existence of apps icon at system. If true, apps icon
+                was resumed at system. If false, apps icon is not resumed at system
+            </description>
         </param>
     </function>
     
