@@ -513,7 +513,7 @@
         <element name="VEHICLEDATA_ENGINETORQUE" />
         <element name="VEHICLEDATA_ACCPEDAL" />
         <element name="VEHICLEDATA_STEERINGWHEEL" />
-        <element name="VEHICLEDATA_ELECTRONICPARKBRAKESTATUS" />
+        <element name="VEHICLEDATA_ELECTRONICPARKBRAKESTATUS" since="5.0" />
     </enum>
     
     <enum name="ButtonName">
@@ -1084,7 +1084,7 @@
         </element>
     </enum>
     
-    <enum name="ElectronicParkBrakeStatus">
+    <enum name="ElectronicParkBrakeStatus" since="5.0">
       <element name="CLOSED" />
         <description>
           Park brake actuators have been fully applied.
@@ -4124,7 +4124,7 @@
         <param name="steeringWheelAngle" type="Boolean" mandatory="false">
             <description>Current angle of the steering wheel (in deg)</description>
         </param>
-        <param name="electronicParkBrakeStatus" type="Boolean" mandatory="false">
+        <param name="electronicParkBrakeStatus" type="Boolean" mandatory="false" since="5.0">
             <description>The status of the park brake as provided by Electric Park Brake (EPB) system.</description>
         </param>
         
@@ -4231,7 +4231,7 @@
             <description>Current angle of the steering wheel (in deg)</description>
         </param>
         
-        <param name="electronicParkBrakeStatus" type="VehicleDataResult" mandatory="false">
+        <param name="electronicParkBrakeStatus" type="VehicleDataResult" mandatory="false" since="5.0">
             <description>The status of the park brake as provided by Electric Park Brake (EPB) system.</description>
         </param>
         <!-- Ford Specific Data Items -->
@@ -4315,7 +4315,7 @@
             <description>Current angle of the steering wheel (in deg)</description>
         </param>
         
-        <param name="electronicParkBrakeStatus" type="Boolean" mandatory="false">
+        <param name="electronicParkBrakeStatus" type="Boolean" mandatory="false" since="5.0">
             <description>The status of the park brake as provided by Electric Park Brake (EPB) system.</description>
         </param>
         
@@ -4420,7 +4420,7 @@
             <description>Current angle of the steering wheel (in deg)</description>
         </param>
         
-        <param name="electronicParkBrakeStatus" type="VehicleDataResult" mandatory="false">
+        <param name="electronicParkBrakeStatus" type="VehicleDataResult" mandatory="false" since="5.0">
             <description>The status of the park brake as provided by Electric Park Brake (EPB) system.</description>
         </param>
         
@@ -4507,7 +4507,7 @@
         <param name="steeringWheelAngle" type="Boolean" mandatory="false">
             <description>Current angle of the steering wheel (in deg)</description>
         </param>
-        <param name="electronicParkBrakeStatus" type="Boolean" mandatory="false">
+        <param name="electronicParkBrakeStatus" type="Boolean" mandatory="false" since="5.0">
             <description>The status of the park brake as provided by Electric Park Brake (EPB) system.</description>
         </param>
         
@@ -4615,7 +4615,7 @@
         <param name="steeringWheelAngle" type="Float" minvalue="-2000" maxvalue="2000" mandatory="false">
             <description>Current angle of the steering wheel (in deg)</description>
         </param>
-        <param name="electronicParkBrakeStatus" type="ElectronicParkBrakeStatus" mandatory="false">
+        <param name="electronicParkBrakeStatus" type="ElectronicParkBrakeStatus" mandatory="false" since="5.0">
             <description>The status of the park brake as provided by Electric Park Brake (EPB) system.</description>
         </param>
         
@@ -5836,7 +5836,7 @@
         <param name="steeringWheelAngle" type="Float" minvalue="-2000" maxvalue="2000" mandatory="false">
             <description>Current angle of the steering wheel (in deg)</description>
         </param>
-        <param name="electronicParkBrakeStatus" type="ElectronicParkBrakeStatus" mandatory="false">
+        <param name="electronicParkBrakeStatus" type="ElectronicParkBrakeStatus" mandatory="false" since="5.0">
             <description>The status of the park brake as provided by Electric Park Brake (EPB) system.</description>
         </param>
         
