@@ -513,7 +513,7 @@
         <element name="VEHICLEDATA_ENGINETORQUE" />
         <element name="VEHICLEDATA_ACCPEDAL" />
         <element name="VEHICLEDATA_STEERINGWHEEL" />
-        <element name="VEHICLEDATA_FUELRANGE" />
+        <element name="VEHICLEDATA_FUELRANGE" since="5.0" />
     </enum>
     
     <enum name="ButtonName" since="1.0">
@@ -1084,7 +1084,7 @@
         </element>
     </enum>
 
-    <enum name="FuelType" since="4.6">
+    <enum name="FuelType" since="5.0">
         <element name="GASOLINE" />
         <element name="DIESEL" />
         <element name="CNG">
@@ -1105,7 +1105,7 @@
         </element>
     </enum>
 
-    <struct name="FuelRange" since="4.6">
+    <struct name="FuelRange" since="5.0">
         <param name="type" type="FuelType" mandatory="false"/>
         <param name="range" type="Float" minvalue="0" maxvalue="10000" mandatory="false">
             <description>
@@ -4127,7 +4127,7 @@
         <param name="instantFuelConsumption" type="Boolean" mandatory="false">
             <description>The instantaneous fuel consumption in microlitres</description>
         </param>
-        <param name="fuelRange" type="Boolean" mandatory="false">
+        <param name="fuelRange" type="Boolean" mandatory="false" since="5.0">
             <description>The estimate range in KM the vehicle can travel based on fuel level and consumption</description>
         </param>
         <param name="externalTemperature" type="Boolean" mandatory="false">
@@ -4233,7 +4233,7 @@
         <param name="instantFuelConsumption" type="VehicleDataResult" mandatory="false">
             <description>The instantaneous fuel consumption in microlitres</description>
         </param>
-        <param name="fuelRange" type="VehicleDataResult" mandatory="false">
+        <param name="fuelRange" type="VehicleDataResult" mandatory="false" since="5.0">
             <description>The estimate range in KM the vehicle can travel based on fuel level and consumption</description>
         </param>
         <param name="externalTemperature" type="VehicleDataResult" mandatory="false">
@@ -4317,7 +4317,7 @@
         <param name="instantFuelConsumption" type="Boolean" mandatory="false">
             <description>The instantaneous fuel consumption in microlitres</description>
         </param>
-        <param name="fuelRange" type="Boolean" mandatory="false">
+        <param name="fuelRange" type="Boolean" mandatory="false" since="5.0">
             <description>The estimate range in KM the vehicle can travel based on fuel level and consumption</description>
         </param>
         <param name="externalTemperature" type="Boolean" mandatory="false">
@@ -4421,7 +4421,7 @@
         <param name="instantFuelConsumption" type="VehicleDataResult" mandatory="false">
             <description>The instantaneous fuel consumption in microlitres</description>
         </param>
-        <param name="fuelRange" type="VehicleDataResult" mandatory="false">
+        <param name="fuelRange" type="VehicleDataResult" mandatory="false" since="5.0">
             <description>The estimate range in KM the vehicle can travel based on fuel level and consumption</description>
         </param>
         <param name="externalTemperature" type="VehicleDataResult" mandatory="false">
@@ -4505,7 +4505,7 @@
         <param name="instantFuelConsumption" type="Boolean" mandatory="false">
             <description>The instantaneous fuel consumption in microlitres</description>
         </param>
-        <param name="fuelRange" type="Boolean" mandatory="false">
+        <param name="fuelRange" type="Boolean" mandatory="false" since="5.0">
             <description>The estimate range in KM the vehicle can travel based on fuel level and consumption</description>
         </param>
         <param name="externalTemperature" type="Boolean" mandatory="false">
@@ -4613,7 +4613,7 @@
         <param name="instantFuelConsumption" type="Float" minvalue="0" maxvalue="25575" mandatory="false">
             <description>The instantaneous fuel consumption in microlitres</description>
         </param>
-        <param name="fuelRange" type="FuelRange" minsize="0" maxsize="100" array="true" mandatory="false">
+        <param name="fuelRange" type="FuelRange" minsize="0" maxsize="100" array="true" mandatory="false" since="5.0">
             <description>The estimate range in KM the vehicle can travel based on fuel level and consumption</description>
         </param>
         <param name="externalTemperature" type="Float" minvalue="-40" maxvalue="100" mandatory="false">
@@ -5831,7 +5831,7 @@
         <param name="instantFuelConsumption" type="Float" minvalue="0" maxvalue="25575" mandatory="false">
             <description>The instantaneous fuel consumption in microlitres</description>
         </param>
-        <param name="fuelRange" type="FuelRange" minsize="0" maxsize="100" array="true" mandatory="false">
+        <param name="fuelRange" type="FuelRange" minsize="0" maxsize="100" array="true" mandatory="false" since="5.0">
             <description>The estimate range in KM the vehicle can travel based on fuel level and consumption</description>
         </param>
         <param name="externalTemperature" type="Float" minvalue="-40" maxvalue="100" mandatory="false">
