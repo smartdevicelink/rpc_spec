@@ -2379,7 +2379,7 @@
         <element name="OnHashChangeID" value="32782" hexvalue="800E" since="3.0" />
         <element name="OnInteriorVehicleDataID" value="32783" hexvalue="800F" since="4.5" />
         <element name="OnWayPointChangeID" value="32784" hexvalue="8010" since="4.1" />
-        <element name="OnRCStatusID" value="32785" hexvalue="8011" />
+        <element name="OnRCStatusID" value="32785" hexvalue="8011" since="5.0" />
         
         <!--
          Ford Specific Request / Response RPCs
@@ -5972,9 +5972,9 @@
         </param>
     </function>
 
-    <function name="OnRCStatus" functionID="OnRCStatusID" messagetype="notification">
+    <function name="OnRCStatus" functionID="OnRCStatusID" messagetype="notification" since="5.0">
         <description>Issued by SDL to notify the application about remote control status change on SDL</description>
-        <param name="allowed" type="Boolean" mandatory="false" >
+        <param name="allowed" type="Boolean" mandatory="false">
             <description>If "true" - RC is allowed; if "false" - RC is disallowed.</description>
         </param>
         <param name="allocatedModules" type="ModuleData" minsize="0" maxsize="100" array="true" mandatory="true">
