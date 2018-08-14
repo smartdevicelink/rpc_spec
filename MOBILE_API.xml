@@ -391,7 +391,7 @@
         </element>
     </enum>
 
-    <enum name="VideoStreamingState" since="4.6">
+    <enum name="VideoStreamingState" since="5.0">
         <description>Enumeration that describes possible states of video streaming. </description>
         <element name="STREAMABLE" />
         <element name="NOT_STREAMABLE" />
@@ -5739,7 +5739,7 @@
             <description>See SystemContext</description>
         </param>
 
-        <param name="videoStreamingState" type="VideoStreamingState" mandatory="true" since="4.6">
+        <param name="videoStreamingState" type="VideoStreamingState" mandatory="true" since="5.0">
             <description>See VideoStreamingState. 
             If it is NOT_STREAMABLE, the app must stop streaming video to SDL Core(stop service).
             </description>
