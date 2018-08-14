@@ -2159,7 +2159,7 @@
         <element name="EMERGENCY" />
         <element name="MEDIA" />
         <element name="FOTA" />
-        <element name="OEM_SPECIFIC" />
+        <element name="OEM_SPECIFIC" since="5.0" />
     </enum>         
  
     <enum name="AppHMIType" since="2.0">
@@ -5333,7 +5333,7 @@
                 Note that Proprietary requests should forward the binary data to the known proprietary module on the system.
             </description>
         </param>
-        <param name="requestSubType" type="String" maxlength="255" mandatory="false">
+        <param name="requestSubType" type="String" maxlength="255" mandatory="false" since="5.0">
             <description>
                 This parameter is filled for supporting OEM proprietary data exchanges.
             </description>
@@ -5931,7 +5931,7 @@
         <param name="requestType" type="RequestType" mandatory="true">
             <description>The type of system request.</description>
         </param>
-        <param name="requestSubType" type="String" maxlength="255" mandatory="false">
+        <param name="requestSubType" type="String" maxlength="255" mandatory="false" since="5.0">
             <description>
                 This parameter is filled for supporting OEM proprietary data exchanges.
             </description>
