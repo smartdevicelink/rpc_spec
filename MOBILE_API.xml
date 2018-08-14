@@ -2930,13 +2930,13 @@
         </param>
     </struct>
 
-    <struct name="RGBColor" since="4.6">
+    <struct name="RGBColor" since="5.0">
         <param name="red" type="Integer" minvalue="0" maxvalue="255" mandatory="true" />
         <param name="green" type="Integer" minvalue="0" maxvalue="255" mandatory="true" />
         <param name="blue" type="Integer" minvalue="0" maxvalue="255" mandatory="true" />
     </struct>
 
-    <struct name="TemplateColorScheme" since="4.6">
+    <struct name="TemplateColorScheme" since="5.0">
         <description>
             A color scheme for all display layout templates.
         </description>
@@ -3051,8 +3051,8 @@
                 See AppInfo.
             </description>
         </param>
-        <param name="dayColorScheme" type="TemplateColorScheme" mandatory="false"/>
-        <param name="nightColorScheme" type="TemplateColorScheme" mandatory="false"/>
+        <param name="dayColorScheme" type="TemplateColorScheme" mandatory="false" since="5.0"/>
+        <param name="nightColorScheme" type="TemplateColorScheme" mandatory="false" since="5.0"/>
     </function>
     
     <function name="RegisterAppInterface" functionID="RegisterAppInterfaceID" messagetype="response" since="1.0">
@@ -5305,9 +5305,9 @@
             </description>
         </param>
 
-        <param name="dayColorScheme" type="TemplateColorScheme" mandatory="false"/>
+        <param name="dayColorScheme" type="TemplateColorScheme" mandatory="false" since="5.0"/>
 
-        <param name="nightColorScheme" type="TemplateColorScheme" mandatory="false"/>
+        <param name="nightColorScheme" type="TemplateColorScheme" mandatory="false" since="5.0"/>
         
     </function>
     
