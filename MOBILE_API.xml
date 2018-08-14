@@ -1910,7 +1910,7 @@
                 <param name="displayType" type="DisplayType" mandatory="true" since="1.0" until="5.0"/>
             </history>
         </param>
-        <param name="displayName" type="String" mandatory="false" since="4.6">
+        <param name="displayName" type="String" mandatory="false" since="5.0">
             <description>The name of the display the app is connected to.</description>
         </param>
         <param name="textFields" type="TextField" minsize="1" maxsize="100" array="true" mandatory="true">
