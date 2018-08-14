@@ -892,26 +892,26 @@
         </element>
     </enum>
 	
-	<enum name="AudioStreamingIndicator">
-		<element name="PLAY_PAUSE">
-			<description>
-				Default playback indicator.
-				By default the playback indicator should be PLAY_PAUSE when:
-					- the media app is newly registered on the head unit (after RegisterAppInterface)
-					- the media app was closed by the user (App enteres HMI_NONE)
-					- the app sends SetMediaClockTimer with audioStreamingIndicator not set to any value
-			</description>
-		</element>
-		<element name="PLAY">
-			<description>Indicates that a button press of the Play/Pause button starts the audio playback.</description>
-		</element>
-		<element name="PAUSE">
-			<description>Indicates that a button press of the Play/Pause button pauses the current audio playback.</description>
-		</element>
-		<element name="STOP">
-			<description>Indicates that a button press of the Play/Pause button stops the current audio playback.</description>
-		</element>
-	</enum> 
+    <enum name="AudioStreamingIndicator" since="5.0">
+        <element name="PLAY_PAUSE">
+            <description>
+                Default playback indicator.
+                By default the playback indicator should be PLAY_PAUSE when:
+                    - the media app is newly registered on the head unit (after RegisterAppInterface)
+                    - the media app was closed by the user (App enteres HMI_NONE)
+                    - the app sends SetMediaClockTimer with audioStreamingIndicator not set to any value
+            </description>
+        </element>
+        <element name="PLAY">
+            <description>Indicates that a button press of the Play/Pause button starts the audio playback.</description>
+        </element>
+        <element name="PAUSE">
+            <description>Indicates that a button press of the Play/Pause button pauses the current audio playback.</description>
+        </element>
+        <element name="STOP">
+            <description>Indicates that a button press of the Play/Pause button stops the current audio playback.</description>
+        </element>
+    </enum> 
     
     <struct name="Image" since="2.0">
         <param name="value" minlength="0" maxlength="65535" type="String" mandatory="true">
@@ -3914,12 +3914,12 @@
                 In case of pause, resume, or clear, the start time value is ignored and shall be left out.  For resume, the time continues with the same value as it was when paused.
             </description>
         </param>
-		
-		<param name="audioStreamingIndicator" type="AudioStreamingIndicator" mandatory="false" since="4.6">
-			<description>
-				Enumeration for the indicator icon on a play/pause button. see AudioStreamingIndicator.
-			</description>
-		</param>
+
+        <param name="audioStreamingIndicator" type="AudioStreamingIndicator" mandatory="false" since="5.0">
+            <description>
+                Enumeration for the indicator icon on a play/pause button. see AudioStreamingIndicator.
+            </description>
+        </param>
     </function>
     
     <function name="SetMediaClockTimer" functionID="SetMediaClockTimerID" messagetype="response" since="1.0">
