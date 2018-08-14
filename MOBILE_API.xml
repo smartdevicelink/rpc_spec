@@ -494,7 +494,7 @@
         <element name="VEHICLEDATA_FUELLEVEL_STATE" />
         <element name="VEHICLEDATA_FUELCONSUMPTION" />
         <element name="VEHICLEDATA_EXTERNTEMP" />
-        <element name="VEHICLEDATA_TURNSIGNAL" />
+        <element name="VEHICLEDATA_TURNSIGNAL" since="5.0" />
         <element name="VEHICLEDATA_VIN" />
         <element name="VEHICLEDATA_PRNDL" />
         <element name="VEHICLEDATA_TIREPRESSURE" />
@@ -1683,7 +1683,7 @@
         </param>
     </struct>
     
-    <enum name="TurnSignal">
+    <enum name="TurnSignal" since="5.0">
         <description>Enumeration that describes the status of the turn light indicator.</description>
         <element name="OFF">
             <description>Turn signal is OFF</description>
@@ -4076,7 +4076,7 @@
         <param name="externalTemperature" type="Boolean" mandatory="false">
             <description>The external temperature in degrees celsius</description>
         </param>
-        <param name="turnSignal" type="Boolean" mandatory="false">
+        <param name="turnSignal" type="Boolean" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
         </param>
         <param name="prndl" type="Boolean" mandatory="false">
@@ -4182,7 +4182,7 @@
         <param name="externalTemperature" type="VehicleDataResult" mandatory="false">
             <description>The external temperature in degrees celsius.</description>
         </param>
-        <param name="turnSignal" type="VehicleDataResult" mandatory="false">
+        <param name="turnSignal" type="VehicleDataResult" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
         </param>
         <param name="prndl" type="VehicleDataResult" mandatory="false">
@@ -4266,7 +4266,7 @@
         <param name="externalTemperature" type="Boolean" mandatory="false">
             <description>The external temperature in degrees celsius.</description>
         </param>
-        <param name="turnSignal" type="Boolean" mandatory="false">
+        <param name="turnSignal" type="Boolean" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
         </param>
         <param name="prndl" type="Boolean" mandatory="false">
@@ -4370,7 +4370,7 @@
         <param name="externalTemperature" type="VehicleDataResult" mandatory="false">
             <description>The external temperature in degrees celsius</description>
         </param>
-        <param name="turnSignal" type="VehicleDataResult" mandatory="false">
+        <param name="turnSignal" type="VehicleDataResult" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
         </param>
         <param name="prndl" type="VehicleDataResult" mandatory="false">
@@ -4454,7 +4454,7 @@
         <param name="externalTemperature" type="Boolean" mandatory="false">
             <description>The external temperature in degrees celsius</description>
         </param>
-        <param name="turnSignal" type="Boolean" mandatory="false">
+        <param name="turnSignal" type="Boolean" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
         </param>
         <param name="vin" type="Boolean" mandatory="false">
@@ -4562,7 +4562,7 @@
         <param name="externalTemperature" type="Float" minvalue="-40" maxvalue="100" mandatory="false">
             <description>The external temperature in degrees celsius</description>
         </param>
-        <param name="turnSignal" type="TurnSignal" mandatory="false">
+        <param name="turnSignal" type="TurnSignal" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
         </param>
         <param name="vin" type="String" maxlength="17" mandatory="false">
@@ -5783,7 +5783,7 @@
         <param name="externalTemperature" type="Float" minvalue="-40" maxvalue="100" mandatory="false">
             <description>The external temperature in degrees celsius</description>
         </param>
-        <param name="turnSignal" type="TurnSignal" mandatory="false">
+        <param name="turnSignal" type="TurnSignal" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
         </param>
         <param name="vin" type="String" maxlength="17" mandatory="false">
