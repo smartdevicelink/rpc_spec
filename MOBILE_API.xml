@@ -1083,7 +1083,7 @@
         </element>
     </enum>
 
-    <enum name="TPMS" since="4.6">
+    <enum name="TPMS" since="5.0">
         <element name="UNKNOWN">
             <description>If set the status of the tire is not known.</description>
         </element>
@@ -1114,12 +1114,12 @@
         <param name="status" type="ComponentVolumeStatus" mandatory="true">
             <description>See ComponentVolumeStatus.</description>
         </param>
-        <param name="tpms" type="TPMS" mandatory="false" since="4.6">
+        <param name="tpms" type="TPMS" mandatory="false" since="5.0">
             <description>
             The status of TPMS according to the particular tire.
             </description>
         </param>
-        <param name="pressure" type="Float" mandatory="false" minvalue="0" maxvalue="2000" since="4.6">
+        <param name="pressure" type="Float" mandatory="false" minvalue="0" maxvalue="2000" since="5.0">
             <description>The pressure value of the particular tire in kilo pascal.</description>
         </param>
     </struct>
