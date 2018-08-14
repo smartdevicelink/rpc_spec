@@ -1257,7 +1257,7 @@
     <enum name="ModuleType" since="4.5">
         <element name="CLIMATE"/>
         <element name="RADIO"/>
-        <element name="SEAT"/>
+        <element name="SEAT" since="5.0"/>
     </enum>
     
     <enum name="DefrostZone" since="4.5">
@@ -2584,7 +2584,7 @@
     
     <!---Remote control  -->
 
-    <enum name="MassageZone">
+    <enum name="MassageZone" since="5.0">
         <description>List possible zones of a multi-contour massage seat.</description>
         <element name="LUMBAR">
             <description>The back of a multi-contour massage seat. or SEAT_BACK</description>
@@ -2594,20 +2594,20 @@
         </element>
     </enum>
 
-    <enum name="MassageMode">
+    <enum name="MassageMode" since="5.0">
         <description>List possible modes of a massage zone.</description>
         <element name="OFF"/>
         <element name="LOW"/>
         <element name="HIGH"/>
     </enum>
 
-    <struct name="MassageModeData">
+    <struct name="MassageModeData" since="5.0">
         <description>Specify the mode of a massage zone.</description>
         <param name="massageZone" type="MassageZone" mandatory="true"></param>
         <param name="massageMode" type="MassageMode" mandatory="true"></param>
     </struct>
 
-    <enum name="MassageCushion">
+    <enum name="MassageCushion" since="5.0">
         <description>List possible cushions of a multi-contour massage seat.</description>
         <element name="TOP_LUMBAR"/>
         <element name="MIDDLE_LUMBAR"/>
@@ -2616,37 +2616,37 @@
         <element name="SEAT_BOLSTERS"/>
     </enum>
 
-    <struct name="MassageCushionFirmness">
+    <struct name="MassageCushionFirmness" since="5.0">
         <description>The intensity or firmness of a cushion.</description>
         <param name="cushion" type="MassageCushion" mandatory="true"></param>
         <param name="firmness" type="Integer" minvalue="0" maxvalue="100" mandatory="true"></param>
     </struct>
 
-    <enum name="SeatMemoryActionType">
-    <element name="SAVE">
-        <description>Save current seat postions and settings to seat memory.</description>
-    </element>
-    <element name="RESTORE">
-        <description>Restore / apply the seat memory settings to the current seat. </description>
-    </element>
-    <element name="NONE">
-        <description>No action to be performed.</description>
-    </element>
+    <enum name="SeatMemoryActionType" since="5.0">
+        <element name="SAVE">
+            <description>Save current seat postions and settings to seat memory.</description>
+        </element>
+        <element name="RESTORE">
+            <description>Restore / apply the seat memory settings to the current seat. </description>
+        </element>
+        <element name="NONE">
+            <description>No action to be performed.</description>
+        </element>
     </enum>
 
-    <struct name="SeatMemoryAction">
+    <struct name="SeatMemoryAction" since="5.0">
         <param name="id" type="Integer" minvalue="1" maxvalue="10" mandatory="true"/>
         <param name="label" type="String" maxlength="100" mandatory="false"/>
         <param name="action" type="SeatMemoryActionType" mandatory="true"/>
     </struct>
 
-    <enum name="SupportedSeat">
+    <enum name="SupportedSeat" since="5.0">
         <description>List possible seats that is a remote controllable seat.</description>
         <element name="DRIVER"/>
         <element name="FRONT_PASSENGER"/>
     </enum>
 
-    <struct name="SeatControlData">
+    <struct name="SeatControlData" since="5.0">
         <description>Seat control data corresponds to "SEAT" ModuleType. </description>
         <param name="id" type="SupportedSeat" mandatory="true">
         
@@ -2671,7 +2671,7 @@
         <param name="memory" type="SeatMemoryAction" mandatory="false"></param>
     </struct>
 
-    <struct name="SeatControlCapabilities">
+    <struct name="SeatControlCapabilities" since="5.0">
         <param name="moduleName" type="String" maxlength="100"  mandatory="true">
             <description>
             The short friendly name of the light control module.
@@ -2806,7 +2806,7 @@
         </param>
         <param name="climateControlData" type="ClimateControlData" mandatory="false">
         </param>
-        <param name="seatControlData" type="SeatControlData" mandatory="false">
+        <param name="seatControlData" type="SeatControlData" mandatory="false" since="5.0">
         </param>
     </struct>
     
@@ -2958,7 +2958,7 @@
         <param name="buttonCapabilities" type="ButtonCapabilities"  mandatory="false" minsize="1" maxsize="100" array="true" >
             <description>If included, the platform supports RC button controls with the included button names.</description >
         </param>
-        <param name="seatControlCapabilities" type="SeatControlCapabilities" mandatory="false" minsize="1" maxsize="100" array="true">
+        <param name="seatControlCapabilities" type="SeatControlCapabilities" mandatory="false" minsize="1" maxsize="100" array="true" since="5.0">
             <description>If included, the platform supports seat controls.</description >
         </param>
     </struct>
