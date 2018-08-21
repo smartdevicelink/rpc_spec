@@ -2581,6 +2581,27 @@
         </param>
     </struct>
     
+    <struct name="RGBColor" since="5.0">
+        <param name="red" type="Integer" minvalue="0" maxvalue="255" mandatory="true" />
+        <param name="green" type="Integer" minvalue="0" maxvalue="255" mandatory="true" />
+        <param name="blue" type="Integer" minvalue="0" maxvalue="255" mandatory="true" />
+    </struct>
+
+    <struct name="TemplateColorScheme" since="5.0">
+        <description>
+            A color scheme for all display layout templates.
+        </description>
+        <param name="primaryColor" type="RGBColor" mandatory="false">
+            <description>The primary "accent" color</description>
+        </param>
+        <param name="secondaryColor" type="RGBColor" mandatory="false">
+            <description>The secondary "accent" color</description>
+        </param>
+        <param name="backgroundColor" type="RGBColor" mandatory="false">
+            <description>The color of the background</description>
+        </param>
+    </struct>
+    
     <!---Remote control  -->
     
     <struct name="Temperature" since="4.5">
@@ -2927,27 +2948,6 @@
         </param>
         <param name="rect" type="Rectangle" mandatory="true">
             <description>The position of the haptic rectangle to be highlighted. The center of this rectangle will be "touched" when a press occurs.</description>
-        </param>
-    </struct>
-
-    <struct name="RGBColor" since="5.0">
-        <param name="red" type="Integer" minvalue="0" maxvalue="255" mandatory="true" />
-        <param name="green" type="Integer" minvalue="0" maxvalue="255" mandatory="true" />
-        <param name="blue" type="Integer" minvalue="0" maxvalue="255" mandatory="true" />
-    </struct>
-
-    <struct name="TemplateColorScheme" since="5.0">
-        <description>
-            A color scheme for all display layout templates.
-        </description>
-        <param name="primaryColor" type="RGBColor" mandatory="false">
-            <description>The primary "accent" color</description>
-        </param>
-        <param name="secondaryColor" type="RGBColor" mandatory="false">
-            <description>The secondary "accent" color</description>
-        </param>
-        <param name="backgroundColor" type="RGBColor" mandatory="false">
-            <description>The color of the background</description>
         </param>
     </struct>
     
