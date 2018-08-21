@@ -533,7 +533,7 @@ The list of possible alignments, left, right, or centered
 
 
 ### TBTState
-Enumeration that describes possible states of turn-by-turn client or AppLink app.
+Enumeration that describes possible states of turn-by-turn client or SmartDeviceLink app.
 
 ##### Elements
 
@@ -1202,7 +1202,7 @@ Predefined screen layout.
 
 
 ### FunctionID
-Enumeration linking function names with function IDs in AppLink protocol. Assumes enumeration starts at value 0.
+Enumeration linking function names with function IDs in SmartDeviceLink protocol. Assumes enumeration starts at value 0.
 
 ##### Elements
 
@@ -2232,7 +2232,7 @@ Allows setting global properties.
 |`helpPrompt`|TTSChunk[]|False|The help prompt.                An array of text chunks of type TTSChunk. See TTSChunk.                The array must have at least one item.            |
 |`timeoutPrompt`|TTSChunk[]|False|Help text for a wait timeout.                An array of text chunks of type TTSChunk. See TTSChunk.                The array must have at least one item.            |
 |`vrHelpTitle`|String|False|VR Help Title text.                If omitted on supported displays, the default module help title shall be used.                If omitted and one or more vrHelp items are provided, the request will be rejected.            |
-|`vrHelp`|VrHelpItem[]|False|VR Help Items.                If omitted on supported displays, the default AppLink VR help / What Can I Say? screen shall be used.                If the list of VR Help Items contains nonsequential positions (e.g. [1,2,4]), the RPC shall be rejected.                If omitted and a vrHelpTitle is provided, the request will be rejected.            |
+|`vrHelp`|VrHelpItem[]|False|VR Help Items.                If omitted on supported displays, the default SmartDeviceLink VR help / What Can I Say? screen shall be used.                If the list of VR Help Items contains nonsequential positions (e.g. [1,2,4]), the RPC shall be rejected.                If omitted and a vrHelpTitle is provided, the request will be rejected.            |
 |`menuTitle`|String|False|Optional text to label an app menu button (for certain touchscreen platforms).|
 |`menuIcon`|Image|False|>Optional icon to draw on an app menu button (for certain touchscreen platforms).|
 |`keyboardProperties`|KeyboardProperties|False|On-screen keyboard configuration (if available).|
