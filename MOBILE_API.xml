@@ -391,7 +391,7 @@
         </element>
     </enum>
 
-    <enum name="VideoStreamingState" since="4.6">
+    <enum name="VideoStreamingState" since="5.0">
         <description>Enumeration that describes possible states of video streaming. </description>
         <element name="STREAMABLE" />
         <element name="NOT_STREAMABLE" />
