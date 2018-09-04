@@ -5131,11 +5131,14 @@
             <element name="UNSUPPORTED_REQUEST"/>
         </param>
         
-        <param name="spaceAvailable" type="Integer" minvalue="0" maxvalue="2000000000" mandatory="true">
+        <param name="spaceAvailable" type="Integer" minvalue="0" maxvalue="2000000000" mandatory="false" since="5.0">
             <description>
                 Provides the total local space available in SDL Core for the registered app.
                 If the transfer has systemFile enabled, then the value will be set to 0 automatically.
             </description>
+            <history>
+                <param name="spaceAvailable" type="Integer" minvalue="0" maxvalue="2000000000" mandatory="true" since="3.0" until="5.0"/>
+            </history>
         </param>
         
         <param name="info" type="String" maxlength="1000" mandatory="false" platform="documentation">
