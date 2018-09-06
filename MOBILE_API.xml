@@ -5178,7 +5178,7 @@
             <element name="REJECTED"/>
             <element name="UNSUPPORTED_REQUEST"/>
         </param>
-
+        
         <param name="spaceAvailable" type="Integer" minvalue="0" maxvalue="2000000000" mandatory="false" since="5.0">
             <description>Provides the total local space available on the module for the registered app.</description>
             <history>
