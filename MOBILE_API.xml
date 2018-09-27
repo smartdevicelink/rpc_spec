@@ -2900,7 +2900,9 @@
         <param name="channelName" type="String" mandatory="false" maxlength="50">
             <description>read-only channel / frequency name (e.i. "Treble, Midrange, Bass" or "125 Hz")</description>
         </param>
-        <param name="channelSetting" type="Integer" minvalue="0" maxvalue="100" mandatory="true"></param>
+        <param name="channelSetting" type="Integer" minvalue="0" maxvalue="100" mandatory="true">
+            <description>Reflects the setting, from 0%-100%.</description>
+        </param>
     </struct>
 
     <struct name="AudioControlData" since="5.0">
@@ -2987,7 +2989,7 @@
             <description>Include all fog lights: front_left, front_right, rear_left and rear_right.</description>
         </element>
         <element name="RUNNING_LIGHTS" value="504">
-            <description>Include all daytime running lights: front, left and right.</description>
+            <description>Include all daytime running lights: front_left and front_right.</description>
         </element>
         <element name="PARKING_LIGHTS" value="505">
             <description>Include all parking lights: front_left and front_right.</description>
@@ -3018,7 +3020,7 @@
             <description>Include exterior lights located in front of the vehicle. For example, fog lights and low beams.</description>
         </element>
         <element name="EXTERIOR_REAR_LIGHTS" value="902">
-            <description>Include exterior lights located at the back of the vehicle. For example, license plate lights, reverse lights, cargo lights, bed lights an trailer assist lights.</description>
+            <description>Include exterior lights located at the back of the vehicle. For example, license plate lights, reverse lights, cargo lights, bed lights and trailer assist lights.</description>
         </element>
         <element name="EXTERIOR_LEFT_LIGHTS" value="903">
             <description>Include exterior lights located at the left side of the vehicle. For example, left puddle lights and spot lights.</description>
@@ -3043,7 +3045,7 @@
         </param>
         <param name="rgbColorSpaceAvailable" type="Boolean" mandatory="false">
             <description>
-                Indicates if the light's color can be set remotely by using the RGB color space.
+                Indicates if the light's color can be set remotely by using the sRGB color space.
             </description>
         </param>
     </struct>
@@ -3056,7 +3058,7 @@
             </description>
         </param>
         <param name="supportedLights" type="LightCapabilities" minsize="1" maxsize="100" array="true" mandatory="true">
-            <description> An array of available light names that are controllable. </description>
+            <description> An array of available LightCapabilities that are controllable. </description>
         </param>
     </struct>
 

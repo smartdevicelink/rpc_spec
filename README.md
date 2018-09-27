@@ -1355,7 +1355,7 @@ Enumerations of all available system capability types
 |`HIGH_BEAMS`|Include all high beam lights: front_left and front_right.|
 |`LOW_BEAMS`|Include all low beam lights: front_left and front_right.|
 |`FOG_LIGHTS`|Include all fog lights: front_left, front_right, rear_left and rear_right.|
-|`RUNNING_LIGHTS`|Include all daytime running lights: front, left and right.|
+|`RUNNING_LIGHTS`|Include all daytime running lights: front_left and front_right.|
 |`PARKING_LIGHTS`|Include all parking lights: front_left and front_right.|
 |`BRAKE_LIGHTS`|Include all brake lights: rear_left and rear_right.|
 |`REAR_REVERSING_LIGHTS`||
@@ -1368,7 +1368,7 @@ Enumerations of all available system capability types
 |`READING_LIGHTS`||
 |`TRUNK_LIGHTS`||
 |`EXTERIOR_FRONT_LIGHTS`|Include exterior lights located in front of the vehicle. For example, fog lights and low beams.|
-|`EXTERIOR_REAR_LIGHTS`|Include exterior lights located at the back of the vehicle. For example, license plate lights, reverse lights, cargo lights, bed lights an trailer assist lights.|
+|`EXTERIOR_REAR_LIGHTS`|Include exterior lights located at the back of the vehicle. For example, license plate lights, reverse lights, cargo lights, bed lights and trailer assist lights.|
 |`EXTERIOR_LEFT_LIGHTS`|Include exterior lights located at the left side of the vehicle. For example, left puddle lights and spot lights.|
 |`EXTERIOR_RIGHT_LIGHTS`|Include exterior lights located at the right side of the vehicle. For example, right puddle lights and spot lights.|
 
@@ -2184,7 +2184,7 @@ Defines the each Equalizer channel settings.
 | ---------- | ---------- |:-----------: |:-----------:|
 |`channelId`|Integer|True||
 |`channelName`|String|False|read-only channel / frequency name (e.i. "Treble, Midrange, Bass" or "125 Hz")|
-|`channelSetting`|Integer|True||
+|`channelSetting`|Integer|True|Reflects the setting, from 0%-100%.|
 
 
 ### AudioControlData
@@ -2218,7 +2218,7 @@ Defines the each Equalizer channel settings.
 | ---------- | ---------- |:-----------: |:-----------:|
 |`name`|LightName|True||
 |`densityAvailable`|Boolean|False|Indicates if the light's density can be set remotely (similar to a dimmer).            |
-|`rgbColorSpaceAvailable`|Boolean|False|Indicates if the light's color can be set remotely by using the RGB color space.            |
+|`rgbColorSpaceAvailable`|Boolean|False|Indicates if the light's color can be set remotely by using the sRGB color space.            |
 
 
 ### LightControlCapabilities
@@ -2227,7 +2227,7 @@ Defines the each Equalizer channel settings.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleName`|String|True|The short friendly name of the light control module.                It should not be used to identify a module by mobile application.            |
-|`supportedLights`|LightCapabilities[]|True|An array of available light names that are controllable. |
+|`supportedLights`|LightCapabilities[]|True|An array of available LightCapabilities that are controllable. |
 
 
 ### LightState
