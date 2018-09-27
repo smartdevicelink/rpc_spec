@@ -898,7 +898,7 @@
                 Default playback indicator.
                 By default the playback indicator should be PLAY_PAUSE when:
                     - the media app is newly registered on the head unit (after RegisterAppInterface)
-                    - the media app was closed by the user (App enteres HMI_NONE)
+                    - the media app was closed by the user (App enters HMI_NONE)
                     - the app sends SetMediaClockTimer with audioStreamingIndicator not set to any value
             </description>
         </element>

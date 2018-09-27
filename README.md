@@ -613,6 +613,17 @@ Enum for each type of video streaming codec.
 |`VP9`|Similar to VP8, but VP9 is customized for video resolutions beyond high-definition video (UHD) and also enables lossless compression.|
 
 
+### AudioStreamingIndicator
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`PLAY_PAUSE`|Default playback indicator.                By default the playback indicator should be PLAY_PAUSE when:                    - the media app is newly registered on the head unit (after RegisterAppInterface)                    - the media app was closed by the user (App enters HMI_NONE)                    - the app sends SetMediaClockTimer with audioStreamingIndicator not set to any value            |
+|`PLAY`|Indicates that a button press of the Play/Pause button starts the audio playback.|
+|`PAUSE`|Indicates that a button press of the Play/Pause button pauses the current audio playback.|
+|`STOP`|Indicates that a button press of the Play/Pause button stops the current audio playback.|
+
+
 ### GlobalProperty
 The different global properties.
 
@@ -2565,6 +2576,7 @@ Sets the initial media clock value and automatic update method.
 |`startTime`|StartTime|False|See StartTime.                startTime must be provided for "COUNTUP" and "COUNTDOWN".                startTime will be ignored for "RESUME", and "CLEAR"                startTime can be sent for "PAUSE", in which case it will update the paused startTime            |
 |`endTime`|StartTime|False|See StartTime.                endTime can be provided for "COUNTUP" and "COUNTDOWN"; to be used to calculate any visual progress bar (if not provided, this feature is ignored)                If endTime is greater then startTime for COUNTDOWN or less than startTime for COUNTUP, then the request will return an INVALID_DATA.                endTime will be ignored for "RESUME", and "CLEAR"                endTime can be sent for "PAUSE", in which case it will update the paused endTime            |
 |`updateMode`|UpdateMode|True|Enumeration to control the media clock.                In case of pause, resume, or clear, the start time value is ignored and shall be left out.  For resume, the time continues with the same value as it was when paused.            |
+|`audioStreamingIndicator`|AudioStreamingIndicator|False|Enumeration for the indicator icon on a play/pause button. see AudioStreamingIndicator.            |
 
 
 ### SetMediaClockTimer
