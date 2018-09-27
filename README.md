@@ -2100,12 +2100,12 @@ Contains information about this system's video streaming capabilities.
 |`frequencyFraction`|Integer|False|The fractional part of the frequency for 101.7 is 7|
 |`band`|RadioBand|False||
 |`rdsData`|RdsData|False||
-|`hdRadioEnable`|Boolean|False|True if the hd radio is on, false is the radio is off|
+|`hdRadioEnable`|Boolean|False|True if the hd radio is on, false if the radio is off|
 |`availableHDs`|Integer|False|number of HD sub-channels if available|
 |`hdChannel`|Integer|False|Current HD sub-channel if available|
 |`signalStrength`|Integer|False||
 |`signalChangeThreshold`|Integer|False|If the signal strength falls below the set value for this parameter, the radio will tune to an alternative frequency|
-|`radioEnable`|Boolean|False|True if the radio is on, false is the radio is off. If set to false, no other data will be included.|
+|`radioEnable`|Boolean|False|True if the radio is on, false if the radio is off. If set to false, no other data will be included.|
 |`state`|RadioState|False||
 |`sisData`|SisData|False|Read-only Station Information Service (SIS) data provides basic information about the station such as call sign, as well as information not displayable to the consumer such as the station identification number|
 
