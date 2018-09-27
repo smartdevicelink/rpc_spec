@@ -135,7 +135,7 @@
         <element name="READ_ONLY" since="4.5">
             <description>The value being set is read only</description>
         </element>
-        <element name="CORRUPTED_DATA" since="4.6">
+        <element name="CORRUPTED_DATA" since="5.0">
             <description>The data sent failed to pass CRC check in receiver end</description>
         </element>
     </enum>
@@ -5113,7 +5113,7 @@
                 If offset is set to 0, then length is the total length of the file to be downloaded
             </description>
         </param>
-        <param name="crc" type="Integer" minvalue="0" maxvalue="4294967295" mandatory="false" since="4.6">
+        <param name="crc" type="Integer" minvalue="0" maxvalue="4294967295" mandatory="false" since="5.0">
             <description> Additional CRC32 checksum to protect data integrity up to 512 Mbits </description>
         </param>
     </function>
@@ -5135,7 +5135,7 @@
             <element name="GENERIC_ERROR"/>
             <element name="REJECTED"/>
             <element name="UNSUPPORTED_REQUEST"/>
-            <element name=" CORRUPTED_DATA" since="4.6"/>
+            <element name="CORRUPTED_DATA" since="5.0"/>
         </param>
         
         <param name="spaceAvailable" type="Integer" minvalue="0" maxvalue="2000000000" mandatory="true">
