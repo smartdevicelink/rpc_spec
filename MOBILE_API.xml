@@ -390,6 +390,12 @@
             <description>Broadcast only to whichever app has an alert currently being displayed.</description>
         </element>
     </enum>
+
+    <enum name="VideoStreamingState" since="5.0">
+        <description>Enumeration that describes possible states of video streaming. </description>
+        <element name="STREAMABLE" />
+        <element name="NOT_STREAMABLE" />
+    </enum>
     
     <enum name="SoftButtonType" since="2.0">
         <description>Contains information about the SoftButton capabilities.</description>
@@ -5825,6 +5831,12 @@
         
         <param name="systemContext" type="SystemContext" mandatory="true">
             <description>See SystemContext</description>
+        </param>
+
+        <param name="videoStreamingState" type="VideoStreamingState" mandatory="false" defvalue="STREAMABLE" since="5.0">
+            <description>See VideoStreamingState. 
+            If it is NOT_STREAMABLE, the app must stop streaming video to SDL Core(stop service).
+            </description>
         </param>
     </function>
     
