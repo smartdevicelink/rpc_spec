@@ -280,6 +280,7 @@ Contains information about the TTS capabilities.
 |`LHPLUS_PHONEMES`||
 |`PRE_RECORDED`||
 |`SILENCE`||
+|`FILE`||
 
 
 ### VrCapabilities
@@ -1806,14 +1807,14 @@ Contains information about on-screen preset capabilities.
 
 
 ### TTSChunk
-A TTS chunk, that consists of the text/phonemes to speak and the type (like text or SAPI)
+A TTS chunk, that consists of text/phonemes to speak or the name of a file to play, and a TTS type (like text or SAPI)
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`text`|String|True|The text or phonemes to speak.                May not be empty.            |
-|`type`|SpeechCapabilities|True|Describes, whether it is text or a specific phoneme set. See SpeechCapabilities|
+|`text`|String|True|The text or phonemes to speak, or the name of the audio file to play.                May not be empty.            |
+|`type`|SpeechCapabilities|True|Describes whether the TTS chunk is plain text, a specific phoneme set, or an audio file. See SpeechCapabilities|
 
 
 ### Turn
