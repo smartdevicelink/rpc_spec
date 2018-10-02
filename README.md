@@ -2100,11 +2100,12 @@ Contains information about this system's video streaming capabilities.
 |`frequencyFraction`|Integer|False|The fractional part of the frequency for 101.7 is 7|
 |`band`|RadioBand|False||
 |`rdsData`|RdsData|False||
+|`hdRadioEnable`|Boolean|False|True if the hd radio is on, false if the radio is off|
 |`availableHDs`|Integer|False|number of HD sub-channels if available|
 |`hdChannel`|Integer|False|Current HD sub-channel if available|
 |`signalStrength`|Integer|False||
 |`signalChangeThreshold`|Integer|False|If the signal strength falls below the set value for this parameter, the radio will tune to an alternative frequency|
-|`radioEnable`|Boolean|False|True if the radio is on, false is the radio is off. If set to false, no other data will be included.|
+|`radioEnable`|Boolean|False|True if the radio is on, false if the radio is off. If set to false, no other data will be included.|
 |`state`|RadioState|False||
 |`sisData`|SisData|False|Read-only Station Information Service (SIS) data provides basic information about the station such as call sign, as well as information not displayable to the consumer such as the station identification number|
 
@@ -2148,6 +2149,8 @@ Contains information about a radio control module's capabilities.
 |`signalStrengthAvailable`|Boolean|False|Availability of the getting the signal strength.                True: Available, False: Not Available, Not present: Not Available.            |
 |`signalChangeThresholdAvailable`|Boolean|False|Availability of the getting the signal Change Threshold.                True: Available, False: Not Available, Not present: Not Available.            |
 |`sisDataAvailable`|Boolean|False|Availability of the getting HD radio Station Information Service (SIS) data.                True: Available, False: Not Available, Not present: Not Available.            |
+|`hdRadioEnableAvailable`|Boolean|False|Availability of the control of enable/disable HD radio.                True: Available, False: Not Available, Not present: Not Available.            |
+|`siriusxmRadioAvailable`|Boolean|False|Availability of sirius XM radio.                True: Available, False: Not Available, Not present: Not Available.            |
 
 
 ### ClimateControlCapabilities
