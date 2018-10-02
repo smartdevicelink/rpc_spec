@@ -280,6 +280,7 @@ Contains information about the TTS capabilities.
 |`LHPLUS_PHONEMES`||
 |`PRE_RECORDED`||
 |`SILENCE`||
+|`FILE`||
 
 
 ### VrCapabilities
@@ -501,7 +502,8 @@ See DAES for further infos regarding the displays
 |`menuIcon`|The image field for the menu icon in SetGlobalProperties|
 |`cmdIcon`|The image field for AddCommand|
 |`appIcon`|The image field for the app icon (set by setAppIcon)|
-|`graphic`|The image field for Show|
+|`graphic`|The primary image field for Show|
+|`secondaryGraphic`|The secondary image field for Show|
 |`showConstantTBTIcon`|The primary image field for ShowConstantTBT|
 |`showConstantTBTNextTurnIcon`|The secondary image field for ShowConstantTBT|
 |`locationImage`|The optional image of a destination / location|
@@ -611,6 +613,17 @@ Enum for each type of video streaming codec.
 |`Theora`|Theora is derived from the formerly proprietary VP3 codec, released into the public domain by On2 Technologies. It is broadly comparable in design and bitrate efficiency to MPEG-4 Part 2, early versions of Windows Media Video, and RealVideo while lacking some of the features present in some of these other codecs. It is comparable in open standards philosophy to the BBC's Dirac codec.|
 |`VP8`|VP8 can be multiplexed into the Matroska-based container format WebM along with Vorbis and Opus audio. The image format WebP is based on VP8's intra-frame coding. VP8's direct successor, VP9, and the emerging royalty-free internet video format AV1 from the Alliance for Open Media (AOMedia) are based on VP8.|
 |`VP9`|Similar to VP8, but VP9 is customized for video resolutions beyond high-definition video (UHD) and also enables lossless compression.|
+
+
+### AudioStreamingIndicator
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`PLAY_PAUSE`|Default playback indicator.                By default the playback indicator should be PLAY_PAUSE when:                    - the media app is newly registered on the head unit (after RegisterAppInterface)                    - the media app was closed by the user (App enters HMI_NONE)                    - the app sends SetMediaClockTimer with audioStreamingIndicator not set to any value            |
+|`PLAY`|Indicates that a button press of the Play/Pause button starts the audio playback.|
+|`PAUSE`|Indicates that a button press of the Play/Pause button pauses the current audio playback.|
+|`STOP`|Indicates that a button press of the Play/Pause button stops the current audio playback.|
 
 
 ### GlobalProperty
@@ -1149,6 +1162,7 @@ Enumeration listing possible asynchronous requests.
 |`EMERGENCY`||
 |`MEDIA`||
 |`FOTA`||
+|`OEM_SPECIFIC`||
 
 
 ### AppHMIType
@@ -1387,7 +1401,7 @@ A choice is an option given to the user, which can be selected either by menu, o
 | ---------- | ---------- |:-----------: |:-----------:|
 |`choiceID`|Integer|True||
 |`menuName`|String|True||
-|`vrCommands`|String[]|True||
+|`vrCommands`|String[]|False||
 |`image`|Image|False||
 |`secondaryText`|String|False|Optional secondary text to display; e.g. address of POI in a search result entry|
 |`tertiaryText`|String|False|Optional tertiary text to display; e.g. distance to POI for a search result entry|
@@ -1804,14 +1818,14 @@ Contains information about on-screen preset capabilities.
 
 
 ### TTSChunk
-A TTS chunk, that consists of the text/phonemes to speak and the type (like text or SAPI)
+A TTS chunk, that consists of text/phonemes to speak or the name of a file to play, and a TTS type (like text or SAPI)
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`text`|String|True|The text or phonemes to speak.                May not be empty.            |
-|`type`|SpeechCapabilities|True|Describes, whether it is text or a specific phoneme set. See SpeechCapabilities|
+|`text`|String|True|The text or phonemes to speak, or the name of the audio file to play.                May not be empty.            |
+|`type`|SpeechCapabilities|True|Describes whether the TTS chunk is plain text, a specific phoneme set, or an audio file. See SpeechCapabilities|
 
 
 ### Turn
@@ -2192,6 +2206,7 @@ The response to registerAppInterface
 |`hmiCapabilities`|HMICapabilities|False|Specifies the HMIÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢s capabilities. See HMICapabilities.|
 |`sdlVersion`|String|False|The SmartDeviceLink version.|
 |`systemSoftwareVersion`|String|False|The software version of the system that implements the SmartDeviceLink core.|
+|`iconResumed`|Boolean|False|Existence of apps icon at system. If true, apps icon                was resumed at system. If false, apps icon is not resumed at system            |
 
 
 ### UnregisterAppInterface
@@ -2234,7 +2249,7 @@ Allows setting global properties.
 |`vrHelpTitle`|String|False|VR Help Title text.                If omitted on supported displays, the default module help title shall be used.                If omitted and one or more vrHelp items are provided, the request will be rejected.            |
 |`vrHelp`|VrHelpItem[]|False|VR Help Items.                If omitted on supported displays, the default AppLink VR help / What Can I Say? screen shall be used.                If the list of VR Help Items contains nonsequential positions (e.g. [1,2,4]), the RPC shall be rejected.                If omitted and a vrHelpTitle is provided, the request will be rejected.            |
 |`menuTitle`|String|False|Optional text to label an app menu button (for certain touchscreen platforms).|
-|`menuIcon`|Image|False|>Optional icon to draw on an app menu button (for certain touchscreen platforms).|
+|`menuIcon`|Image|False|Optional icon to draw on an app menu button (for certain touchscreen platforms).|
 |`keyboardProperties`|KeyboardProperties|False|On-screen keyboard configuration (if available).|
 
 
@@ -2339,6 +2354,7 @@ Adds a sub menu to the in-application menu.
 |`menuID`|Integer|True|unique ID of the sub menu to add.|
 |`position`|Integer|False|Position within the items that are are at top level of the in application menu.                0 will insert at the front.                1 will insert at the second position.                If position is greater or equal than the number of items on top level, the sub menu will be appended to the end.                Position of any submenu will always be located before the return and exit options                If this param was omitted the entry will be added at the end.            |
 |`menuName`|String|True|Text to show in the menu for this sub menu.|
+|`menuIcon`|Image|False|The image field for AddSubMenu|
 
 
 ### AddSubMenu
@@ -2565,6 +2581,7 @@ Sets the initial media clock value and automatic update method.
 |`startTime`|StartTime|False|See StartTime.                startTime must be provided for "COUNTUP" and "COUNTDOWN".                startTime will be ignored for "RESUME", and "CLEAR"                startTime can be sent for "PAUSE", in which case it will update the paused startTime            |
 |`endTime`|StartTime|False|See StartTime.                endTime can be provided for "COUNTUP" and "COUNTDOWN"; to be used to calculate any visual progress bar (if not provided, this feature is ignored)                If endTime is greater then startTime for COUNTDOWN or less than startTime for COUNTUP, then the request will return an INVALID_DATA.                endTime will be ignored for "RESUME", and "CLEAR"                endTime can be sent for "PAUSE", in which case it will update the paused endTime            |
 |`updateMode`|UpdateMode|True|Enumeration to control the media clock.                In case of pause, resume, or clear, the start time value is ignored and shall be left out.  For resume, the time continues with the same value as it was when paused.            |
+|`audioStreamingIndicator`|AudioStreamingIndicator|False|Enumeration for the indicator icon on a play/pause button. see AudioStreamingIndicator.            |
 
 
 ### SetMediaClockTimer
@@ -3326,6 +3343,7 @@ An asynchronous request from the device; binary data can be included in hybrid p
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`requestType`|RequestType|True|The type of system request.                Note that Proprietary requests should forward the binary data to the known proprietary module on the system.            |
+|`requestSubType`|String|False|This parameter is filled for supporting OEM proprietary data exchanges.            |
 |`fileName`|String|False|Filename of HTTP data to store in predefined system staging area.                Mandatory if requestType is HTTP.                PROPRIETARY requestType should ignore this parameter.            |
 
 
@@ -3783,6 +3801,7 @@ An asynchronous request from the system for specific data from the device or the
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`requestType`|RequestType|True|The type of system request.|
+|`requestSubType`|String|False|This parameter is filled for supporting OEM proprietary data exchanges.            |
 |`url`|String|False|Optional URL for HTTP requests.                If blank, the binary data shall be forwarded to the app.                If not blank, the binary data shall be forwarded to the url with a provided timeout in seconds.            |
 |`timeout`|Integer|False|Optional timeout for HTTP requests                Required if a URL is provided            |
 |`fileType`|FileType|False|Optional file type (meant for HTTP file requests).|
