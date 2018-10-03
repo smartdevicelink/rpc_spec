@@ -802,12 +802,17 @@ Reflects the current primary audio source (if selected).
 | Value | Description | 
 | ---------- |:-----------:|
 |`NO_SOURCE_SELECTED`||
+|`CD`||
 |`USB`||
 |`USB2`||
 |`BLUETOOTH_STEREO_BTST`||
 |`LINE_IN`||
 |`IPOD`||
 |`MOBILE_APP`||
+|`AM`||
+|`FM`||
+|`XM`||
+|`DAB`||
 
 
 ### WiperStatus
@@ -897,6 +902,9 @@ Reflects the status of the ambient light sensor.
 | ---------- |:-----------:|
 |`CLIMATE`||
 |`RADIO`||
+|`AUDIO`||
+|`LIGHT`||
+|`HMI_SETTINGS`||
 
 
 ### DefrostZone
@@ -1331,6 +1339,81 @@ Enumerations of all available system capability types
 |`PHONE_CALL`||
 |`VIDEO_STREAMING`||
 |`REMOTE_CONTROL`||
+
+
+### LightName
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`FRONT_LEFT_HIGH_BEAM`||
+|`FRONT_RIGHT_HIGH_BEAM`||
+|`FRONT_LEFT_LOW_BEAM`||
+|`FRONT_RIGHT_LOW_BEAM`||
+|`FRONT_LEFT_PARKING_LIGHT`||
+|`FRONT_RIGHT_PARKING_LIGHT`||
+|`FRONT_LEFT_FOG_LIGHT`||
+|`FRONT_RIGHT_FOG_LIGHT`||
+|`FRONT_LEFT_DAYTIME_RUNNING_LIGHT`||
+|`FRONT_RIGHT_DAYTIME_RUNNING_LIGHT`||
+|`FRONT_LEFT_TURN_LIGHT`||
+|`FRONT_RIGHT_TURN_LIGHT`||
+|`REAR_LEFT_FOG_LIGHT`||
+|`REAR_RIGHT_FOG_LIGHT`||
+|`REAR_LEFT_TAIL_LIGHT`||
+|`REAR_RIGHT_TAIL_LIGHT`||
+|`REAR_LEFT_BRAKE_LIGHT`||
+|`REAR_RIGHT_BRAKE_LIGHT`||
+|`REAR_LEFT_TURN_LIGHT`||
+|`REAR_RIGHT_TURN_LIGHT`||
+|`REAR_REGISTRATION_PLATE_LIGHT`||
+|`HIGH_BEAMS`|Include all high beam lights: front_left and front_right.|
+|`LOW_BEAMS`|Include all low beam lights: front_left and front_right.|
+|`FOG_LIGHTS`|Include all fog lights: front_left, front_right, rear_left and rear_right.|
+|`RUNNING_LIGHTS`|Include all daytime running lights: front_left and front_right.|
+|`PARKING_LIGHTS`|Include all parking lights: front_left and front_right.|
+|`BRAKE_LIGHTS`|Include all brake lights: rear_left and rear_right.|
+|`REAR_REVERSING_LIGHTS`||
+|`SIDE_MARKER_LIGHTS`||
+|`LEFT_TURN_LIGHTS`|Include all left turn signal lights: front_left, rear_left, left_side and mirror_mounted.|
+|`RIGHT_TURN_LIGHTS`|Include all right turn signal lights: front_right, rear_right, right_side and mirror_mounted.|
+|`HAZARD_LIGHTS`|Include all hazard lights: front_left, front_right, rear_left and rear_right.|
+|`AMBIENT_LIGHTS`||
+|`OVERHEAD_LIGHTS`||
+|`READING_LIGHTS`||
+|`TRUNK_LIGHTS`||
+|`EXTERIOR_FRONT_LIGHTS`|Include exterior lights located in front of the vehicle. For example, fog lights and low beams.|
+|`EXTERIOR_REAR_LIGHTS`|Include exterior lights located at the back of the vehicle. For example, license plate lights, reverse lights, cargo lights, bed lights and trailer assist lights.|
+|`EXTERIOR_LEFT_LIGHTS`|Include exterior lights located at the left side of the vehicle. For example, left puddle lights and spot lights.|
+|`EXTERIOR_RIGHT_LIGHTS`|Include exterior lights located at the right side of the vehicle. For example, right puddle lights and spot lights.|
+
+
+### LightStatus
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`ON`||
+|`OFF`||
+
+
+### DisplayMode
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`DAY`||
+|`NIGHT`||
+|`AUTO`||
+
+
+### DistanceUnit
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`MILES`||
+|`KILOMETERS`||
 
 
 ### MetadataType
@@ -2002,6 +2085,27 @@ Contains information about this system's video streaming capabilities.
 |`REG`|String|False|Region|
 
 
+### StationIDNumber
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`countryCode`|Integer|False|Binary Representation of ITU Country Code. USA Code is 001.|
+|`fccFacilityId`|Integer|False|Binary representation  of unique facility ID assigned by the FCC; FCC controlled for U.S. territory|
+
+
+### SisData
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`stationShortName`|String|False|Identifies the 4-alpha-character station call sign plus an optional (-FM) extension|
+|`stationIDNumber`|StationIDNumber|False|Used for network Application. Consists of Country Code and FCC Facility ID.|
+|`stationLongName`|String|False|Identifies the station call sign or other identifying information in the long format.|
+|`stationLocation`|GPSData|False|Provides the 3-dimensional geographic station location.|
+|`stationMessage`|String|False|May be used to convey textual information of general interest to the consumer such as weather forecasts or public service announcements. Includes a high priority delivery feature to convey emergencies that may be in the listening area.|
+
+
 ### RadioControlData
 ##### Parameters
 
@@ -2011,12 +2115,14 @@ Contains information about this system's video streaming capabilities.
 |`frequencyFraction`|Integer|False|The fractional part of the frequency for 101.7 is 7|
 |`band`|RadioBand|False||
 |`rdsData`|RdsData|False||
+|`hdRadioEnable`|Boolean|False|True if the hd radio is on, false if the radio is off|
 |`availableHDs`|Integer|False|number of HD sub-channels if available|
 |`hdChannel`|Integer|False|Current HD sub-channel if available|
 |`signalStrength`|Integer|False||
 |`signalChangeThreshold`|Integer|False|If the signal strength falls below the set value for this parameter, the radio will tune to an alternative frequency|
-|`radioEnable`|Boolean|False|True if the radio is on, false is the radio is off. If set to false, no other data will be included.|
+|`radioEnable`|Boolean|False|True if the radio is on, false if the radio is off. If set to false, no other data will be included.|
 |`state`|RadioState|False||
+|`sisData`|SisData|False|Read-only Station Information Service (SIS) data provides basic information about the station such as call sign, as well as information not displayable to the consumer such as the station identification number|
 
 
 ### ClimateControlData
@@ -2034,18 +2140,10 @@ Contains information about this system's video streaming capabilities.
 |`dualModeEnable`|Boolean|False||
 |`acMaxEnable`|Boolean|False||
 |`ventilationMode`|VentilationMode|False||
-
-
-### ModuleData
-The moduleType indicates which type of data should be changed and identifies which data object exists in this struct. For example, if the moduleType is CLIMATE then a "climateControlData" should exist
-
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-|`moduleType`|ModuleType|True||
-|`radioControlData`|RadioControlData|False||
-|`climateControlData`|ClimateControlData|False||
+|`heatedSteeringWheelEnable`|Boolean|False|value false means disabled/turn off, value true means enabled/turn on.|
+|`heatedWindshieldEnable`|Boolean|False|value false means disabled, value true means enabled.|
+|`heatedRearWindowEnable`|Boolean|False|value false means disabled, value true means enabled.|
+|`heatedMirrorsEnable`|Boolean|False|value false means disabled, value true means enabled.|
 
 
 ### RadioControlCapabilities
@@ -2065,6 +2163,9 @@ Contains information about a radio control module's capabilities.
 |`stateAvailable`|Boolean|False|Availability of the getting the Radio state.                True: Available, False: Not Available, Not present: Not Available.            |
 |`signalStrengthAvailable`|Boolean|False|Availability of the getting the signal strength.                True: Available, False: Not Available, Not present: Not Available.            |
 |`signalChangeThresholdAvailable`|Boolean|False|Availability of the getting the signal Change Threshold.                True: Available, False: Not Available, Not present: Not Available.            |
+|`sisDataAvailable`|Boolean|False|Availability of the getting HD radio Station Information Service (SIS) data.                True: Available, False: Not Available, Not present: Not Available.            |
+|`hdRadioEnableAvailable`|Boolean|False|Availability of the control of enable/disable HD radio.                True: Available, False: Not Available, Not present: Not Available.            |
+|`siriusxmRadioAvailable`|Boolean|False|Availability of sirius XM radio.                True: Available, False: Not Available, Not present: Not Available.            |
 
 
 ### ClimateControlCapabilities
@@ -2086,6 +2187,122 @@ Contains information about a climate control module's capabilities.
 |`defrostZone`|DefrostZone[]|False|A set of all defrost zones that are controllable.            |
 |`ventilationModeAvailable`|Boolean|False|Availability of the control of air ventilation mode.                True: Available, False: Not Available, Not present: Not Available.            |
 |`ventilationMode`|VentilationMode[]|False|A set of all ventilation modes that are controllable.            |
+|`heatedSteeringWheelAvailable`|Boolean|False|Availability of the control (enable/disable) of heated Steering Wheel.                True: Available, False: Not Available, Not present: Not Available.            |
+|`heatedWindshieldAvailable`|Boolean|False|Availability of the control (enable/disable) of heated Windshield.                True: Available, False: Not Available, Not present: Not Available.            |
+|`heatedRearWindowAvailable`|Boolean|False|Availability of the control (enable/disable) of heated Rear Window.                True: Available, False: Not Available, Not present: Not Available.            |
+|`heatedMirrorsAvailable`|Boolean|False|Availability of the control (enable/disable) of heated Mirrors.                True: Available, False: Not Available, Not present: Not Available.            |
+
+
+### EqualizerSettings
+Defines the each Equalizer channel settings.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`channelId`|Integer|True||
+|`channelName`|String|False|read-only channel / frequency name (e.i. "Treble, Midrange, Bass" or "125 Hz")|
+|`channelSetting`|Integer|True|Reflects the setting, from 0%-100%.|
+
+
+### AudioControlData
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`source`|PrimaryAudioSource|False|In a getter response or a notification, it is the current primary audio source of the system.                In a setter request, it is the target audio source that the system shall switch to.                If the value is MOBILE_APP, the system shall switch to the mobile media app that issues the setter RPC.            |
+|`keepContext`|Boolean|False|This parameter shall not be present in any getter responses or notifications.                This parameter is optional in a setter request. The default value is false.                If it is false, the system not only changes the audio source but also brings the default application                or system UI associated with the audio source to foreground.                If it is true, the system changes the audio source, but still keeps the current application in foreground.            |
+|`volume`|Integer|False|Reflects the volume of audio, from 0%-100%.|
+|`equalizerSettings`|EqualizerSettings[]|False|Defines the list of supported channels (band) and their current/desired settings on HMI|
+
+
+### AudioControlCapabilities
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`moduleName`|String|True|The short friendly name of the light control module.                It should not be used to identify a module by mobile application.            |
+|`sourceAvailable`|Boolean|False|Availability of the control of audio source. |
+|`keepContextAvailable`|Boolean|False|Availability of the keepContext paramter. |
+|`volumeAvailable`|Boolean|False|Availability of the control of audio volume.|
+|`equalizerAvailable`|Boolean|False|Availability of the control of Equalizer Settings.|
+|`equalizerMaxChannelId`|Integer|False|Must be included if equalizerAvailable=true, and assume all IDs starting from 1 to this value are valid|
+
+
+### LightCapabilities
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`name`|LightName|True||
+|`densityAvailable`|Boolean|False|Indicates if the light's density can be set remotely (similar to a dimmer).            |
+|`rgbColorSpaceAvailable`|Boolean|False|Indicates if the light's color can be set remotely by using the sRGB color space.            |
+
+
+### LightControlCapabilities
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`moduleName`|String|True|The short friendly name of the light control module.                It should not be used to identify a module by mobile application.            |
+|`supportedLights`|LightCapabilities[]|True|An array of available LightCapabilities that are controllable. |
+
+
+### LightState
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`id`|LightName|True|The name of a light or a group of lights. |
+|`status`|LightStatus|True||
+|`density`|Float|False||
+|`color`|RGBColor|False||
+
+
+### LightControlData
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`lightState`|LightState[]|True|An array of LightNames and their current or desired status. No change to the status of the LightNames that are not listed in the array.|
+
+
+### HMISettingsControlData
+Corresponds to "HMI_SETTINGS" ModuleType
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`displayMode`|DisplayMode|False||
+|`temperatureUnit`|TemperatureUnit|False||
+|`distanceUnit`|DistanceUnit|False||
+
+
+### HMISettingsControlCapabilities
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`moduleName`|String|True|The short friendly name of the hmi setting module.              It should not be used to identify a module by mobile application.            |
+|`distanceUnitAvailable`|Boolean|False|Availability of the control of distance unit. |
+|`temperatureUnitAvailable`|Boolean|False|Availability of the control of temperature unit. |
+|`displayModeUnitAvailable`|Boolean|False|Availability of the control of HMI display mode. |
+
+
+### ModuleData
+The moduleType indicates which type of data should be changed and identifies which data object exists in this struct. For example, if the moduleType is CLIMATE then a "climateControlData" should exist
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`moduleType`|ModuleType|True||
+|`radioControlData`|RadioControlData|False||
+|`climateControlData`|ClimateControlData|False||
+|`audioControlData`|AudioControlData|False||
+|`lightControlData`|LightControlData|False||
+|`hmiSettingsControlData`|HMISettingsControlData|False||
 
 
 ### RemoteControlCapabilities
@@ -2096,6 +2313,9 @@ Contains information about a climate control module's capabilities.
 |`climateControlCapabilities`|ClimateControlCapabilities[]|False|If included, the platform supports RC climate controls. For this baseline version, maxsize=1. i.e. only one climate control module is supported.|
 |`radioControlCapabilities`|RadioControlCapabilities[]|False|If included, the platform supports RC radio controls.For this baseline version, maxsize=1. i.e. only one radio control module is supported.|
 |`buttonCapabilities`|ButtonCapabilities[]|False|If included, the platform supports RC button controls with the included button names.|
+|`audioControlCapabilities`|AudioControlCapabilities[]|False|If included, the platform supports audio controls. |
+|`hmiSettingsControlCapabilities`|HMISettingsControlCapabilities|False|If included, the platform supports hmi setting controls. |
+|`lightControlCapabilities`|LightControlCapabilities|False|If included, the platform supports light controls. |
 
 
 ### SystemCapability
