@@ -5999,7 +5999,7 @@
             <element name="GENERIC_ERROR"/>
             <element name="REJECTED"/>
             <element name="UNSUPPORTED_REQUEST"/>
-            <element name="CORRUPTED_DATA" since="5.0"/>
+            <element name="CORRUPTED_DATA"/>
         </param>
         
         <param name="spaceAvailable" type="Integer" minvalue="0" maxvalue="2000000000" mandatory="false" since="5.0">
