@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="no"?>
 <?xml-stylesheet type="text/xml" href="protocol2html.xsl"?>
 
-<interface name="SmartDeviceLink RAPI" version="4.5.0" minVersion="1.0" date="2017-09-22">
+<interface name="SmartDeviceLink RAPI" version="5.0.0" minVersion="1.0" date="2018-10-03">
     <enum name="Result" internal_scope="base" since="1.0">
         <element name="SUCCESS">
             <description>The request succeeded</description>
@@ -1215,7 +1215,7 @@
     </struct>
     
     <enum name="ElectronicParkBrakeStatus" since="5.0">
-      <element name="CLOSED" />
+      <element name="CLOSED">
         <description>
           Park brake actuators have been fully applied.
         </description>		
@@ -2922,7 +2922,7 @@
 
     <struct name="SeatControlData" since="5.0">
         <description>Seat control data corresponds to "SEAT" ModuleType. </description>
-        <param name="id" type="SupportedSeat" mandatory="true">
+        <param name="id" type="SupportedSeat" mandatory="true"></param>
         
         <param name="heatingEnabled" type="Boolean" mandatory="false"></param>
         <param name="coolingEnabled" type="Boolean" mandatory="false"></param>
