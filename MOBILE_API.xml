@@ -3328,13 +3328,13 @@
                 If the value is MOBILE_APP, the system shall switch to the mobile media app that issues the setter RPC.
             </description>
         </param>
-        <param name="keepContext" type="Boolean" mandatory="false">
+        <param name="keepContext" type="Boolean" defValue="false" mandatory="false">
             <description>
                 This parameter shall not be present in any getter responses or notifications.
-                This parameter is optional in a setter request. The default value is false.
-                If it is false, the system not only changes the audio source but also brings the default application
-                or system UI associated with the audio source to foreground.
-                If it is true, the system changes the audio source, but still keeps the current application in foreground.
+                This parameter is optional in a setter request. The default value is false if it is not included.
+                If it is false, the system not only changes the audio source but also brings the default application or 
+                system UI associated with the audio source to foreground.
+                If it is true, the system only changes the audio source, but keeps the current application in foreground.
             </description>
         </param>
         <param name="volume" type="Integer" mandatory="false" minvalue="0" maxvalue="100">
