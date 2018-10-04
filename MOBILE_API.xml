@@ -881,7 +881,7 @@
         <element name="ROUTE_UPDATE_REQUEST_TIMEOUT" />
     </enum>
     
-    <enum name="DriverDistractionState"  since="2.0">
+    <enum name="DriverDistractionState" since="2.0">
         <description>Enumeration that describes possible states of driver distraction.</description>
         <element name="DD_ON" />
         <element name="DD_OFF" />
@@ -1213,12 +1213,12 @@
             </description>
         </param>
     </struct>
-    
+
     <enum name="ElectronicParkBrakeStatus" since="5.0">
       <element name="CLOSED">
         <description>
           Park brake actuators have been fully applied.
-        </description>		
+        </description>
         </element>
       <element name="TRANSITION">
         <description>
@@ -1228,7 +1228,7 @@
       <element name="OPEN">
         <description>
           Park brake actuators are released.
-        </description>		
+        </description>
       </element>
       <element name="DRIVE_ACTIVE">
         <description>
@@ -1248,7 +1248,7 @@
         </param>
         <param name="tpms" type="TPMS" mandatory="false" since="5.0">
             <description>
-            The status of TPMS according to the particular tire.
+                The status of TPMS according to the particular tire.
             </description>
         </param>
         <param name="pressure" type="Float" mandatory="false" minvalue="0" maxvalue="2000" since="5.0">
@@ -1863,7 +1863,6 @@
         </param>
     </struct>
     
-
     <enum name="TurnSignal" since="5.0">
         <description>Enumeration that describes the status of the turn light indicator.</description>
         <element name="OFF">
@@ -2633,7 +2632,7 @@
         <element name="OnInteriorVehicleDataID" value="32783" hexvalue="800F" since="4.5" />
         <element name="OnWayPointChangeID" value="32784" hexvalue="8010" since="4.1" />
         <element name="OnRCStatusID" value="32785" hexvalue="8011" since="5.0" />
-        
+
         <!--
          Ford Specific Request / Response RPCs
          Range = 0x 0001 0000 - 0x 0001 7FFF
@@ -2834,7 +2833,7 @@
             <description>True if the system can utilize the haptic spatial data from the source being streamed. If not included, it can be assumed the module doesn't support haptic spatial data'. </description>
         </param>
     </struct>
-    
+
     <struct name="RGBColor" since="5.0">
         <param name="red" type="Integer" minvalue="0" maxvalue="255" mandatory="true" />
         <param name="green" type="Integer" minvalue="0" maxvalue="255" mandatory="true" />
@@ -3122,7 +3121,7 @@
             <description>value false means disabled, value true means enabled.</description>
         </param>
     </struct>
-    
+
     <struct name="RadioControlCapabilities" since="4.5">
         <description>Contains information about a radio control module's capabilities.</description>
         <!-- need an ID in the future -->
@@ -3308,7 +3307,7 @@
             </description>
         </param>
     </struct>
-    
+
     <struct name="EqualizerSettings" since="5.0">
         <description>Defines the each Equalizer channel settings.</description>
         <param name="channelId" type="Integer" minvalue="1" maxvalue="100" mandatory="true"></param>
@@ -3589,16 +3588,16 @@
             <description>If included, the platform supports RC button controls with the included button names.</description>
         </param>
         <param name="audioControlCapabilities" type="AudioControlCapabilities" mandatory="false" minsize="1" maxsize="100" array="true" since="5.0">
-            <description> If included, the platform supports audio controls. </description >
+            <description>If included, the platform supports audio controls.</description>
         </param>
         <param name="hmiSettingsControlCapabilities" type="HMISettingsControlCapabilities" mandatory="false" since="5.0">
-            <description> If included, the platform supports hmi setting controls. </description >
+            <description>If included, the platform supports hmi setting controls.</description>
         </param>
         <param name="lightControlCapabilities" type="LightControlCapabilities" mandatory="false" since="5.0">
-            <description> If included, the platform supports light controls. </description >
+            <description>If included, the platform supports light controls.</description>
         </param>
         <param name="seatControlCapabilities" type="SeatControlCapabilities" mandatory="false" minsize="1" maxsize="100" array="true" since="5.0">
-            <description>If included, the platform supports seat controls.</description >
+            <description>If included, the platform supports seat controls.</description>
         </param>
     </struct>
     
@@ -3660,7 +3659,7 @@
             <description>The data in this field describes the current humidity value.</description>
         </element>
     </enum>
-    
+
     <struct name="MetadataTags" since="4.5">
         <param name="mainField1" type="MetadataType" minsize="0" maxsize="5" array="true" mandatory="false">
             <description>The type of data contained in the "mainField1" text field.</description>
@@ -3690,7 +3689,7 @@
             <description>The height of the rectangle</description>
         </param>
     </struct>
-    
+
     <struct name="HapticRect" since="4.5">
         <description>Defines haptic data for each user control object for video streaming application</description>
         <param name="id" type="Integer" minvalue="0" maxvalue="2000000000" mandatory="true">
@@ -5145,7 +5144,6 @@
         <param name="engineOilLife" type="Boolean" mandatory="false" since="5.0">
             <description>The estimated percentage of remaining oil life of the engine.</description>
         </param>
-        
         <param name="electronicParkBrakeStatus" type="Boolean" mandatory="false" since="5.0">
             <description>The status of the park brake as provided by Electric Park Brake (EPB) system.</description>
         </param>
@@ -5259,7 +5257,6 @@
         <param name="engineOilLife" type="VehicleDataResult" mandatory="false" since="5.0">
             <description>The estimated percentage of remaining oil life of the engine.</description>
         </param>
-        
         <param name="electronicParkBrakeStatus" type="VehicleDataResult" mandatory="false" since="5.0">
             <description>The status of the park brake as provided by Electric Park Brake (EPB) system.</description>
         </param>
@@ -5999,7 +5996,7 @@
             <element name="GENERIC_ERROR"/>
             <element name="REJECTED"/>
             <element name="UNSUPPORTED_REQUEST"/>
-            <element name="CORRUPTED_DATA" since="5.0"/>
+            <element name="CORRUPTED_DATA"/>
         </param>
         
         <param name="spaceAvailable" type="Integer" minvalue="0" maxvalue="2000000000" mandatory="false" since="5.0">
@@ -6165,7 +6162,6 @@
         <param name="dayColorScheme" type="TemplateColorScheme" mandatory="false" since="5.0"/>
 
         <param name="nightColorScheme" type="TemplateColorScheme" mandatory="false" since="5.0"/>
-        
     </function>
     
     <function name="SetDisplayLayout" functionID="SetDisplayLayoutID" messagetype="response" since="3.0">
@@ -6399,8 +6395,8 @@
         </param>
         <param name="subscribe" type="Boolean" mandatory="false" defvalue="false">
             <description>
-                If subscribe is true, the head unit will register onInteriorVehicleData notifications for the requested moduelType.
-                If subscribe is false, the head unit will unregister onInteriorVehicleData notifications for the requested moduelType.
+                If subscribe is true, the head unit will register onInteriorVehicleData notifications for the requested moduleType.
+                If subscribe is false, the head unit will unregister onInteriorVehicleData notifications for the requested moduleType.
             </description>
         </param>
     </function>
@@ -6623,8 +6619,9 @@
         </param>
 
         <param name="videoStreamingState" type="VideoStreamingState" mandatory="false" defvalue="STREAMABLE" since="5.0">
-            <description>See VideoStreamingState. 
-            If it is NOT_STREAMABLE, the app must stop streaming video to SDL Core(stop service).
+            <description>
+                See VideoStreamingState. 
+                If it is NOT_STREAMABLE, the app must stop streaming video to SDL Core(stop service).
             </description>
         </param>
     </function>
