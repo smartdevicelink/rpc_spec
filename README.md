@@ -1,7 +1,7 @@
 # SmartDeviceLink
 # RPC Spec
 
-###### Version: 4.5.0
+###### Version: 5.0.0
 
 ## Enumerations
 
@@ -45,6 +45,7 @@
 |`RESUME_FAILED`|The provided hash ID does not match the hash of the current set of registered data or the core could not resume the previous data.|
 |`DATA_NOT_AVAILABLE`|The requested information is currently not available. This is different than UNSUPPORTED_RESOURCE because it implies the data is at some point available. |
 |`READ_ONLY`|The value being set is read only|
+|`CORRUPTED_DATA`|The data sent failed to pass CRC check in receiver end|
 
 
 ### ButtonPressMode
@@ -212,6 +213,17 @@ Enumeration that describes possible contexts an app's HMI might be in. Communica
 |`ALERT`|Broadcast only to whichever app has an alert currently being displayed.|
 
 
+### VideoStreamingState
+Enumeration that describes possible states of video streaming. 
+
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`STREAMABLE`||
+|`NOT_STREAMABLE`||
+
+
 ### SoftButtonType
 Contains information about the SoftButton capabilities.
 
@@ -314,10 +326,10 @@ Describes different sampling options for PerformAudioPassThru.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`8KHZ`||
-|`16KHZ`||
-|`22KHZ`||
-|`44KHZ`||
+|`8KHZ`|Sampling rate of 8000 Hz.|
+|`16KHZ`|Sampling rate of 16000 Hz.|
+|`22KHZ`|Sampling rate of 22050 Hz.|
+|`44KHZ`|Sampling rate of 44100 Hz.|
 
 
 ### BitsPerSample
@@ -327,8 +339,8 @@ Describes different quality options for PerformAudioPassThru.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`8_BIT`||
-|`16_BIT`||
+|`8_BIT`|Audio sample is 8 bits wide, unsigned.|
+|`16_BIT`|Audio sample is 16 bits wide, signed, and in little endian.|
 
 
 ### AudioType
@@ -338,7 +350,7 @@ Describes different audio type options for PerformAudioPassThru.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`PCM`||
+|`PCM`|Linear PCM.|
 
 
 ### VehicleDataType
@@ -374,7 +386,10 @@ Defines the data types that can be published and subscribed to.
 |`VEHICLEDATA_ENGINETORQUE`||
 |`VEHICLEDATA_ACCPEDAL`||
 |`VEHICLEDATA_STEERINGWHEEL`||
+|`VEHICLEDATA_TURNSIGNAL`||
+|`VEHICLEDATA_FUELRANGE`||
 |`VEHICLEDATA_ENGINEOILLIFE`||
+|`VEHICLEDATA_ELECTRONICPARKBRAKESTATUS`||
 
 
 ### ButtonName
@@ -385,6 +400,7 @@ Defines the hard (physical) and soft (touchscreen) buttons available from the mo
 | Value | Description | 
 | ---------- |:-----------:|
 |`OK`||
+|`PLAY_PAUSE`|The button name for the physical Play/Pause              toggle that can be used by media apps.            |
 |`SEEKLEFT`||
 |`SEEKRIGHT`||
 |`TUNEUP`||
@@ -454,6 +470,8 @@ See DAES for further infos regarding the displays
 |`GEN3_8-INCH`||
 |`SDL_GENERIC`||
 
+
+### DisplayType
 
 ### TextFieldName
 ##### Elements
@@ -712,6 +730,46 @@ The volume status of a vehicle component.
 |`NOT_SUPPORTED`||
 
 
+### TPMS
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`UNKNOWN`|If set the status of the tire is not known.|
+|`SYSTEM_FAULT`|TPMS does not function.|
+|`SENSOR_FAULT`|The sensor of the tire does not function.|
+|`LOW`|TPMS is reporting a low tire pressure for the tire.|
+|`SYSTEM_ACTIVE`|TPMS is active and the tire pressure is monitored.|
+|`TRAIN`|TPMS is reporting that the tire must be trained.|
+|`TRAINING_COMPLETE`|TPMS reports the training for the tire is completed.|
+|`NOT_TRAINED`|TPMS reports the tire is not trained.|
+
+
+### FuelType
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`GASOLINE`||
+|`DIESEL`||
+|`CNG`|For vehicles using compressed natural gas.            |
+|`LPG`|For vehicles using liquefied petroleum gas.            |
+|`HYDROGEN`|For FCEV (fuel cell electric vehicle).|
+|`BATTERY`|For BEV (Battery Electric Vehicle), PHEV (Plug-in Hybrid Electric Vehicle), solar vehicles and other vehicles which run on a battery.|
+
+
+### ElectronicParkBrakeStatus
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`CLOSED`|Park brake actuators have been fully applied.        |
+|`TRANSITION`|Park brake actuators are transitioning to either Apply/Closed or Release/Open state.        |
+|`OPEN`|Park brake actuators are released.        |
+|`DRIVE_ACTIVE`|When driver pulls the Electronic Park Brake switch while driving "at speed".        |
+|`FAULT`|When system has a fault or is under maintenance.        |
+
+
 ### WarningLightStatus
 Reflects the status of a cluster instrument warning light.
 
@@ -902,6 +960,7 @@ Reflects the status of the ambient light sensor.
 | ---------- |:-----------:|
 |`CLIMATE`||
 |`RADIO`||
+|`SEAT`||
 |`AUDIO`||
 |`LIGHT`||
 |`HMI_SETTINGS`||
@@ -1080,6 +1139,19 @@ Enumeration that describes possible result codes of a vehicle data entry request
 |`DATA_ALREADY_SUBSCRIBED`|The vehicle data item is already subscribed.|
 |`DATA_NOT_SUBSCRIBED`|The vehicle data item cannot be unsubscribed because it is not currently subscribed.|
 |`IGNORED`|The request for this item is ignored because it is already in progress.|
+
+
+### TurnSignal
+Enumeration that describes the status of the turn light indicator.
+
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`OFF`|Turn signal is OFF|
+|`LEFT`|Left turn signal is on|
+|`RIGHT`|Right turn signal is on|
+|`BOTH`|Both signals (left and right) are on.|
 
 
 ### TouchType
@@ -1297,6 +1369,7 @@ Enumeration linking function names with function IDs in AppLink protocol. Assume
 |`OnHashChangeID`||
 |`OnInteriorVehicleDataID`||
 |`OnWayPointChangeID`||
+|`OnRCStatusID`||
 |`EncodedSyncPDataID`||
 |`SyncPDataID`||
 |`OnEncodedSyncPDataID`||
@@ -1341,6 +1414,64 @@ Enumerations of all available system capability types
 |`REMOTE_CONTROL`||
 
 
+### MassageZone
+List possible zones of a multi-contour massage seat.
+
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`LUMBAR`|The back of a multi-contour massage seat. or SEAT_BACK|
+|`SEAT_CUSHION`|The bottom a multi-contour massage seat. or SEAT_BOTTOM |
+
+
+### MassageMode
+List possible modes of a massage zone.
+
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`OFF`||
+|`LOW`||
+|`HIGH`||
+
+
+### MassageCushion
+List possible cushions of a multi-contour massage seat.
+
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`TOP_LUMBAR`||
+|`MIDDLE_LUMBAR`||
+|`BOTTOM_LUMBAR`||
+|`BACK_BOLSTERS`||
+|`SEAT_BOLSTERS`||
+
+
+### SeatMemoryActionType
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`SAVE`|Save current seat postions and settings to seat memory.|
+|`RESTORE`|Restore / apply the seat memory settings to the current seat. |
+|`NONE`|No action to be performed.|
+
+
+### SupportedSeat
+List possible seats that is a remote controllable seat.
+
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`DRIVER`||
+|`FRONT_PASSENGER`||
+
+
 ### LightName
 ##### Elements
 
@@ -1378,6 +1509,13 @@ Enumerations of all available system capability types
 |`LEFT_TURN_LIGHTS`|Include all left turn signal lights: front_left, rear_left, left_side and mirror_mounted.|
 |`RIGHT_TURN_LIGHTS`|Include all right turn signal lights: front_right, rear_right, right_side and mirror_mounted.|
 |`HAZARD_LIGHTS`|Include all hazard lights: front_left, front_right, rear_left and rear_right.|
+|`REAR_CARGO_LIGHTS`|Cargo lamps illuminate the cargo area.|
+|`REAR_TRUCK_BED_LIGHTS`|Truck bed lamps light up the bed of the truck.|
+|`REAR_TRAILER_LIGHTS`|Trailer lights are lamps mounted on a trailer hitch.|
+|`LEFT_SPOT_LIGHTS`|It is the spotlights mounted on the left side of a vehicle.|
+|`RIGHT_SPOT_LIGHTS`|It is the spotlights mounted on the right side of a vehicle.|
+|`LEFT_PUDDLE_LIGHTS`|Puddle lamps illuminate the ground beside the door as the customer is opening or approaching the door.|
+|`RIGHT_PUDDLE_LIGHTS`|Puddle lamps illuminate the ground beside the door as the customer is opening or approaching the door.|
 |`AMBIENT_LIGHTS`||
 |`OVERHEAD_LIGHTS`||
 |`READING_LIGHTS`||
@@ -1386,6 +1524,7 @@ Enumerations of all available system capability types
 |`EXTERIOR_REAR_LIGHTS`|Include exterior lights located at the back of the vehicle. For example, license plate lights, reverse lights, cargo lights, bed lights and trailer assist lights.|
 |`EXTERIOR_LEFT_LIGHTS`|Include exterior lights located at the left side of the vehicle. For example, left puddle lights and spot lights.|
 |`EXTERIOR_RIGHT_LIGHTS`|Include exterior lights located at the right side of the vehicle. For example, right puddle lights and spot lights.|
+|`EXTERIOR_ALL_LIGHTS`|Include all exterior lights around the vehicle.|
 
 
 ### LightStatus
@@ -1395,6 +1534,10 @@ Enumerations of all available system capability types
 | ---------- |:-----------:|
 |`ON`||
 |`OFF`||
+|`RAMP_UP`||
+|`RAMP_DOWN`||
+|`UNKNOWN`||
+|`INVALID`||
 
 
 ### DisplayMode
@@ -1443,6 +1586,7 @@ Enumerations of all available system capability types
 ### AudioPassThruCapabilities
 Describes different audio type configurations for PerformAudioPassThru.
             e.g. {8kHz,8-bit,PCM}
+            The audio is recorded in monaural.
         
 
 ##### Parameters
@@ -1461,6 +1605,7 @@ Describes different audio type configurations for PerformAudioPassThru.
 | ---------- | ---------- |:-----------: |:-----------:|
 |`value`|String|True|Either the static hex icon value or the binary image file name identifier (sent by PutFile).|
 |`imageType`|ImageType|True|Describes, whether it is a static or dynamic image.|
+|`isTemplate`|Boolean|False|If true, the image is a template image and can be recolored by the HMI|
 
 
 ### SoftButton
@@ -1514,12 +1659,23 @@ Specifies the version number of the SmartDeviceLink protocol that is supported b
 |`patchVersion`|Integer|False|The patch version indicates a fix to existing functionality in a previous version that should still be able to be run on an older version |
 
 
+### FuelRange
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`type`|FuelType|False||
+|`range`|Float|False|The estimate range in KM the vehicle can travel based on fuel level and consumption.            |
+
+
 ### SingleTireStatus
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`status`|ComponentVolumeStatus|True|See ComponentVolumeStatus.|
+|`tpms`|TPMS|False|The status of TPMS according to the particular tire.            |
+|`pressure`|Float|False|The pressure value of the particular tire in kilo pascal.|
 
 
 ### BeltStatus
@@ -1680,22 +1836,22 @@ Struct with the GPS data.
 | ---------- | ---------- |:-----------: |:-----------:|
 |`longitudeDegrees`|Float|True||
 |`latitudeDegrees`|Float|True||
-|`utcYear`|Integer|True|The current UTC year.|
-|`utcMonth`|Integer|True|The current UTC month.|
-|`utcDay`|Integer|True|The current UTC day.|
-|`utcHours`|Integer|True|The current UTC hour.|
-|`utcMinutes`|Integer|True|The current UTC minute.|
-|`utcSeconds`|Integer|True|The current UTC second.|
-|`compassDirection`|CompassDirection|True|See CompassDirection.|
-|`pdop`|Float|True|PDOP.  If undefined or unavailable, then value shall be set to 0.|
-|`hdop`|Float|True|HDOP.  If value is unknown, value shall be set to 0.|
-|`vdop`|Float|True|VDOP.  If value is unknown, value shall be set to 0.|
-|`actual`|Boolean|True|True, if actual.                False, if inferred.            |
-|`satellites`|Integer|True|Number of satellites in view|
-|`dimension`|Dimension|True|See Dimension|
-|`altitude`|Float|True|Altitude in meters|
-|`heading`|Float|True|The heading. North is 0. Resolution is 0.01|
-|`speed`|Float|True|The speed in KPH|
+|`utcYear`|Integer|False|The current UTC year.|
+|`utcMonth`|Integer|False|The current UTC month.|
+|`utcDay`|Integer|False|The current UTC day.|
+|`utcHours`|Integer|False|The current UTC hour.|
+|`utcMinutes`|Integer|False|The current UTC minute.|
+|`utcSeconds`|Integer|False|The current UTC second.|
+|`compassDirection`|CompassDirection|False|See CompassDirection.|
+|`pdop`|Float|False|PDOP.  If undefined or unavailable, then value shall be set to 0.|
+|`hdop`|Float|False|HDOP.  If value is unknown, value shall be set to 0.|
+|`vdop`|Float|False|VDOP.  If value is unknown, value shall be set to 0.|
+|`actual`|Boolean|False|True, if actual.                False, if inferred.            |
+|`satellites`|Integer|False|Number of satellites in view|
+|`dimension`|Dimension|False|See Dimension|
+|`altitude`|Float|False|Altitude in meters|
+|`heading`|Float|False|The heading. North is 0. Resolution is 0.01|
+|`speed`|Float|False|The speed in KPH|
 
 
 ### VehicleDataResult
@@ -1835,6 +1991,7 @@ Contains information about the display capabilities.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`displayType`|DisplayType|True|The type of the display. See DisplayType|
+|`displayName`|String|False|The name of the display the app is connected to.|
 |`textFields`|TextField[]|True|A set of all fields that support text data. See TextField|
 |`imageFields`|ImageField[]|False|A set of all fields that support images. See ImageField|
 |`mediaClockFormats`|MediaClockFormat[]|True|A set of all supported formats of the media clock. See MediaClockFormat|
@@ -2061,6 +2218,109 @@ Contains information about this system's video streaming capabilities.
 |`hapticSpatialDataSupported`|Boolean|False|True if the system can utilize the haptic spatial data from the source being streamed. If not included, it can be assumed the module doesn't support haptic spatial data'. |
 
 
+### RGBColor
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`red`|Integer|True||
+|`green`|Integer|True||
+|`blue`|Integer|True||
+
+
+### TemplateColorScheme
+A color scheme for all display layout templates.
+        
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`primaryColor`|RGBColor|False|The primary "accent" color|
+|`secondaryColor`|RGBColor|False|The secondary "accent" color|
+|`backgroundColor`|RGBColor|False|The color of the background|
+
+
+### MassageModeData
+Specify the mode of a massage zone.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`massageZone`|MassageZone|True||
+|`massageMode`|MassageMode|True||
+
+
+### MassageCushionFirmness
+The intensity or firmness of a cushion.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`cushion`|MassageCushion|True||
+|`firmness`|Integer|True||
+
+
+### SeatMemoryAction
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`id`|Integer|True||
+|`label`|String|False||
+|`action`|SeatMemoryActionType|True||
+
+
+### SeatControlData
+Seat control data corresponds to "SEAT" ModuleType. 
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`id`|SupportedSeat|True||
+|`heatingEnabled`|Boolean|False||
+|`coolingEnabled`|Boolean|False||
+|`heatingLevel`|Integer|False||
+|`coolingLevel`|Integer|False||
+|`horizontalPosition`|Integer|False||
+|`verticalPosition`|Integer|False||
+|`frontVerticalPosition`|Integer|False||
+|`backVerticalPosition`|Integer|False||
+|`backTiltAngle`|Integer|False||
+|`headSupportHorizontalPosition`|Integer|False||
+|`headSupportVerticalPosition`|Integer|False||
+|`massageEnabled`|Boolean|False||
+|`massageMode`|MassageModeData[]|False||
+|`massageCushionFirmness`|MassageCushionFirmness[]|False||
+|`memory`|SeatMemoryAction|False||
+
+
+### SeatControlCapabilities
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`moduleName`|String|True|The short friendly name of the light control module.            It should not be used to identify a module by mobile application.            |
+|`heatingEnabledAvailable`|Boolean|False||
+|`coolingEnabledAvailable`|Boolean|False||
+|`heatingLevelAvailable`|Boolean|False||
+|`coolingLevelAvailable`|Boolean|False||
+|`horizontalPositionAvailable`|Boolean|False||
+|`verticalPositionAvailable`|Boolean|False||
+|`frontVerticalPositionAvailable`|Boolean|False||
+|`backVerticalPositionAvailable`|Boolean|False||
+|`backTiltAngleAvailable`|Boolean|False||
+|`headSupportHorizontalPositionAvailable`|Boolean|False||
+|`headSupportVerticalPositionAvailable`|Boolean|False||
+|`massageEnabledAvailable`|Boolean|False||
+|`massageModeAvailable`|Boolean|False||
+|`massageCushionFirmnessAvailable`|Boolean|False||
+|`memoryAvailable`|Boolean|False||
+
+
 ### Temperature
 ##### Parameters
 
@@ -2176,6 +2436,7 @@ Contains information about a climate control module's capabilities.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleName`|String|True|The short friendly name of the climate control module.                It should not be used to identify a module by mobile application.|
+|`currentTemperatureAvailable`|Boolean|False|Availability of the reading of current temperature.                True: Available, False: Not Available, Not present: Not Available.            |
 |`fanSpeedAvailable`|Boolean|False|Availability of the control of fan speed.                True: Available, False: Not Available, Not present: Not Available.            |
 |`desiredTemperatureAvailable`|Boolean|False|Availability of the control of desired temperature.                True: Available, False: Not Available, Not present: Not Available.            |
 |`acEnableAvailable`|Boolean|False|Availability of the control of turn on/off AC.                True: Available, False: Not Available, Not present: Not Available.            |
@@ -2211,7 +2472,7 @@ Defines the each Equalizer channel settings.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`source`|PrimaryAudioSource|False|In a getter response or a notification, it is the current primary audio source of the system.                In a setter request, it is the target audio source that the system shall switch to.                If the value is MOBILE_APP, the system shall switch to the mobile media app that issues the setter RPC.            |
-|`keepContext`|Boolean|False|This parameter shall not be present in any getter responses or notifications.                This parameter is optional in a setter request. The default value is false.                If it is false, the system not only changes the audio source but also brings the default application                or system UI associated with the audio source to foreground.                If it is true, the system changes the audio source, but still keeps the current application in foreground.            |
+|`keepContext`|Boolean|False|This parameter shall not be present in any getter responses or notifications.                This parameter is optional in a setter request. The default value is false if it is not included.                If it is false, the system not only changes the audio source but also brings the default application or                 system UI associated with the audio source to foreground.                If it is true, the system only changes the audio source, but keeps the current application in foreground.            |
 |`volume`|Integer|False|Reflects the volume of audio, from 0%-100%.|
 |`equalizerSettings`|EqualizerSettings[]|False|Defines the list of supported channels (band) and their current/desired settings on HMI|
 
@@ -2223,7 +2484,7 @@ Defines the each Equalizer channel settings.
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleName`|String|True|The short friendly name of the light control module.                It should not be used to identify a module by mobile application.            |
 |`sourceAvailable`|Boolean|False|Availability of the control of audio source. |
-|`keepContextAvailable`|Boolean|False|Availability of the keepContext paramter. |
+|`keepContextAvailable`|Boolean|False|Availability of the keepContext parameter. |
 |`volumeAvailable`|Boolean|False|Availability of the control of audio volume.|
 |`equalizerAvailable`|Boolean|False|Availability of the control of Equalizer Settings.|
 |`equalizerMaxChannelId`|Integer|False|Must be included if equalizerAvailable=true, and assume all IDs starting from 1 to this value are valid|
@@ -2235,6 +2496,7 @@ Defines the each Equalizer channel settings.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`name`|LightName|True||
+|`statusAvailable`|Boolean|False|Indicates if the status (ON/OFF) can be set remotely. App shall not use read-only values (RAMP_UP/RAMP_DOWN/UNKNOWN/INVALID) in a setInteriorVehicleData request.          |
 |`densityAvailable`|Boolean|False|Indicates if the light's density can be set remotely (similar to a dimmer).            |
 |`rgbColorSpaceAvailable`|Boolean|False|Indicates if the light's color can be set remotely by using the sRGB color space.            |
 
@@ -2300,6 +2562,7 @@ The moduleType indicates which type of data should be changed and identifies whi
 |`moduleType`|ModuleType|True||
 |`radioControlData`|RadioControlData|False||
 |`climateControlData`|ClimateControlData|False||
+|`seatControlData`|SeatControlData|False||
 |`audioControlData`|AudioControlData|False||
 |`lightControlData`|LightControlData|False||
 |`hmiSettingsControlData`|HMISettingsControlData|False||
@@ -2316,6 +2579,7 @@ The moduleType indicates which type of data should be changed and identifies whi
 |`audioControlCapabilities`|AudioControlCapabilities[]|False|If included, the platform supports audio controls. |
 |`hmiSettingsControlCapabilities`|HMISettingsControlCapabilities|False|If included, the platform supports hmi setting controls. |
 |`lightControlCapabilities`|LightControlCapabilities|False|If included, the platform supports light controls. |
+|`seatControlCapabilities`|SeatControlCapabilities[]|False|If included, the platform supports seat controls.|
 
 
 ### SystemCapability
@@ -2394,7 +2658,10 @@ Establishes an interface with a mobile application.
 |`hashID`|String|False|ID used to uniquely identify current state of all app data that can persist through connection cycles (e.g. ignition cycles).                This registered data (commands, submenus, choice sets, etc.) can be reestablished without needing to explicitly reregister each piece.                If omitted, then the previous state of an app's commands, etc. will not be restored.                When sending hashID, all RegisterAppInterface parameters should still be provided (e.g. ttsName, etc.).            |
 |`deviceInfo`|DeviceInfo|False|See DeviceInfo.            |
 |`appID`|String|True|ID used to validate app with policy table entries|
+|`fullAppID`|String|False|ID used to validate app with policy table entries|
 |`appInfo`|AppInfo|False|See AppInfo.            |
+|`dayColorScheme`|TemplateColorScheme|False||
+|`nightColorScheme`|TemplateColorScheme|False||
 
 
 ### RegisterAppInterface
@@ -2941,7 +3208,9 @@ Subscribes for specific published data items.
 |`fuelLevel`|Boolean|False|The fuel level in the tank (percentage)|
 |`fuelLevel_State`|Boolean|False|The fuel level state|
 |`instantFuelConsumption`|Boolean|False|The instantaneous fuel consumption in microlitres|
+|`fuelRange`|Boolean|False|The estimate range in KM the vehicle can travel based on fuel level and consumption|
 |`externalTemperature`|Boolean|False|The external temperature in degrees celsius|
+|`turnSignal`|Boolean|False|See TurnSignal|
 |`prndl`|Boolean|False|See PRNDL|
 |`tirePressure`|Boolean|False|See TireStatus|
 |`odometer`|Boolean|False|Odometer in km|
@@ -2955,6 +3224,7 @@ Subscribes for specific published data items.
 |`accPedalPosition`|Boolean|False|Accelerator pedal position (percentage depressed)|
 |`steeringWheelAngle`|Boolean|False|Current angle of the steering wheel (in deg)|
 |`engineOilLife`|Boolean|False|The estimated percentage of remaining oil life of the engine.|
+|`electronicParkBrakeStatus`|Boolean|False|The status of the park brake as provided by Electric Park Brake (EPB) system.|
 |`eCallInfo`|Boolean|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|Boolean|False|The status of the air bags|
 |`emergencyEvent`|Boolean|False|Information related to an emergency event (and if it occurred)|
@@ -2978,7 +3248,9 @@ Message Type: **response**
 |`fuelLevel`|VehicleDataResult|False|The fuel level in the tank (percentage)|
 |`fuelLevel_State`|VehicleDataResult|False|The fuel level state|
 |`instantFuelConsumption`|VehicleDataResult|False|The instantaneous fuel consumption in microlitres|
+|`fuelRange`|VehicleDataResult|False|The estimate range in KM the vehicle can travel based on fuel level and consumption|
 |`externalTemperature`|VehicleDataResult|False|The external temperature in degrees celsius.|
+|`turnSignal`|VehicleDataResult|False|See TurnSignal|
 |`prndl`|VehicleDataResult|False|See PRNDL|
 |`tirePressure`|VehicleDataResult|False|See TireStatus|
 |`odometer`|VehicleDataResult|False|Odometer in km|
@@ -2992,6 +3264,7 @@ Message Type: **response**
 |`accPedalPosition`|VehicleDataResult|False|Accelerator pedal position (percentage depressed)|
 |`steeringWheelAngle`|VehicleDataResult|False|Current angle of the steering wheel (in deg)|
 |`engineOilLife`|VehicleDataResult|False|The estimated percentage of remaining oil life of the engine.|
+|`electronicParkBrakeStatus`|VehicleDataResult|False|The status of the park brake as provided by Electric Park Brake (EPB) system.|
 |`eCallInfo`|VehicleDataResult|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|VehicleDataResult|False|The status of the air bags|
 |`emergencyEvent`|VehicleDataResult|False|Information related to an emergency event (and if it occurred)|
@@ -3014,7 +3287,9 @@ This function is used to unsubscribe the notifications from the subscribeVehicle
 |`fuelLevel`|Boolean|False|The fuel level in the tank (percentage)|
 |`fuelLevel_State`|Boolean|False|The fuel level state|
 |`instantFuelConsumption`|Boolean|False|The instantaneous fuel consumption in microlitres|
+|`fuelRange`|Boolean|False|The estimate range in KM the vehicle can travel based on fuel level and consumption|
 |`externalTemperature`|Boolean|False|The external temperature in degrees celsius.|
+|`turnSignal`|Boolean|False|See TurnSignal|
 |`prndl`|Boolean|False|See PRNDL|
 |`tirePressure`|Boolean|False|See TireStatus|
 |`odometer`|Boolean|False|Odometer in km|
@@ -3028,6 +3303,7 @@ This function is used to unsubscribe the notifications from the subscribeVehicle
 |`accPedalPosition`|Boolean|False|Accelerator pedal position (percentage depressed)|
 |`steeringWheelAngle`|Boolean|False|Current angle of the steering wheel (in deg)|
 |`engineOilLife`|Boolean|False|The estimated percentage of remaining oil life of the engine.|
+|`electronicParkBrakeStatus`|Boolean|False|The status of the park brake as provided by Electric Park Brake (EPB) system.|
 |`eCallInfo`|Boolean|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|Boolean|False|The status of the air bags|
 |`emergencyEvent`|Boolean|False|Information related to an emergency event (and if it occurred)|
@@ -3051,7 +3327,9 @@ Message Type: **response**
 |`fuelLevel`|VehicleDataResult|False|The fuel level in the tank (percentage)|
 |`fuelLevel_State`|VehicleDataResult|False|The fuel level state|
 |`instantFuelConsumption`|VehicleDataResult|False|The instantaneous fuel consumption in microlitres|
+|`fuelRange`|VehicleDataResult|False|The estimate range in KM the vehicle can travel based on fuel level and consumption|
 |`externalTemperature`|VehicleDataResult|False|The external temperature in degrees celsius|
+|`turnSignal`|VehicleDataResult|False|See TurnSignal|
 |`prndl`|VehicleDataResult|False|See PRNDL|
 |`tirePressure`|VehicleDataResult|False|See TireStatus|
 |`odometer`|VehicleDataResult|False|Odometer in km|
@@ -3065,6 +3343,7 @@ Message Type: **response**
 |`accPedalPosition`|VehicleDataResult|False|Accelerator pedal position (percentage depressed)|
 |`steeringWheelAngle`|VehicleDataResult|False|Current angle of the steering wheel (in deg)|
 |`engineOilLife`|VehicleDataResult|False|The estimated percentage of remaining oil life of the engine.|
+|`electronicParkBrakeStatus`|VehicleDataResult|False|The status of the park brake as provided by Electric Park Brake (EPB) system.|
 |`eCallInfo`|VehicleDataResult|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|VehicleDataResult|False|The status of the air bags|
 |`emergencyEvent`|VehicleDataResult|False|Information related to an emergency event (and if it occurred)|
@@ -3087,7 +3366,9 @@ Non periodic vehicle data read request.
 |`fuelLevel`|Boolean|False|The fuel level in the tank (percentage)|
 |`fuelLevel_State`|Boolean|False|The fuel level state|
 |`instantFuelConsumption`|Boolean|False|The instantaneous fuel consumption in microlitres|
+|`fuelRange`|Boolean|False|The estimate range in KM the vehicle can travel based on fuel level and consumption|
 |`externalTemperature`|Boolean|False|The external temperature in degrees celsius|
+|`turnSignal`|Boolean|False|See TurnSignal|
 |`vin`|Boolean|False|Vehicle identification number|
 |`prndl`|Boolean|False|See PRNDL|
 |`tirePressure`|Boolean|False|See TireStatus|
@@ -3102,6 +3383,7 @@ Non periodic vehicle data read request.
 |`accPedalPosition`|Boolean|False|Accelerator pedal position (percentage depressed)|
 |`steeringWheelAngle`|Boolean|False|Current angle of the steering wheel (in deg)|
 |`engineOilLife`|Boolean|False|The estimated percentage of remaining oil life of the engine.|
+|`electronicParkBrakeStatus`|Boolean|False|The status of the park brake as provided by Electric Park Brake (EPB) system.|
 |`eCallInfo`|Boolean|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|Boolean|False|The status of the air bags|
 |`emergencyEvent`|Boolean|False|Information related to an emergency event (and if it occurred)|
@@ -3125,7 +3407,9 @@ Message Type: **response**
 |`fuelLevel`|Float|False|The fuel level in the tank (percentage)|
 |`fuelLevel_State`|ComponentVolumeStatus|False|The fuel level state|
 |`instantFuelConsumption`|Float|False|The instantaneous fuel consumption in microlitres|
+|`fuelRange`|FuelRange[]|False|The estimate range in KM the vehicle can travel based on fuel level and consumption|
 |`externalTemperature`|Float|False|The external temperature in degrees celsius|
+|`turnSignal`|TurnSignal|False|See TurnSignal|
 |`vin`|String|False|Vehicle identification number|
 |`prndl`|PRNDL|False|See PRNDL|
 |`tirePressure`|TireStatus|False|See TireStatus|
@@ -3140,6 +3424,7 @@ Message Type: **response**
 |`accPedalPosition`|Float|False|Accelerator pedal position (percentage depressed)|
 |`steeringWheelAngle`|Float|False|Current angle of the steering wheel (in deg)|
 |`engineOilLife`|Float|False|The estimated percentage of remaining oil life of the engine.|
+|`electronicParkBrakeStatus`|ElectronicParkBrakeStatus|False|The status of the park brake as provided by Electric Park Brake (EPB) system.|
 |`eCallInfo`|ECallInfo|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|AirbagStatus|False|The status of the air bags|
 |`emergencyEvent`|EmergencyEvent|False|Information related to an emergency event (and if it occurred)|
@@ -3421,6 +3706,7 @@ Used to push a binary data onto the module from a mobile device, such as icons a
 |`systemFile`|Boolean|False|Indicates if the file is meant to be passed thru core to elsewhere on the system.                If set to TRUE, then the system will instead pass the data thru as it arrives to a predetermined area outside of core.                If omitted, the value will be set to false.            |
 |`offset`|Integer|False|Optional offset in bytes for resuming partial data chunks|
 |`length`|Integer|False|Optional length in bytes for resuming partial data chunks                If offset is set to 0, then length is the total length of the file to be downloaded            |
+|`crc`|Integer|False|Additional CRC32 checksum to protect data integrity up to 512 Mbits |
 
 
 ### PutFile
@@ -3434,7 +3720,7 @@ Response is sent, when the file data was copied (success case). Or when an error
 | ---------- | ---------- |:-----------: |:-----------:|
 |`success`|Boolean|True|true, if successful; false, if failed |
 |`resultCode`|Result|True|See Result|
-|`spaceAvailable`|Integer|True|Provides the total local space available in SDL Core for the registered app.                If the transfer has systemFile enabled, then the value will be set to 0 automatically.            |
+|`spaceAvailable`|Integer|False|Provides the total local space available in SDL Core for the registered app.                If the transfer has systemFile enabled, then the value will be set to 0 automatically.            |
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
 
@@ -3465,7 +3751,7 @@ Response is sent, when the file data was deleted (success case). Or when an erro
 | ---------- | ---------- |:-----------: |:-----------:|
 |`success`|Boolean|True|true if successful; false, if failed |
 |`resultCode`|Result|True|See Result|
-|`spaceAvailable`|Integer|True|Provides the total local space available on the module for the registered app.|
+|`spaceAvailable`|Integer|False|Provides the total local space available on the module for the registered app.|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
 
@@ -3496,7 +3782,7 @@ Returns the current list of resident filenames for the registered app along with
 |`success`|Boolean|True|true, if successful; false, if failed |
 |`resultCode`|Result|True|See Result|
 |`filenames`|String[]|False|An array of all filenames resident on the module for the given registered app.                If omitted, then no files currently reside on the system.            |
-|`spaceAvailable`|Integer|True|Provides the total local space available on the module for the registered app.|
+|`spaceAvailable`|Integer|False|Provides the total local space available on the module for the registered app.|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
 
@@ -3542,6 +3828,8 @@ Used to set an alternate display layout.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`displayLayout`|String|True|Predefined or dynamically created screen layout.                Currently only predefined screen layouts are defined.            |
+|`dayColorScheme`|TemplateColorScheme|False||
+|`nightColorScheme`|TemplateColorScheme|False||
 
 
 ### SetDisplayLayout
@@ -3845,6 +4133,7 @@ Message Type: **notification**
 |`hmiLevel`|HMILevel|True|See HMILevel|
 |`audioStreamingState`|AudioStreamingState|True|See AudioStreamingState|
 |`systemContext`|SystemContext|True|See SystemContext|
+|`videoStreamingState`|VideoStreamingState|False|See VideoStreamingState.             If it is NOT_STREAMABLE, the app must stop streaming video to SDL Core(stop service).            |
 
 
 ### OnAppInterfaceUnregistered
@@ -3900,7 +4189,9 @@ Callback for the periodic and non periodic vehicle data read function.
 |`fuelLevel`|Float|False|The fuel level in the tank (percentage)|
 |`fuelLevel_State`|ComponentVolumeStatus|False|The fuel level state|
 |`instantFuelConsumption`|Float|False|The instantaneous fuel consumption in microlitres|
+|`fuelRange`|FuelRange[]|False|The estimate range in KM the vehicle can travel based on fuel level and consumption|
 |`externalTemperature`|Float|False|The external temperature in degrees celsius|
+|`turnSignal`|TurnSignal|False|See TurnSignal|
 |`vin`|String|False|Vehicle identification number.|
 |`prndl`|PRNDL|False|See PRNDL|
 |`tirePressure`|TireStatus|False|See TireStatus|
@@ -3915,6 +4206,7 @@ Callback for the periodic and non periodic vehicle data read function.
 |`accPedalPosition`|Float|False|Accelerator pedal position (percentage depressed)|
 |`steeringWheelAngle`|Float|False|Current angle of the steering wheel (in deg)|
 |`engineOilLife`|Float|False|The estimated percentage of remaining oil life of the engine.|
+|`electronicParkBrakeStatus`|ElectronicParkBrakeStatus|False|The status of the park brake as provided by Electric Park Brake (EPB) system.|
 |`eCallInfo`|ECallInfo|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|AirbagStatus|False|The status of the air bags|
 |`emergencyEvent`|EmergencyEvent|False|Information related to an emergency event (and if it occurred)|
@@ -4071,6 +4363,20 @@ Message Type: **notification**
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleData`|ModuleData|True||
+
+
+### OnRCStatus
+Message Type: **notification**
+
+Issued by SDL to notify the application about remote control status change on SDL
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`allowed`|Boolean|False|If "true" - RC is allowed; if "false" - RC is disallowed.|
+|`allocatedModules`|ModuleData[]|True|Contains a list (zero or more) of module types that are allocated to the application.|
+|`freeModules`|ModuleData[]|True|Contains a list (zero or more) of module types that are free to access for the application.|
 
 
 ### EncodedSyncPData

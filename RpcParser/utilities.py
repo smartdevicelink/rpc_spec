@@ -58,6 +58,11 @@ def write_iter_section(markdown, child, elem_or_param):
         if element.tag == 'description':
             continue
 
+        if element.tag == 'history':
+            # For this release of the spec we will just ignore the history tag. In the future this should be
+            # incorporated into the README, however it for now it will just be available in the MOBILE_API.xml
+            continue
+
         value = element.attrib['name']
 
         if value:
