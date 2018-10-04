@@ -2576,9 +2576,9 @@ The moduleType indicates which type of data should be changed and identifies whi
 |`climateControlCapabilities`|ClimateControlCapabilities[]|False|If included, the platform supports RC climate controls. For this baseline version, maxsize=1. i.e. only one climate control module is supported.|
 |`radioControlCapabilities`|RadioControlCapabilities[]|False|If included, the platform supports RC radio controls.For this baseline version, maxsize=1. i.e. only one radio control module is supported.|
 |`buttonCapabilities`|ButtonCapabilities[]|False|If included, the platform supports RC button controls with the included button names.|
-|`audioControlCapabilities`|AudioControlCapabilities[]|False|If included, the platform supports audio controls. |
-|`hmiSettingsControlCapabilities`|HMISettingsControlCapabilities|False|If included, the platform supports hmi setting controls. |
-|`lightControlCapabilities`|LightControlCapabilities|False|If included, the platform supports light controls. |
+|`audioControlCapabilities`|AudioControlCapabilities[]|False|If included, the platform supports audio controls.|
+|`hmiSettingsControlCapabilities`|HMISettingsControlCapabilities|False|If included, the platform supports hmi setting controls.|
+|`lightControlCapabilities`|LightControlCapabilities|False|If included, the platform supports light controls.|
 |`seatControlCapabilities`|SeatControlCapabilities[]|False|If included, the platform supports seat controls.|
 
 
@@ -3960,7 +3960,7 @@ Message Type: **request**
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleType`|ModuleType|True|The type of a RC module to retrieve module data from the vehicle.                In the future, this should be the Identification of a module.            |
-|`subscribe`|Boolean|False|If subscribe is true, the head unit will register onInteriorVehicleData notifications for the requested moduelType.                If subscribe is false, the head unit will unregister onInteriorVehicleData notifications for the requested moduelType.            |
+|`subscribe`|Boolean|False|If subscribe is true, the head unit will register onInteriorVehicleData notifications for the requested moduleType.                If subscribe is false, the head unit will unregister onInteriorVehicleData notifications for the requested moduleType.            |
 
 
 ### GetInteriorVehicleData
@@ -4133,7 +4133,7 @@ Message Type: **notification**
 |`hmiLevel`|HMILevel|True|See HMILevel|
 |`audioStreamingState`|AudioStreamingState|True|See AudioStreamingState|
 |`systemContext`|SystemContext|True|See SystemContext|
-|`videoStreamingState`|VideoStreamingState|False|See VideoStreamingState.             If it is NOT_STREAMABLE, the app must stop streaming video to SDL Core(stop service).            |
+|`videoStreamingState`|VideoStreamingState|False|See VideoStreamingState.                 If it is NOT_STREAMABLE, the app must stop streaming video to SDL Core(stop service).            |
 
 
 ### OnAppInterfaceUnregistered
