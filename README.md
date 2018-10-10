@@ -3960,7 +3960,7 @@ Message Type: **request**
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleType`|ModuleType|True|The type of a RC module to retrieve module data from the vehicle.                In the future, this should be the Identification of a module.            |
-|`subscribe`|Boolean|False|If subscribe is true, the head unit will register onInteriorVehicleData notifications for the requested moduleType.                If subscribe is false, the head unit will unregister onInteriorVehicleData notifications for the requested moduleType.            |
+|`subscribe`|Boolean|False|If subscribe is true, the head unit will register onInteriorVehicleData notifications for the requested moduleType.                If subscribe is false, the head unit will unregister onInteriorVehicleData notifications for the requested moduleType.                If subscribe is not included, the subscription status of the app for the requested moduleType will remain unchanged.            |
 
 
 ### GetInteriorVehicleData
