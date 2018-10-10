@@ -1,66 +1,50 @@
-# RPC Spec 4.5.0
+# RPC Spec 5.0.0
 
 
 ### Breaking Changes
 
+- [[SDL 0064] Choice-VR optional](https://github.com/smartdevicelink/rpc_spec/issues/81)
+- [[SDL 0163] Make spaceAvailable field non-mandatory](https://github.com/smartdevicelink/rpc_spec/issues/86)
+- [[SDL 0175] Updating DOP value range for GPS notification](https://github.com/smartdevicelink/rpc_spec/issues/105)
 
 ### Modifications
-- [0031](https://github.com/smartdevicelink/sdl_evolution/issues/97): Added `PROJECTION` element to `AppHMIType` 
-- [0049](https://github.com/smartdevicelink/sdl_evolution/issues/144) : Added `CANCEL` element to `TouchType`
-- [0055] : Added `DATA_NOT_AVAILABLE` to `Result`
-- [0058] : Added `videoStreaming ` to `HMICapabilities`
-- [0060] , [0076] : Added `EN-IN`, `TH-TH`, `EN-SA`, `HE-IL`, `RO-RO`, `UK-UA`,`ID-ID`, `VI-VN`, `MS-MY`, and `HI-IN` to elements to `Language` 
-- [0071] : Added `REMOTE_CONTROL` element to `AppHMIType`
-- [0071] : Added `AC_MAX`, `AC`, `RECIRCULATE`, `FAN_UP`, `FAN_DOWN`, `TEMP_UP`, `TEMP_DOWN`, `DEFROST_MAX`, `DEFROST`, `DEFROST_REAR`, `UPPER_VENT`, `LOWER_VENT`, `LOWER_VENT`, `DEFROST_MAX`, `VOLUME_UP`, `VOLUME_DOWN`, `EJECT`, `SOURCE`, `SHUFFLE`, and `REPEAT` elements to `ButtonNames` 
-- [0073] : Added `textFieldMetadata` parameter to `Show`
 
-### New RPCs, Structs, and Enums 
-
-#### Functions
-- [0055] , [0058] , [0076] : `GetSystemCapability`
-- [0071] : `GetInteriorVehicleData`
-- [0071] : `SetInteriorVehicleData`
-- [0071] : `OnInteriorVehicleData`
-- [0071] : `ButtonPress`
-- [0075] : `SendHapticData`
-
-#### Structs
-- [0055] , [0058] , [0076] : `SystemCapability`
-- [0055] : `NavigationCapability`
-- [0055] : `PhoneCapability`
-- [0058] : `VideoStreamingCapability`
-- [0058] : `VideoStreamingFormat`
-- [0071] : `RemoteControlCapabilities `
-- [0071] : `ClimateControlCapabilities `
-- [0071] : `RadioControlCapabilities `
-- [0071] : `ModuleDescription`
-- [0071] : `RdsData`
-- [0071] : `RadioControlData`
-- [0071] : `Temperature `
-- [0071] : `ClimateControlData `
-- [0071] : `ModuleData`
-- [0073] : `MetadataStruct`
-- [0075] : `SpatialStruct`
-
-#### Enums
-- [0055] , [0058] , [0076] : `SystemCapabilityType`
-- [0058] : `VideoStreamingCodec`
-- [0058] : `VideoStreamingProtocol`
-- [0076] : `RadioState`
-- [0071] : `ModuleType `
-- [0071] : `DefrostZone `
-- [0071] : `VentilationMode `
-- [0071] : `RadioBand`
-- [0071] : `RadioState`
-- [0071] : `TemperatureUnit `
-- [0073] : `TextFieldType`
+- [Add missing `currentTemperatureAvailable` capability](https://github.com/smartdevicelink/rpc_spec/pull/117)
+- [[SDL 0139] Clarification of audio format details of AudioPassThru](https://github.com/smartdevicelink/rpc_spec/issues/61)
+- [[SDL 0151] ImageFieldName for SecondaryImage](https://github.com/smartdevicelink/rpc_spec/issues/71)
 
 
+### New Features 
 
-[0055]:https://github.com/smartdevicelink/sdl_evolution/issues/166
-[0058]:https://github.com/smartdevicelink/sdl_evolution/issues/176
-[0060]:https://github.com/smartdevicelink/sdl_evolution/issues/178
-[0071]:https://github.com/smartdevicelink/sdl_evolution/issues/206
-[0073]:https://github.com/smartdevicelink/sdl_evolution/issues/208
-[0075]:https://github.com/smartdevicelink/sdl_evolution/issues/219
-[0076]:https://github.com/smartdevicelink/sdl_evolution/issues/220
+- [Add PLAY_PAUSE to ButtonNames](https://github.com/smartdevicelink/rpc_spec/pull/125)
+- [[SDL 0014] Adding Audio File Playback to TTSChunk](https://github.com/smartdevicelink/rpc_spec/issues/85)
+- [[SDL 0037] Expand Mobile `PutFile` RPC ](https://github.com/smartdevicelink/rpc_spec/issues/40)
+- [[SDL 0041] Provide AppIcon resumption across app registration requests](https://github.com/smartdevicelink/rpc_spec/issues/26)
+- [[SDL 0062] Template images](https://github.com/smartdevicelink/rpc_spec/issues/31)
+- [[SDL 0063] Display name parameter](https://github.com/smartdevicelink/rpc_spec/issues/32)
+- [[SDL 0085] SubMenu Icon](https://github.com/smartdevicelink/rpc_spec/issues/47)
+- [[SDL 0089] Mobile API versioning](https://github.com/smartdevicelink/rpc_spec/issues/59)
+- [[SDL 0109] SetAudioStreamingIndicator RPC](https://github.com/smartdevicelink/rpc_spec/issues/67)
+- [[SDL 0147] Template Improvements: Color Scheme](https://github.com/smartdevicelink/rpc_spec/issues/69)
+- [[SDL 0150] Enhancing onHMIStatus with a New Parameter for Video Streaming State](https://github.com/smartdevicelink/rpc_spec/issues/73)
+- [[SDL 0153] Support for Short and Full UUID App ID](https://github.com/smartdevicelink/rpc_spec/issues/80)
+
+#### Vehicle Data
+
+- [[SDL 0072] FuelRange](https://github.com/smartdevicelink/rpc_spec/issues/34)
+- [[SDL 0082] EngineOilLife](https://github.com/smartdevicelink/rpc_spec/issues/42)
+- [[SDL 0097] Tire pressure additions](https://github.com/smartdevicelink/rpc_spec/issues/48)
+- [[SDL 0102] ElectronicParkBrakeStatus](https://github.com/smartdevicelink/rpc_spec/issues/51)
+- [[SDL 0107] TurnSignal](https://github.com/smartdevicelink/rpc_spec/issues/54)
+
+#### Remote Control Data
+
+- [[SDL 0099] New remote control modules (LIGHT, AUDIO, HMI_SETTINGS) and parameters (SIS Data)](https://github.com/smartdevicelink/rpc_spec/issues/50)
+- [[SDL 0105] Seat Modules](https://github.com/smartdevicelink/rpc_spec/issues/55)
+- [[SDL 0106] OnRCStatus notification](https://github.com/smartdevicelink/rpc_spec/issues/56)
+- [[SDL 0172]  Update OnRCStatus with a new allowed parameter](https://github.com/smartdevicelink/rpc_spec/issues/95)
+- [[SDL 0160]Radio Parameter Update](https://github.com/smartdevicelink/rpc_spec/issues/83)
+- [[SDL 0165] Lights  More Names and Status Values](https://github.com/smartdevicelink/rpc_spec/issues/87)
+- [[SDL 0182] Add Audio Sources AM/FM/XM/DAB](https://github.com/smartdevicelink/rpc_spec/issues/109)
+
+
