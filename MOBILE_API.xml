@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="no"?>
 <?xml-stylesheet type="text/xml" href="protocol2html.xsl"?>
 
-<interface name="SmartDeviceLink RAPI" version="4.5.0" date="2017-04-28">
+<interface name="SmartDeviceLink RAPI" version="4.5.1" date="2018-10-10">
     <enum name="Result" internal_scope="base">
         <element name="SUCCESS">
             <description>The request succeeded</description>
@@ -5471,10 +5471,11 @@
                 In the future, this should be the Identification of a module.
             </description>
         </param>
-        <param name="subscribe" type="Boolean" mandatory="false" defvalue="false">
+        <param name="subscribe" type="Boolean" mandatory="false">
             <description>
                 If subscribe is true, the head unit will register onInteriorVehicleData notifications for the requested moduelType.
                 If subscribe is false, the head unit will unregister onInteriorVehicleData notifications for the requested moduelType.
+                If subscribe is not included, the subscription status of the app for the requested moduleType will remain unchanged.
             </description>
         </param>
     </function>
