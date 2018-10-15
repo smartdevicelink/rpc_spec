@@ -6395,8 +6395,8 @@
         </param>
         <param name="subscribe" type="Boolean" mandatory="false" since="4.5.1">
             <description>
-                If subscribe is true, the head unit will register onInteriorVehicleData notifications for the requested moduleType.
-                If subscribe is false, the head unit will unregister onInteriorVehicleData notifications for the requested moduleType.
+                If subscribe is true, the head unit will register OnInteriorVehicleData notifications for the requested moduleType.
+                If subscribe is false, the head unit will unregister OnInteriorVehicleData notifications for the requested moduleType.
                 If subscribe is not included, the subscription status of the app for the requested moduleType will remain unchanged.
             </description>
             <history>
