@@ -4027,20 +4027,12 @@
 		
 		<param name="allowAppConsumers" type="Boolean" mandatory="false" defvalue="false">
 			<description>If true, app service consumers beyond the IVI system will be able to access this service. If false, only the IVI system will be able consume the service. If not provided, it is assumed to be false. </description>
-		</param>
-
-				
-		<param name="uriPrefix" type="String" mandatory="false">
-			<description> The URI prefix for this service. If provided, all PerformAppServiceInteraction requests must start with it.</description>
-		</param>
-		<param name="uriScheme" type="String" mandatory="false">
-			<description> This is a custom schema for this service. SDL will not do any verification on this param past that it has a correctly formated JSON Object as its base. The uriScheme should contain all available actions to be taken through a PerformAppServiceInteraction request from an app service consumer. </description>
-		</param>
-		
+		</param>		
 	
 		<param name="rpcSpecVersion" type="SyncMsgVersion" mandatory="false">
 			<description> This is the max RPC Spec version the app service understands. This is important during the RPC passthrough functionality. If not included, it is assumed the max version of the module is acceptable. </description>
 		</param>
+        
 		<param name="handledRPCs" type="Integer" array="true" mandatory="false">
 			<description> This field contains the Function IDs for the RPCs that this service intends to handle correctly. This means the service will provide meaningful responses. See FunctionID for enum equivalent values. This parameter is an integer to allow for new function IDs to be used by apps on older versions of SDL Core.</description>
 		</param>
