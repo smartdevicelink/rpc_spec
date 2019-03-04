@@ -552,9 +552,9 @@
         <element name="BOTH" />
     </enum>
 
-    <struct name="CloudAppProperties" since="5.x">
-        <param name="appName" type="String" maxlength="100" mandatory="true"></param>
-        <param name="appID" type="String" maxlength="100" mandatory="true"></param>
+    <struct name="CloudAppProperties" since="5.1">
+        <param name="appName" type="String" maxlength="100" mandatory="true"/>
+        <param name="appID" type="String" maxlength="100" mandatory="true"/>
         <param name="enabled" type="Boolean" mandatory="false">
             <description>If true, cloud app will be included in HMI RPC UpdateAppList</description>
         </param>
@@ -567,7 +567,7 @@
         <param name="hybridAppPreference" type="HybridAppPreference" maxlength="100" mandatory="false">
             <description>Specifies the user preference to use the cloud app version or mobile app version when both are available</description>
         </param>
-        <param name="endpoint" type="String" maxlength="65535" mandatory="false"></param>
+        <param name="endpoint" type="String" maxlength="65535" mandatory="false"/>
     </struct>
     
     <enum name="ButtonName" since="1.0">
@@ -2437,6 +2437,7 @@
         <element name="MEDIA" />
         <element name="FOTA" />
         <element name="OEM_SPECIFIC" since="5.0" />
+        <element name="ICON_URL" since="5.1" />
     </enum>         
  
     <enum name="AppHMIType" since="2.0">
@@ -6653,7 +6654,7 @@
         </param>
     </function>
 
-    <function name="SetCloudAppProperties" functionID="SetCloudAppPropertiesID" messagetype="request" since="5.x">
+    <function name="SetCloudAppProperties" functionID="SetCloudAppPropertiesID" messagetype="request" since="5.1">
         <description>
             RPC used to enable/disable a cloud application and set authentication data
         </description>
@@ -6662,7 +6663,7 @@
         </param>
     </function>
 
-    <function name="SetCloudAppProperties" functionID="RegisterAppInterfaceID" messagetype="response" since="5.x">
+    <function name="SetCloudAppProperties" functionID="SetCloudAppPropertiesID" messagetype="response" since="5.1">
         <description>The response to SetCloudAppProperties</description>
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
             <description> true if successful; false if failed </description>
@@ -6674,25 +6675,19 @@
             <element name="OUT_OF_MEMORY"/>
             <element name="TOO_MANY_PENDING_REQUESTS"/>
             <element name="GENERIC_ERROR"/>
-            <element name="DUPLICATE_NAME"/>
-            <element name="TOO_MANY_APPLICATIONS"/>
-            <element name="APPLICATION_REGISTERED_ALREADY"/>
-            <element name="UNSUPPORTED_VERSION"/>
-            <element name="WRONG_LANGUAGE"/>
             <element name="DISALLOWED"/>
             <element name="WARNINGS"/>
-            <element name="RESUME_FAILED"/>
         </param>
     </function>
 
-    <function name="GetCloudAppProperties" functionID="SetCloudAppPropertiesID" messagetype="request" since="5.x">
+    <function name="GetCloudAppProperties" functionID="GetCloudAppPropertiesID" messagetype="request" since="5.1">
         <description>
             RPC used to get the current properties of a cloud application
         </description> 
         <param name="appID" type="String" maxlength="100" mandatory="true"></param>
     </function>
 
-    <function name="GetCloudAppProperties" functionID="RegisterAppInterfaceID" messagetype="response" since="5.x">
+    <function name="GetCloudAppProperties" functionID="GetCloudAppPropertiesID" messagetype="response" since="5.1">
         <description>The response to GetCloudAppProperties</description>
         <param name="properties" type="CloudAppProperties" mandatory="false">
             <description> The requested cloud application properties </description>
@@ -6707,14 +6702,8 @@
             <element name="OUT_OF_MEMORY"/>
             <element name="TOO_MANY_PENDING_REQUESTS"/>
             <element name="GENERIC_ERROR"/>
-            <element name="DUPLICATE_NAME"/>
-            <element name="TOO_MANY_APPLICATIONS"/>
-            <element name="APPLICATION_REGISTERED_ALREADY"/>
-            <element name="UNSUPPORTED_VERSION"/>
-            <element name="WRONG_LANGUAGE"/>
             <element name="DISALLOWED"/>
             <element name="WARNINGS"/>
-            <element name="RESUME_FAILED"/>
         </param>
     </function>
     
