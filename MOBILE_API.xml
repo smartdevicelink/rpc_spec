@@ -569,7 +569,9 @@
         <param name="hybridAppPreference" type="HybridAppPreference" maxlength="100" mandatory="false">
             <description>Specifies the user preference to use the cloud app version or mobile app version when both are available</description>
         </param>
-        <param name="endpoint" type="String" maxlength="65535" mandatory="false"/>
+        <param name="endpoint" type="String" maxlength="65535" mandatory="false">
+            <description>Specifies the endpoint which Core will attempt to connect to when this app is selected</description>
+        </param>
     </struct>
     
     <enum name="ButtonName" since="1.0">
@@ -6658,7 +6660,7 @@
 
     <function name="SetCloudAppProperties" functionID="SetCloudAppPropertiesID" messagetype="request" since="5.1">
         <description>
-            RPC used to enable/disable a cloud application and set authentication data
+            RPC used to enable/disable a cloud application and set its cloud-related policy properties
         </description>
         <param name="properties" type="CloudAppProperties" mandatory="true">
             <description> The new cloud application properties </description>

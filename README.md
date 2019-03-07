@@ -1619,13 +1619,13 @@ Describes different audio type configurations for PerformAudioPassThru.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`appName`|String|True||
+|`nicknames`|String[]|False|An array of app names a cloud app is allowed to register with. If included in a SetCloudAppProperties request, this value will overwrite the existing "nicknames" field in the app policies section of the policy table.|
 |`appID`|String|True||
 |`enabled`|Boolean|False|If true, cloud app will be included in HMI RPC UpdateAppList|
 |`authToken`|String|False|Used to authenticate websocket connection on app activation|
 |`cloudTransportType`|String|False|Specifies the connection type Core should use|
 |`hybridAppPreference`|HybridAppPreference|False|Specifies the user preference to use the cloud app version or mobile app version when both are available|
-|`endpoint`|String|False||
+|`endpoint`|String|False|Specifies the endpoint which Core will attempt to connect to when this app is selected|
 
 
 ### Image
@@ -4162,7 +4162,7 @@ Message Type: **response**
 ### SetCloudAppProperties
 Message Type: **request**
 
-RPC used to enable/disable a cloud application and set authentication data
+RPC used to enable/disable a cloud application and set its cloud-related policy properties
         
 
 ##### Parameters
