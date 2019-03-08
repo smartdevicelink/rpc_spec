@@ -2803,7 +2803,7 @@ This data is related to what a weather service would provide
 |`eta`|DateTime|False||
 |`bearing`|Integer|False|The angle at which this instruction takes place. For example, 0 would mean straight, less than 45 is bearing right, greater than 135 is sharp right, between 45 and 135 is a regular right, and 180 is a U-Turn, etc. |
 |`junctionType`|NavigationJunction|False||
-|`drivingSide`|Direction|False|Used to infer which side of the road this instruction takes place. For a U-Turn (Action=Turn, direction=180) this will determine which direction the turn should take place. |
+|`drivingSide`|Direction|False|Used to infer which side of the road this instruction takes place. For a U-Turn (action=TURN, bearing=180) this will determine which direction the turn should take place. |
 |`details`|String|False|This is a string representation of this instruction, used to display instructions to the users. This is not intended to be read aloud to the users, see the param prompt in NavigationServiceData for that. |
 |`image`|Image|False|An image representation of this instruction. |
 
@@ -2835,7 +2835,7 @@ This manifest contains all the information necessary for the service to be publi
 | ---------- | ---------- |:-----------: |:-----------:|
 |`serviceName`|String|False|Unique name of this service |
 |`serviceType`|String|True|The type of service that is to be offered by this app |
-|`serviceIcon`|String|False|The file name of the icon to be associated with this service. Most likely the same as the appIcon. |
+|`serviceIcon`|Image|False|The icon to be associated with this service. Most likely the same as the appIcon.|
 |`allowAppConsumers`|Boolean|False|If true, app service consumers beyond the IVI system will be able to access this service. If false, only the IVI system will be able consume the service. If not provided, it is assumed to be false. |
 |`rpcSpecVersion`|SyncMsgVersion|False|This is the max RPC Spec version the app service understands. This is important during the RPC passthrough functionality. If not included, it is assumed the max version of the module is acceptable. |
 |`handledRPCs`|Integer[]|False|This field contains the Function IDs for the RPCs that this service intends to handle correctly. This means the service will provide meaningful responses. |
@@ -2858,7 +2858,7 @@ This is the record of an app service publisher that the module has. It should co
 
 
 ### AppServiceData
-Contains all the current data of the app service. The serviceType will link to which of the service data objects are included in this object. (eg if service type equals MEDIA, the mediaServiceData param should be included.
+Contains all the current data of the app service. The serviceType will link to which of the service data objects are included in this object (e.g. if the service type is MEDIA, the mediaServiceData param should be included).
 
 ##### Parameters
 
@@ -2897,7 +2897,7 @@ The systemCapabilityType identifies which data object exists in this struct. For
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`systemCapabilityType`|SystemCapabilityType|True|Used as a descriptor of what data to expect in this struct. The corresponding param to this enum should be included and the only other para included.|
+|`systemCapabilityType`|SystemCapabilityType|True|Used as a descriptor of what data to expect in this struct. The corresponding param to this enum should be included and the only other param included.|
 |`navigationCapability`|NavigationCapability|False|Describes extended capabilities for onboard navigation system |
 |`phoneCapability`|PhoneCapability|False|Describes extended capabilities of the module's phone feature|
 |`videoStreamingCapability`|VideoStreamingCapability|False|Describes extended capabilities of the module's phone feature|
@@ -4013,7 +4013,7 @@ This request is sent to the module to retrieve a file
 |`appServiceId`|String|False|ID of the service that should have uploaded the requested file.|
 |`fileType`|FileType|False|Selected file type.|
 |`offset`|Integer|False|Optional offset in bytes for resuming partial data chunks|
-|`length`|Integer|False|Optional length in bytes for resuming partial data chunks if offset is set to 0, then length is the total length of the file to be downloaded|
+|`length`|Integer|False|Optional length in bytes for resuming partial data chunks                If offset is set to 0, then length is the total length of the file to be retrieved            |
 
 
 ### GetFile
@@ -4477,7 +4477,7 @@ This request asks the module for current data related to the specific service. I
 ### GetAppServiceData
 Message Type: **response**
 
-This response includes the data that is requested from the specific service
+This response includes the data that was requested from the specific service
 
 ##### Parameters
 
@@ -4496,7 +4496,7 @@ Message Type: **request**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`serviceUri`|String|True|Fully qualified URI based on the URI prefix and URI scheme the app service provided. SDL makes no gurantee that this URI is correct.|
+|`serviceUri`|String|True|Fully qualified URI based on a predetermined scheme provided by the app service. SDL makes no guarantee that this URI is correct.|
 |`serviceID`|String|True|The service ID that the app consumer wishes to send this URI.|
 |`originApp`|String|True|This string is the appID of the app requesting the app service provider take the specific action.|
 |`requestServiceActive`|Boolean|False|This flag signals the requesting consumer would like this service to become the active primary service of the destination's type.|
@@ -4512,7 +4512,7 @@ Message Type: **response**
 |`success`|Boolean|True|true, if successful; false, if failed |
 |`resultCode`|Result|True|See Result. All results will be available for this response.|
 |`info`|String|False|Provides additional human readable info regarding the result.|
-|`serviceSpecificResult`|String|False|The service can provide specific result strings to the consumer through this param. These results should be described in the URI schema set in the Service Manifest|
+|`serviceSpecificResult`|String|False|The service can provide specific result strings to the consumer through this param.|
 
 
 ### OnHMIStatus

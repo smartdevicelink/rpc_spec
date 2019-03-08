@@ -3947,7 +3947,7 @@
         <param name="junctionType" type="NavigationJunction" mandatory="false"/>
 
         <param name="drivingSide" type="Direction" mandatory="false">
-            <description> Used to infer which side of the road this instruction takes place. For a U-Turn (Action=Turn, direction=180) this will determine which direction the turn should take place. </description>
+            <description> Used to infer which side of the road this instruction takes place. For a U-Turn (action=TURN, bearing=180) this will determine which direction the turn should take place. </description>
         </param>
 
         <param name="details" type="String" mandatory="false">
@@ -4040,7 +4040,7 @@
     </struct>
 
     <struct name="AppServiceData" since="5.1">
-        <description> Contains all the current data of the app service. The serviceType will link to which of the service data objects are included in this object. (eg if service type equals MEDIA, the mediaServiceData param should be included.</description>
+        <description> Contains all the current data of the app service. The serviceType will link to which of the service data objects are included in this object (e.g. if the service type is MEDIA, the mediaServiceData param should be included).</description>
 
         <param name="serviceType" type="String" mandatory="true">
             <description>The type of service that is to be offered by this app. See AppServiceType for known enum equivalent types. Parameter is a string to allow for new service types to be used by apps on older versions of SDL Core.</description>
@@ -4091,7 +4091,7 @@
     <struct name="SystemCapability" since="4.5">
         <description>The systemCapabilityType identifies which data object exists in this struct. For example, if the SystemCapability Type is NAVIGATION then a "navigationCapability" should exist</description>
         <param name="systemCapabilityType" type="SystemCapabilityType" mandatory="true">
-            <description>Used as a descriptor of what data to expect in this struct. The corresponding param to this enum should be included and the only other para included.</description>
+            <description>Used as a descriptor of what data to expect in this struct. The corresponding param to this enum should be included and the only other param included.</description>
         </param>
         <param name="navigationCapability" type="NavigationCapability" mandatory="false">
             <description>Describes extended capabilities for onboard navigation system </description>
@@ -6439,7 +6439,10 @@
             <description>Optional offset in bytes for resuming partial data chunks</description>
         </param>
         <param name="length" type="Integer" minvalue="0" maxvalue="2000000000" mandatory="false">
-            <description>Optional length in bytes for resuming partial data chunks if offset is set to 0, then length is the total length of the file to be downloaded</description>
+            <description>
+                Optional length in bytes for resuming partial data chunks
+                If offset is set to 0, then length is the total length of the file to be retrieved
+            </description>
         </param>
     </function>
 
@@ -7127,7 +7130,7 @@
     </function>
 
     <function name="GetAppServiceData" functionID="GetAppServiceDataID" messagetype="response" since="5.1">
-        <description> This response includes the data that is requested from the specific service</description>
+        <description> This response includes the data that was requested from the specific service</description>
 
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
             <description> true, if successful; false, if failed </description>
@@ -7155,7 +7158,7 @@
 
     <function name="PerformAppServiceInteraction" functionID="PerformAppServiceInteractionID" messagetype="request" since="5.1">
         <param name="serviceUri" type="String"  mandatory="true">
-            <description>Fully qualified URI based on the URI prefix and URI scheme the app service provided. SDL makes no gurantee that this URI is correct.</description>
+            <description>Fully qualified URI based on a predetermined scheme provided by the app service. SDL makes no guarantee that this URI is correct.</description>
         </param>
         
         <param name="serviceID" type="String" mandatory="true">
@@ -7185,7 +7188,7 @@
         </param>
 
         <param name="serviceSpecificResult" type="String" mandatory="false">
-            <description>The service can provide specific result strings to the consumer through this param. These results should be described in the URI schema set in the Service Manifest</description>
+            <description>The service can provide specific result strings to the consumer through this param.</description>
         </param>
     </function>
 
