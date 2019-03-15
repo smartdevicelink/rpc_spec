@@ -2767,7 +2767,7 @@ This data is related to what a media service should provide
 |`precipProbability`|Float|False|0 to 1, percentage chance |
 |`precipType`|String|False|e.g. "rain", "snow", "sleet", "hail" |
 |`visibility`|Float|False|In km |
-|`weatherIconImageName`|String|False||
+|`weatherIcon`|Image|False||
 
 
 ### WeatherServiceData
