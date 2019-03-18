@@ -566,7 +566,7 @@
         <param name="cloudTransportType" type="String" maxlength="100" mandatory="false">
             <description>Specifies the connection type Core should use</description>
         </param>
-        <param name="hybridAppPreference" type="HybridAppPreference" maxlength="100" mandatory="false">
+        <param name="hybridAppPreference" type="HybridAppPreference" mandatory="false">
             <description>Specifies the user preference to use the cloud app version or mobile app version when both are available</description>
         </param>
         <param name="endpoint" type="String" maxlength="65535" mandatory="false">
