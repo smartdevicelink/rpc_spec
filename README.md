@@ -1368,6 +1368,10 @@ Enumeration linking function names with function IDs in SmartDeviceLink protocol
 |`SendHapticDataID`||
 |`SetCloudAppPropertiesID`||
 |`GetCloudAppPropertiesID`||
+|`PublishAppServiceID`||
+|`GetAppServiceDataID`||
+|`GetFileID`||
+|`PerformAppServiceInteractionID`||
 |`OnHMIStatusID`||
 |`OnAppInterfaceUnregisteredID`||
 |`OnButtonEventID`||
@@ -1386,6 +1390,8 @@ Enumeration linking function names with function IDs in SmartDeviceLink protocol
 |`OnInteriorVehicleDataID`||
 |`OnWayPointChangeID`||
 |`OnRCStatusID`||
+|`OnAppServiceDataID`||
+|`OnSystemCapabilityUpdatedID`||
 |`EncodedSyncPDataID`||
 |`SyncPDataID`||
 |`OnEncodedSyncPDataID`||
@@ -1428,6 +1434,7 @@ Enumerations of all available system capability types
 |`PHONE_CALL`||
 |`VIDEO_STREAMING`||
 |`REMOTE_CONTROL`||
+|`APP_SERVICES`||
 
 
 ### MassageZone
@@ -1592,6 +1599,77 @@ List possible seats that is a remote controllable seat.
 |`minimumTemperature`|The data in this field is the minimum temperature for the day.|
 |`weatherTerm`|The data in this field describes the current weather (ex. cloudy, clear, etc.).|
 |`humidity`|The data in this field describes the current humidity value.|
+
+
+### AppServiceType
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`MEDIA`||
+|`WEATHER`||
+|`NAVIGATION`||
+
+
+### MediaType
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`MUSIC`||
+|`PODCAST`||
+|`AUDIOBOOK`||
+|`OTHER`||
+
+
+### NavigationAction
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`TURN`|Using this action plus a supplied direction can give the type of turn. |
+|`EXIT`||
+|`STAY`||
+|`MERGE`||
+|`FERRY`||
+|`CAR_SHUTTLE_TRAIN`||
+|`WAYPOINT`||
+
+
+### NavigationJunction
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`REGULAR`|A junction that represents a standard intersection with a single road crossing another. |
+|`BIFURCATION`|A junction where the road splits off into two paths; a fork in the road. |
+|`MULTI_CARRIAGEWAY`|A junction that has multiple intersections and paths. |
+|`ROUNDABOUT`|A junction where traffic moves in a single direction around a central, non-traversable point to reach one of the connecting roads. |
+|`TRAVERSABLE_ROUNDABOUT`|Similar to a roundabout, however the center of the roundabout is fully traversable. Also known as a mini-roundabout. |
+|`JUGHANDLE`|A junction where lefts diverge to the right, then curve to the left, converting a left turn to a crossing maneuver. |
+|`ALL_WAY_YIELD`|Multiple way intersection that allows traffic to flow based on priority; most commonly right of way and first in, first out. |
+|`TURN_AROUND`|A junction designated for traffic turn arounds. |
+
+
+### Direction
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`LEFT`||
+|`RIGHT`||
+
+
+### ServiceUpdateReason
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`PUBLISHED`|The service has just been published with the module and once activated to the primary service of its type, it will be ready for possible consumption.|
+|`REMOVED`|The service has just been unpublished with the module and is no longer accessible|
+|`ACTIVATED`|The service is activated as the primary service of this type. All requests dealing with this service type will be handled by this service.|
+|`DEACTIVATED`|The service has been deactivated as the primary service of its type|
+|`MANIFEST_UPDATE`|The service has updated its manifest. This could imply updated capabilities|
 
 
 
@@ -2612,20 +2690,6 @@ The moduleType indicates which type of data should be changed and identifies whi
 |`seatControlCapabilities`|SeatControlCapabilities[]|False|If included, the platform supports seat controls.|
 
 
-### SystemCapability
-The systemCapabilityType indicates which type of data should be changed and identifies which data object exists in this struct. For example, if the SystemCapability Type is NAVIGATION then a "navigationCapability" should exist
-
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-|`systemCapabilityType`|SystemCapabilityType|True|Used as a descriptor of what data to expect in this struct. The corresponding param to this enum should be included and the only other para included.|
-|`navigationCapability`|NavigationCapability|False|Describes extended capabilities for onboard navigation system |
-|`phoneCapability`|PhoneCapability|False|Describes extended capabilities of the module's phone feature|
-|`videoStreamingCapability`|VideoStreamingCapability|False|Describes extended capabilities of the module's phone feature|
-|`remoteControlCapability`|RemoteControlCapabilities|False|Describes extended capabilities of the module's phone feature|
-
-
 ### MetadataTags
 ##### Parameters
 
@@ -2657,6 +2721,218 @@ Defines haptic data for each user control object for video streaming application
 | ---------- | ---------- |:-----------: |:-----------:|
 |`id`|Integer|True|A user control spatial identifier|
 |`rect`|Rectangle|True|The position of the haptic rectangle to be highlighted. The center of this rectangle will be "touched" when a press occurs.|
+
+
+### MediaServiceManifest
+
+### MediaServiceData
+This data is related to what a media service should provide
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`mediaType`|MediaType|False|The type of the currently playing or paused track.|
+|`mediaTitle`|String|False|Music: The name of the current track                Podcast: The name of the current episode                Audiobook: The name of the current chapter            |
+|`mediaArtist`|String|False|Music: The name of the current album artist                Podcast: The provider of the podcast (hosts, network, company)                Audiobook: The book author's name            |
+|`mediaAlbum`|String|False|Music: The name of the current album                Podcast: The name of the current podcast show                Audiobook: The name of the current book            |
+|`playlistName`|String|False|Music: The name of the playlist or radio station, if the user is playing from a playlist, otherwise, Null                Podcast: The name of the playlist, if the user is playing from a playlist, otherwise, Null                Audiobook: Likely not applicable, possibly a collection or "playlist" of books            |
+|`isExplicit`|Boolean|False|Whether or not the content currently playing (e.g. the track, episode, or book) contains explicit content|
+|`trackPlaybackProgress`|Integer|False|Music: The current progress of the track in seconds                Podcast: The current progress of the episode in seconds                Audiobook: The current progress of the current segment (e.g. the chapter) in seconds            |
+|`trackPlaybackDuration`|Integer|False|Music: The total duration of the track in seconds                Podcast: The total duration of the episode in seconds                Audiobook: The total duration of the current segment (e.g. the chapter) in seconds            |
+|`queuePlaybackProgress`|Integer|False|Music: The current progress of the playback queue in seconds                Podcast: The current progress of the playback queue in seconds                Audiobook: The current progress of the playback queue (e.g. the book) in seconds            |
+|`queuePlaybackDuration`|Integer|False|Music: The total duration of the playback queue in seconds                Podcast: The total duration of the playback queue in seconds                Audiobook: The total duration of the playback queue (e.g. the book) in seconds            |
+|`queueCurrentTrackNumber`|Integer|False|Music: The current number (1 based) of the track in the playback queue                Podcast: The current number (1 based) of the episode in the playback queue                Audiobook: The current number (1 based) of the episode in the playback queue (e.g. the chapter number in the book)            |
+|`queueTotalTrackCount`|Integer|False|Music: The total number of tracks in the playback queue                Podcast: The total number of episodes in the playback queue                Audiobook: The total number of sections in the playback queue (e.g. the number of chapters in the book)            |
+
+
+### WeatherServiceManifest
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`currentForecastSupported`|Boolean|False||
+|`maxMultidayForecastAmount`|Integer|False||
+|`maxHourlyForecastAmount`|Integer|False||
+|`maxMinutelyForecastAmount`|Integer|False||
+|`weatherForLocationSupported`|Boolean|False||
+
+
+### WeatherAlert
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`title`|String|False||
+|`summary`|String|False||
+|`expires`|DateTime|False||
+|`regions`|String[]|False||
+|`severity`|String|False||
+|`timeIssued`|DateTime|False||
+
+
+### WeatherData
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`currentTemperature`|Temperature|False||
+|`temperatureHigh`|Temperature|False||
+|`temperatureLow`|Temperature|False||
+|`apparentTemperature`|Temperature|False||
+|`apparentTemperatureHigh`|Temperature|False||
+|`apparentTemperatureLow`|Temperature|False||
+|`weatherSummary`|String|False||
+|`time`|DateTime|False||
+|`humidity`|Float|False|0 to 1, percentage humidity |
+|`cloudCover`|Float|False|0 to 1, percentage cloud cover |
+|`moonPhase`|Float|False|0 to 1, percentage of the moon seen, e.g. 0 = no moon, 0.25 = quarter moon |
+|`windBearing`|Integer|False|In degrees, true north at 0 degrees |
+|`windGust`|Float|False|km/hr |
+|`windSpeed`|Float|False|km/hr |
+|`nearestStormBearing`|Integer|False|In degrees, true north at 0 degrees |
+|`nearestStormDistance`|Integer|False|In km |
+|`precipAccumulation`|Float|False|cm |
+|`precipIntensity`|Float|False|cm of water per hour |
+|`precipProbability`|Float|False|0 to 1, percentage chance |
+|`precipType`|String|False|e.g. "rain", "snow", "sleet", "hail" |
+|`visibility`|Float|False|In km |
+|`weatherIcon`|Image|False||
+
+
+### WeatherServiceData
+This data is related to what a weather service would provide
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`location`|LocationDetails|True||
+|`currentForecast`|WeatherData|False||
+|`minuteForecast`|WeatherData[]|False||
+|`hourlyForecast`|WeatherData[]|False||
+|`multidayForecast`|WeatherData[]|False||
+|`alerts`|WeatherAlert[]|False|This array should be ordered with the first object being the current day|
+
+
+### NavigationServiceManifest
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`acceptsWayPoints`|Boolean|False|Informs the subscriber if this service can actually accept way points. |
+
+
+### NavigationInstruction
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`locationDetails`|LocationDetails|True||
+|`action`|NavigationAction|True||
+|`eta`|DateTime|False||
+|`bearing`|Integer|False|The angle at which this instruction takes place. For example, 0 would mean straight, less than 45 is bearing right, greater than 135 is sharp right, between 45 and 135 is a regular right, and 180 is a U-Turn, etc. |
+|`junctionType`|NavigationJunction|False||
+|`drivingSide`|Direction|False|Used to infer which side of the road this instruction takes place. For a U-Turn (action=TURN, bearing=180) this will determine which direction the turn should take place. |
+|`details`|String|False|This is a string representation of this instruction, used to display instructions to the users. This is not intended to be read aloud to the users, see the param prompt in NavigationServiceData for that. |
+|`image`|Image|False|An image representation of this instruction. |
+
+
+### NavigationServiceData
+This data is related to what a navigation service would provide.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`timeStamp`|DateTime|True|This is the timestamp of when the data was generated. This is to ensure any time or distance given in the data can accurately be adjusted if necessary. |
+|`origin`|LocationDetails|False||
+|`destination`|LocationDetails|False||
+|`destinationETA`|DateTime|False||
+|`instructions`|NavigationInstruction[]|False|This array should be ordered with all remaining instructions. The start of this array should always contain the next instruction.|
+|`nextInstructionETA`|DateTime|False||
+|`nextInstructionDistance`|Float|False|The distance to this instruction from current location. This should only be updated ever .1 unit of distance. For more accuracy the consumer can use the GPS location of itself and the next instruction. |
+|`nextInstructionDistanceScale`|Float|False|Distance till next maneuver (starting from) from previous maneuver.|
+|`prompt`|String|False|This is a prompt message that should be conveyed to the user through either display or voice (TTS). This param will change often as it should represent the following: approaching instruction, post instruction, alerts that affect the current navigation session, etc.|
+
+
+### AppServiceManifest
+This manifest contains all the information necessary for the service to be published, activated, and consumers able to interact with it 
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`serviceName`|String|False|Unique name of this service |
+|`serviceType`|String|True|The type of service that is to be offered by this app. See AppServiceType for known enum equivalent types. Parameter is a string to allow for new service types to be used by apps on older versions of SDL Core. |
+|`serviceIcon`|Image|False|The icon to be associated with this service. Most likely the same as the appIcon.|
+|`allowAppConsumers`|Boolean|False|If true, app service consumers beyond the IVI system will be able to access this service. If false, only the IVI system will be able consume the service. If not provided, it is assumed to be false. |
+|`rpcSpecVersion`|SyncMsgVersion|False|This is the max RPC Spec version the app service understands. This is important during the RPC passthrough functionality. If not included, it is assumed the max version of the module is acceptable. |
+|`handledRPCs`|Integer[]|False|This field contains the Function IDs for the RPCs that this service intends to handle correctly. This means the service will provide meaningful responses. |
+|`mediaServiceManifest`|MediaServiceManifest|False||
+|`weatherServiceManifest`|WeatherServiceManifest|False||
+|`navigationServiceManifest`|NavigationServiceManifest|False||
+
+
+### AppServiceRecord
+This is the record of an app service publisher that the module has. It should contain the most up to date information including the service's active state
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`serviceID`|String|True|A unique ID tied to this specific service record. The ID is supplied by the module that services publish themselves. |
+|`serviceManifest`|AppServiceManifest|True|Manifest for the service that this record is for.|
+|`servicePublished`|Boolean|True|If true, the service is published and available. If false, the service has likely just been unpublished, and should be considered unavailable.|
+|`serviceActive`|Boolean|True|If true, the service is the active primary service of the supplied service type. It will receive all potential RPCs that are passed through to that service type. If false, it is not the primary service of the supplied type. See servicePublished for its availability. |
+
+
+### AppServiceData
+Contains all the current data of the app service. The serviceType will link to which of the service data objects are included in this object (e.g. if the service type is MEDIA, the mediaServiceData param should be included).
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`serviceType`|String|True|The type of service that is to be offered by this app. See AppServiceType for known enum equivalent types. Parameter is a string to allow for new service types to be used by apps on older versions of SDL Core.|
+|`serviceID`|String|True||
+|`mediaServiceData`|MediaServiceData|False||
+|`weatherServiceData`|WeatherServiceData|False||
+|`navigationServiceData`|NavigationServiceData|False||
+
+
+### AppServiceCapability
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`updateReason`|ServiceUpdateReason|False|Only included in OnSystemCapabilityUpdated. Update reason for service record.|
+|`updatedAppServiceRecord`|AppServiceRecord|True|Service record for a specific app service provider|
+
+
+### AppServicesCapabilities
+Capabilities of app services including what service types are supported and the current state of services.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`appServices`|AppServiceCapability[]|False|An array of currently available services. If this is an update to the capability the affected services will include an update reason in that item|
+
+
+### SystemCapability
+The systemCapabilityType identifies which data object exists in this struct. For example, if the SystemCapability Type is NAVIGATION then a "navigationCapability" should exist
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`systemCapabilityType`|SystemCapabilityType|True|Used as a descriptor of what data to expect in this struct. The corresponding param to this enum should be included and the only other param included.|
+|`navigationCapability`|NavigationCapability|False|Describes extended capabilities for onboard navigation system |
+|`phoneCapability`|PhoneCapability|False|Describes extended capabilities of the module's phone feature|
+|`videoStreamingCapability`|VideoStreamingCapability|False|Describes extended capabilities of the module's phone feature|
+|`remoteControlCapability`|RemoteControlCapabilities|False|Describes extended capabilities of the module's phone feature|
+|`appServicesCapabilities`|AppServicesCapabilities|False|An array of currently available services. If this is an update to the capability the affected services will include an update reason in that item|
 
 
 
@@ -3760,6 +4036,40 @@ Response is sent, when the file data was copied (success case). Or when an error
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
 
+### GetFile
+Message Type: **request**
+
+This request is sent to the module to retrieve a file
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`fileName`|String|True|File name that should be retrieved|
+|`appServiceId`|String|False|ID of the service that should have uploaded the requested file.|
+|`fileType`|FileType|False|Selected file type.|
+|`offset`|Integer|False|Optional offset in bytes for resuming partial data chunks|
+|`length`|Integer|False|Optional length in bytes for resuming partial data chunks                If offset is set to 0, then length is the total length of the file to be retrieved            |
+
+
+### GetFile
+Message Type: **response**
+
+This response includes the data that is requested from the specific service
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`success`|Boolean|True|true, if successful; false, if failed |
+|`resultCode`|Result|True|See Result|
+|`info`|String|False|Provides additional human readable info regarding the result.|
+|`offset`|Integer|False|Optional offset in bytes for resuming partial data chunks|
+|`length`|Integer|False|Optional length in bytes for resuming partial data chunks if offset is set to 0, then length is the total length of the file to be downloaded|
+|`fileType`|FileType|False|File type that is being sent in response.|
+|`crc`|Integer|False|Additional CRC32 checksum to protect data integrity up to 512 Mbits|
+
+
 ### DeleteFile
 Message Type: **request**
 
@@ -4120,6 +4430,7 @@ Request for expanded information about a supported system/HMI capability
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`systemCapabilityType`|SystemCapabilityType|True|The type of system capability to get more information on|
+|`subscribe`|Boolean|False|Flag to subscribe to updates of the supplied service capability type. If true, the requester will be subscribed. If false, the requester will not be subscribed and be removed as a subscriber if it was previously subscribed.|
 
 
 ### GetSystemCapability
@@ -4210,6 +4521,87 @@ The response to GetCloudAppProperties
 |`properties`|CloudAppProperties|False|The requested cloud application properties |
 |`success`|Boolean|True|true if successful; false if failed |
 |`resultCode`|Result|True|See Result|
+
+
+### PublishAppService
+Message Type: **request**
+
+Registers a service offered by this app on the module
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`appServiceManifest`|AppServiceManifest|True|The manifest of the service that wishes to be published.|
+
+
+### PublishAppService
+Message Type: **response**
+
+Response to the request to register a service offered by this app on the module
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`success`|Boolean|True|true, if successful; false, if failed |
+|`resultCode`|Result|True|See Result|
+|`info`|String|False|Provides additional human readable info regarding the result.|
+|`appServiceRecord`|AppServiceRecord|False|If the request was successful, this object will be the current status of the service record for the published service. This will include the Core supplied service ID.|
+
+
+### GetAppServiceData
+Message Type: **request**
+
+This request asks the module for current data related to the specific service. It also includes an option to subscribe to that service for future updates
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`serviceType`|String|True|The type of service that is to be offered by this app. See AppServiceType for known enum equivalent types. Parameter is a string to allow for new service types to be used by apps on older versions of SDL Core.|
+|`subscribe`|Boolean|False|If true, the consumer is requesting to subscribe to all future updates from the service publisher. If false, the consumer doesn't wish to subscribe and should be unsubscribed if it was previously subscribed.|
+
+
+### GetAppServiceData
+Message Type: **response**
+
+This response includes the data that was requested from the specific service
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`success`|Boolean|True|true, if successful; false, if failed |
+|`resultCode`|Result|True|See Result|
+|`info`|String|False|Provides additional human readable info regarding the result.|
+|`serviceData`|AppServiceData|False||
+
+
+### PerformAppServiceInteraction
+Message Type: **request**
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`serviceUri`|String|True|Fully qualified URI based on a predetermined scheme provided by the app service. SDL makes no guarantee that this URI is correct.|
+|`serviceID`|String|True|The service ID that the app consumer wishes to send this URI.|
+|`originApp`|String|True|This string is the appID of the app requesting the app service provider take the specific action.|
+|`requestServiceActive`|Boolean|False|This flag signals the requesting consumer would like this service to become the active primary service of the destination's type.|
+
+
+### PerformAppServiceInteraction
+Message Type: **response**
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`success`|Boolean|True|true, if successful; false, if failed |
+|`resultCode`|Result|True|See Result. All results will be available for this response.|
+|`info`|String|False|Provides additional human readable info regarding the result.|
+|`serviceSpecificResult`|String|False|The service can provide specific result strings to the consumer through this param.|
 
 
 ### OnHMIStatus
@@ -4467,6 +4859,30 @@ Issued by SDL to notify the application about remote control status change on SD
 |`allowed`|Boolean|False|If "true" - RC is allowed; if "false" - RC is disallowed.|
 |`allocatedModules`|ModuleData[]|True|Contains a list (zero or more) of module types that are allocated to the application.|
 |`freeModules`|ModuleData[]|True|Contains a list (zero or more) of module types that are free to access for the application.|
+
+
+### OnAppServiceData
+Message Type: **notification**
+
+This notification includes the data that is updated from the specific service
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`serviceData`|AppServiceData|True||
+
+
+### OnSystemCapabilityUpdated
+Message Type: **notification**
+
+A notification to inform the connected device that a specific system capability has changed.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`systemCapability`|SystemCapability|True|The system capability that has been updated|
 
 
 ### EncodedSyncPData
