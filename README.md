@@ -2864,7 +2864,7 @@ This manifest contains all the information necessary for the service to be publi
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`serviceName`|String|False|Unique name of this service |
-|`serviceType`|String|True|The type of service that is to be offered by this app |
+|`serviceType`|String|True|The type of service that is to be offered by this app. See AppServiceType for known enum equivalent types. Parameter is a string to allow for new service types to be used by apps on older versions of SDL Core. |
 |`serviceIcon`|Image|False|The icon to be associated with this service. Most likely the same as the appIcon.|
 |`allowAppConsumers`|Boolean|False|If true, app service consumers beyond the IVI system will be able to access this service. If false, only the IVI system will be able consume the service. If not provided, it is assumed to be false. |
 |`rpcSpecVersion`|SyncMsgVersion|False|This is the max RPC Spec version the app service understands. This is important during the RPC passthrough functionality. If not included, it is assumed the max version of the module is acceptable. |
