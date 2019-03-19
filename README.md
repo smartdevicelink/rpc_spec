@@ -390,6 +390,19 @@ Defines the data types that can be published and subscribed to.
 |`VEHICLEDATA_FUELRANGE`||
 |`VEHICLEDATA_ENGINEOILLIFE`||
 |`VEHICLEDATA_ELECTRONICPARKBRAKESTATUS`||
+|`VEHICLEDATA_CLOUDAPPVEHICLEID`||
+
+
+### HybridAppPreference
+Enumeration for the user's preference of which app type to use when both are available
+
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`MOBILE`||
+|`CLOUD`||
+|`BOTH`||
 
 
 ### ButtonName
@@ -1244,6 +1257,7 @@ Enumeration listing possible asynchronous requests.
 |`MEDIA`||
 |`FOTA`||
 |`OEM_SPECIFIC`||
+|`ICON_URL`||
 
 
 ### AppHMIType
@@ -1352,6 +1366,8 @@ Enumeration linking function names with function IDs in SmartDeviceLink protocol
 |`UnsubscribeWayPointsID`||
 |`GetSystemCapabilityID`||
 |`SendHapticDataID`||
+|`SetCloudAppPropertiesID`||
+|`GetCloudAppPropertiesID`||
 |`OnHMIStatusID`||
 |`OnAppInterfaceUnregisteredID`||
 |`OnButtonEventID`||
@@ -1596,6 +1612,20 @@ Describes different audio type configurations for PerformAudioPassThru.
 |`samplingRate`|SamplingRate|True||
 |`bitsPerSample`|BitsPerSample|True||
 |`audioType`|AudioType|True||
+
+
+### CloudAppProperties
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`nicknames`|String[]|False|An array of app names a cloud app is allowed to register with. If included in a SetCloudAppProperties request, this value will overwrite the existing "nicknames" field in the app policies section of the policy table.|
+|`appID`|String|True||
+|`enabled`|Boolean|False|If true, cloud app will be included in HMI RPC UpdateAppList|
+|`authToken`|String|False|Used to authenticate websocket connection on app activation|
+|`cloudTransportType`|String|False|Specifies the connection type Core should use|
+|`hybridAppPreference`|HybridAppPreference|False|Specifies the user preference to use the cloud app version or mobile app version when both are available|
+|`endpoint`|String|False|Specifies the endpoint which Core will attempt to connect to when this app is selected|
 
 
 ### Image
@@ -3225,6 +3255,7 @@ Subscribes for specific published data items.
 |`steeringWheelAngle`|Boolean|False|Current angle of the steering wheel (in deg)|
 |`engineOilLife`|Boolean|False|The estimated percentage of remaining oil life of the engine.|
 |`electronicParkBrakeStatus`|Boolean|False|The status of the park brake as provided by Electric Park Brake (EPB) system.|
+|`cloudAppVehicleID`|Boolean|False|Parameter used by cloud apps to identify a head unit|
 |`eCallInfo`|Boolean|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|Boolean|False|The status of the air bags|
 |`emergencyEvent`|Boolean|False|Information related to an emergency event (and if it occurred)|
@@ -3265,6 +3296,7 @@ Message Type: **response**
 |`steeringWheelAngle`|VehicleDataResult|False|Current angle of the steering wheel (in deg)|
 |`engineOilLife`|VehicleDataResult|False|The estimated percentage of remaining oil life of the engine.|
 |`electronicParkBrakeStatus`|VehicleDataResult|False|The status of the park brake as provided by Electric Park Brake (EPB) system.|
+|`cloudAppVehicleID`|VehicleDataResult|False|Parameter used by cloud apps to identify a head unit|
 |`eCallInfo`|VehicleDataResult|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|VehicleDataResult|False|The status of the air bags|
 |`emergencyEvent`|VehicleDataResult|False|Information related to an emergency event (and if it occurred)|
@@ -3304,6 +3336,7 @@ This function is used to unsubscribe the notifications from the subscribeVehicle
 |`steeringWheelAngle`|Boolean|False|Current angle of the steering wheel (in deg)|
 |`engineOilLife`|Boolean|False|The estimated percentage of remaining oil life of the engine.|
 |`electronicParkBrakeStatus`|Boolean|False|The status of the park brake as provided by Electric Park Brake (EPB) system.|
+|`cloudAppVehicleID`|Boolean|False|Parameter used by cloud apps to identify a head unit|
 |`eCallInfo`|Boolean|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|Boolean|False|The status of the air bags|
 |`emergencyEvent`|Boolean|False|Information related to an emergency event (and if it occurred)|
@@ -3344,6 +3377,7 @@ Message Type: **response**
 |`steeringWheelAngle`|VehicleDataResult|False|Current angle of the steering wheel (in deg)|
 |`engineOilLife`|VehicleDataResult|False|The estimated percentage of remaining oil life of the engine.|
 |`electronicParkBrakeStatus`|VehicleDataResult|False|The status of the park brake as provided by Electric Park Brake (EPB) system.|
+|`cloudAppVehicleID`|VehicleDataResult|False|Parameter used by cloud apps to identify a head unit|
 |`eCallInfo`|VehicleDataResult|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|VehicleDataResult|False|The status of the air bags|
 |`emergencyEvent`|VehicleDataResult|False|Information related to an emergency event (and if it occurred)|
@@ -3384,6 +3418,7 @@ Non periodic vehicle data read request.
 |`steeringWheelAngle`|Boolean|False|Current angle of the steering wheel (in deg)|
 |`engineOilLife`|Boolean|False|The estimated percentage of remaining oil life of the engine.|
 |`electronicParkBrakeStatus`|Boolean|False|The status of the park brake as provided by Electric Park Brake (EPB) system.|
+|`cloudAppVehicleID`|Boolean|False|Parameter used by cloud apps to identify a head unit|
 |`eCallInfo`|Boolean|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|Boolean|False|The status of the air bags|
 |`emergencyEvent`|Boolean|False|Information related to an emergency event (and if it occurred)|
@@ -3425,6 +3460,7 @@ Message Type: **response**
 |`steeringWheelAngle`|Float|False|Current angle of the steering wheel (in deg)|
 |`engineOilLife`|Float|False|The estimated percentage of remaining oil life of the engine.|
 |`electronicParkBrakeStatus`|ElectronicParkBrakeStatus|False|The status of the park brake as provided by Electric Park Brake (EPB) system.|
+|`cloudAppVehicleID`|String|False|Parameter used by cloud apps to identify a head unit|
 |`eCallInfo`|ECallInfo|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|AirbagStatus|False|The status of the air bags|
 |`emergencyEvent`|EmergencyEvent|False|Information related to an emergency event (and if it occurred)|
@@ -4123,6 +4159,59 @@ Message Type: **response**
 |`resultCode`|Result|True|See Result|
 
 
+### SetCloudAppProperties
+Message Type: **request**
+
+RPC used to enable/disable a cloud application and set its cloud-related policy properties
+        
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`properties`|CloudAppProperties|True|The new cloud application properties |
+
+
+### SetCloudAppProperties
+Message Type: **response**
+
+The response to SetCloudAppProperties
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`success`|Boolean|True|true if successful; false if failed |
+|`resultCode`|Result|True|See Result|
+
+
+### GetCloudAppProperties
+Message Type: **request**
+
+RPC used to get the current properties of a cloud application
+        
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`appID`|String|True||
+
+
+### GetCloudAppProperties
+Message Type: **response**
+
+The response to GetCloudAppProperties
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`properties`|CloudAppProperties|False|The requested cloud application properties |
+|`success`|Boolean|True|true if successful; false if failed |
+|`resultCode`|Result|True|See Result|
+
+
 ### OnHMIStatus
 Message Type: **notification**
 
@@ -4207,6 +4296,7 @@ Callback for the periodic and non periodic vehicle data read function.
 |`steeringWheelAngle`|Float|False|Current angle of the steering wheel (in deg)|
 |`engineOilLife`|Float|False|The estimated percentage of remaining oil life of the engine.|
 |`electronicParkBrakeStatus`|ElectronicParkBrakeStatus|False|The status of the park brake as provided by Electric Park Brake (EPB) system.|
+|`cloudAppVehicleID`|String|False|Parameter used by cloud apps to identify a head unit|
 |`eCallInfo`|ECallInfo|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|AirbagStatus|False|The status of the air bags|
 |`emergencyEvent`|EmergencyEvent|False|Information related to an emergency event (and if it occurred)|
