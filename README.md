@@ -4494,6 +4494,7 @@ The response to SetCloudAppProperties
 | ---------- | ---------- |:-----------: |:-----------:|
 |`success`|Boolean|True|true if successful; false if failed |
 |`resultCode`|Result|True|See Result|
+|`info`|String|False|Provides additional human readable info regarding the result.|
 
 
 ### GetCloudAppProperties
@@ -4521,6 +4522,7 @@ The response to GetCloudAppProperties
 |`properties`|CloudAppProperties|False|The requested cloud application properties |
 |`success`|Boolean|True|true if successful; false if failed |
 |`resultCode`|Result|True|See Result|
+|`info`|String|False|Provides additional human readable info regarding the result.|
 
 
 ### PublishAppService
