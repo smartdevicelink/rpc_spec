@@ -4731,6 +4731,7 @@ Provides driver distraction state to mobile applications
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`state`|DriverDistractionState|True|Current State of Driver Distraction|
+|`lockScreenDismissalEnabled`|Boolean|False|If enabled, the lock screen will be able to be dismissed while connected to SDL, allowing users                 the ability to interact with the app. Dismissals should include a warning to the user and ensure                 that they are not the driver.            |
 
 
 ### OnPermissionsChange
