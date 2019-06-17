@@ -1372,6 +1372,7 @@ Enumeration linking function names with function IDs in SmartDeviceLink protocol
 |`GetAppServiceDataID`||
 |`GetFileID`||
 |`PerformAppServiceInteractionID`||
+|`CloseApplicationID`||
 |`OnHMIStatusID`||
 |`OnAppInterfaceUnregisteredID`||
 |`OnButtonEventID`||
@@ -4604,6 +4605,29 @@ Message Type: **response**
 |`resultCode`|Result|True|See Result. All results will be available for this response.|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 |`serviceSpecificResult`|String|False|The service can provide specific result strings to the consumer through this param.|
+
+
+### CloseApplication
+Message Type: **request**
+
+Request from the application to exit the foreground and enter HMI_NONE.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+
+
+### CloseApplication
+Message Type: **response**
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`success`|Boolean|True|true if successful; false, if failed |
+|`resultCode`|Result|True||
+|`info`|String|False|Provides additional human readable info regarding the result.|
 
 
 ### OnHMIStatus
