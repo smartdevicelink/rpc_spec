@@ -625,7 +625,7 @@
         <element name="REPEAT" since="4.5" />
         <!-- Navigation Buttons -->
         <element name="NAV_CENTER_LOCATION" since="6.0" />
-        <element name="NAV_ZOOM_IN" since="5.2" />
+        <element name="NAV_ZOOM_IN" since="6.0" />
         <element name="NAV_ZOOM_OUT" since="5.2" />
         <element name="NAV_PAN_UP" since="5.2" />
         <element name="NAV_PAN_UP_RIGHT" since="5.2" />
