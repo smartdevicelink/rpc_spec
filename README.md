@@ -1960,7 +1960,7 @@ Struct with the GPS data.
 |`altitude`|Float|False|Altitude in meters|
 |`heading`|Float|False|The heading. North is 0. Resolution is 0.01|
 |`speed`|Float|False|The speed in KPH|
-
+|`shifted`|Boolean|False|True, if GPS lat/long, time, and altitude have been purposefully shifted (requires a proprietary algorithm to unshift).<br>False, if the GPS data is raw and un-shifted.<br>If not provided, then value is assumed False.|
 
 ### VehicleDataResult
 Individual published data request result
