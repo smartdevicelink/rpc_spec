@@ -2016,9 +2016,9 @@
         </param>
         <param name="shifted" type="Boolean" mandatory="false" since="6.0">
             <description>
-              True, if GPS lat/long, time, and altitude have been purposefully shifted (requires a proprietary algorithm to unshift).
-              False, if the GPS data is raw and un-shifted.
-              If not provided, then value is assumed False.
+                True, if GPS lat/long, time, and altitude have been purposefully shifted (requires a proprietary algorithm to unshift).
+                False, if the GPS data is raw and un-shifted.
+                If not provided, then value is assumed False.
             </description>
         </param>
     </struct>
