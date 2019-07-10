@@ -1372,6 +1372,7 @@ Enumeration linking function names with function IDs in SmartDeviceLink protocol
 |`GetAppServiceDataID`||
 |`GetFileID`||
 |`PerformAppServiceInteractionID`||
+|`CancelInteractionID`||
 |`OnHMIStatusID`||
 |`OnAppInterfaceUnregisteredID`||
 |`OnButtonEventID`||
@@ -4604,6 +4605,31 @@ Message Type: **response**
 |`resultCode`|Result|True|See Result. All results will be available for this response.|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 |`serviceSpecificResult`|String|False|The service can provide specific result strings to the consumer through this param.|
+
+
+### CancelInteraction
+Message Type: **request**
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`cancelID`|Integer|False|The ID of the specific interaction you want to dismiss. If not set, the most recent of the RPC type set in functionID will be dismissed.|
+|`functionID`|Integer|True|The ID of the type of interaction the developer wants to dismiss. Only values 10, (PerformInteractionID), 12 (AlertID), 25 (ScrollableMessageID), and 26 (SliderID) are permitted.|
+
+
+### CancelInteraction
+Message Type: **response**
+
+If no applicable request can be dismissed, the result will be IGNORED.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`success`|Boolean|True|true if successful; false, if failed |
+|`resultCode`|Result|True||
+|`info`|String|False|Provides additional human readable info regarding the result.|
 
 
 ### OnHMIStatus
