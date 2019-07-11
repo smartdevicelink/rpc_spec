@@ -498,6 +498,7 @@ See DAES for further infos regarding the displays
 |`statusBar`|The status bar on NGN; applies to "Show"|
 |`mediaClock`|Text value for MediaClock field; applies to "Show"|
 |`mediaTrack`|The track field of NGN and GEN1.1 MFD displays. This field is only available for media applications; applies to "Show"|
+|`templateTitle`|The title of the new template that will be displayed; applies to "Show"|
 |`alertText1`|The first line of the alert text field; applies to "Alert"|
 |`alertText2`|The second line of the alert text field; applies to "Alert"|
 |`alertText3`|The third line of the alert text field; applies to "Alert"|
@@ -3325,7 +3326,7 @@ Updates the persistent display. Supported fields depend on display capabilities.
 |`softButtons`|SoftButton[]|False|App defined SoftButtons.                If omitted on supported displays, the currently displayed SoftButton values will not change.            |
 |`customPresets`|String[]|False|App labeled on-screen presets (i.e. on-screen media presets or dynamic search suggestions).                If omitted on supported displays, the presets will be shown as not defined.            |
 |`metadataTags`|MetadataTags|False|App defined metadata information. See MetadataStruct. Uses mainField1, mainField2, mainField3, mainField4.                If omitted on supported displays, the currently set metadata tags will not change.                If any text field contains no tags or the none tag, the metadata tag for that textfield should be removed.|
-
+|`templateTitle`|String|False|The title of the new template that will be displayed.<br>How this will be displayed is dependent on the OEM design and implementation of the template.|
 
 ### Show
 Message Type: **response**
