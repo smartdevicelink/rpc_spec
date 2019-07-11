@@ -4902,6 +4902,13 @@
                 If omitted on supported displays, the displayed alert shall not have any SoftButtons.
             </description>
         </param>
+
+        <param name="alertIcon" type="Image" mandatory="false" since="6.0">
+            <description>
+                Image struct determining whether static or dynamic icon.
+                If omitted on supported displays, no (or the default if applicable) icon should be displayed.
+            </description>
+        </param>
         
     </function>
     
