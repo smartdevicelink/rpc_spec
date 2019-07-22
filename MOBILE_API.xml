@@ -872,6 +872,10 @@
             <description>The optional image of a destination / location</description>
         </element>
         
+        <element name="alertIcon" since="6.0">
+            <description>The image field for Alert</description>>
+        </element>
+        
     </enum>
     
     <enum name="CharacterSet" since="1.0">
