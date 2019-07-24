@@ -2209,7 +2209,7 @@ Configuration of on-screen keyboard (if available).
 |`keypressMode`|KeypressMode|False|Desired keypress mode.                If omitted, this value will be set to RESEND_CURRENT_ENTRY.            |
 |`limitedCharacterList`|String[]|False|Array of keyboard characters to enable.|
 |`autoCompleteText`|String|False|Deprecated, use autoCompleteList instead.|
-|`autoCompleteList`|String[]|False|Allows an app to prepopulate the text field with a list of suggested or completed entry as the user types|
+|`autoCompleteList`|String[]|False|Allows an app to prepopulate the text field with a list of suggested or completed entries as the user types.                 If empty, the auto-complete list will be removed from the screen.            |
 
 
 ### DeviceInfo
