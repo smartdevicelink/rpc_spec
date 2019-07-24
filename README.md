@@ -4610,6 +4610,9 @@ Message Type: **response**
 ### CancelInteraction
 Message Type: **request**
 
+Close an active interaction on the HMI.
+        
+
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
@@ -4622,13 +4625,14 @@ Message Type: **request**
 Message Type: **response**
 
 If no applicable request can be dismissed, the result will be IGNORED.
+        
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`success`|Boolean|True|true if successful; false, if failed |
-|`resultCode`|Result|True||
+|`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
 
