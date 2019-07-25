@@ -1372,6 +1372,7 @@ Enumeration linking function names with function IDs in SmartDeviceLink protocol
 |`GetAppServiceDataID`||
 |`GetFileID`||
 |`PerformAppServiceInteractionID`||
+|`ShowAppMenuID`||
 |`OnHMIStatusID`||
 |`OnAppInterfaceUnregisteredID`||
 |`OnButtonEventID`||
@@ -3176,6 +3177,30 @@ Deletes a submenu from the in-application menu.
 
 
 ### DeleteSubMenu
+Message Type: **response**
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`success`|Boolean|True|true if successful; false, if failed |
+|`resultCode`|Result|True|See Result|
+|`info`|String|False|Provides additional human readable info regarding the result.|
+
+
+### ShowAppMenu
+Message Type: **request**
+
+Shows the built in menu view
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`menuID`|Integer|False|If omitted the HMI opens the app's menu.<br>If set to a sub-menu ID the HMI opens the corresponding sub-menu previously added using `AddSubMenu`.|
+
+
+### ShowAppMenu
 Message Type: **response**
 
 ##### Parameters
