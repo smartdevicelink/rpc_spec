@@ -539,6 +539,7 @@ See DAES for further infos regarding the displays
 |`showConstantTBTIcon`|The primary image field for ShowConstantTBT|
 |`showConstantTBTNextTurnIcon`|The secondary image field for ShowConstantTBT|
 |`locationImage`|The optional image of a destination / location|
+|`alertIcon`|The image field for Alert|
 
 
 ### CharacterSet
@@ -3288,6 +3289,7 @@ Shows an alert which typically consists of text-to-speech message and text on th
 |`playTone`|Boolean|False|Defines if tone should be played. Tone is played before TTS.                If omitted, no tone is played.            |
 |`progressIndicator`|Boolean|False|If supported on the given platform, the alert GUI will include some sort of animation indicating that loading of a feature is progressing.  e.g. a spinning wheel or hourglass, etc.            |
 |`softButtons`|SoftButton[]|False|App defined SoftButtons.                If omitted on supported displays, the displayed alert shall not have any SoftButtons.            |
+|`alertIcon`|Image|False|Image struct determining whether static or dynamic icon.                If omitted on supported displays, no (or the default if applicable) icon should be displayed.            |
 
 
 ### Alert
