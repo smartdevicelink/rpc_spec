@@ -666,6 +666,7 @@ The different global properties.
 
 | Value | Description | 
 | ---------- |:-----------:|
+|`USER_LOCATION`|Location of the user's seat of setGlobalProperties|
 |`HELPPROMPT`|The property helpPrompt of setGlobalProperties|
 |`TIMEOUTPROMPT`|The property timeoutPrompt of setGlobalProperties|
 |`VRHELPTITLE`|The property vrHelpTitle of setGlobalProperties|
@@ -1397,7 +1398,8 @@ Enumeration linking function names with function IDs in SmartDeviceLink protocol
 |`SyncPDataID`||
 |`OnEncodedSyncPDataID`||
 |`OnSyncPDataID`||
-
+|`GetInteriorVehicleDataConsentID`||
+|`ReleaseInteriorVehicleDataModuleID`||
 
 ### messageType
 Enumeration linking message types with function types in WiPro protocol.
@@ -2109,6 +2111,32 @@ Contains information about the display capabilities.
 |`screenParams`|ScreenParams|False|A set of all parameters related to a prescribed screen area (e.g. for video / touch input).|
 |`numCustomPresetsAvailable`|Integer|False|The number of on-screen custom presets available (if any); otherwise omitted.|
 
+### Grid
+Describes a location (origin coordinates and span) of a vehicle component.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`col`|Integer|True|
+|`row`|Integer|True|
+|`level`|Integer|False|
+|`colspan`|Integer|False|
+|`rowspan`|Integer|False|
+|`levelspan`|Integer|False|
+
+### ModuleInfo
+Information about a RC module.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`moduleId`|String|True|uuid of a module. "moduleId + moduleType" uniquely identify a module.|
+|`location`|Grid|False|Location of a module.|
+|`serviceArea`|Grid|False|Service area of a module.|
+|`allowMultipleAccess`|Boolean|False|allow multiple users/apps to access the module or not. |
+
 
 ### ButtonCapabilities
 Contains information about a button's capabilities.
@@ -2118,6 +2146,7 @@ Contains information about a button's capabilities.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`name`|ButtonName|True|The name of the button. See ButtonName.|
+|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id. See ModuleInfo.|
 |`shortPressAvailable`|Boolean|True|The button supports a short press.                Whenever the button is pressed short, onButtonPressed( SHORT) will be invoked.            |
 |`longPressAvailable`|Boolean|True|The button supports a LONG press.                Whenever the button is pressed long, onButtonPressed( LONG) will be invoked.            |
 |`upDownAvailable`|Boolean|True|The button supports "button down" and "button up".                Whenever the button is pressed, onButtonEvent( DOWN) will be invoked.                Whenever the button is released, onButtonEvent( UP) will be invoked.            |
@@ -2381,6 +2410,27 @@ The intensity or firmness of a cushion.
 |`label`|String|False||
 |`action`|SeatMemoryActionType|True||
 
+### SeatLocation
+Describes the location of a seat.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`grid`|Grid|False||
+
+
+### SeatLocationCapability
+Contains information about the locations of each seat
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`rows`|Integer|False||
+|`columns`|Integer|False||
+|`levels`|Integer|False||
+|`seats`|SeatLocation[]|False|Contains a list of SeatLocation in the vehicle. |
 
 ### SeatControlData
 Seat control data corresponds to "SEAT" ModuleType. 
@@ -2413,6 +2463,7 @@ Seat control data corresponds to "SEAT" ModuleType.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleName`|String|True|The short friendly name of the light control module.            It should not be used to identify a module by mobile application.            |
+|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
 |`heatingEnabledAvailable`|Boolean|False||
 |`coolingEnabledAvailable`|Boolean|False||
 |`heatingLevelAvailable`|Boolean|False||
@@ -2523,6 +2574,7 @@ Contains information about a radio control module's capabilities.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleName`|String|True|The short friendly name of the climate control module.                It should not be used to identify a module by mobile application.            |
+|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
 |`radioEnableAvailable`|Boolean|False|Availability of the control of enable/disable radio.                True: Available, False: Not Available, Not present: Not Available.            |
 |`radioBandAvailable`|Boolean|False|Availability of the control of radio band.                True: Available, False: Not Available, Not present: Not Available.            |
 |`radioFrequencyAvailable`|Boolean|False|Availability of the control of radio frequency.                True: Available, False: Not Available, Not present: Not Available.            |
@@ -2545,6 +2597,7 @@ Contains information about a climate control module's capabilities.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleName`|String|True|The short friendly name of the climate control module.                It should not be used to identify a module by mobile application.|
+|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
 |`currentTemperatureAvailable`|Boolean|False|Availability of the reading of current temperature.                True: Available, False: Not Available, Not present: Not Available.            |
 |`fanSpeedAvailable`|Boolean|False|Availability of the control of fan speed.                True: Available, False: Not Available, Not present: Not Available.            |
 |`desiredTemperatureAvailable`|Boolean|False|Availability of the control of desired temperature.                True: Available, False: Not Available, Not present: Not Available.            |
@@ -2592,6 +2645,7 @@ Defines the each Equalizer channel settings.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleName`|String|True|The short friendly name of the light control module.                It should not be used to identify a module by mobile application.            |
+|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
 |`sourceAvailable`|Boolean|False|Availability of the control of audio source. |
 |`keepContextAvailable`|Boolean|False|Availability of the keepContext parameter. |
 |`volumeAvailable`|Boolean|False|Availability of the control of audio volume.|
@@ -2616,6 +2670,7 @@ Defines the each Equalizer channel settings.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleName`|String|True|The short friendly name of the light control module.                It should not be used to identify a module by mobile application.            |
+|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
 |`supportedLights`|LightCapabilities[]|True|An array of available LightCapabilities that are controllable. |
 
 
@@ -2656,6 +2711,7 @@ Corresponds to "HMI_SETTINGS" ModuleType
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleName`|String|True|The short friendly name of the hmi setting module.              It should not be used to identify a module by mobile application.            |
+|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
 |`distanceUnitAvailable`|Boolean|False|Availability of the control of distance unit. |
 |`temperatureUnitAvailable`|Boolean|False|Availability of the control of temperature unit. |
 |`displayModeUnitAvailable`|Boolean|False|Availability of the control of HMI display mode. |
@@ -2669,6 +2725,7 @@ The moduleType indicates which type of data should be changed and identifies whi
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleType`|ModuleType|True||
+|`moduleId`|String|False|Id of a module, published by System Capability.|
 |`radioControlData`|RadioControlData|False||
 |`climateControlData`|ClimateControlData|False||
 |`seatControlData`|SeatControlData|False||
@@ -2934,6 +2991,8 @@ The systemCapabilityType identifies which data object exists in this struct. For
 |`videoStreamingCapability`|VideoStreamingCapability|False|Describes extended capabilities of the module's phone feature|
 |`remoteControlCapability`|RemoteControlCapabilities|False|Describes extended capabilities of the module's phone feature|
 |`appServicesCapabilities`|AppServicesCapabilities|False|An array of currently available services. If this is an update to the capability the affected services will include an update reason in that item|
+|`seatLocationCapability`|SeatLocationCapability|False|Contains information about the locations of each seat|
+
 
 
 
@@ -3039,6 +3098,7 @@ Allows setting global properties.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
+|`userLocation`|SeatLocation|False|Location of the user's seat. Default is driver's seat location if it is not set yet.|
 |`helpPrompt`|TTSChunk[]|False|The help prompt.                An array of text chunks of type TTSChunk. See TTSChunk.                The array must have at least one item.            |
 |`timeoutPrompt`|TTSChunk[]|False|Help text for a wait timeout.                An array of text chunks of type TTSChunk. See TTSChunk.                The array must have at least one item.            |
 |`vrHelpTitle`|String|False|VR Help Title text.                If omitted on supported displays, the default module help title shall be used.                If omitted and one or more vrHelp items are provided, the request will be rejected.            |
@@ -4284,6 +4344,7 @@ Message Type: **request**
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleType`|ModuleType|True|The module where the button should be pressed|
+|`moduleId`|String|False|Id of a module, published by System Capability.|
 |`buttonName`|ButtonName|True|The name of supported RC climate or radio button.|
 |`buttonPressMode`|ButtonPressMode|True|Indicates whether this is a LONG or SHORT button press event.|
 
@@ -4308,7 +4369,10 @@ Message Type: **request**
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleType`|ModuleType|True|The type of a RC module to retrieve module data from the vehicle.                In the future, this should be the Identification of a module.            |
-|`subscribe`|Boolean|False|If subscribe is true, the head unit will register OnInteriorVehicleData notifications for the requested moduleType.                If subscribe is false, the head unit will unregister OnInteriorVehicleData notifications for the requested moduleType.                If subscribe is not included, the subscription status of the app for the requested moduleType will remain unchanged.            |
+|`moduleId`|String|False|Id of a module, published by System Capability.|
+|`subscribe`|Boolean|False| If subscribe is true, the head unit will register OnInteriorVehicleData notifications for the requested module (moduleId and moduleType).
+If subscribe is false, the head unit will unregister OnInteriorVehicleData notifications for the requested module (moduleId and moduleType).
+If subscribe is not included, the subscription status of the app for the requested module (moduleId and moduleType) will remain unchanged.|
 
 
 ### GetInteriorVehicleData
@@ -4323,6 +4387,54 @@ Message Type: **response**
 |`info`|String|False||
 |`success`|Boolean|True|true if successful; false, if failed |
 |`isSubscribed`|Boolean|False|It is a conditional-mandatory parameter: must be returned in case "subscribe" parameter was present in the related request.                if "true" - the "moduleType" from request is successfully subscribed and the head unit will send onInteriorVehicleData notifications for the moduleType.                if "false" - the "moduleType" from request is either unsubscribed or failed to subscribe.            |
+
+### GetInteriorVehicleDataConsent
+Message Type: **request**
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`moduleType`|ModuleType|True|The module type that the app requests to control.    |
+|`moduleIds`|String[]|True|Ids of a module of same type, published by System Capability. |
+
+
+### GetInteriorVehicleDataConsent
+Message Type: **response**
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`allowed`|Boolean[]|True|This array has the same size as "moduleIds" in the request; each element corresponding to one moduleId  
+"true" - if SDL grants the permission for the requested module;
+"false" - SDL denies the permission for the requested module.|
+|`resultCode`|Result|True|See Result|
+|`info`|String|False||
+|`success`|Boolean|True|true if successful; false, if failed |
+
+
+### ReleaseInteriorVehicleDataModule
+Message Type: **request**
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`moduleType`|ModuleType|True||
+|`moduleId`|String|False|Id of a module, published by System Capability.|
+
+
+### ReleaseInteriorVehicleDataModule
+Message Type: **response**
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`resultCode`|Result|True|See Result|
+|`info`|String|False||
+|`success`|Boolean|True|true if successful; false, if failed |
 
 
 ### SetInteriorVehicleData
