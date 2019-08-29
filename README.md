@@ -391,6 +391,7 @@ Defines the data types that can be published and subscribed to.
 |`VEHICLEDATA_ENGINEOILLIFE`||
 |`VEHICLEDATA_ELECTRONICPARKBRAKESTATUS`||
 |`VEHICLEDATA_CLOUDAPPVEHICLEID`||
+|`VEHICLEDATA_OEM_CUSTOM_DATA`||
 
 
 ### HybridAppPreference
@@ -1961,7 +1962,8 @@ Struct with the GPS data.
 |`altitude`|Float|False|Altitude in meters|
 |`heading`|Float|False|The heading. North is 0. Resolution is 0.01|
 |`speed`|Float|False|The speed in KPH|
-|`shifted`|Boolean|False|True, if GPS lat/long, time, and altitude have been purposefully shifted (requires a proprietary algorithm to unshift).<br>False, if the GPS data is raw and un-shifted.<br>If not provided, then value is assumed False.|
+|`shifted`|Boolean|False|True, if GPS lat/long, time, and altitude have been purposefully shifted (requires a proprietary algorithm to unshift).                False, if the GPS data is raw and un-shifted.                If not provided, then value is assumed False.            |
+
 
 ### VehicleDataResult
 Individual published data request result
@@ -1972,6 +1974,7 @@ Individual published data request result
 | ---------- | ---------- |:-----------: |:-----------:|
 |`dataType`|VehicleDataType|True|Defined published data element type.|
 |`resultCode`|VehicleDataResultCode|True|Published data result code.|
+|`oemCustomDataType`|String|False|Type of requested oem specific parameter |
 
 
 ### DIDResult
