@@ -4771,6 +4771,12 @@
             <description>See LayoutMode.</description>
         </param>
         
+        <param name="cancelID" type="Integer" mandatory="false" since="6.0">
+            <description>
+                An ID for this specific alert to allow cancellation through the `CancelInteraction` RPC.
+            </description>
+        </param>
+
     </function>
     
     <function name="PerformInteraction" functionID="PerformInteractionID" messagetype="response" since="1.0">
@@ -4901,6 +4907,12 @@
             <description>
                 App defined SoftButtons.
                 If omitted on supported displays, the displayed alert shall not have any SoftButtons.
+            </description>
+        </param>
+
+        <param name="cancelID" type="Integer" mandatory="false" since="6.0">
+            <description>
+                An ID for this specific alert to allow cancellation through the `CancelInteraction` RPC.
             </description>
         </param>
         
@@ -6118,6 +6130,11 @@
                 If omitted on supported displays, only the system defined "Close" SoftButton will be displayed.
             </description>
         </param>
+        <param name="cancelID" type="Integer" mandatory="false" since="6.0">
+            <description>
+                An ID for this specific alert to allow cancellation through the `CancelInteraction` RPC.
+            </description>
+        </param>
     </function>
     
     <function name="ScrollableMessage" functionID="ScrollableMessageID" messagetype="response" since="2.0">
@@ -6170,6 +6187,11 @@
             <description>
                 App defined timeout.  Indicates how long of a timeout from the last action (i.e. sliding control resets timeout).
                 If omitted, the value is set to 10000.
+            </description>
+        </param>
+        <param name="cancelID" type="Integer" mandatory="false" since="6.0">
+            <description>
+                An ID for this specific alert to allow cancellation through the `CancelInteraction` RPC.
             </description>
         </param>
     </function>
