@@ -3165,11 +3165,7 @@
         <param name="heatedMirrorsEnable" type="Boolean" mandatory="false" since="5.0">
             <description>value false means disabled, value true means enabled.</description>
         </param>
-        <param name="climateEnableAvailable" type="Boolean" mandatory="false" since="6.0">
-            <description>
-                Availability of the control of enable/disable climate control.
-                True: Available, False: Not Available, Not present: Not Available.
-            </description>
+        <param name="climateEnable" type="Boolean" mandatory="false" since="6.0">
         </param>
     </struct>
 
