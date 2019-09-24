@@ -139,7 +139,7 @@
             <description>The data sent failed to pass CRC check in receiver end</description>
         </element>
         <element name="ENCRYPTION_NEEDED" since="6.0">
-            <description>SDL receives an un-encrypted PRC request that needs protection. </description>
+            <description>SDL receives an un-encrypted RPC request that needs protection. </description>
         </element>
     </enum>
     
