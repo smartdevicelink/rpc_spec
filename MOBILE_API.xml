@@ -3831,7 +3831,7 @@
             </description>
         </param>
         
-        <param name="mediaImage" type="Image" mandatory="false" since="5.2">
+        <param name="mediaImage" type="Image" mandatory="false" since="6.0">
           <description>
               Music: The album art of the current track
               Podcast: The podcast or chapter artwork of the current podcast episode
