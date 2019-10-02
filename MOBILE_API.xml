@@ -2968,7 +2968,7 @@
         <element name="REMOTE_CONTROL"/>
         <element name="APP_SERVICES" since="5.1"/>
         <element name="SEAT_LOCATION" since="6.0"/>
-	<element name="DISPLAYS" since="6.0"/>
+        <element name="DISPLAYS" since="6.0"/>
     </enum>
     
     <struct name="NavigationCapability" since="4.5">
@@ -3342,7 +3342,6 @@
 
     <struct name="RadioControlCapabilities" since="4.5">
         <description>Contains information about a radio control module's capabilities.</description>
-        <!-- need an ID in the future -->
         <param name="moduleName" type="String" maxlength="100" mandatory="true">
             <description>
                 The short friendly name of the climate control module.
@@ -3428,7 +3427,6 @@
     
     <struct name="ClimateControlCapabilities" since="4.5">
         <description>Contains information about a climate control module's capabilities.</description>
-        <!-- need an ID in the future -->
         <param name="moduleName" type="String" maxlength="100" mandatory="true">
             <description>The short friendly name of the climate control module.
                 It should not be used to identify a module by mobile application.</description>
