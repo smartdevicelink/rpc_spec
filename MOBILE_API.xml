@@ -3166,6 +3166,7 @@
             <description>value false means disabled, value true means enabled.</description>
         </param>
         <param name="climateEnable" type="Boolean" mandatory="false" since="6.0">
+            <description>True if the climate module is on, false if the climate module is off</description>
         </param>
     </struct>
 
