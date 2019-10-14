@@ -1375,6 +1375,7 @@ Enumeration linking function names with function IDs in SmartDeviceLink protocol
 |`GetFileID`||
 |`PerformAppServiceInteractionID`||
 |`CloseApplicationID`||
+|`CancelInteractionID`||
 |`OnHMIStatusID`||
 |`OnAppInterfaceUnregisteredID`||
 |`OnButtonEventID`||
@@ -4736,12 +4737,47 @@ Request from the application to exit the foreground and enter HMI_NONE.
 ### CloseApplication
 Message Type: **response**
 
+|`cancelID`|Integer|False|The ID of the specific interaction you want to dismiss. If not set, the most recent of the RPC type set in functionID will be dismissed.|
+|`functionID`|Integer|True|The ID of the type of interaction the developer wants to dismiss. Only values 10, (PerformInteractionID), 12 (AlertID), 25 (ScrollableMessageID), and 26 (SliderID) are permitted.|
+
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`success`|Boolean|True|true if successful; false, if failed |
 |`resultCode`|Result|True||
+|`resultCode`|Result|True|See Result|
+|`info`|String|False|Provides additional human readable info regarding the result.|
+
+
+### CancelInteraction
+Message Type: **request**
+
+Close an active interaction on the HMI.
+
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+
+|`cancelID`|Integer|False|The ID of the specific interaction you want to dismiss. If not set, the most recent of the RPC type set in functionID will be dismissed.|
+|`functionID`|Integer|True|The ID of the type of interaction the developer wants to dismiss. Only values 10, (PerformInteractionID), 12 (AlertID), 25 (ScrollableMessageID), and 26 (SliderID) are permitted.|
+
+
+### CancelInteraction
+Message Type: **response**
+
+If no applicable request can be dismissed, the result will be IGNORED.
+        
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`success`|Boolean|True|true if successful; false, if failed |
+|`resultCode`|Result|True||
+|`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
 
