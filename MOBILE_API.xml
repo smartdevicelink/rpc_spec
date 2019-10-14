@@ -4773,7 +4773,7 @@
         
         <param name="cancelID" type="Integer" mandatory="false" since="6.0">
             <description>
-                An ID for this specific alert to allow cancellation through the `CancelInteraction` RPC.
+                An ID for this specific PerformInteraction to allow cancellation through the `CancelInteraction` RPC.
             </description>
         </param>
 
@@ -6132,7 +6132,7 @@
         </param>
         <param name="cancelID" type="Integer" mandatory="false" since="6.0">
             <description>
-                An ID for this specific alert to allow cancellation through the `CancelInteraction` RPC.
+                An ID for this specific ScrollableMessage to allow cancellation through the `CancelInteraction` RPC.
             </description>
         </param>
     </function>
@@ -6191,7 +6191,7 @@
         </param>
         <param name="cancelID" type="Integer" mandatory="false" since="6.0">
             <description>
-                An ID for this specific alert to allow cancellation through the `CancelInteraction` RPC.
+                An ID for this specific Slider to allow cancellation through the `CancelInteraction` RPC.
             </description>
         </param>
     </function>
