@@ -1313,6 +1313,25 @@ Predefined screen layout.
 |`LARGE_GRAPHIC_ONLY`|Custom root template screen containing only a large graphic.                Can be set as a root screen.            |
 
 
+### WindowType
+Enumeration listing possible window types.
+
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`MAIN`|This window type describes the main screen on a display.|
+|`WIDGET`|A widget is a small window that the app can create to provide information and softbuttons for a quick app control.|
+
+### PredefinedWindows
+
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`DEFAULT_WINDOW`|The default window is a main window pre-created on behalf of the app.|
+|`PRIMARY_WIDGET`|The primary widget of the app.|
+
 ### FunctionID
 Enumeration linking function names with function IDs in SmartDeviceLink protocol. Assumes enumeration starts at value 0.
 
@@ -1402,6 +1421,8 @@ Enumeration linking function names with function IDs in SmartDeviceLink protocol
 |`SyncPDataID`||
 |`OnEncodedSyncPDataID`||
 |`OnSyncPDataID`||
+|`CreateWindowID`||
+|`DeleteWindowID`||
 |`GetInteriorVehicleDataConsentID`||
 |`ReleaseInteriorVehicleDataModuleID`||
 
@@ -1442,6 +1463,7 @@ Enumerations of all available system capability types
 |`VIDEO_STREAMING`||
 |`REMOTE_CONTROL`||
 |`APP_SERVICES`||
+|`DISPLAYS`||
 
 
 ### MassageZone
@@ -2167,7 +2189,7 @@ Contains information about a SoftButton's capabilities.
 |`longPressAvailable`|Boolean|True|The button supports a LONG press.                Whenever the button is pressed long, onButtonPressed( LONG) will be invoked.            |
 |`upDownAvailable`|Boolean|True|The button supports "button down" and "button up".                Whenever the button is pressed, onButtonEvent( DOWN) will be invoked.                Whenever the button is released, onButtonEvent( UP) will be invoked.            |
 |`imageSupported`|Boolean|True|The button supports referencing a static or dynamic image.|
-
+|`textSupported`|Boolean|False|he button supports the use of text. If not included, the default value should be considered true that the button will support text.|
 
 ### PresetBankCapabilities
 Contains information about on-screen preset capabilities.
@@ -2997,9 +3019,55 @@ The systemCapabilityType identifies which data object exists in this struct. For
 |`remoteControlCapability`|RemoteControlCapabilities|False|Describes extended capabilities of the module's phone feature|
 |`appServicesCapabilities`|AppServicesCapabilities|False|An array of currently available services. If this is an update to the capability the affected services will include an update reason in that item|
 |`seatLocationCapability`|SeatLocationCapability|False|Contains information about the locations of each seat|
+|`displayCapabilities`|DisplayCapability[]|False||
 
+### WindowCapability
 
+##### Parameters
 
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`windowID`|Integer|False|The specified ID of the window. Can be set to a predefined window, or omitted for the main window on the main display.|
+|`textFields`|TextField[]|False|A set of all fields that support text data. See TextField|
+|`imageFields`|ImageField[]|False|A set of all fields that support images. See ImageField.|
+|`imageTypeSupported`|ImageType[]|False|Provides information about image types supported by the system.|
+|`templatesAvailable`|String[]|False|A set of all window templates available on the head unit.|
+|`numCustomPresetsAvailable`|Integer[]|False|The number of on-window custom presets available (if any); otherwise omitted.|
+|`buttonCapabilities`|ButtonCapabilities[]|False|The number of buttons and the capabilities of each on-window button.|
+|`softButtonCapabilities`|SoftButtonCapabilities[]|False|The number of soft buttons available on-window and the capabilities for each button.|
+
+### WindowTypeCapabilities
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`type`|WindowType|True||
+|`maximumNumberOfWindows`|Integer|True||
+
+### DisplayCapability
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`displayName`|String|False||
+|`windowTypeSupported`|WindowTypeCapabilities[]|False|Informs the application how many windows the app is allowed to create per type.|
+|`windowCapabilities`|WindowCapability[]|False|Contains a list of capabilities of all windows related to the app.
+Once the app has registered the capabilities of all windows are provided. GetSystemCapability still allows requesting window capabilities of all windows.
+After registration, only windows with capabilities changed willincluded. Following cases will cause only affected windows toincluded:
+1. App creates a new window. After the window is created, a syscapability notification will be sent related only to the created window.
+2. App sets a new layout to the window. The new layout changes wincapabilties. The notification will reflect those changes to the sinwindow.|
+
+### TemplateConfiguration
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`template`|String|True|Predefined or dynamically created window template. Currently only predefined window template layouts are defined.|
+|`dayColorScheme`|TemplateColorScheme|False||
+|`nightColorScheme`|TemplateColorScheme|False||
 
 <div style="page-break-after: always;"></div>
 
@@ -3417,6 +3485,8 @@ Updates the persistent display. Supported fields depend on display capabilities.
 |`customPresets`|String[]|False|App labeled on-screen presets (i.e. on-screen media presets or dynamic search suggestions).                If omitted on supported displays, the presets will be shown as not defined.            |
 |`metadataTags`|MetadataTags|False|App defined metadata information. See MetadataStruct. Uses mainField1, mainField2, mainField3, mainField4.                If omitted on supported displays, the currently set metadata tags will not change.                If any text field contains no tags or the none tag, the metadata tag for that textfield should be removed.|
 |`templateTitle`|String|False|The title of the new template that will be displayed.<br>How this will be displayed is dependent on the OEM design and implementation of the template.|
+|`windowID`|Integer|False|This is the unique ID assigned to the window that this RPC is intended. If this param is not included, it will be assumed that this request is specifically for the main window on the main display. See PredefinedWindows enum.|
+|`templateConfiguration`|TemplateConfiguration|False|Used to set an alternate template layout to a window.|
 
 ### Show
 Message Type: **response**
@@ -4256,8 +4326,7 @@ Response is sent, when the file data was copied (success case). Or when an error
 ### SetDisplayLayout
 Message Type: **request**
 
-Used to set an alternate display layout.
-            If not sent, default screen for given platform will be shown
+This RPC is deprecated. Use Show RPC to change layout.
         
 
 ##### Parameters
@@ -4818,6 +4887,7 @@ Message Type: **notification**
 |`audioStreamingState`|AudioStreamingState|True|See AudioStreamingState|
 |`systemContext`|SystemContext|True|See SystemContext|
 |`videoStreamingState`|VideoStreamingState|False|See VideoStreamingState.                 If it is NOT_STREAMABLE, the app must stop streaming video to SDL Core(stop service).            |
+|`windowID`|Integer|False|This is the unique ID assigned to the window that this RPC is intended. If this param is not included, it will be assumed that this request is specifically for the main window on the main display. See PredefinedWindows enum.|
 
 
 ### OnAppInterfaceUnregistered
@@ -5081,13 +5151,14 @@ This notification includes the data that is updated from the specific service
 ### OnSystemCapabilityUpdated
 Message Type: **notification**
 
-A notification to inform the connected device that a specific system capability has changed.
+A notification between HMI and SDL that a specific system capability has been changed. It can be sent in both directions SDL to HMI and HMI to SDL. Direction is dependent on the point where capabilities have been changed
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`systemCapability`|SystemCapability|True|The system capability that has been updated|
+|`appID`|Integer|False|ID of application that is related to this RPC.|
 
 
 ### EncodedSyncPData
@@ -5133,4 +5204,63 @@ Callback including encoded data of any SyncP packets that SYNC needs to send bac
 |`URL`|String|False|If blank, the SyncP data shall be forwarded to the app.                If not blank, the SyncP data shall be forwarded to the provided URL.            |
 |`Timeout`|Integer|False|If blank, the SyncP data shall be forwarded to the app.                If not blank, the SyncP data shall be forwarded with the provided timeout in seconds.            |
 
+### CreateWindow
+Message Type: **request**
 
+Create a new window on the display with the specified window type.
+            
+        
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`windowID`|Integer|A unique ID to identify the window. The value of '0' will always be the default main window on the main display and should not be used in this context as it will already be created for the app. See PredefinedWindows enum. Creating a window with an ID that is already in use will be rejected with `INVALID_ID`..|
+|`windowName`|String[]|True|The window name to be used by the HMI. The name of the pre-created default window will match the app name. Multiple apps can share the same window name except for the default main window. Creating a window with a name which is already in use by the app will result in `DUPLICATE_NAME`..|
+|`type`|WindowType|True|The type of the window to be created. Main window or widget.|
+|`associatedServiceType`|String[]|False|Allows an app to create a widget related to a specific service type.As an example if a `MEDIA` app becomes active, this app becomes audible and is allowed to play audio. Actions such as skip or play/pause will be directed to this active media app. In case of widgets, the system can provide a single "media" widget which will act as a placeholder for the active media app.
+
+It is only allowed to have one window per service type. This means that a media app can only have a single MEDIA widget. Still the app can create widgets omitting this parameter. Those widgets would be available as app specific widgets that are permanently included in the HMI.
+
+This parameter is related to widgets only. The default main windwhich is pre-created during app registration, will be created basedthe HMI types specified in the app registration request.|
+|`duplicateUpdatesFromWindowID`|Integer|False|Optional parameter. Specify whether the content sent to an existing window should be duplicated to the created window.
+If there isn't a window with the ID, the request will be rejected with `INVALID_DATA`.|
+
+
+
+### CreateWindow
+Message Type: **response**
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`success`|Boolean|True|true, if successful; false, if failed |
+|`info`|String|False|Provides additional human readable info regarding the result.|
+|`resultCode`|Result|True|See Result|
+
+### DeleteWindow
+Message Type: **request**
+
+Deletes previously created window of the SDL application.
+            
+        
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`windowID`|Integer|A unique ID to identify the window. The value of '0' will always be the default main window on the main display and should not be used in this context as it will already be created for the app. See PredefinedWindows enum. Creating a window with an ID that is already in use will be rejected with `INVALID_ID`..|
+
+
+### DeleteWindow
+Message Type: **response**
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`success`|Boolean|True|true, if successful; false, if failed |
+|`info`|String|False|Provides additional human readable info regarding the result.|
+|`resultCode`|Result|True|See Result|
+https://github.com/mked-luxoft/rpc_spec.git
