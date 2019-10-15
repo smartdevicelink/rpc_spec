@@ -7299,6 +7299,10 @@
             <element name="TIMED_OUT"/>
             <element name="IGNORED"/>
         </param>
+
+        <param name="info" type="String" maxlength="1000" mandatory="false" platform="documentation">
+            <description>Provides additional human readable info regarding the result.</description>
+        </param>
     </function>
     
     <function name="SendLocation" functionID="SendLocationID" messagetype="request" since="3.0">
@@ -7501,11 +7505,6 @@
     </function>
 
     <function name="GetInteriorVehicleDataConsent" functionID="GetInteriorVehicleDataConsentID" messagetype="response" since="6.0">
-        <param name="allowed" type="Boolean" array="true" mandatory="false">
-            <description>This array has the same size as "moduleIds" in the request; each element corresponding to one moduleId  
-            "true" - if SDL grants the permission for the requested module;
-            "false" - SDL denies the permission for the requested module.</description>
-        </param>
         <param name="resultCode" type="Result" platform="documentation" mandatory="true">
             <description>See Result</description>
             <element name="SUCCESS"/>
@@ -7524,6 +7523,11 @@
         </param>
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
             <description> true if successful; false, if failed </description>
+        </param>
+        <param name="allowed" type="Boolean" array="true" mandatory="false">
+            <description>This array has the same size as "moduleIds" in the request and each element corresponds to one moduleId
+                If true, if SDL grants the permission for the requested module
+                If false, SDL denies the permission for the requested module.</description>
         </param>
     </function>
 
