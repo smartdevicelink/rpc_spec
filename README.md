@@ -3957,7 +3957,7 @@ Message Type: **response**
 |`success`|Boolean|True|true, if successful; false, if failed |
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
-|`ecuHeader`|Integer|True|2 byte ECU Header for DTC response (as defined in VHR_Layout_Specification_DTCs.pdf)|
+|`ecuHeader`|Integer|False|2 byte ECU Header for DTC response (as defined in VHR_Layout_Specification_DTCs.pdf)|
 |`dtc`|String[]|False|Array of all reported DTCs on module (ecuHeader contains information if list is truncated).                Each DTC is represented by 4 bytes (3 bytes of data and 1 byte status as defined in VHR_Layout_Specification_DTCs.pdf).            |
 
 
@@ -3985,7 +3985,7 @@ Message Type: **response**
 |`success`|Boolean|True|true, if successful; false, if failed |
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
-|`messageDataResult`|Integer[]|True|Array of bytes comprising CAN message result.            |
+|`messageDataResult`|Integer[]|False|Array of bytes comprising CAN message result.            |
 
 
 ### ScrollableMessage
@@ -4483,7 +4483,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`moduleData`|ModuleData|True||
+|`moduleData`|ModuleData|False||
 |`resultCode`|Result|True|See Result|
 |`info`|String|False||
 |`success`|Boolean|True|true if successful; false, if failed |
@@ -4557,7 +4557,7 @@ Used to set the values of one remote control module
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`moduleData`|ModuleData|True||
+|`moduleData`|ModuleData|False||
 |`resultCode`|Result|True|See Result|
 |`info`|String|False||
 |`success`|Boolean|True|true if successful; false, if failed |
@@ -4655,7 +4655,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`systemCapability`|SystemCapability|True||
+|`systemCapability`|SystemCapability|False||
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 |`success`|Boolean|True|true if successful; false, if failed |
