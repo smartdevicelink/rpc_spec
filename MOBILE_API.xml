@@ -2238,7 +2238,7 @@
         <history>
             <struct name="DisplayCapabilities" since="1.0" until="6.0"/>
         </history>
-        <description>Contains information about the display capabilities.</description>
+        <description>Contains information about the display capabilities. This struct is deprecated; please see the new SystemCapability DISPLAYS and corresponding struct DisplayCapability </description>
         <param name="displayType" type="DisplayType" mandatory="true" deprecated="true" since="5.0">
             <description>The type of the display. See DisplayType</description>
             <history>
@@ -2376,8 +2376,9 @@
     <struct name="WindowCapability" since="6.0">
         <param name="windowID" type="Integer" mandatory="false">
             <description>
-                The specified ID of the window. Can be set to a predefined window,
-                or omitted for the main window on the main display.
+                The specified ID of the window. This ID is either one used when sending the CreateWindow request, 
+                or one of the predefined window ID values from the enum PredefinedWindows. If ommited, value is 
+                assumed to be the main window on the main display.
             </description>
         </param>
         <param name="textFields" type="TextField" minsize="1" maxsize="100" array="true" mandatory="false">
