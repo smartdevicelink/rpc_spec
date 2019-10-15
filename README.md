@@ -498,6 +498,7 @@ See DAES for further infos regarding the displays
 |`statusBar`|The status bar on NGN; applies to "Show"|
 |`mediaClock`|Text value for MediaClock field; applies to "Show"|
 |`mediaTrack`|The track field of NGN and GEN1.1 MFD displays. This field is only available for media applications; applies to "Show"|
+|`templateTitle`|The title of the new template that will be displayed; applies to "Show"|
 |`alertText1`|The first line of the alert text field; applies to "Alert"|
 |`alertText2`|The second line of the alert text field; applies to "Alert"|
 |`alertText3`|The third line of the alert text field; applies to "Alert"|
@@ -1393,6 +1394,9 @@ Enumeration linking function names with function IDs in SmartDeviceLink protocol
 |`GetAppServiceDataID`||
 |`GetFileID`||
 |`PerformAppServiceInteractionID`||
+|`CloseApplicationID`||
+|`CancelInteractionID`||
+|`ShowAppMenuID`||
 |`OnHMIStatusID`||
 |`OnAppInterfaceUnregisteredID`||
 |`OnButtonEventID`||
@@ -2260,7 +2264,8 @@ Configuration of on-screen keyboard (if available).
 |`keyboardLayout`|KeyboardLayout|False|Desired keyboard layout.|
 |`keypressMode`|KeypressMode|False|Desired keypress mode.                If omitted, this value will be set to RESEND_CURRENT_ENTRY.            |
 |`limitedCharacterList`|String[]|False|Array of keyboard characters to enable.|
-|`autoCompleteText`|String|False|Allows an app to prepopulate the text field with a suggested or completed entry as the user types|
+|`autoCompleteText`|String|False|Deprecated, use autoCompleteList instead.|
+|`autoCompleteList`|String[]|False|Allows an app to prepopulate the text field with a list of suggested or completed entries as the user types.                 If empty, the auto-complete list will be removed from the screen.            |
 
 
 ### DeviceInfo
@@ -3316,6 +3321,30 @@ Message Type: **response**
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
 
+### ShowAppMenu
+Message Type: **request**
+
+Shows the built in menu view
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`menuID`|Integer|False|If omitted the HMI opens the app's menu.<br>If set to a sub-menu ID the HMI opens the corresponding sub-menu previously added using `AddSubMenu`.|
+
+
+### ShowAppMenu
+Message Type: **response**
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`success`|Boolean|True|true if successful; false, if failed |
+|`resultCode`|Result|True|See Result|
+|`info`|String|False|Provides additional human readable info regarding the result.|
+
+
 ### CreateInteractionChoiceSet
 Message Type: **request**
 
@@ -3455,9 +3484,9 @@ Updates the persistent display. Supported fields depend on display capabilities.
 |`softButtons`|SoftButton[]|False|App defined SoftButtons.                If omitted on supported displays, the currently displayed SoftButton values will not change.            |
 |`customPresets`|String[]|False|App labeled on-screen presets (i.e. on-screen media presets or dynamic search suggestions).                If omitted on supported displays, the presets will be shown as not defined.            |
 |`metadataTags`|MetadataTags|False|App defined metadata information. See MetadataStruct. Uses mainField1, mainField2, mainField3, mainField4.                If omitted on supported displays, the currently set metadata tags will not change.                If any text field contains no tags or the none tag, the metadata tag for that textfield should be removed.|
+|`templateTitle`|String|False|The title of the new template that will be displayed.<br>How this will be displayed is dependent on the OEM design and implementation of the template.|
 |`windowID`|Integer|False|This is the unique ID assigned to the window that this RPC is intended. If this param is not included, it will be assumed that this request is specifically for the main window on the main display. See PredefinedWindows enum.|
 |`templateConfiguration`|TemplateConfiguration|False|Used to set an alternate template layout to a window.|
-
 
 ### Show
 Message Type: **response**
@@ -4789,6 +4818,64 @@ Message Type: **response**
 |`serviceSpecificResult`|String|False|The service can provide specific result strings to the consumer through this param.|
 
 
+### CloseApplication
+Message Type: **request**
+
+Request from the application to exit the foreground and enter HMI_NONE.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+
+
+### CloseApplication
+Message Type: **response**
+
+|`cancelID`|Integer|False|The ID of the specific interaction you want to dismiss. If not set, the most recent of the RPC type set in functionID will be dismissed.|
+|`functionID`|Integer|True|The ID of the type of interaction the developer wants to dismiss. Only values 10, (PerformInteractionID), 12 (AlertID), 25 (ScrollableMessageID), and 26 (SliderID) are permitted.|
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`success`|Boolean|True|true if successful; false, if failed |
+|`resultCode`|Result|True||
+|`resultCode`|Result|True|See Result|
+|`info`|String|False|Provides additional human readable info regarding the result.|
+
+
+### CancelInteraction
+Message Type: **request**
+
+Close an active interaction on the HMI.
+
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+
+|`cancelID`|Integer|False|The ID of the specific interaction you want to dismiss. If not set, the most recent of the RPC type set in functionID will be dismissed.|
+|`functionID`|Integer|True|The ID of the type of interaction the developer wants to dismiss. Only values 10, (PerformInteractionID), 12 (AlertID), 25 (ScrollableMessageID), and 26 (SliderID) are permitted.|
+
+
+### CancelInteraction
+Message Type: **response**
+
+If no applicable request can be dismissed, the result will be IGNORED.
+        
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`success`|Boolean|True|true if successful; false, if failed |
+|`resultCode`|Result|True||
+|`resultCode`|Result|True|See Result|
+|`info`|String|False|Provides additional human readable info regarding the result.|
+
+
 ### OnHMIStatus
 Message Type: **notification**
 
@@ -4915,6 +5002,8 @@ Provides driver distraction state to mobile applications
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`state`|DriverDistractionState|True|Current State of Driver Distraction|
+|`lockScreenDismissalEnabled`|Boolean|False|If enabled, the lock screen will be able to be dismissed while connected to SDL, allowing users                 the ability to interact with the app. Dismissals should include a warning to the user and ensure                 that they are not the driver.            |
+|`lockScreenDismissalWarning`|String|False|Warning message to be displayed on the lock screen when dismissal is enabled.                This warning should be used to ensure that the user is not the driver of the vehicle,                 ex. `Swipe down to dismiss, acknowledging that you are not the driver.`.                This parameter must be present if "lockScreenDismissalEnabled" is set to true.            |
 
 
 ### OnPermissionsChange
@@ -5174,3 +5263,4 @@ Message Type: **response**
 |`success`|Boolean|True|true, if successful; false, if failed |
 |`info`|String|False|Provides additional human readable info regarding the result.|
 |`resultCode`|Result|True|See Result|
+https://github.com/mked-luxoft/rpc_spec.git
