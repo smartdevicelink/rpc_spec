@@ -1965,6 +1965,12 @@
         </element>
     </enum>
 
+    <enum name="MenuLayout" since="6.0">
+        <description>How the main menu or submenu is laid out on screen</description>
+        <element name="LIST" />
+        <element name="TILES" />
+    </enum>
+
     <struct name="GPSData" since="2.0">
         <description>Struct with the GPS data.</description>
         <param name="longitudeDegrees" type="Float" minvalue="-180" maxvalue="180" mandatory="true">
@@ -2405,6 +2411,9 @@
         </param>
         <param name="softButtonCapabilities" type="SoftButtonCapabilities" minsize="1" maxsize="100" array="true" mandatory="false">
             <description>The number of soft buttons available on-window and the capabilities for each button.</description>
+        </param>
+        <param name="menuLayoutsAvailable" type="MenuLayout" array="true" minsize="1" maxsize="1000" mandatory="false" since="6.0">
+            <description>An array of available menu layouts. If this parameter is not provided, only the `LIST` layout is assumed to be available</description>
         </param>
     </struct>
 
@@ -4851,6 +4860,10 @@
         <param name="keyboardProperties" type="KeyboardProperties" mandatory="false" since="3.0">
             <description>On-screen keyboard configuration (if available).</description>
         </param>
+
+        <param name="menuLayout" type="MenuLayout" mandatory="false" since="6.0">
+            <description>Sets the layout of the main menu screen. If this is sent while a menu is already on-screen, the head unit will change the display to the new layout type.</description>
+        </param>
     </function>
     
     <function name="SetGlobalProperties" functionID="SetGlobalPropertiesID" messagetype="response" since="1.0">
@@ -5025,6 +5038,10 @@
 
         <param name="menuIcon" type="Image" mandatory="false" since="5.0">
             <description>The image field for AddSubMenu</description>
+        </param>
+
+        <param name="menuLayout" type="MenuLayout" mandatory="false" since="6.0">
+            <description>Sets the layout of the submenu screen.</description>
         </param>
     </function>
     
