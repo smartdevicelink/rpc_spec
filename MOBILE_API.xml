@@ -5041,7 +5041,7 @@
         </param>
 
         <param name="menuLayout" type="MenuLayout" mandatory="false" since="6.0">
-            <description>Sets the layout of the main menu screen. If this is sent while a menu is already on-screen, the head unit will change the display to the new layout type.</description>
+            <description>Sets the layout of the submenu screen.</description>
         </param>
     </function>
     
