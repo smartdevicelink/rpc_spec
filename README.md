@@ -3132,10 +3132,10 @@ Establishes an interface with a mobile application.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`syncMsgVersion`|SyncMsgVersion|True|See SyncMsgVersion|
-|`appName`|String|True|The mobile application name, e.g. "Ford Drive Green".                Needs to be unique over all applications.                May not be empty.                May not start with a new line character.                May not interfere with any name or synonym of previously registered applications and any predefined blacklist of words (global commands)                Needs to be unique over all applications. Applications with the same name will be rejected.                Only characters from char set [@TODO: Create char set (character/hex value) for each ACM and refer to] are supported.            |
-|`ttsName`|TTSChunk[]|False|TTS string for VR recognition of the mobile application name, e.g. "Ford Drive Green".                Meant to overcome any failing on speech engine in properly pronouncing / understanding app name.                Needs to be unique over all applications.                May not be empty.                May not start with a new line character.                Only characters from char set [@TODO: Create char set (character/hex value) for each ACM and refer to] are supported.            |
+|`appName`|String|True|The mobile application name, e.g. "My SDL App".                Needs to be unique over all applications from the same device.                May not be empty.                May not start with a new line character.                May not interfere with any name or synonym of previously registered applications from the same device and any predefined blacklist of words (global commands)                Additional applications with the same name from the same device will be rejected.                Only characters from char set [@TODO: Create char set (character/hex value) for each ACM and refer to] are supported.            |
+|`ttsName`|TTSChunk[]|False|TTS string for VR recognition of the mobile application name, e.g. "My S D L App".                Meant to overcome any failing on speech engine in properly pronouncing / understanding app name.                Needs to be unique over all applications from the same device.                May not be empty.                May not start with a new line character.                Only characters from char set [@TODO: Create char set (character/hex value) for each ACM and refer to] are supported.            |
 |`ngnMediaScreenAppName`|String|False|Provides an abbreviated version of the app name (if needed), that will be displayed on the NGN media screen.                If not provided, the appName is used instead (and will be truncated if too long)                Only characters from char set [@TODO: Create char set (character/hex value) for each ACM and refer to] are supported.            |
-|`vrSynonyms`|String[]|False|Defines an additional voice recognition command.                May not interfere with any app name of previously registered applications and any predefined blacklist of words (global commands)                Only characters from char set [@TODO: Create char set (character/hex value) for each ACM and refer to] are supported.            |
+|`vrSynonyms`|String[]|False|Defines an additional voice recognition command.                May not interfere with any app name of previously registered applications from the same device and any predefined blacklist of words (global commands)                Only characters from char set [@TODO: Create char set (character/hex value) for each ACM and refer to] are supported.            |
 |`isMediaApplication`|Boolean|True|Indicates if the application is a media or a non-media application.                Only media applications will be able to stream audio to the module that is audible outside of the BT media source.            |
 |`languageDesired`|Language|True|See Language                Current app's expected VR+TTS language                If there is a mismatch with the module, the app will be able to change this registration with changeRegistration prior to app being brought into focus.            |
 |`hmiDisplayLanguageDesired`|Language|True|See Language                Current app's expected display language                If there is a mismatch with the module, the app will be able to change this registration with changeRegistration prior to app being brought into focus.            |
@@ -3588,8 +3588,8 @@ Updates the persistent display. Supported fields depend on display capabilities.
 |`softButtons`|SoftButton[]|False|App defined SoftButtons.                If omitted on supported displays, the currently displayed SoftButton values will not change.            |
 |`customPresets`|String[]|False|App labeled on-screen presets (i.e. on-screen media presets or dynamic search suggestions).                If omitted on supported displays, the presets will be shown as not defined.            |
 |`metadataTags`|MetadataTags|False|App defined metadata information. See MetadataStruct. Uses mainField1, mainField2, mainField3, mainField4.                If omitted on supported displays, the currently set metadata tags will not change.                If any text field contains no tags or the none tag, the metadata tag for that textfield should be removed.            |
-|`templateTitle`|String|False|The title of the new template that will be displayed.                 How this will be displayed is dependent on the OEM design and implementation of the template.            |
-|`windowID`|Integer|False|This is the unique ID assigned to the window that this RPC is intended. If this param is not included,              it will be assumed that this request is specifically for the main window on the main display.              See PredefinedWindows enum.            |
+|`templateTitle`|String|False|The title of the new template that will be displayed.                How this will be displayed is dependent on the OEM design and implementation of the template.            |
+|`windowID`|Integer|False|This is the unique ID assigned to the window that this RPC is intended. If this param is not included,                it will be assumed that this request is specifically for the main window on the main display.                See PredefinedWindows enum.            |
 |`templateConfiguration`|TemplateConfiguration|False|Used to set an alternate template layout to a window.            |
 
 
@@ -4612,10 +4612,10 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
+|`success`|Boolean|True|true if successful; false, if failed |
 |`resultCode`|Result|True|See Result|
 |`info`|String|False||
-|`success`|Boolean|True|true if successful; false, if failed |
-|`allowed`|Boolean[]|False|This array has the same size as "moduleIds" in the request and each element corresponds to one moduleId                If true, if SDL grants the permission for the requested module                If false, SDL denies the permission for the requested module.|
+|`allowed`|Boolean[]|False|This array has the same size as "moduleIds" in the request and each element corresponds to one moduleId                If true, SDL grants the permission for the requested module                If false, SDL denies the permission for the requested module.            |
 
 
 ### ReleaseInteriorVehicleDataModule
@@ -4636,9 +4636,9 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
+|`success`|Boolean|True|true if successful; false, if failed |
 |`resultCode`|Result|True|See Result|
 |`info`|String|False||
-|`success`|Boolean|True|true if successful; false, if failed |
 
 
 ### SetInteriorVehicleData
@@ -4952,6 +4952,35 @@ Message Type: **response**
 |`serviceSpecificResult`|String|False|The service can provide specific result strings to the consumer through this param.|
 
 
+### CancelInteraction
+Message Type: **request**
+
+Close an active interaction on the HMI.
+        
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`cancelID`|Integer|False|The ID of the specific interaction you want to dismiss. If not set, the most recent of the RPC type set in functionID will be dismissed.            |
+|`functionID`|Integer|True|The ID of the type of interaction the developer wants to dismiss. Only values 10, (PerformInteractionID), 12 (AlertID), 25 (ScrollableMessageID), and 26 (SliderID) are permitted.            |
+
+
+### CancelInteraction
+Message Type: **response**
+
+If no applicable request can be dismissed, the result will be IGNORED.
+        
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`success`|Boolean|True|true if successful; false, if failed |
+|`resultCode`|Result|True|See Result|
+|`info`|String|False|Provides additional human readable info regarding the result.|
+
+
 ### CloseApplication
 Message Type: **request**
 
@@ -4965,35 +4994,6 @@ Request from the application to exit the foreground and enter HMI_NONE.
 
 ### CloseApplication
 Message Type: **response**
-
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true if successful; false, if failed |
-|`resultCode`|Result|True||
-|`info`|String|False|Provides additional human readable info regarding the result.|
-
-
-### CancelInteraction
-Message Type: **request**
-
-Close an active interaction on the HMI.
-        
-
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-|`cancelID`|Integer|False|The ID of the specific interaction you want to dismiss. If not set, the most recent of the RPC type set in functionID will be dismissed.|
-|`functionID`|Integer|True|The ID of the type of interaction the developer wants to dismiss. Only values 10, (PerformInteractionID), 12 (AlertID), 25 (ScrollableMessageID), and 26 (SliderID) are permitted.|
-
-
-### CancelInteraction
-Message Type: **response**
-
-If no applicable request can be dismissed, the result will be IGNORED.
-        
 
 ##### Parameters
 
