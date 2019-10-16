@@ -35,6 +35,10 @@ def write_header(outfile, elem_param):
 
 
 def write_iter_section(markdown, child, elem_or_param):
+    if 'until' in child.attrib:
+        # If this is a history version we don't need to include it for now'
+        return
+
     markdown.write('### ')
     markdown.write(child.attrib['name'])
 
