@@ -1181,7 +1181,7 @@ Enumeration that describes possible result codes of a vehicle data entry request
 | ---------- |:-----------:|
 |`SUCCESS`|Individual vehicle data item / DTC / DID request or subscription successful|
 |`TRUNCATED_DATA`|DTC / DID request successful, however, not all active DTCs or full contents of DID location available|
-|`DISALLOWED`|This vehicle data item is not allowed for this app by Ford.|
+|`DISALLOWED`|This vehicle data item is not allowed for this app by the OEM/Manufactorer of the connected module.|
 |`USER_DISALLOWED`|The user has not granted access to this type of vehicle data item at this time.|
 |`INVALID_ID`|The ECU ID referenced is not a valid ID on the bus / system.|
 |`VEHICLE_DATA_NOT_AVAILABLE`|The requested vehicle data item / DTC / DID is not currently available or responding on the bus / system.|
