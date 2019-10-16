@@ -778,7 +778,7 @@
         <element name="mediaTrack">
             <description>The track field of NGN and GEN1.1 MFD displays. This field is only available for media applications; applies to "Show"</description>
         </element>
-        
+
         <element name="templateTitle" since="6.0">
             <description>The title of the new template that will be displayed; applies to "Show"</description>
         </element>
@@ -921,11 +921,11 @@
         <element name="locationImage" since="4.0">
             <description>The optional image of a destination / location</description>
         </element>
-        
+
         <element name="alertIcon" since="6.0">
             <description>The image field for Alert</description>
         </element>
-        
+
     </enum>
     
     <enum name="CharacterSet" since="1.0">
@@ -1857,7 +1857,8 @@
         </param>
         
         <param name="maximumChangeVelocity" type="Integer" minvalue="0" maxvalue="255" mandatory="true">
-            <description>References signal "VedsMaxDeltaV_D_Ltchd". Change in velocity in KPH.  Additional reserved values:
+            <description>
+                References signal "VedsMaxDeltaV_D_Ltchd". Change in velocity in KPH.  Additional reserved values:
                 0x00 No event
                 0xFE Not supported
                 0xFF Fault
@@ -2245,7 +2246,7 @@
         </param>
         <param name="hmiPermissions" type="HMIPermissions"  mandatory="true"/>
         <param name="parameterPermissions" type="ParameterPermissions"  mandatory="true"/>
-        <param name="requireEncryption" type="Boolean"  mandatory="false" since="6.0"/>
+        <param name="requireEncryption" type="Boolean" mandatory="false" since="6.0"/>
     </struct>
     
     <struct name="DisplayCapabilities" deprecated="true" since="6.0">
@@ -2283,7 +2284,6 @@
         <param name="numCustomPresetsAvailable" type="Integer" minvalue="1" maxvalue="100" mandatory="false" since="3.0">
             <description>The number of on-screen custom presets available (if any); otherwise omitted.</description>
         </param>
-        
         <!-- TODO:  Add pixel density? -->
     </struct>
 
@@ -2459,7 +2459,7 @@
             <description>Availability of remote control feature. True: Available, False: Not Available</description>
         </param>
         <param name="appServices" type="Boolean" mandatory="false" since="6.0">
-             <description>Availability of App Services functionality. True: Available, False: Not Available</description>
+            <description>Availability of App Services functionality. True: Available, False: Not Available</description>
         </param>
         <param name="displays" type="Boolean" mandatory="false" since="6.0">
             <description>Availability of displays capability. True: Available, False: Not Available</description>
@@ -2527,7 +2527,7 @@
             <description>Trim of the vehicle, e.g. SE</description>
         </param>
     </struct>   
-    
+
     <enum name="KeyboardLayout" since="3.0">
         <description>Enumeration listing possible keyboard layouts.</description>
         <element name="QWERTY" />
@@ -2588,7 +2588,7 @@
                 If empty, the auto-complete list will be removed from the screen.
             </description>
         </param>
-    </struct>        
+    </struct>
 
     <struct name="DeviceInfo" since="3.0">
         <description>Various information about connecting device.</description>         
@@ -3118,7 +3118,7 @@
         <param name="dayColorScheme" type="TemplateColorScheme" mandatory="false" />
         <param name="nightColorScheme" type="TemplateColorScheme" mandatory="false" />
     </struct>
-    
+
     <!---Remote control  -->
 
     <struct name="SeatLocation" since="6.0">
@@ -4120,7 +4120,6 @@
                 Audiobook: The total number of sections in the playback queue (e.g. the number of chapters in the book)
             </description>
         </param>
-        
         <param name="mediaImage" type="Image" mandatory="false" since="6.0">
           <description>
               Music: The album art of the current track
@@ -4442,7 +4441,7 @@
         <param name="seatLocationCapability" type="SeatLocationCapability" mandatory="false" since="6.0">
             <description>Contains information about the locations of each seat</description>
         </param>
-	<param name="displayCapabilities" type="DisplayCapability" array="true" minsize="1" maxsize="1000" mandatory="false" since="6.0"/>
+        <param name="displayCapabilities" type="DisplayCapability" array="true" minsize="1" maxsize="1000" mandatory="false" since="6.0"/>
     </struct>
 
     <!-- Requests/Responses -->
@@ -4460,11 +4459,11 @@
         <param name="appName" type="String" maxlength="100" mandatory="true" since="1.0">
             <description>
                 The mobile application name, e.g. "Ford Drive Green".
-                Needs to be unique over all applications.
+                Needs to be unique over all applications from the same device.
                 May not be empty.
                 May not start with a new line character.
-                May not interfere with any name or synonym of previously registered applications and any predefined blacklist of words (global commands)
-                Needs to be unique over all applications. Applications with the same name will be rejected.
+                May not interfere with any name or synonym of previously registered applications from the same device and any predefined blacklist of words (global commands)
+                Additional applications with the same name from the same device will be rejected.
                 Only characters from char set [@TODO: Create char set (character/hex value) for each ACM and refer to] are supported.
             </description>
         </param>
@@ -4473,7 +4472,7 @@
             <description>
                 TTS string for VR recognition of the mobile application name, e.g. "Ford Drive Green".
                 Meant to overcome any failing on speech engine in properly pronouncing / understanding app name.
-                Needs to be unique over all applications.
+                Needs to be unique over all applications from the same device.
                 May not be empty.
                 May not start with a new line character.
                 Only characters from char set [@TODO: Create char set (character/hex value) for each ACM and refer to] are supported.
@@ -4491,7 +4490,7 @@
         <param name="vrSynonyms" type="String" maxlength="40" minsize="1" maxsize="100" array="true" mandatory="false" since="1.0">
             <description>
                 Defines an additional voice recognition command.
-                May not interfere with any app name of previously registered applications and any predefined blacklist of words (global commands)
+                May not interfere with any app name of previously registered applications from the same device and any predefined blacklist of words (global commands)
                 Only characters from char set [@TODO: Create char set (character/hex value) for each ACM and refer to] are supported.
             </description>
         </param>
@@ -4600,7 +4599,7 @@
                 <param name="displayCapabilities" type="DisplayCapabilities" mandatory="false" since="2.0" until="6.0"/>
             </history>
         </param>
-        
+
         <param name="buttonCapabilities" type="ButtonCapabilities" minsize="1" maxsize="100" array="true" mandatory="false" deprecated="true" since="6.0">
             <description>
                 See ButtonCapabilities. This parameter is deprecated and replaced by  SystemCapability using DISPLAYS.
@@ -4609,7 +4608,7 @@
                 <param name="buttonCapabilities" type="ButtonCapabilities" minsize="1" maxsize="100" array="true" mandatory="false" since="2.0" until="6.0"/>
             </history>
         </param>
-        
+
         <param name="softButtonCapabilities" type="SoftButtonCapabilities" minsize="1" maxsize="100" array="true" mandatory="false" deprecated="true" since="6.0">
             <description>
                 If returned, the platform supports on-screen SoftButtons; see SoftButtonCapabilities.
@@ -4619,7 +4618,7 @@
                 <param name="softButtonCapabilities" type="SoftButtonCapabilities" minsize="1" maxsize="100" array="true" mandatory="false" since="2.0" until="6.0"/>
             </history>
         </param>
-        
+
         <param name="presetBankCapabilities" type="PresetBankCapabilities" mandatory="false" deprecated="true" since="6.0">
             <description>
                 If returned, the platform supports custom on-screen Presets; see PresetBankCapabilities.
@@ -5236,7 +5235,7 @@
         <param name="interactionLayout" type="LayoutMode" mandatory="false" since="3.0">
             <description>See LayoutMode.</description>
         </param>
-        
+
         <param name="cancelID" type="Integer" mandatory="false" since="6.0">
             <description>
                 An ID for this specific PerformInteraction to allow cancellation through the `CancelInteraction` RPC.
@@ -5523,24 +5522,24 @@
                 If any text field contains no tags or the none tag, the metadata tag for that textfield should be removed.
             </description>
         </param>
-        
+
         <param name="templateTitle" type="String" minlength="0" maxlength="100" mandatory="false" since="6.0">
             <description>
-                The title of the new template that will be displayed. 
+                The title of the new template that will be displayed.
                 How this will be displayed is dependent on the OEM design and implementation of the template.
             </description>
         </param>
         <param name="windowID" type="Integer" mandatory="false" since="6.0" >
             <description>
-              This is the unique ID assigned to the window that this RPC is intended. If this param is not included,
-              it will be assumed that this request is specifically for the main window on the main display.
-              See PredefinedWindows enum.
+                This is the unique ID assigned to the window that this RPC is intended. If this param is not included,
+                it will be assumed that this request is specifically for the main window on the main display.
+                See PredefinedWindows enum.
             </description>
         </param>
 
         <param name="templateConfiguration" type="TemplateConfiguration" mandatory="false" since="6.0">
             <description>
-              Used to set an alternate template layout to a window.
+                Used to set an alternate template layout to a window.
             </description>
         </param>
     </function>
@@ -7195,7 +7194,7 @@
     
     <function name="SetDisplayLayout" functionID="SetDisplayLayoutID" messagetype="request" deprecated="true" since="6.0">
         <history>
-            <function name="SetDisplayLayout" functionID="SetDisplayLayoutID" messagetype="response" since="3.0" until="6.0"/>
+            <function name="SetDisplayLayout" functionID="SetDisplayLayoutID" messagetype="request" since="3.0" until="6.0"/>
         </history>
         <description>This RPC is deprecated. Use Show RPC to change layout.</description>
         <param name="displayLayout" type="String" maxlength="500" mandatory="true">
@@ -7212,13 +7211,13 @@
     
     <function name="SetDisplayLayout" functionID="SetDisplayLayoutID" messagetype="response" deprecated="true" since="6.0">
         <history>
-            <function name="SetDisplayLayout" functionID="SetDisplayLayoutID" messagetype="request" since="3.0" until="6.0"/>
+            <function name="SetDisplayLayout" functionID="SetDisplayLayoutID" messagetype="response" since="3.0" until="6.0"/>
         </history>
         <description>This RPC is deprecated. Use Show RPC to change layout.</description>
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
             <description> true, if successful; false, if failed </description>
         </param>
-        
+
         <param name="resultCode" type="Result" platform="documentation" mandatory="true">
             <description>See Result</description>
             <element name="SUCCESS"/>
@@ -7230,23 +7229,23 @@
             <element name="REJECTED"/>
             <element name="UNSUPPORTED_REQUEST"/>
         </param>
-        
+
         <param name="displayCapabilities" type="DisplayCapabilities" mandatory="false">
             <description>See DisplayCapabilities</description>
         </param>
-        
+
         <param name="buttonCapabilities" type="ButtonCapabilities" minsize="1" maxsize="100" array="true" mandatory="false">
             <description>See ButtonCapabilities</description >
         </param>
-        
+
         <param name="softButtonCapabilities" type="SoftButtonCapabilities" minsize="1" maxsize="100" array="true" mandatory="false">
             <description>If returned, the platform supports on-screen SoftButtons; see SoftButtonCapabilities.</description>
         </param>
-        
+
         <param name="presetBankCapabilities" type="PresetBankCapabilities" mandatory="false">
             <description>If returned, the platform supports custom on-screen Presets; see PresetBankCapabilities.</description>
         </param>
-        
+
         <param name="info" type="String" maxlength="1000" mandatory="false" platform="documentation">
             <description>Provides additional human readable info regarding the result.</description>
         </param>
@@ -7525,9 +7524,11 @@
             <description> true if successful; false, if failed </description>
         </param>
         <param name="allowed" type="Boolean" array="true" mandatory="false">
-            <description>This array has the same size as "moduleIds" in the request and each element corresponds to one moduleId
-                If true, if SDL grants the permission for the requested module
-                If false, SDL denies the permission for the requested module.</description>
+            <description>
+                This array has the same size as "moduleIds" in the request and each element corresponds to one moduleId
+                If true, SDL grants the permission for the requested module
+                If false, SDL denies the permission for the requested module.
+            </description>
         </param>
     </function>
 
@@ -7867,7 +7868,7 @@
         <param name="info" type="String" maxlength="1000" mandatory="false" platform="documentation">
             <description>Provides additional human readable info regarding the result.</description>
         </param>
-    </function>    
+    </function>
 
     <function name="GetAppServiceData" functionID="GetAppServiceDataID" messagetype="request" since="5.1">
         <description> This request asks the module for current data related to the specific service. It also includes an option to subscribe to that service for future updates</description>
@@ -7944,39 +7945,21 @@
         </param>
     </function>
 
-    <function name="CloseApplication" functionID="CloseApplicationID" messagetype="request" since="6.0">
-        <description>Request from the application to exit the foreground and enter HMI_NONE.</description>
-    </function>
-
-    <function name="CloseApplication" functionID="CloseApplicationID" messagetype="response" since="6.0">
-        <param name="success" type="Boolean" platform="documentation" mandatory="true">
-            <description> true if successful; false, if failed </description>
-        </param>
-
-        <param name="resultCode" type="Result" platform="documentation" mandatory="true">
-            <element name="SUCCESS"/>
-            <element name="DISALLOWED"/>
-            <element name="APPLICATION_NOT_REGISTERED"/>
-            <element name="GENERIC_ERROR"/>
-            <element name="IGNORED"/>
-        </param>
-
-        <param name="info" type="String" maxlength="1000" mandatory="false" platform="documentation">
-            <description>Provides additional human readable info regarding the result.</description>
-        </param>
-    </function>
-    
     <function name="CancelInteraction" functionID="CancelInteractionID" messagetype="request" since="6.0">
         <description>
             Close an active interaction on the HMI.
         </description>
-        
+
         <param name="cancelID" type="Integer" mandatory="false">
-            <description>The ID of the specific interaction you want to dismiss. If not set, the most recent of the RPC type set in functionID will be dismissed.</description>
+            <description>
+                The ID of the specific interaction you want to dismiss. If not set, the most recent of the RPC type set in functionID will be dismissed.
+            </description>
         </param>
-        
+
         <param name="functionID" type="Integer" mandatory="true">
-            <description>The ID of the type of interaction the developer wants to dismiss. Only values 10, (PerformInteractionID), 12 (AlertID), 25 (ScrollableMessageID), and 26 (SliderID) are permitted.</description>
+            <description>
+                The ID of the type of interaction the developer wants to dismiss. Only values 10, (PerformInteractionID), 12 (AlertID), 25 (ScrollableMessageID), and 26 (SliderID) are permitted.
+            </description>
         </param>
     </function>
 
@@ -8005,6 +7988,29 @@
             <element name="ABORTED"/>
         </param>
         
+        <param name="info" type="String" maxlength="1000" mandatory="false" platform="documentation">
+            <description>Provides additional human readable info regarding the result.</description>
+        </param>
+    </function>
+
+    <function name="CloseApplication" functionID="CloseApplicationID" messagetype="request" since="6.0">
+        <description>Request from the application to exit the foreground and enter HMI_NONE.</description>
+    </function>
+
+    <function name="CloseApplication" functionID="CloseApplicationID" messagetype="response" since="6.0">
+        <param name="success" type="Boolean" platform="documentation" mandatory="true">
+            <description> true if successful; false, if failed </description>
+        </param>
+
+        <param name="resultCode" type="Result" platform="documentation" mandatory="true">
+            <description>See Result</description>
+            <element name="SUCCESS"/>
+            <element name="DISALLOWED"/>
+            <element name="APPLICATION_NOT_REGISTERED"/>
+            <element name="GENERIC_ERROR"/>
+            <element name="IGNORED"/>
+        </param>
+
         <param name="info" type="String" maxlength="1000" mandatory="false" platform="documentation">
             <description>Provides additional human readable info regarding the result.</description>
         </param>
@@ -8208,7 +8214,7 @@
         <param name="permissionItem" type="PermissionItem" minsize="0" maxsize="500" array="true" mandatory="true">
             <description>Change in permissions for a given set of RPCs</description>
         </param>
-        <param name="requireEncryption" type="Boolean"  mandatory="false" since="6.0"/>
+        <param name="requireEncryption" type="Boolean" mandatory="false" since="6.0"/>
     </function>
     
     <function name="OnAudioPassThru" functionID="OnAudioPassThruID" messagetype="notification" since="2.0">
