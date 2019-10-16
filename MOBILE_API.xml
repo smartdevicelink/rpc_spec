@@ -7504,6 +7504,9 @@
     </function>
 
     <function name="GetInteriorVehicleDataConsent" functionID="GetInteriorVehicleDataConsentID" messagetype="response" since="6.0">
+        <param name="success" type="Boolean" platform="documentation" mandatory="true">
+            <description> true if successful; false, if failed </description>
+        </param>
         <param name="resultCode" type="Result" platform="documentation" mandatory="true">
             <description>See Result</description>
             <element name="SUCCESS"/>
@@ -7519,9 +7522,6 @@
             <element name="UNSUPPORTED_RESOURCE"/>
         </param>
         <param name="info" type="String" maxlength="1000" mandatory="false">
-        </param>
-        <param name="success" type="Boolean" platform="documentation" mandatory="true">
-            <description> true if successful; false, if failed </description>
         </param>
         <param name="allowed" type="Boolean" array="true" mandatory="false">
             <description>
@@ -7541,6 +7541,9 @@
     </function>
 
     <function name="ReleaseInteriorVehicleDataModule" functionID="ReleaseInteriorVehicleDataModuleID" messagetype="response" since="6.0">
+        <param name="success" type="Boolean" platform="documentation" mandatory="true">
+            <description> true if successful; false, if failed </description>
+        </param>
         <param name="resultCode" type="Result" platform="documentation" mandatory="true">
             <description>See Result</description>
             <element name="SUCCESS"/>
@@ -7555,9 +7558,6 @@
             <element name="UNSUPPORTED_RESOURCE"/>
         </param>
         <param name="info" type="String" maxlength="1000" mandatory="false">
-        </param>
-        <param name="success" type="Boolean" platform="documentation" mandatory="true">
-            <description> true if successful; false, if failed </description>
         </param>
     </function>
     
