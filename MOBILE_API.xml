@@ -4458,7 +4458,7 @@
         
         <param name="appName" type="String" maxlength="100" mandatory="true" since="1.0">
             <description>
-                The mobile application name, e.g. "Ford Drive Green".
+                The mobile application name, e.g. "My SDL App".
                 Needs to be unique over all applications from the same device.
                 May not be empty.
                 May not start with a new line character.
@@ -4470,7 +4470,7 @@
         
         <param name="ttsName" type="TTSChunk" minsize="1" maxsize="100" array="true" mandatory="false" since="2.0">
             <description>
-                TTS string for VR recognition of the mobile application name, e.g. "Ford Drive Green".
+                TTS string for VR recognition of the mobile application name, e.g. "My S D L App".
                 Meant to overcome any failing on speech engine in properly pronouncing / understanding app name.
                 Needs to be unique over all applications from the same device.
                 May not be empty.
