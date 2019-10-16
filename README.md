@@ -1,7 +1,7 @@
 # SmartDeviceLink
 # RPC Spec
 
-###### Version: 5.1.0
+###### Version: 6.0.0
 
 ## Enumerations
 
@@ -46,6 +46,7 @@
 |`DATA_NOT_AVAILABLE`|The requested information is currently not available. This is different than UNSUPPORTED_RESOURCE because it implies the data is at some point available. |
 |`READ_ONLY`|The value being set is read only|
 |`CORRUPTED_DATA`|The data sent failed to pass CRC check in receiver end|
+|`ENCRYPTION_NEEDED`|SDL receives an un-encrypted RPC request that needs protection. |
 
 
 ### ButtonPressMode
@@ -160,6 +161,24 @@ For touchscreen interactions, the mode of how the choices are presented.
 |`LIST_ONLY`|This mode causes the interaction to display the previous set of choices as a list.|
 |`LIST_WITH_SEARCH`|This mode causes the interaction to display the previous set of choices as a list along with a search field in the HMI.|
 |`KEYBOARD`|This mode causes the interaction to immediately display a keyboard entry through the HMI.|
+
+
+### WindowType
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`MAIN`|This window type describes the main window on a display.            |
+|`WIDGET`|A widget is a small window that the app can create to provide information and soft buttons for quick app control.            |
+
+
+### PredefinedWindows
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`DEFAULT_WINDOW`|The default window is a main window pre-created on behalf of the app.|
+|`PRIMARY_WIDGET`|The primary widget of the app.|
 
 
 ### HMILevel
@@ -449,6 +468,21 @@ Defines the hard (physical) and soft (touchscreen) buttons available from the mo
 |`SOURCE`||
 |`SHUFFLE`||
 |`REPEAT`||
+|`NAV_CENTER_LOCATION`||
+|`NAV_ZOOM_IN`||
+|`NAV_ZOOM_OUT`||
+|`NAV_PAN_UP`||
+|`NAV_PAN_UP_RIGHT`||
+|`NAV_PAN_RIGHT`||
+|`NAV_PAN_DOWN_RIGHT`||
+|`NAV_PAN_DOWN`||
+|`NAV_PAN_DOWN_LEFT`||
+|`NAV_PAN_LEFT`||
+|`NAV_PAN_UP_LEFT`||
+|`NAV_TILT_TOGGLE`|If supported, this toggles between a top-down view and an angled/3D view. If your app supports different, but substantially similar options, then you may implement those. If you don't implement these or similar options, do not subscribe to this button.|
+|`NAV_ROTATE_CLOCKWISE`||
+|`NAV_ROTATE_COUNTERCLOCKWISE`||
+|`NAV_HEADING_TOGGLE`|If supported, this toggles between locking the orientation to north or to the vehicle's heading. If your app supports different, but substantially similar options, then you may implement those. If you don't implement these or similar options, do not subscribe to this button.|
 
 
 ### MediaClockFormat
@@ -484,8 +518,6 @@ See DAES for further infos regarding the displays
 |`GEN3_8-INCH`||
 |`SDL_GENERIC`||
 
-
-### DisplayType
 
 ### TextFieldName
 ##### Elements
@@ -1171,6 +1203,17 @@ Enumeration that describes the status of the turn light indicator.
 |`BOTH`|Both signals (left and right) are on.|
 
 
+### MenuLayout
+How the main menu or submenu is laid out on screen
+
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`LIST`||
+|`TILES`||
+
+
 ### TouchType
 ##### Elements
 
@@ -1314,25 +1357,6 @@ Predefined screen layout.
 |`LARGE_GRAPHIC_ONLY`|Custom root template screen containing only a large graphic.                Can be set as a root screen.            |
 
 
-### WindowType
-Enumeration listing possible window types.
-
-##### Elements
-
-| Value | Description | 
-| ---------- |:-----------:|
-|`MAIN`|This window type describes the main screen on a display.|
-|`WIDGET`|A widget is a small window that the app can create to provide information and softbuttons for a quick app control.|
-
-### PredefinedWindows
-
-##### Elements
-
-| Value | Description | 
-| ---------- |:-----------:|
-|`DEFAULT_WINDOW`|The default window is a main window pre-created on behalf of the app.|
-|`PRIMARY_WIDGET`|The primary widget of the app.|
-
 ### FunctionID
 Enumeration linking function names with function IDs in SmartDeviceLink protocol. Assumes enumeration starts at value 0.
 
@@ -1395,9 +1419,14 @@ Enumeration linking function names with function IDs in SmartDeviceLink protocol
 |`GetAppServiceDataID`||
 |`GetFileID`||
 |`PerformAppServiceInteractionID`||
-|`CloseApplicationID`||
+|`UnpublishAppServiceID`||
 |`CancelInteractionID`||
+|`CloseApplicationID`||
 |`ShowAppMenuID`||
+|`CreateWindowID`||
+|`DeleteWindowID`||
+|`GetInteriorVehicleDataConsentID`||
+|`ReleaseInteriorVehicleDataModuleID`||
 |`OnHMIStatusID`||
 |`OnAppInterfaceUnregisteredID`||
 |`OnButtonEventID`||
@@ -1422,10 +1451,7 @@ Enumeration linking function names with function IDs in SmartDeviceLink protocol
 |`SyncPDataID`||
 |`OnEncodedSyncPDataID`||
 |`OnSyncPDataID`||
-|`CreateWindowID`||
-|`DeleteWindowID`||
-|`GetInteriorVehicleDataConsentID`||
-|`ReleaseInteriorVehicleDataModuleID`||
+
 
 ### messageType
 Enumeration linking message types with function types in WiPro protocol.
@@ -1464,6 +1490,7 @@ Enumerations of all available system capability types
 |`VIDEO_STREAMING`||
 |`REMOTE_CONTROL`||
 |`APP_SERVICES`||
+|`SEAT_LOCATION`||
 |`DISPLAYS`||
 
 
@@ -2121,10 +2148,11 @@ Individual requested DID result and data
 |`rpcName`|String|True|Name of the individual RPC in the policy table.|
 |`hmiPermissions`|HMIPermissions|True||
 |`parameterPermissions`|ParameterPermissions|True||
+|`requireEncryption`|Boolean|False||
 
 
 ### DisplayCapabilities
-Contains information about the display capabilities.
+Contains information about the display capabilities. This struct is deprecated; please see the new SystemCapability DISPLAYS and corresponding struct DisplayCapability 
 
 ##### Parameters
 
@@ -2140,6 +2168,7 @@ Contains information about the display capabilities.
 |`screenParams`|ScreenParams|False|A set of all parameters related to a prescribed screen area (e.g. for video / touch input).|
 |`numCustomPresetsAvailable`|Integer|False|The number of on-screen custom presets available (if any); otherwise omitted.|
 
+
 ### Grid
 Describes a location (origin coordinates and span) of a vehicle component.
 
@@ -2147,15 +2176,16 @@ Describes a location (origin coordinates and span) of a vehicle component.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`col`|Integer|True|
-|`row`|Integer|True|
-|`level`|Integer|False|
-|`colspan`|Integer|False|
-|`rowspan`|Integer|False|
-|`levelspan`|Integer|False|
+|`col`|Integer|True||
+|`row`|Integer|True||
+|`level`|Integer|False||
+|`colspan`|Integer|False||
+|`rowspan`|Integer|False||
+|`levelspan`|Integer|False||
+
 
 ### ModuleInfo
-Information about a RC module.
+Information about a RC module
 
 ##### Parameters
 
@@ -2163,8 +2193,8 @@ Information about a RC module.
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleId`|String|True|uuid of a module. "moduleId + moduleType" uniquely identify a module.|
 |`location`|Grid|False|Location of a module.|
-|`serviceArea`|Grid|False|Service area of a module.|
-|`allowMultipleAccess`|Boolean|False|allow multiple users/apps to access the module or not. |
+|`serviceArea`|Grid|False|Service area of a module. |
+|`allowMultipleAccess`|Boolean|False|allow multiple users/apps to access the module or not |
 
 
 ### ButtonCapabilities
@@ -2175,7 +2205,7 @@ Contains information about a button's capabilities.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`name`|ButtonName|True|The name of the button. See ButtonName.|
-|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id. See ModuleInfo.|
+|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id. |
 |`shortPressAvailable`|Boolean|True|The button supports a short press.                Whenever the button is pressed short, onButtonPressed( SHORT) will be invoked.            |
 |`longPressAvailable`|Boolean|True|The button supports a LONG press.                Whenever the button is pressed long, onButtonPressed( LONG) will be invoked.            |
 |`upDownAvailable`|Boolean|True|The button supports "button down" and "button up".                Whenever the button is pressed, onButtonEvent( DOWN) will be invoked.                Whenever the button is released, onButtonEvent( UP) will be invoked.            |
@@ -2192,7 +2222,8 @@ Contains information about a SoftButton's capabilities.
 |`longPressAvailable`|Boolean|True|The button supports a LONG press.                Whenever the button is pressed long, onButtonPressed( LONG) will be invoked.            |
 |`upDownAvailable`|Boolean|True|The button supports "button down" and "button up".                Whenever the button is pressed, onButtonEvent( DOWN) will be invoked.                Whenever the button is released, onButtonEvent( UP) will be invoked.            |
 |`imageSupported`|Boolean|True|The button supports referencing a static or dynamic image.|
-|`textSupported`|Boolean|False|he button supports the use of text. If not included, the default value should be considered true that the button will support text.|
+|`textSupported`|Boolean|False|The button supports the use of text.                If not included, the default value should be considered true that the button will support text.           |
+
 
 ### PresetBankCapabilities
 Contains information about on-screen preset capabilities.
@@ -2204,6 +2235,41 @@ Contains information about on-screen preset capabilities.
 |`onScreenPresetsAvailable`|Boolean|True|Onscreen custom presets are available.|
 
 
+### WindowCapability
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`windowID`|Integer|False|The specified ID of the window. This ID is either one used when sending the CreateWindow request,                 or one of the predefined window ID values from the enum PredefinedWindows. If ommited, value is                 assumed to be the main window on the main display.            |
+|`textFields`|TextField[]|False|A set of all fields that support text data. See TextField|
+|`imageFields`|ImageField[]|False|A set of all fields that support images. See ImageField|
+|`imageTypeSupported`|ImageType[]|False|Provides information about image types supported by the system.|
+|`templatesAvailable`|String[]|False|A set of all window templates available on the head unit.|
+|`numCustomPresetsAvailable`|Integer|False|The number of on-window custom presets available (if any); otherwise omitted.|
+|`buttonCapabilities`|ButtonCapabilities[]|False|The number of buttons and the capabilities of each on-window button.|
+|`softButtonCapabilities`|SoftButtonCapabilities[]|False|The number of soft buttons available on-window and the capabilities for each button.|
+|`menuLayoutsAvailable`|MenuLayout[]|False|An array of available menu layouts. If this parameter is not provided, only the `LIST` layout is assumed to be available|
+
+
+### WindowTypeCapabilities
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`type`|WindowType|True||
+|`maximumNumberOfWindows`|Integer|True||
+
+
+### DisplayCapability
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`displayName`|String|False||
+|`windowTypeSupported`|WindowTypeCapabilities[]|False|Informs the application how many windows the app is allowed to create per type.            |
+|`windowCapabilities`|WindowCapability[]|False|Contains a list of capabilities of all windows related to the app.              Once the app has registered the capabilities of all windows are provided.              GetSystemCapability still allows requesting window capabilities of all windows.              After registration, only windows with capabilities changed will be included. Following cases will cause only affected windows to be included:              1. App creates a new window. After the window is created, a system capability notification will be sent related only to the created window.              2. App sets a new layout to the window. The new layout changes window capabilties. The notification will reflect those changes to the single window.            |
+
+
 ### HMICapabilities
 ##### Parameters
 
@@ -2213,6 +2279,9 @@ Contains information about on-screen preset capabilities.
 |`phoneCall`|Boolean|False|Availability of build in phone. True: Available, False: Not Available |
 |`videoStreaming`|Boolean|False|Availability of video streaming. |
 |`remoteControl`|Boolean|False|Availability of remote control feature. True: Available, False: Not Available|
+|`appServices`|Boolean|False|Availability of App Services functionality. True: Available, False: Not Available|
+|`displays`|Boolean|False|Availability of displays capability. True: Available, False: Not Available|
+|`seatLocation`|Boolean|False|Availability of seat location feature. True: Available, False: Not Available|
 
 
 ### MenuParams
@@ -2384,6 +2453,9 @@ Contains information about this system's video streaming capabilities.
 |`maxBitrate`|Integer|False|The maximum bitrate of video stream that is supported, in kbps.|
 |`supportedFormats`|VideoStreamingFormat[]|False|Detailed information on each format supported by this system, in its preferred order (i.e. the first element in the array is most preferable to the system). Each object will contain a VideoStreamingFormat that describes what can be expected.|
 |`hapticSpatialDataSupported`|Boolean|False|True if the system can utilize the haptic spatial data from the source being streamed. If not included, it can be assumed the module doesn't support haptic spatial data'. |
+|`diagonalScreenSize`|Float|False|The diagonal screen size in inches.|
+|`pixelPerInch`|Float|False|PPI is the diagonal resolution in pixels divided by the diagonal screen size in inches.|
+|`scale`|Float|False|The scaling factor the app should use to change the size of the projecting view.|
 
 
 ### RGBColor
@@ -2407,6 +2479,39 @@ A color scheme for all display layout templates.
 |`primaryColor`|RGBColor|False|The primary "accent" color|
 |`secondaryColor`|RGBColor|False|The secondary "accent" color|
 |`backgroundColor`|RGBColor|False|The color of the background|
+
+
+### TemplateConfiguration
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`template`|String|True|Predefined or dynamically created window template.              Currently only predefined window template layouts are defined.          |
+|`dayColorScheme`|TemplateColorScheme|False||
+|`nightColorScheme`|TemplateColorScheme|False||
+
+
+### SeatLocation
+Describes the location of a seat.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`grid`|Grid|False||
+
+
+### SeatLocationCapability
+Contains information about the locations of each seat
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`rows`|Integer|False||
+|`columns`|Integer|False||
+|`levels`|Integer|False||
+|`seats`|SeatLocation[]|False|Contains a list of SeatLocation in the vehicle|
 
 
 ### MassageModeData
@@ -2440,27 +2545,6 @@ The intensity or firmness of a cushion.
 |`label`|String|False||
 |`action`|SeatMemoryActionType|True||
 
-### SeatLocation
-Describes the location of a seat.
-
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-|`grid`|Grid|False||
-
-
-### SeatLocationCapability
-Contains information about the locations of each seat
-
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-|`rows`|Integer|False||
-|`columns`|Integer|False||
-|`levels`|Integer|False||
-|`seats`|SeatLocation[]|False|Contains a list of SeatLocation in the vehicle. |
 
 ### SeatControlData
 Seat control data corresponds to "SEAT" ModuleType. 
@@ -2493,7 +2577,7 @@ Seat control data corresponds to "SEAT" ModuleType.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleName`|String|True|The short friendly name of the light control module.            It should not be used to identify a module by mobile application.            |
-|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
+|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id. |
 |`heatingEnabledAvailable`|Boolean|False||
 |`coolingEnabledAvailable`|Boolean|False||
 |`heatingLevelAvailable`|Boolean|False||
@@ -2566,7 +2650,8 @@ Seat control data corresponds to "SEAT" ModuleType.
 |`band`|RadioBand|False||
 |`rdsData`|RdsData|False||
 |`hdRadioEnable`|Boolean|False|True if the hd radio is on, false if the radio is off|
-|`availableHDs`|Integer|False|number of HD sub-channels if available|
+|`availableHDs`|Integer|False|Number of HD sub-channels if available|
+|`availableHdChannels`|Integer[]|False|The list of available HD sub-channel indexes. Empty list means no Hd channel is available. Read-only. |
 |`hdChannel`|Integer|False|Current HD sub-channel if available|
 |`signalStrength`|Integer|False||
 |`signalChangeThreshold`|Integer|False|If the signal strength falls below the set value for this parameter, the radio will tune to an alternative frequency|
@@ -2594,6 +2679,7 @@ Seat control data corresponds to "SEAT" ModuleType.
 |`heatedWindshieldEnable`|Boolean|False|value false means disabled, value true means enabled.|
 |`heatedRearWindowEnable`|Boolean|False|value false means disabled, value true means enabled.|
 |`heatedMirrorsEnable`|Boolean|False|value false means disabled, value true means enabled.|
+|`climateEnable`|Boolean|False|True if the climate module is on, false if the climate module is off|
 
 
 ### RadioControlCapabilities
@@ -2604,13 +2690,14 @@ Contains information about a radio control module's capabilities.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleName`|String|True|The short friendly name of the climate control module.                It should not be used to identify a module by mobile application.            |
-|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
+|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id. |
 |`radioEnableAvailable`|Boolean|False|Availability of the control of enable/disable radio.                True: Available, False: Not Available, Not present: Not Available.            |
 |`radioBandAvailable`|Boolean|False|Availability of the control of radio band.                True: Available, False: Not Available, Not present: Not Available.            |
 |`radioFrequencyAvailable`|Boolean|False|Availability of the control of radio frequency.                True: Available, False: Not Available, Not present: Not Available.            |
 |`hdChannelAvailable`|Boolean|False|Availability of the control of HD radio channel.                True: Available, False: Not Available, Not present: Not Available.            |
 |`rdsDataAvailable`|Boolean|False|Availability of the getting Radio Data System (RDS) data.                True: Available, False: Not Available, Not present: Not Available.            |
 |`availableHDsAvailable`|Boolean|False|Availability of the getting the number of available HD channels.                True: Available, False: Not Available, Not present: Not Available.            |
+|`availableHdChannelsAvailable`|Boolean|False|Availability of the list of available HD sub-channel indexes.                True: Available, False: Not Available, Not present: Not Available.            |
 |`stateAvailable`|Boolean|False|Availability of the getting the Radio state.                True: Available, False: Not Available, Not present: Not Available.            |
 |`signalStrengthAvailable`|Boolean|False|Availability of the getting the signal strength.                True: Available, False: Not Available, Not present: Not Available.            |
 |`signalChangeThresholdAvailable`|Boolean|False|Availability of the getting the signal Change Threshold.                True: Available, False: Not Available, Not present: Not Available.            |
@@ -2627,7 +2714,7 @@ Contains information about a climate control module's capabilities.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleName`|String|True|The short friendly name of the climate control module.                It should not be used to identify a module by mobile application.|
-|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
+|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id. |
 |`currentTemperatureAvailable`|Boolean|False|Availability of the reading of current temperature.                True: Available, False: Not Available, Not present: Not Available.            |
 |`fanSpeedAvailable`|Boolean|False|Availability of the control of fan speed.                True: Available, False: Not Available, Not present: Not Available.            |
 |`desiredTemperatureAvailable`|Boolean|False|Availability of the control of desired temperature.                True: Available, False: Not Available, Not present: Not Available.            |
@@ -2644,6 +2731,7 @@ Contains information about a climate control module's capabilities.
 |`heatedWindshieldAvailable`|Boolean|False|Availability of the control (enable/disable) of heated Windshield.                True: Available, False: Not Available, Not present: Not Available.            |
 |`heatedRearWindowAvailable`|Boolean|False|Availability of the control (enable/disable) of heated Rear Window.                True: Available, False: Not Available, Not present: Not Available.            |
 |`heatedMirrorsAvailable`|Boolean|False|Availability of the control (enable/disable) of heated Mirrors.                True: Available, False: Not Available, Not present: Not Available.            |
+|`climateEnableAvailable`|Boolean|False|Availability of the control of enable/disable climate control.                True: Available, False: Not Available, Not present: Not Available.            |
 
 
 ### EqualizerSettings
@@ -2675,7 +2763,7 @@ Defines the each Equalizer channel settings.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleName`|String|True|The short friendly name of the light control module.                It should not be used to identify a module by mobile application.            |
-|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
+|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id. |
 |`sourceAvailable`|Boolean|False|Availability of the control of audio source. |
 |`keepContextAvailable`|Boolean|False|Availability of the keepContext parameter. |
 |`volumeAvailable`|Boolean|False|Availability of the control of audio volume.|
@@ -2700,7 +2788,7 @@ Defines the each Equalizer channel settings.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleName`|String|True|The short friendly name of the light control module.                It should not be used to identify a module by mobile application.            |
-|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
+|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id. |
 |`supportedLights`|LightCapabilities[]|True|An array of available LightCapabilities that are controllable. |
 
 
@@ -2741,7 +2829,7 @@ Corresponds to "HMI_SETTINGS" ModuleType
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleName`|String|True|The short friendly name of the hmi setting module.              It should not be used to identify a module by mobile application.            |
-|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
+|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id. |
 |`distanceUnitAvailable`|Boolean|False|Availability of the control of distance unit. |
 |`temperatureUnitAvailable`|Boolean|False|Availability of the control of temperature unit. |
 |`displayModeUnitAvailable`|Boolean|False|Availability of the control of HMI display mode. |
@@ -2755,7 +2843,7 @@ The moduleType indicates which type of data should be changed and identifies whi
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleType`|ModuleType|True||
-|`moduleId`|String|False|Id of a module, published by System Capability.|
+|`moduleId`|String|False|Id of a module, published by System Capability. |
 |`radioControlData`|RadioControlData|False||
 |`climateControlData`|ClimateControlData|False||
 |`seatControlData`|SeatControlData|False||
@@ -2832,6 +2920,7 @@ This data is related to what a media service should provide
 |`queuePlaybackDuration`|Integer|False|Music: The total duration of the playback queue in seconds                Podcast: The total duration of the playback queue in seconds                Audiobook: The total duration of the playback queue (e.g. the book) in seconds            |
 |`queueCurrentTrackNumber`|Integer|False|Music: The current number (1 based) of the track in the playback queue                Podcast: The current number (1 based) of the episode in the playback queue                Audiobook: The current number (1 based) of the episode in the playback queue (e.g. the chapter number in the book)            |
 |`queueTotalTrackCount`|Integer|False|Music: The total number of tracks in the playback queue                Podcast: The total number of episodes in the playback queue                Audiobook: The total number of sections in the playback queue (e.g. the number of chapters in the book)            |
+|`mediaImage`|Image|False|Music: The album art of the current track              Podcast: The podcast or chapter artwork of the current podcast episode              Audiobook: The book or chapter artwork of the current audiobook          |
 
 
 ### WeatherServiceManifest
@@ -3024,53 +3113,7 @@ The systemCapabilityType identifies which data object exists in this struct. For
 |`seatLocationCapability`|SeatLocationCapability|False|Contains information about the locations of each seat|
 |`displayCapabilities`|DisplayCapability[]|False||
 
-### WindowCapability
 
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-|`windowID`|Integer|False|The specified ID of the window. Can be set to a predefined window, or omitted for the main window on the main display.|
-|`textFields`|TextField[]|False|A set of all fields that support text data. See TextField|
-|`imageFields`|ImageField[]|False|A set of all fields that support images. See ImageField.|
-|`imageTypeSupported`|ImageType[]|False|Provides information about image types supported by the system.|
-|`templatesAvailable`|String[]|False|A set of all window templates available on the head unit.|
-|`numCustomPresetsAvailable`|Integer[]|False|The number of on-window custom presets available (if any); otherwise omitted.|
-|`buttonCapabilities`|ButtonCapabilities[]|False|The number of buttons and the capabilities of each on-window button.|
-|`softButtonCapabilities`|SoftButtonCapabilities[]|False|The number of soft buttons available on-window and the capabilities for each button.|
-
-### WindowTypeCapabilities
-
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-|`type`|WindowType|True||
-|`maximumNumberOfWindows`|Integer|True||
-
-### DisplayCapability
-
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-|`displayName`|String|False||
-|`windowTypeSupported`|WindowTypeCapabilities[]|False|Informs the application how many windows the app is allowed to create per type.|
-|`windowCapabilities`|WindowCapability[]|False|Contains a list of capabilities of all windows related to the app.
-Once the app has registered the capabilities of all windows are provided. GetSystemCapability still allows requesting window capabilities of all windows.
-After registration, only windows with capabilities changed willincluded. Following cases will cause only affected windows toincluded:
-1. App creates a new window. After the window is created, a syscapability notification will be sent related only to the created window.
-2. App sets a new layout to the window. The new layout changes wincapabilties. The notification will reflect those changes to the sinwindow.|
-
-### TemplateConfiguration
-
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-|`template`|String|True|Predefined or dynamically created window template. Currently only predefined window template layouts are defined.|
-|`dayColorScheme`|TemplateColorScheme|False||
-|`nightColorScheme`|TemplateColorScheme|False||
 
 <div style="page-break-after: always;"></div>
 
@@ -3121,10 +3164,10 @@ The response to registerAppInterface
 |`syncMsgVersion`|SyncMsgVersion|False|See SyncMsgVersion|
 |`language`|Language|False|The currently active VR+TTS language on the module. See "Language" for options.|
 |`hmiDisplayLanguage`|Language|False|The currently active display language on the module. See "Language" for options.|
-|`displayCapabilities`|DisplayCapabilities|False|See DisplayCapabilities|
-|`buttonCapabilities`|ButtonCapabilities[]|False|See ButtonCapabilities|
-|`softButtonCapabilities`|SoftButtonCapabilities[]|False|If returned, the platform supports on-screen SoftButtons; see SoftButtonCapabilities.|
-|`presetBankCapabilities`|PresetBankCapabilities|False|If returned, the platform supports custom on-screen Presets; see PresetBankCapabilities.|
+|`displayCapabilities`|DisplayCapabilities|False|See DisplayCapabilities. This parameter is deprecated and replaced by SystemCapability using DISPLAYS.            |
+|`buttonCapabilities`|ButtonCapabilities[]|False|See ButtonCapabilities. This parameter is deprecated and replaced by  SystemCapability using DISPLAYS.            |
+|`softButtonCapabilities`|SoftButtonCapabilities[]|False|If returned, the platform supports on-screen SoftButtons; see SoftButtonCapabilities.                This parameter is deprecated and replaced by  SystemCapability using DISPLAYS.            |
+|`presetBankCapabilities`|PresetBankCapabilities|False|If returned, the platform supports custom on-screen Presets; see PresetBankCapabilities.                This parameter is deprecated and replaced by SystemCapability using DISPLAYS.            |
 |`hmiZoneCapabilities`|HmiZoneCapabilities[]|False|See HmiZoneCapabilities|
 |`speechCapabilities`|SpeechCapabilities[]|False|See SpeechCapabilities|
 |`prerecordedSpeech`|PrerecordedSpeech[]|False|See PrerecordedSpeech|
@@ -3133,7 +3176,7 @@ The response to registerAppInterface
 |`pcmStreamCapabilities`|AudioPassThruCapabilities[]|False|See AudioPassThruCapability|
 |`vehicleType`|VehicleType|False|Specifies the vehicle's type. See VehicleType.|
 |`supportedDiagModes`|Integer[]|False|Specifies the white-list of supported diagnostic modes (0x00-0xFF) capable for DiagnosticMessage requests.                If a mode outside this list is requested, it will be rejected.            |
-|`hmiCapabilities`|HMICapabilities|False|Specifies the HMIÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢s capabilities. See HMICapabilities.|
+|`hmiCapabilities`|HMICapabilities|False|Specifies the HMI's capabilities. See HMICapabilities.|
 |`sdlVersion`|String|False|The SmartDeviceLink version.|
 |`systemSoftwareVersion`|String|False|The software version of the system that implements the SmartDeviceLink core.|
 |`iconResumed`|Boolean|False|Existence of apps icon at system. If true, apps icon                was resumed at system. If false, apps icon is not resumed at system            |
@@ -3165,6 +3208,60 @@ Message Type: **response**
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
 
+### CreateWindow
+Message Type: **request**
+
+Create a new window on the display with the specified window type.
+        
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`windowID`|Integer|True|A unique ID to identify the window. The value of '0' will always be the default main window on the main display and should not be used in this context as it will already be created for the app. See PredefinedWindows enum. Creating a window with an ID that is already in use will be rejected with `INVALID_ID`.            |
+|`windowName`|String|True|The window name to be used by the HMI. The name of the pre-created default window will match the app name.                Multiple apps can share the same window name except for the default main window.                Creating a window with a name which is already in use by the app will result in `DUPLICATE_NAME`.            |
+|`type`|WindowType|True|The type of the window to be created. Main window or widget.|
+|`associatedServiceType`|String|False|Allows an app to create a widget related to a specific service type.              As an example if a `MEDIA` app becomes active, this app becomes audible and is allowed to play audio. Actions such as skip or play/pause will be              directed to this active media app. In case of widgets, the system can provide a single "media" widget which will act as a placeholder for the active media app.              It is only allowed to have one window per service type. This means that a media app can only have a single MEDIA widget. Still the app can create widgets omitting this parameter. Those widgets would be available as app specific widgets that are permanently included in the HMI.              This parameter is related to widgets only. The default main window, which is pre-created during app registration, will be created based on the HMI types specified in the app registration request.            |
+|`duplicateUpdatesFromWindowID`|Integer|False|Optional parameter. Specify whether the content sent to an existing window              should be duplicated to the created window.              If there isn't a window with the ID, the request will be rejected with `INVALID_DATA`.            |
+
+
+### CreateWindow
+Message Type: **response**
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`success`|Boolean|True|true if successful; false, if failed.|
+|`info`|String|False|Provides additional human readable info regarding the result.|
+|`resultCode`|Result|True|See Result|
+
+
+### DeleteWindow
+Message Type: **request**
+
+Deletes previously created window of the SDL application.
+        
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`windowID`|Integer|True|A unique ID to identify the window. The value of '0' will always be the default main window on the main display and cannot be deleted.                See PredefinedWindows enum.            |
+
+
+### DeleteWindow
+Message Type: **response**
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`success`|Boolean|True|true if successful; false, if failed.|
+|`info`|String|False|Provides additional human readable info regarding the result.|
+|`resultCode`|Result|True|See Result|
+
+
 ### SetGlobalProperties
 Message Type: **request**
 
@@ -3182,6 +3279,7 @@ Allows setting global properties.
 |`menuTitle`|String|False|Optional text to label an app menu button (for certain touchscreen platforms).|
 |`menuIcon`|Image|False|Optional icon to draw on an app menu button (for certain touchscreen platforms).|
 |`keyboardProperties`|KeyboardProperties|False|On-screen keyboard configuration (if available).|
+|`menuLayout`|MenuLayout|False|Sets the layout of the main menu screen. If this is sent while a menu is already on-screen, the head unit will change the display to the new layout type.|
 
 
 ### SetGlobalProperties
@@ -3286,6 +3384,7 @@ Adds a sub menu to the in-application menu.
 |`position`|Integer|False|Position within the items that are are at top level of the in application menu.                0 will insert at the front.                1 will insert at the second position.                If position is greater or equal than the number of items on top level, the sub menu will be appended to the end.                Position of any submenu will always be located before the return and exit options                If this param was omitted the entry will be added at the end.            |
 |`menuName`|String|True|Text to show in the menu for this sub menu.|
 |`menuIcon`|Image|False|The image field for AddSubMenu|
+|`menuLayout`|MenuLayout|False|Sets the layout of the submenu screen.|
 
 
 ### AddSubMenu
@@ -3333,7 +3432,7 @@ Shows the built in menu view
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`menuID`|Integer|False|If omitted the HMI opens the app's menu.<br>If set to a sub-menu ID the HMI opens the corresponding sub-menu previously added using `AddSubMenu`.|
+|`menuID`|Integer|False|If omitted the HMI opens the app's menu.                If set to a sub-menu ID the HMI opens the corresponding sub-menu previously added using `AddSubMenu`.            |
 
 
 ### ShowAppMenu
@@ -3391,6 +3490,7 @@ Triggers an interaction (e.g. "Permit GPS?" - Yes, no, Always Allow).
 |`timeout`|Integer|False|Timeout in milliseconds.                If omitted a standard value of 10000 milliseconds is used.                Applies only to the menu portion of the interaction. The VR timeout will be handled by the platform.            |
 |`vrHelp`|VrHelpItem[]|False|Ability to send suggested VR Help Items to display on-screen during Perform Interaction.                If omitted on supported displays, the default generated list of suggested choices shall be displayed.            |
 |`interactionLayout`|LayoutMode|False|See LayoutMode.|
+|`cancelID`|Integer|False|An ID for this specific PerformInteraction to allow cancellation through the `CancelInteraction` RPC.            |
 
 
 ### PerformInteraction
@@ -3450,6 +3550,7 @@ Shows an alert which typically consists of text-to-speech message and text on th
 |`progressIndicator`|Boolean|False|If supported on the given platform, the alert GUI will include some sort of animation indicating that loading of a feature is progressing.  e.g. a spinning wheel or hourglass, etc.            |
 |`softButtons`|SoftButton[]|False|App defined SoftButtons.                If omitted on supported displays, the displayed alert shall not have any SoftButtons.            |
 |`alertIcon`|Image|False|Image struct determining whether static or dynamic icon.                If omitted on supported displays, no (or the default if applicable) icon should be displayed.            |
+|`cancelID`|Integer|False|An ID for this specific alert to allow cancellation through the `CancelInteraction` RPC.            |
 
 
 ### Alert
@@ -3486,10 +3587,11 @@ Updates the persistent display. Supported fields depend on display capabilities.
 |`secondaryGraphic`|Image|False|Image struct determining whether static or dynamic secondary image to display in app.                If omitted on supported displays, the displayed secondary graphic shall not change.            |
 |`softButtons`|SoftButton[]|False|App defined SoftButtons.                If omitted on supported displays, the currently displayed SoftButton values will not change.            |
 |`customPresets`|String[]|False|App labeled on-screen presets (i.e. on-screen media presets or dynamic search suggestions).                If omitted on supported displays, the presets will be shown as not defined.            |
-|`metadataTags`|MetadataTags|False|App defined metadata information. See MetadataStruct. Uses mainField1, mainField2, mainField3, mainField4.                If omitted on supported displays, the currently set metadata tags will not change.                If any text field contains no tags or the none tag, the metadata tag for that textfield should be removed.|
-|`templateTitle`|String|False|The title of the new template that will be displayed.<br>How this will be displayed is dependent on the OEM design and implementation of the template.|
-|`windowID`|Integer|False|This is the unique ID assigned to the window that this RPC is intended. If this param is not included, it will be assumed that this request is specifically for the main window on the main display. See PredefinedWindows enum.|
-|`templateConfiguration`|TemplateConfiguration|False|Used to set an alternate template layout to a window.|
+|`metadataTags`|MetadataTags|False|App defined metadata information. See MetadataStruct. Uses mainField1, mainField2, mainField3, mainField4.                If omitted on supported displays, the currently set metadata tags will not change.                If any text field contains no tags or the none tag, the metadata tag for that textfield should be removed.            |
+|`templateTitle`|String|False|The title of the new template that will be displayed.                 How this will be displayed is dependent on the OEM design and implementation of the template.            |
+|`windowID`|Integer|False|This is the unique ID assigned to the window that this RPC is intended. If this param is not included,              it will be assumed that this request is specifically for the main window on the main display.              See PredefinedWindows enum.            |
+|`templateConfiguration`|TemplateConfiguration|False|Used to set an alternate template layout to a window.            |
+
 
 ### Show
 Message Type: **response**
@@ -4000,6 +4102,7 @@ Creates a full screen overlay containing a large block of formatted text that ca
 |`scrollableMessageBody`|String|True|Body of text that can include newlines and tabs.|
 |`timeout`|Integer|False|App defined timeout.  Indicates how long of a timeout from the last action (i.e. scrolling message resets timeout).|
 |`softButtons`|SoftButton[]|False|App defined SoftButtons.                If omitted on supported displays, only the system defined "Close" SoftButton will be displayed.            |
+|`cancelID`|Integer|False|An ID for this specific ScrollableMessage to allow cancellation through the `CancelInteraction` RPC.            |
 
 
 ### ScrollableMessage
@@ -4028,6 +4131,7 @@ Creates a full screen or pop-up overlay (depending on platform) with a single us
 |`sliderHeader`|String|True|Text header to display|
 |`sliderFooter`|String[]|False|Text footer to display (meant to display min/max threshold descriptors).                For a static text footer, only one footer string shall be provided in the array.                For a dynamic text footer, the number of footer text string in the array must match the numTicks value.                For a dynamic text footer, text array string should correlate with potential slider position index.                If omitted on supported displays, no footer text shall be displayed.            |
 |`timeout`|Integer|False|App defined timeout.  Indicates how long of a timeout from the last action (i.e. sliding control resets timeout).                If omitted, the value is set to 10000.            |
+|`cancelID`|Integer|False|An ID for this specific Slider to allow cancellation through the `CancelInteraction` RPC.            |
 
 
 ### Slider
@@ -4330,7 +4434,6 @@ Response is sent, when the file data was copied (success case). Or when an error
 Message Type: **request**
 
 This RPC is deprecated. Use Show RPC to change layout.
-        
 
 ##### Parameters
 
@@ -4343,6 +4446,8 @@ This RPC is deprecated. Use Show RPC to change layout.
 
 ### SetDisplayLayout
 Message Type: **response**
+
+This RPC is deprecated. Use Show RPC to change layout.
 
 ##### Parameters
 
@@ -4380,6 +4485,7 @@ Message Type: **response**
 | ---------- | ---------- |:-----------: |:-----------:|
 |`success`|Boolean|True|true, if successful; false, if failed |
 |`resultCode`|Result|True|See Result|
+|`info`|String|False|Provides additional human readable info regarding the result.|
 
 
 ### SendLocation
@@ -4445,7 +4551,7 @@ Message Type: **request**
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleType`|ModuleType|True|The module where the button should be pressed|
-|`moduleId`|String|False|Id of a module, published by System Capability.|
+|`moduleId`|String|False|Id of a module, published by System Capability. |
 |`buttonName`|ButtonName|True|The name of supported RC climate or radio button.|
 |`buttonPressMode`|ButtonPressMode|True|Indicates whether this is a LONG or SHORT button press event.|
 
@@ -4470,10 +4576,8 @@ Message Type: **request**
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleType`|ModuleType|True|The type of a RC module to retrieve module data from the vehicle.                In the future, this should be the Identification of a module.            |
-|`moduleId`|String|False|Id of a module, published by System Capability.|
-|`subscribe`|Boolean|False| If subscribe is true, the head unit will register OnInteriorVehicleData notifications for the requested module (moduleId and moduleType).
-If subscribe is false, the head unit will unregister OnInteriorVehicleData notifications for the requested module (moduleId and moduleType).
-If subscribe is not included, the subscription status of the app for the requested module (moduleId and moduleType) will remain unchanged.|
+|`moduleId`|String|False|Id of a module, published by System Capability. |
+|`subscribe`|Boolean|False|If subscribe is true, the head unit will register OnInteriorVehicleData notifications for the requested module (moduleId and moduleType).                If subscribe is false, the head unit will unregister OnInteriorVehicleData notifications for the requested module (moduleId and moduleType).                If subscribe is not included, the subscription status of the app for the requested module (moduleId and moduleType) will remain unchanged.            |
 
 
 ### GetInteriorVehicleData
@@ -4489,6 +4593,7 @@ Message Type: **response**
 |`success`|Boolean|True|true if successful; false, if failed |
 |`isSubscribed`|Boolean|False|It is a conditional-mandatory parameter: must be returned in case "subscribe" parameter was present in the related request.                if "true" - the "moduleType" from request is successfully subscribed and the head unit will send onInteriorVehicleData notifications for the moduleType.                if "false" - the "moduleType" from request is either unsubscribed or failed to subscribe.            |
 
+
 ### GetInteriorVehicleDataConsent
 Message Type: **request**
 
@@ -4496,7 +4601,7 @@ Message Type: **request**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`moduleType`|ModuleType|True|The module type that the app requests to control.    |
+|`moduleType`|ModuleType|True|The module type that the app requests to control.|
 |`moduleIds`|String[]|True|Ids of a module of same type, published by System Capability. |
 
 
@@ -4507,12 +4612,10 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`allowed`|Boolean[]|True|This array has the same size as "moduleIds" in the request; each element corresponding to one moduleId  
-"true" - if SDL grants the permission for the requested module;
-"false" - SDL denies the permission for the requested module.|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False||
 |`success`|Boolean|True|true if successful; false, if failed |
+|`allowed`|Boolean[]|False|This array has the same size as "moduleIds" in the request and each element corresponds to one moduleId                If true, if SDL grants the permission for the requested module                If false, SDL denies the permission for the requested module.|
 
 
 ### ReleaseInteriorVehicleDataModule
@@ -4523,7 +4626,7 @@ Message Type: **request**
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleType`|ModuleType|True||
-|`moduleId`|String|False|Id of a module, published by System Capability.|
+|`moduleId`|String|False|Id of a module, published by System Capability. |
 
 
 ### ReleaseInteriorVehicleDataModule
@@ -4743,13 +4846,15 @@ The response to GetCloudAppProperties
 ### PublishAppService
 Message Type: **request**
 
-Registers a service offered by this app on the module
+Registers a service offered by this app on the module.
+            Subsequent calls with the same service type will update the manifest for that service.
+        
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`appServiceManifest`|AppServiceManifest|True|The manifest of the service that wishes to be published.|
+|`appServiceManifest`|AppServiceManifest|True|The manifest of the service that wishes to be published.                 If already published, the updated manifest for this service.            |
 
 
 ### PublishAppService
@@ -4765,6 +4870,32 @@ Response to the request to register a service offered by this app on the module
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 |`appServiceRecord`|AppServiceRecord|False|If the request was successful, this object will be the current status of the service record for the published service. This will include the Core supplied service ID.|
+
+
+### UnpublishAppService
+Message Type: **request**
+
+Unpublish an existing service published by this application. 
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`serviceID`|String|True|The ID of the service to be unpublished. |
+
+
+### UnpublishAppService
+Message Type: **response**
+
+The response to UnpublishAppService 
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`success`|Boolean|True|true, if successful; false, if failed |
+|`resultCode`|Result|True|See Result|
+|`info`|String|False|Provides additional human readable info regarding the result.|
 
 
 ### GetAppServiceData
@@ -4835,16 +4966,12 @@ Request from the application to exit the foreground and enter HMI_NONE.
 ### CloseApplication
 Message Type: **response**
 
-|`cancelID`|Integer|False|The ID of the specific interaction you want to dismiss. If not set, the most recent of the RPC type set in functionID will be dismissed.|
-|`functionID`|Integer|True|The ID of the type of interaction the developer wants to dismiss. Only values 10, (PerformInteractionID), 12 (AlertID), 25 (ScrollableMessageID), and 26 (SliderID) are permitted.|
-
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`success`|Boolean|True|true if successful; false, if failed |
 |`resultCode`|Result|True||
-|`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
 
@@ -4852,13 +4979,12 @@ Message Type: **response**
 Message Type: **request**
 
 Close an active interaction on the HMI.
-
+        
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-
 |`cancelID`|Integer|False|The ID of the specific interaction you want to dismiss. If not set, the most recent of the RPC type set in functionID will be dismissed.|
 |`functionID`|Integer|True|The ID of the type of interaction the developer wants to dismiss. Only values 10, (PerformInteractionID), 12 (AlertID), 25 (ScrollableMessageID), and 26 (SliderID) are permitted.|
 
@@ -4874,7 +5000,6 @@ If no applicable request can be dismissed, the result will be IGNORED.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`success`|Boolean|True|true if successful; false, if failed |
-|`resultCode`|Result|True||
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -4890,7 +5015,7 @@ Message Type: **notification**
 |`audioStreamingState`|AudioStreamingState|True|See AudioStreamingState|
 |`systemContext`|SystemContext|True|See SystemContext|
 |`videoStreamingState`|VideoStreamingState|False|See VideoStreamingState.                 If it is NOT_STREAMABLE, the app must stop streaming video to SDL Core(stop service).            |
-|`windowID`|Integer|False|This is the unique ID assigned to the window that this RPC is intended. If this param is not included, it will be assumed that this request is specifically for the main window on the main display. See PredefinedWindows enum.|
+|`windowID`|Integer|False|This is the unique ID assigned to the window that this RPC is intended. If this param is not included, it will be assumed that this request is specifically for the main window on the main display. See PredefinedWindows enum.            |
 
 
 ### OnAppInterfaceUnregistered
@@ -5019,6 +5144,7 @@ Provides update to app of which policy-table-enabled functions are available
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`permissionItem`|PermissionItem[]|True|Change in permissions for a given set of RPCs|
+|`requireEncryption`|Boolean|False||
 
 
 ### OnAudioPassThru
@@ -5154,14 +5280,13 @@ This notification includes the data that is updated from the specific service
 ### OnSystemCapabilityUpdated
 Message Type: **notification**
 
-A notification between HMI and SDL that a specific system capability has been changed. It can be sent in both directions SDL to HMI and HMI to SDL. Direction is dependent on the point where capabilities have been changed
+A notification to inform the connected device that a specific system capability has changed.
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`systemCapability`|SystemCapability|True|The system capability that has been updated|
-|`appID`|Integer|False|ID of application that is related to this RPC.|
 
 
 ### EncodedSyncPData
@@ -5207,63 +5332,4 @@ Callback including encoded data of any SyncP packets that SYNC needs to send bac
 |`URL`|String|False|If blank, the SyncP data shall be forwarded to the app.                If not blank, the SyncP data shall be forwarded to the provided URL.            |
 |`Timeout`|Integer|False|If blank, the SyncP data shall be forwarded to the app.                If not blank, the SyncP data shall be forwarded with the provided timeout in seconds.            |
 
-### CreateWindow
-Message Type: **request**
 
-Create a new window on the display with the specified window type.
-            
-        
-
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-|`windowID`|Integer|A unique ID to identify the window. The value of '0' will always be the default main window on the main display and should not be used in this context as it will already be created for the app. See PredefinedWindows enum. Creating a window with an ID that is already in use will be rejected with `INVALID_ID`..|
-|`windowName`|String[]|True|The window name to be used by the HMI. The name of the pre-created default window will match the app name. Multiple apps can share the same window name except for the default main window. Creating a window with a name which is already in use by the app will result in `DUPLICATE_NAME`..|
-|`type`|WindowType|True|The type of the window to be created. Main window or widget.|
-|`associatedServiceType`|String[]|False|Allows an app to create a widget related to a specific service type.As an example if a `MEDIA` app becomes active, this app becomes audible and is allowed to play audio. Actions such as skip or play/pause will be directed to this active media app. In case of widgets, the system can provide a single "media" widget which will act as a placeholder for the active media app.
-
-It is only allowed to have one window per service type. This means that a media app can only have a single MEDIA widget. Still the app can create widgets omitting this parameter. Those widgets would be available as app specific widgets that are permanently included in the HMI.
-
-This parameter is related to widgets only. The default main windwhich is pre-created during app registration, will be created basedthe HMI types specified in the app registration request.|
-|`duplicateUpdatesFromWindowID`|Integer|False|Optional parameter. Specify whether the content sent to an existing window should be duplicated to the created window.
-If there isn't a window with the ID, the request will be rejected with `INVALID_DATA`.|
-
-
-
-### CreateWindow
-Message Type: **response**
-
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful; false, if failed |
-|`info`|String|False|Provides additional human readable info regarding the result.|
-|`resultCode`|Result|True|See Result|
-
-### DeleteWindow
-Message Type: **request**
-
-Deletes previously created window of the SDL application.
-            
-        
-
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-|`windowID`|Integer|A unique ID to identify the window. The value of '0' will always be the default main window on the main display and should not be used in this context as it will already be created for the app. See PredefinedWindows enum. Creating a window with an ID that is already in use will be rejected with `INVALID_ID`..|
-
-
-### DeleteWindow
-Message Type: **response**
-
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful; false, if failed |
-|`info`|String|False|Provides additional human readable info regarding the result.|
-|`resultCode`|Result|True|See Result|
-https://github.com/mked-luxoft/rpc_spec.git
