@@ -50,8 +50,12 @@ def write_iter_section(markdown, child, elem_or_param):
     for element in child:
         if first_element:
             first_element = False
-            if element.tag == 'description':
-                # We have a description for out previous entry
+            if element.tag == 'history':
+                # If the first tag is history, we need to just continue for now. In the future this should be fixed.
+                first_element = True
+                continue
+            elif element.tag == 'description':
+                # We have a description for our previous entry
                 markdown.write(NEW_LINE + element.text.lstrip() + NEW_LINE)
                 write_header(markdown, elem_or_param)
                 continue
