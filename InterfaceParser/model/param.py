@@ -15,12 +15,12 @@ class Param(InterfaceItemBase):
     :param todos: list of string todo elements
     :param platform: optional platform (string or None)
     :param default_value: optional default value of this parameter
-    :param scope: optional scope: internal, partner or none (none by defaul, means public)
-    :param since:
-    :param until:
-    :param deprecated:
-    :param removed:
-    :param history:
+    :param scope: optional scope: internal, partner or none (none by default, means public)
+    :param since: string that defines the rpc spec version an element was introduced
+    :param until: string that defines the rpc spec version an element was removed, deprecated, or changed
+    :param deprecated: boolean that defines if an element is planned to be removed in a future release
+    :param removed: boolean that defines if an element was removed from the api
+    :param history: array of api element signature changes
 
     :param is_mandatory: boolean value indicating whether this parameter is mandatory
     :param param_type: parameter type

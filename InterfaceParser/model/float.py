@@ -3,7 +3,7 @@
 """
 
 
-class Double:
+class Float:
     """Floating-point type.
 
     :param min_value: minimum allowed value

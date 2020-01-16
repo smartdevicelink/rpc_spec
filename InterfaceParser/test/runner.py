@@ -9,7 +9,7 @@ from unittest import TestLoader, TestSuite, TextTestRunner
 sys.path.append(Path(__file__).absolute().parents[1].as_posix())
 
 try:
-    from parsers_test.test_json_rpc import TestJSONRPCVParser
+    from parsers_test.test_hmi_api_rpc import TestJSONRPCVParser
     from parsers_test.test_sdl_rpc_v1 import TestSDLRPCV1Parser
     from parsers_test.test_sdl_rpc_v2 import TestSDLRPCV2Parser
     from test_model import TestInterfaceModel

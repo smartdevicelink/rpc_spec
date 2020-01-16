@@ -9,7 +9,7 @@ try:
     from parsers.sdl_rpc_v1 import Parser
     from model.integer import Integer
     from model.boolean import Boolean
-    from model.double import Double
+    from model.float import Float
     from model.array import Array
     from model.string import String
     from model.enum_subset import EnumSubset
@@ -186,7 +186,7 @@ class TestSDLRPCV1Parser(unittest.TestCase):
         member = struct.members["member3"]
         self.verify_base_item(item=member, name="member3")
         self.assertEqual(False, member.is_mandatory)
-        self.assertIsInstance(member.param_type, Double)
+        self.assertIsInstance(member.param_type, Float)
         self.assertIsNone(member.param_type.min_value)
         self.assertAlmostEqual(20.5, member.param_type.max_value)
 

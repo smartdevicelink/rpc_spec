@@ -6,10 +6,10 @@ from pathlib import Path
 sys.path.append(Path(__file__).absolute().parents[2].as_posix())
 
 try:
-    from parsers.json_rpc import Parser
+    from parsers.hmi_api_rpc import Parser
     from model.array import Array
     from model.boolean import Boolean
-    from model.double import Double
+    from model.float import Float
     from model.enum_subset import EnumSubset
     from model.integer import Integer
     from model.string import String
@@ -262,7 +262,7 @@ class TestJSONRPCVParser(unittest.TestCase):
         member = struct.members["member3"]
         self.verify_base_item(item=member, name="member3")
         self.assertEqual(False, member.is_mandatory)
-        self.assertIsInstance(member.param_type, Double)
+        self.assertIsInstance(member.param_type, Float)
         self.assertIsNone(member.param_type.min_value)
         self.assertAlmostEqual(20.5, member.param_type.max_value)
 

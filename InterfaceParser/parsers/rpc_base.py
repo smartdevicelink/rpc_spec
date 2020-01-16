@@ -11,7 +11,7 @@ from xml.etree import ElementTree
 
 from model.array import Array
 from model.boolean import Boolean
-from model.double import Double
+from model.float import Float
 from model.enum import Enum
 from model.enum_element import EnumElement
 from model.enum_subset import EnumSubset
@@ -230,7 +230,7 @@ class RPCBase(ABC):
         members = OrderedDict()
         for subelement in subelements:
             if subelement.tag == "param":
-                self._add_item(members, self._parse_param(subelement, prefix))
+                self._add_item(members, self._parse_struct_param(subelement, prefix))
             else:
                 raise ParseError("Unexpected subelement '{}' in struct '{}'".format(subelement.name, params["name"]))
         params["members"] = members
@@ -426,14 +426,14 @@ class RPCBase(ABC):
                     params[attribute] = int(attrib[attribute])
                 except:
                     raise ParseError("Invalid value for enum element: '{}'".format(attrib[attribute]))
-            elif attribute in ["internal_name", "hexvalue", "deprecated", "removed"]:
+            elif attribute in ["internal_name", "hex_value", "deprecated", "removed"]:
                 params[attribute] = attrib[attribute]
             elif attribute in ["since", "until"]:
                 params[attribute] = self._parse_version(attrib[attribute])
 
         return EnumElement(**params)
 
-    def _parse_param(self, element, prefix):
+    def _parse_struct_param(self, element, prefix):
         """Parse element as structure parameter.
 
         :param element: an instance of Element (from ElementTree)
@@ -471,7 +471,7 @@ class RPCBase(ABC):
                     default_value = int(default_value_string)
                 except:
                     raise ParseError("Invalid value for integer: '{}'".format(default_value_string))
-            elif isinstance(param_type, Double):
+            elif isinstance(param_type, Float):
                 try:
                     default_value = float(default_value_string)
                 except:
@@ -543,7 +543,7 @@ class RPCBase(ABC):
             if default_value is not None:
                 default_value = self._get_bool_from_string(default_value)
             param_type = Boolean(default_value=default_value)
-        elif type_name in ('Integer', 'Float', 'Double'):
+        elif type_name in ('Integer', 'Float', 'Float'):
             min_value = self._extract_optional_number_attrib(
                 attrib, "minvalue", int if type_name == "Integer" else float)
             max_value = self._extract_optional_number_attrib(
@@ -552,7 +552,7 @@ class RPCBase(ABC):
                 attrib, "defvalue", int if type_name == "Integer" else float)
 
             param_type = \
-                (Integer if type_name == "Integer" else Double)(
+                (Integer if type_name == "Integer" else Float)(
                     min_value=min_value,
                     max_value=max_value,
                     default_value=default_value)

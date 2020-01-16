@@ -16,12 +16,13 @@ class Function(InterfaceItemBase):
     :param issues: list of issues
     :param todos: list of string todo elements
     :param platform: optional platform (string or None)
-    :param scope: optional scope: internal, partner or none (none by defaul, means public)
-    :param since:
-    :param until:
-    :param deprecated:
-    :param removed:
-    :param history:
+    :param scope: optional scope: internal, partner or none (none by default, means public).
+           Note exists only in the hmi_api.xml
+    :param since: string that defines the rpc spec version an element was introduced
+    :param until: string that defines the rpc spec version an element was removed, deprecated, or changed
+    :param deprecated: boolean that defines if an element is planned to be removed in a future release
+    :param removed: boolean that defines if an element was removed from the api
+    :param history: array of api element signature changes
 
     :param function_id: function identifier (EnumElement from Enum "FunctionID")
     :param message_type: message type (EnumElement from Enum "messageType")

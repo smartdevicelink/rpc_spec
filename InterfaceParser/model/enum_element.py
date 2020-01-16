@@ -14,22 +14,22 @@ class EnumElement(InterfaceItemBase):
     :param issues: list of issues
     :param todos: list of string todo elements
     :param platform: optional platform (string or None)
-    :param since:
-    :param until:
-    :param deprecated:
-    :param removed:
-    :param history:
+    :param since: string that defines the rpc spec version an element was introduced
+    :param until: string that defines the rpc spec version an element was removed, deprecated, or changed
+    :param deprecated: boolean that defines if an element is planned to be removed in a future release
+    :param removed: boolean that defines if an element was removed from the api
+    :param history: array of api element signature changes
 
     :param internal_name: internal name of an element must be used by a
                           generator if it is provided (not None)
     :param value: optional element value
-    :param hexvalue:
+    :param hex_value: optional element hex value
 
     """
 
     def __init__(self, name, description=None, design_description=None,
                  issues=None, todos=None, platform=None, internal_name=None,
-                 value=None, hexvalue=None, since=None, until=None,
+                 value=None, hex_value=None, since=None, until=None,
                  deprecated=None, removed=None, history=None):
         super(EnumElement, self).__init__(
             name, description=description, design_description=design_description,
@@ -38,7 +38,7 @@ class EnumElement(InterfaceItemBase):
 
         self.internal_name = internal_name
         self.value = value
-        self.hexvalue = hexvalue
+        self.hex_value = hex_value
 
     @property
     def primary_name(self):

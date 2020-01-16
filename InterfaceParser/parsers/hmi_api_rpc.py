@@ -46,7 +46,7 @@ class Parser(RPCBase):
 
         This method is called to check whether the newly parsed enum's name
         conflicts with some predefined enum.
-        As SDLRPCV2 has no predefined enums this implementation does nothing.
+        As JSON RPC parser has no predefined enums this implementation does nothing.
 
         :param enum: an instance of model.Enum
         """

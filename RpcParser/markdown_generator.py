@@ -12,7 +12,7 @@ try:
     from model.struct import Struct
     from model.enum_subset import EnumSubset
     from model.array import Array
-    from model.double import Double
+    from model.float import Float
 
     from parsers.rpc_base import ParseError
     from parsers.sdl_rpc_v2 import Parser
@@ -32,8 +32,6 @@ def extract_type(param):
             return kind.enum.name
         if isinstance(kind, (Struct, Enum)):
             return kind.name
-        if isinstance(kind, Double):
-            return 'Float'
         return type(kind).__name__
 
     if isinstance(param.param_type, Array):
