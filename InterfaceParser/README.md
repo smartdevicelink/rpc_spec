@@ -1,3 +1,12 @@
+# Parser types
+Different parser types implemented in Interface Parser for parsing different types of source XML and generating the code in SDL_core project.
+| Parser | Source file |
+| sdlrpcv1 | sdl_core/src/components/interfaces/v4_protocol_v1_2_no_extra.xml |
+| sdlrpcv2 | sdl_core/src/components/interfaces/MOBILE_API.xml |
+| jsonrpc | sdl_core/src/components/interfaces/HMI_API.xml |
+| mobile-policy-types | sdl_core/src/components/interfaces/MOBILE_API.xml |
+| hmi-policy-types | sdl_core/src/components/interfaces/HMI_API.xml |
+
 # `MOBILE_RPC.xml` structure
 
 ## Overview
@@ -39,7 +48,7 @@ Example:
   </history>
 </enum>
 ```
-SDL has two different enum types: `string` and `integer`. If `"hexvalue"` or `"value"` attribute exists, the enum type is `integer`, otherwise the enum type is `string`. 
+SDL has two different enum types: `string` and `integer`. If `"hexvalue"` or `"value"` attribute exists, the enum type is `integer`, otherwise the enum type is `string`.
 
 The `<element>` has a required `"name"` attribute. For `string` enums, the value of `"name"` attribute will be one of the possible values of the particular `<enum>`.  For `integer` enums, the value of `"value"` attribute will be one of the possible values, the `"hexvalue"` is just a hexadecimal representation of the `"value"` attribute, any of them could be used but `"hexvalue"` is preferred if exist.
 
