@@ -1,7 +1,7 @@
 # `MOBILE_RPC.xml` structure
 
 ## Overview
-This document contains the description of the `MOBILE_API.xml` structure in order of preparation specification and transformation rules for Proxy Library RPC Generation. This is not a full XML specification and only elements and attributes required for the code generation are described here. For the full specification see XSD.
+This document contains the description of the `MOBILE_API.xml` structure in order of preparation specification and transformation rules for Proxy Library RPC Generation. This is not a full XML specification and only elements and attributes required for the code generation are described here. For the full specification see MOBILE_API.xsd.
 
 ## `<interface>`
 The root element is the `<interface>`. The `<interface>` contains any number of `<enum>`, `<struct>` and `<function>`.
