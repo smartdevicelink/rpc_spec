@@ -3,22 +3,97 @@
 """
 import re
 import sys
+from argparse import ArgumentParser
+from collections import namedtuple
 from pathlib import Path
+from time import sleep
 
-sys.path.append(Path(__file__).absolute().parents[1].joinpath('InterfaceParser').as_posix())
+ROOT = Path(__file__).absolute().parents[1]
+sys.path.append(ROOT.joinpath('InterfaceParser').as_posix())
+
 try:
     from model.function import Function
     from model.enum import Enum
     from model.struct import Struct
     from model.enum_subset import EnumSubset
     from model.array import Array
-    from model.float import Float
 
     from parsers.rpc_base import ParseError
     from parsers.sdl_rpc_v2 import Parser
 except ModuleNotFoundError as error:
     print(error)
     sys.exit(1)
+
+
+def get_parser():
+    """
+    Parsing command-line arguments, or evaluating required Paths interactively.
+    :return: an instance of argparse.ArgumentParser
+    """
+    if len(sys.argv) == 2 and sys.argv[1] in ('-v', '--version'):
+        print('1.0.0')
+        sys.exit(0)
+
+    Paths = namedtuple('Paths', 'name path')
+    xml = Paths('source_xml', ROOT.joinpath('MOBILE_API.xml'))
+    required_source = not xml.path.exists()
+
+    out = Paths('output', ROOT.joinpath('README.md'))
+    output_required = not out.path.exists()
+
+    parser = ArgumentParser(description='Proxy Library RPC Generator')
+    parser.add_argument('-v', '--version', action='store_true', help='print the version and exit')
+    parser.add_argument('-xml', '--source-xml', '--input-file', required=required_source,
+                        help='should point to MOBILE_API.xml')
+    parser.add_argument('-xsd', '--source-xsd', required=False)
+    parser.add_argument('-o', '--output', required=output_required,
+                        help='define the place where the generated output should be placed')
+    parser.add_argument('-r', '--regex-pattern', required=False,
+                        help='only elements matched with defined regex pattern will be parsed and generated')
+    parser.add_argument('--verbose', action='store_true', help='display additional details like logs etc')
+    parser.add_argument('-e', '--enums', required=False, action='store_true',
+                        help='only specified elements will be generated, if present')
+    parser.add_argument('-s', '--structs', required=False, action='store_true',
+                        help='only specified elements will be generated, if present')
+    parser.add_argument('-m', '-f', '--functions', required=False, action='store_true',
+                        help='only specified elements will be generated, if present')
+    parser.add_argument('-y', '--overwrite', action='store_true',
+                        help='force overwriting of existing files in output file, ignore confirmation message')
+    parser.add_argument('-n', '--skip', action='store_true',
+                        help='skip overwriting of existing files in output file, ignore confirmation message')
+
+    args, unknown = parser.parse_known_args()
+
+    if unknown:
+        print('found unknown arguments: ' + ' '.join(unknown))
+        parser.print_help(sys.stderr)
+        sys.exit(1)
+
+    if args.skip and args.overwrite:
+        print('please select only one option skip or overwrite')
+        sys.exit(1)
+
+    if not args.enums and not args.structs and not args.functions:
+        args.enums = args.structs = args.functions = True
+
+    for kind in (xml, out):
+        if not getattr(args, kind.name) and kind.path.exists():
+            while True:
+                try:
+                    confirm = input('Confirm default path {} for {} Y/Enter = yes, N = no'
+                                    .format(kind.path, kind.name))
+                    if confirm.lower() == 'y' or not confirm:
+                        print('{} set to {}'.format(kind.name, kind.path))
+                        setattr(args, kind.name, kind.path.as_posix())
+                        sleep(0.05)
+                        break
+                    if confirm.lower() == 'n':
+                        print('provide argument {}'.format(kind.name))
+                        sys.exit(1)
+                except KeyboardInterrupt:
+                    print('\nThe user interrupted the execution of the program')
+                    sys.exit(1)
+    return args
 
 
 def extract_type(param):
@@ -39,15 +114,13 @@ def extract_type(param):
     return evaluate(param.param_type)
 
 
-def main(readme_file='../README.md', file_xml='../MOBILE_API.xml'):
+def process(readme_file, interface):
     """Main function for generation Markdown
 
     :param readme_file: path to README.md
-    :param file_xml: path to MOBILE_API.xml
+    :param interface: path to MOBILE_API.xml
     """
     try:
-        interface = Parser().parse(file_xml)
-        interface = vars(interface)
         with open(readme_file, 'w') as mark_down:
             mark_down.write('# SmartDeviceLink\n# RPC Spec\n\n###### Version: {}\n\n'
                             .format(interface['params']['version']))
@@ -94,6 +167,47 @@ def main(readme_file='../README.md', file_xml='../MOBILE_API.xml'):
     except ParseError as error1:
         print(error1)
         sys.exit(1)
+
+
+def filter_pattern(interface, pattern):
+    """
+    Filtering Interface to extract only items matched with regex pattern
+    :param interface: Interface model
+    :param pattern: regex
+    :return:
+    """
+    match = {i: {} for i in vars(interface).keys()}
+    match['params'] = interface.params
+    if pattern:
+        for key, value in vars(interface).items():
+            if key == 'params':
+                continue
+            for name, item in value.items():
+                if re.match(pattern, item.name):
+                    if key in match:
+                        match[key].update({name: item})
+    else:
+        return vars(interface)
+    return match
+
+
+def main():
+    """
+    Main functions calls
+    """
+    args = get_parser()
+    interface = Parser().parse(args.source_xml)
+
+    filtered = filter_pattern(interface, args.regex_pattern)
+
+    if not args.enums:
+        del filtered['enums']
+    if not args.structs:
+        del filtered['structs']
+    if not args.functions:
+        del filtered['functions']
+
+    process(args.output, filtered)
 
 
 if __name__ == '__main__':

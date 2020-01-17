@@ -23,6 +23,7 @@ class CodeFormatAndQuality(unittest.TestCase):
         for (directory, _, filenames) in walk(root.as_posix()):
             self.list_of_files += [join(directory, file) for file in filenames
                                    if file.endswith('.py') and not file.startswith('test')]
+        self.list_of_files.append('--max-line-length=240')
         self.list_of_files.append(root.parents[0].joinpath('RpcParser/markdown_generator.py').as_posix())
 
     def test_check(self):
