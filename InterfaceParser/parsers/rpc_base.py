@@ -538,7 +538,7 @@ class RPCBase(ABC):
             if default_value is not None:
                 default_value = self._get_bool_from_string(default_value)
             param_type = Boolean(default_value=default_value)
-        elif type_name in ('Integer', 'Float', 'Float'):
+        elif type_name in ('Integer', 'Float'):
             min_value = self._extract_optional_number_attrib(
                 attrib, "minvalue", int if type_name == "Integer" else float)
             max_value = self._extract_optional_number_attrib(

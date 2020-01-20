@@ -38,7 +38,7 @@ def get_parser():
     xml = Paths('source_xml', ROOT.joinpath('MOBILE_API.xml'))
     required_source = not xml.path.exists()
 
-    out = Paths('output', ROOT.joinpath('README.md'))
+    out = Paths('output_directory', ROOT.joinpath('README.md'))
     output_required = not out.path.exists()
 
     parser = ArgumentParser(description='Proxy Library RPC Generator')
@@ -46,8 +46,8 @@ def get_parser():
     parser.add_argument('-xml', '--source-xml', '--input-file', required=required_source,
                         help='should point to MOBILE_API.xml')
     parser.add_argument('-xsd', '--source-xsd', required=False)
-    parser.add_argument('-o', '--output', required=output_required,
-                        help='define the place where the generated output should be placed')
+    parser.add_argument('-o', '--output-directory', required=output_required,
+                        help='define the place where the generated output_directory should be placed')
     parser.add_argument('-r', '--regex-pattern', required=False,
                         help='only elements matched with defined regex pattern will be parsed and generated')
     parser.add_argument('--verbose', action='store_true', help='display additional details like logs etc')
@@ -58,9 +58,9 @@ def get_parser():
     parser.add_argument('-m', '-f', '--functions', required=False, action='store_true',
                         help='only specified elements will be generated, if present')
     parser.add_argument('-y', '--overwrite', action='store_true',
-                        help='force overwriting of existing files in output file, ignore confirmation message')
+                        help='force overwriting of existing files in output_directory file, ignore confirmation message')
     parser.add_argument('-n', '--skip', action='store_true',
-                        help='skip overwriting of existing files in output file, ignore confirmation message')
+                        help='skip overwriting of existing files in output_directory file, ignore confirmation message')
 
     args, unknown = parser.parse_known_args()
 
@@ -196,16 +196,16 @@ def main():
     Main functions calls
     """
     args = get_parser()
-    if args.output.exists() and args.skip:
-        print('Skipping {}'.format(args.output))
+    if args.output_directory.exists() and args.skip:
+        print('Skipping {}'.format(args.output_directory))
         return
-    elif args.output.exists() and not args.skip and not args.overwrite:
-        print('Exist {}, and skip or overwrite argument not provided'.format(args.output))
+    elif args.output_directory.exists() and not args.skip and not args.overwrite:
+        print('Exist {}, and skip or overwrite argument not provided'.format(args.output_directory))
         return
-    elif args.output.exists() and args.overwrite:
-        print('Overwriting {}'.format(args.output))
-    elif not args.output.exists():
-        print('Creating new {}'.format(args.output))
+    elif args.output_directory.exists() and args.overwrite:
+        print('Overwriting {}'.format(args.output_directory))
+    elif not args.output_directory.exists():
+        print('Creating new {}'.format(args.output_directory))
 
     interface = Parser().parse(args.source_xml)
 
@@ -218,7 +218,7 @@ def main():
     if not args.functions:
         del filtered['functions']
 
-    process(args.output, filtered)
+    process(args.output_directory, filtered)
 
 
 if __name__ == '__main__':
