@@ -5,10 +5,12 @@ Contains parser for SDLRPCV2 XML format.
 """
 
 from collections import OrderedDict
+from pathlib import Path
 
 from model.enum import Enum
 from parsers.parse_error import ParseError
 from parsers.rpc_base import RPCBase
+from xmlschema import XMLSchema
 
 
 class Parser(RPCBase):
@@ -17,6 +19,22 @@ class Parser(RPCBase):
     @property
     def get_version(self):
         return '1.0.0'
+
+    def parse(self, filename, xsd=None):
+        if not xsd:
+            if not Path(filename).exists():
+                raise ParseError('File not found: %s', filename)
+            replace = filename.replace('.xml', '.xsd')
+            if not Path(replace).exists():
+                raise ParseError('File not found: %s', replace)
+            else:
+                xsd = replace
+
+            xs = XMLSchema(xsd)
+            if not xs.is_valid(filename):
+                raise ParseError('Invalid XML file content: %s', xs.validate(filename))
+
+        return super(Parser, self).parse(filename)
 
     @staticmethod
     def _initialize_enums():
