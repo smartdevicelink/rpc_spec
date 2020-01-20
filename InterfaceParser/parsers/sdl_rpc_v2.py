@@ -30,9 +30,9 @@ class Parser(RPCBase):
             else:
                 xsd = replace
 
-            xs = XMLSchema(xsd)
-            if not xs.is_valid(filename):
-                raise ParseError('Invalid XML file content: %s', xs.validate(filename))
+        xs = XMLSchema(xsd)
+        if not xs.is_valid(filename):
+            raise ParseError('Invalid XML file content: %s', xs.validate(filename))
 
         return super(Parser, self).parse(filename)
 
