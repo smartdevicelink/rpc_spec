@@ -84,7 +84,7 @@ def get_parser():
                                     .format(kind.path, kind.name))
                     if confirm.lower() == 'y' or not confirm:
                         print('{} set to {}'.format(kind.name, kind.path))
-                        setattr(args, kind.name, kind.path.as_posix())
+                        setattr(args, kind.name, kind.path)
                         sleep(0.05)
                         break
                     if confirm.lower() == 'n':
@@ -196,6 +196,17 @@ def main():
     Main functions calls
     """
     args = get_parser()
+    if args.output.exists() and args.skip:
+        print('Skipping {}'.format(args.output))
+        return
+    elif args.output.exists() and not args.skip and not args.overwrite:
+        print('Exist {}, and skip or overwrite argument not provided'.format(args.output))
+        return
+    elif args.output.exists() and args.overwrite:
+        print('Overwriting {}'.format(args.output))
+    elif not args.output.exists():
+        print('Creating new {}'.format(args.output))
+
     interface = Parser().parse(args.source_xml)
 
     filtered = filter_pattern(interface, args.regex_pattern)
