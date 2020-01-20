@@ -28,16 +28,6 @@ class Parser(RPCBase):
         """
         return OrderedDict()
 
-    def _check_enum_name(self, enum):
-        """Check enum name.
-
-        This method is called to check whether the newly parsed enum's name
-        conflicts with some predefined enum.
-        As SDLRPCV2 has no predefined enums this implementation does nothing.
-
-        :param enum: an instance of model.Enum
-        """
-
     def _parse_function_id_type(self, function_name, attrib):
         """Parse function id and message type according to XML format.
 

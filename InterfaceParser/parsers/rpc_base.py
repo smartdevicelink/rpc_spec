@@ -11,10 +11,10 @@ from xml.etree import ElementTree
 
 from model.array import Array
 from model.boolean import Boolean
-from model.float import Float
 from model.enum import Enum
 from model.enum_element import EnumElement
 from model.enum_subset import EnumSubset
+from model.float import Float
 from model.function import Function
 from model.integer import Integer
 from model.interface import Interface
@@ -89,10 +89,6 @@ class RPCBase(ABC):
             [("FunctionID", Enum(name="FunctionID")),
              ("messageType", Enum(name="messageType"))])
 
-    @abstractmethod
-    def _check_enum_name(self, enum):
-        pass
-
     def _check_function_param_name(self, function_param_name):
         """Check function param name.
 
@@ -138,7 +134,6 @@ class RPCBase(ABC):
         for element in subelements:
             if element.tag == "enum":
                 enum = self._parse_enum(element, prefix)
-                self._check_enum_name(enum)
                 self._add_item(self._enums, enum)
                 self._add_type(enum)
             elif element.tag == "struct":
