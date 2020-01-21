@@ -1,3 +1,14 @@
+# Requirements
+
+The parser requires Python 3.5 pre-installed in the system. This is the minimal Python 3 version that has not reached the end-of-life (https://devguide.python.org/devcycle/#end-of-life-branches).
+
+The parser requires `xmlschema` library in order to provide the required schema validation. Additionally `pylint` and `coverage` libraries are required for unit tests.
+
+Those libraries are described in `requirements.txt` and should be pre-installed by the command:
+```shell script
+pip install -r requirements.txt
+```
+
 # Parser types
 Different parser types implemented in Interface Parser for parsing different types of source XML and generating the code in SDL_core project.
 
