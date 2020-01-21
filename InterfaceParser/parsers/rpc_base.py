@@ -134,21 +134,20 @@ class RPCBase(ABC):
         for element in subelements:
             if element.tag == "enum":
                 enum = self._parse_enum(element, prefix)
-                self._add_item(self._enums, enum)
+                self._evaluate_element(self._enums, enum)
                 self._add_type(enum)
             elif element.tag == "struct":
                 struct = self._parse_struct(element, prefix)
-                self._add_item(self._structs, struct)
+                self._evaluate_element(self._structs, struct)
                 self._add_type(struct)
             elif element.tag == "function":
                 func = self._parse_function(element, prefix)
-                self._add_item(self._functions, func,
-                               (func.function_id, func.message_type))
+                self._evaluate_element(self._functions, func, (func.function_id, func.message_type))
             else:
                 raise ParseError("Unexpected element: " + element.tag)
 
     @staticmethod
-    def _add_item(items, item, key=None):
+    def _evaluate_element(items, item, key=None):
         """Add new item in the items dictionary with given key.
 
         Performs additional check for presence in the dictionary and throws
@@ -198,7 +197,7 @@ class RPCBase(ABC):
         elements = OrderedDict()
         for subelement in subelements:
             if subelement.tag == "element":
-                self._add_item(elements, self._parse_enum_element(subelement))
+                self._evaluate_element(elements, self._parse_enum_element(subelement))
             else:
                 raise ParseError("Unexpected element '{}' in enum '{}'".format(subelement.tag, params["name"]))
         params["elements"] = elements
@@ -225,7 +224,7 @@ class RPCBase(ABC):
         members = OrderedDict()
         for subelement in subelements:
             if subelement.tag == "param":
-                self._add_item(members, self._parse_struct_param(subelement, prefix))
+                self._evaluate_element(members, self._parse_struct_param(subelement, prefix))
             else:
                 raise ParseError("Unexpected subelement '{}' in struct '{}'".format(subelement.name, params["name"]))
         params["members"] = members
@@ -320,15 +319,9 @@ class RPCBase(ABC):
         :param prefix: empty string
         :return: an params, sub-elements and attributes of the element
         """
-        params = {}
+        params = {"description": [], "design_description": [], "issues": [], "todos": [], "history": None}
 
-        description = []
-        design_description = []
-        issues = []
-        todos = []
         subelements = []
-        history = None
-        warnings = []
 
         if "name" not in element.attrib:
             raise ParseError("Name is not specified for " + element.tag)
@@ -341,28 +334,21 @@ class RPCBase(ABC):
 
         for subelement in element:
             if subelement.tag == "description":
-                description.append(self._parse_simple_element(subelement))
+                params["description"].append(self._parse_simple_element(subelement))
             elif subelement.tag == "designdescription":
-                design_description.append(
-                    self._parse_simple_element(subelement))
+                params["design_description"].append(self._parse_simple_element(subelement))
             elif subelement.tag == "todo":
-                todos.append(self._parse_simple_element(subelement))
+                params["todos"].append(self._parse_simple_element(subelement))
             elif subelement.tag == "issue":
-                issues.append(self._parse_issue(subelement))
+                params["issues"].append(self._parse_issue(subelement))
             elif subelement.tag == "history":
-                if history is not None:
+                if params["history"] is not None:
                     raise ParseError("Elements can only have one history tag: " + element.tag)
-                history = self._parse_history(subelement, prefix, element)
+                params["history"] = self._parse_history(subelement, prefix, element)
             elif subelement.tag == "warning":
-                warnings.append(self._parse_simple_element(subelement))
+                self._parse_simple_element(subelement)
             else:
                 subelements.append(subelement)
-
-        params["description"] = description
-        params["design_description"] = design_description
-        params["issues"] = issues
-        params["todos"] = todos
-        params["history"] = history
 
         return params, subelements, attrib
 
@@ -459,8 +445,7 @@ class RPCBase(ABC):
         if default_value_string is not None:
             param_type = params["param_type"]
             if isinstance(param_type, Boolean):
-                default_value = \
-                    self._get_bool_from_string(default_value_string)
+                default_value = self._get_bool_from_string(default_value_string)
             elif isinstance(param_type, Integer):
                 try:
                     default_value = int(default_value_string)
@@ -479,9 +464,8 @@ class RPCBase(ABC):
                 else:
                     allowed_elements = param_type.elements
                 if default_value_string not in allowed_elements:
-                    raise ParseError("Default value '{}' for parameter '{}' is not a member of {} '{}'"
-                                     .format(default_value_string, params["name"], type(param_type).__name__,
-                                             params["name"]))
+                    raise ParseError("Default value '{}' for parameter '{}' is not a member of {}"
+                                     .format(default_value_string, params["name"], type(param_type.__name__)))
                 default_value = allowed_elements[default_value_string]
             else:
                 raise ParseError("Default value specified for " + type(param_type).__name__)
@@ -503,7 +487,32 @@ class RPCBase(ABC):
         :return: params, other subelements and attributes.
         """
         params, subelements, attrib = self._parse_base_item(element, "")
+        params.update(self._extract_all_base_attrib(attrib))
 
+        param_type, default_value = self._extract_param_type(attrib, prefix, params["name"])
+
+        base_type = param_type.element_type if isinstance(param_type, Array) else param_type
+
+        other_subelements = []
+        for subelement in subelements:
+            if subelement.tag == "element":
+                base_type = self._parse_base_enum_element(subelement, base_type, params)
+            else:
+                other_subelements.append(subelement)
+
+        if isinstance(param_type, Array):
+            param_type.element_type = base_type
+        else:
+            param_type = base_type
+
+        params["param_type"] = param_type
+        if default_value is not None:
+            params["default_value"] = default_value
+
+        return params, other_subelements, attrib
+
+    def _extract_all_base_attrib(self, attrib):
+        params = {}
         since_version = self._extract_attrib(attrib, "since")
         if since_version is not None:
             params["since"] = self._parse_version(since_version)
@@ -520,19 +529,22 @@ class RPCBase(ABC):
         if removed is not None:
             params["removed"] = removed
 
+        scope = self._extract_attrib(attrib, "scope")
+        if scope is not None:
+            params["scope"] = scope
+
         is_mandatory = self._extract_attrib(attrib, "mandatory")
         if is_mandatory is None:
             raise ParseError("'mandatory' is not specified for parameter '{}'".format(params["name"]))
 
         params["is_mandatory"] = self._get_bool_from_string(is_mandatory)
 
-        scope = self._extract_attrib(attrib, "scope")
-        if scope is not None:
-            params["scope"] = scope
+        return params
 
+    def _extract_param_type(self, attrib, prefix, name):
         type_name = self._extract_attrib(attrib, "type")
         if type_name is None:
-            raise ParseError("Type is not specified for parameter '{}'".format(params["name"]))
+            raise ParseError("Type is not specified for parameter '{}'".format(name))
         if type_name == "Boolean":
             default_value = self._extract_attrib(attrib, "defvalue")
             if default_value is not None:
@@ -546,11 +558,10 @@ class RPCBase(ABC):
             default_value = self._extract_optional_number_attrib(
                 attrib, "defvalue", int if type_name == "Integer" else float)
 
-            param_type = \
-                (Integer if type_name == "Integer" else Float)(
-                    min_value=min_value,
-                    max_value=max_value,
-                    default_value=default_value)
+            param_type = (Integer if type_name == "Integer" else Float)(
+                min_value=min_value,
+                max_value=max_value,
+                default_value=default_value)
         elif type_name == "String":
             min_length = self._extract_optional_number_attrib(attrib, "minlength")
             # if minlength is not defined default value is 1
@@ -570,13 +581,11 @@ class RPCBase(ABC):
                 default_value = self._extract_attrib(attrib, "defvalue")
                 if default_value is not None:
                     if default_value not in param_type.elements:
-                        raise ParseError("Default value '{}' for parameter '{}' is not a member of {} '{}'"
-                                         .format(default_value, params["name"], type(param_type).__name__,
-                                                 params["name"]))
+                        raise ParseError("Default value '{}' for parameter '{}' is not a member of {}"
+                                         .format(default_value, name, type(param_type.__name__)))
                     default_value = param_type.elements[default_value]
             else:
                 raise ParseError("Unknown type '{}'".format(type_name))
-
         if self._extract_optional_bool_attrib(attrib, "array", False):
             min_size = self._extract_optional_number_attrib(attrib, "minsize")
             max_size = self._extract_optional_number_attrib(attrib, "maxsize")
@@ -584,59 +593,42 @@ class RPCBase(ABC):
                                min_size=min_size,
                                max_size=max_size)
 
-        base_type = \
-            param_type.element_type if isinstance(param_type, Array) \
-                else param_type
+        return param_type, default_value
 
-        other_subelements = []
-        for subelement in subelements:
-            if subelement.tag == "element":
-                if not isinstance(base_type, (Enum, EnumSubset)):
-                    raise ParseError("Elements specified for parameter '{}' of type '{}'"
-                                     .format(params["name"], type(base_type).__name__))
-                if isinstance(base_type, Enum):
-                    base_type = EnumSubset(
-                        name=params["name"],
-                        enum=base_type,
-                        description=params["description"],
-                        design_description=params["design_description"],
-                        issues=params["issues"],
-                        todos=params["todos"],
-                        allowed_elements={})
-                if "name" not in subelement.attrib:
-                    raise ParseError("Element name is not specified for parameter '{}'".format(params["name"]))
-                element_name = subelement.attrib["name"]
-                if len(subelement.attrib) != 1:
-                    raise ParseError("Unexpected attributes for element '{}' of parameter '{}'"
-                                     .format(element_name, params["name"]))
-                children = subelement.getchildren()
-                for child in children:
-                    if child.tag == "description":
-                        children.remove(child)
-                if len(children) != 0:
-                    raise ParseError("Unexpected subelements for element '{}' of parameter '{}'"
-                                     .format(element_name, params["name"]))
-                if element_name in base_type.allowed_elements:
-                    raise ParseError("Element '{}' is specified more than once for parameter '{}'"
-                                     .format(element_name, params["name"]))
-                if element_name not in base_type.enum.elements:
-                    raise ParseError("Element '{}' is not a member of enum '{}'"
-                                     .format(element_name, base_type.enum.name))
-                base_type.allowed_elements[element_name] = \
-                    base_type.enum.elements[element_name]
-            else:
-                other_subelements.append(subelement)
-
-        if isinstance(param_type, Array):
-            param_type.element_type = base_type
-        else:
-            param_type = base_type
-
-        params["param_type"] = param_type
-        if default_value is not None:
-            params["default_value"] = default_value
-
-        return params, other_subelements, attrib
+    @staticmethod
+    def _parse_base_enum_element(subelement, base_type, params):
+        if not isinstance(base_type, (Enum, EnumSubset)):
+            raise ParseError("Elements specified for parameter '{}' of type '{}'"
+                             .format(params["name"], type(base_type).__name__))
+        if isinstance(base_type, Enum):
+            base_type = EnumSubset(
+                name=params["name"],
+                enum=base_type,
+                description=params["description"],
+                design_description=params["design_description"],
+                issues=params["issues"],
+                todos=params["todos"],
+                allowed_elements={})
+        if "name" not in subelement.attrib:
+            raise ParseError("Element name is not specified for parameter '{}'".format(params["name"]))
+        element_name = subelement.attrib["name"]
+        if len(subelement.attrib) != 1:
+            raise ParseError("Unexpected attributes for element '{}' of parameter '{}'"
+                             .format(element_name, params["name"]))
+        children = subelement.getchildren()
+        for child in children:
+            if child.tag == "description":
+                children.remove(child)
+        if len(children) != 0:
+            raise ParseError("Unexpected subelements for element '{}' of parameter '{}'"
+                             .format(element_name, params["name"]))
+        if element_name in base_type.allowed_elements:
+            raise ParseError("Element '{}' is specified more than once for parameter '{}'"
+                             .format(element_name, params["name"]))
+        if element_name not in base_type.enum.elements:
+            raise ParseError("Element '{}' is not a member of enum '{}'".format(element_name, base_type.enum.name))
+        base_type.allowed_elements[element_name] = base_type.enum.elements[element_name]
+        return base_type
 
     def _extract_optional_bool_attrib(self, attrib, name, default):
         """Extract boolean attribute with given name.

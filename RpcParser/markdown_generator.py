@@ -199,10 +199,10 @@ def main():
     if args.output_directory.exists() and args.skip:
         print('Skipping {}'.format(args.output_directory))
         return
-    elif args.output_directory.exists() and not args.skip and not args.overwrite:
+    if args.output_directory.exists() and not args.skip and not args.overwrite:
         print('Exist {}, and skip or overwrite argument not provided'.format(args.output_directory))
         return
-    elif args.output_directory.exists() and args.overwrite:
+    if args.output_directory.exists() and args.overwrite:
         print('Overwriting {}'.format(args.output_directory))
     elif not args.output_directory.exists():
         print('Creating new {}'.format(args.output_directory))

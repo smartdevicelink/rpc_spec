@@ -6,11 +6,11 @@ Contains parser for SDLRPCV2 XML format.
 
 from collections import OrderedDict
 from pathlib import Path
+from xmlschema import XMLSchema
 
 from model.enum import Enum
 from parsers.parse_error import ParseError
 from parsers.rpc_base import RPCBase
-from xmlschema import XMLSchema
 
 
 class Parser(RPCBase):
@@ -23,16 +23,16 @@ class Parser(RPCBase):
     def parse(self, filename, xsd=None):
         if not xsd:
             if not Path(filename).exists():
-                raise ParseError('File not found: %s', filename)
+                raise ParseError('File not found: ' + filename)
             replace = filename.replace('.xml', '.xsd')
-            if not Path(replace).exists():
-                raise ParseError('File not found: %s', replace)
-            else:
+            if Path(replace).exists():
                 xsd = replace
+            else:
+                raise ParseError('File not found: ' + replace)
 
-        xs = XMLSchema(xsd)
-        if not xs.is_valid(filename):
-            raise ParseError('Invalid XML file content: %s', xs.validate(filename))
+        schema = XMLSchema(xsd)
+        if not schema.is_valid(filename):
+            raise ParseError('Invalid XML file content:\n' + schema.validate(filename))
 
         return super(Parser, self).parse(filename)
 
