@@ -41,7 +41,7 @@ def get_parser():
     out = Paths('output_directory', ROOT.joinpath('README.md'))
     output_required = not out.path.exists()
 
-    parser = ArgumentParser(description='Proxy Library RPC Generator')
+    parser = ArgumentParser(description='Mobile API Spec Generator')
     parser.add_argument('-v', '--version', action='store_true', help='print the version and exit')
     parser.add_argument('-xml', '--source-xml', '--input-file', required=required_source,
                         help='should point to MOBILE_API.xml')
