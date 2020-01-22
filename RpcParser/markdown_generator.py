@@ -207,7 +207,7 @@ def main():
     elif not args.output_directory.exists():
         print('Creating new {}'.format(args.output_directory))
 
-    interface = Parser().parse(args.source_xml)
+    interface = Parser().parse(args.source_xml, args.source_xsd)
 
     filtered = filter_pattern(interface, args.regex_pattern)
 
