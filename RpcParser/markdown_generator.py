@@ -58,7 +58,8 @@ def get_parser():
     parser.add_argument('-m', '-f', '--functions', required=False, action='store_true',
                         help='only specified elements will be generated, if present')
     parser.add_argument('-y', '--overwrite', action='store_true',
-                        help='force overwriting of existing files in output_directory file, ignore confirmation message')
+                        help='force overwriting of existing files in output_directory file, ignore confirmation '
+                             'message')
     parser.add_argument('-n', '--skip', action='store_true',
                         help='skip overwriting of existing files in output_directory file, ignore confirmation message')
 
@@ -196,17 +197,6 @@ def main():
     Main functions calls
     """
     args = get_parser()
-    if args.output_directory.exists() and args.skip:
-        print('Skipping {}'.format(args.output_directory))
-        return
-    if args.output_directory.exists() and not args.skip and not args.overwrite:
-        print('Exist {}, and skip or overwrite argument not provided'.format(args.output_directory))
-        return
-    if args.output_directory.exists() and args.overwrite:
-        print('Overwriting {}'.format(args.output_directory))
-    elif not args.output_directory.exists():
-        print('Creating new {}'.format(args.output_directory))
-
     interface = Parser().parse(args.source_xml, args.source_xsd)
 
     filtered = filter_pattern(interface, args.regex_pattern)
@@ -218,7 +208,31 @@ def main():
     if not args.functions:
         del filtered['functions']
 
-    process(args.output_directory, filtered)
+    if args.output_directory.is_file():
+        if args.skip:
+            print('Skipping ' + args.output_directory.name)
+            return
+        if args.overwrite:
+            print('Overriding ' + args.output_directory.name)
+            process(args.output_directory, filtered)
+        else:
+            while True:
+                try:
+                    confirm = input('File already exists {}. Overwrite? Y/Enter = yes, N = no\n'
+                                    .format(args.output_directory.name))
+                    if confirm.lower() == 'y' or not confirm:
+                        print('Overriding ' + args.output_directory.name)
+                        process(args.output_directory, filtered)
+                        break
+                    if confirm.lower() == 'n':
+                        print('Skipping ' + args.output_directory.name)
+                        break
+                except KeyboardInterrupt:
+                    print('\nThe user interrupted the execution of the program')
+                    sys.exit(1)
+    else:
+        print('Writing new ' + args.output_directory.name)
+        process(args.output_directory, filtered)
 
 
 if __name__ == '__main__':
