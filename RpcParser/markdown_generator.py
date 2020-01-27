@@ -39,14 +39,13 @@ def get_parser():
     required_source = not xml.path.exists()
 
     out = Paths('output_directory', ROOT.joinpath('README.md'))
-    output_required = not out.path.exists()
 
     parser = ArgumentParser(description='Mobile API Spec Generator')
     parser.add_argument('-v', '--version', action='store_true', help='print the version and exit')
     parser.add_argument('-xml', '--source-xml', '--input-file', required=required_source,
                         help='should point to MOBILE_API.xml')
     parser.add_argument('-xsd', '--source-xsd', required=False)
-    parser.add_argument('-o', '--output-directory', required=output_required,
+    parser.add_argument('-d', '--output-directory', required=False,
                         help='define the place where the generated output_directory should be placed')
     parser.add_argument('-r', '--regex-pattern', required=False,
                         help='only elements matched with defined regex pattern will be parsed and generated')
@@ -78,7 +77,7 @@ def get_parser():
         args.enums = args.structs = args.functions = True
 
     for kind in (xml, out):
-        if not getattr(args, kind.name) and kind.path.exists():
+        if not getattr(args, kind.name):
             while True:
                 try:
                     confirm = input('Confirm default path {} for {} Y/Enter = yes, N = no'
@@ -94,6 +93,10 @@ def get_parser():
                 except KeyboardInterrupt:
                     print('\nThe user interrupted the execution of the program')
                     sys.exit(1)
+
+    if isinstance(args.output_directory, str):
+        args.output_directory = Path(args.output_directory)
+
     return args
 
 
