@@ -407,7 +407,9 @@ class RPCBase(ABC):
                     params[attribute] = int(attrib[attribute])
                 except:
                     raise ParseError("Invalid value for enum element: '{}'".format(attrib[attribute]))
-            elif attribute in ["internal_name", "hex_value", "deprecated", "removed"]:
+            elif attribute == "hexvalue":
+                params["hex_value"] = attrib[attribute]
+            elif attribute in ["internal_name", "deprecated", "removed"]:
                 params[attribute] = attrib[attribute]
             elif attribute in ["since", "until"]:
                 params[attribute] = self._parse_version(attrib[attribute])
