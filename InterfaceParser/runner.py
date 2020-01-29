@@ -15,7 +15,7 @@ def main(source_xml='../MOBILE_API.xml'):
         interface = parser.parse(source_xml)
         print(vars(interface))
         return interface
-    except (ParseError, KeyboardInterrupt) as error:
+    except ParseError as error:
         print(error)
 
 

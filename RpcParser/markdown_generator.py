@@ -1,5 +1,5 @@
-"""Generator for Markdown
-
+"""
+Generator for Markdown
 """
 import logging
 import re
@@ -28,6 +28,10 @@ except ModuleNotFoundError as error:
 
 
 class Markdown:
+    """
+    Generator for Markdown
+    """
+
     def __init__(self):
         self.logger = logging.getLogger(self.__class__.__name__)
         self.config_logging('verbose')
@@ -72,7 +76,7 @@ class Markdown:
         args, unknown = parser.parse_known_args()
 
         if unknown:
-            self.logger.error('found unknown arguments: ' + ' '.join(unknown))
+            self.logger.error('found unknown arguments: %s', ' '.join(unknown))
             parser.print_help(sys.stderr)
             sys.exit(1)
 
@@ -93,12 +97,12 @@ class Markdown:
                         confirm = input('Confirm default path {} for {} Y/Enter = yes, N = no'
                                         .format(kind.path, kind.name))
                         if confirm.lower() == 'y' or not confirm:
-                            self.logger.info('{} set to {}'.format(kind.name, kind.path))
+                            self.logger.info('%s set to %s', kind.name, kind.path)
                             setattr(args, kind.name, kind.path)
                             sleep(0.05)
                             break
                         if confirm.lower() == 'n':
-                            self.logger.warning('provide argument {}'.format(kind.name))
+                            self.logger.warning('provide argument %s', kind.name)
                             sys.exit(1)
                     except KeyboardInterrupt:
                         self.logger.warning('\nThe user interrupted the execution of the program')
@@ -124,7 +128,6 @@ class Markdown:
                 self.logger.error('Failed to create directory %s, %s', path.as_posix(), message1)
                 sys.exit(1)
         return path.joinpath(self.file_name)
-
 
     def config_logging(self, verbose):
         """
@@ -266,10 +269,10 @@ class Markdown:
 
         if args.output_directory.is_file():
             if args.skip:
-                self.logger.info('Skipping ' + args.output_directory.as_posix())
+                self.logger.info('Skipping %s', args.output_directory.as_posix())
                 return
             if args.overwrite:
-                self.logger.info('Overriding ' + args.output_directory.as_posix())
+                self.logger.info('Overriding %s', args.output_directory.as_posix())
                 self.process(args.output_directory, filtered)
             else:
                 while True:
@@ -277,17 +280,17 @@ class Markdown:
                         confirm = input('File already exists {}. Overwrite? Y/Enter = yes, N = no\n'
                                         .format(args.output_directory.as_posix()))
                         if confirm.lower() == 'y' or not confirm:
-                            self.logger.info('Overriding ' + args.output_directory.as_posix())
+                            self.logger.info('Overriding %s', args.output_directory.as_posix())
                             self.process(args.output_directory, filtered)
                             break
                         if confirm.lower() == 'n':
-                            self.logger.info('Skipping ' + args.output_directory.as_posix())
+                            self.logger.info('Skipping %s', args.output_directory.as_posix())
                             break
                     except KeyboardInterrupt:
                         self.logger.info('\nThe user interrupted the execution of the program')
                         sys.exit(1)
         else:
-            self.logger.info('Writing new ' + args.output_directory.as_posix())
+            self.logger.info('Writing new %s', args.output_directory.as_posix())
             self.process(args.output_directory, filtered)
 
 

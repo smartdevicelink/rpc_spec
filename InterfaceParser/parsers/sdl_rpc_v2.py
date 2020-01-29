@@ -6,11 +6,12 @@ Contains parser for SDLRPCV2 XML format.
 
 from collections import OrderedDict
 from pathlib import Path
+from xml.etree.ElementTree import ParseError as xmlParseError
+from xmlschema import XMLSchema
 
 from model.enum import Enum
-from parsers.parse_error import ParseError
+from parsers.parse_error import ParseError as modelParseError
 from parsers.rpc_base import RPCBase
-from xmlschema import XMLSchema
 
 
 class Parser(RPCBase):
@@ -24,18 +25,20 @@ class Parser(RPCBase):
         filename = str(filename)
         if not xsd:
             if not Path(filename).exists():
-                raise ParseError('File not found: ' + filename)
+                raise modelParseError('File not found: ' + filename)
             replace = filename.replace('.xml', '.xsd')
             if Path(replace).exists():
                 xsd = replace
             else:
-                raise ParseError('File not found: ' + replace)
+                raise modelParseError('File not found: ' + replace)
 
         schema = XMLSchema(xsd)
-        if not schema.is_valid(filename):
-            raise ParseError('Invalid XML file content:\n' + schema.validate(filename))
-
-        return super(Parser, self).parse(filename)
+        try:
+            if not schema.is_valid(filename):
+                raise modelParseError('Invalid XML file content:\n' + schema.validate(filename))
+            return super(Parser, self).parse(filename)
+        except xmlParseError as error:
+            raise modelParseError(error)
 
     @staticmethod
     def _initialize_enums():
@@ -60,10 +63,10 @@ class Parser(RPCBase):
         :return: function id and message type as an instances of EnumElement.
         """
         if "functionID" not in attrib:
-            raise ParseError("No functionID specified for function '{}'".format(function_name))
+            raise modelParseError("No functionID specified for function '{}'".format(function_name))
 
         if "messagetype" not in attrib:
-            raise ParseError("No messagetype specified for function '{}'".format(function_name))
+            raise modelParseError("No message type specified for function '{}'".format(function_name))
 
         function_id = self._get_enum_element_for_function(
             "FunctionID",
@@ -82,15 +85,15 @@ class Parser(RPCBase):
         :return: an instance of generator.Model.EnumElement.
         """
         if enum_name not in self._types:
-            raise ParseError("Enumeration '{}' must be declared before any function"
-                             .format(enum_name))
+            raise modelParseError("Enumeration '{}' must be declared before any function"
+                                  .format(enum_name))
 
         enum = self._types[enum_name]
 
         if not isinstance(enum, Enum):
-            raise ParseError("'{}' is not an enumeration".format(enum_name))
+            raise modelParseError("'{}' is not an enumeration".format(enum_name))
 
         if element_name not in enum.elements:
-            raise ParseError("'{}' is not a member of enum '{}'".format(element_name, enum_name))
+            raise modelParseError("'{}' is not a member of enum '{}'".format(element_name, enum_name))
 
         return enum.elements[element_name]
