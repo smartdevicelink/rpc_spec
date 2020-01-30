@@ -32,8 +32,8 @@ class Parser(RPCBase):
             else:
                 raise modelParseError('File not found: ' + replace)
 
-        schema = XMLSchema(xsd)
         try:
+            schema = XMLSchema(xsd)
             if not schema.is_valid(filename):
                 raise modelParseError('Invalid XML file content:\n' + schema.validate(filename))
             return super(Parser, self).parse(filename)
