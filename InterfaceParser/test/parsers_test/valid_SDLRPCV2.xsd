@@ -1,0 +1,251 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="interface" type="interfaceType"/>
+    <xs:complexType name="elementType" mixed="true">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element type="xs:string" name="designdescription"/>
+            <xs:element type="xs:string" name="todo"/>
+            <xs:element type="issueType" name="issue"/>
+        </xs:choice>
+        <xs:attribute type="xs:string" name="name" use="optional"/>
+        <xs:attribute type="xs:byte" name="value" use="optional"/>
+        <xs:attribute type="xs:string" name="internal_name" use="optional"/>
+        <xs:attribute type="xs:string" name="platform" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="enumType">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element type="xs:string" name="description"/>
+            <xs:element type="elementType" name="element"/>
+            <xs:element name="todo">
+                <xs:complexType mixed="true">
+                    <xs:choice maxOccurs="unbounded" minOccurs="0">
+                        <xs:element type="xs:string" name="designdescription"/>
+                        <xs:element type="xs:string" name="description"/>
+                        <xs:element type="issueType" name="issue"/>
+                        <xs:element name="todo">
+                            <xs:complexType mixed="true">
+                                <xs:choice maxOccurs="unbounded" minOccurs="0">
+                                    <xs:element type="xs:string" name="designdescription"/>
+                                    <xs:element type="xs:string" name="todo"/>
+                                    <xs:element type="issueType" name="issue"/>
+                                </xs:choice>
+                                <xs:attribute type="xs:string" name="name" use="optional"/>
+                                <xs:attribute type="xs:byte" name="value" use="optional"/>
+                                <xs:attribute type="xs:string" name="internal_name" use="optional"/>
+                                <xs:attribute type="xs:string" name="platform" use="optional"/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:choice>
+                    <xs:attribute type="xs:string" name="name" use="optional"/>
+                    <xs:attribute type="xs:byte" name="value" use="optional"/>
+                    <xs:attribute type="xs:string" name="internal_name" use="optional"/>
+                    <xs:attribute type="xs:string" name="type" use="optional"/>
+                    <xs:attribute type="xs:string" name="mandatory" use="optional"/>
+                    <xs:attribute type="xs:string" name="platform" use="optional"/>
+                    <xs:attribute type="xs:float" name="maxvalue" use="optional"/>
+                    <xs:attribute type="xs:byte" name="minvalue" use="optional"/>
+                    <xs:attribute type="xs:string" name="array" use="optional"/>
+                    <xs:attribute type="xs:string" name="defvalue" use="optional"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element type="xs:string" name="designdescription"/>
+            <xs:element type="issueType" name="issue"/>
+            <xs:element type="paramType" name="param" minOccurs="0"/>
+        </xs:choice>
+        <xs:attribute type="xs:string" name="name" use="optional"/>
+        <xs:attribute type="xs:string" name="internal_scope" use="optional"/>
+        <xs:attribute type="xs:string" name="platform" use="optional"/>
+        <xs:attribute type="xs:string" name="functionID" use="optional"/>
+        <xs:attribute type="xs:string" name="messagetype" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="issueType" mixed="true">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element type="xs:string" name="designdescription"/>
+            <xs:element type="xs:string" name="todo"/>
+            <xs:element type="issueType" name="issue"/>
+            <xs:element type="xs:string" name="description"/>
+        </xs:choice>
+        <xs:attribute type="xs:string" name="creator" use="optional"/>
+        <xs:attribute type="xs:string" name="name" use="optional"/>
+        <xs:attribute type="xs:byte" name="value" use="optional"/>
+        <xs:attribute type="xs:string" name="internal_name" use="optional"/>
+        <xs:attribute type="xs:string" name="type" use="optional"/>
+        <xs:attribute type="xs:string" name="mandatory" use="optional"/>
+        <xs:attribute type="xs:string" name="platform" use="optional"/>
+        <xs:attribute type="xs:float" name="maxvalue" use="optional"/>
+        <xs:attribute type="xs:byte" name="minvalue" use="optional"/>
+        <xs:attribute type="xs:string" name="array" use="optional"/>
+        <xs:attribute type="xs:string" name="defvalue" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="paramType" mixed="true">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element type="xs:string" name="description"/>
+            <xs:element type="issueType" name="issue"/>
+            <xs:element name="todo">
+                <xs:complexType mixed="true">
+                    <xs:choice maxOccurs="unbounded" minOccurs="0">
+                        <xs:element type="xs:string" name="designdescription"/>
+                        <xs:element type="xs:string" name="todo"/>
+                        <xs:element type="issueType" name="issue"/>
+                    </xs:choice>
+                    <xs:attribute type="xs:string" name="name" use="optional"/>
+                    <xs:attribute type="xs:byte" name="value" use="optional"/>
+                    <xs:attribute type="xs:string" name="internal_name" use="optional"/>
+                    <xs:attribute type="xs:string" name="platform" use="optional"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element type="xs:string" name="designdescription"/>
+            <xs:element type="elementType" name="element"/>
+        </xs:choice>
+        <xs:attribute type="xs:string" name="name" use="optional"/>
+        <xs:attribute type="xs:string" name="type" use="optional"/>
+        <xs:attribute type="xs:string" name="mandatory" use="optional"/>
+        <xs:attribute type="xs:string" name="platform" use="optional"/>
+        <xs:attribute type="xs:float" name="maxvalue" use="optional"/>
+        <xs:attribute type="xs:byte" name="minvalue" use="optional"/>
+        <xs:attribute type="xs:string" name="array" use="optional"/>
+        <xs:attribute type="xs:string" name="defvalue" use="optional"/>
+        <xs:attribute type="xs:byte" name="maxlength" use="optional"/>
+        <xs:attribute type="xs:byte" name="minsize" use="optional"/>
+        <xs:attribute type="xs:byte" name="maxsize" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="structType">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element type="paramType" name="param"/>
+            <xs:element type="issueType" name="issue"/>
+            <xs:element name="description">
+                <xs:complexType mixed="true">
+                    <xs:choice maxOccurs="unbounded" minOccurs="0">
+                        <xs:element type="xs:string" name="designdescription"/>
+                        <xs:element type="xs:string" name="todo"/>
+                        <xs:element type="issueType" name="issue"/>
+                        <xs:element type="xs:string" name="description"/>
+                    </xs:choice>
+                    <xs:attribute type="xs:string" name="creator" use="optional"/>
+                    <xs:attribute type="xs:string" name="name" use="optional"/>
+                    <xs:attribute type="xs:byte" name="value" use="optional"/>
+                    <xs:attribute type="xs:string" name="internal_name" use="optional"/>
+                    <xs:attribute type="xs:string" name="type" use="optional"/>
+                    <xs:attribute type="xs:string" name="mandatory" use="optional"/>
+                    <xs:attribute type="xs:string" name="platform" use="optional"/>
+                    <xs:attribute type="xs:float" name="maxvalue" use="optional"/>
+                    <xs:attribute type="xs:byte" name="minvalue" use="optional"/>
+                    <xs:attribute type="xs:string" name="array" use="optional"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="todo">
+                <xs:complexType mixed="true">
+                    <xs:choice maxOccurs="unbounded" minOccurs="0">
+                        <xs:element type="xs:string" name="description"/>
+                        <xs:element type="issueType" name="issue"/>
+                        <xs:element name="todo">
+                            <xs:complexType mixed="true">
+                                <xs:choice maxOccurs="unbounded" minOccurs="0">
+                                    <xs:element type="xs:string" name="designdescription"/>
+                                    <xs:element type="xs:string" name="todo"/>
+                                    <xs:element type="issueType" name="issue"/>
+                                </xs:choice>
+                                <xs:attribute type="xs:string" name="name" use="optional"/>
+                                <xs:attribute type="xs:byte" name="value" use="optional"/>
+                                <xs:attribute type="xs:string" name="internal_name" use="optional"/>
+                                <xs:attribute type="xs:string" name="platform" use="optional"/>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element type="xs:string" name="designdescription"/>
+                    </xs:choice>
+                    <xs:attribute type="xs:string" name="name" use="optional"/>
+                    <xs:attribute type="xs:string" name="type" use="optional"/>
+                    <xs:attribute type="xs:string" name="mandatory" use="optional"/>
+                    <xs:attribute type="xs:string" name="platform" use="optional"/>
+                    <xs:attribute type="xs:float" name="maxvalue" use="optional"/>
+                    <xs:attribute type="xs:byte" name="minvalue" use="optional"/>
+                    <xs:attribute type="xs:string" name="array" use="optional"/>
+                    <xs:attribute type="xs:string" name="defvalue" use="optional"/>
+                    <xs:attribute type="xs:byte" name="value" use="optional"/>
+                    <xs:attribute type="xs:string" name="internal_name" use="optional"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element type="elementType" name="element"/>
+            <xs:element type="xs:string" name="designdescription"/>
+        </xs:choice>
+        <xs:attribute type="xs:string" name="name" use="optional"/>
+        <xs:attribute type="xs:string" name="platform" use="optional"/>
+        <xs:attribute type="xs:string" name="functionID" use="optional"/>
+        <xs:attribute type="xs:string" name="messagetype" use="optional"/>
+        <xs:attribute type="xs:string" name="internal_scope" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="functionType">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element name="description" minOccurs="0">
+                <xs:complexType mixed="true">
+                    <xs:choice maxOccurs="unbounded" minOccurs="0">
+                        <xs:element type="xs:string" name="designdescription"/>
+                        <xs:element type="xs:string" name="todo"/>
+                        <xs:element type="issueType" name="issue"/>
+                        <xs:element type="xs:string" name="description"/>
+                    </xs:choice>
+                    <xs:attribute type="xs:string" name="creator" use="optional"/>
+                    <xs:attribute type="xs:string" name="name" use="optional"/>
+                    <xs:attribute type="xs:byte" name="value" use="optional"/>
+                    <xs:attribute type="xs:string" name="internal_name" use="optional"/>
+                    <xs:attribute type="xs:string" name="type" use="optional"/>
+                    <xs:attribute type="xs:string" name="mandatory" use="optional"/>
+                    <xs:attribute type="xs:string" name="platform" use="optional"/>
+                    <xs:attribute type="xs:float" name="maxvalue" use="optional"/>
+                    <xs:attribute type="xs:byte" name="minvalue" use="optional"/>
+                    <xs:attribute type="xs:string" name="array" use="optional"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element type="paramType" name="param" minOccurs="0"/>
+            <xs:element name="todo">
+                <xs:complexType mixed="true">
+                    <xs:choice maxOccurs="unbounded" minOccurs="0">
+                        <xs:element type="xs:string" name="description"/>
+                        <xs:element type="issueType" name="issue"/>
+                        <xs:element name="todo">
+                            <xs:complexType mixed="true">
+                                <xs:choice maxOccurs="unbounded" minOccurs="0">
+                                    <xs:element type="xs:string" name="designdescription"/>
+                                    <xs:element type="xs:string" name="todo"/>
+                                    <xs:element type="issueType" name="issue"/>
+                                </xs:choice>
+                                <xs:attribute type="xs:string" name="name" use="optional"/>
+                                <xs:attribute type="xs:byte" name="value" use="optional"/>
+                                <xs:attribute type="xs:string" name="internal_name" use="optional"/>
+                                <xs:attribute type="xs:string" name="platform" use="optional"/>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element type="xs:string" name="designdescription"/>
+                    </xs:choice>
+                    <xs:attribute type="xs:string" name="name" use="optional"/>
+                    <xs:attribute type="xs:string" name="type" use="optional"/>
+                    <xs:attribute type="xs:string" name="mandatory" use="optional"/>
+                    <xs:attribute type="xs:string" name="platform" use="optional"/>
+                    <xs:attribute type="xs:float" name="maxvalue" use="optional"/>
+                    <xs:attribute type="xs:byte" name="minvalue" use="optional"/>
+                    <xs:attribute type="xs:string" name="array" use="optional"/>
+                    <xs:attribute type="xs:string" name="defvalue" use="optional"/>
+                    <xs:attribute type="xs:byte" name="value" use="optional"/>
+                    <xs:attribute type="xs:string" name="internal_name" use="optional"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element type="issueType" name="issue" minOccurs="0"/>
+            <xs:element type="elementType" name="element"/>
+            <xs:element type="xs:string" name="designdescription"/>
+        </xs:choice>
+        <xs:attribute type="xs:string" name="name" use="optional"/>
+        <xs:attribute type="xs:string" name="functionID" use="optional"/>
+        <xs:attribute type="xs:string" name="messagetype" use="optional"/>
+        <xs:attribute type="xs:string" name="platform" use="optional"/>
+        <xs:attribute type="xs:string" name="internal_scope" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="interfaceType">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element type="enumType" name="enum" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element type="structType" name="struct"/>
+            <xs:element type="functionType" name="function"/>
+        </xs:choice>
+        <xs:attribute type="xs:string" name="name"/>
+        <xs:attribute type="xs:string" name="attribute1"/>
+        <xs:attribute type="xs:string" name="attribute2"/>
+    </xs:complexType>
+</xs:schema>

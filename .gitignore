@@ -1,0 +1,10 @@
+.idea
+*.iml
+*venv*
+*.pyc
+*out
+.DS_Store
+*htmlcov
+*.coverage
+*__pycache__
+*.pytest_cache
