@@ -24,6 +24,7 @@
             <xs:attribute name="since" use="required" type="xs:string"/>
             <xs:attribute name="until" type="xs:string"/>
             <xs:attribute name="deprecated" type="xs:boolean"/>
+            <xs:attribute name="removed" type="xs:boolean"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="function">
@@ -39,6 +40,7 @@
             <xs:attribute name="since" use="required" type="xs:string"/>
             <xs:attribute name="until" type="xs:string"/>
             <xs:attribute name="deprecated" type="xs:boolean"/>
+            <xs:attribute name="removed" type="xs:boolean"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="enum">
@@ -51,6 +53,7 @@
             <xs:attribute name="name" use="required" type="xs:string"/>
             <xs:attribute name="since" use="required" type="xs:string"/>
             <xs:attribute name="deprecated" type="xs:boolean"/>
+            <xs:attribute name="removed" type="xs:boolean"/>
             <xs:attribute name="internal_scope" type="xs:string"/>
             <xs:attribute name="platform" type="xs:string"/>
             <xs:attribute name="until" type="xs:string"/>
@@ -71,6 +74,7 @@
             <xs:attribute name="array" type="xs:boolean"/>
             <xs:attribute name="defvalue" type="xs:string"/>
             <xs:attribute name="deprecated" type="xs:boolean"/>
+            <xs:attribute name="removed" type="xs:boolean"/>
             <xs:attribute name="maxlength" type="xs:integer"/>
             <xs:attribute name="maxsize" type="xs:integer"/>
             <xs:attribute name="maxvalue" type="xs:decimal"/>
@@ -94,6 +98,8 @@
             <xs:attribute name="hexvalue" type="xs:string"/>
             <xs:attribute name="internal_name" type="xs:string"/>
             <xs:attribute name="rootscreen" type="xs:boolean"/>
+            <xs:attribute name="deprecated" type="xs:boolean"/>
+            <xs:attribute name="removed" type="xs:boolean"/>
             <xs:attribute name="since" type="xs:string"/>
             <xs:attribute name="until" type="xs:string"/>
             <xs:attribute name="value" type="xs:integer"/>
