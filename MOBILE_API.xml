@@ -8236,7 +8236,7 @@
                 This parameter is filled for supporting OEM proprietary data exchanges.
             </description>
         </param>
-        <param name="url" type="String" maxlength="1000" mandatory="false">
+        <param name="url" type="String" mandatory="false">
             <description>
                 Optional URL for HTTP requests.
                 If blank, the binary data shall be forwarded to the app.
