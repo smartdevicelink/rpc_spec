@@ -35,6 +35,7 @@ messageType
 parameters
 function
 getFunctionID
+setFunctionID
 getFunctionName
 setFunctionName
 getMessageType
@@ -94,6 +95,7 @@ KEY_RESULT_CODE
 getValue 
 setValue 
 getFunctionID 
+setFunctionID
 getResultCode 
 setResultCode 
 
