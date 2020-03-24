@@ -1,4 +1,4 @@
-# SDl Java Suite
+# Java Suite Library
 KEY_BULK_DATA
 KEY_PROTECTED
 store
@@ -66,7 +66,7 @@ getInfo
 setInfo
 preprocessMsg
 
-# SDL JavaScript Suite
+# JavaScript Suite Library
 getParameters
 getParameter
 setParameter
@@ -97,7 +97,7 @@ getFunctionID
 getResultCode 
 setResultCode 
 
-# SDL iOS
+# iOS Library
 ## Objective-C Keywords
 auto
 break
@@ -247,7 +247,7 @@ _
 #sourceLocation
 #warning
 
-## SDL Reserved
+# SDL Reserved
 store
 payloadProtected
 bulkData
