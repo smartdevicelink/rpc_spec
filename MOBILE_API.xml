@@ -364,6 +364,10 @@
     </enum>
 
     <enum name="PredefinedWindows" since="6.0">
+    	<description>
+    		Specifies what windows and IDs are predefined and pre-created. 
+    		Mobile libraries and core communicate using the integer value.
+    	</description>
         <element name="DEFAULT_WINDOW" value="0">
             <description>The default window is a main window pre-created on behalf of the app.</description>
         </element>
@@ -2888,6 +2892,7 @@
         <description>
             Enumeration linking message types with function types in WiPro protocol.
             Assumes enumeration starts at value 0.
+            The integer value is used in the protocol binary header.
         </description>
         <element name="request" value="0" />
         <element name="response" value="1" />
@@ -3683,6 +3688,10 @@
     </struct>
 
     <enum name="LightName" since="5.0">
+    	<description>
+    		Enumeration that describes possible values of light name.
+    		Mobile libraries and core communicate using the name string as a value.
+    	</description>
         <!-- Common Single Light 0~500 -->
         <element name="FRONT_LEFT_HIGH_BEAM" value="0"/>
         <element name="FRONT_RIGHT_HIGH_BEAM" value="1"/>
