@@ -569,6 +569,7 @@
         <element name="VEHICLEDATA_ELECTRONICPARKBRAKESTATUS" since="5.0" />
         <element name="VEHICLEDATA_CLOUDAPPVEHICLEID" since="5.1"/>
         <element name="VEHICLEDATA_OEM_CUSTOM_DATA" since="6.0"/>
+        <element name="VEHICLEDATA_WINDOWSTATUS" since="6.2"/>
     </enum>
 
     <enum name="HybridAppPreference" since="5.1">
@@ -2294,6 +2295,21 @@
         </param>
         <param name="levelspan" type="Integer" mandatory="false" defvalue="1" minvalue="1" maxvalue="100">
         </param>
+    </struct>
+
+    <struct name="WindowState" since="6.2">
+      <param name="approximatePosition" type="Integer" minvalue="0" maxvalue="100" mandatory="true">
+        <description>The approximate percentage that the window is open - 0 being fully closed, 100 being fully open</description>
+      </param>
+      <param name="deviation" type="Integer" minvalue="0" maxvalue="100" mandatory="true">
+        <description>The percentage deviation of the approximatePosition. e.g. If the approximatePosition is 50 and the deviation is 10, then the window's location is somewhere between 40 and 60.</description>
+      </param>
+    </struct>
+
+    <struct name="WindowStatus" since="6.2">
+      <description>Describes the status of a window of a door/liftgate etc.</description>
+      <param name="location" type="Grid" mandatory="true"/>
+      <param name="state" type="WindowState" mandatory="true"/>     
     </struct>
 
     <struct name="ModuleInfo" since="6.0">
@@ -5907,6 +5923,9 @@
         <param name="myKey" type="Boolean" mandatory="false">
             <description>Information related to the MyKey feature</description>
         </param>
+        <param name="windowStatus" type="Boolean" mandatory="false" since="6.2">
+            <description>See WindowStatus</description>
+        </param>
     </function>
     
     <function name="SubscribeVehicleData" functionID="SubscribeVehicleDataID" messagetype="response" since="2.0">
@@ -6020,6 +6039,9 @@
         <param name="myKey" type="VehicleDataResult" mandatory="false">
             <description>Information related to the MyKey feature</description>
         </param>
+        <param name="windowStatus" type="VehicleDataResult" mandatory="false" since="6.2">
+            <description>See WindowStatus</description>
+        </param>
     </function>
     
     <function name="UnsubscribeVehicleData" functionID="UnsubscribeVehicleDataID" messagetype="request" since="2.0">
@@ -6111,6 +6133,9 @@
         </param>
         <param name="myKey" type="Boolean" mandatory="false">
             <description>Information related to the MyKey feature</description>
+        </param>
+        <param name="windowStatus" type="Boolean" mandatory="false" since="6.2">
+            <description>See WindowStatus</description>
         </param>
     </function>
     
@@ -6224,6 +6249,9 @@
         <param name="myKey" type="VehicleDataResult" mandatory="false">
             <description>Information related to the MyKey feature</description>
         </param>
+        <param name="windowStatus" type="VehicleDataResult" mandatory="false" since="6.2">
+            <description>See WindowStatus</description>
+        </param>
     </function>
     
     <function name="GetVehicleData" functionID="GetVehicleDataID" messagetype="request" since="2.0">
@@ -6318,6 +6346,9 @@
         </param>
         <param name="myKey" type="Boolean" mandatory="false">
             <description>Information related to the MyKey feature</description>
+        </param>
+        <param name="windowStatus" type="Boolean" mandatory="false" since="6.2">
+            <description>See WindowStatus</description>
         </param>
     </function>
     
@@ -6434,6 +6465,9 @@
         </param>
         <param name="myKey" type="MyKey" mandatory="false">
             <description>Information related to the MyKey feature</description>
+        </param>
+        <param name="windowStatus" type="WindowStatus" array="true" minsize="0" maxsize="100" mandatory="false">
+            <description>See WindowStatus</description>
         </param>
     </function>
     
@@ -8132,6 +8166,9 @@
         </param>
         <param name="myKey" type="MyKey" mandatory="false">
             <description>Information related to the MyKey feature</description>
+        </param>
+        <param name="windowStatus" type="WindowStatus" array="true" minsize="0" maxsize="100" mandatory="false">
+            <description>See WindowStatus</description>
         </param>
     </function>
     
