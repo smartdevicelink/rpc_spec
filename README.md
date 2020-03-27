@@ -3105,10 +3105,10 @@ The systemCapabilityType identifies which data object exists in this struct. For
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`systemCapabilityType`|SystemCapabilityType|True|Used as a descriptor of what data to expect in this struct. The corresponding param to this enum should be included and the only other param included.|
-|`navigationCapability`|NavigationCapability|False|Describes extended capabilities for onboard navigation system |
+|`navigationCapability`|NavigationCapability|False|Describes extended capabilities for onboard navigation system|
 |`phoneCapability`|PhoneCapability|False|Describes extended capabilities of the module's phone feature|
-|`videoStreamingCapability`|VideoStreamingCapability|False|Describes extended capabilities of the module's phone feature|
-|`remoteControlCapability`|RemoteControlCapabilities|False|Describes extended capabilities of the module's phone feature|
+|`videoStreamingCapability`|VideoStreamingCapability|False|Contains information about this system's video streaming capabilities|
+|`remoteControlCapability`|RemoteControlCapabilities|False|Contains information about the module's remote control feature|
 |`appServicesCapabilities`|AppServicesCapabilities|False|An array of currently available services. If this is an update to the capability the affected services will include an update reason in that item|
 |`seatLocationCapability`|SeatLocationCapability|False|Contains information about the locations of each seat|
 |`displayCapabilities`|DisplayCapability[]|False||
