@@ -4417,16 +4417,16 @@
             <description>Used as a descriptor of what data to expect in this struct. The corresponding param to this enum should be included and the only other param included.</description>
         </param>
         <param name="navigationCapability" type="NavigationCapability" mandatory="false">
-            <description>Describes extended capabilities for onboard navigation system </description>
+            <description>Describes extended capabilities for onboard navigation system</description>
         </param>
         <param name="phoneCapability" type="PhoneCapability" mandatory="false">
             <description>Describes extended capabilities of the module's phone feature</description>
         </param>
         <param name="videoStreamingCapability" type="VideoStreamingCapability" mandatory="false">
-            <description>Describes extended capabilities of the module's phone feature</description>
+            <description>Contains information about this system's video streaming capabilities</description>
         </param>
         <param name="remoteControlCapability" type="RemoteControlCapabilities" mandatory="false">
-            <description>Describes extended capabilities of the module's phone feature</description>
+            <description>Contains information about the module's remote control feature</description>
         </param>
         <param name="appServicesCapabilities" type="AppServicesCapabilities" mandatory="false" since="5.1">
             <description>An array of currently available services. If this is an update to the capability the affected services will include an update reason in that item</description>
