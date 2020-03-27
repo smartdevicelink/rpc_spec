@@ -4423,7 +4423,7 @@
             <description>Describes extended capabilities of the module's phone feature</description>
         </param>
         <param name="videoStreamingCapability" type="VideoStreamingCapability" mandatory="false">
-            <description>Contains information about this system's video streaming capabilities</description>
+            <description>Contains information about the module's video streaming capabilities</description>
         </param>
         <param name="remoteControlCapability" type="RemoteControlCapabilities" mandatory="false">
             <description>Contains information about the module's remote control feature</description>
