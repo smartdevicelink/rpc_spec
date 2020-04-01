@@ -449,6 +449,7 @@
         <element name="APP_UNAUTHORIZED" since="2.0" />
         <element name="PROTOCOL_VIOLATION" since="4.0" />
         <element name="UNSUPPORTED_HMI_RESOURCE" since="4.1" />
+        <element name="RESOURCE_CONSTRAINT" since="6.2" />
     </enum>
     
     <enum name="TriggerSource" since="1.0">
@@ -2645,6 +2646,7 @@
         <element name="SYSTEM" />
         <element name="PROJECTION" since="4.5" />
         <element name="REMOTE_CONTROL" since="4.5" />
+        <element name="WEB_VIEW" since="6.2" />
     </enum>         
 
     <enum name="PredefinedLayout" platform="documentation" since="3.0">
@@ -2767,6 +2769,12 @@
             <description>
                 Custom root template screen containing only a large graphic.
                 Can be set as a root screen.
+            </description>
+        </element>
+        <element name="WEB_VIEW" rootscreen="true" since="6.2">
+            <description>
+                Custom root template allowing in-vehicle WebEngine applications with
+                appropriate permissions to show the application's own web view.
             </description>
         </element>
     </enum>         
