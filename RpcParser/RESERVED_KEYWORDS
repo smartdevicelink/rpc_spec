@@ -53,18 +53,9 @@ getCorrelationID
 setCorrelationID
 setOnRPCResponseListener
 getOnRPCResponseListener
-KEY_SUCCESS
-KEY_INFO
-KEY_RESULT_CODE
 preprocessMsg
 getCorrelationID
 setCorrelationID
-getSuccess
-setSuccess
-getResultCode
-setResultCode
-getInfo
-setInfo
 preprocessMsg
 
 # JavaScript Suite Library
@@ -83,21 +74,10 @@ getBulkData
 setBulkData
 getIsEncrypted
 setIsEncrypted
-getSuccess
-setSuccess
-getInfo
-setInfo
-getResultCode
-setResultCode
-KEY_SUCCESS
-KEY_INFO
-KEY_RESULT_CODE
 getValue 
 setValue 
 getFunctionID 
 setFunctionID
-getResultCode 
-setResultCode 
 
 # iOS Library
 ## Objective-C Keywords
@@ -257,6 +237,3 @@ name
 parameters
 messageType
 correlationID
-success
-resultCode
-info
