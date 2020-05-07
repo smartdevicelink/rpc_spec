@@ -864,7 +864,7 @@
         </element>
         
         <element name="phoneNumber" since="4.0">
-            <description> Optional hone number of intended location / establishment (if applicable) for SendLocation.</description>
+            <description> Optional home number of intended location / establishment (if applicable) for SendLocation.</description>
         </element>
         
     </enum>
