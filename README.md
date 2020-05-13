@@ -1,7 +1,7 @@
 # SmartDeviceLink
 # RPC Spec
 
-###### Version: 6.0.0
+###### Version: 6.2.0
 
 ## Enumerations
 
@@ -411,6 +411,7 @@ Defines the data types that can be published and subscribed to.
 |`VEHICLEDATA_ELECTRONICPARKBRAKESTATUS`||
 |`VEHICLEDATA_CLOUDAPPVEHICLEID`||
 |`VEHICLEDATA_OEM_CUSTOM_DATA`||
+|`VEHICLEDATA_WINDOWSTATUS`||
 
 
 ### HybridAppPreference
@@ -1832,6 +1833,21 @@ Specifies the version number of the SmartDeviceLink protocol that is supported b
 |`type`|FuelType|False||
 |`range`|Float|False|The estimate range in KM the vehicle can travel based on fuel level and consumption.            |
 
+### WindowState
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`approximatePosition`|Integer|True|The approximate percentage that the window is open - 0 being fully closed, 100 being fully open|
+|`deviation`|Integer|True|The percentage deviation of the approximatePosition. e.g. If the approximatePosition is 50 and the deviation is 10, then the window's location is somewhere between 40 and 60.|
+
+### WindowStatus
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`location`|Grid|True||
+|`state`|WindowState|True||
 
 ### SingleTireStatus
 ##### Parameters
@@ -3803,6 +3819,7 @@ Subscribes for specific published data items.
 |`emergencyEvent`|Boolean|False|Information related to an emergency event (and if it occurred)|
 |`clusterModeStatus`|Boolean|False|The status modes of the cluster|
 |`myKey`|Boolean|False|Information related to the MyKey feature|
+|`windowStatus`|Boolean|False|Information related to window status|
 
 
 ### SubscribeVehicleData
@@ -3844,7 +3861,7 @@ Message Type: **response**
 |`emergencyEvent`|VehicleDataResult|False|Information related to an emergency event (and if it occurred)|
 |`clusterModes`|VehicleDataResult|False|The status modes of the cluster|
 |`myKey`|VehicleDataResult|False|Information related to the MyKey feature|
-
+|`windowStatus`|Boolean|False|Information related to window status|
 
 ### UnsubscribeVehicleData
 Message Type: **request**
@@ -3884,6 +3901,7 @@ This function is used to unsubscribe the notifications from the subscribeVehicle
 |`emergencyEvent`|Boolean|False|Information related to an emergency event (and if it occurred)|
 |`clusterModeStatus`|Boolean|False|The status modes of the cluster|
 |`myKey`|Boolean|False|Information related to the MyKey feature|
+|`windowStatus`|Boolean|False|Information related to window status|
 
 
 ### UnsubscribeVehicleData
@@ -3925,6 +3943,7 @@ Message Type: **response**
 |`emergencyEvent`|VehicleDataResult|False|Information related to an emergency event (and if it occurred)|
 |`clusterModes`|VehicleDataResult|False|The status modes of the cluster|
 |`myKey`|VehicleDataResult|False|Information related to the MyKey feature|
+|`windowStatus`|Boolean|False|Information related to window status|
 
 
 ### GetVehicleData
@@ -3966,6 +3985,7 @@ Non periodic vehicle data read request.
 |`emergencyEvent`|Boolean|False|Information related to an emergency event (and if it occurred)|
 |`clusterModeStatus`|Boolean|False|The status modes of the cluster|
 |`myKey`|Boolean|False|Information related to the MyKey feature|
+|`windowStatus`|Boolean|False|Information related to window status|
 
 
 ### GetVehicleData
@@ -4008,6 +4028,7 @@ Message Type: **response**
 |`emergencyEvent`|EmergencyEvent|False|Information related to an emergency event (and if it occurred)|
 |`clusterModeStatus`|ClusterModeStatus|False|The status modes of the cluster|
 |`myKey`|MyKey|False|Information related to the MyKey feature|
+|`windowStatus`|Boolean|False|Information related to window status|
 
 
 ### ReadDID
@@ -5095,6 +5116,7 @@ Callback for the periodic and non periodic vehicle data read function.
 |`emergencyEvent`|EmergencyEvent|False|Information related to an emergency event (and if it occurred)|
 |`clusterModeStatus`|ClusterModeStatus|False|The status modes of the cluster|
 |`myKey`|MyKey|False|Information related to the MyKey feature|
+|`windowStatus`|Boolean|False|Information related to window status|
 
 
 ### OnCommand
