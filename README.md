@@ -387,6 +387,7 @@ Defines the data types that can be published and subscribed to.
 |`VEHICLEDATA_FUELCONSUMPTION`||
 |`VEHICLEDATA_EXTERNTEMP`||
 |`VEHICLEDATA_VIN`||
+|`VEHICLEDATA_GEARSTATUS`||
 |`VEHICLEDATA_PRNDL`||
 |`VEHICLEDATA_TIREPRESSURE`||
 |`VEHICLEDATA_ODOMETER`||
@@ -749,7 +750,7 @@ The selected gear.
 |`PARK`|Parking|
 |`REVERSE`|Reverse gear|
 |`NEUTRAL`|No gear|
-|`DRIVE`||
+|`DRIVE`|Regular Drive mode|
 |`SPORT`|Drive Sport mode|
 |`LOWGEAR`|1st gear hold|
 |`FIRST`||
@@ -760,8 +761,27 @@ The selected gear.
 |`SIXTH`||
 |`SEVENTH`||
 |`EIGHTH`||
+|`NINTH`||
+|`TENTH`||
 |`UNKNOWN`||
 |`FAULT`||
+
+
+### TransmissionType
+Type of transmission used in the vehicle.
+
+#### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`MANUAL`|Manual transmission|
+|`AUTOMATIC`|Automatic transmission|
+|`SEMI_AUTOMATIC`|Semi automatic transmission|
+|`DUAL_CLUTCH`|Dual clutch transmission|
+|`CONTINUOUSLY_VARIABLE`|Continuously variable transmission(CVT)|
+|`INFINITELY_VARIABLE`|Infinitely variable transmission|
+|`ELECTRIC_VARIABLE`|Electric variable transmission|
+|`DIRECT_DRIVE`|Direct drive between engine and wheels|
 
 
 ### ComponentVolumeStatus
@@ -3114,6 +3134,17 @@ The systemCapabilityType identifies which data object exists in this struct. For
 |`displayCapabilities`|DisplayCapability[]|False||
 
 
+### GearStatus
+
+#### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`userSelectedGear`|PRNDL|False|Gear position selected by the user i.e. Park, Drive, Reverse|
+|`actualGear`|PRNDL|False|Actual Gear in use by the transmission|
+|`transmissionType`|TransmissionType|False|Tells the transmission type|
+
+
 
 <div style="page-break-after: always;"></div>
 
@@ -3783,6 +3814,7 @@ Subscribes for specific published data items.
 |`fuelRange`|Boolean|False|The estimate range in KM the vehicle can travel based on fuel level and consumption|
 |`externalTemperature`|Boolean|False|The external temperature in degrees celsius|
 |`turnSignal`|Boolean|False|See TurnSignal|
+|`gearStatus`|Boolean|False|See GearStatus|
 |`prndl`|Boolean|False|See PRNDL|
 |`tirePressure`|Boolean|False|See TireStatus|
 |`odometer`|Boolean|False|Odometer in km|
@@ -3824,6 +3856,7 @@ Message Type: **response**
 |`fuelRange`|VehicleDataResult|False|The estimate range in KM the vehicle can travel based on fuel level and consumption|
 |`externalTemperature`|VehicleDataResult|False|The external temperature in degrees celsius.|
 |`turnSignal`|VehicleDataResult|False|See TurnSignal|
+|`gearStatus`|VehicleDataResult|False|See GearStatus|
 |`prndl`|VehicleDataResult|False|See PRNDL|
 |`tirePressure`|VehicleDataResult|False|See TireStatus|
 |`odometer`|VehicleDataResult|False|Odometer in km|
@@ -3864,6 +3897,7 @@ This function is used to unsubscribe the notifications from the subscribeVehicle
 |`fuelRange`|Boolean|False|The estimate range in KM the vehicle can travel based on fuel level and consumption|
 |`externalTemperature`|Boolean|False|The external temperature in degrees celsius.|
 |`turnSignal`|Boolean|False|See TurnSignal|
+|`gearStatus`|Boolean|False|See GearStatus|
 |`prndl`|Boolean|False|See PRNDL|
 |`tirePressure`|Boolean|False|See TireStatus|
 |`odometer`|Boolean|False|Odometer in km|
@@ -3905,6 +3939,7 @@ Message Type: **response**
 |`fuelRange`|VehicleDataResult|False|The estimate range in KM the vehicle can travel based on fuel level and consumption|
 |`externalTemperature`|VehicleDataResult|False|The external temperature in degrees celsius|
 |`turnSignal`|VehicleDataResult|False|See TurnSignal|
+|`gearStatus`|VehicleDataResult|False|See GearStatus|
 |`prndl`|VehicleDataResult|False|See PRNDL|
 |`tirePressure`|VehicleDataResult|False|See TireStatus|
 |`odometer`|VehicleDataResult|False|Odometer in km|
@@ -3946,6 +3981,7 @@ Non periodic vehicle data read request.
 |`externalTemperature`|Boolean|False|The external temperature in degrees celsius|
 |`turnSignal`|Boolean|False|See TurnSignal|
 |`vin`|Boolean|False|Vehicle identification number|
+|`gearStatus`|Boolean|False|See GearStatus|
 |`prndl`|Boolean|False|See PRNDL|
 |`tirePressure`|Boolean|False|See TireStatus|
 |`odometer`|Boolean|False|Odometer in km|
@@ -3988,6 +4024,7 @@ Message Type: **response**
 |`externalTemperature`|Float|False|The external temperature in degrees celsius|
 |`turnSignal`|TurnSignal|False|See TurnSignal|
 |`vin`|String|False|Vehicle identification number|
+|`gearStatus`|GearStatus|False|See GearStatus|
 |`prndl`|PRNDL|False|See PRNDL|
 |`tirePressure`|TireStatus|False|See TireStatus|
 |`odometer`|Integer|False|Odometer in km|
@@ -5075,6 +5112,7 @@ Callback for the periodic and non periodic vehicle data read function.
 |`externalTemperature`|Float|False|The external temperature in degrees celsius|
 |`turnSignal`|TurnSignal|False|See TurnSignal|
 |`vin`|String|False|Vehicle identification number.|
+|`gearStatus`|GearStatus|False|See GearStatus|
 |`prndl`|PRNDL|False|See PRNDL|
 |`tirePressure`|TireStatus|False|See TireStatus|
 |`odometer`|Integer|False|Odometer in km|
