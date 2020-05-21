@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="no"?>
 <?xml-stylesheet type="text/xml" href="protocol2html.xsl"?>
 
-<interface name="SmartDeviceLink RAPI" version="6.0.0" minVersion="1.0" date="2019-03-19">
+<interface name="SmartDeviceLink RAPI" version="6.2.0" minVersion="1.0" date="2019-03-19">
     <enum name="Result" internal_scope="base" since="1.0">
         <element name="SUCCESS">
             <description>The request succeeded</description>
@@ -545,7 +545,8 @@
         <element name="VEHICLEDATA_FUELCONSUMPTION" />
         <element name="VEHICLEDATA_EXTERNTEMP" />
         <element name="VEHICLEDATA_VIN" />
-        <element name="VEHICLEDATA_PRNDL" />
+        <element name="VEHICLEDATA_GEARSTATUS" since="6.2"/>
+        <element name="VEHICLEDATA_PRNDL" until="6.2"/>
         <element name="VEHICLEDATA_TIREPRESSURE" />
         <element name="VEHICLEDATA_ODOMETER" />
         <element name="VEHICLEDATA_BELTSTATUS" />
@@ -1186,7 +1187,7 @@
             <description>Longitude and latitude and altitude</description>
         </element>
     </enum>
-    
+
     <enum name="PRNDL" since="2.0">
         <description>The selected gear.</description>
         <element name="PARK">
@@ -1199,6 +1200,7 @@
             <description>No gear</description>
         </element>
         <element name="DRIVE">
+            <description>Regular Drive mode</description>
         </element>
         <element name="SPORT">
             <description>Drive Sport mode</description>
@@ -1222,12 +1224,44 @@
         </element>
         <element name="EIGHTH">
         </element>
+        <element name="NINTH" since="6.2">
+        </element>
+        <element name="TENTH" since="6.2">
+        </element>
         <element name="UNKNOWN">
         </element>
         <element name="FAULT">
         </element>
     </enum>
-    
+
+    <enum name="TransmissionType" since="6.2">
+        <description>Type of transmission used in the vehicle.</description>
+        <element name="MANUAL">
+            <description>Manual transmission.</description>
+        </element>
+        <element name="AUTOMATIC">
+            <description>Automatic transmission.</description>
+        </element>
+        <element name="SEMI_AUTOMATIC">
+            <description>Semi automatic transmission.</description>
+        </element>
+        <element name="DUAL_CLUTCH">
+            <description>Dual clutch transmission.</description>
+        </element>
+        <element name="CONTINUOUSLY_VARIABLE">
+            <description>Continuously variable transmission(CVT).</description>
+        </element>
+        <element name="INFINITELY_VARIABLE">
+            <description>Infinitely variable transmission.</description>
+        </element>
+        <element name="ELECTRIC_VARIABLE">
+            <description>Electric variable transmission.</description>
+        </element>
+        <element name="DIRECT_DRIVE">
+            <description>Direct drive between engine and wheels.</description>
+        </element>
+    </enum>
+
     <enum name="ComponentVolumeStatus" since="2.0">
         <description>The volume status of a vehicle component.</description>
         <element name="UNKNOWN" internal_name="CVS_UNKNOWN">
@@ -4437,6 +4471,18 @@
         <param name="displayCapabilities" type="DisplayCapability" array="true" minsize="1" maxsize="1000" mandatory="false" since="6.0"/>
     </struct>
 
+    <struct name="GearStatus" since="6.2">
+        <param name="userSelectedGear" type="PRNDL" mandatory="false">
+            <description>Gear position selected by the user i.e. Park, Drive, Reverse</description>
+        </param>
+        <param name="actualGear" type="PRNDL" mandatory="false">
+            <description>Actual Gear in use by the transmission</description>
+        </param>
+        <param name="transmissionType" type="TransmissionType" mandatory="false">
+            <description>Tells the transmission type</description>
+        </param>
+    </struct>
+
     <!-- Requests/Responses -->
     
     <function name="RegisterAppInterface" functionID="RegisterAppInterfaceID" messagetype="request" since="1.0">
@@ -5847,8 +5893,14 @@
         <param name="turnSignal" type="Boolean" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
         </param>
-        <param name="prndl" type="Boolean" mandatory="false">
+        <param name="gearStatus" type="Boolean" mandatory="false" since="6.2">
+            <description>See GearStatus</description>
+        </param>
+        <param name="prndl" type="Boolean" mandatory="false" deprecated="true" since="6.2">
             <description>See PRNDL</description>
+            <history>
+                <param name="prndl" type="Boolean" mandatory="false" since="1.0" until="6.2"/>
+            </history>
         </param>
         <param name="tirePressure" type="Boolean" mandatory="false">
             <description>See TireStatus</description>
@@ -5960,8 +6012,14 @@
         <param name="turnSignal" type="VehicleDataResult" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
         </param>
-        <param name="prndl" type="VehicleDataResult" mandatory="false">
+        <param name="gearStatus" type="VehicleDataResult" mandatory="false" since="6.2">
+            <description>See GearStatus</description>
+        </param>
+        <param name="prndl" type="VehicleDataResult" mandatory="false" deprecated="true" since="6.2">
             <description>See PRNDL</description>
+            <history>
+                <param name="prndl" type="VehicleDataResult" mandatory="false" since="1.0" until="6.2"/>
+            </history>
         </param>
         <param name="tirePressure" type="VehicleDataResult" mandatory="false">
             <description>See TireStatus</description>
@@ -6052,8 +6110,14 @@
         <param name="turnSignal" type="Boolean" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
         </param>
-        <param name="prndl" type="Boolean" mandatory="false">
+        <param name="gearStatus" type="Boolean" mandatory="false" since="6.2">
+            <description>See GearStatus</description>
+        </param>
+        <param name="prndl" type="Boolean" mandatory="false" deprecated="true" since="6.2">
             <description>See PRNDL</description>
+            <history>
+                <param name="prndl" type="Boolean" mandatory="false" since="1.0" until="6.2"/>
+            </history>
         </param>
         <param name="tirePressure" type="Boolean" mandatory="false">
             <description>See TireStatus</description>
@@ -6164,8 +6228,14 @@
         <param name="turnSignal" type="VehicleDataResult" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
         </param>
-        <param name="prndl" type="VehicleDataResult" mandatory="false">
+        <param name="gearStatus" type="VehicleDataResult" mandatory="false" since="6.2">
+            <description>See GearStatus</description>
+        </param>
+        <param name="prndl" type="VehicleDataResult" mandatory="false" deprecated="true" since="6.2">
             <description>See PRNDL</description>
+            <history>
+                <param name="prndl" type="VehicleDataResult" mandatory="false" since="1.0" until="6.2"/>
+            </history>
         </param>
         <param name="tirePressure" type="VehicleDataResult" mandatory="false">
             <description>See TireStatus</description>
@@ -6259,8 +6329,14 @@
         <param name="vin" type="Boolean" mandatory="false">
             <description>Vehicle identification number</description>
         </param>
-        <param name="prndl" type="Boolean" mandatory="false">
+        <param name="gearStatus" type="Boolean" mandatory="false" since="6.2">
+            <description>See GearStatus</description>
+        </param>
+        <param name="prndl" type="Boolean" mandatory="false" deprecated="true" since="6.2">
             <description>See PRNDL</description>
+            <history>
+                <param name="prndl" type="Boolean" mandatory="false" since="1.0" until="6.2"/>
+            </history>
         </param>
         <param name="tirePressure" type="Boolean" mandatory="false">
             <description>See TireStatus</description>
@@ -6375,8 +6451,14 @@
         <param name="vin" type="String" maxlength="17" mandatory="false">
             <description>Vehicle identification number</description>
         </param>
-        <param name="prndl" type="PRNDL" mandatory="false">
+        <param name="gearStatus" type="GearStatus" mandatory="false" since="6.2">
+            <description>See GearStatus</description>
+        </param>
+        <param name="prndl" type="PRNDL" mandatory="false" deprecated="true" since="6.2">
             <description>See PRNDL</description>
+            <history>
+                <param name="prndl" type="PRNDL" mandatory="false" since="1.0" until="6.2"/>
+            </history>
         </param>
         <param name="tirePressure" type="TireStatus" mandatory="false">
             <description>See TireStatus</description>
@@ -8073,8 +8155,14 @@
         <param name="vin" type="String" maxlength="17" mandatory="false">
             <description>Vehicle identification number.</description>
         </param>
-        <param name="prndl" type="PRNDL" mandatory="false">
+        <param name="gearStatus" type="GearStatus" mandatory="false" since="6.2">
+            <description>See GearStatus</description>
+        </param>
+        <param name="prndl" type="PRNDL" mandatory="false" deprecated="true" since="6.2">
             <description>See PRNDL</description>
+            <history>
+                <param name="prndl" type="PRNDL" mandatory="false" since="1.0" until="6.2"/>
+            </history>
         </param>
         <param name="tirePressure" type="TireStatus" mandatory="false">
             <description>See TireStatus</description>
