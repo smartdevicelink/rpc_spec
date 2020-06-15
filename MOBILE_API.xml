@@ -5899,7 +5899,7 @@
         <param name="prndl" type="Boolean" mandatory="false" deprecated="true" since="6.2">
             <description>See PRNDL</description>
             <history>
-                <param name="prndl" type="Boolean" mandatory="false" since="1.0" until="6.2"/>
+                <param name="prndl" type="Boolean" mandatory="false" since="2.0" until="6.2"/>
             </history>
         </param>
         <param name="tirePressure" type="Boolean" mandatory="false">
@@ -6018,7 +6018,7 @@
         <param name="prndl" type="VehicleDataResult" mandatory="false" deprecated="true" since="6.2">
             <description>See PRNDL</description>
             <history>
-                <param name="prndl" type="VehicleDataResult" mandatory="false" since="1.0" until="6.2"/>
+                <param name="prndl" type="VehicleDataResult" mandatory="false" since="2.0" until="6.2"/>
             </history>
         </param>
         <param name="tirePressure" type="VehicleDataResult" mandatory="false">
@@ -6116,7 +6116,7 @@
         <param name="prndl" type="Boolean" mandatory="false" deprecated="true" since="6.2">
             <description>See PRNDL</description>
             <history>
-                <param name="prndl" type="Boolean" mandatory="false" since="1.0" until="6.2"/>
+                <param name="prndl" type="Boolean" mandatory="false" since="2.0" until="6.2"/>
             </history>
         </param>
         <param name="tirePressure" type="Boolean" mandatory="false">
@@ -6234,7 +6234,7 @@
         <param name="prndl" type="VehicleDataResult" mandatory="false" deprecated="true" since="6.2">
             <description>See PRNDL</description>
             <history>
-                <param name="prndl" type="VehicleDataResult" mandatory="false" since="1.0" until="6.2"/>
+                <param name="prndl" type="VehicleDataResult" mandatory="false" since="2.0" until="6.2"/>
             </history>
         </param>
         <param name="tirePressure" type="VehicleDataResult" mandatory="false">
@@ -6335,7 +6335,7 @@
         <param name="prndl" type="Boolean" mandatory="false" deprecated="true" since="6.2">
             <description>See PRNDL</description>
             <history>
-                <param name="prndl" type="Boolean" mandatory="false" since="1.0" until="6.2"/>
+                <param name="prndl" type="Boolean" mandatory="false" since="2.0" until="6.2"/>
             </history>
         </param>
         <param name="tirePressure" type="Boolean" mandatory="false">
@@ -6457,7 +6457,7 @@
         <param name="prndl" type="PRNDL" mandatory="false" deprecated="true" since="6.2">
             <description>See PRNDL</description>
             <history>
-                <param name="prndl" type="PRNDL" mandatory="false" since="1.0" until="6.2"/>
+                <param name="prndl" type="PRNDL" mandatory="false" since="2.0" until="6.2"/>
             </history>
         </param>
         <param name="tirePressure" type="TireStatus" mandatory="false">
@@ -8161,7 +8161,7 @@
         <param name="prndl" type="PRNDL" mandatory="false" deprecated="true" since="6.2">
             <description>See PRNDL</description>
             <history>
-                <param name="prndl" type="PRNDL" mandatory="false" since="1.0" until="6.2"/>
+                <param name="prndl" type="PRNDL" mandatory="false" since="2.0" until="6.2"/>
             </history>
         </param>
         <param name="tirePressure" type="TireStatus" mandatory="false">
