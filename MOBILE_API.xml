@@ -6466,7 +6466,7 @@
         <param name="myKey" type="MyKey" mandatory="false">
             <description>Information related to the MyKey feature</description>
         </param>
-        <param name="windowStatus" type="WindowStatus" array="true" minsize="0" maxsize="100" mandatory="false">
+        <param name="windowStatus" type="WindowStatus" array="true" minsize="0" maxsize="100" mandatory="false" since="6.2">
             <description>See WindowStatus</description>
         </param>
     </function>
@@ -8167,7 +8167,7 @@
         <param name="myKey" type="MyKey" mandatory="false">
             <description>Information related to the MyKey feature</description>
         </param>
-        <param name="windowStatus" type="WindowStatus" array="true" minsize="0" maxsize="100" mandatory="false">
+        <param name="windowStatus" type="WindowStatus" array="true" minsize="0" maxsize="100" mandatory="false" since="6.2">
             <description>See WindowStatus</description>
         </param>
     </function>
