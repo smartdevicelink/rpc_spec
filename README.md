@@ -1,7 +1,7 @@
 # SmartDeviceLink
 # RPC Spec
 
-###### Version: 6.2.0
+###### Version: 6.0.0
 
 ## Enumerations
 
@@ -3943,7 +3943,7 @@ Message Type: **response**
 |`emergencyEvent`|VehicleDataResult|False|Information related to an emergency event (and if it occurred)|
 |`clusterModes`|VehicleDataResult|False|The status modes of the cluster|
 |`myKey`|VehicleDataResult|False|Information related to the MyKey feature|
-|`windowStatus`|Boolean|False|Information related to window status|
+|`windowStatus`|VehicleDataResult|False|Information related to subscribe VD response|
 
 
 ### GetVehicleData
@@ -4028,7 +4028,7 @@ Message Type: **response**
 |`emergencyEvent`|EmergencyEvent|False|Information related to an emergency event (and if it occurred)|
 |`clusterModeStatus`|ClusterModeStatus|False|The status modes of the cluster|
 |`myKey`|MyKey|False|Information related to the MyKey feature|
-|`windowStatus`|Boolean|False|Information related to window status|
+|`windowStatus`|WindowStatus|False|Information related to window status|
 
 
 ### ReadDID
@@ -5116,7 +5116,7 @@ Callback for the periodic and non periodic vehicle data read function.
 |`emergencyEvent`|EmergencyEvent|False|Information related to an emergency event (and if it occurred)|
 |`clusterModeStatus`|ClusterModeStatus|False|The status modes of the cluster|
 |`myKey`|MyKey|False|Information related to the MyKey feature|
-|`windowStatus`|Boolean|False|Information related to window status|
+|`windowStatus`|WindowStatus|False|Information related to window status|
 
 
 ### OnCommand
