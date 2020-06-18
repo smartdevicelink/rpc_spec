@@ -3026,6 +3026,7 @@
         <element name="APP_SERVICES" since="5.1"/>
         <element name="SEAT_LOCATION" since="6.0"/>
         <element name="DISPLAYS" since="6.0"/>
+        <element name="DRIVER_DISTRACTION" since="6.2"/>
     </enum>
     
     <struct name="NavigationCapability" since="4.5">
@@ -3077,6 +3078,15 @@
         </param>
         <param name="scale" type="Float" minvalue="1" maxvalue="10" mandatory="false" since="6.0">
             <description>The scaling factor the app should use to change the size of the projecting view.</description>
+        </param>
+    </struct>
+
+    <struct name="DriverDistractionCapability" since="6.2">
+        <param name="menuLength" type="Integer" mandatory="false">
+            <description>The number of items allowed in a Choice Set or Command menu while the driver is distracted</description>
+        </param>
+        <param name="subMenuDepth" type="Integer" minvalue="1" mandatory="false">
+            <description>The depth of submenus allowed when the driver is distracted. e.g. 3 == top level menu -> submenu -> submenu; 1 == top level menu only</description>
         </param>
     </struct>
 
@@ -4435,6 +4445,9 @@
             <description>Contains information about the locations of each seat</description>
         </param>
         <param name="displayCapabilities" type="DisplayCapability" array="true" minsize="1" maxsize="1000" mandatory="false" since="6.0"/>
+        <param name="driverDistractionCapability" type="DriverDistractionCapability" mandatory="false" since="6.2">
+            <description>Describes capabilities when the driver is distracted</description>
+        </param>
     </struct>
 
     <!-- Requests/Responses -->
@@ -5038,6 +5051,13 @@
 
         <param name="menuLayout" type="MenuLayout" mandatory="false" since="6.0">
             <description>Sets the layout of the submenu screen.</description>
+        </param>
+
+        <param name="parentID" type="Integer" minvalue="0" maxvalue="2000000000" defvalue="0" mandatory="false" since="6.2">
+            <description>
+                unique ID of the sub menu, the command will be added to.
+                If not provided, it will be provided to the top level of the in application menu.
+            </description>
         </param>
     </function>
     
