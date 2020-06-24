@@ -4217,7 +4217,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful false, if failed|
+|`success`|Boolean|True|true, if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -4488,7 +4488,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful false, if failed|
+|`success`|Boolean|True|true, if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 

@@ -6842,10 +6842,7 @@
     
     <function name="ChangeRegistration" functionID="ChangeRegistrationID" messagetype="response" since="2.0">
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
-            <description>
-                true, if successful
-                false, if failed
-            </description>
+            <description> true, if successful; false, if failed </description>
         </param>
         
         <param name="resultCode" type="Result" platform="documentation" mandatory="true">
@@ -7354,8 +7351,7 @@
     
     <function name="DialNumber" functionID="DialNumberID" messagetype="response" since="3.0">
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
-            <description>true, if successful</description>
-            <description>false, if failed</description>
+            <description> true, if successful; false, if failed </description>
         </param>
         
         <param name="resultCode" type="Result" platform="documentation" mandatory="true">
