@@ -12,21 +12,21 @@
 | ---------- |:-----------:|
 |`SUCCESS`|The request succeeded|
 |`UNSUPPORTED_REQUEST`|The request is not supported by the headunit|
-|`UNSUPPORTED_RESOURCE`|A button that was requested for subscription is not supported under the current system.            |
+|`UNSUPPORTED_RESOURCE`|A button that was requested for subscription is not supported under the current system.|
 |`DISALLOWED`|RPC is not authorized in local policy table.|
-|`REJECTED`|The requested command was rejected, e.g. because mobile app is in background and cannot perform any HMI commands.                Or an HMI command (e.g. Speak) is rejected because a higher priority HMI command (e.g. Alert) is playing.            |
-|`ABORTED`|A command was aborted, for example due to user interaction (e.g. user pressed button).                Or an HMI command (e.g. Speak) is aborted because a higher priority HMI command (e.g. Alert) was requested.            |
-|`IGNORED`|A command was ignored, because the intended result is already in effect.                For example, SetMediaClockTimer was used to pause the media clock although the clock is paused already.                NOTE: potentially replaces SUBSCRIBED_ALREADY            |
-|`RETRY`|The user interrupted the RPC (e.g. PerformAudioPassThru) and indicated to start over.  Note, the app must issue the new RPC.|
-|`IN_USE`|The data may not be changed, because it is currently in use.                For example when trying to delete a command set that is currently involved in an interaction.            |
+|`REJECTED`|The requested command was rejected, e.g. because mobile app is in background and cannot perform any HMI commands. Or an HMI command (e.g. Speak) is rejected because a higher priority HMI command (e.g. Alert) is playing.|
+|`ABORTED`|A command was aborted, for example due to user interaction (e.g. user pressed button). Or an HMI command (e.g. Speak) is aborted because a higher priority HMI command (e.g. Alert) was requested.|
+|`IGNORED`|A command was ignored, because the intended result is already in effect. For example, SetMediaClockTimer was used to pause the media clock although the clock is paused already. NOTE: potentially replaces SUBSCRIBED_ALREADY|
+|`RETRY`|The user interrupted the RPC (e.g. PerformAudioPassThru) and indicated to start over. Note, the app must issue the new RPC.|
+|`IN_USE`|The data may not be changed, because it is currently in use. For example when trying to delete a command set that is currently involved in an interaction.|
 |`VEHICLE_DATA_NOT_AVAILABLE`|The requested vehicle data is not available on this vehicle or is not published.|
 |`TIMED_OUT`|Overlay reached the maximum timeout and closed.|
-|`INVALID_DATA`|The data sent is invalid. For example:                Invalid Json syntax                Parameters out of bounds (number or enum range)                Mandatory parameters not provided                Parameter provided with wrong type                Invalid characters                Empty string            |
+|`INVALID_DATA`|The data sent is invalid. For example: Invalid Json syntax Parameters out of bounds (number or enum range) Mandatory parameters not provided Parameter provided with wrong type Invalid characters Empty string|
 |`CHAR_LIMIT_EXCEEDED`||
-|`INVALID_ID`|One of the provided IDs is not valid. For example                This applies to CorrelationID, SubscriptionID, CommandID, MenuID, etc.            |
+|`INVALID_ID`|One of the provided IDs is not valid. For example This applies to CorrelationID, SubscriptionID, CommandID, MenuID, etc.|
 |`DUPLICATE_NAME`|There was a conflict with an registered name (application or menu item) or vr command|
 |`APPLICATION_NOT_REGISTERED`|An command can not be executed because no application has been registered with RegisterApplication.|
-|`WRONG_LANGUAGE`|The requested language is currently not supported.                Might be because of a mismatch of the currently active language on the headunit and the requested language            |
+|`WRONG_LANGUAGE`|The requested language is currently not supported. Might be because of a mismatch of the currently active language on the headunit and the requested language|
 |`OUT_OF_MEMORY`|The system could not process the request because the necessary memory couldn't be allocated|
 |`TOO_MANY_PENDING_REQUESTS`|There are too many requests pending (means, that the response has not been delivered, yet).There may be a maximum of 1000 pending requests at a time.|
 |`TOO_MANY_APPLICATIONS`|There are already too many registered applications|
@@ -43,10 +43,10 @@
 |`INVALID_CERT`|The certificate provided during authentication is invalid.|
 |`EXPIRED_CERT`|The certificate provided during authentication is expired.|
 |`RESUME_FAILED`|The provided hash ID does not match the hash of the current set of registered data or the core could not resume the previous data.|
-|`DATA_NOT_AVAILABLE`|The requested information is currently not available. This is different than UNSUPPORTED_RESOURCE because it implies the data is at some point available. |
+|`DATA_NOT_AVAILABLE`|The requested information is currently not available. This is different than UNSUPPORTED_RESOURCE because it implies the data is at some point available.|
 |`READ_ONLY`|The value being set is read only|
 |`CORRUPTED_DATA`|The data sent failed to pass CRC check in receiver end|
-|`ENCRYPTION_NEEDED`|SDL receives an un-encrypted RPC request that needs protection. |
+|`ENCRYPTION_NEEDED`|SDL receives an un-encrypted RPC request that needs protection.|
 
 
 ### ButtonPressMode
@@ -54,8 +54,8 @@
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`LONG`|A button was released, after it was pressed for a long time                Actual timing is defined by the headunit and may vary            |
-|`SHORT`|A button was released, after it was pressed for a short time                Actual timing is defined by the headunit and may vary            |
+|`LONG`|A button was released, after it was pressed for a long time Actual timing is defined by the headunit and may vary|
+|`SHORT`|A button was released, after it was pressed for a short time Actual timing is defined by the headunit and may vary|
 
 
 ### ButtonEventMode
@@ -168,8 +168,8 @@ For touchscreen interactions, the mode of how the choices are presented.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`MAIN`|This window type describes the main window on a display.            |
-|`WIDGET`|A widget is a small window that the app can create to provide information and soft buttons for quick app control.            |
+|`MAIN`|This window type describes the main window on a display.|
+|`WIDGET`|A widget is a small window that the app can create to provide information and soft buttons for quick app control.|
 
 
 ### PredefinedWindows
@@ -213,9 +213,9 @@ Enumeration that describes system actions that can be triggered.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`DEFAULT_ACTION`|Default action occurs.  Standard behavior (e.g. SoftButton clears overlay).|
+|`DEFAULT_ACTION`|Default action occurs. Standard behavior (e.g. SoftButton clears overlay).|
 |`STEAL_FOCUS`|App is brought into HMI_FULL.|
-|`KEEP_CONTEXT`|Current system context is maintained.  An overlay is persisted even though a SoftButton has been pressed and the notification sent.|
+|`KEEP_CONTEXT`|Current system context is maintained. An overlay is persisted even though a SoftButton has been pressed and the notification sent.|
 
 
 ### SystemContext
@@ -233,7 +233,7 @@ Enumeration that describes possible contexts an app's HMI might be in. Communica
 
 
 ### VideoStreamingState
-Enumeration that describes possible states of video streaming. 
+Enumeration that describes possible states of video streaming.
 
 ##### Elements
 
@@ -289,7 +289,7 @@ Indicates the source from where the command was triggered.
 
 
 ### HmiZoneCapabilities
-Contains information about the HMI zone capabilities.
+Contains information about the HMI zone capabilities. For future use.
 
 ##### Elements
 
@@ -433,7 +433,7 @@ Defines the hard (physical) and soft (touchscreen) buttons available from the mo
 | Value | Description | 
 | ---------- |:-----------:|
 |`OK`||
-|`PLAY_PAUSE`|The button name for the physical Play/Pause              toggle that can be used by media apps.            |
+|`PLAY_PAUSE`|The button name for the physical Play/Pause toggle that can be used by media apps.|
 |`SEEKLEFT`||
 |`SEEKRIGHT`||
 |`TUNEUP`||
@@ -490,16 +490,17 @@ Defines the hard (physical) and soft (touchscreen) buttons available from the mo
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`CLOCK1`|minutesFieldWidth = 2;minutesFieldMax = 19;secondsFieldWidth = 2;secondsFieldMax = 99;maxHours = 19;maxMinutes = 59;maxSeconds = 59;                used for Type II and CID headunits            |
-|`CLOCK2`|minutesFieldWidth = 3;minutesFieldMax = 199;secondsFieldWidth = 2;secondsFieldMax = 99;maxHours = 59;maxMinutes = 59;maxSeconds = 59;                used for Type V headunit            |
-|`CLOCK3`|minutesFieldWidth = 2;minutesFieldMax = 59;secondsFieldWidth = 2;secondsFieldMax = 59;maxHours = 9;maxMinutes = 59;maxSeconds = 59;                used for GEN1.1 MFD3/4/5 headunits            |
-|`CLOCKTEXT1`|5 characters possible                Format:      1|sp   c   :|sp   c   c                1|sp : digit "1" or space                c    : character out of following character set: sp|0-9|[letters, see TypeII column in XLS. See [@TODO: create file ref]]                :|sp : colon or space                used for Type II headunit            |
-|`CLOCKTEXT2`|5 chars possible                Format:      1|sp   c   :|sp   c   c                1|sp : digit "1" or space                c    : character out of following character set: sp|0-9|[letters, see CID column in XLS. See [@TODO: create file ref]]                :|sp : colon or space                used for CID headunit                NOTE: difference between CLOCKTEXT1 and CLOCKTEXT2 is the supported character set            |
-|`CLOCKTEXT3`|6 chars possible                Format:      1|sp   c   c   :|sp   c   c                1|sp : digit "1" or space                c    : character out of following character set: sp|0-9|[letters, see Type 5 column in XLS]. See [@TODO: create file ref]                :|sp : colon or space                used for Type V headunit            |
-|`CLOCKTEXT4`|6 chars possible                Format:      c   :|sp   c   c   :   c   c                :|sp : colon or space                c    : character out of following character set: sp|0-9|[letters].                used for GEN1.1 MFD3/4/5 headunits            |
+|`CLOCK1`|minutesFieldWidth = 2;minutesFieldMax = 19;secondsFieldWidth = 2;secondsFieldMax = 99;maxHours = 19;maxMinutes = 59;maxSeconds = 59; used for Type II and CID headunits|
+|`CLOCK2`|minutesFieldWidth = 3;minutesFieldMax = 199;secondsFieldWidth = 2;secondsFieldMax = 99;maxHours = 59;maxMinutes = 59;maxSeconds = 59; used for Type V headunit|
+|`CLOCK3`|minutesFieldWidth = 2;minutesFieldMax = 59;secondsFieldWidth = 2;secondsFieldMax = 59;maxHours = 9;maxMinutes = 59;maxSeconds = 59; used for GEN1.1 MFD3/4/5 headunits|
+|`CLOCKTEXT1`|5 characters possible Format: 1|sp c :|sp c c 1|sp : digit "1" or space c : character out of following character set: sp|0-9|[letters, see TypeII column in XLS. See [@TODO: create file ref]] :|sp : colon or space used for Type II headunit|
+|`CLOCKTEXT2`|5 chars possible Format: 1|sp c :|sp c c 1|sp : digit "1" or space c : character out of following character set: sp|0-9|[letters, see CID column in XLS. See [@TODO: create file ref]] :|sp : colon or space used for CID headunit NOTE: difference between CLOCKTEXT1 and CLOCKTEXT2 is the supported character set|
+|`CLOCKTEXT3`|6 chars possible Format: 1|sp c c :|sp c c 1|sp : digit "1" or space c : character out of following character set: sp|0-9|[letters, see Type 5 column in XLS]. See [@TODO: create file ref] :|sp : colon or space used for Type V headunit|
+|`CLOCKTEXT4`|6 chars possible Format: c :|sp c c : c c :|sp : colon or space c : character out of following character set: sp|0-9|[letters]. used for GEN1.1 MFD3/4/5 headunits|
 
 
 ### DisplayType
+deprecated since 5.0.0
 See DAES for further infos regarding the displays
 
 ##### Elements
@@ -552,7 +553,7 @@ See DAES for further infos regarding the displays
 |`locationName`|Optional name / title of intended location for SendLocation.|
 |`locationDescription`|Optional description of intended location / establishment (if applicable) for SendLocation.|
 |`addressLines`|Optional location address (if applicable) for SendLocation.|
-|`phoneNumber`|Optional hone number of intended location / establishment (if applicable) for SendLocation.|
+|`phoneNumber`|Optional phone number of intended location / establishment (if applicable) for SendLocation.|
 
 
 ### ImageFieldName
@@ -663,7 +664,7 @@ Enum for each type of video streaming protocol type.
 | ---------- |:-----------:|
 |`RAW`|Raw stream bytes that contains no timestamp data and is the lowest supported video streaming|
 |`RTP`|RTP facilitates the transfer of real-time data. Information provided by this protocol include timestamps (for synchronization), sequence numbers (for packet loss and reordering detection) and the payload format which indicates the encoded format of the data.|
-|`RTSP`|The transmission of streaming data itself is not a task of RTSP. Most RTSP servers use the Real-time Transport Protocol (RTP) in conjunction with Real-time Control Protocol (RTCP) for media stream delivery. However, some vendors implement proprietary transport protocols. |
+|`RTSP`|The transmission of streaming data itself is not a task of RTSP. Most RTSP servers use the Real-time Transport Protocol (RTP) in conjunction with Real-time Control Protocol (RTCP) for media stream delivery. However, some vendors implement proprietary transport protocols.|
 |`RTMP`|Real-Time Messaging Protocol (RTMP) was initially a proprietary protocol developed by Macromedia for streaming audio, video and data over the Internet, between a Flash player and a server. Macromedia is now owned by Adobe, which has released an incomplete version of the specification of the protocol for public use.|
 |`WEBM`|The WebM container is based on a profile of Matroska. WebM initially supported VP8 video and Vorbis audio streams. In 2013 it was updated to accommodate VP9 video and Opus audio.|
 
@@ -687,7 +688,7 @@ Enum for each type of video streaming codec.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`PLAY_PAUSE`|Default playback indicator.                By default the playback indicator should be PLAY_PAUSE when:                    - the media app is newly registered on the head unit (after RegisterAppInterface)                    - the media app was closed by the user (App enters HMI_NONE)                    - the app sends SetMediaClockTimer with audioStreamingIndicator not set to any value            |
+|`PLAY_PAUSE`|Default playback indicator. By default the playback indicator should be PLAY_PAUSE when: - the media app is newly registered on the head unit (after RegisterAppInterface) - the media app was closed by the user (App enters HMI_NONE) - the app sends SetMediaClockTimer with audioStreamingIndicator not set to any value|
 |`PLAY`|Indicates that a button press of the Play/Pause button starts the audio playback.|
 |`PAUSE`|Indicates that a button press of the Play/Pause button pauses the current audio playback.|
 |`STOP`|Indicates that a button press of the Play/Pause button stops the current audio playback.|
@@ -801,8 +802,8 @@ The volume status of a vehicle component.
 | ---------- |:-----------:|
 |`GASOLINE`||
 |`DIESEL`||
-|`CNG`|For vehicles using compressed natural gas.            |
-|`LPG`|For vehicles using liquefied petroleum gas.            |
+|`CNG`|For vehicles using compressed natural gas.|
+|`LPG`|For vehicles using liquefied petroleum gas.|
 |`HYDROGEN`|For FCEV (fuel cell electric vehicle).|
 |`BATTERY`|For BEV (Battery Electric Vehicle), PHEV (Plug-in Hybrid Electric Vehicle), solar vehicles and other vehicles which run on a battery.|
 
@@ -812,11 +813,11 @@ The volume status of a vehicle component.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`CLOSED`|Park brake actuators have been fully applied.        |
-|`TRANSITION`|Park brake actuators are transitioning to either Apply/Closed or Release/Open state.        |
-|`OPEN`|Park brake actuators are released.        |
-|`DRIVE_ACTIVE`|When driver pulls the Electronic Park Brake switch while driving "at speed".        |
-|`FAULT`|When system has a fault or is under maintenance.        |
+|`CLOSED`|Park brake actuators have been fully applied.|
+|`TRANSITION`|Park brake actuators are transitioning to either Apply/Closed or Release/Open state.|
+|`OPEN`|Park brake actuators are released.|
+|`DRIVE_ACTIVE`|When driver pulls the Electronic Park Brake switch while driving "at speed".|
+|`FAULT`|When system has a fault or is under maintenance.|
 
 
 ### WarningLightStatus
@@ -1335,26 +1336,26 @@ Predefined screen layout.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`DEFAULT`|Default media / non-media screen.                Can be set as a root screen.            |
-|`MEDIA`|Default Media screen.                Can be set as a root screen.            |
-|`NON-MEDIA`|Default Non-media screen.                Can be set as a root screen.            |
-|`ONSCREEN_PRESETS`|Custom root media screen containing app-defined onscreen presets.                Can be set as a root screen.            |
-|`NAV_FULLSCREEN_MAP`|Custom root template screen containing full screen map with navigation controls.                Can be set as a root screen.            |
-|`NAV_LIST`|Custom root template screen containing video represented list.                Can be set as a root screen.            |
-|`NAV_KEYBOARD`|Custom root template screen containing video represented keyboard.                Can be set as a root screen.            |
-|`GRAPHIC_WITH_TEXT`|Custom root template screen containing half-screen graphic with lines of text.                Can be set as a root screen.            |
-|`TEXT_WITH_GRAPHIC`|Custom root template screen containing lines of text with half-screen graphic.                Can be set as a root screen.            |
-|`TILES_ONLY`|Custom root template screen containing only tiled SoftButtons.                Can be set as a root screen.            |
-|`TEXTBUTTONS_ONLY`|Custom root template screen containing only text SoftButtons.                Can be set as a root screen.            |
-|`GRAPHIC_WITH_TILES`|Custom root template screen containing half-screen graphic with tiled SoftButtons.                Can be set as a root screen.            |
-|`TILES_WITH_GRAPHIC`|Custom root template screen containing tiled SoftButtons with half-screen graphic.                Can be set as a root screen.            |
-|`GRAPHIC_WITH_TEXT_AND_SOFTBUTTONS`|Custom root template screen containing half-screen graphic with text and SoftButtons.                Can be set as a root screen.            |
-|`TEXT_AND_SOFTBUTTONS_WITH_GRAPHIC`|Custom root template screen containing text and SoftButtons with half-screen graphic.                Can be set as a root screen.            |
-|`GRAPHIC_WITH_TEXTBUTTONS`|Custom root template screen containing half-screen graphic with text only SoftButtons.                Can be set as a root screen.            |
-|`TEXTBUTTONS_WITH_GRAPHIC`|Custom root template screen containing text only SoftButtons with half-screen graphic.                Can be set as a root screen.            |
-|`LARGE_GRAPHIC_WITH_SOFTBUTTONS`|Custom root template screen containing a large graphic and SoftButtons.                Can be set as a root screen.            |
-|`DOUBLE_GRAPHIC_WITH_SOFTBUTTONS`|Custom root template screen containing two graphics and SoftButtons.                Can be set as a root screen.            |
-|`LARGE_GRAPHIC_ONLY`|Custom root template screen containing only a large graphic.                Can be set as a root screen.            |
+|`DEFAULT`|Default media / non-media screen. Can be set as a root screen.|
+|`MEDIA`|Default Media screen. Can be set as a root screen.|
+|`NON-MEDIA`|Default Non-media screen. Can be set as a root screen.|
+|`ONSCREEN_PRESETS`|Custom root media screen containing app-defined onscreen presets. Can be set as a root screen.|
+|`NAV_FULLSCREEN_MAP`|Custom root template screen containing full screen map with navigation controls. Can be set as a root screen.|
+|`NAV_LIST`|Custom root template screen containing video represented list. Can be set as a root screen.|
+|`NAV_KEYBOARD`|Custom root template screen containing video represented keyboard. Can be set as a root screen.|
+|`GRAPHIC_WITH_TEXT`|Custom root template screen containing half-screen graphic with lines of text. Can be set as a root screen.|
+|`TEXT_WITH_GRAPHIC`|Custom root template screen containing lines of text with half-screen graphic. Can be set as a root screen.|
+|`TILES_ONLY`|Custom root template screen containing only tiled SoftButtons. Can be set as a root screen.|
+|`TEXTBUTTONS_ONLY`|Custom root template screen containing only text SoftButtons. Can be set as a root screen.|
+|`GRAPHIC_WITH_TILES`|Custom root template screen containing half-screen graphic with tiled SoftButtons. Can be set as a root screen.|
+|`TILES_WITH_GRAPHIC`|Custom root template screen containing tiled SoftButtons with half-screen graphic. Can be set as a root screen.|
+|`GRAPHIC_WITH_TEXT_AND_SOFTBUTTONS`|Custom root template screen containing half-screen graphic with text and SoftButtons. Can be set as a root screen.|
+|`TEXT_AND_SOFTBUTTONS_WITH_GRAPHIC`|Custom root template screen containing text and SoftButtons with half-screen graphic. Can be set as a root screen.|
+|`GRAPHIC_WITH_TEXTBUTTONS`|Custom root template screen containing half-screen graphic with text only SoftButtons. Can be set as a root screen.|
+|`TEXTBUTTONS_WITH_GRAPHIC`|Custom root template screen containing text only SoftButtons with half-screen graphic. Can be set as a root screen.|
+|`LARGE_GRAPHIC_WITH_SOFTBUTTONS`|Custom root template screen containing a large graphic and SoftButtons. Can be set as a root screen.|
+|`DOUBLE_GRAPHIC_WITH_SOFTBUTTONS`|Custom root template screen containing two graphics and SoftButtons. Can be set as a root screen.|
+|`LARGE_GRAPHIC_ONLY`|Custom root template screen containing only a large graphic. Can be set as a root screen.|
 
 
 ### FunctionID
@@ -1454,9 +1455,7 @@ Enumeration linking function names with function IDs in SmartDeviceLink protocol
 
 
 ### messageType
-Enumeration linking message types with function types in WiPro protocol.
-            Assumes enumeration starts at value 0.
-        
+Enumeration linking message types with function types in WiPro protocol. Assumes enumeration starts at value 0.
 
 ##### Elements
 
@@ -1502,7 +1501,7 @@ List possible zones of a multi-contour massage seat.
 | Value | Description | 
 | ---------- |:-----------:|
 |`LUMBAR`|The back of a multi-contour massage seat. or SEAT_BACK|
-|`SEAT_CUSHION`|The bottom a multi-contour massage seat. or SEAT_BOTTOM |
+|`SEAT_CUSHION`|The bottom a multi-contour massage seat. or SEAT_BOTTOM|
 
 
 ### MassageMode
@@ -1537,11 +1536,12 @@ List possible cushions of a multi-contour massage seat.
 | Value | Description | 
 | ---------- |:-----------:|
 |`SAVE`|Save current seat postions and settings to seat memory.|
-|`RESTORE`|Restore / apply the seat memory settings to the current seat. |
+|`RESTORE`|Restore / apply the seat memory settings to the current seat.|
 |`NONE`|No action to be performed.|
 
 
 ### SupportedSeat
+deprecated since 6.0.0
 List possible seats that is a remote controllable seat.
 
 ##### Elements
@@ -1684,7 +1684,7 @@ List possible seats that is a remote controllable seat.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`TURN`|Using this action plus a supplied direction can give the type of turn. |
+|`TURN`|Using this action plus a supplied direction can give the type of turn.|
 |`EXIT`||
 |`STAY`||
 |`MERGE`||
@@ -1698,14 +1698,14 @@ List possible seats that is a remote controllable seat.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`REGULAR`|A junction that represents a standard intersection with a single road crossing another. |
-|`BIFURCATION`|A junction where the road splits off into two paths; a fork in the road. |
-|`MULTI_CARRIAGEWAY`|A junction that has multiple intersections and paths. |
-|`ROUNDABOUT`|A junction where traffic moves in a single direction around a central, non-traversable point to reach one of the connecting roads. |
-|`TRAVERSABLE_ROUNDABOUT`|Similar to a roundabout, however the center of the roundabout is fully traversable. Also known as a mini-roundabout. |
-|`JUGHANDLE`|A junction where lefts diverge to the right, then curve to the left, converting a left turn to a crossing maneuver. |
-|`ALL_WAY_YIELD`|Multiple way intersection that allows traffic to flow based on priority; most commonly right of way and first in, first out. |
-|`TURN_AROUND`|A junction designated for traffic turn arounds. |
+|`REGULAR`|A junction that represents a standard intersection with a single road crossing another.|
+|`BIFURCATION`|A junction where the road splits off into two paths; a fork in the road.|
+|`MULTI_CARRIAGEWAY`|A junction that has multiple intersections and paths.|
+|`ROUNDABOUT`|A junction where traffic moves in a single direction around a central, non-traversable point to reach one of the connecting roads.|
+|`TRAVERSABLE_ROUNDABOUT`|Similar to a roundabout, however the center of the roundabout is fully traversable. Also known as a mini-roundabout.|
+|`JUGHANDLE`|A junction where lefts diverge to the right, then curve to the left, converting a left turn to a crossing maneuver.|
+|`ALL_WAY_YIELD`|Multiple way intersection that allows traffic to flow based on priority; most commonly right of way and first in, first out.|
+|`TURN_AROUND`|A junction designated for traffic turn arounds.|
 
 
 ### Direction
@@ -1735,10 +1735,7 @@ List possible seats that is a remote controllable seat.
 ## Structs
 
 ### AudioPassThruCapabilities
-Describes different audio type configurations for PerformAudioPassThru.
-            e.g. {8kHz,8-bit,PCM}
-            The audio is recorded in monaural.
-        
+Describes different audio type configurations for PerformAudioPassThru. e.g. {8kHz,8-bit,PCM} The audio is recorded in monaural.
 
 ##### Parameters
 
@@ -1781,9 +1778,9 @@ Describes different audio type configurations for PerformAudioPassThru.
 |`type`|SoftButtonType|True|Describes, whether it is text, highlighted text, icon, or dynamic image. See softButtonType|
 |`text`|String|False|Optional text to display (if defined as TEXT or BOTH)|
 |`image`|Image|False|Optional image struct for SoftButton (if defined as IMAGE or BOTH)|
-|`isHighlighted`|Boolean|False|True, if highlighted                False, if not highlighted            |
+|`isHighlighted`|Boolean|False|True, if highlighted False, if not highlighted|
 |`softButtonID`|Integer|True|Value which is returned via OnButtonPress / OnButtonEvent|
-|`systemAction`|SystemAction|False|Parameter indicating whether selecting a SoftButton shall call a specific system action.  This is intended to allow Notifications to bring the callee into full / focus; or in the case of persistent overlays, the overlay can persist when a SoftButton is pressed.|
+|`systemAction`|SystemAction|False|Parameter indicating whether selecting a SoftButton shall call a specific system action. This is intended to allow Notifications to bring the callee into full / focus; or in the case of persistent overlays, the overlay can persist when a SoftButton is pressed.|
 
 
 ### Choice
@@ -1821,7 +1818,7 @@ Specifies the version number of the SmartDeviceLink protocol that is supported b
 | ---------- | ---------- |:-----------: |:-----------:|
 |`majorVersion`|Integer|True|The major version indicates versions that is not-compatible to previous versions.|
 |`minorVersion`|Integer|True|The minor version indicates a change to a previous version that should still allow to be run on an older version (with limited functionality)|
-|`patchVersion`|Integer|False|The patch version indicates a fix to existing functionality in a previous version that should still be able to be run on an older version |
+|`patchVersion`|Integer|False|The patch version indicates a fix to existing functionality in a previous version that should still be able to be run on an older version|
 
 
 ### FuelRange
@@ -1830,7 +1827,7 @@ Specifies the version number of the SmartDeviceLink protocol that is supported b
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`type`|FuelType|False||
-|`range`|Float|False|The estimate range in KM the vehicle can travel based on fuel level and consumption.            |
+|`range`|Float|False|The estimate range in KM the vehicle can travel based on fuel level and consumption.|
 
 
 ### SingleTireStatus
@@ -1839,7 +1836,7 @@ Specifies the version number of the SmartDeviceLink protocol that is supported b
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`status`|ComponentVolumeStatus|True|See ComponentVolumeStatus.|
-|`tpms`|TPMS|False|The status of TPMS according to the particular tire.            |
+|`tpms`|TPMS|False|The status of TPMS according to the particular tire.|
 |`pressure`|Float|False|The pressure value of the particular tire in kilo pascal.|
 
 
@@ -1889,10 +1886,10 @@ Specifies the version number of the SmartDeviceLink protocol that is supported b
 |`callActive`|Boolean|True|References signal "CPM_Call_Active_STAT".|
 |`phoneRoaming`|Boolean|True|References signal "CPM_Phone_Roaming_STAT".|
 |`textMsgAvailable`|Boolean|True|References signal "CPM_TextMsg_AVAL".|
-|`battLevelStatus`|DeviceLevelStatus|True|Device battery level status.  References signal "CPM_Batt_Level_STAT". See DeviceLevelStatus.|
+|`battLevelStatus`|DeviceLevelStatus|True|Device battery level status. References signal "CPM_Batt_Level_STAT". See DeviceLevelStatus.|
 |`stereoAudioOutputMuted`|Boolean|True|References signal "CPM_Stereo_Audio_Output".|
 |`monoAudioOutputMuted`|Boolean|True|References signal "CPM_Mono_Audio_Output".|
-|`signalLevelStatus`|DeviceLevelStatus|True|Device signal level status.  References signal "CPM_Signal_Strength_STAT". See DeviceLevelStatus.|
+|`signalLevelStatus`|DeviceLevelStatus|True|Device signal level status. References signal "CPM_Signal_Strength_STAT". See DeviceLevelStatus.|
 |`primaryAudioSource`|PrimaryAudioSource|True|References signal "CPM_Stereo_PAS_Source". See PrimaryAudioSource.|
 |`eCallEventActive`|Boolean|True|References signal "eCall_Event".|
 
@@ -1902,8 +1899,8 @@ Specifies the version number of the SmartDeviceLink protocol that is supported b
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`lowBeamsOn`|Boolean|True|Status of the low beam lamps.  References signal "HeadLampLoActv_B_Stat".|
-|`highBeamsOn`|Boolean|True|Status of the high beam lamps.  References signal "HeadLghtHiOn_B_Stat".|
+|`lowBeamsOn`|Boolean|True|Status of the low beam lamps. References signal "HeadLampLoActv_B_Stat".|
+|`highBeamsOn`|Boolean|True|Status of the high beam lamps. References signal "HeadLghtHiOn_B_Stat".|
 |`ambientLightSensorStatus`|AmbientLightStatus|False|Status of the ambient light sensor.|
 
 
@@ -1953,7 +1950,7 @@ Contains detailed information about the registered application.
 |`emergencyEventType`|EmergencyEventType|True|References signal "VedsEvntType_D_Ltchd". See EmergencyEventType.|
 |`fuelCutoffStatus`|FuelCutoffStatus|True|References signal "RCM_FuelCutoff". See FuelCutoffStatus.|
 |`rolloverEvent`|VehicleDataEventStatus|True|References signal "VedsEvntRoll_D_Ltchd". See VehicleDataEventStatus.|
-|`maximumChangeVelocity`|Integer|True|References signal "VedsMaxDeltaV_D_Ltchd". Change in velocity in KPH.  Additional reserved values:                0x00 No event                0xFE Not supported                0xFF Fault            |
+|`maximumChangeVelocity`|Integer|True|References signal "VedsMaxDeltaV_D_Ltchd". Change in velocity in KPH. Additional reserved values: 0x00 No event 0xFE Not supported 0xFF Fault|
 |`multipleEvents`|VehicleDataEventStatus|True|References signal "VedsMultiEvnt_D_Ltchd". See VehicleDataEventStatus.|
 
 
@@ -1973,7 +1970,7 @@ Contains detailed information about the registered application.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`e911Override`|VehicleDataStatus|True|Indicates whether e911 override is on.  References signal "MyKey_e911Override_St". See VehicleDataStatus.|
+|`e911Override`|VehicleDataStatus|True|Indicates whether e911 override is on. References signal "MyKey_e911Override_St". See VehicleDataStatus.|
 
 
 ### TireStatus
@@ -2008,16 +2005,16 @@ Struct with the GPS data.
 |`utcMinutes`|Integer|False|The current UTC minute.|
 |`utcSeconds`|Integer|False|The current UTC second.|
 |`compassDirection`|CompassDirection|False|See CompassDirection.|
-|`pdop`|Float|False|PDOP.  If undefined or unavailable, then value shall be set to 0.|
-|`hdop`|Float|False|HDOP.  If value is unknown, value shall be set to 0.|
-|`vdop`|Float|False|VDOP.  If value is unknown, value shall be set to 0.|
-|`actual`|Boolean|False|True, if actual.                False, if inferred.            |
+|`pdop`|Float|False|PDOP. If undefined or unavailable, then value shall be set to 0.|
+|`hdop`|Float|False|HDOP. If value is unknown, value shall be set to 0.|
+|`vdop`|Float|False|VDOP. If value is unknown, value shall be set to 0.|
+|`actual`|Boolean|False|True, if actual. False, if inferred.|
 |`satellites`|Integer|False|Number of satellites in view|
 |`dimension`|Dimension|False|See Dimension|
 |`altitude`|Float|False|Altitude in meters|
 |`heading`|Float|False|The heading. North is 0. Resolution is 0.01|
 |`speed`|Float|False|The speed in KPH|
-|`shifted`|Boolean|False|True, if GPS lat/long, time, and altitude have been purposefully shifted (requires a proprietary algorithm to unshift).                False, if the GPS data is raw and un-shifted.                If not provided, then value is assumed False.            |
+|`shifted`|Boolean|False|True, if GPS lat/long, time, and altitude have been purposefully shifted (requires a proprietary algorithm to unshift). False, if the GPS data is raw and un-shifted. If not provided, then value is assumed False.|
 
 
 ### VehicleDataResult
@@ -2029,7 +2026,7 @@ Individual published data request result
 | ---------- | ---------- |:-----------: |:-----------:|
 |`dataType`|VehicleDataType|True|Defined published data element type.|
 |`resultCode`|VehicleDataResultCode|True|Published data result code.|
-|`oemCustomDataType`|String|False|Type of requested oem specific parameter |
+|`oemCustomDataType`|String|False|Type of requested oem specific parameter|
 
 
 ### DIDResult
@@ -2049,7 +2046,7 @@ Individual requested DID result and data
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`hours`|Integer|True|The hour of the media clock.                Some radios only support a max of 19 hours. If out of range, it will be rejected.            |
+|`hours`|Integer|True|The hour of the media clock. Some radios only support a max of 19 hours. If out of range, it will be rejected.|
 |`minutes`|Integer|True||
 |`seconds`|Integer|True||
 
@@ -2098,8 +2095,8 @@ Individual requested DID result and data
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`id`|Integer|True|A touch's unique identifier.  The application can track the current touch events by id.                If a touch event has type begin, the id should be added to the set of touches.                If a touch event has type end, the id should be removed from the set of touches.            |
-|`ts`|Integer[]|True|The time that the touch was recorded.  This number can the time since the beginning of the session or something else as long as the units are in milliseconds.                The timestamp is used to determined the rate of change of position of a touch.                The application also uses the time to verify whether two touches, with different ids, are part of a single action by the user.                If there is only a single timestamp in this array, it is the same for every coordinate in the coordinates array.            |
+|`id`|Integer|True|A touch's unique identifier. The application can track the current touch events by id. If a touch event has type begin, the id should be added to the set of touches. If a touch event has type end, the id should be removed from the set of touches.|
+|`ts`|Integer[]|True|The time that the touch was recorded. This number can the time since the beginning of the session or something else as long as the units are in milliseconds. The timestamp is used to determined the rate of change of position of a touch. The application also uses the time to verify whether two touches, with different ids, are part of a single action by the user. If there is only a single timestamp in this array, it is the same for every coordinate in the coordinates array.|
 |`c`|TouchCoord[]|True||
 
 
@@ -2152,7 +2149,8 @@ Individual requested DID result and data
 
 
 ### DisplayCapabilities
-Contains information about the display capabilities. This struct is deprecated; please see the new SystemCapability DISPLAYS and corresponding struct DisplayCapability 
+deprecated since 6.0.0
+Contains information about the display capabilities. This struct is deprecated; please see the new SystemCapability DISPLAYS and corresponding struct DisplayCapability
 
 ##### Parameters
 
@@ -2164,7 +2162,7 @@ Contains information about the display capabilities. This struct is deprecated; 
 |`imageFields`|ImageField[]|False|A set of all fields that support images. See ImageField|
 |`mediaClockFormats`|MediaClockFormat[]|True|A set of all supported formats of the media clock. See MediaClockFormat|
 |`graphicSupported`|Boolean|True|The display's persistent screen supports referencing a static or dynamic image.|
-|`templatesAvailable`|String[]|False|A set of all predefined persistent display templates available on headunit.  To be referenced in SetDisplayLayout.|
+|`templatesAvailable`|String[]|False|A set of all predefined persistent display templates available on headunit. To be referenced in SetDisplayLayout.|
 |`screenParams`|ScreenParams|False|A set of all parameters related to a prescribed screen area (e.g. for video / touch input).|
 |`numCustomPresetsAvailable`|Integer|False|The number of on-screen custom presets available (if any); otherwise omitted.|
 
@@ -2193,8 +2191,8 @@ Information about a RC module
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleId`|String|True|uuid of a module. "moduleId + moduleType" uniquely identify a module.|
 |`location`|Grid|False|Location of a module.|
-|`serviceArea`|Grid|False|Service area of a module. |
-|`allowMultipleAccess`|Boolean|False|allow multiple users/apps to access the module or not |
+|`serviceArea`|Grid|False|Service area of a module.|
+|`allowMultipleAccess`|Boolean|False|allow multiple users/apps to access the module or not|
 
 
 ### ButtonCapabilities
@@ -2205,10 +2203,10 @@ Contains information about a button's capabilities.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`name`|ButtonName|True|The name of the button. See ButtonName.|
-|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id. |
-|`shortPressAvailable`|Boolean|True|The button supports a short press.                Whenever the button is pressed short, onButtonPressed( SHORT) will be invoked.            |
-|`longPressAvailable`|Boolean|True|The button supports a LONG press.                Whenever the button is pressed long, onButtonPressed( LONG) will be invoked.            |
-|`upDownAvailable`|Boolean|True|The button supports "button down" and "button up".                Whenever the button is pressed, onButtonEvent( DOWN) will be invoked.                Whenever the button is released, onButtonEvent( UP) will be invoked.            |
+|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
+|`shortPressAvailable`|Boolean|True|The button supports a short press. Whenever the button is pressed short, onButtonPressed( SHORT) will be invoked.|
+|`longPressAvailable`|Boolean|True|The button supports a LONG press. Whenever the button is pressed long, onButtonPressed( LONG) will be invoked.|
+|`upDownAvailable`|Boolean|True|The button supports "button down" and "button up". Whenever the button is pressed, onButtonEvent( DOWN) will be invoked. Whenever the button is released, onButtonEvent( UP) will be invoked.|
 
 
 ### SoftButtonCapabilities
@@ -2218,11 +2216,11 @@ Contains information about a SoftButton's capabilities.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`shortPressAvailable`|Boolean|True|The button supports a short press.                Whenever the button is pressed short, onButtonPressed( SHORT) will be invoked.            |
-|`longPressAvailable`|Boolean|True|The button supports a LONG press.                Whenever the button is pressed long, onButtonPressed( LONG) will be invoked.            |
-|`upDownAvailable`|Boolean|True|The button supports "button down" and "button up".                Whenever the button is pressed, onButtonEvent( DOWN) will be invoked.                Whenever the button is released, onButtonEvent( UP) will be invoked.            |
+|`shortPressAvailable`|Boolean|True|The button supports a short press. Whenever the button is pressed short, onButtonPressed( SHORT) will be invoked.|
+|`longPressAvailable`|Boolean|True|The button supports a LONG press. Whenever the button is pressed long, onButtonPressed( LONG) will be invoked.|
+|`upDownAvailable`|Boolean|True|The button supports "button down" and "button up". Whenever the button is pressed, onButtonEvent( DOWN) will be invoked. Whenever the button is released, onButtonEvent( UP) will be invoked.|
 |`imageSupported`|Boolean|True|The button supports referencing a static or dynamic image.|
-|`textSupported`|Boolean|False|The button supports the use of text.                If not included, the default value should be considered true that the button will support text.           |
+|`textSupported`|Boolean|False|The button supports the use of text. If not included, the default value should be considered true that the button will support text.|
 
 
 ### PresetBankCapabilities
@@ -2240,7 +2238,7 @@ Contains information about on-screen preset capabilities.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`windowID`|Integer|False|The specified ID of the window. This ID is either one used when sending the CreateWindow request,                 or one of the predefined window ID values from the enum PredefinedWindows. If ommited, value is                 assumed to be the main window on the main display.            |
+|`windowID`|Integer|False|The specified ID of the window. This ID is either one used when sending the CreateWindow request, or one of the predefined window ID values from the enum PredefinedWindows. If ommited, value is assumed to be the main window on the main display.|
 |`textFields`|TextField[]|False|A set of all fields that support text data. See TextField|
 |`imageFields`|ImageField[]|False|A set of all fields that support images. See ImageField|
 |`imageTypeSupported`|ImageType[]|False|Provides information about image types supported by the system.|
@@ -2266,8 +2264,8 @@ Contains information about on-screen preset capabilities.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`displayName`|String|False||
-|`windowTypeSupported`|WindowTypeCapabilities[]|False|Informs the application how many windows the app is allowed to create per type.            |
-|`windowCapabilities`|WindowCapability[]|False|Contains a list of capabilities of all windows related to the app.              Once the app has registered the capabilities of all windows are provided.              GetSystemCapability still allows requesting window capabilities of all windows.              After registration, only windows with capabilities changed will be included. Following cases will cause only affected windows to be included:              1. App creates a new window. After the window is created, a system capability notification will be sent related only to the created window.              2. App sets a new layout to the window. The new layout changes window capabilties. The notification will reflect those changes to the single window.            |
+|`windowTypeSupported`|WindowTypeCapabilities[]|False|Informs the application how many windows the app is allowed to create per type.|
+|`windowCapabilities`|WindowCapability[]|False|Contains a list of capabilities of all windows related to the app. Once the app has registered the capabilities of all windows are provided. GetSystemCapability still allows requesting window capabilities of all windows. After registration, only windows with capabilities changed will be included. Following cases will cause only affected windows to be included: 1. App creates a new window. After the window is created, a system capability notification will be sent related only to the created window. 2. App sets a new layout to the window. The new layout changes window capabilties. The notification will reflect those changes to the single window.|
 
 
 ### HMICapabilities
@@ -2276,8 +2274,8 @@ Contains information about on-screen preset capabilities.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`navigation`|Boolean|False|Availability of build in Nav. True: Available, False: Not Available|
-|`phoneCall`|Boolean|False|Availability of build in phone. True: Available, False: Not Available |
-|`videoStreaming`|Boolean|False|Availability of video streaming. |
+|`phoneCall`|Boolean|False|Availability of build in phone. True: Available, False: Not Available|
+|`videoStreaming`|Boolean|False|Availability of video streaming.|
 |`remoteControl`|Boolean|False|Availability of remote control feature. True: Available, False: Not Available|
 |`appServices`|Boolean|False|Availability of App Services functionality. True: Available, False: Not Available|
 |`displays`|Boolean|False|Availability of displays capability. True: Available, False: Not Available|
@@ -2289,8 +2287,8 @@ Contains information about on-screen preset capabilities.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`parentID`|Integer|False|unique ID of the sub menu, the command will be added to.                If not provided, it will be provided to the top level of the in application menu.            |
-|`position`|Integer|False|Position within the items that are are at top level of the in application menu.                0 will insert at the front.                1 will insert at the second position.                if position is greater or equal than the number of items on top level, the sub menu will be appended to the end.                If this param was omitted the entry will be added at the end.            |
+|`parentID`|Integer|False|unique ID of the sub menu, the command will be added to. If not provided, it will be provided to the top level of the in application menu.|
+|`position`|Integer|False|Position within the items that are are at top level of the in application menu. 0 will insert at the front. 1 will insert at the second position. if position is greater or equal than the number of items on top level, the sub menu will be appended to the end. If this param was omitted the entry will be added at the end.|
 |`menuName`|String|True|Text to show in the menu for this sub menu.|
 
 
@@ -2301,7 +2299,7 @@ A TTS chunk, that consists of text/phonemes to speak or the name of a file to pl
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`text`|String|True|The text or phonemes to speak, or the name of the audio file to play.                May not be empty.            |
+|`text`|String|True|The text or phonemes to speak, or the name of the audio file to play. May not be empty.|
 |`type`|SpeechCapabilities|True|Describes whether the TTS chunk is plain text, a specific phoneme set, or an audio file. See SpeechCapabilities|
 
 
@@ -2310,8 +2308,8 @@ A TTS chunk, that consists of text/phonemes to speak or the name of a file to pl
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`navigationText`|String|False|Individual turn text.  Must provide at least text or icon for a given turn.|
-|`turnIcon`|Image|False|Individual turn icon.  Must provide at least text or icon for a given turn.|
+|`navigationText`|String|False|Individual turn text. Must provide at least text or icon for a given turn.|
+|`turnIcon`|Image|False|Individual turn icon. Must provide at least text or icon for a given turn.|
 
 
 ### VehicleType
@@ -2334,10 +2332,10 @@ Configuration of on-screen keyboard (if available).
 | ---------- | ---------- |:-----------: |:-----------:|
 |`language`|Language|False|The keyboard language.|
 |`keyboardLayout`|KeyboardLayout|False|Desired keyboard layout.|
-|`keypressMode`|KeypressMode|False|Desired keypress mode.                If omitted, this value will be set to RESEND_CURRENT_ENTRY.            |
-|`limitedCharacterList`|String[]|False|Array of keyboard characters to enable.|
+|`keypressMode`|KeypressMode|False|Desired keypress mode. If omitted, this value will be set to RESEND_CURRENT_ENTRY.|
+|`limitedCharacterList`|String[]|False|Array of keyboard characters to enable. All omitted characters will be greyed out (disabled) on the keyboard. If omitted, the entire keyboard will be enabled.|
 |`autoCompleteText`|String|False|Deprecated, use autoCompleteList instead.|
-|`autoCompleteList`|String[]|False|Allows an app to prepopulate the text field with a list of suggested or completed entries as the user types.                 If empty, the auto-complete list will be removed from the screen.            |
+|`autoCompleteList`|String[]|False|Allows an app to prepopulate the text field with a list of suggested or completed entries as the user types. If empty, the auto-complete list will be removed from the screen.|
 
 
 ### DeviceInfo
@@ -2360,7 +2358,7 @@ Various information about connecting device.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`millisecond`|Integer|False|Milliseconds |
+|`millisecond`|Integer|False|Milliseconds|
 |`second`|Integer|False|Seconds part of time|
 |`minute`|Integer|False|Minutes part of time|
 |`hour`|Integer|False|Hours part of time. Note that this structure accepts time only in 24 Hr format|
@@ -2452,7 +2450,7 @@ Contains information about this system's video streaming capabilities.
 |`preferredResolution`|ImageResolution|False|The preferred resolution of a video stream for decoding and rendering on HMI.|
 |`maxBitrate`|Integer|False|The maximum bitrate of video stream that is supported, in kbps.|
 |`supportedFormats`|VideoStreamingFormat[]|False|Detailed information on each format supported by this system, in its preferred order (i.e. the first element in the array is most preferable to the system). Each object will contain a VideoStreamingFormat that describes what can be expected.|
-|`hapticSpatialDataSupported`|Boolean|False|True if the system can utilize the haptic spatial data from the source being streamed. If not included, it can be assumed the module doesn't support haptic spatial data'. |
+|`hapticSpatialDataSupported`|Boolean|False|True if the system can utilize the haptic spatial data from the source being streamed. If not included, it can be assumed the module doesn't support haptic spatial data'.|
 |`diagonalScreenSize`|Float|False|The diagonal screen size in inches.|
 |`pixelPerInch`|Float|False|PPI is the diagonal resolution in pixels divided by the diagonal screen size in inches.|
 |`scale`|Float|False|The scaling factor the app should use to change the size of the projecting view.|
@@ -2470,7 +2468,6 @@ Contains information about this system's video streaming capabilities.
 
 ### TemplateColorScheme
 A color scheme for all display layout templates.
-        
 
 ##### Parameters
 
@@ -2486,7 +2483,7 @@ A color scheme for all display layout templates.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`template`|String|True|Predefined or dynamically created window template.              Currently only predefined window template layouts are defined.          |
+|`template`|String|True|Predefined or dynamically created window template. Currently only predefined window template layouts are defined.|
 |`dayColorScheme`|TemplateColorScheme|False||
 |`nightColorScheme`|TemplateColorScheme|False||
 
@@ -2547,7 +2544,7 @@ The intensity or firmness of a cushion.
 
 
 ### SeatControlData
-Seat control data corresponds to "SEAT" ModuleType. 
+Seat control data corresponds to "SEAT" ModuleType.
 
 ##### Parameters
 
@@ -2576,8 +2573,8 @@ Seat control data corresponds to "SEAT" ModuleType.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`moduleName`|String|True|The short friendly name of the light control module.            It should not be used to identify a module by mobile application.            |
-|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id. |
+|`moduleName`|String|True|The short friendly name of the light control module. It should not be used to identify a module by mobile application.|
+|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
 |`heatingEnabledAvailable`|Boolean|False||
 |`coolingEnabledAvailable`|Boolean|False||
 |`heatingLevelAvailable`|Boolean|False||
@@ -2625,7 +2622,7 @@ Seat control data corresponds to "SEAT" ModuleType.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`countryCode`|Integer|False|Binary Representation of ITU Country Code. USA Code is 001.|
-|`fccFacilityId`|Integer|False|Binary representation  of unique facility ID assigned by the FCC; FCC controlled for U.S. territory|
+|`fccFacilityId`|Integer|False|Binary representation of unique facility ID assigned by the FCC; FCC controlled for U.S. territory|
 
 
 ### SisData
@@ -2651,7 +2648,7 @@ Seat control data corresponds to "SEAT" ModuleType.
 |`rdsData`|RdsData|False||
 |`hdRadioEnable`|Boolean|False|True if the hd radio is on, false if the radio is off|
 |`availableHDs`|Integer|False|Number of HD sub-channels if available|
-|`availableHdChannels`|Integer[]|False|The list of available HD sub-channel indexes. Empty list means no Hd channel is available. Read-only. |
+|`availableHdChannels`|Integer[]|False|The list of available HD sub-channel indexes. Empty list means no Hd channel is available. Read-only.|
 |`hdChannel`|Integer|False|Current HD sub-channel if available|
 |`signalStrength`|Integer|False||
 |`signalChangeThreshold`|Integer|False|If the signal strength falls below the set value for this parameter, the radio will tune to an alternative frequency|
@@ -2689,21 +2686,21 @@ Contains information about a radio control module's capabilities.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`moduleName`|String|True|The short friendly name of the climate control module.                It should not be used to identify a module by mobile application.            |
-|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id. |
-|`radioEnableAvailable`|Boolean|False|Availability of the control of enable/disable radio.                True: Available, False: Not Available, Not present: Not Available.            |
-|`radioBandAvailable`|Boolean|False|Availability of the control of radio band.                True: Available, False: Not Available, Not present: Not Available.            |
-|`radioFrequencyAvailable`|Boolean|False|Availability of the control of radio frequency.                True: Available, False: Not Available, Not present: Not Available.            |
-|`hdChannelAvailable`|Boolean|False|Availability of the control of HD radio channel.                True: Available, False: Not Available, Not present: Not Available.            |
-|`rdsDataAvailable`|Boolean|False|Availability of the getting Radio Data System (RDS) data.                True: Available, False: Not Available, Not present: Not Available.            |
-|`availableHDsAvailable`|Boolean|False|Availability of the getting the number of available HD channels.                True: Available, False: Not Available, Not present: Not Available.            |
-|`availableHdChannelsAvailable`|Boolean|False|Availability of the list of available HD sub-channel indexes.                True: Available, False: Not Available, Not present: Not Available.            |
-|`stateAvailable`|Boolean|False|Availability of the getting the Radio state.                True: Available, False: Not Available, Not present: Not Available.            |
-|`signalStrengthAvailable`|Boolean|False|Availability of the getting the signal strength.                True: Available, False: Not Available, Not present: Not Available.            |
-|`signalChangeThresholdAvailable`|Boolean|False|Availability of the getting the signal Change Threshold.                True: Available, False: Not Available, Not present: Not Available.            |
-|`sisDataAvailable`|Boolean|False|Availability of the getting HD radio Station Information Service (SIS) data.                True: Available, False: Not Available, Not present: Not Available.            |
-|`hdRadioEnableAvailable`|Boolean|False|Availability of the control of enable/disable HD radio.                True: Available, False: Not Available, Not present: Not Available.            |
-|`siriusxmRadioAvailable`|Boolean|False|Availability of sirius XM radio.                True: Available, False: Not Available, Not present: Not Available.            |
+|`moduleName`|String|True|The short friendly name of the climate control module. It should not be used to identify a module by mobile application.|
+|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
+|`radioEnableAvailable`|Boolean|False|Availability of the control of enable/disable radio. True: Available, False: Not Available, Not present: Not Available.|
+|`radioBandAvailable`|Boolean|False|Availability of the control of radio band. True: Available, False: Not Available, Not present: Not Available.|
+|`radioFrequencyAvailable`|Boolean|False|Availability of the control of radio frequency. True: Available, False: Not Available, Not present: Not Available.|
+|`hdChannelAvailable`|Boolean|False|Availability of the control of HD radio channel. True: Available, False: Not Available, Not present: Not Available.|
+|`rdsDataAvailable`|Boolean|False|Availability of the getting Radio Data System (RDS) data. True: Available, False: Not Available, Not present: Not Available.|
+|`availableHDsAvailable`|Boolean|False|Availability of the getting the number of available HD channels. True: Available, False: Not Available, Not present: Not Available.|
+|`availableHdChannelsAvailable`|Boolean|False|Availability of the list of available HD sub-channel indexes. True: Available, False: Not Available, Not present: Not Available.|
+|`stateAvailable`|Boolean|False|Availability of the getting the Radio state. True: Available, False: Not Available, Not present: Not Available.|
+|`signalStrengthAvailable`|Boolean|False|Availability of the getting the signal strength. True: Available, False: Not Available, Not present: Not Available.|
+|`signalChangeThresholdAvailable`|Boolean|False|Availability of the getting the signal Change Threshold. True: Available, False: Not Available, Not present: Not Available.|
+|`sisDataAvailable`|Boolean|False|Availability of the getting HD radio Station Information Service (SIS) data. True: Available, False: Not Available, Not present: Not Available.|
+|`hdRadioEnableAvailable`|Boolean|False|Availability of the control of enable/disable HD radio. True: Available, False: Not Available, Not present: Not Available.|
+|`siriusxmRadioAvailable`|Boolean|False|Availability of sirius XM radio. True: Available, False: Not Available, Not present: Not Available.|
 
 
 ### ClimateControlCapabilities
@@ -2713,25 +2710,25 @@ Contains information about a climate control module's capabilities.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`moduleName`|String|True|The short friendly name of the climate control module.                It should not be used to identify a module by mobile application.|
-|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id. |
-|`currentTemperatureAvailable`|Boolean|False|Availability of the reading of current temperature.                True: Available, False: Not Available, Not present: Not Available.            |
-|`fanSpeedAvailable`|Boolean|False|Availability of the control of fan speed.                True: Available, False: Not Available, Not present: Not Available.            |
-|`desiredTemperatureAvailable`|Boolean|False|Availability of the control of desired temperature.                True: Available, False: Not Available, Not present: Not Available.            |
-|`acEnableAvailable`|Boolean|False|Availability of the control of turn on/off AC.                True: Available, False: Not Available, Not present: Not Available.            |
-|`acMaxEnableAvailable`|Boolean|False|Availability of the control of enable/disable air conditioning is ON on the maximum level.                True: Available, False: Not Available, Not present: Not Available.            |
-|`circulateAirEnableAvailable`|Boolean|False|Availability of the control of enable/disable circulate Air mode.                True: Available, False: Not Available, Not present: Not Available.            |
-|`autoModeEnableAvailable`|Boolean|False|Availability of the control of enable/disable auto mode.                True: Available, False: Not Available, Not present: Not Available.            |
-|`dualModeEnableAvailable`|Boolean|False|Availability of the control of enable/disable dual mode.                True: Available, False: Not Available, Not present: Not Available.            |
-|`defrostZoneAvailable`|Boolean|False|Availability of the control of defrost zones.                True: Available, False: Not Available, Not present: Not Available.            |
-|`defrostZone`|DefrostZone[]|False|A set of all defrost zones that are controllable.            |
-|`ventilationModeAvailable`|Boolean|False|Availability of the control of air ventilation mode.                True: Available, False: Not Available, Not present: Not Available.            |
-|`ventilationMode`|VentilationMode[]|False|A set of all ventilation modes that are controllable.            |
-|`heatedSteeringWheelAvailable`|Boolean|False|Availability of the control (enable/disable) of heated Steering Wheel.                True: Available, False: Not Available, Not present: Not Available.            |
-|`heatedWindshieldAvailable`|Boolean|False|Availability of the control (enable/disable) of heated Windshield.                True: Available, False: Not Available, Not present: Not Available.            |
-|`heatedRearWindowAvailable`|Boolean|False|Availability of the control (enable/disable) of heated Rear Window.                True: Available, False: Not Available, Not present: Not Available.            |
-|`heatedMirrorsAvailable`|Boolean|False|Availability of the control (enable/disable) of heated Mirrors.                True: Available, False: Not Available, Not present: Not Available.            |
-|`climateEnableAvailable`|Boolean|False|Availability of the control of enable/disable climate control.                True: Available, False: Not Available, Not present: Not Available.            |
+|`moduleName`|String|True|The short friendly name of the climate control module. It should not be used to identify a module by mobile application.|
+|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
+|`currentTemperatureAvailable`|Boolean|False|Availability of the reading of current temperature. True: Available, False: Not Available, Not present: Not Available.|
+|`fanSpeedAvailable`|Boolean|False|Availability of the control of fan speed. True: Available, False: Not Available, Not present: Not Available.|
+|`desiredTemperatureAvailable`|Boolean|False|Availability of the control of desired temperature. True: Available, False: Not Available, Not present: Not Available.|
+|`acEnableAvailable`|Boolean|False|Availability of the control of turn on/off AC. True: Available, False: Not Available, Not present: Not Available.|
+|`acMaxEnableAvailable`|Boolean|False|Availability of the control of enable/disable air conditioning is ON on the maximum level. True: Available, False: Not Available, Not present: Not Available.|
+|`circulateAirEnableAvailable`|Boolean|False|Availability of the control of enable/disable circulate Air mode. True: Available, False: Not Available, Not present: Not Available.|
+|`autoModeEnableAvailable`|Boolean|False|Availability of the control of enable/disable auto mode. True: Available, False: Not Available, Not present: Not Available.|
+|`dualModeEnableAvailable`|Boolean|False|Availability of the control of enable/disable dual mode. True: Available, False: Not Available, Not present: Not Available.|
+|`defrostZoneAvailable`|Boolean|False|Availability of the control of defrost zones. True: Available, False: Not Available, Not present: Not Available.|
+|`defrostZone`|DefrostZone[]|False|A set of all defrost zones that are controllable.|
+|`ventilationModeAvailable`|Boolean|False|Availability of the control of air ventilation mode. True: Available, False: Not Available, Not present: Not Available.|
+|`ventilationMode`|VentilationMode[]|False|A set of all ventilation modes that are controllable.|
+|`heatedSteeringWheelAvailable`|Boolean|False|Availability of the control (enable/disable) of heated Steering Wheel. True: Available, False: Not Available, Not present: Not Available.|
+|`heatedWindshieldAvailable`|Boolean|False|Availability of the control (enable/disable) of heated Windshield. True: Available, False: Not Available, Not present: Not Available.|
+|`heatedRearWindowAvailable`|Boolean|False|Availability of the control (enable/disable) of heated Rear Window. True: Available, False: Not Available, Not present: Not Available.|
+|`heatedMirrorsAvailable`|Boolean|False|Availability of the control (enable/disable) of heated Mirrors. True: Available, False: Not Available, Not present: Not Available.|
+|`climateEnableAvailable`|Boolean|False|Availability of the control of enable/disable climate control. True: Available, False: Not Available, Not present: Not Available.|
 
 
 ### EqualizerSettings
@@ -2751,8 +2748,8 @@ Defines the each Equalizer channel settings.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`source`|PrimaryAudioSource|False|In a getter response or a notification, it is the current primary audio source of the system.                In a setter request, it is the target audio source that the system shall switch to.                If the value is MOBILE_APP, the system shall switch to the mobile media app that issues the setter RPC.            |
-|`keepContext`|Boolean|False|This parameter shall not be present in any getter responses or notifications.                This parameter is optional in a setter request. The default value is false if it is not included.                If it is false, the system not only changes the audio source but also brings the default application or                 system UI associated with the audio source to foreground.                If it is true, the system only changes the audio source, but keeps the current application in foreground.            |
+|`source`|PrimaryAudioSource|False|In a getter response or a notification, it is the current primary audio source of the system. In a setter request, it is the target audio source that the system shall switch to. If the value is MOBILE_APP, the system shall switch to the mobile media app that issues the setter RPC.|
+|`keepContext`|Boolean|False|This parameter shall not be present in any getter responses or notifications. This parameter is optional in a setter request. The default value is false if it is not included. If it is false, the system not only changes the audio source but also brings the default application or system UI associated with the audio source to foreground. If it is true, the system only changes the audio source, but keeps the current application in foreground.|
 |`volume`|Integer|False|Reflects the volume of audio, from 0%-100%.|
 |`equalizerSettings`|EqualizerSettings[]|False|Defines the list of supported channels (band) and their current/desired settings on HMI|
 
@@ -2762,10 +2759,10 @@ Defines the each Equalizer channel settings.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`moduleName`|String|True|The short friendly name of the light control module.                It should not be used to identify a module by mobile application.            |
-|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id. |
-|`sourceAvailable`|Boolean|False|Availability of the control of audio source. |
-|`keepContextAvailable`|Boolean|False|Availability of the keepContext parameter. |
+|`moduleName`|String|True|The short friendly name of the light control module. It should not be used to identify a module by mobile application.|
+|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
+|`sourceAvailable`|Boolean|False|Availability of the control of audio source.|
+|`keepContextAvailable`|Boolean|False|Availability of the keepContext parameter.|
 |`volumeAvailable`|Boolean|False|Availability of the control of audio volume.|
 |`equalizerAvailable`|Boolean|False|Availability of the control of Equalizer Settings.|
 |`equalizerMaxChannelId`|Integer|False|Must be included if equalizerAvailable=true, and assume all IDs starting from 1 to this value are valid|
@@ -2777,9 +2774,9 @@ Defines the each Equalizer channel settings.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`name`|LightName|True||
-|`statusAvailable`|Boolean|False|Indicates if the status (ON/OFF) can be set remotely. App shall not use read-only values (RAMP_UP/RAMP_DOWN/UNKNOWN/INVALID) in a setInteriorVehicleData request.          |
-|`densityAvailable`|Boolean|False|Indicates if the light's density can be set remotely (similar to a dimmer).            |
-|`rgbColorSpaceAvailable`|Boolean|False|Indicates if the light's color can be set remotely by using the sRGB color space.            |
+|`statusAvailable`|Boolean|False|Indicates if the status (ON/OFF) can be set remotely. App shall not use read-only values (RAMP_UP/RAMP_DOWN/UNKNOWN/INVALID) in a setInteriorVehicleData request.|
+|`densityAvailable`|Boolean|False|Indicates if the light's density can be set remotely (similar to a dimmer).|
+|`rgbColorSpaceAvailable`|Boolean|False|Indicates if the light's color can be set remotely by using the sRGB color space.|
 
 
 ### LightControlCapabilities
@@ -2787,9 +2784,9 @@ Defines the each Equalizer channel settings.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`moduleName`|String|True|The short friendly name of the light control module.                It should not be used to identify a module by mobile application.            |
-|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id. |
-|`supportedLights`|LightCapabilities[]|True|An array of available LightCapabilities that are controllable. |
+|`moduleName`|String|True|The short friendly name of the light control module. It should not be used to identify a module by mobile application.|
+|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
+|`supportedLights`|LightCapabilities[]|True|An array of available LightCapabilities that are controllable.|
 
 
 ### LightState
@@ -2797,7 +2794,7 @@ Defines the each Equalizer channel settings.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`id`|LightName|True|The name of a light or a group of lights. |
+|`id`|LightName|True|The name of a light or a group of lights.|
 |`status`|LightStatus|True||
 |`density`|Float|False||
 |`color`|RGBColor|False||
@@ -2828,11 +2825,11 @@ Corresponds to "HMI_SETTINGS" ModuleType
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`moduleName`|String|True|The short friendly name of the hmi setting module.              It should not be used to identify a module by mobile application.            |
-|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id. |
-|`distanceUnitAvailable`|Boolean|False|Availability of the control of distance unit. |
-|`temperatureUnitAvailable`|Boolean|False|Availability of the control of temperature unit. |
-|`displayModeUnitAvailable`|Boolean|False|Availability of the control of HMI display mode. |
+|`moduleName`|String|True|The short friendly name of the hmi setting module. It should not be used to identify a module by mobile application.|
+|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
+|`distanceUnitAvailable`|Boolean|False|Availability of the control of distance unit.|
+|`temperatureUnitAvailable`|Boolean|False|Availability of the control of temperature unit.|
+|`displayModeUnitAvailable`|Boolean|False|Availability of the control of HMI display mode.|
 
 
 ### ModuleData
@@ -2843,7 +2840,7 @@ The moduleType indicates which type of data should be changed and identifies whi
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleType`|ModuleType|True||
-|`moduleId`|String|False|Id of a module, published by System Capability. |
+|`moduleId`|String|False|Id of a module, published by System Capability.|
 |`radioControlData`|RadioControlData|False||
 |`climateControlData`|ClimateControlData|False||
 |`seatControlData`|SeatControlData|False||
@@ -2909,18 +2906,18 @@ This data is related to what a media service should provide
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`mediaType`|MediaType|False|The type of the currently playing or paused track.|
-|`mediaTitle`|String|False|Music: The name of the current track                Podcast: The name of the current episode                Audiobook: The name of the current chapter            |
-|`mediaArtist`|String|False|Music: The name of the current album artist                Podcast: The provider of the podcast (hosts, network, company)                Audiobook: The book author's name            |
-|`mediaAlbum`|String|False|Music: The name of the current album                Podcast: The name of the current podcast show                Audiobook: The name of the current book            |
-|`playlistName`|String|False|Music: The name of the playlist or radio station, if the user is playing from a playlist, otherwise, Null                Podcast: The name of the playlist, if the user is playing from a playlist, otherwise, Null                Audiobook: Likely not applicable, possibly a collection or "playlist" of books            |
+|`mediaTitle`|String|False|Music: The name of the current track Podcast: The name of the current episode Audiobook: The name of the current chapter|
+|`mediaArtist`|String|False|Music: The name of the current album artist Podcast: The provider of the podcast (hosts, network, company) Audiobook: The book author's name|
+|`mediaAlbum`|String|False|Music: The name of the current album Podcast: The name of the current podcast show Audiobook: The name of the current book|
+|`playlistName`|String|False|Music: The name of the playlist or radio station, if the user is playing from a playlist, otherwise, Null Podcast: The name of the playlist, if the user is playing from a playlist, otherwise, Null Audiobook: Likely not applicable, possibly a collection or "playlist" of books|
 |`isExplicit`|Boolean|False|Whether or not the content currently playing (e.g. the track, episode, or book) contains explicit content|
-|`trackPlaybackProgress`|Integer|False|Music: The current progress of the track in seconds                Podcast: The current progress of the episode in seconds                Audiobook: The current progress of the current segment (e.g. the chapter) in seconds            |
-|`trackPlaybackDuration`|Integer|False|Music: The total duration of the track in seconds                Podcast: The total duration of the episode in seconds                Audiobook: The total duration of the current segment (e.g. the chapter) in seconds            |
-|`queuePlaybackProgress`|Integer|False|Music: The current progress of the playback queue in seconds                Podcast: The current progress of the playback queue in seconds                Audiobook: The current progress of the playback queue (e.g. the book) in seconds            |
-|`queuePlaybackDuration`|Integer|False|Music: The total duration of the playback queue in seconds                Podcast: The total duration of the playback queue in seconds                Audiobook: The total duration of the playback queue (e.g. the book) in seconds            |
-|`queueCurrentTrackNumber`|Integer|False|Music: The current number (1 based) of the track in the playback queue                Podcast: The current number (1 based) of the episode in the playback queue                Audiobook: The current number (1 based) of the episode in the playback queue (e.g. the chapter number in the book)            |
-|`queueTotalTrackCount`|Integer|False|Music: The total number of tracks in the playback queue                Podcast: The total number of episodes in the playback queue                Audiobook: The total number of sections in the playback queue (e.g. the number of chapters in the book)            |
-|`mediaImage`|Image|False|Music: The album art of the current track              Podcast: The podcast or chapter artwork of the current podcast episode              Audiobook: The book or chapter artwork of the current audiobook          |
+|`trackPlaybackProgress`|Integer|False|Music: The current progress of the track in seconds Podcast: The current progress of the episode in seconds Audiobook: The current progress of the current segment (e.g. the chapter) in seconds|
+|`trackPlaybackDuration`|Integer|False|Music: The total duration of the track in seconds Podcast: The total duration of the episode in seconds Audiobook: The total duration of the current segment (e.g. the chapter) in seconds|
+|`queuePlaybackProgress`|Integer|False|Music: The current progress of the playback queue in seconds Podcast: The current progress of the playback queue in seconds Audiobook: The current progress of the playback queue (e.g. the book) in seconds|
+|`queuePlaybackDuration`|Integer|False|Music: The total duration of the playback queue in seconds Podcast: The total duration of the playback queue in seconds Audiobook: The total duration of the playback queue (e.g. the book) in seconds|
+|`queueCurrentTrackNumber`|Integer|False|Music: The current number (1 based) of the track in the playback queue Podcast: The current number (1 based) of the episode in the playback queue Audiobook: The current number (1 based) of the episode in the playback queue (e.g. the chapter number in the book)|
+|`queueTotalTrackCount`|Integer|False|Music: The total number of tracks in the playback queue Podcast: The total number of episodes in the playback queue Audiobook: The total number of sections in the playback queue (e.g. the number of chapters in the book)|
+|`mediaImage`|Image|False|Music: The album art of the current track Podcast: The podcast or chapter artwork of the current podcast episode Audiobook: The book or chapter artwork of the current audiobook|
 
 
 ### WeatherServiceManifest
@@ -2961,19 +2958,19 @@ This data is related to what a media service should provide
 |`apparentTemperatureLow`|Temperature|False||
 |`weatherSummary`|String|False||
 |`time`|DateTime|False||
-|`humidity`|Float|False|0 to 1, percentage humidity |
-|`cloudCover`|Float|False|0 to 1, percentage cloud cover |
-|`moonPhase`|Float|False|0 to 1, percentage of the moon seen, e.g. 0 = no moon, 0.25 = quarter moon |
-|`windBearing`|Integer|False|In degrees, true north at 0 degrees |
-|`windGust`|Float|False|km/hr |
-|`windSpeed`|Float|False|km/hr |
-|`nearestStormBearing`|Integer|False|In degrees, true north at 0 degrees |
-|`nearestStormDistance`|Integer|False|In km |
-|`precipAccumulation`|Float|False|cm |
-|`precipIntensity`|Float|False|cm of water per hour |
-|`precipProbability`|Float|False|0 to 1, percentage chance |
-|`precipType`|String|False|e.g. "rain", "snow", "sleet", "hail" |
-|`visibility`|Float|False|In km |
+|`humidity`|Float|False|0 to 1, percentage humidity|
+|`cloudCover`|Float|False|0 to 1, percentage cloud cover|
+|`moonPhase`|Float|False|0 to 1, percentage of the moon seen, e.g. 0 = no moon, 0.25 = quarter moon|
+|`windBearing`|Integer|False|In degrees, true north at 0 degrees|
+|`windGust`|Float|False|km/hr|
+|`windSpeed`|Float|False|km/hr|
+|`nearestStormBearing`|Integer|False|In degrees, true north at 0 degrees|
+|`nearestStormDistance`|Integer|False|In km|
+|`precipAccumulation`|Float|False|cm|
+|`precipIntensity`|Float|False|cm of water per hour|
+|`precipProbability`|Float|False|0 to 1, percentage chance|
+|`precipType`|String|False|e.g. "rain", "snow", "sleet", "hail"|
+|`visibility`|Float|False|In km|
 |`weatherIcon`|Image|False||
 
 
@@ -2997,7 +2994,7 @@ This data is related to what a weather service would provide
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`acceptsWayPoints`|Boolean|False|Informs the subscriber if this service can actually accept way points. |
+|`acceptsWayPoints`|Boolean|False|Informs the subscriber if this service can actually accept way points.|
 
 
 ### NavigationInstruction
@@ -3008,11 +3005,11 @@ This data is related to what a weather service would provide
 |`locationDetails`|LocationDetails|True||
 |`action`|NavigationAction|True||
 |`eta`|DateTime|False||
-|`bearing`|Integer|False|The angle at which this instruction takes place. For example, 0 would mean straight, less than 45 is bearing right, greater than 135 is sharp right, between 45 and 135 is a regular right, and 180 is a U-Turn, etc. |
+|`bearing`|Integer|False|The angle at which this instruction takes place. For example, 0 would mean straight, less than 45 is bearing right, greater than 135 is sharp right, between 45 and 135 is a regular right, and 180 is a U-Turn, etc.|
 |`junctionType`|NavigationJunction|False||
-|`drivingSide`|Direction|False|Used to infer which side of the road this instruction takes place. For a U-Turn (action=TURN, bearing=180) this will determine which direction the turn should take place. |
-|`details`|String|False|This is a string representation of this instruction, used to display instructions to the users. This is not intended to be read aloud to the users, see the param prompt in NavigationServiceData for that. |
-|`image`|Image|False|An image representation of this instruction. |
+|`drivingSide`|Direction|False|Used to infer which side of the road this instruction takes place. For a U-Turn (action=TURN, bearing=180) this will determine which direction the turn should take place.|
+|`details`|String|False|This is a string representation of this instruction, used to display instructions to the users. This is not intended to be read aloud to the users, see the param prompt in NavigationServiceData for that.|
+|`image`|Image|False|An image representation of this instruction.|
 
 
 ### NavigationServiceData
@@ -3022,30 +3019,30 @@ This data is related to what a navigation service would provide.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`timeStamp`|DateTime|True|This is the timestamp of when the data was generated. This is to ensure any time or distance given in the data can accurately be adjusted if necessary. |
+|`timeStamp`|DateTime|True|This is the timestamp of when the data was generated. This is to ensure any time or distance given in the data can accurately be adjusted if necessary.|
 |`origin`|LocationDetails|False||
 |`destination`|LocationDetails|False||
 |`destinationETA`|DateTime|False||
 |`instructions`|NavigationInstruction[]|False|This array should be ordered with all remaining instructions. The start of this array should always contain the next instruction.|
 |`nextInstructionETA`|DateTime|False||
-|`nextInstructionDistance`|Float|False|The distance to this instruction from current location. This should only be updated ever .1 unit of distance. For more accuracy the consumer can use the GPS location of itself and the next instruction. |
+|`nextInstructionDistance`|Float|False|The distance to this instruction from current location. This should only be updated ever .1 unit of distance. For more accuracy the consumer can use the GPS location of itself and the next instruction.|
 |`nextInstructionDistanceScale`|Float|False|Distance till next maneuver (starting from) from previous maneuver.|
 |`prompt`|String|False|This is a prompt message that should be conveyed to the user through either display or voice (TTS). This param will change often as it should represent the following: approaching instruction, post instruction, alerts that affect the current navigation session, etc.|
 
 
 ### AppServiceManifest
-This manifest contains all the information necessary for the service to be published, activated, and consumers able to interact with it 
+This manifest contains all the information necessary for the service to be published, activated, and consumers able to interact with it
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`serviceName`|String|False|Unique name of this service |
-|`serviceType`|String|True|The type of service that is to be offered by this app. See AppServiceType for known enum equivalent types. Parameter is a string to allow for new service types to be used by apps on older versions of SDL Core. |
+|`serviceName`|String|False|Unique name of this service|
+|`serviceType`|String|True|The type of service that is to be offered by this app. See AppServiceType for known enum equivalent types. Parameter is a string to allow for new service types to be used by apps on older versions of SDL Core.|
 |`serviceIcon`|Image|False|The icon to be associated with this service. Most likely the same as the appIcon.|
-|`allowAppConsumers`|Boolean|False|If true, app service consumers beyond the IVI system will be able to access this service. If false, only the IVI system will be able consume the service. If not provided, it is assumed to be false. |
-|`rpcSpecVersion`|SyncMsgVersion|False|This is the max RPC Spec version the app service understands. This is important during the RPC passthrough functionality. If not included, it is assumed the max version of the module is acceptable. |
-|`handledRPCs`|Integer[]|False|This field contains the Function IDs for the RPCs that this service intends to handle correctly. This means the service will provide meaningful responses. |
+|`allowAppConsumers`|Boolean|False|If true, app service consumers beyond the IVI system will be able to access this service. If false, only the IVI system will be able consume the service. If not provided, it is assumed to be false.|
+|`rpcSpecVersion`|SyncMsgVersion|False|This is the max RPC Spec version the app service understands. This is important during the RPC passthrough functionality. If not included, it is assumed the max version of the module is acceptable.|
+|`handledRPCs`|Integer[]|False|This field contains the Function IDs for the RPCs that this service intends to handle correctly. This means the service will provide meaningful responses.|
 |`mediaServiceManifest`|MediaServiceManifest|False||
 |`weatherServiceManifest`|WeatherServiceManifest|False||
 |`navigationServiceManifest`|NavigationServiceManifest|False||
@@ -3058,10 +3055,10 @@ This is the record of an app service publisher that the module has. It should co
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`serviceID`|String|True|A unique ID tied to this specific service record. The ID is supplied by the module that services publish themselves. |
+|`serviceID`|String|True|A unique ID tied to this specific service record. The ID is supplied by the module that services publish themselves.|
 |`serviceManifest`|AppServiceManifest|True|Manifest for the service that this record is for.|
 |`servicePublished`|Boolean|True|If true, the service is published and available. If false, the service has likely just been unpublished, and should be considered unavailable.|
-|`serviceActive`|Boolean|True|If true, the service is the active primary service of the supplied service type. It will receive all potential RPCs that are passed through to that service type. If false, it is not the primary service of the supplied type. See servicePublished for its availability. |
+|`serviceActive`|Boolean|True|If true, the service is the active primary service of the supplied service type. It will receive all potential RPCs that are passed through to that service type. If false, it is not the primary service of the supplied type. See servicePublished for its availability.|
 
 
 ### AppServiceData
@@ -3105,7 +3102,7 @@ The systemCapabilityType identifies which data object exists in this struct. For
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`systemCapabilityType`|SystemCapabilityType|True|Used as a descriptor of what data to expect in this struct. The corresponding param to this enum should be included and the only other param included.|
-|`navigationCapability`|NavigationCapability|False|Describes extended capabilities for onboard navigation system |
+|`navigationCapability`|NavigationCapability|False|Describes extended capabilities for onboard navigation system|
 |`phoneCapability`|PhoneCapability|False|Describes extended capabilities of the module's phone feature|
 |`videoStreamingCapability`|VideoStreamingCapability|False|Describes extended capabilities of the module's phone feature|
 |`remoteControlCapability`|RemoteControlCapabilities|False|Describes extended capabilities of the module's phone feature|
@@ -3117,34 +3114,31 @@ The systemCapabilityType identifies which data object exists in this struct. For
 
 <div style="page-break-after: always;"></div>
 
-
 ## Remote Procedure Calls
 
 ### RegisterAppInterface
 Message Type: **request**
 
-Establishes an interface with a mobile application.
-            Before registerAppInterface no other commands will be accepted/executed.
-        
+Establishes an interface with a mobile application. Before registerAppInterface no other commands will be accepted/executed.
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`syncMsgVersion`|SyncMsgVersion|True|See SyncMsgVersion|
-|`appName`|String|True|The mobile application name, e.g. "My SDL App".                Needs to be unique over all applications from the same device.                May not be empty.                May not start with a new line character.                May not interfere with any name or synonym of previously registered applications from the same device and any predefined blacklist of words (global commands)                Additional applications with the same name from the same device will be rejected.                Only characters from char set [@TODO: Create char set (character/hex value) for each ACM and refer to] are supported.            |
-|`ttsName`|TTSChunk[]|False|TTS string for VR recognition of the mobile application name, e.g. "My S D L App".                Meant to overcome any failing on speech engine in properly pronouncing / understanding app name.                Needs to be unique over all applications from the same device.                May not be empty.                May not start with a new line character.                Only characters from char set [@TODO: Create char set (character/hex value) for each ACM and refer to] are supported.            |
-|`ngnMediaScreenAppName`|String|False|Provides an abbreviated version of the app name (if needed), that will be displayed on the NGN media screen.                If not provided, the appName is used instead (and will be truncated if too long)                Only characters from char set [@TODO: Create char set (character/hex value) for each ACM and refer to] are supported.            |
-|`vrSynonyms`|String[]|False|Defines an additional voice recognition command.                May not interfere with any app name of previously registered applications from the same device and any predefined blacklist of words (global commands)                Only characters from char set [@TODO: Create char set (character/hex value) for each ACM and refer to] are supported.            |
-|`isMediaApplication`|Boolean|True|Indicates if the application is a media or a non-media application.                Only media applications will be able to stream audio to the module that is audible outside of the BT media source.            |
-|`languageDesired`|Language|True|See Language                Current app's expected VR+TTS language                If there is a mismatch with the module, the app will be able to change this registration with changeRegistration prior to app being brought into focus.            |
-|`hmiDisplayLanguageDesired`|Language|True|See Language                Current app's expected display language                If there is a mismatch with the module, the app will be able to change this registration with changeRegistration prior to app being brought into focus.            |
-|`appHMIType`|AppHMIType[]|False|See AppHMIType                List of all applicable app HMI types stating which HMI classifications to be given to the app.            |
-|`hashID`|String|False|ID used to uniquely identify current state of all app data that can persist through connection cycles (e.g. ignition cycles).                This registered data (commands, submenus, choice sets, etc.) can be reestablished without needing to explicitly reregister each piece.                If omitted, then the previous state of an app's commands, etc. will not be restored.                When sending hashID, all RegisterAppInterface parameters should still be provided (e.g. ttsName, etc.).            |
-|`deviceInfo`|DeviceInfo|False|See DeviceInfo.            |
+|`appName`|String|True|The mobile application name, e.g. "My SDL App". Needs to be unique over all applications from the same device. May not be empty. May not start with a new line character. May not interfere with any name or synonym of previously registered applications from the same device and any predefined blacklist of words (global commands) Additional applications with the same name from the same device will be rejected. Only characters from char set [@TODO: Create char set (character/hex value) for each ACM and refer to] are supported.|
+|`ttsName`|TTSChunk[]|False|TTS string for VR recognition of the mobile application name, e.g. "My S D L App". Meant to overcome any failing on speech engine in properly pronouncing / understanding app name. Needs to be unique over all applications from the same device. May not be empty. May not start with a new line character. Only characters from char set [@TODO: Create char set (character/hex value) for each ACM and refer to] are supported.|
+|`ngnMediaScreenAppName`|String|False|Provides an abbreviated version of the app name (if needed), that will be displayed on the NGN media screen. If not provided, the appName is used instead (and will be truncated if too long) Only characters from char set [@TODO: Create char set (character/hex value) for each ACM and refer to] are supported.|
+|`vrSynonyms`|String[]|False|Defines an additional voice recognition command. May not interfere with any app name of previously registered applications from the same device and any predefined blacklist of words (global commands) Only characters from char set [@TODO: Create char set (character/hex value) for each ACM and refer to] are supported.|
+|`isMediaApplication`|Boolean|True|Indicates if the application is a media or a non-media application. Only media applications will be able to stream audio to the module that is audible outside of the BT media source.|
+|`languageDesired`|Language|True|See Language Current app's expected VR+TTS language If there is a mismatch with the module, the app will be able to change this registration with changeRegistration prior to app being brought into focus.|
+|`hmiDisplayLanguageDesired`|Language|True|See Language Current app's expected display language If there is a mismatch with the module, the app will be able to change this registration with changeRegistration prior to app being brought into focus.|
+|`appHMIType`|AppHMIType[]|False|See AppHMIType List of all applicable app HMI types stating which HMI classifications to be given to the app.|
+|`hashID`|String|False|ID used to uniquely identify current state of all app data that can persist through connection cycles (e.g. ignition cycles). This registered data (commands, submenus, choice sets, etc.) can be reestablished without needing to explicitly reregister each piece. If omitted, then the previous state of an app's commands, etc. will not be restored. When sending hashID, all RegisterAppInterface parameters should still be provided (e.g. ttsName, etc.).|
+|`deviceInfo`|DeviceInfo|False|See DeviceInfo.|
 |`appID`|String|True|ID used to validate app with policy table entries|
 |`fullAppID`|String|False|ID used to validate app with policy table entries|
-|`appInfo`|AppInfo|False|See AppInfo.            |
+|`appInfo`|AppInfo|False|See AppInfo.|
 |`dayColorScheme`|TemplateColorScheme|False||
 |`nightColorScheme`|TemplateColorScheme|False||
 
@@ -3158,42 +3152,34 @@ The response to registerAppInterface
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true if successful; false, if failed |
+|`success`|Boolean|True|true if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 |`syncMsgVersion`|SyncMsgVersion|False|See SyncMsgVersion|
 |`language`|Language|False|The currently active VR+TTS language on the module. See "Language" for options.|
 |`hmiDisplayLanguage`|Language|False|The currently active display language on the module. See "Language" for options.|
-|`displayCapabilities`|DisplayCapabilities|False|See DisplayCapabilities. This parameter is deprecated and replaced by SystemCapability using DISPLAYS.            |
-|`buttonCapabilities`|ButtonCapabilities[]|False|See ButtonCapabilities. This parameter is deprecated and replaced by  SystemCapability using DISPLAYS.            |
-|`softButtonCapabilities`|SoftButtonCapabilities[]|False|If returned, the platform supports on-screen SoftButtons; see SoftButtonCapabilities.                This parameter is deprecated and replaced by  SystemCapability using DISPLAYS.            |
-|`presetBankCapabilities`|PresetBankCapabilities|False|If returned, the platform supports custom on-screen Presets; see PresetBankCapabilities.                This parameter is deprecated and replaced by SystemCapability using DISPLAYS.            |
+|`displayCapabilities`|DisplayCapabilities|False|See DisplayCapabilities. This parameter is deprecated and replaced by SystemCapability using DISPLAYS.|
+|`buttonCapabilities`|ButtonCapabilities[]|False|See ButtonCapabilities. This parameter is deprecated and replaced by SystemCapability using DISPLAYS.|
+|`softButtonCapabilities`|SoftButtonCapabilities[]|False|If returned, the platform supports on-screen SoftButtons; see SoftButtonCapabilities. This parameter is deprecated and replaced by SystemCapability using DISPLAYS.|
+|`presetBankCapabilities`|PresetBankCapabilities|False|If returned, the platform supports custom on-screen Presets; see PresetBankCapabilities. This parameter is deprecated and replaced by SystemCapability using DISPLAYS.|
 |`hmiZoneCapabilities`|HmiZoneCapabilities[]|False|See HmiZoneCapabilities|
 |`speechCapabilities`|SpeechCapabilities[]|False|See SpeechCapabilities|
 |`prerecordedSpeech`|PrerecordedSpeech[]|False|See PrerecordedSpeech|
 |`vrCapabilities`|VrCapabilities[]|False|See VrCapabilities|
 |`audioPassThruCapabilities`|AudioPassThruCapabilities[]|False|See AudioPassThruCapability|
-|`pcmStreamCapabilities`|AudioPassThruCapabilities[]|False|See AudioPassThruCapability|
+|`pcmStreamCapabilities`|AudioPassThruCapabilities|False|See AudioPassThruCapability|
 |`vehicleType`|VehicleType|False|Specifies the vehicle's type. See VehicleType.|
-|`supportedDiagModes`|Integer[]|False|Specifies the white-list of supported diagnostic modes (0x00-0xFF) capable for DiagnosticMessage requests.                If a mode outside this list is requested, it will be rejected.            |
+|`supportedDiagModes`|Integer[]|False|Specifies the white-list of supported diagnostic modes (0x00-0xFF) capable for DiagnosticMessage requests. If a mode outside this list is requested, it will be rejected.|
 |`hmiCapabilities`|HMICapabilities|False|Specifies the HMI's capabilities. See HMICapabilities.|
 |`sdlVersion`|String|False|The SmartDeviceLink version.|
 |`systemSoftwareVersion`|String|False|The software version of the system that implements the SmartDeviceLink core.|
-|`iconResumed`|Boolean|False|Existence of apps icon at system. If true, apps icon                was resumed at system. If false, apps icon is not resumed at system            |
+|`iconResumed`|Boolean|False|Existence of apps icon at system. If true, apps icon was resumed at system. If false, apps icon is not resumed at system|
 
 
 ### UnregisterAppInterface
 Message Type: **request**
 
-Closes an interface from a mobile application.
-            After unregisterAppInterface, no commands other than registerAppInterface will be accepted/executed.
-            Will fail, if no registerAppInterface was completed successfully before.
-        
-
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
+Closes an interface from a mobile application. After unregisterAppInterface, no commands other than registerAppInterface will be accepted/executed. Will fail, if no registerAppInterface was completed successfully before.
 
 
 ### UnregisterAppInterface
@@ -3203,7 +3189,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true if successful; false, if failed |
+|`success`|Boolean|True|true if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -3212,17 +3198,16 @@ Message Type: **response**
 Message Type: **request**
 
 Create a new window on the display with the specified window type.
-        
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`windowID`|Integer|True|A unique ID to identify the window. The value of '0' will always be the default main window on the main display and should not be used in this context as it will already be created for the app. See PredefinedWindows enum. Creating a window with an ID that is already in use will be rejected with `INVALID_ID`.            |
-|`windowName`|String|True|The window name to be used by the HMI. The name of the pre-created default window will match the app name.                Multiple apps can share the same window name except for the default main window.                Creating a window with a name which is already in use by the app will result in `DUPLICATE_NAME`.            |
+|`windowID`|Integer|True|A unique ID to identify the window. The value of '0' will always be the default main window on the main display and should not be used in this context as it will already be created for the app. See PredefinedWindows enum. Creating a window with an ID that is already in use will be rejected with `INVALID_ID`.|
+|`windowName`|String|True|The window name to be used by the HMI. The name of the pre-created default window will match the app name. Multiple apps can share the same window name except for the default main window. Creating a window with a name which is already in use by the app will result in `DUPLICATE_NAME`.|
 |`type`|WindowType|True|The type of the window to be created. Main window or widget.|
-|`associatedServiceType`|String|False|Allows an app to create a widget related to a specific service type.              As an example if a `MEDIA` app becomes active, this app becomes audible and is allowed to play audio. Actions such as skip or play/pause will be              directed to this active media app. In case of widgets, the system can provide a single "media" widget which will act as a placeholder for the active media app.              It is only allowed to have one window per service type. This means that a media app can only have a single MEDIA widget. Still the app can create widgets omitting this parameter. Those widgets would be available as app specific widgets that are permanently included in the HMI.              This parameter is related to widgets only. The default main window, which is pre-created during app registration, will be created based on the HMI types specified in the app registration request.            |
-|`duplicateUpdatesFromWindowID`|Integer|False|Optional parameter. Specify whether the content sent to an existing window              should be duplicated to the created window.              If there isn't a window with the ID, the request will be rejected with `INVALID_DATA`.            |
+|`associatedServiceType`|String|False|Allows an app to create a widget related to a specific service type. As an example if a `MEDIA` app becomes active, this app becomes audible and is allowed to play audio. Actions such as skip or play/pause will be directed to this active media app. In case of widgets, the system can provide a single "media" widget which will act as a placeholder for the active media app. It is only allowed to have one window per service type. This means that a media app can only have a single MEDIA widget. Still the app can create widgets omitting this parameter. Those widgets would be available as app specific widgets that are permanently included in the HMI. This parameter is related to widgets only. The default main window, which is pre-created during app registration, will be created based on the HMI types specified in the app registration request.|
+|`duplicateUpdatesFromWindowID`|Integer|False|Optional parameter. Specify whether the content sent to an existing window should be duplicated to the created window. If there isn't a window with the ID, the request will be rejected with `INVALID_DATA`.|
 
 
 ### CreateWindow
@@ -3241,13 +3226,12 @@ Message Type: **response**
 Message Type: **request**
 
 Deletes previously created window of the SDL application.
-        
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`windowID`|Integer|True|A unique ID to identify the window. The value of '0' will always be the default main window on the main display and cannot be deleted.                See PredefinedWindows enum.            |
+|`windowID`|Integer|True|A unique ID to identify the window. The value of '0' will always be the default main window on the main display and cannot be deleted. See PredefinedWindows enum.|
 
 
 ### DeleteWindow
@@ -3272,10 +3256,10 @@ Allows setting global properties.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`userLocation`|SeatLocation|False|Location of the user's seat. Default is driver's seat location if it is not set yet.|
-|`helpPrompt`|TTSChunk[]|False|The help prompt.                An array of text chunks of type TTSChunk. See TTSChunk.                The array must have at least one item.            |
-|`timeoutPrompt`|TTSChunk[]|False|Help text for a wait timeout.                An array of text chunks of type TTSChunk. See TTSChunk.                The array must have at least one item.            |
-|`vrHelpTitle`|String|False|VR Help Title text.                If omitted on supported displays, the default module help title shall be used.                If omitted and one or more vrHelp items are provided, the request will be rejected.            |
-|`vrHelp`|VrHelpItem[]|False|VR Help Items.                If omitted on supported displays, the default SmartDeviceLink VR help / What Can I Say? screen shall be used.                If the list of VR Help Items contains nonsequential positions (e.g. [1,2,4]), the RPC shall be rejected.                If omitted and a vrHelpTitle is provided, the request will be rejected.            |
+|`helpPrompt`|TTSChunk[]|False|The help prompt. An array of text chunks of type TTSChunk. See TTSChunk. The array must have at least one item.|
+|`timeoutPrompt`|TTSChunk[]|False|Help text for a wait timeout. An array of text chunks of type TTSChunk. See TTSChunk. The array must have at least one item.|
+|`vrHelpTitle`|String|False|VR Help Title text. If omitted on supported displays, the default module help title shall be used. If omitted and one or more vrHelp items are provided, the request will be rejected.|
+|`vrHelp`|VrHelpItem[]|False|VR Help Items. If omitted on supported displays, the default SmartDeviceLink VR help / What Can I Say? screen shall be used. If the list of VR Help Items contains nonsequential positions (e.g. [1,2,4]), the RPC shall be rejected. If omitted and a vrHelpTitle is provided, the request will be rejected.|
 |`menuTitle`|String|False|Optional text to label an app menu button (for certain touchscreen platforms).|
 |`menuIcon`|Image|False|Optional icon to draw on an app menu button (for certain touchscreen platforms).|
 |`keyboardProperties`|KeyboardProperties|False|On-screen keyboard configuration (if available).|
@@ -3289,7 +3273,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true if successful; false, if failed |
+|`success`|Boolean|True|true if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -3313,7 +3297,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true if successful; false, if failed |
+|`success`|Boolean|True|true if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -3321,9 +3305,7 @@ Message Type: **response**
 ### AddCommand
 Message Type: **request**
 
-Adds a command to the in application menu.
-            Either menuParams or vrCommands must be provided.
-        
+Adds a command to the in application menu. Either menuParams or vrCommands must be provided.
 
 ##### Parameters
 
@@ -3331,8 +3313,8 @@ Adds a command to the in application menu.
 | ---------- | ---------- |:-----------: |:-----------:|
 |`cmdID`|Integer|True|unique ID of the command to add.|
 |`menuParams`|MenuParams|False|Optional sub value containing menu parameters|
-|`vrCommands`|String[]|False|An array of strings to be used as VR synonyms for this command.                If this array is provided, it may not be empty.            |
-|`cmdIcon`|Image|False|Image struct determining whether static or dynamic icon.                If omitted on supported displays, no (or the default if applicable) icon shall be displayed.            |
+|`vrCommands`|String[]|False|An array of strings to be used as VR synonyms for this command. If this array is provided, it may not be empty.|
+|`cmdIcon`|Image|False|Image struct determining whether static or dynamic icon. If omitted on supported displays, no (or the default if applicable) icon shall be displayed.|
 
 
 ### AddCommand
@@ -3342,7 +3324,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true if successful; false, if failed |
+|`success`|Boolean|True|true if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -3366,7 +3348,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true if successful; false, if failed |
+|`success`|Boolean|True|true if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -3381,7 +3363,7 @@ Adds a sub menu to the in-application menu.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`menuID`|Integer|True|unique ID of the sub menu to add.|
-|`position`|Integer|False|Position within the items that are are at top level of the in application menu.                0 will insert at the front.                1 will insert at the second position.                If position is greater or equal than the number of items on top level, the sub menu will be appended to the end.                Position of any submenu will always be located before the return and exit options                If this param was omitted the entry will be added at the end.            |
+|`position`|Integer|False|Position within the items that are are at top level of the in application menu. 0 will insert at the front. 1 will insert at the second position. If position is greater or equal than the number of items on top level, the sub menu will be appended to the end. Position of any submenu will always be located before the return and exit options If this param was omitted the entry will be added at the end.|
 |`menuName`|String|True|Text to show in the menu for this sub menu.|
 |`menuIcon`|Image|False|The image field for AddSubMenu|
 |`menuLayout`|MenuLayout|False|Sets the layout of the submenu screen.|
@@ -3394,7 +3376,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true if successful; false, if failed |
+|`success`|Boolean|True|true if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -3418,7 +3400,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true if successful; false, if failed |
+|`success`|Boolean|True|true if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -3432,7 +3414,7 @@ Shows the built in menu view
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`menuID`|Integer|False|If omitted the HMI opens the app's menu.                If set to a sub-menu ID the HMI opens the corresponding sub-menu previously added using `AddSubMenu`.            |
+|`menuID`|Integer|False|If omitted the HMI opens the app's menu. If set to a sub-menu ID the HMI opens the corresponding sub-menu previously added using `AddSubMenu`.|
 
 
 ### ShowAppMenu
@@ -3442,7 +3424,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true if successful; false, if failed |
+|`success`|Boolean|True|true if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -3467,7 +3449,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true if successful; false, if failed |
+|`success`|Boolean|True|true if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -3481,16 +3463,16 @@ Triggers an interaction (e.g. "Permit GPS?" - Yes, no, Always Allow).
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`initialText`|String|True|Text to be displayed first.            |
-|`initialPrompt`|TTSChunk[]|False|This is the initial prompt spoken to the user at the start of an interaction.                An array of text chunks of type TTSChunk. See TTSChunk.                The array must have at least one item.            |
+|`initialText`|String|True|Text to be displayed first.|
+|`initialPrompt`|TTSChunk[]|False|This is the initial prompt spoken to the user at the start of an interaction. An array of text chunks of type TTSChunk. See TTSChunk. The array must have at least one item.|
 |`interactionMode`|InteractionMode|True|See InteractionMode.|
 |`interactionChoiceSetIDList`|Integer[]|True|List of interaction choice set IDs to use with an interaction.|
-|`helpPrompt`|TTSChunk[]|False|Help text. This is the spoken string when a user speaks "help" when the interaction is occurring.                An array of text chunks of type TTSChunk. See TTSChunk.                The array must have at least one item.            |
-|`timeoutPrompt`|TTSChunk[]|False|Timeout text. This text is spoken when a VR interaction times out.                An array of text chunks of type TTSChunk. See TTSChunk.                The array must have at least one item.            |
-|`timeout`|Integer|False|Timeout in milliseconds.                If omitted a standard value of 10000 milliseconds is used.                Applies only to the menu portion of the interaction. The VR timeout will be handled by the platform.            |
-|`vrHelp`|VrHelpItem[]|False|Ability to send suggested VR Help Items to display on-screen during Perform Interaction.                If omitted on supported displays, the default generated list of suggested choices shall be displayed.            |
+|`helpPrompt`|TTSChunk[]|False|Help text. This is the spoken string when a user speaks "help" when the interaction is occurring. An array of text chunks of type TTSChunk. See TTSChunk. The array must have at least one item.|
+|`timeoutPrompt`|TTSChunk[]|False|Timeout text. This text is spoken when a VR interaction times out. An array of text chunks of type TTSChunk. See TTSChunk. The array must have at least one item.|
+|`timeout`|Integer|False|Timeout in milliseconds. If omitted a standard value of 10000 milliseconds is used. Applies only to the menu portion of the interaction. The VR timeout will be handled by the platform.|
+|`vrHelp`|VrHelpItem[]|False|Ability to send suggested VR Help Items to display on-screen during Perform Interaction. If omitted on supported displays, the default generated list of suggested choices shall be displayed.|
 |`interactionLayout`|LayoutMode|False|See LayoutMode.|
-|`cancelID`|Integer|False|An ID for this specific PerformInteraction to allow cancellation through the `CancelInteraction` RPC.            |
+|`cancelID`|Integer|False|An ID for this specific PerformInteraction to allow cancellation through the `CancelInteraction` RPC.|
 
 
 ### PerformInteraction
@@ -3500,18 +3482,18 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true if successful; false, if failed |
+|`success`|Boolean|True|true if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
-|`choiceID`|Integer|False|ID of the choice that was selected in response to PerformInteraction.                Only is valid if general result is "success:true".            |
-|`manualTextEntry`|String|False|Manually entered text selection, e.g. through keyboard                Can be returned in lieu of choiceID, depending on trigger source            |
-|`triggerSource`|TriggerSource|False|See TriggerSource                Only is valid if resultCode is SUCCESS.            |
+|`choiceID`|Integer|False|ID of the choice that was selected in response to PerformInteraction. Only is valid if general result is "success:true".|
+|`manualTextEntry`|String|False|Manually entered text selection, e.g. through keyboard Can be returned in lieu of choiceID, depending on trigger source|
+|`triggerSource`|TriggerSource|False|See TriggerSource Only is valid if resultCode is SUCCESS.|
 
 
 ### DeleteInteractionChoiceSet
 Message Type: **request**
 
-Deletes interaction choice set that has been created with "CreateInteractionChoiceSet".
+Deletes interaction choice set that has been created with "CreateInteractionChoiceSet". The interaction may only be deleted when not currently in use by a "performInteraction".
 
 ##### Parameters
 
@@ -3527,7 +3509,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true if successful; false, if failed |
+|`success`|Boolean|True|true if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -3544,13 +3526,13 @@ Shows an alert which typically consists of text-to-speech message and text on th
 |`alertText1`|String|False|The first line of the alert text field|
 |`alertText2`|String|False|The second line of the alert text field|
 |`alertText3`|String|False|The optional third line of the alert text field|
-|`ttsChunks`|TTSChunk[]|False|An array of text chunks of type TTSChunk. See TTSChunk.                The array must have at least one item.            |
-|`duration`|Integer|False|Timeout in milliseconds.                Typical timeouts are 3-5 seconds.                If omitted, timeout is set to 5s.            |
-|`playTone`|Boolean|False|Defines if tone should be played. Tone is played before TTS.                If omitted, no tone is played.            |
-|`progressIndicator`|Boolean|False|If supported on the given platform, the alert GUI will include some sort of animation indicating that loading of a feature is progressing.  e.g. a spinning wheel or hourglass, etc.            |
-|`softButtons`|SoftButton[]|False|App defined SoftButtons.                If omitted on supported displays, the displayed alert shall not have any SoftButtons.            |
-|`alertIcon`|Image|False|Image struct determining whether static or dynamic icon.                If omitted on supported displays, no (or the default if applicable) icon should be displayed.            |
-|`cancelID`|Integer|False|An ID for this specific alert to allow cancellation through the `CancelInteraction` RPC.            |
+|`ttsChunks`|TTSChunk[]|False|An array of text chunks of type TTSChunk. See TTSChunk. The array must have at least one item.|
+|`duration`|Integer|False|Timeout in milliseconds. Typical timeouts are 3-5 seconds. If omitted, timeout is set to 5s.|
+|`playTone`|Boolean|False|Defines if tone should be played. Tone is played before TTS. If omitted, no tone is played.|
+|`progressIndicator`|Boolean|False|If supported on the given platform, the alert GUI will include some sort of animation indicating that loading of a feature is progressing. e.g. a spinning wheel or hourglass, etc.|
+|`softButtons`|SoftButton[]|False|App defined SoftButtons. If omitted on supported displays, the displayed alert shall not have any SoftButtons.|
+|`alertIcon`|Image|False|Image struct determining whether static or dynamic icon. If omitted on supported displays, no (or the default if applicable) icon should be displayed.|
+|`cancelID`|Integer|False|An ID for this specific alert to allow cancellation through the `CancelInteraction` RPC.|
 
 
 ### Alert
@@ -3560,10 +3542,10 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true if successful; false, if failed |
+|`success`|Boolean|True|true if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
-|`tryAgainTime`|Integer|False|Amount of time (in seconds) that an app must wait before resending an alert.                If provided, another system event or overlay currently has a higher priority than this alert.                An app must not send an alert without waiting at least the amount of time dictated.            |
+|`tryAgainTime`|Integer|False|Amount of time (in seconds) that an app must wait before resending an alert. If provided, another system event or overlay currently has a higher priority than this alert. An app must not send an alert without waiting at least the amount of time dictated.|
 
 
 ### Show
@@ -3575,22 +3557,22 @@ Updates the persistent display. Supported fields depend on display capabilities.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`mainField1`|String|False|The text that should be displayed in a single or upper display line.                If this text is not set, the text of mainField1 stays unchanged.                If this text is empty "", the field will be cleared.            |
-|`mainField2`|String|False|The text that should be displayed on the second display line.                If this text is not set, the text of mainField2 stays unchanged.                If this text is empty "", the field will be cleared.            |
-|`mainField3`|String|False|The text that should be displayed on the second "page" first display line.                If this text is not set, the text of mainField3 stays unchanged.                If this text is empty "", the field will be cleared.            |
-|`mainField4`|String|False|The text that should be displayed on the second "page" second display line.                If this text is not set, the text of mainField4 stays unchanged.                If this text is empty "", the field will be cleared.            |
-|`alignment`|TextAlignment|False|Specifies how mainField1 and mainField2 texts should be aligned on display.                If omitted, texts will be centered.            |
+|`mainField1`|String|False|The text that should be displayed in a single or upper display line. If this text is not set, the text of mainField1 stays unchanged. If this text is empty "", the field will be cleared.|
+|`mainField2`|String|False|The text that should be displayed on the second display line. If this text is not set, the text of mainField2 stays unchanged. If this text is empty "", the field will be cleared.|
+|`mainField3`|String|False|The text that should be displayed on the second "page" first display line. If this text is not set, the text of mainField3 stays unchanged. If this text is empty "", the field will be cleared.|
+|`mainField4`|String|False|The text that should be displayed on the second "page" second display line. If this text is not set, the text of mainField4 stays unchanged. If this text is empty "", the field will be cleared.|
+|`alignment`|TextAlignment|False|Specifies how mainField1 and mainField2 texts should be aligned on display. If omitted, texts will be centered.|
 |`statusBar`|String|False|Requires investigation regarding the nav display capabilities. Potentially lower lowerStatusBar, upperStatusBar, titleBar, etc.|
-|`mediaClock`|String|False|Text value for MediaClock field. Has to be properly formatted by Mobile App according to the module's capabilities.                If this text is set, any automatic media clock updates previously set with SetMediaClockTimer will be stopped.            |
-|`mediaTrack`|String|False|The text that should be displayed in the track field.                If this text is not set, the text of mediaTrack stays unchanged.                If this text is empty "", the field will be cleared.            |
-|`graphic`|Image|False|Image struct determining whether static or dynamic image to display in app.                If omitted on supported displays, the displayed graphic shall not change.            |
-|`secondaryGraphic`|Image|False|Image struct determining whether static or dynamic secondary image to display in app.                If omitted on supported displays, the displayed secondary graphic shall not change.            |
-|`softButtons`|SoftButton[]|False|App defined SoftButtons.                If omitted on supported displays, the currently displayed SoftButton values will not change.            |
-|`customPresets`|String[]|False|App labeled on-screen presets (i.e. on-screen media presets or dynamic search suggestions).                If omitted on supported displays, the presets will be shown as not defined.            |
-|`metadataTags`|MetadataTags|False|App defined metadata information. See MetadataStruct. Uses mainField1, mainField2, mainField3, mainField4.                If omitted on supported displays, the currently set metadata tags will not change.                If any text field contains no tags or the none tag, the metadata tag for that textfield should be removed.            |
-|`templateTitle`|String|False|The title of the new template that will be displayed.                How this will be displayed is dependent on the OEM design and implementation of the template.            |
-|`windowID`|Integer|False|This is the unique ID assigned to the window that this RPC is intended. If this param is not included,                it will be assumed that this request is specifically for the main window on the main display.                See PredefinedWindows enum.            |
-|`templateConfiguration`|TemplateConfiguration|False|Used to set an alternate template layout to a window.            |
+|`mediaClock`|String|False|Text value for MediaClock field. Has to be properly formatted by Mobile App according to the module's capabilities. If this text is set, any automatic media clock updates previously set with SetMediaClockTimer will be stopped.|
+|`mediaTrack`|String|False|The text that should be displayed in the track field. If this text is not set, the text of mediaTrack stays unchanged. If this text is empty "", the field will be cleared.|
+|`graphic`|Image|False|Image struct determining whether static or dynamic image to display in app. If omitted on supported displays, the displayed graphic shall not change.|
+|`secondaryGraphic`|Image|False|Image struct determining whether static or dynamic secondary image to display in app. If omitted on supported displays, the displayed secondary graphic shall not change.|
+|`softButtons`|SoftButton[]|False|App defined SoftButtons. If omitted on supported displays, the currently displayed SoftButton values will not change.|
+|`customPresets`|String[]|False|App labeled on-screen presets (i.e. on-screen media presets or dynamic search suggestions). If omitted on supported displays, the presets will be shown as not defined.|
+|`metadataTags`|MetadataTags|False|App defined metadata information. See MetadataStruct. Uses mainField1, mainField2, mainField3, mainField4. If omitted on supported displays, the currently set metadata tags will not change. If any text field contains no tags or the none tag, the metadata tag for that textfield should be removed.|
+|`templateTitle`|String|False|The title of the new template that will be displayed. How this will be displayed is dependent on the OEM design and implementation of the template.|
+|`windowID`|Integer|False|This is the unique ID assigned to the window that this RPC is intended. If this param is not included, it will be assumed that this request is specifically for the main window on the main display. See PredefinedWindows enum.|
+|`templateConfiguration`|TemplateConfiguration|False|Used to set an alternate template layout to a window.|
 
 
 ### Show
@@ -3600,7 +3582,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true if successful; false, if failed |
+|`success`|Boolean|True|true if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -3614,7 +3596,7 @@ Speaks a text.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`ttsChunks`|TTSChunk[]|True|An array of text chunks of type TTSChunk. See TTSChunk.                The array must have at least one item.            |
+|`ttsChunks`|TTSChunk[]|True|An array of text chunks of type TTSChunk. See TTSChunk. The array must have at least one item.|
 
 
 ### Speak
@@ -3624,7 +3606,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true if successful; false, if failed |
+|`success`|Boolean|True|true if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -3638,10 +3620,10 @@ Sets the initial media clock value and automatic update method.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`startTime`|StartTime|False|See StartTime.                startTime must be provided for "COUNTUP" and "COUNTDOWN".                startTime will be ignored for "RESUME", and "CLEAR"                startTime can be sent for "PAUSE", in which case it will update the paused startTime            |
-|`endTime`|StartTime|False|See StartTime.                endTime can be provided for "COUNTUP" and "COUNTDOWN"; to be used to calculate any visual progress bar (if not provided, this feature is ignored)                If endTime is greater then startTime for COUNTDOWN or less than startTime for COUNTUP, then the request will return an INVALID_DATA.                endTime will be ignored for "RESUME", and "CLEAR"                endTime can be sent for "PAUSE", in which case it will update the paused endTime            |
-|`updateMode`|UpdateMode|True|Enumeration to control the media clock.                In case of pause, resume, or clear, the start time value is ignored and shall be left out.  For resume, the time continues with the same value as it was when paused.            |
-|`audioStreamingIndicator`|AudioStreamingIndicator|False|Enumeration for the indicator icon on a play/pause button. see AudioStreamingIndicator.            |
+|`startTime`|StartTime|False|See StartTime. startTime must be provided for "COUNTUP" and "COUNTDOWN". startTime will be ignored for "RESUME", and "CLEAR" startTime can be sent for "PAUSE", in which case it will update the paused startTime|
+|`endTime`|StartTime|False|See StartTime. endTime can be provided for "COUNTUP" and "COUNTDOWN"; to be used to calculate any visual progress bar (if not provided, this feature is ignored) If endTime is greater then startTime for COUNTDOWN or less than startTime for COUNTUP, then the request will return an INVALID_DATA. endTime will be ignored for "RESUME", and "CLEAR" endTime can be sent for "PAUSE", in which case it will update the paused endTime|
+|`updateMode`|UpdateMode|True|Enumeration to control the media clock. In case of pause, resume, or clear, the start time value is ignored and shall be left out. For resume, the time continues with the same value as it was when paused.|
+|`audioStreamingIndicator`|AudioStreamingIndicator|False|Enumeration for the indicator icon on a play/pause button. see AudioStreamingIndicator.|
 
 
 ### SetMediaClockTimer
@@ -3651,7 +3633,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true if successful; false, if failed |
+|`success`|Boolean|True|true if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -3659,20 +3641,20 @@ Message Type: **response**
 ### PerformAudioPassThru
 Message Type: **request**
 
-Starts audio pass thru session 
+Starts audio pass thru session
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`initialPrompt`|TTSChunk[]|False|The module will speak this prompt before opening the audio pass thru session.                An array of text chunks of type TTSChunk. See TTSChunk.                The array must have at least one item.                If omitted, then no initial prompt is spoken.            |
+|`initialPrompt`|TTSChunk[]|False|The module will speak this prompt before opening the audio pass thru session. An array of text chunks of type TTSChunk. See TTSChunk. The array must have at least one item. If omitted, then no initial prompt is spoken.|
 |`audioPassThruDisplayText1`|String|False|First line of text displayed during audio capture.|
 |`audioPassThruDisplayText2`|String|False|Second line of text displayed during audio capture.|
 |`samplingRate`|SamplingRate|True|This value shall be allowed at 8 kHz or 16 or 22 or 44 kHz.|
-|`maxDuration`|Integer|True|The maximum duration of audio recording in milliseconds. |
+|`maxDuration`|Integer|True|The maximum duration of audio recording in milliseconds.|
 |`bitsPerSample`|BitsPerSample|True|Specifies the quality the audio is recorded. Currently 8 bit or 16 bit.|
 |`audioType`|AudioType|True|Specifies the type of audio data being requested.|
-|`muteAudio`|Boolean|False|Defines if the current audio source should be muted during the APT session.  If not, the audio source will play without interruption.                If omitted, the value is set to true.            |
+|`muteAudio`|Boolean|False|Defines if the current audio source should be muted during the APT session. If not, the audio source will play without interruption. If omitted, the value is set to true.|
 
 
 ### PerformAudioPassThru
@@ -3682,7 +3664,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true if successful; false, if failed |
+|`success`|Boolean|True|true if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -3692,11 +3674,6 @@ Message Type: **request**
 
 When this request is invoked, the audio capture stops.
 
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-
 
 ### EndAudioPassThru
 Message Type: **response**
@@ -3705,7 +3682,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true if successful; false, if failed |
+|`success`|Boolean|True|true if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -3713,10 +3690,7 @@ Message Type: **response**
 ### SubscribeButton
 Message Type: **request**
 
-Subscribes to built-in HMI buttons.
-            The application will be notified by the OnButtonEvent and OnButtonPress.
-            To unsubscribe the notifications, use unsubscribeButton.
-        
+Subscribes to built-in HMI buttons. The application will be notified by the OnButtonEvent and OnButtonPress. To unsubscribe the notifications, use unsubscribeButton.
 
 ##### Parameters
 
@@ -3732,7 +3706,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true if successful; false, if failed |
+|`success`|Boolean|True|true if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -3756,7 +3730,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true if successful; false, if failed |
+|`success`|Boolean|True|true if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -3764,11 +3738,7 @@ Message Type: **response**
 ### SubscribeVehicleData
 Message Type: **request**
 
-Subscribes for specific published data items.
-            The data will be only sent if it has changed.
-            The application will be notified by the onVehicleData notification whenever new data is available.
-            To unsubscribe the notifications, use unsubscribe with the same subscriptionType.
-        
+Subscribes for specific published data items. The data will be only sent if it has changed. The application will be notified by the onVehicleData notification whenever new data is available. To unsubscribe the notifications, use unsubscribe with the same subscriptionType.
 
 ##### Parameters
 
@@ -3812,7 +3782,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful; false, if failed |
+|`success`|Boolean|True|true, if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 |`gps`|VehicleDataResult|False|See GPSData|
@@ -3893,7 +3863,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful; false, if failed |
+|`success`|Boolean|True|true, if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 |`gps`|VehicleDataResult|False|See GPSData|
@@ -3975,7 +3945,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful; false, if failed |
+|`success`|Boolean|True|true, if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 |`gps`|GPSData|False|See GPSData|
@@ -4030,7 +4000,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful; false, if failed |
+|`success`|Boolean|True|true, if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 |`didResult`|DIDResult[]|False|Array of requested DID results (with data if available).|
@@ -4056,11 +4026,11 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful; false, if failed |
+|`success`|Boolean|True|true, if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 |`ecuHeader`|Integer|False|2 byte ECU Header for DTC response (as defined in VHR_Layout_Specification_DTCs.pdf)|
-|`dtc`|String[]|False|Array of all reported DTCs on module (ecuHeader contains information if list is truncated).                Each DTC is represented by 4 bytes (3 bytes of data and 1 byte status as defined in VHR_Layout_Specification_DTCs.pdf).            |
+|`dtc`|String[]|False|Array of all reported DTCs on module (ecuHeader contains information if list is truncated). Each DTC is represented by 4 bytes (3 bytes of data and 1 byte status as defined in VHR_Layout_Specification_DTCs.pdf).|
 
 
 ### DiagnosticMessage
@@ -4074,7 +4044,7 @@ Non periodic vehicle diagnostic request
 | ---------- | ---------- |:-----------: |:-----------:|
 |`targetID`|Integer|True|Name of target ECU.|
 |`messageLength`|Integer|True|Length of message (in bytes).|
-|`messageData`|Integer[]|True|Array of bytes comprising CAN message.            |
+|`messageData`|Integer[]|True|Array of bytes comprising CAN message.|
 
 
 ### DiagnosticMessage
@@ -4084,10 +4054,10 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful; false, if failed |
+|`success`|Boolean|True|true, if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
-|`messageDataResult`|Integer[]|False|Array of bytes comprising CAN message result.            |
+|`messageDataResult`|Integer[]|False|Array of bytes comprising CAN message result.|
 
 
 ### ScrollableMessage
@@ -4100,9 +4070,9 @@ Creates a full screen overlay containing a large block of formatted text that ca
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`scrollableMessageBody`|String|True|Body of text that can include newlines and tabs.|
-|`timeout`|Integer|False|App defined timeout.  Indicates how long of a timeout from the last action (i.e. scrolling message resets timeout).|
-|`softButtons`|SoftButton[]|False|App defined SoftButtons.                If omitted on supported displays, only the system defined "Close" SoftButton will be displayed.            |
-|`cancelID`|Integer|False|An ID for this specific ScrollableMessage to allow cancellation through the `CancelInteraction` RPC.            |
+|`timeout`|Integer|False|App defined timeout. Indicates how long of a timeout from the last action (i.e. scrolling message resets timeout).|
+|`softButtons`|SoftButton[]|False|App defined SoftButtons. If omitted on supported displays, only the system defined "Close" SoftButton will be displayed.|
+|`cancelID`|Integer|False|An ID for this specific ScrollableMessage to allow cancellation through the `CancelInteraction` RPC.|
 
 
 ### ScrollableMessage
@@ -4112,7 +4082,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful; false, if failed |
+|`success`|Boolean|True|true, if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -4129,9 +4099,9 @@ Creates a full screen or pop-up overlay (depending on platform) with a single us
 |`numTicks`|Integer|True|Number of selectable items on a horizontal axis|
 |`position`|Integer|True|Initial position of slider control (cannot exceed numTicks)|
 |`sliderHeader`|String|True|Text header to display|
-|`sliderFooter`|String[]|False|Text footer to display (meant to display min/max threshold descriptors).                For a static text footer, only one footer string shall be provided in the array.                For a dynamic text footer, the number of footer text string in the array must match the numTicks value.                For a dynamic text footer, text array string should correlate with potential slider position index.                If omitted on supported displays, no footer text shall be displayed.            |
-|`timeout`|Integer|False|App defined timeout.  Indicates how long of a timeout from the last action (i.e. sliding control resets timeout).                If omitted, the value is set to 10000.            |
-|`cancelID`|Integer|False|An ID for this specific Slider to allow cancellation through the `CancelInteraction` RPC.            |
+|`sliderFooter`|String[]|False|Text footer to display (meant to display min/max threshold descriptors). For a static text footer, only one footer string shall be provided in the array. For a dynamic text footer, the number of footer text string in the array must match the numTicks value. For a dynamic text footer, text array string should correlate with potential slider position index. If omitted on supported displays, no footer text shall be displayed.|
+|`timeout`|Integer|False|App defined timeout. Indicates how long of a timeout from the last action (i.e. sliding control resets timeout). If omitted, the value is set to 10000.|
+|`cancelID`|Integer|False|An ID for this specific Slider to allow cancellation through the `CancelInteraction` RPC.|
 
 
 ### Slider
@@ -4141,10 +4111,10 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful; false, if failed |
+|`success`|Boolean|True|true, if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
-|`sliderPosition`|Integer|False|Current slider value returned when saved or canceled (aborted)                This value is only returned for resultCodes "SAVED" or "ABORTED"            |
+|`sliderPosition`|Integer|False|Current slider value returned when saved or canceled (aborted) This value is only returned for resultCodes "SAVED" or "ABORTED"|
 
 
 ### ShowConstantTBT
@@ -4161,10 +4131,10 @@ Message Type: **request**
 |`totalDistance`|String|False||
 |`turnIcon`|Image|False||
 |`nextTurnIcon`|Image|False||
-|`distanceToManeuver`|Float|False|Fraction of distance till next maneuver (starting from when AlertManeuver is triggered).                Used to calculate progress bar.            |
-|`distanceToManeuverScale`|Float|False|Distance till next maneuver (starting from) from previous maneuver.                Used to calculate progress bar.            |
-|`maneuverComplete`|Boolean|False|If and when a maneuver has completed while an AlertManeuver is active, the app must send this value set to TRUE in order to clear the AlertManeuver overlay.                If omitted the value will be assumed as FALSE.            |
-|`softButtons`|SoftButton[]|False|Three dynamic SoftButtons available (first SoftButton is fixed to "Turns").                If omitted on supported displays, the currently displayed SoftButton values will not change.            |
+|`distanceToManeuver`|Float|False|Fraction of distance till next maneuver (starting from when AlertManeuver is triggered). Used to calculate progress bar.|
+|`distanceToManeuverScale`|Float|False|Distance till next maneuver (starting from) from previous maneuver. Used to calculate progress bar.|
+|`maneuverComplete`|Boolean|False|If and when a maneuver has completed while an AlertManeuver is active, the app must send this value set to TRUE in order to clear the AlertManeuver overlay. If omitted the value will be assumed as FALSE.|
+|`softButtons`|SoftButton[]|False|Three dynamic SoftButtons available (first SoftButton is fixed to "Turns"). If omitted on supported displays, the currently displayed SoftButton values will not change.|
 
 
 ### ShowConstantTBT
@@ -4174,7 +4144,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful; false, if failed |
+|`success`|Boolean|True|true, if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -4197,7 +4167,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful; false, if failed |
+|`success`|Boolean|True|true, if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -4220,7 +4190,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful; false, if failed |
+|`success`|Boolean|True|true, if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -4247,7 +4217,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful                false, if failed            |
+|`success`|Boolean|True|true, if successful false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -4255,15 +4225,13 @@ Message Type: **response**
 ### GenericResponse
 Message Type: **response**
 
-Generic Response is sent, when the name of a received msg cannot be retrieved. Only used in case of an error.
-            Currently, only resultCode INVALID_DATA is used.
-        
+Generic Response is sent, when the name of a received msg cannot be retrieved. Only used in case of an error. Currently, only resultCode INVALID_DATA is used.
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful; false, if failed |
+|`success`|Boolean|True|true, if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -4271,10 +4239,7 @@ Generic Response is sent, when the name of a received msg cannot be retrieved. O
 ### PutFile
 Message Type: **request**
 
-Used to push a binary data onto the module from a mobile device, such as icons and album art
-            Not supported on first generation of SDL enabled modules.
-            Binary data is in binary part of hybrid msg.
-        
+Used to push a binary data onto the module from a mobile device, such as icons and album art Not supported on first generation of SDL enabled modules. Binary data is in binary part of hybrid msg.
 
 ##### Parameters
 
@@ -4282,25 +4247,25 @@ Used to push a binary data onto the module from a mobile device, such as icons a
 | ---------- | ---------- |:-----------: |:-----------:|
 |`syncFileName`|String|True|File reference name.|
 |`fileType`|FileType|True|Selected file type.|
-|`persistentFile`|Boolean|False|Indicates if the file is meant to persist between sessions / ignition cycles.                If set to TRUE, then the system will aim to persist this file through session / cycles.                While files with this designation will have priority over others, they are subject to deletion by the system at any time.                In the event of automatic deletion by the system, the app will receive a rejection and have to resend the file.                If omitted, the value will be set to false.            |
-|`systemFile`|Boolean|False|Indicates if the file is meant to be passed thru core to elsewhere on the system.                If set to TRUE, then the system will instead pass the data thru as it arrives to a predetermined area outside of core.                If omitted, the value will be set to false.            |
+|`persistentFile`|Boolean|False|Indicates if the file is meant to persist between sessions / ignition cycles. If set to TRUE, then the system will aim to persist this file through session / cycles. While files with this designation will have priority over others, they are subject to deletion by the system at any time. In the event of automatic deletion by the system, the app will receive a rejection and have to resend the file. If omitted, the value will be set to false.|
+|`systemFile`|Boolean|False|Indicates if the file is meant to be passed thru core to elsewhere on the system. If set to TRUE, then the system will instead pass the data thru as it arrives to a predetermined area outside of core. If omitted, the value will be set to false.|
 |`offset`|Integer|False|Optional offset in bytes for resuming partial data chunks|
-|`length`|Integer|False|Optional length in bytes for resuming partial data chunks                If offset is set to 0, then length is the total length of the file to be downloaded            |
-|`crc`|Integer|False|Additional CRC32 checksum to protect data integrity up to 512 Mbits |
+|`length`|Integer|False|Optional length in bytes for resuming partial data chunks If offset is set to 0, then length is the total length of the file to be downloaded|
+|`crc`|Integer|False|Additional CRC32 checksum to protect data integrity up to 512 Mbits|
 
 
 ### PutFile
 Message Type: **response**
 
-Response is sent, when the file data was copied (success case). Or when an error occurred.
+Response is sent, when the file data was copied (success case). Or when an error occurred. Not supported on first generation SDL enabled vehicles.
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful; false, if failed |
+|`success`|Boolean|True|true, if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
-|`spaceAvailable`|Integer|False|Provides the total local space available in SDL Core for the registered app.                If the transfer has systemFile enabled, then the value will be set to 0 automatically.            |
+|`spaceAvailable`|Integer|False|Provides the total local space available in SDL Core for the registered app. If the transfer has systemFile enabled, then the value will be set to 0 automatically.|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
 
@@ -4317,7 +4282,7 @@ This request is sent to the module to retrieve a file
 |`appServiceId`|String|False|ID of the service that should have uploaded the requested file.|
 |`fileType`|FileType|False|Selected file type.|
 |`offset`|Integer|False|Optional offset in bytes for resuming partial data chunks|
-|`length`|Integer|False|Optional length in bytes for resuming partial data chunks                If offset is set to 0, then length is the total length of the file to be retrieved            |
+|`length`|Integer|False|Optional length in bytes for resuming partial data chunks If offset is set to 0, then length is the total length of the file to be retrieved|
 
 
 ### GetFile
@@ -4329,7 +4294,7 @@ This response includes the data that is requested from the specific service
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful; false, if failed |
+|`success`|Boolean|True|true, if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 |`offset`|Integer|False|Optional offset in bytes for resuming partial data chunks|
@@ -4341,9 +4306,7 @@ This response includes the data that is requested from the specific service
 ### DeleteFile
 Message Type: **request**
 
-Used to delete a file resident on the module in the app's local cache.
-            Not supported on first generation SDL enabled vehicles.
-        
+Used to delete a file resident on the module in the app's local cache. Not supported on first generation SDL enabled vehicles.
 
 ##### Parameters
 
@@ -4355,15 +4318,13 @@ Used to delete a file resident on the module in the app's local cache.
 ### DeleteFile
 Message Type: **response**
 
-Response is sent, when the file data was deleted (success case). Or when an error occurred.
-            Not supported on First generation SDL enabled vehicles.
-        
+Response is sent, when the file data was deleted (success case). Or when an error occurred. Not supported on First generation SDL enabled vehicles.
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true if successful; false, if failed |
+|`success`|Boolean|True|true if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`spaceAvailable`|Integer|False|Provides the total local space available on the module for the registered app.|
 |`info`|String|False|Provides additional human readable info regarding the result.|
@@ -4372,30 +4333,21 @@ Response is sent, when the file data was deleted (success case). Or when an erro
 ### ListFiles
 Message Type: **request**
 
-Requests the current list of resident filenames for the registered app.
-            Not supported on first generation SDL enabled vehicles.
-        
-
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
+Requests the current list of resident filenames for the registered app. Not supported on first generation SDL enabled vehicles.
 
 
 ### ListFiles
 Message Type: **response**
 
-Returns the current list of resident filenames for the registered app along with the current space available
-            Not supported on First generation SDL enabled vehicles.
-        
+Returns the current list of resident filenames for the registered app along with the current space available Not supported on First generation SDL enabled vehicles.
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful; false, if failed |
+|`success`|Boolean|True|true, if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
-|`filenames`|String[]|False|An array of all filenames resident on the module for the given registered app.                If omitted, then no files currently reside on the system.            |
+|`filenames`|String[]|False|An array of all filenames resident on the module for the given registered app. If omitted, then no files currently reside on the system.|
 |`spaceAvailable`|Integer|False|Provides the total local space available on the module for the registered app.|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -4403,9 +4355,7 @@ Returns the current list of resident filenames for the registered app along with
 ### SetAppIcon
 Message Type: **request**
 
-Used to set existing local file on the module as the app's icon
-            Not supported on first generation SDL enabled vehicles.
-        
+Used to set existing local file on the module as the app's icon Not supported on first generation SDL enabled vehicles.
 
 ##### Parameters
 
@@ -4417,15 +4367,13 @@ Used to set existing local file on the module as the app's icon
 ### SetAppIcon
 Message Type: **response**
 
-Response is sent, when the file data was copied (success case). Or when an error occurred.
-            Not supported on First generation SDL enabled vehicles.
-        
+Response is sent, when the file data was copied (success case). Or when an error occurred. Not supported on First generation SDL enabled vehicles.
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful; false, if failed |
+|`success`|Boolean|True|true, if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -4433,13 +4381,14 @@ Response is sent, when the file data was copied (success case). Or when an error
 ### SetDisplayLayout
 Message Type: **request**
 
+deprecated since 6.0.0
 This RPC is deprecated. Use Show RPC to change layout.
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`displayLayout`|String|True|Predefined or dynamically created screen layout.                Currently only predefined screen layouts are defined.            |
+|`displayLayout`|String|True|Predefined or dynamically created screen layout. Currently only predefined screen layouts are defined.|
 |`dayColorScheme`|TemplateColorScheme|False||
 |`nightColorScheme`|TemplateColorScheme|False||
 
@@ -4447,13 +4396,14 @@ This RPC is deprecated. Use Show RPC to change layout.
 ### SetDisplayLayout
 Message Type: **response**
 
+deprecated since 6.0.0
 This RPC is deprecated. Use Show RPC to change layout.
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful; false, if failed |
+|`success`|Boolean|True|true, if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`displayCapabilities`|DisplayCapabilities|False|See DisplayCapabilities|
 |`buttonCapabilities`|ButtonCapabilities[]|False|See ButtonCapabilities|
@@ -4471,9 +4421,9 @@ An asynchronous request from the device; binary data can be included in hybrid p
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`requestType`|RequestType|True|The type of system request.                Note that Proprietary requests should forward the binary data to the known proprietary module on the system.            |
-|`requestSubType`|String|False|This parameter is filled for supporting OEM proprietary data exchanges.            |
-|`fileName`|String|False|Filename of HTTP data to store in predefined system staging area.                Mandatory if requestType is HTTP.                PROPRIETARY requestType should ignore this parameter.            |
+|`requestType`|RequestType|True|The type of system request. Note that Proprietary requests should forward the binary data to the known proprietary module on the system.|
+|`requestSubType`|String|False|This parameter is filled for supporting OEM proprietary data exchanges.|
+|`fileName`|String|False|Filename of HTTP data to store in predefined system staging area. Mandatory if requestType is HTTP. PROPRIETARY requestType should ignore this parameter.|
 
 
 ### SystemRequest
@@ -4483,7 +4433,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful; false, if failed |
+|`success`|Boolean|True|true, if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -4497,12 +4447,12 @@ Message Type: **request**
 | ---------- | ---------- |:-----------: |:-----------:|
 |`longitudeDegrees`|Float|False||
 |`latitudeDegrees`|Float|False||
-|`locationName`|String|False|Name / title of intended location            |
-|`locationDescription`|String|False|Description intended location / establishment (if applicable)            |
-|`addressLines`|String[]|False|Location address (if applicable)            |
-|`phoneNumber`|String|False|Phone number of intended location / establishment (if applicable)            |
-|`locationImage`|Image|False|Image / icon of intended location (if applicable and supported)            |
-|`timeStamp`|DateTime|False|timestamp in ISO 8601 format            |
+|`locationName`|String|False|Name / title of intended location|
+|`locationDescription`|String|False|Description intended location / establishment (if applicable)|
+|`addressLines`|String[]|False|Location address (if applicable)|
+|`phoneNumber`|String|False|Phone number of intended location / establishment (if applicable)|
+|`locationImage`|Image|False|Image / icon of intended location (if applicable and supported)|
+|`timeStamp`|DateTime|False|timestamp in ISO 8601 format|
 |`address`|OASISAddress|False|Address to be used for setting destination|
 |`deliveryMode`|DeliveryMode|False|Defines the mode of prompt for user|
 
@@ -4514,7 +4464,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful; false, if failed |
+|`success`|Boolean|True|true, if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -4528,7 +4478,7 @@ Dials a phone number and switches to phone application.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`number`|String|True|Phone number is a string, which can be up to 40 chars.                All characters shall be stripped from string except digits 0-9 and * # , ; +            |
+|`number`|String|True|Phone number is a string, which can be up to 40 chars. All characters shall be stripped from string except digits 0-9 and * # , ; +|
 
 
 ### DialNumber
@@ -4538,7 +4488,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful|
+|`success`|Boolean|True|true, if successful false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -4551,7 +4501,7 @@ Message Type: **request**
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleType`|ModuleType|True|The module where the button should be pressed|
-|`moduleId`|String|False|Id of a module, published by System Capability. |
+|`moduleId`|String|False|Id of a module, published by System Capability.|
 |`buttonName`|ButtonName|True|The name of supported RC climate or radio button.|
 |`buttonPressMode`|ButtonPressMode|True|Indicates whether this is a LONG or SHORT button press event.|
 
@@ -4565,7 +4515,7 @@ Message Type: **response**
 | ---------- | ---------- |:-----------: |:-----------:|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False||
-|`success`|Boolean|True|true if successful; false, if failed |
+|`success`|Boolean|True|true if successful; false, if failed|
 
 
 ### GetInteriorVehicleData
@@ -4575,9 +4525,9 @@ Message Type: **request**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`moduleType`|ModuleType|True|The type of a RC module to retrieve module data from the vehicle.                In the future, this should be the Identification of a module.            |
-|`moduleId`|String|False|Id of a module, published by System Capability. |
-|`subscribe`|Boolean|False|If subscribe is true, the head unit will register OnInteriorVehicleData notifications for the requested module (moduleId and moduleType).                If subscribe is false, the head unit will unregister OnInteriorVehicleData notifications for the requested module (moduleId and moduleType).                If subscribe is not included, the subscription status of the app for the requested module (moduleId and moduleType) will remain unchanged.            |
+|`moduleType`|ModuleType|True|The type of a RC module to retrieve module data from the vehicle. In the future, this should be the Identification of a module.|
+|`moduleId`|String|False|Id of a module, published by System Capability.|
+|`subscribe`|Boolean|False|If subscribe is true, the head unit will register OnInteriorVehicleData notifications for the requested module (moduleId and moduleType). If subscribe is false, the head unit will unregister OnInteriorVehicleData notifications for the requested module (moduleId and moduleType). If subscribe is not included, the subscription status of the app for the requested module (moduleId and moduleType) will remain unchanged.|
 
 
 ### GetInteriorVehicleData
@@ -4590,8 +4540,8 @@ Message Type: **response**
 |`moduleData`|ModuleData|False||
 |`resultCode`|Result|True|See Result|
 |`info`|String|False||
-|`success`|Boolean|True|true if successful; false, if failed |
-|`isSubscribed`|Boolean|False|It is a conditional-mandatory parameter: must be returned in case "subscribe" parameter was present in the related request.                if "true" - the "moduleType" from request is successfully subscribed and the head unit will send onInteriorVehicleData notifications for the moduleType.                if "false" - the "moduleType" from request is either unsubscribed or failed to subscribe.            |
+|`success`|Boolean|True|true if successful; false, if failed|
+|`isSubscribed`|Boolean|False|It is a conditional-mandatory parameter: must be returned in case "subscribe" parameter was present in the related request. if "true" - the "moduleType" from request is successfully subscribed and the head unit will send onInteriorVehicleData notifications for the moduleType. if "false" - the "moduleType" from request is either unsubscribed or failed to subscribe.|
 
 
 ### GetInteriorVehicleDataConsent
@@ -4602,7 +4552,7 @@ Message Type: **request**
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleType`|ModuleType|True|The module type that the app requests to control.|
-|`moduleIds`|String[]|True|Ids of a module of same type, published by System Capability. |
+|`moduleIds`|String[]|True|Ids of a module of same type, published by System Capability.|
 
 
 ### GetInteriorVehicleDataConsent
@@ -4612,10 +4562,10 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true if successful; false, if failed |
+|`success`|Boolean|True|true if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False||
-|`allowed`|Boolean[]|False|This array has the same size as "moduleIds" in the request and each element corresponds to one moduleId                If true, SDL grants the permission for the requested module                If false, SDL denies the permission for the requested module.            |
+|`allowed`|Boolean[]|False|This array has the same size as "moduleIds" in the request and each element corresponds to one moduleId If true, SDL grants the permission for the requested module If false, SDL denies the permission for the requested module.|
 
 
 ### ReleaseInteriorVehicleDataModule
@@ -4626,7 +4576,7 @@ Message Type: **request**
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleType`|ModuleType|True||
-|`moduleId`|String|False|Id of a module, published by System Capability. |
+|`moduleId`|String|False|Id of a module, published by System Capability.|
 
 
 ### ReleaseInteriorVehicleDataModule
@@ -4636,7 +4586,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true if successful; false, if failed |
+|`success`|Boolean|True|true if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False||
 
@@ -4654,7 +4604,7 @@ Message Type: **request**
 ### SetInteriorVehicleData
 Message Type: **response**
 
-Used to set the values of one remote control module 
+Used to set the values of one remote control module
 
 ##### Parameters
 
@@ -4663,18 +4613,13 @@ Used to set the values of one remote control module
 |`moduleData`|ModuleData|False||
 |`resultCode`|Result|True|See Result|
 |`info`|String|False||
-|`success`|Boolean|True|true if successful; false, if failed |
+|`success`|Boolean|True|true if successful; false, if failed|
 
 
 ### SubscribeWayPoints
 Message Type: **request**
 
 To subscribe in getting changes for Waypoints/destinations
-
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
 
 
 ### SubscribeWayPoints
@@ -4684,7 +4629,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful; false, if failed |
+|`success`|Boolean|True|true, if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -4708,7 +4653,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful; false, if failed |
+|`success`|Boolean|True|true, if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 |`wayPoints`|LocationDetails[]|False|See LocationDetails|
@@ -4719,11 +4664,6 @@ Message Type: **request**
 
 Request to unsubscribe from WayPoints and Destination
 
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-
 
 ### UnsubscribeWayPoints
 Message Type: **response**
@@ -4732,7 +4672,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful; false, if failed |
+|`success`|Boolean|True|true, if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 |`wayPoints`|LocationDetails[]|False|See LocationDetails|
@@ -4761,7 +4701,7 @@ Message Type: **response**
 |`systemCapability`|SystemCapability|False||
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
-|`success`|Boolean|True|true if successful; false, if failed |
+|`success`|Boolean|True|true if successful; false, if failed|
 
 
 ### SendHapticData
@@ -4783,7 +4723,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true if successful; false if failed |
+|`success`|Boolean|True|true if successful; false if failed|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 |`resultCode`|Result|True|See Result|
 
@@ -4792,13 +4732,12 @@ Message Type: **response**
 Message Type: **request**
 
 RPC used to enable/disable a cloud application and set its cloud-related policy properties
-        
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`properties`|CloudAppProperties|True|The new cloud application properties |
+|`properties`|CloudAppProperties|True|The new cloud application properties|
 
 
 ### SetCloudAppProperties
@@ -4810,7 +4749,7 @@ The response to SetCloudAppProperties
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true if successful; false if failed |
+|`success`|Boolean|True|true if successful; false if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -4819,7 +4758,6 @@ The response to SetCloudAppProperties
 Message Type: **request**
 
 RPC used to get the current properties of a cloud application
-        
 
 ##### Parameters
 
@@ -4837,8 +4775,8 @@ The response to GetCloudAppProperties
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`properties`|CloudAppProperties|False|The requested cloud application properties |
-|`success`|Boolean|True|true if successful; false if failed |
+|`properties`|CloudAppProperties|False|The requested cloud application properties|
+|`success`|Boolean|True|true if successful; false if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -4846,15 +4784,13 @@ The response to GetCloudAppProperties
 ### PublishAppService
 Message Type: **request**
 
-Registers a service offered by this app on the module.
-            Subsequent calls with the same service type will update the manifest for that service.
-        
+Registers a service offered by this app on the module. Subsequent calls with the same service type will update the manifest for that service.
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`appServiceManifest`|AppServiceManifest|True|The manifest of the service that wishes to be published.                 If already published, the updated manifest for this service.            |
+|`appServiceManifest`|AppServiceManifest|True|The manifest of the service that wishes to be published. If already published, the updated manifest for this service.|
 
 
 ### PublishAppService
@@ -4866,7 +4802,7 @@ Response to the request to register a service offered by this app on the module
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful; false, if failed |
+|`success`|Boolean|True|true, if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 |`appServiceRecord`|AppServiceRecord|False|If the request was successful, this object will be the current status of the service record for the published service. This will include the Core supplied service ID.|
@@ -4875,25 +4811,25 @@ Response to the request to register a service offered by this app on the module
 ### UnpublishAppService
 Message Type: **request**
 
-Unpublish an existing service published by this application. 
+Unpublish an existing service published by this application.
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`serviceID`|String|True|The ID of the service to be unpublished. |
+|`serviceID`|String|True|The ID of the service to be unpublished.|
 
 
 ### UnpublishAppService
 Message Type: **response**
 
-The response to UnpublishAppService 
+The response to UnpublishAppService
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful; false, if failed |
+|`success`|Boolean|True|true, if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -4920,7 +4856,7 @@ This response includes the data that was requested from the specific service
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful; false, if failed |
+|`success`|Boolean|True|true, if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 |`serviceData`|AppServiceData|False||
@@ -4946,7 +4882,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful; false, if failed |
+|`success`|Boolean|True|true, if successful; false, if failed|
 |`resultCode`|Result|True|See Result. All results will be available for this response.|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 |`serviceSpecificResult`|String|False|The service can provide specific result strings to the consumer through this param.|
@@ -4956,27 +4892,25 @@ Message Type: **response**
 Message Type: **request**
 
 Close an active interaction on the HMI.
-        
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`cancelID`|Integer|False|The ID of the specific interaction you want to dismiss. If not set, the most recent of the RPC type set in functionID will be dismissed.            |
-|`functionID`|Integer|True|The ID of the type of interaction the developer wants to dismiss. Only values 10, (PerformInteractionID), 12 (AlertID), 25 (ScrollableMessageID), and 26 (SliderID) are permitted.            |
+|`cancelID`|Integer|False|The ID of the specific interaction you want to dismiss. If not set, the most recent of the RPC type set in functionID will be dismissed.|
+|`functionID`|Integer|True|The ID of the type of interaction the developer wants to dismiss. Only values 10, (PerformInteractionID), 12 (AlertID), 25 (ScrollableMessageID), and 26 (SliderID) are permitted.|
 
 
 ### CancelInteraction
 Message Type: **response**
 
 If no applicable request can be dismissed, the result will be IGNORED.
-        
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true if successful; false, if failed |
+|`success`|Boolean|True|true if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -4986,11 +4920,6 @@ Message Type: **request**
 
 Request from the application to exit the foreground and enter HMI_NONE.
 
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-
 
 ### CloseApplication
 Message Type: **response**
@@ -4999,7 +4928,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true if successful; false, if failed |
+|`success`|Boolean|True|true if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -5014,8 +4943,8 @@ Message Type: **notification**
 |`hmiLevel`|HMILevel|True|See HMILevel|
 |`audioStreamingState`|AudioStreamingState|True|See AudioStreamingState|
 |`systemContext`|SystemContext|True|See SystemContext|
-|`videoStreamingState`|VideoStreamingState|False|See VideoStreamingState.                 If it is NOT_STREAMABLE, the app must stop streaming video to SDL Core(stop service).            |
-|`windowID`|Integer|False|This is the unique ID assigned to the window that this RPC is intended. If this param is not included, it will be assumed that this request is specifically for the main window on the main display. See PredefinedWindows enum.            |
+|`videoStreamingState`|VideoStreamingState|False|See VideoStreamingState. If it is NOT_STREAMABLE, the app must stop streaming video to SDL Core(stop service).|
+|`windowID`|Integer|False|This is the unique ID assigned to the window that this RPC is intended. If this param is not included, it will be assumed that this request is specifically for the main window on the main display. See PredefinedWindows enum.|
 
 
 ### OnAppInterfaceUnregistered
@@ -5130,8 +5059,8 @@ Provides driver distraction state to mobile applications
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`state`|DriverDistractionState|True|Current State of Driver Distraction|
-|`lockScreenDismissalEnabled`|Boolean|False|If enabled, the lock screen will be able to be dismissed while connected to SDL, allowing users                 the ability to interact with the app. Dismissals should include a warning to the user and ensure                 that they are not the driver.            |
-|`lockScreenDismissalWarning`|String|False|Warning message to be displayed on the lock screen when dismissal is enabled.                This warning should be used to ensure that the user is not the driver of the vehicle,                 ex. `Swipe down to dismiss, acknowledging that you are not the driver.`.                This parameter must be present if "lockScreenDismissalEnabled" is set to true.            |
+|`lockScreenDismissalEnabled`|Boolean|False|If enabled, the lock screen will be able to be dismissed while connected to SDL, allowing users the ability to interact with the app. Dismissals should include a warning to the user and ensure that they are not the driver.|
+|`lockScreenDismissalWarning`|String|False|Warning message to be displayed on the lock screen when dismissal is enabled. This warning should be used to ensure that the user is not the driver of the vehicle, ex. `Swipe down to dismiss, acknowledging that you are not the driver.`. This parameter must be present if "lockScreenDismissalEnabled" is set to true.|
 
 
 ### OnPermissionsChange
@@ -5152,11 +5081,6 @@ Message Type: **notification**
 
 Binary data is in binary part of hybrid msg
 
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-
 
 ### OnLanguageChange
 Message Type: **notification**
@@ -5172,14 +5096,14 @@ Message Type: **notification**
 ### OnKeyboardInput
 Message Type: **notification**
 
-On-screen keyboard event.
+On-screen keyboard event. Can be full string or individual keypresses depending on keyboard mode.
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`event`|KeyboardEvent|True|On-screen keyboard input data.|
-|`data`|String|False|On-screen keyboard input data.|
+|`data`|String|False|On-screen keyboard input data. For dynamic keypress events, this will be the current compounded string of entry text. For entry submission events, this will be the full text entry (this will always return regardless of the mode). For entry cancelled and entry aborted events, this data param will be omitted.|
 
 
 ### OnTouchEvent
@@ -5198,18 +5122,16 @@ Notifies about touch events on the screen's prescribed area
 ### OnSystemRequest
 Message Type: **notification**
 
-An asynchronous request from the system for specific data from the device or the cloud or response to a request from the device or cloud
-            Binary data can be included in hybrid part of message for some requests (such as Authentication request responses)
-        
+An asynchronous request from the system for specific data from the device or the cloud or response to a request from the device or cloud Binary data can be included in hybrid part of message for some requests (such as Authentication request responses)
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`requestType`|RequestType|True|The type of system request.|
-|`requestSubType`|String|False|This parameter is filled for supporting OEM proprietary data exchanges.            |
-|`url`|String|False|Optional URL for HTTP requests.                If blank, the binary data shall be forwarded to the app.                If not blank, the binary data shall be forwarded to the url with a provided timeout in seconds.            |
-|`timeout`|Integer|False|Optional timeout for HTTP requests                Required if a URL is provided            |
+|`requestSubType`|String|False|This parameter is filled for supporting OEM proprietary data exchanges.|
+|`url`|String|False|Optional URL for HTTP requests. If blank, the binary data shall be forwarded to the app. If not blank, the binary data shall be forwarded to the url with a provided timeout in seconds.|
+|`timeout`|Integer|False|Optional timeout for HTTP requests Required if a URL is provided|
 |`fileType`|FileType|False|Optional file type (meant for HTTP file requests).|
 |`offset`|Integer|False|Optional offset in bytes for resuming partial data chunks|
 |`length`|Integer|False|Optional length in bytes for resuming partial data chunks|
@@ -5218,9 +5140,7 @@ An asynchronous request from the system for specific data from the device or the
 ### OnHashChange
 Message Type: **notification**
 
-Notification containing an updated hashID which can be used over connection cycles (i.e. loss of connection, ignition cycles, etc.).
-            Sent after initial registration and subsequently after any change in the calculated hash of all persisted app data.
-        
+Notification containing an updated hashID which can be used over connection cycles (i.e. loss of connection, ignition cycles, etc.). Sent after initial registration and subsequently after any change in the calculated hash of all persisted app data.
 
 ##### Parameters
 
@@ -5292,10 +5212,7 @@ A notification to inform the connected device that a specific system capability 
 ### EncodedSyncPData
 Message Type: **request**
 
-Allows encoded data in the form of SyncP packets to be sent to the SYNC module.
-            Legacy / v1 Protocol implementation; use SyncPData instead.
-            *** DEPRECATED ***
-        
+Allows encoded data in the form of SyncP packets to be sent to the SYNC module. Legacy / v1 Protocol implementation; use SyncPData instead. *** DEPRECATED ***
 
 ##### Parameters
 
@@ -5311,7 +5228,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`success`|Boolean|True|true, if successful; false, if failed |
+|`success`|Boolean|True|true, if successful; false, if failed|
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -5319,17 +5236,14 @@ Message Type: **response**
 ### OnEncodedSyncPData
 Message Type: **notification**
 
-Callback including encoded data of any SyncP packets that SYNC needs to send back to the mobile device.
-            Legacy / v1 Protocol implementation; responds to EncodedSyncPData.
-            *** DEPRECATED ***
-        
+Callback including encoded data of any SyncP packets that SYNC needs to send back to the mobile device. Legacy / v1 Protocol implementation; responds to EncodedSyncPData. *** DEPRECATED ***
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`data`|String[]|True|Contains base64 encoded string of SyncP packets.|
-|`URL`|String|False|If blank, the SyncP data shall be forwarded to the app.                If not blank, the SyncP data shall be forwarded to the provided URL.            |
-|`Timeout`|Integer|False|If blank, the SyncP data shall be forwarded to the app.                If not blank, the SyncP data shall be forwarded with the provided timeout in seconds.            |
+|`URL`|String|False|If blank, the SyncP data shall be forwarded to the app. If not blank, the SyncP data shall be forwarded to the provided URL.|
+|`Timeout`|Integer|False|If blank, the SyncP data shall be forwarded to the app. If not blank, the SyncP data shall be forwarded with the provided timeout in seconds.|
 
 
