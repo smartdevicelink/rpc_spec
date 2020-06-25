@@ -8236,14 +8236,14 @@
                 This parameter is filled for supporting OEM proprietary data exchanges.
             </description>
         </param>
-        <param name="url" type="String" mandatory="false" since="6.1">
+        <param name="url" type="String" mandatory="false" since="7.0">
             <description>
                 Optional URL for HTTP requests.
                 If blank, the binary data shall be forwarded to the app.
                 If not blank, the binary data shall be forwarded to the url with a provided timeout in seconds.
             </description>
             <history>
-                <param name="url" type="String" maxlength="1000" mandatory="false" since="3.0" until="6.1"/>
+                <param name="url" type="String" maxlength="1000" mandatory="false" since="3.0" until="7.0"/>
             </history>
         </param>
         <param name="timeout" type="Integer" minvalue="0" maxvalue="2000000000" mandatory="false">
