@@ -569,7 +569,7 @@
         <element name="VEHICLEDATA_ELECTRONICPARKBRAKESTATUS" since="5.0" />
         <element name="VEHICLEDATA_CLOUDAPPVEHICLEID" since="5.1"/>
         <element name="VEHICLEDATA_OEM_CUSTOM_DATA" since="6.0"/>
-        <element name="VEHICLEDATA_HANDSOFFSTEERING" since="6.2"/>
+        <element name="VEHICLEDATA_HANDSOFFSTEERING" since="7.0"/>
     </enum>
 
     <enum name="HybridAppPreference" since="5.1">
@@ -5908,7 +5908,7 @@
         <param name="myKey" type="Boolean" mandatory="false">
             <description>Information related to the MyKey feature</description>
         </param>
-        <param name="handsOffSteering" type="Boolean" mandatory="false" since="6.2">
+        <param name="handsOffSteering" type="Boolean" mandatory="false" since="7.0">
             <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
     </function>
@@ -6024,7 +6024,7 @@
         <param name="myKey" type="VehicleDataResult" mandatory="false">
             <description>Information related to the MyKey feature</description>
         </param>
-        <param name="handsOffSteering" type="VehicleDataResult" mandatory="false" since="6.2">
+        <param name="handsOffSteering" type="VehicleDataResult" mandatory="false" since="7.0">
             <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
 
@@ -6120,7 +6120,7 @@
         <param name="myKey" type="Boolean" mandatory="false">
             <description>Information related to the MyKey feature</description>
         </param>
-        <param name="handsOffSteering" type="Boolean" mandatory="false" since="6.2">
+        <param name="handsOffSteering" type="Boolean" mandatory="false" since="7.0">
             <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
     </function>
@@ -6235,7 +6235,7 @@
         <param name="myKey" type="VehicleDataResult" mandatory="false">
             <description>Information related to the MyKey feature</description>
         </param>
-        <param name="handsOffSteering" type="VehicleDataResult" mandatory="false" since="6.2">
+        <param name="handsOffSteering" type="VehicleDataResult" mandatory="false" since="7.0">
             <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
 
@@ -6334,7 +6334,7 @@
         <param name="myKey" type="Boolean" mandatory="false">
             <description>Information related to the MyKey feature</description>
         </param>
-        <param name="handsOffSteering" type="Boolean" mandatory="false" since="6.2">
+        <param name="handsOffSteering" type="Boolean" mandatory="false" since="7.0">
             <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
 
@@ -6454,7 +6454,7 @@
         <param name="myKey" type="MyKey" mandatory="false">
             <description>Information related to the MyKey feature</description>
         </param>
-        <param name="handsOffSteering" type="Boolean" mandatory="false" since="6.2">
+        <param name="handsOffSteering" type="Boolean" mandatory="false" since="7.0">
             <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
     </function>
@@ -8155,7 +8155,7 @@
         <param name="myKey" type="MyKey" mandatory="false">
             <description>Information related to the MyKey feature</description>
         </param>
-        <param name="handsOffSteering" type="Boolean" mandatory="false" since="6.2">
+        <param name="handsOffSteering" type="Boolean" mandatory="false" since="7.0">
             <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
     </function>
