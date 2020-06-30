@@ -931,25 +931,21 @@
     <enum name="CharacterSet" since="1.0">
         <description>The list of potential character sets</description>
         <element name="TYPE2SET" deprecated="true" since="7.0">
-            <description>See [@TODO: create file ref]</description>
             <history>
                 <element name="TYPE2SET" since="1.0" until="7.0"/>
             </history>
         </element>
         <element name="TYPE5SET" deprecated="true" since="7.0">
-            <description>See [@TODO: create file ref]</description>
             <history>
                 <element name="TYPE5SET" since="1.0" until="7.0"/>
             </history>
         </element>
         <element name="CID1SET" deprecated="true" since="7.0">
-            <description>See [@TODO: create file ref]</description>
             <history>
                 <element name="CID1SET" since="1.0" until="7.0"/>
             </history>
         </element>
         <element name="CID2SET" deprecated="true" since="7.0">
-            <description>See [@TODO: create file ref]</description>
             <history>
                 <element name="CID2SET" since="1.0" until="7.0"/>
             </history>
