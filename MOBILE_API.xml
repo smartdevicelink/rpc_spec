@@ -2883,8 +2883,8 @@
         <element name="OnRCStatusID" value="32785" hexvalue="8011" since="5.0" />
         <element name="OnAppServiceDataID" value="32786" hexvalue="8012" since="5.1" />
         <element name="OnSystemCapabilityUpdatedID" value="32787" hexvalue="8013" since="5.1" />
-        <element name="OnUpdateFile" value="32788" hexvalue="8014" since="7.0" />
-        <element name="OnUpdateSubMenu" value="32789" hexvalue="8015" since="7.0" />
+        <element name="OnUpdateFileID" value="32788" hexvalue="8014" since="7.0" />
+        <element name="OnUpdateSubMenuID" value="32789" hexvalue="8015" since="7.0" />
         
 
         <!--
