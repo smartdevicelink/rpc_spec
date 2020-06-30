@@ -1989,12 +1989,6 @@ The status and pressure of the tires.
 |`innerLeftRear`|SingleTireStatus|True|The status of the inner left rear.|
 |`innerRightRear`|SingleTireStatus|True|The status of the inner right rear.|
 
-### HandsOffSteering
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-|`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
 
 ### GPSData
 Struct with the GPS data.
@@ -3775,12 +3769,12 @@ Subscribes for specific published data items. The data will be only sent if it h
 |`engineOilLife`|Boolean|False|The estimated percentage of remaining oil life of the engine.|
 |`electronicParkBrakeStatus`|Boolean|False|The status of the park brake as provided by Electric Park Brake (EPB) system.|
 |`cloudAppVehicleID`|Boolean|False|Parameter used by cloud apps to identify a head unit|
-|`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
 |`eCallInfo`|Boolean|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|Boolean|False|The status of the air bags|
 |`emergencyEvent`|Boolean|False|Information related to an emergency event (and if it occurred)|
 |`clusterModeStatus`|Boolean|False|The status modes of the cluster|
 |`myKey`|Boolean|False|Information related to the MyKey feature|
+|`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
 
 
 ### SubscribeVehicleData
@@ -3817,12 +3811,12 @@ Message Type: **response**
 |`engineOilLife`|VehicleDataResult|False|The estimated percentage of remaining oil life of the engine.|
 |`electronicParkBrakeStatus`|VehicleDataResult|False|The status of the park brake as provided by Electric Park Brake (EPB) system.|
 |`cloudAppVehicleID`|VehicleDataResult|False|Parameter used by cloud apps to identify a head unit|
-|`handsOffSteering`|VehicleDataResult|False|To indicate whether driver hands are off the steering wheel|
 |`eCallInfo`|VehicleDataResult|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|VehicleDataResult|False|The status of the air bags|
 |`emergencyEvent`|VehicleDataResult|False|Information related to an emergency event (and if it occurred)|
 |`clusterModes`|VehicleDataResult|False|The status modes of the cluster|
 |`myKey`|VehicleDataResult|False|Information related to the MyKey feature|
+|`handsOffSteering`|VehicleDataResult|False|To indicate whether driver hands are off the steering wheel|
 
 
 ### UnsubscribeVehicleData
@@ -3858,12 +3852,12 @@ This function is used to unsubscribe the notifications from the subscribeVehicle
 |`engineOilLife`|Boolean|False|The estimated percentage of remaining oil life of the engine.|
 |`electronicParkBrakeStatus`|Boolean|False|The status of the park brake as provided by Electric Park Brake (EPB) system.|
 |`cloudAppVehicleID`|Boolean|False|Parameter used by cloud apps to identify a head unit|
-|`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
 |`eCallInfo`|Boolean|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|Boolean|False|The status of the air bags|
 |`emergencyEvent`|Boolean|False|Information related to an emergency event (and if it occurred)|
 |`clusterModeStatus`|Boolean|False|The status modes of the cluster|
 |`myKey`|Boolean|False|Information related to the MyKey feature|
+|`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
 
 
 ### UnsubscribeVehicleData
@@ -3900,12 +3894,12 @@ Message Type: **response**
 |`engineOilLife`|VehicleDataResult|False|The estimated percentage of remaining oil life of the engine.|
 |`electronicParkBrakeStatus`|VehicleDataResult|False|The status of the park brake as provided by Electric Park Brake (EPB) system.|
 |`cloudAppVehicleID`|VehicleDataResult|False|Parameter used by cloud apps to identify a head unit|
-|`handsOffSteering`|VehicleDataResult|False|To indicate whether driver hands are off the steering wheel|
 |`eCallInfo`|VehicleDataResult|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|VehicleDataResult|False|The status of the air bags|
 |`emergencyEvent`|VehicleDataResult|False|Information related to an emergency event (and if it occurred)|
 |`clusterModes`|VehicleDataResult|False|The status modes of the cluster|
 |`myKey`|VehicleDataResult|False|Information related to the MyKey feature|
+|`handsOffSteering`|VehicleDataResult|False|To indicate whether driver hands are off the steering wheel|
 
 
 ### GetVehicleData
@@ -3942,12 +3936,12 @@ Non periodic vehicle data read request.
 |`engineOilLife`|Boolean|False|The estimated percentage of remaining oil life of the engine.|
 |`electronicParkBrakeStatus`|Boolean|False|The status of the park brake as provided by Electric Park Brake (EPB) system.|
 |`cloudAppVehicleID`|Boolean|False|Parameter used by cloud apps to identify a head unit|
-|`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
 |`eCallInfo`|Boolean|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|Boolean|False|The status of the air bags|
 |`emergencyEvent`|Boolean|False|Information related to an emergency event (and if it occurred)|
 |`clusterModeStatus`|Boolean|False|The status modes of the cluster|
 |`myKey`|Boolean|False|Information related to the MyKey feature|
+|`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
 
 
 ### GetVehicleData
@@ -3985,12 +3979,12 @@ Message Type: **response**
 |`engineOilLife`|Float|False|The estimated percentage of remaining oil life of the engine.|
 |`electronicParkBrakeStatus`|ElectronicParkBrakeStatus|False|The status of the park brake as provided by Electric Park Brake (EPB) system.|
 |`cloudAppVehicleID`|String|False|Parameter used by cloud apps to identify a head unit|
-|`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
 |`eCallInfo`|ECallInfo|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|AirbagStatus|False|The status of the air bags|
 |`emergencyEvent`|EmergencyEvent|False|Information related to an emergency event (and if it occurred)|
 |`clusterModeStatus`|ClusterModeStatus|False|The status modes of the cluster|
 |`myKey`|MyKey|False|Information related to the MyKey feature|
+|`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
 
 
 ### ReadDID
@@ -5032,12 +5026,12 @@ Callback for the periodic and non periodic vehicle data read function.
 |`engineOilLife`|Float|False|The estimated percentage of remaining oil life of the engine.|
 |`electronicParkBrakeStatus`|ElectronicParkBrakeStatus|False|The status of the park brake as provided by Electric Park Brake (EPB) system.|
 |`cloudAppVehicleID`|String|False|Parameter used by cloud apps to identify a head unit|
-|`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
 |`eCallInfo`|ECallInfo|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|AirbagStatus|False|The status of the air bags|
 |`emergencyEvent`|EmergencyEvent|False|Information related to an emergency event (and if it occurred)|
 |`clusterModeStatus`|ClusterModeStatus|False|The status modes of the cluster|
 |`myKey`|MyKey|False|Information related to the MyKey feature|
+|`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
 
 
 ### OnCommand
