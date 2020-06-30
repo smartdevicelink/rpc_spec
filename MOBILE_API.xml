@@ -8343,7 +8343,7 @@
             <description>This menuID must match a menuID in the current menu structure</description>
         </param>
 
-        <param name="updateSubCells" type="Bool" mandatory="false">
+        <param name="updateSubCells" type="Boolean" mandatory="false">
             <description>If not set, assume false. If true, the app should send AddCommands with parentIDs matching the menuID. These AddCommands will then be attached to the submenu and displayed if the submenu is selected.</description>
         </param>
     </function>
