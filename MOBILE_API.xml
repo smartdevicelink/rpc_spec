@@ -926,6 +926,10 @@
             <description>The image field for Alert</description>
         </element>
 
+        <element name="subMenuIcon" since="7.0">
+            <description>The image field for AddSubMenu.menuIcon</description>
+        </element>
+
     </enum>
     
     <enum name="CharacterSet" since="1.0">
@@ -2378,7 +2382,17 @@
         <param name="onScreenPresetsAvailable" type="Boolean" mandatory="true">
             <description>Onscreen custom presets are available.</description>
         </param>
-    </struct>         
+    </struct>
+
+    <struct name="DynamicUpdateCapabilities" since="7.0">
+        <param name="supportedDynamicImageFieldNames" type="ImageFieldName" array="true" mandatory="false" minsize="1">
+            <description>An array of ImageFieldName values for which the system supports sending OnFileUpdate notifications. If you send an Image struct for that image field with a name without having uploaded the image data using PutFile that matches that name, the system will request that you upload the data with PutFile at a later point when the HMI needs it. The HMI will then display the image in the appropriate field. If not sent, assume false.</description>
+        </param>
+
+        <param name="supportsDynamicSubMenus" type="Bool" mandatory="false">
+            <description>If true, the head unit supports dynamic sub-menus by sending OnUpdateSubMenu notifications. If true, you should not send AddCommands that attach to a parentID for an AddSubMenu until OnUpdateSubMenu is received with the menuID. At that point, you should send all AddCommands with a parentID that match the menuID. If not set, assume false.</description>
+        </param>
+    </struct>  
 
     <struct name="WindowCapability" since="6.0">
         <param name="windowID" type="Integer" mandatory="false">
@@ -2411,6 +2425,9 @@
         </param>
         <param name="menuLayoutsAvailable" type="MenuLayout" array="true" minsize="1" maxsize="1000" mandatory="false" since="6.0">
             <description>An array of available menu layouts. If this parameter is not provided, only the `LIST` layout is assumed to be available</description>
+        </param>
+        <param name="dynamicUpdateCapabilities" type="DynamicUpdateCapabilities" mandatory="false" since="7.0">
+            <description>Contains the head unit's capabilities for dynamic updating features declaring if the module will send dynamic update RPCs.</description>
         </param>
     </struct>
 
@@ -2866,6 +2883,9 @@
         <element name="OnRCStatusID" value="32785" hexvalue="8011" since="5.0" />
         <element name="OnAppServiceDataID" value="32786" hexvalue="8012" since="5.1" />
         <element name="OnSystemCapabilityUpdatedID" value="32787" hexvalue="8013" since="5.1" />
+        <element name="OnUpdateFile" value="32788" hexvalue="8014" since="7.0" />
+        <element name="OnUpdateSubMenu" value="32789" hexvalue="8015" since="7.0" />
+        
 
         <!--
          Ford Specific Request / Response RPCs
@@ -8305,6 +8325,26 @@
         <description>A notification to inform the connected device that a specific system capability has changed.</description>
         <param name="systemCapability" type="SystemCapability" mandatory="true">
             <description>The system capability that has been updated</description>
+        </param>
+    </function>
+
+    <function name="OnUpdateFile" functionID="OnUpdateFileID" messagetype="notification" since="7.0">
+        <description>This notification tells an app to upload and update a file with a given name.</description>
+
+        <param name="fileName" type="String" maxlength="255" mandatory="true">
+            <description>File reference name.</description>
+        </param>
+    </function>
+
+    <function name="OnUpdateSubMenu" functionID="UpdateSubMenuID" messagetype="notification" since="7.0">
+        <description>This notification tells an app to update the AddSubMenu or its 'sub' AddCommand and AddSubMenus with the requested data</description>
+
+        <param name="menuID" type="Integer" minvalue="0" maxvalue="2000000000" mandatory="true">
+            <description>This menuID must match a menuID in the current menu structure</description>
+        </param>
+
+        <param name="updateSubCells" type="Bool" mandatory="false">
+            <description>If not set, assume false. If true, the app should send AddCommands with parentIDs matching the menuID. These AddCommands will then be attached to the submenu and displayed if the submenu is selected.</description>
         </param>
     </function>
     
