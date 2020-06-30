@@ -8336,7 +8336,7 @@
         </param>
     </function>
 
-    <function name="OnUpdateSubMenu" functionID="UpdateSubMenuID" messagetype="notification" since="7.0">
+    <function name="OnUpdateSubMenu" functionID="OnUpdateSubMenuID" messagetype="notification" since="7.0">
         <description>This notification tells an app to update the AddSubMenu or its 'sub' AddCommand and AddSubMenus with the requested data</description>
 
         <param name="menuID" type="Integer" minvalue="0" maxvalue="2000000000" mandatory="true">
