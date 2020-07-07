@@ -3084,6 +3084,8 @@
         <param name="scale" type="Float" minvalue="1" maxvalue="10" mandatory="false" since="6.0">
             <description>The scaling factor the app should use to change the size of the projecting view.</description>
         </param>
+        <param name="additionalVideoStreamingCapabilities" type="VideoStreamingCapability" array="true" minsize="1" maxsize="100" mandatory="false" since="7.0">
+        </param>
     </struct>
 
     <struct name="RGBColor" since="5.0">
