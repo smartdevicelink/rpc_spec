@@ -578,6 +578,11 @@
         <element name="BOTH" />
     </enum>
 
+    <enum name="AppCapabilityType" since="7.0">
+        <description>Enumerations of all available app capability types</description>
+        <element name="VIDEO_STREAMING"/>
+    </enum>
+
     <struct name="CloudAppProperties" since="5.1">
         <param name="nicknames" type="String" minlength="0" maxlength="100" array="true" minsize="0" maxsize="100" mandatory="false">
             <description>An array of app names a cloud app is allowed to register with. If included in a SetCloudAppProperties request, this value will overwrite the existing "nicknames" field in the app policies section of the policy table.</description>
@@ -2866,6 +2871,7 @@
         <element name="OnRCStatusID" value="32785" hexvalue="8011" since="5.0" />
         <element name="OnAppServiceDataID" value="32786" hexvalue="8012" since="5.1" />
         <element name="OnSystemCapabilityUpdatedID" value="32787" hexvalue="8013" since="5.1" />
+        <element name="OnAppCapabilityUpdatedID" value="32788" hexvalue="8014" since="7.0"/>
 
         <!--
          Ford Specific Request / Response RPCs
@@ -4435,6 +4441,18 @@
             <description>Contains information about the locations of each seat</description>
         </param>
         <param name="displayCapabilities" type="DisplayCapability" array="true" minsize="1" maxsize="1000" mandatory="false" since="6.0"/>
+    </struct>
+
+    <struct name="AppCapability" since="7.0">
+        <param name="appCapabilityType" type="AppCapabilityType" mandatory="true">
+            <description>
+                Used as a descriptor of what data to expect in this struct.
+                The corresponding param to this enum should be included and the only other param included.
+            </description>
+        </param>
+        <param name="videoStreamingCapability" type="VideoStreamingCapability" mandatory="false">
+            <description>Describes supported capabilities for video streaming </description>
+        </param>
     </struct>
 
     <!-- Requests/Responses -->
@@ -8304,6 +8322,13 @@
         </param>
     </function>
     
+    <function name="OnAppCapabilityUpdated" functionID="OnAppCapabilityUpdatedID" messagetype="notification" since="7.0">
+        <description>A notification to inform SDL Core that a specific app capability has changed.</description>
+        <param name="appCapability" type="AppCapability" mandatory="true">
+            <description>The app capability that has been updated</description>
+        </param>
+    </function>
+
     <!-- ~~~~~~~~~~~~~~~~~~ -->
     <!-- Ford Specific APIs -->
     <!-- ~~~~~~~~~~~~~~~~~~ -->
