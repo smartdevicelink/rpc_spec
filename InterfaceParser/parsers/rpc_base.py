@@ -212,6 +212,18 @@ class RPCBase(ABC):
         :return: an instance of model.Struct
         """
         params, subelements, attrib = self._parse_base_item(element, prefix)
+        """
+        Create an empty object for new type to types collection.
+        This is needed for parser to apply type for struct members
+        that consist of its own type.
+        E.g.:
+            struct VideoStreamingCapability {
+            ...
+            VideoStreamingCapability additionalVideoStreamingCapabilities[]
+            }
+        """
+        struct = Struct(**params)
+        self._add_type(struct)
 
         for attribute in attrib:
             if attribute in ["scope", "deprecated", "removed"]:
@@ -228,6 +240,13 @@ class RPCBase(ABC):
             else:
                 raise ParseError("Unexpected subelement '{}' in struct '{}'".format(subelement.name, params["name"]))
         params["members"] = members
+
+        """
+        Remove empty object for new type to prevent errors of adding such type twice (see self._add_type).
+        After return statement of current method is done the new type with all its params
+        will be added into types collection.
+        """
+        self._types.pop(struct.name, None)
 
         return Struct(**params)
 
