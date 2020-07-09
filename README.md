@@ -5033,7 +5033,7 @@ Callback for the periodic and non periodic vehicle data read function.
 |`engineOilLife`|Float|False|The estimated percentage of remaining oil life of the engine.|
 |`electronicParkBrakeStatus`|ElectronicParkBrakeStatus|False|The status of the park brake as provided by Electric Park Brake (EPB) system.|
 |`cloudAppVehicleID`|String|False|Parameter used by cloud apps to identify a head unit|
-|`stabilityControlsStatus`|StabilityControlsStatus|False|ee StabilityControlsStatus|
+|`stabilityControlsStatus`|StabilityControlsStatus|False|See StabilityControlsStatus|
 |`eCallInfo`|ECallInfo|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|AirbagStatus|False|The status of the air bags|
 |`emergencyEvent`|EmergencyEvent|False|Information related to an emergency event (and if it occurred)|
@@ -5260,5 +5260,4 @@ Callback including encoded data of any SyncP packets that SYNC needs to send bac
 |`data`|String[]|True|Contains base64 encoded string of SyncP packets.|
 |`URL`|String|False|If blank, the SyncP data shall be forwarded to the app. If not blank, the SyncP data shall be forwarded to the provided URL.|
 |`Timeout`|Integer|False|If blank, the SyncP data shall be forwarded to the app. If not blank, the SyncP data shall be forwarded with the provided timeout in seconds.|
-
 
