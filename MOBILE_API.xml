@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="no"?>
 <?xml-stylesheet type="text/xml" href="protocol2html.xsl"?>
 
-<interface name="SmartDeviceLink RAPI" version="6.2.0" minVersion="1.0" date="2019-03-19">
+<interface name="SmartDeviceLink RAPI" version="7.0.0" minVersion="1.0" date="2020-11-04">
     <enum name="Result" internal_scope="base" since="1.0">
         <element name="SUCCESS">
             <description>The request succeeded</description>
@@ -569,7 +569,7 @@
         <element name="VEHICLEDATA_ELECTRONICPARKBRAKESTATUS" since="5.0" />
         <element name="VEHICLEDATA_CLOUDAPPVEHICLEID" since="5.1"/>
         <element name="VEHICLEDATA_OEM_CUSTOM_DATA" since="6.0"/>
-        <element name="VEHICLEDATA_STABILITYCONTROLSSTATUS" since="6.2"/>
+        <element name="VEHICLEDATA_STABILITYCONTROLSSTATUS" since="7.0"/>
     </enum>
 
     <enum name="HybridAppPreference" since="5.1">
@@ -1945,7 +1945,7 @@
         </param>
     </struct>
 
-    <struct name="StabilityControlsStatus" since="6.2">
+    <struct name="StabilityControlsStatus" since="7.0">
         <param name="escSystem" type="VehicleDataStatus" mandatory="false">
             <description>true if vehicle stability control is ON, else false</description>
         </param>
@@ -5902,7 +5902,7 @@
         <param name="cloudAppVehicleID" type="Boolean" mandatory="false" since="5.1">
             <description>Parameter used by cloud apps to identify a head unit</description>
         </param>
-        <param name="stabilityControlsStatus" type="Boolean" mandatory="false" since="6.2">
+        <param name="stabilityControlsStatus" type="Boolean" mandatory="false" since="7.0">
 	        <description>See StabilityControlsStatus</description>
         </param>
         <param name="eCallInfo" type="Boolean" mandatory="false">
@@ -6018,7 +6018,7 @@
         <param name="cloudAppVehicleID" type="VehicleDataResult" mandatory="false" since="5.1">
             <description>Parameter used by cloud apps to identify a head unit</description>
         </param>
-        <param name="stabilityControlsStatus" type="VehicleDataResult" mandatory="false" since="6.2">
+        <param name="stabilityControlsStatus" type="VehicleDataResult" mandatory="false" since="7.0">
 	        <description>See StabilityControlsStatus</description>
         </param>
         <param name="eCallInfo" type="VehicleDataResult" mandatory="false">
@@ -6113,7 +6113,7 @@
         <param name="cloudAppVehicleID" type="Boolean" mandatory="false" since="5.1">
             <description>Parameter used by cloud apps to identify a head unit</description>
         </param>
-        <param name="stabilityControlsStatus" type="Boolean" mandatory="false" since="6.2">
+        <param name="stabilityControlsStatus" type="Boolean" mandatory="false" since="7.0">
 	        <description>See StabilityControlsStatus</description>
         </param>
         <param name="eCallInfo" type="Boolean" mandatory="false">
@@ -6228,7 +6228,7 @@
         <param name="cloudAppVehicleID" type="VehicleDataResult" mandatory="false" since="5.1">
             <description>Parameter used by cloud apps to identify a head unit</description>
         </param>
-         <param name="stabilityControlsStatus" type="VehicleDataResult" mandatory="false" since="6.2">
+         <param name="stabilityControlsStatus" type="VehicleDataResult" mandatory="false" since="7.0">
 	        <description>See StabilityControlsStatus</description>
         </param>
         <param name="eCallInfo" type="VehicleDataResult" mandatory="false">
@@ -6326,7 +6326,7 @@
         <param name="cloudAppVehicleID" type="Boolean" mandatory="false" since="5.1">
             <description>Parameter used by cloud apps to identify a head unit</description>
         </param>
-        <param name="stabilityControlsStatus" type="Boolean" mandatory="false" since="6.2">
+        <param name="stabilityControlsStatus" type="Boolean" mandatory="false" since="7.0">
 	        <description>See StabilityControlsStatus</description>
         </param>
         <param name="eCallInfo" type="Boolean" mandatory="false">
@@ -6445,7 +6445,7 @@
         <param name="cloudAppVehicleID" type="String" mandatory="false" since="5.1">
             <description>Parameter used by cloud apps to identify a head unit</description>
         </param>
-        <param name="stabilityControlsStatus" type="StabilityControlsStatus" mandatory="false" since="6.2">
+        <param name="stabilityControlsStatus" type="StabilityControlsStatus" mandatory="false" since="7.0">
 	        <description>See StabilityControlsStatus</description>
         </param>
         <param name="eCallInfo" type="ECallInfo" mandatory="false">
@@ -6870,10 +6870,7 @@
     
     <function name="ChangeRegistration" functionID="ChangeRegistrationID" messagetype="response" since="2.0">
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
-            <description>
-                true, if successful
-                false, if failed
-            </description>
+            <description> true, if successful; false, if failed </description>
         </param>
         
         <param name="resultCode" type="Result" platform="documentation" mandatory="true">
@@ -7382,8 +7379,7 @@
     
     <function name="DialNumber" functionID="DialNumberID" messagetype="response" since="3.0">
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
-            <description>true, if successful</description>
-            <description>false, if failed</description>
+            <description> true, if successful; false, if failed </description>
         </param>
         
         <param name="resultCode" type="Result" platform="documentation" mandatory="true">
@@ -8146,7 +8142,7 @@
         <param name="cloudAppVehicleID" type="String" mandatory="false" since="5.1">
             <description>Parameter used by cloud apps to identify a head unit</description>
         </param>
-        <param name="stabilityControlsStatus" type="StabilityControlsStatus" mandatory="false" since="6.2">
+        <param name="stabilityControlsStatus" type="StabilityControlsStatus" mandatory="false" since="7.0">
 	        <description>See StabilityControlsStatus</description>
         </param>
         <param name="eCallInfo" type="ECallInfo" mandatory="false">
