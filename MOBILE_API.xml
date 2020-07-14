@@ -2460,6 +2460,9 @@
         <param name="seatLocation" type="Boolean" mandatory="false" since="6.0">
             <description>Availability of seat location feature. True: Available, False: Not Available</description>
         </param>
+        <param name="driverDistraction" type="Boolean" mandatory="false" since="7.0">
+            <description>Availability of driver distraction capability. True: Available, False: Not Available</description>
+        </param>
     </struct>
 
     <struct name="MenuParams" since="1.0">
