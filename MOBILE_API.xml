@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="no"?>
 <?xml-stylesheet type="text/xml" href="protocol2html.xsl"?>
 
-<interface name="SmartDeviceLink RAPI" version="7.0.0" minVersion="1.0" date="2019-03-19">
+<interface name="SmartDeviceLink RAPI" version="7.0.0" minVersion="1.0" date="2020-11-04">
     <enum name="Result" internal_scope="base" since="1.0">
         <element name="SUCCESS">
             <description>The request succeeded</description>
@@ -864,7 +864,7 @@
         </element>
         
         <element name="phoneNumber" since="4.0">
-            <description> Optional hone number of intended location / establishment (if applicable) for SendLocation.</description>
+            <description> Optional phone number of intended location / establishment (if applicable) for SendLocation.</description>
         </element>
         
     </enum>
@@ -6865,10 +6865,7 @@
     
     <function name="ChangeRegistration" functionID="ChangeRegistrationID" messagetype="response" since="2.0">
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
-            <description>
-                true, if successful
-                false, if failed
-            </description>
+            <description> true, if successful; false, if failed </description>
         </param>
         
         <param name="resultCode" type="Result" platform="documentation" mandatory="true">
@@ -7377,8 +7374,7 @@
     
     <function name="DialNumber" functionID="DialNumberID" messagetype="response" since="3.0">
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
-            <description>true, if successful</description>
-            <description>false, if failed</description>
+            <description> true, if successful; false, if failed </description>
         </param>
         
         <param name="resultCode" type="Result" platform="documentation" mandatory="true">
