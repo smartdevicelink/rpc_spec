@@ -3557,7 +3557,7 @@ Message Type: **response**
 ### SubtleAlert
 Message Type: **request**
 
-Shows an alert which typically consists of text-to-speech message and text on the display. At least either alertText1, alertText2 or TTSChunks need to be provided.
+Shows an alert which typically consists of text-to-speech message and text on the display. At least either alertText1, alertText2 or ttsChunks need to be provided.
 
 ##### Parameters
 
