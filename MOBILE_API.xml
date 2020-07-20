@@ -449,7 +449,7 @@
         <element name="APP_UNAUTHORIZED" since="2.0" />
         <element name="PROTOCOL_VIOLATION" since="4.0" />
         <element name="UNSUPPORTED_HMI_RESOURCE" since="4.1" />
-        <element name="RESOURCE_CONSTRAINT" since="6.2" />
+        <element name="RESOURCE_CONSTRAINT" since="7.0" />
     </enum>
     
     <enum name="TriggerSource" since="1.0">
