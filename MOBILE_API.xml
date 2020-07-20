@@ -540,8 +540,8 @@
         </element>
         <element name="VEHICLEDATA_SPEED" />
         <element name="VEHICLEDATA_RPM" />
-        <element name="VEHICLEDATA_FUELLEVEL" until="6.2"/>
-        <element name="VEHICLEDATA_FUELLEVEL_STATE" until="6.2"/>
+        <element name="VEHICLEDATA_FUELLEVEL" until="7.0"/>
+        <element name="VEHICLEDATA_FUELLEVEL_STATE" until="7.0"/>
         <element name="VEHICLEDATA_FUELCONSUMPTION" />
         <element name="VEHICLEDATA_EXTERNTEMP" />
         <element name="VEHICLEDATA_VIN" />
@@ -578,7 +578,7 @@
         <element name="BOTH" />
     </enum>
 
-    <enum name="CapacityUnit" since="6.2">
+    <enum name="CapacityUnit" since="7.0">
         <element name="LITERS" />
         <element name="KILOWATTHOURS" />
         <element name="KILOGRAMS" />
@@ -1305,16 +1305,16 @@
                 The estimate range in KM the vehicle can travel based on fuel level and consumption.
             </description>
         </param>
-        <param name="level" type="Float" minvalue="-6" maxvalue="1000000" mandatory="false" since="6.2">
+        <param name="level" type="Float" minvalue="-6" maxvalue="1000000" mandatory="false" since="7.0">
            <description>The relative remaining capacity of this fuel type (percentage).</description>
         </param>
-        <param name="levelState" type="ComponentVolumeStatus" mandatory="false" since="6.2">
+        <param name="levelState" type="ComponentVolumeStatus" mandatory="false" since="7.0">
             <description>The fuel level state</description>
         </param>
-        <param name="capacity" type="Float" minvalue="0" maxvalue="1000000" mandatory="false" since="6.2">
+        <param name="capacity" type="Float" minvalue="0" maxvalue="1000000" mandatory="false" since="7.0">
             <description>The absolute capacity of this fuel type.</description>
             </param>
-        <param name="capacityUnit" type="CapacityUnit" mandatory="false" since="6.2">
+        <param name="capacityUnit" type="CapacityUnit" mandatory="false" since="7.0">
             <description>The unit of the capacity of this fuel type such as liters for gasoline or kWh for batteries.</description>
         </param>
     </struct>
@@ -5847,16 +5847,16 @@
         <param name="rpm" type="Boolean" mandatory="false">
             <description>The number of revolutions per minute of the engine</description>
         </param>
-        <param name="fuelLevel" type="Boolean" mandatory="false" deprecated="true" since="6.2">
-            <description>The fuel level in the tank (percentage). This parameter is deprecated starting RPC Spec 6.2, please see fuelRange.</description>
+        <param name="fuelLevel" type="Boolean" mandatory="false" deprecated="true" since="7.0">
+            <description>The fuel level in the tank (percentage). This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.</description>
             <history>
-                <param name="fuelLevel" type="Boolean" mandatory="false" since="2.0" until="6.2"/>
+                <param name="fuelLevel" type="Boolean" mandatory="false" since="2.0" until="7.0"/>
             </history>
         </param>
-        <param name="fuelLevel_State" type="Boolean" mandatory="false" deprecated="true" since="6.2">
-            <description>The fuel level state. This parameter is deprecated starting RPC Spec 6.2, please see fuelRange.</description>
+        <param name="fuelLevel_State" type="Boolean" mandatory="false" deprecated="true" since="7.0">
+            <description>The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.</description>
             <history>
-                <param name="fuelLevel_State" type="Boolean" mandatory="false" since="2.0" until="6.2"/>
+                <param name="fuelLevel_State" type="Boolean" mandatory="false" since="2.0" until="7.0"/>
             </history>
         </param>
         <param name="instantFuelConsumption" type="Boolean" mandatory="false">
@@ -5969,16 +5969,16 @@
         <param name="rpm" type="VehicleDataResult" mandatory="false">
             <description>The number of revolutions per minute of the engine</description>
         </param>
-        <param name="fuelLevel" type="VehicleDataResult" mandatory="false" deprecated="true" since="6.2">
-            <description>The fuel level in the tank (percentage). This parameter is deprecated starting RPC Spec 6.2, please see fuelRange.</description>
+        <param name="fuelLevel" type="VehicleDataResult" mandatory="false" deprecated="true" since="7.0">
+            <description>The fuel level in the tank (percentage). This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.</description>
             <history>
-                <param name="fuelLevel" type="VehicleDataResult" mandatory="false" since="2.0" until="6.2"/>
+                <param name="fuelLevel" type="VehicleDataResult" mandatory="false" since="2.0" until="7.0"/>
             </history>
         </param>
-        <param name="fuelLevel_State" type="VehicleDataResult" mandatory="false" deprecated="true" since="6.2">
-            <description>The fuel level state. This parameter is deprecated starting RPC Spec 6.2, please see fuelRange.</description>
+        <param name="fuelLevel_State" type="VehicleDataResult" mandatory="false" deprecated="true" since="7.0">
+            <description>The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.</description>
             <history>
-                <param name="fuelLevel_State" type="VehicleDataResult" mandatory="false" since="2.0" until="6.2"/>
+                <param name="fuelLevel_State" type="VehicleDataResult" mandatory="false" since="2.0" until="7.0"/>
             </history>
         </param>
         <param name="instantFuelConsumption" type="VehicleDataResult" mandatory="false">
@@ -6070,16 +6070,16 @@
         <param name="rpm" type="Boolean" mandatory="false">
             <description>The number of revolutions per minute of the engine</description>
         </param>
-        <param name="fuelLevel" type="Boolean" mandatory="false" deprecated="true" since="6.2">
-            <description>The fuel level in the tank (percentage). This parameter is deprecated starting RPC Spec 6.2, please see fuelRange.</description>
+        <param name="fuelLevel" type="Boolean" mandatory="false" deprecated="true" since="7.0">
+            <description>The fuel level in the tank (percentage). This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.</description>
             <history>
-                <param name="fuelLevel" type="Boolean" mandatory="false" since="2.0" until="6.2"/>
+                <param name="fuelLevel" type="Boolean" mandatory="false" since="2.0" until="7.0"/>
             </history>
         </param>
-        <param name="fuelLevel_State" type="Boolean" mandatory="false" deprecated="true" since="6.2">
-            <description>The fuel level state. This parameter is deprecated starting RPC Spec 6.2, please see fuelRange.</description>
+        <param name="fuelLevel_State" type="Boolean" mandatory="false" deprecated="true" since="7.0">
+            <description>The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.</description>
             <history>
-                <param name="fuelLevel_State" type="Boolean" mandatory="false" since="2.0" until="6.2"/>
+                <param name="fuelLevel_State" type="Boolean" mandatory="false" since="2.0" until="7.0"/>
             </history>
         </param>
         <param name="instantFuelConsumption" type="Boolean" mandatory="false">
@@ -6191,16 +6191,16 @@
         <param name="rpm" type="VehicleDataResult" mandatory="false">
             <description>The number of revolutions per minute of the engine</description>
         </param>
-        <param name="fuelLevel" type="VehicleDataResult" mandatory="false" deprecated="true" since="6.2">
-            <description>The fuel level in the tank (percentage). This parameter is deprecated starting RPC Spec 6.2, please see fuelRange.</description>
+        <param name="fuelLevel" type="VehicleDataResult" mandatory="false" deprecated="true" since="7.0">
+            <description>The fuel level in the tank (percentage). This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.</description>
             <history>
-                <param name="fuelLevel" type="VehicleDataResult" mandatory="false" since="2.0" until="6.2"/>
+                <param name="fuelLevel" type="VehicleDataResult" mandatory="false" since="2.0" until="7.0"/>
             </history>
         </param>
-        <param name="fuelLevel_State" type="VehicleDataResult" mandatory="false" deprecated="true" since="6.2">
-            <description>The fuel level state. This parameter is deprecated starting RPC Spec 6.2, please see fuelRange.</description>
+        <param name="fuelLevel_State" type="VehicleDataResult" mandatory="false" deprecated="true" since="7.0">
+            <description>The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.</description>
             <history>
-                <param name="fuelLevel_State" type="VehicleDataResult" mandatory="false" since="2.0" until="6.2"/>
+                <param name="fuelLevel_State" type="VehicleDataResult" mandatory="false" since="2.0" until="7.0"/>
             </history>
         </param>
         <param name="instantFuelConsumption" type="VehicleDataResult" mandatory="false">
@@ -6292,16 +6292,16 @@
         <param name="rpm" type="Boolean" mandatory="false">
             <description>The number of revolutions per minute of the engine</description>
         </param>
-        <param name="fuelLevel" type="Boolean" mandatory="false" deprecated="true" since="6.2">
-            <description>The fuel level in the tank (percentage). This parameter is deprecated starting RPC Spec 6.2, please see fuelRange.</description>
+        <param name="fuelLevel" type="Boolean" mandatory="false" deprecated="true" since="7.0">
+            <description>The fuel level in the tank (percentage). This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.</description>
             <history>
-                <param name="fuelLevel" type="Boolean" mandatory="false" since="2.0" until="6.2"/>
+                <param name="fuelLevel" type="Boolean" mandatory="false" since="2.0" until="7.0"/>
             </history>
         </param>
-        <param name="fuelLevel_State" type="Boolean" mandatory="false" deprecated="true" since="6.2">
-            <description>The fuel level state. This parameter is deprecated starting RPC Spec 6.2, please see fuelRange.</description>
+        <param name="fuelLevel_State" type="Boolean" mandatory="false" deprecated="true" since="7.0">
+            <description>The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.</description>
             <history>
-                <param name="fuelLevel_State" type="Boolean" mandatory="false" since="2.0" until="6.2"/>
+                <param name="fuelLevel_State" type="Boolean" mandatory="false" since="2.0" until="7.0"/>
             </history>
         </param>
         <param name="instantFuelConsumption" type="Boolean" mandatory="false">
@@ -6417,16 +6417,16 @@
         <param name="rpm" type="Integer" minvalue="0" maxvalue="20000" mandatory="false">
             <description>The number of revolutions per minute of the engine</description>
         </param>
-        <param name="fuelLevel" type="Float" minvalue="-6" maxvalue="106" mandatory="false" deprecated="true" since="6.2">
-            <description>The fuel level in the tank (percentage). This parameter is deprecated starting RPC Spec 6.2, please see fuelRange.</description>
+        <param name="fuelLevel" type="Float" minvalue="-6" maxvalue="106" mandatory="false" deprecated="true" since="7.0">
+            <description>The fuel level in the tank (percentage). This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.</description>
             <history>
-                <param name="fuelLevel" type="Float" minvalue="-6" maxvalue="106" mandatory="false" since="2.0" until="6.2"/>
+                <param name="fuelLevel" type="Float" minvalue="-6" maxvalue="106" mandatory="false" since="2.0" until="7.0"/>
             </history>
         </param>
-        <param name="fuelLevel_State" type="ComponentVolumeStatus" mandatory="false" deprecated="true" since="6.2">
-            <description>The fuel level state. This parameter is deprecated starting RPC Spec 6.2, please see fuelRange.</description>
+        <param name="fuelLevel_State" type="ComponentVolumeStatus" mandatory="false" deprecated="true" since="7.0">
+            <description>The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.</description>
             <history>
-                <param name="fuelLevel_State" type="ComponentVolumeStatus" mandatory="false" since="2.0" until="6.2"/>
+                <param name="fuelLevel_State" type="ComponentVolumeStatus" mandatory="false" since="2.0" until="7.0"/>
             </history>
         </param>
         <param name="instantFuelConsumption" type="Float" minvalue="0" maxvalue="25575" mandatory="false">
@@ -8124,16 +8124,16 @@
         <param name="rpm" type="Integer" minvalue="0" maxvalue="20000" mandatory="false">
             <description>The number of revolutions per minute of the engine</description>
         </param>
-        <param name="fuelLevel" type="Float" minvalue="-6" maxvalue="106" mandatory="false" deprecated="true" since="6.2">
-            <description>The fuel level in the tank (percentage). This parameter is deprecated starting RPC Spec 6.2, please see fuelRange.</description>
+        <param name="fuelLevel" type="Float" minvalue="-6" maxvalue="106" mandatory="false" deprecated="true" since="7.0">
+            <description>The fuel level in the tank (percentage). This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.</description>
             <history>
-                <param name="fuelLevel" type="Float" minvalue="-6" maxvalue="106" mandatory="false" since="2.0" until="6.2"/>
+                <param name="fuelLevel" type="Float" minvalue="-6" maxvalue="106" mandatory="false" since="2.0" until="7.0"/>
             </history>
         </param>
-        <param name="fuelLevel_State" type="ComponentVolumeStatus" mandatory="false" deprecated="true" since="6.2">
-            <description>The fuel level state. This parameter is deprecated starting RPC Spec 6.2, please see fuelRange.</description>
+        <param name="fuelLevel_State" type="ComponentVolumeStatus" mandatory="false" deprecated="true" since="7.0">
+            <description>The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.</description>
             <history>
-                <param name="fuelLevel_State" type="ComponentVolumeStatus" mandatory="false" since="2.0" until="6.2"/>
+                <param name="fuelLevel_State" type="ComponentVolumeStatus" mandatory="false" since="2.0" until="7.0"/>
             </history>
         </param>
         <param name="instantFuelConsumption" type="Float" minvalue="0" maxvalue="25575" mandatory="false">
