@@ -2771,7 +2771,7 @@
                 Can be set as a root screen.
             </description>
         </element>
-        <element name="WEB_VIEW" rootscreen="true" since="6.2">
+        <element name="WEB_VIEW" rootscreen="true" since="7.0">
             <description>
                 Custom root template allowing in-vehicle WebEngine applications with
                 appropriate permissions to show the application's own web view.
