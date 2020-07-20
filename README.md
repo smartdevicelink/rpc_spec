@@ -274,7 +274,7 @@ Error code, which comes from the module side.
 |`APP_UNAUTHORIZED`||
 |`PROTOCOL_VIOLATION`||
 |`UNSUPPORTED_HMI_RESOURCE`||
-
+|`RESOURCE_CONSTRAINT`||
 
 ### TriggerSource
 Indicates the source from where the command was triggered.
