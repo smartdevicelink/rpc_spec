@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="no"?>
 <?xml-stylesheet type="text/xml" href="protocol2html.xsl"?>
 
-<interface name="SmartDeviceLink RAPI" version="6.2.0" minVersion="1.0" date="2019-03-19">
+<interface name="SmartDeviceLink RAPI" version="7.0.0" minVersion="1.0" date="2020-11-04">
     <enum name="Result" internal_scope="base" since="1.0">
         <element name="SUCCESS">
             <description>The request succeeded</description>
@@ -545,8 +545,8 @@
         <element name="VEHICLEDATA_FUELCONSUMPTION" />
         <element name="VEHICLEDATA_EXTERNTEMP" />
         <element name="VEHICLEDATA_VIN" />
-        <element name="VEHICLEDATA_GEARSTATUS" since="6.2"/>
-        <element name="VEHICLEDATA_PRNDL" until="6.2"/>
+        <element name="VEHICLEDATA_GEARSTATUS" since="7.0"/>
+        <element name="VEHICLEDATA_PRNDL" until="7.0"/>
         <element name="VEHICLEDATA_TIREPRESSURE" />
         <element name="VEHICLEDATA_ODOMETER" />
         <element name="VEHICLEDATA_BELTSTATUS" />
@@ -865,7 +865,7 @@
         </element>
         
         <element name="phoneNumber" since="4.0">
-            <description> Optional hone number of intended location / establishment (if applicable) for SendLocation.</description>
+            <description> Optional phone number of intended location / establishment (if applicable) for SendLocation.</description>
         </element>
         
     </enum>
@@ -1224,9 +1224,9 @@
         </element>
         <element name="EIGHTH">
         </element>
-        <element name="NINTH" since="6.2">
+        <element name="NINTH" since="7.0">
         </element>
-        <element name="TENTH" since="6.2">
+        <element name="TENTH" since="7.0">
         </element>
         <element name="UNKNOWN">
         </element>
@@ -1234,7 +1234,7 @@
         </element>
     </enum>
 
-    <enum name="TransmissionType" since="6.2">
+    <enum name="TransmissionType" since="7.0">
         <description>Type of transmission used in the vehicle.</description>
         <element name="MANUAL">
             <description>Manual transmission.</description>
@@ -4471,7 +4471,7 @@
         <param name="displayCapabilities" type="DisplayCapability" array="true" minsize="1" maxsize="1000" mandatory="false" since="6.0"/>
     </struct>
 
-    <struct name="GearStatus" since="6.2">
+    <struct name="GearStatus" since="7.0">
         <param name="userSelectedGear" type="PRNDL" mandatory="false">
             <description>Gear position selected by the user i.e. Park, Drive, Reverse</description>
         </param>
@@ -5893,13 +5893,13 @@
         <param name="turnSignal" type="Boolean" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
         </param>
-        <param name="gearStatus" type="Boolean" mandatory="false" since="6.2">
+        <param name="gearStatus" type="Boolean" mandatory="false" since="7.0">
             <description>See GearStatus</description>
         </param>
-        <param name="prndl" type="Boolean" mandatory="false" deprecated="true" since="6.2">
+        <param name="prndl" type="Boolean" mandatory="false" deprecated="true" since="7.0">
             <description>See PRNDL</description>
             <history>
-                <param name="prndl" type="Boolean" mandatory="false" since="2.0" until="6.2"/>
+                <param name="prndl" type="Boolean" mandatory="false" since="2.0" until="7.0"/>
             </history>
         </param>
         <param name="tirePressure" type="Boolean" mandatory="false">
@@ -6012,13 +6012,13 @@
         <param name="turnSignal" type="VehicleDataResult" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
         </param>
-        <param name="gearStatus" type="VehicleDataResult" mandatory="false" since="6.2">
+        <param name="gearStatus" type="VehicleDataResult" mandatory="false" since="7.0">
             <description>See GearStatus</description>
         </param>
-        <param name="prndl" type="VehicleDataResult" mandatory="false" deprecated="true" since="6.2">
+        <param name="prndl" type="VehicleDataResult" mandatory="false" deprecated="true" since="7.0">
             <description>See PRNDL</description>
             <history>
-                <param name="prndl" type="VehicleDataResult" mandatory="false" since="2.0" until="6.2"/>
+                <param name="prndl" type="VehicleDataResult" mandatory="false" since="2.0" until="7.0"/>
             </history>
         </param>
         <param name="tirePressure" type="VehicleDataResult" mandatory="false">
@@ -6110,13 +6110,13 @@
         <param name="turnSignal" type="Boolean" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
         </param>
-        <param name="gearStatus" type="Boolean" mandatory="false" since="6.2">
+        <param name="gearStatus" type="Boolean" mandatory="false" since="7.0">
             <description>See GearStatus</description>
         </param>
-        <param name="prndl" type="Boolean" mandatory="false" deprecated="true" since="6.2">
+        <param name="prndl" type="Boolean" mandatory="false" deprecated="true" since="7.0">
             <description>See PRNDL</description>
             <history>
-                <param name="prndl" type="Boolean" mandatory="false" since="2.0" until="6.2"/>
+                <param name="prndl" type="Boolean" mandatory="false" since="2.0" until="7.0"/>
             </history>
         </param>
         <param name="tirePressure" type="Boolean" mandatory="false">
@@ -6228,13 +6228,13 @@
         <param name="turnSignal" type="VehicleDataResult" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
         </param>
-        <param name="gearStatus" type="VehicleDataResult" mandatory="false" since="6.2">
+        <param name="gearStatus" type="VehicleDataResult" mandatory="false" since="7.0">
             <description>See GearStatus</description>
         </param>
-        <param name="prndl" type="VehicleDataResult" mandatory="false" deprecated="true" since="6.2">
+        <param name="prndl" type="VehicleDataResult" mandatory="false" deprecated="true" since="7.0">
             <description>See PRNDL</description>
             <history>
-                <param name="prndl" type="VehicleDataResult" mandatory="false" since="2.0" until="6.2"/>
+                <param name="prndl" type="VehicleDataResult" mandatory="false" since="2.0" until="7.0"/>
             </history>
         </param>
         <param name="tirePressure" type="VehicleDataResult" mandatory="false">
@@ -6329,13 +6329,13 @@
         <param name="vin" type="Boolean" mandatory="false">
             <description>Vehicle identification number</description>
         </param>
-        <param name="gearStatus" type="Boolean" mandatory="false" since="6.2">
+        <param name="gearStatus" type="Boolean" mandatory="false" since="7.0">
             <description>See GearStatus</description>
         </param>
-        <param name="prndl" type="Boolean" mandatory="false" deprecated="true" since="6.2">
+        <param name="prndl" type="Boolean" mandatory="false" deprecated="true" since="7.0">
             <description>See PRNDL</description>
             <history>
-                <param name="prndl" type="Boolean" mandatory="false" since="2.0" until="6.2"/>
+                <param name="prndl" type="Boolean" mandatory="false" since="2.0" until="7.0"/>
             </history>
         </param>
         <param name="tirePressure" type="Boolean" mandatory="false">
@@ -6451,13 +6451,13 @@
         <param name="vin" type="String" maxlength="17" mandatory="false">
             <description>Vehicle identification number</description>
         </param>
-        <param name="gearStatus" type="GearStatus" mandatory="false" since="6.2">
+        <param name="gearStatus" type="GearStatus" mandatory="false" since="7.0">
             <description>See GearStatus</description>
         </param>
-        <param name="prndl" type="PRNDL" mandatory="false" deprecated="true" since="6.2">
+        <param name="prndl" type="PRNDL" mandatory="false" deprecated="true" since="7.0">
             <description>See PRNDL</description>
             <history>
-                <param name="prndl" type="PRNDL" mandatory="false" since="2.0" until="6.2"/>
+                <param name="prndl" type="PRNDL" mandatory="false" since="2.0" until="7.0"/>
             </history>
         </param>
         <param name="tirePressure" type="TireStatus" mandatory="false">
@@ -6924,10 +6924,7 @@
     
     <function name="ChangeRegistration" functionID="ChangeRegistrationID" messagetype="response" since="2.0">
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
-            <description>
-                true, if successful
-                false, if failed
-            </description>
+            <description> true, if successful; false, if failed </description>
         </param>
         
         <param name="resultCode" type="Result" platform="documentation" mandatory="true">
@@ -7436,8 +7433,7 @@
     
     <function name="DialNumber" functionID="DialNumberID" messagetype="response" since="3.0">
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
-            <description>true, if successful</description>
-            <description>false, if failed</description>
+            <description> true, if successful; false, if failed </description>
         </param>
         
         <param name="resultCode" type="Result" platform="documentation" mandatory="true">
@@ -8155,13 +8151,13 @@
         <param name="vin" type="String" maxlength="17" mandatory="false">
             <description>Vehicle identification number.</description>
         </param>
-        <param name="gearStatus" type="GearStatus" mandatory="false" since="6.2">
+        <param name="gearStatus" type="GearStatus" mandatory="false" since="7.0">
             <description>See GearStatus</description>
         </param>
-        <param name="prndl" type="PRNDL" mandatory="false" deprecated="true" since="6.2">
+        <param name="prndl" type="PRNDL" mandatory="false" deprecated="true" since="7.0">
             <description>See PRNDL</description>
             <history>
-                <param name="prndl" type="PRNDL" mandatory="false" since="2.0" until="6.2"/>
+                <param name="prndl" type="PRNDL" mandatory="false" since="2.0" until="7.0"/>
             </history>
         </param>
         <param name="tirePressure" type="TireStatus" mandatory="false">
