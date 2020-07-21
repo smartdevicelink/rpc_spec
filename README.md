@@ -771,18 +771,18 @@ The selected gear.
 ### TransmissionType
 Type of transmission used in the vehicle.
 
-#### Elements
+##### Elements
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`MANUAL`|Manual transmission|
-|`AUTOMATIC`|Automatic transmission|
-|`SEMI_AUTOMATIC`|Semi automatic transmission|
-|`DUAL_CLUTCH`|Dual clutch transmission|
-|`CONTINUOUSLY_VARIABLE`|Continuously variable transmission(CVT)|
-|`INFINITELY_VARIABLE`|Infinitely variable transmission|
-|`ELECTRIC_VARIABLE`|Electric variable transmission|
-|`DIRECT_DRIVE`|Direct drive between engine and wheels|
+|`MANUAL`|Manual transmission.|
+|`AUTOMATIC`|Automatic transmission.|
+|`SEMI_AUTOMATIC`|Semi automatic transmission.|
+|`DUAL_CLUTCH`|Dual clutch transmission.|
+|`CONTINUOUSLY_VARIABLE`|Continuously variable transmission(CVT).|
+|`INFINITELY_VARIABLE`|Infinitely variable transmission.|
+|`ELECTRIC_VARIABLE`|Electric variable transmission.|
+|`DIRECT_DRIVE`|Direct drive between engine and wheels.|
 
 
 ### ComponentVolumeStatus
@@ -3132,8 +3132,7 @@ The systemCapabilityType identifies which data object exists in this struct. For
 
 
 ### GearStatus
-
-#### Parameters
+##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
@@ -3785,7 +3784,7 @@ Subscribes for specific published data items. The data will be only sent if it h
 |`externalTemperature`|Boolean|False|The external temperature in degrees celsius|
 |`turnSignal`|Boolean|False|See TurnSignal|
 |`gearStatus`|Boolean|False|See GearStatus|
-|`prndl`|Boolean|False|See PRNDL|
+|`prndl`|Boolean|False|See PRNDL. This parameter is deprecated and it is now covered in `gearStatus`|
 |`tirePressure`|Boolean|False|See TireStatus|
 |`odometer`|Boolean|False|Odometer in km|
 |`beltStatus`|Boolean|False|The status of the seat belts|
@@ -3827,7 +3826,7 @@ Message Type: **response**
 |`externalTemperature`|VehicleDataResult|False|The external temperature in degrees celsius.|
 |`turnSignal`|VehicleDataResult|False|See TurnSignal|
 |`gearStatus`|VehicleDataResult|False|See GearStatus|
-|`prndl`|VehicleDataResult|False|See PRNDL|
+|`prndl`|VehicleDataResult|False|See PRNDL. This parameter is deprecated and it is now covered in `gearStatus`|
 |`tirePressure`|VehicleDataResult|False|See TireStatus|
 |`odometer`|VehicleDataResult|False|Odometer in km|
 |`beltStatus`|VehicleDataResult|False|The status of the seat belts|
@@ -3868,7 +3867,7 @@ This function is used to unsubscribe the notifications from the subscribeVehicle
 |`externalTemperature`|Boolean|False|The external temperature in degrees celsius.|
 |`turnSignal`|Boolean|False|See TurnSignal|
 |`gearStatus`|Boolean|False|See GearStatus|
-|`prndl`|Boolean|False|See PRNDL|
+|`prndl`|Boolean|False|See PRNDL. This parameter is deprecated and it is now covered in `gearStatus`|
 |`tirePressure`|Boolean|False|See TireStatus|
 |`odometer`|Boolean|False|Odometer in km|
 |`beltStatus`|Boolean|False|The status of the seat belts|
@@ -3910,7 +3909,7 @@ Message Type: **response**
 |`externalTemperature`|VehicleDataResult|False|The external temperature in degrees celsius|
 |`turnSignal`|VehicleDataResult|False|See TurnSignal|
 |`gearStatus`|VehicleDataResult|False|See GearStatus|
-|`prndl`|VehicleDataResult|False|See PRNDL|
+|`prndl`|VehicleDataResult|False|See PRNDL. This parameter is deprecated and it is now covered in `gearStatus`|
 |`tirePressure`|VehicleDataResult|False|See TireStatus|
 |`odometer`|VehicleDataResult|False|Odometer in km|
 |`beltStatus`|VehicleDataResult|False|The status of the seat belts|
@@ -3952,7 +3951,7 @@ Non periodic vehicle data read request.
 |`turnSignal`|Boolean|False|See TurnSignal|
 |`vin`|Boolean|False|Vehicle identification number|
 |`gearStatus`|Boolean|False|See GearStatus|
-|`prndl`|Boolean|False|See PRNDL|
+|`prndl`|Boolean|False|See PRNDL. This parameter is deprecated and it is now covered in `gearStatus`|
 |`tirePressure`|Boolean|False|See TireStatus|
 |`odometer`|Boolean|False|Odometer in km|
 |`beltStatus`|Boolean|False|The status of the seat belts|
@@ -3995,7 +3994,7 @@ Message Type: **response**
 |`turnSignal`|TurnSignal|False|See TurnSignal|
 |`vin`|String|False|Vehicle identification number|
 |`gearStatus`|GearStatus|False|See GearStatus|
-|`prndl`|PRNDL|False|See PRNDL|
+|`prndl`|PRNDL|False|See PRNDL. This parameter is deprecated and it is now covered in `gearStatus`|
 |`tirePressure`|TireStatus|False|See TireStatus|
 |`odometer`|Integer|False|Odometer in km|
 |`beltStatus`|BeltStatus|False|The status of the seat belts|
@@ -5042,7 +5041,7 @@ Callback for the periodic and non periodic vehicle data read function.
 |`turnSignal`|TurnSignal|False|See TurnSignal|
 |`vin`|String|False|Vehicle identification number.|
 |`gearStatus`|GearStatus|False|See GearStatus|
-|`prndl`|PRNDL|False|See PRNDL|
+|`prndl`|PRNDL|False|See PRNDL. This parameter is deprecated and it is now covered in `gearStatus`|
 |`tirePressure`|TireStatus|False|See TireStatus|
 |`odometer`|Integer|False|Odometer in km|
 |`beltStatus`|BeltStatus|False|The status of the seat belts|
