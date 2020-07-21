@@ -5897,7 +5897,7 @@
             <description>See GearStatus</description>
         </param>
         <param name="prndl" type="Boolean" mandatory="false" deprecated="true" since="7.0">
-            <description>See PRNDL</description>
+            <description>See PRNDL. This parameter is deprecated and it is now covered in `gearStatus`</description>
             <history>
                 <param name="prndl" type="Boolean" mandatory="false" since="2.0" until="7.0"/>
             </history>
@@ -6016,7 +6016,7 @@
             <description>See GearStatus</description>
         </param>
         <param name="prndl" type="VehicleDataResult" mandatory="false" deprecated="true" since="7.0">
-            <description>See PRNDL</description>
+            <description>See PRNDL. This parameter is deprecated and it is now covered in `gearStatus`</description>
             <history>
                 <param name="prndl" type="VehicleDataResult" mandatory="false" since="2.0" until="7.0"/>
             </history>
@@ -6114,7 +6114,7 @@
             <description>See GearStatus</description>
         </param>
         <param name="prndl" type="Boolean" mandatory="false" deprecated="true" since="7.0">
-            <description>See PRNDL</description>
+            <description>See PRNDL. This parameter is deprecated and it is now covered in `gearStatus`</description>
             <history>
                 <param name="prndl" type="Boolean" mandatory="false" since="2.0" until="7.0"/>
             </history>
@@ -6232,7 +6232,7 @@
             <description>See GearStatus</description>
         </param>
         <param name="prndl" type="VehicleDataResult" mandatory="false" deprecated="true" since="7.0">
-            <description>See PRNDL</description>
+            <description>See PRNDL. This parameter is deprecated and it is now covered in `gearStatus`</description>
             <history>
                 <param name="prndl" type="VehicleDataResult" mandatory="false" since="2.0" until="7.0"/>
             </history>
@@ -6333,7 +6333,7 @@
             <description>See GearStatus</description>
         </param>
         <param name="prndl" type="Boolean" mandatory="false" deprecated="true" since="7.0">
-            <description>See PRNDL</description>
+            <description>See PRNDL. This parameter is deprecated and it is now covered in `gearStatus`</description>
             <history>
                 <param name="prndl" type="Boolean" mandatory="false" since="2.0" until="7.0"/>
             </history>
@@ -6455,7 +6455,7 @@
             <description>See GearStatus</description>
         </param>
         <param name="prndl" type="PRNDL" mandatory="false" deprecated="true" since="7.0">
-            <description>See PRNDL</description>
+            <description>See PRNDL. This parameter is deprecated and it is now covered in `gearStatus`</description>
             <history>
                 <param name="prndl" type="PRNDL" mandatory="false" since="2.0" until="7.0"/>
             </history>
@@ -8155,7 +8155,7 @@
             <description>See GearStatus</description>
         </param>
         <param name="prndl" type="PRNDL" mandatory="false" deprecated="true" since="7.0">
-            <description>See PRNDL</description>
+            <description>See PRNDL. This parameter is deprecated and it is now covered in `gearStatus`</description>
             <history>
                 <param name="prndl" type="PRNDL" mandatory="false" since="2.0" until="7.0"/>
             </history>
