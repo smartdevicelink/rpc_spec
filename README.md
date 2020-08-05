@@ -426,6 +426,16 @@ Enumeration for the user's preference of which app type to use when both are ava
 |`BOTH`||
 
 
+### CapacityUnit
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`LITERS`||
+|`KILOWATTHOURS`||
+|`KILOGRAMS`||
+
+
 ### ButtonName
 Defines the hard (physical) and soft (touchscreen) buttons available from the module
 
@@ -1829,6 +1839,10 @@ Specifies the version number of the SmartDeviceLink protocol that is supported b
 | ---------- | ---------- |:-----------: |:-----------:|
 |`type`|FuelType|False||
 |`range`|Float|False|The estimate range in KM the vehicle can travel based on fuel level and consumption.|
+|`level`|Float|False|The relative remaining capacity of this fuel type (percentage).|
+|`levelState`|ComponentVolumeStatus|False|The fuel level state|
+|`capacity`|Float|False|The absolute capacity of this fuel type.|
+|`capacityUnit`|CapacityUnit|False|The unit of the capacity of this fuel type such as liters for gasoline or kWh for batteries.|
 
 
 ### SingleTireStatus
@@ -3755,10 +3769,10 @@ Subscribes for specific published data items. The data will be only sent if it h
 |`gps`|Boolean|False|See GPSData|
 |`speed`|Boolean|False|The vehicle speed in kilometers per hour|
 |`rpm`|Boolean|False|The number of revolutions per minute of the engine|
-|`fuelLevel`|Boolean|False|The fuel level in the tank (percentage)|
-|`fuelLevel_State`|Boolean|False|The fuel level state|
+|`fuelLevel`|Boolean|False|The fuel level in the tank (percentage). This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.|
+|`fuelLevel_State`|Boolean|False|The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.|
 |`instantFuelConsumption`|Boolean|False|The instantaneous fuel consumption in microlitres|
-|`fuelRange`|Boolean|False|The estimate range in KM the vehicle can travel based on fuel level and consumption|
+|`fuelRange`|Boolean|False|The fuel type, estimated range in KM, fuel level/capacity and fuel level state for the vehicle. See struct FuelRange for details.|
 |`externalTemperature`|Boolean|False|The external temperature in degrees celsius|
 |`turnSignal`|Boolean|False|See TurnSignal|
 |`prndl`|Boolean|False|See PRNDL|
@@ -3797,10 +3811,10 @@ Message Type: **response**
 |`gps`|VehicleDataResult|False|See GPSData|
 |`speed`|VehicleDataResult|False|The vehicle speed in kilometers per hour|
 |`rpm`|VehicleDataResult|False|The number of revolutions per minute of the engine|
-|`fuelLevel`|VehicleDataResult|False|The fuel level in the tank (percentage)|
-|`fuelLevel_State`|VehicleDataResult|False|The fuel level state|
+|`fuelLevel`|VehicleDataResult|False|The fuel level in the tank (percentage). This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.|
+|`fuelLevel_State`|VehicleDataResult|False|The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.|
 |`instantFuelConsumption`|VehicleDataResult|False|The instantaneous fuel consumption in microlitres|
-|`fuelRange`|VehicleDataResult|False|The estimate range in KM the vehicle can travel based on fuel level and consumption|
+|`fuelRange`|VehicleDataResult|False|The fuel type, estimated range in KM, fuel level/capacity and fuel level state for the vehicle. See struct FuelRange for details.|
 |`externalTemperature`|VehicleDataResult|False|The external temperature in degrees celsius.|
 |`turnSignal`|VehicleDataResult|False|See TurnSignal|
 |`prndl`|VehicleDataResult|False|See PRNDL|
@@ -3838,10 +3852,10 @@ This function is used to unsubscribe the notifications from the subscribeVehicle
 |`gps`|Boolean|False|See GPSData|
 |`speed`|Boolean|False|The vehicle speed in kilometers per hour|
 |`rpm`|Boolean|False|The number of revolutions per minute of the engine|
-|`fuelLevel`|Boolean|False|The fuel level in the tank (percentage)|
-|`fuelLevel_State`|Boolean|False|The fuel level state|
+|`fuelLevel`|Boolean|False|The fuel level in the tank (percentage). This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.|
+|`fuelLevel_State`|Boolean|False|The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.|
 |`instantFuelConsumption`|Boolean|False|The instantaneous fuel consumption in microlitres|
-|`fuelRange`|Boolean|False|The estimate range in KM the vehicle can travel based on fuel level and consumption|
+|`fuelRange`|Boolean|False|The fuel type, estimated range in KM, fuel level/capacity and fuel level state for the vehicle. See struct FuelRange for details.|
 |`externalTemperature`|Boolean|False|The external temperature in degrees celsius.|
 |`turnSignal`|Boolean|False|See TurnSignal|
 |`prndl`|Boolean|False|See PRNDL|
@@ -3880,10 +3894,10 @@ Message Type: **response**
 |`gps`|VehicleDataResult|False|See GPSData|
 |`speed`|VehicleDataResult|False|The vehicle speed in kilometers per hour|
 |`rpm`|VehicleDataResult|False|The number of revolutions per minute of the engine|
-|`fuelLevel`|VehicleDataResult|False|The fuel level in the tank (percentage)|
-|`fuelLevel_State`|VehicleDataResult|False|The fuel level state|
+|`fuelLevel`|VehicleDataResult|False|The fuel level in the tank (percentage). This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.|
+|`fuelLevel_State`|VehicleDataResult|False|The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.|
 |`instantFuelConsumption`|VehicleDataResult|False|The instantaneous fuel consumption in microlitres|
-|`fuelRange`|VehicleDataResult|False|The estimate range in KM the vehicle can travel based on fuel level and consumption|
+|`fuelRange`|VehicleDataResult|False|The fuel type, estimated range in KM, fuel level/capacity and fuel level state for the vehicle. See struct FuelRange for details.|
 |`externalTemperature`|VehicleDataResult|False|The external temperature in degrees celsius|
 |`turnSignal`|VehicleDataResult|False|See TurnSignal|
 |`prndl`|VehicleDataResult|False|See PRNDL|
@@ -3921,10 +3935,10 @@ Non periodic vehicle data read request.
 |`gps`|Boolean|False|See GPSData|
 |`speed`|Boolean|False|The vehicle speed in kilometers per hour|
 |`rpm`|Boolean|False|The number of revolutions per minute of the engine|
-|`fuelLevel`|Boolean|False|The fuel level in the tank (percentage)|
-|`fuelLevel_State`|Boolean|False|The fuel level state|
+|`fuelLevel`|Boolean|False|The fuel level in the tank (percentage). This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.|
+|`fuelLevel_State`|Boolean|False|The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.|
 |`instantFuelConsumption`|Boolean|False|The instantaneous fuel consumption in microlitres|
-|`fuelRange`|Boolean|False|The estimate range in KM the vehicle can travel based on fuel level and consumption|
+|`fuelRange`|Boolean|False|The fuel type, estimated range in KM, fuel level/capacity and fuel level state for the vehicle. See struct FuelRange for details.|
 |`externalTemperature`|Boolean|False|The external temperature in degrees celsius|
 |`turnSignal`|Boolean|False|See TurnSignal|
 |`vin`|Boolean|False|Vehicle identification number|
@@ -3964,10 +3978,10 @@ Message Type: **response**
 |`gps`|GPSData|False|See GPSData|
 |`speed`|Float|False|The vehicle speed in kilometers per hour|
 |`rpm`|Integer|False|The number of revolutions per minute of the engine|
-|`fuelLevel`|Float|False|The fuel level in the tank (percentage)|
-|`fuelLevel_State`|ComponentVolumeStatus|False|The fuel level state|
+|`fuelLevel`|Float|False|The fuel level in the tank (percentage). This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.|
+|`fuelLevel_State`|ComponentVolumeStatus|False|The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.|
 |`instantFuelConsumption`|Float|False|The instantaneous fuel consumption in microlitres|
-|`fuelRange`|FuelRange[]|False|The estimate range in KM the vehicle can travel based on fuel level and consumption|
+|`fuelRange`|FuelRange[]|False|The fuel type, estimated range in KM, fuel level/capacity and fuel level state for the vehicle. See struct FuelRange for details.|
 |`externalTemperature`|Float|False|The external temperature in degrees celsius|
 |`turnSignal`|TurnSignal|False|See TurnSignal|
 |`vin`|String|False|Vehicle identification number|
@@ -5011,10 +5025,10 @@ Callback for the periodic and non periodic vehicle data read function.
 |`gps`|GPSData|False|See GPSData|
 |`speed`|Float|False|The vehicle speed in kilometers per hour|
 |`rpm`|Integer|False|The number of revolutions per minute of the engine|
-|`fuelLevel`|Float|False|The fuel level in the tank (percentage)|
-|`fuelLevel_State`|ComponentVolumeStatus|False|The fuel level state|
+|`fuelLevel`|Float|False|The fuel level in the tank (percentage). This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.|
+|`fuelLevel_State`|ComponentVolumeStatus|False|The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.|
 |`instantFuelConsumption`|Float|False|The instantaneous fuel consumption in microlitres|
-|`fuelRange`|FuelRange[]|False|The estimate range in KM the vehicle can travel based on fuel level and consumption|
+|`fuelRange`|FuelRange[]|False|The fuel type, estimated range in KM, fuel level/capacity and fuel level state for the vehicle. See struct FuelRange for details.|
 |`externalTemperature`|Float|False|The external temperature in degrees celsius|
 |`turnSignal`|TurnSignal|False|See TurnSignal|
 |`vin`|String|False|Vehicle identification number.|
