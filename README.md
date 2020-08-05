@@ -289,11 +289,7 @@ Indicates the source from where the command was triggered.
 
 
 ### HmiZoneCapabilities
-<<<<<<< HEAD
-Contains information about the HMI zone capabilities.For future use.
-=======
 Contains information about the HMI zone capabilities. For future use.
->>>>>>> origin/develop
 
 ##### Elements
 
@@ -1996,6 +1992,7 @@ The status and pressure of the tires.
 |`innerLeftRear`|SingleTireStatus|True|The status of the inner left rear.|
 |`innerRightRear`|SingleTireStatus|True|The status of the inner right rear.|
 
+
 ### StabilityControlsStatus
 ##### Parameters
 
@@ -2003,6 +2000,7 @@ The status and pressure of the tires.
 | ---------- | ---------- |:-----------: |:-----------:|
 |`escSystem`|VehicleDataStatus|False|true if vehicle stability control is ON, else false|
 |`trailerSwayControl`|VehicleDataStatus|False|true if vehicle trailer sway control is ON, else false|
+
 
 ### GPSData
 Struct with the GPS data.
@@ -2358,11 +2356,7 @@ Configuration of on-screen keyboard (if available).
 |`language`|Language|False|The keyboard language.|
 |`keyboardLayout`|KeyboardLayout|False|Desired keyboard layout.|
 |`keypressMode`|KeypressMode|False|Desired keypress mode. If omitted, this value will be set to RESEND_CURRENT_ENTRY.|
-<<<<<<< HEAD
-|`limitedCharacterList`|String[]|False|Array of keyboard characters to enable.All omitted characters will be greyed out (disabled) on the keyboard.If omitted, the entire keyboard will be enabled.|
-=======
 |`limitedCharacterList`|String[]|False|Array of keyboard characters to enable. All omitted characters will be greyed out (disabled) on the keyboard. If omitted, the entire keyboard will be enabled.|
->>>>>>> origin/develop
 |`autoCompleteText`|String|False|Deprecated, use autoCompleteList instead.|
 |`autoCompleteList`|String[]|False|Allows an app to prepopulate the text field with a list of suggested or completed entries as the user types. If empty, the auto-complete list will be removed from the screen.|
 
@@ -3522,11 +3516,7 @@ Message Type: **response**
 ### DeleteInteractionChoiceSet
 Message Type: **request**
 
-<<<<<<< HEAD
-Deletes interaction choice set that has been created with "CreateInteractionChoiceSet".The interaction may only be deleted when not currently in use by a "performInteraction".
-=======
 Deletes interaction choice set that has been created with "CreateInteractionChoiceSet". The interaction may only be deleted when not currently in use by a "performInteraction".
->>>>>>> origin/develop
 
 ##### Parameters
 
@@ -4256,11 +4246,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-<<<<<<< HEAD
-|`success`|Boolean|True|true, if successful false, if failed|
-=======
 |`success`|Boolean|True|true, if successful; false, if failed|
->>>>>>> origin/develop
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -4300,11 +4286,7 @@ Used to push a binary data onto the module from a mobile device, such as icons a
 ### PutFile
 Message Type: **response**
 
-<<<<<<< HEAD
-Response is sent, when the file data was copied (success case). Or when an error occurred.Not supported on first generation SDL enabled vehicles.
-=======
 Response is sent, when the file data was copied (success case). Or when an error occurred. Not supported on first generation SDL enabled vehicles.
->>>>>>> origin/develop
 
 ##### Parameters
 
@@ -4535,11 +4517,7 @@ Message Type: **response**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-<<<<<<< HEAD
-|`success`|Boolean|True|true, if successfulfalse, if failed|
-=======
 |`success`|Boolean|True|true, if successful; false, if failed|
->>>>>>> origin/develop
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 
@@ -5148,22 +5126,14 @@ Message Type: **notification**
 ### OnKeyboardInput
 Message Type: **notification**
 
-<<<<<<< HEAD
-On-screen keyboard event.Can be full string or individual keypresses depending on keyboard mode.
-=======
 On-screen keyboard event. Can be full string or individual keypresses depending on keyboard mode.
->>>>>>> origin/develop
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`event`|KeyboardEvent|True|On-screen keyboard input data.|
-<<<<<<< HEAD
-|`data`|String|False|On-screen keyboard input data.For dynamic keypress events, this will be the current compounded string of entry text.For entry submission events, this will be the full text entry (this will always return regardless of the mode).For entry cancelled and entry aborted events, this data param will be omitted.|
-=======
 |`data`|String|False|On-screen keyboard input data. For dynamic keypress events, this will be the current compounded string of entry text. For entry submission events, this will be the full text entry (this will always return regardless of the mode). For entry cancelled and entry aborted events, this data param will be omitted.|
->>>>>>> origin/develop
 
 
 ### OnTouchEvent
@@ -5330,8 +5300,5 @@ Callback including encoded data of any SyncP packets that SYNC needs to send bac
 |`data`|String[]|True|Contains base64 encoded string of SyncP packets.|
 |`URL`|String|False|If blank, the SyncP data shall be forwarded to the app. If not blank, the SyncP data shall be forwarded to the provided URL.|
 |`Timeout`|Integer|False|If blank, the SyncP data shall be forwarded to the app. If not blank, the SyncP data shall be forwarded with the provided timeout in seconds.|
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/develop
 
