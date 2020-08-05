@@ -411,6 +411,7 @@ Defines the data types that can be published and subscribed to.
 |`VEHICLEDATA_ELECTRONICPARKBRAKESTATUS`||
 |`VEHICLEDATA_CLOUDAPPVEHICLEID`||
 |`VEHICLEDATA_OEM_CUSTOM_DATA`||
+|`VEHICLEDATA_STABILITYCONTROLSSTATUS`||
 
 
 ### HybridAppPreference
@@ -1988,6 +1989,13 @@ The status and pressure of the tires.
 |`innerLeftRear`|SingleTireStatus|True|The status of the inner left rear.|
 |`innerRightRear`|SingleTireStatus|True|The status of the inner right rear.|
 
+### StabilityControlsStatus
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`escSystem`|VehicleDataStatus|False|true if vehicle stability control is ON, else false|
+|`trailerSwayControl`|VehicleDataStatus|False|true if vehicle trailer sway control is ON, else false|
 
 ### GPSData
 Struct with the GPS data.
@@ -3768,6 +3776,7 @@ Subscribes for specific published data items. The data will be only sent if it h
 |`engineOilLife`|Boolean|False|The estimated percentage of remaining oil life of the engine.|
 |`electronicParkBrakeStatus`|Boolean|False|The status of the park brake as provided by Electric Park Brake (EPB) system.|
 |`cloudAppVehicleID`|Boolean|False|Parameter used by cloud apps to identify a head unit|
+|`stabilityControlsStatus`|Boolean|False|See StabilityControlsStatus|
 |`eCallInfo`|Boolean|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|Boolean|False|The status of the air bags|
 |`emergencyEvent`|Boolean|False|Information related to an emergency event (and if it occurred)|
@@ -3809,6 +3818,7 @@ Message Type: **response**
 |`engineOilLife`|VehicleDataResult|False|The estimated percentage of remaining oil life of the engine.|
 |`electronicParkBrakeStatus`|VehicleDataResult|False|The status of the park brake as provided by Electric Park Brake (EPB) system.|
 |`cloudAppVehicleID`|VehicleDataResult|False|Parameter used by cloud apps to identify a head unit|
+|`stabilityControlsStatus`|VehicleDataResult|False|See StabilityControlsStatus|
 |`eCallInfo`|VehicleDataResult|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|VehicleDataResult|False|The status of the air bags|
 |`emergencyEvent`|VehicleDataResult|False|Information related to an emergency event (and if it occurred)|
@@ -3849,6 +3859,7 @@ This function is used to unsubscribe the notifications from the subscribeVehicle
 |`engineOilLife`|Boolean|False|The estimated percentage of remaining oil life of the engine.|
 |`electronicParkBrakeStatus`|Boolean|False|The status of the park brake as provided by Electric Park Brake (EPB) system.|
 |`cloudAppVehicleID`|Boolean|False|Parameter used by cloud apps to identify a head unit|
+|`stabilityControlsStatus`|Boolean|False|See StabilityControlsStatus|
 |`eCallInfo`|Boolean|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|Boolean|False|The status of the air bags|
 |`emergencyEvent`|Boolean|False|Information related to an emergency event (and if it occurred)|
@@ -3890,6 +3901,7 @@ Message Type: **response**
 |`engineOilLife`|VehicleDataResult|False|The estimated percentage of remaining oil life of the engine.|
 |`electronicParkBrakeStatus`|VehicleDataResult|False|The status of the park brake as provided by Electric Park Brake (EPB) system.|
 |`cloudAppVehicleID`|VehicleDataResult|False|Parameter used by cloud apps to identify a head unit|
+|`stabilityControlsStatus`|VehicleDataResult|False|See StabilityControlsStatus|
 |`eCallInfo`|VehicleDataResult|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|VehicleDataResult|False|The status of the air bags|
 |`emergencyEvent`|VehicleDataResult|False|Information related to an emergency event (and if it occurred)|
@@ -3931,6 +3943,7 @@ Non periodic vehicle data read request.
 |`engineOilLife`|Boolean|False|The estimated percentage of remaining oil life of the engine.|
 |`electronicParkBrakeStatus`|Boolean|False|The status of the park brake as provided by Electric Park Brake (EPB) system.|
 |`cloudAppVehicleID`|Boolean|False|Parameter used by cloud apps to identify a head unit|
+|`stabilityControlsStatus`|Boolean|False|See StabilityControlsStatus|
 |`eCallInfo`|Boolean|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|Boolean|False|The status of the air bags|
 |`emergencyEvent`|Boolean|False|Information related to an emergency event (and if it occurred)|
@@ -3973,6 +3986,7 @@ Message Type: **response**
 |`engineOilLife`|Float|False|The estimated percentage of remaining oil life of the engine.|
 |`electronicParkBrakeStatus`|ElectronicParkBrakeStatus|False|The status of the park brake as provided by Electric Park Brake (EPB) system.|
 |`cloudAppVehicleID`|String|False|Parameter used by cloud apps to identify a head unit|
+|`stabilityControlsStatus`|StabilityControlsStatus|False|See StabilityControlsStatus|
 |`eCallInfo`|ECallInfo|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|AirbagStatus|False|The status of the air bags|
 |`emergencyEvent`|EmergencyEvent|False|Information related to an emergency event (and if it occurred)|
@@ -5019,6 +5033,7 @@ Callback for the periodic and non periodic vehicle data read function.
 |`engineOilLife`|Float|False|The estimated percentage of remaining oil life of the engine.|
 |`electronicParkBrakeStatus`|ElectronicParkBrakeStatus|False|The status of the park brake as provided by Electric Park Brake (EPB) system.|
 |`cloudAppVehicleID`|String|False|Parameter used by cloud apps to identify a head unit|
+|`stabilityControlsStatus`|StabilityControlsStatus|False|See StabilityControlsStatus|
 |`eCallInfo`|ECallInfo|False|Emergency Call notification and confirmation data|
 |`airbagStatus`|AirbagStatus|False|The status of the air bags|
 |`emergencyEvent`|EmergencyEvent|False|Information related to an emergency event (and if it occurred)|
@@ -5245,5 +5260,4 @@ Callback including encoded data of any SyncP packets that SYNC needs to send bac
 |`data`|String[]|True|Contains base64 encoded string of SyncP packets.|
 |`URL`|String|False|If blank, the SyncP data shall be forwarded to the app. If not blank, the SyncP data shall be forwarded to the provided URL.|
 |`Timeout`|Integer|False|If blank, the SyncP data shall be forwarded to the app. If not blank, the SyncP data shall be forwarded with the provided timeout in seconds.|
-
 
