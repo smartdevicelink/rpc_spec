@@ -569,6 +569,7 @@
         <element name="VEHICLEDATA_ELECTRONICPARKBRAKESTATUS" since="5.0" />
         <element name="VEHICLEDATA_CLOUDAPPVEHICLEID" since="5.1"/>
         <element name="VEHICLEDATA_OEM_CUSTOM_DATA" since="6.0"/>
+        <element name="VEHICLEDATA_STABILITYCONTROLSSTATUS" since="7.0"/>
     </enum>
 
     <enum name="HybridAppPreference" since="5.1">
@@ -1945,6 +1946,15 @@
         </param>
         <param name="innerRightRear" type="SingleTireStatus" mandatory="true">
             <description>The status of the inner right rear.</description>
+        </param>
+    </struct>
+
+    <struct name="StabilityControlsStatus" since="7.0">
+        <param name="escSystem" type="VehicleDataStatus" mandatory="false">
+            <description>true if vehicle stability control is ON, else false</description>
+        </param>
+        <param name="trailerSwayControl" type="VehicleDataStatus" mandatory="false">
+            <description>true if vehicle trailer sway control is ON, else false</description>
         </param>
     </struct>
     
@@ -5912,6 +5922,9 @@
         <param name="cloudAppVehicleID" type="Boolean" mandatory="false" since="5.1">
             <description>Parameter used by cloud apps to identify a head unit</description>
         </param>
+        <param name="stabilityControlsStatus" type="Boolean" mandatory="false" since="7.0">
+	        <description>See StabilityControlsStatus</description>
+        </param>
         <param name="eCallInfo" type="Boolean" mandatory="false">
             <description>Emergency Call notification and confirmation data</description>
         </param>
@@ -6025,6 +6038,9 @@
         <param name="cloudAppVehicleID" type="VehicleDataResult" mandatory="false" since="5.1">
             <description>Parameter used by cloud apps to identify a head unit</description>
         </param>
+        <param name="stabilityControlsStatus" type="VehicleDataResult" mandatory="false" since="7.0">
+	        <description>See StabilityControlsStatus</description>
+        </param>
         <param name="eCallInfo" type="VehicleDataResult" mandatory="false">
             <description>Emergency Call notification and confirmation data</description>
         </param>
@@ -6116,6 +6132,9 @@
         </param>
         <param name="cloudAppVehicleID" type="Boolean" mandatory="false" since="5.1">
             <description>Parameter used by cloud apps to identify a head unit</description>
+        </param>
+        <param name="stabilityControlsStatus" type="Boolean" mandatory="false" since="7.0">
+	        <description>See StabilityControlsStatus</description>
         </param>
         <param name="eCallInfo" type="Boolean" mandatory="false">
             <description>Emergency Call notification and confirmation data</description>
@@ -6229,6 +6248,9 @@
         <param name="cloudAppVehicleID" type="VehicleDataResult" mandatory="false" since="5.1">
             <description>Parameter used by cloud apps to identify a head unit</description>
         </param>
+         <param name="stabilityControlsStatus" type="VehicleDataResult" mandatory="false" since="7.0">
+	        <description>See StabilityControlsStatus</description>
+        </param>
         <param name="eCallInfo" type="VehicleDataResult" mandatory="false">
             <description>Emergency Call notification and confirmation data</description>
         </param>
@@ -6323,6 +6345,9 @@
         </param>
         <param name="cloudAppVehicleID" type="Boolean" mandatory="false" since="5.1">
             <description>Parameter used by cloud apps to identify a head unit</description>
+        </param>
+        <param name="stabilityControlsStatus" type="Boolean" mandatory="false" since="7.0">
+	        <description>See StabilityControlsStatus</description>
         </param>
         <param name="eCallInfo" type="Boolean" mandatory="false">
             <description>Emergency Call notification and confirmation data</description>
@@ -6439,6 +6464,9 @@
         </param>
         <param name="cloudAppVehicleID" type="String" mandatory="false" since="5.1">
             <description>Parameter used by cloud apps to identify a head unit</description>
+        </param>
+        <param name="stabilityControlsStatus" type="StabilityControlsStatus" mandatory="false" since="7.0">
+	        <description>See StabilityControlsStatus</description>
         </param>
         <param name="eCallInfo" type="ECallInfo" mandatory="false">
             <description>Emergency Call notification and confirmation data</description>
@@ -6862,10 +6890,7 @@
     
     <function name="ChangeRegistration" functionID="ChangeRegistrationID" messagetype="response" since="2.0">
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
-            <description>
-                true, if successful
-                false, if failed
-            </description>
+            <description> true, if successful; false, if failed </description>
         </param>
         
         <param name="resultCode" type="Result" platform="documentation" mandatory="true">
@@ -7374,8 +7399,7 @@
     
     <function name="DialNumber" functionID="DialNumberID" messagetype="response" since="3.0">
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
-            <description>true, if successful</description>
-            <description>false, if failed</description>
+            <description> true, if successful; false, if failed </description>
         </param>
         
         <param name="resultCode" type="Result" platform="documentation" mandatory="true">
@@ -8137,6 +8161,9 @@
         </param>
         <param name="cloudAppVehicleID" type="String" mandatory="false" since="5.1">
             <description>Parameter used by cloud apps to identify a head unit</description>
+        </param>
+        <param name="stabilityControlsStatus" type="StabilityControlsStatus" mandatory="false" since="7.0">
+	        <description>See StabilityControlsStatus</description>
         </param>
         <param name="eCallInfo" type="ECallInfo" mandatory="false">
             <description>Emergency Call notification and confirmation data</description>

@@ -201,7 +201,7 @@ class Markdown:
                         if item.deprecated and item.since:
                             mark_down.write('\ndeprecated since ' + item.since)
                         if item.description:
-                            mark_down.write('\n{}\n'.format(re.sub(r'\s{2,}', ' ', ''.join(item.description)).strip()))
+                            mark_down.write('\n{}\n'.format(re.sub(r'\s{2,}', ' ', ' '.join(item.description)).strip()))
 
                         if getattr(item, container_name):
                             mark_down.write('\n##### {}\n\n| Value | '.format(elem_or_param))
@@ -215,7 +215,7 @@ class Markdown:
                                 mark_down.write('|`' + param.name + '`|')
                                 if isinstance(item, (Struct, Function)):
                                     mark_down.write('{}|{}|'.format(self.extract_type(param), str(param.is_mandatory)))
-                                mark_down.write(re.sub(r'\s{2,}', ' ', ''.join(param.description)).strip() + '|\n')
+                                mark_down.write(re.sub(r'\s{2,}', ' ', ' '.join(param.description)).strip() + '|\n')
                         mark_down.write('\n\n')
                     if i < len(interface) - 2:
                         mark_down.write('\n<div style="page-break-after: always;"></div>\n\n')
