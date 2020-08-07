@@ -413,6 +413,7 @@ Defines the data types that can be published and subscribed to.
 |`VEHICLEDATA_CLOUDAPPVEHICLEID`||
 |`VEHICLEDATA_OEM_CUSTOM_DATA`||
 |`VEHICLEDATA_STABILITYCONTROLSSTATUS`||
+|`VEHICLEDATA_WINDOWSTATUS`||
 
 
 ### HybridAppPreference
@@ -2224,6 +2225,26 @@ Describes a location (origin coordinates and span) of a vehicle component.
 |`levelspan`|Integer|False||
 
 
+### WindowState
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`approximatePosition`|Integer|True|The approximate percentage that the window is open - 0 being fully closed, 100 being fully open|
+|`deviation`|Integer|True|The percentage deviation of the approximatePosition. e.g. If the approximatePosition is 50 and the deviation is 10, then the window's location is somewhere between 40 and 60.|
+
+
+### WindowStatus
+Describes the status of a window of a door/liftgate etc.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`location`|Grid|True||
+|`state`|WindowState|True||
+
+
 ### ModuleInfo
 Information about a RC module
 
@@ -3827,6 +3848,7 @@ Subscribes for specific published data items. The data will be only sent if it h
 |`emergencyEvent`|Boolean|False|Information related to an emergency event (and if it occurred)|
 |`clusterModeStatus`|Boolean|False|The status modes of the cluster|
 |`myKey`|Boolean|False|Information related to the MyKey feature|
+|`windowStatus`|Boolean|False|See WindowStatus|
 
 
 ### SubscribeVehicleData
@@ -3870,6 +3892,7 @@ Message Type: **response**
 |`emergencyEvent`|VehicleDataResult|False|Information related to an emergency event (and if it occurred)|
 |`clusterModes`|VehicleDataResult|False|The status modes of the cluster|
 |`myKey`|VehicleDataResult|False|Information related to the MyKey feature|
+|`windowStatus`|VehicleDataResult|False|See WindowStatus|
 
 
 ### UnsubscribeVehicleData
@@ -3912,6 +3935,7 @@ This function is used to unsubscribe the notifications from the subscribeVehicle
 |`emergencyEvent`|Boolean|False|Information related to an emergency event (and if it occurred)|
 |`clusterModeStatus`|Boolean|False|The status modes of the cluster|
 |`myKey`|Boolean|False|Information related to the MyKey feature|
+|`windowStatus`|Boolean|False|See WindowStatus|
 
 
 ### UnsubscribeVehicleData
@@ -3955,6 +3979,7 @@ Message Type: **response**
 |`emergencyEvent`|VehicleDataResult|False|Information related to an emergency event (and if it occurred)|
 |`clusterModes`|VehicleDataResult|False|The status modes of the cluster|
 |`myKey`|VehicleDataResult|False|Information related to the MyKey feature|
+|`windowStatus`|VehicleDataResult|False|See WindowStatus|
 
 
 ### GetVehicleData
@@ -3998,6 +4023,7 @@ Non periodic vehicle data read request.
 |`emergencyEvent`|Boolean|False|Information related to an emergency event (and if it occurred)|
 |`clusterModeStatus`|Boolean|False|The status modes of the cluster|
 |`myKey`|Boolean|False|Information related to the MyKey feature|
+|`windowStatus`|Boolean|False|See WindowStatus|
 
 
 ### GetVehicleData
@@ -4042,6 +4068,7 @@ Message Type: **response**
 |`emergencyEvent`|EmergencyEvent|False|Information related to an emergency event (and if it occurred)|
 |`clusterModeStatus`|ClusterModeStatus|False|The status modes of the cluster|
 |`myKey`|MyKey|False|Information related to the MyKey feature|
+|`windowStatus`|WindowStatus[]|False|See WindowStatus|
 
 
 ### ReadDID
@@ -5090,6 +5117,7 @@ Callback for the periodic and non periodic vehicle data read function.
 |`emergencyEvent`|EmergencyEvent|False|Information related to an emergency event (and if it occurred)|
 |`clusterModeStatus`|ClusterModeStatus|False|The status modes of the cluster|
 |`myKey`|MyKey|False|Information related to the MyKey feature|
+|`windowStatus`|WindowStatus[]|False|See WindowStatus|
 
 
 ### OnCommand
