@@ -414,6 +414,7 @@ Defines the data types that can be published and subscribed to.
 |`VEHICLEDATA_OEM_CUSTOM_DATA`||
 |`VEHICLEDATA_STABILITYCONTROLSSTATUS`||
 |`VEHICLEDATA_WINDOWSTATUS`||
+|`VEHICLEDATA_HANDSOFFSTEERING`||
 
 
 ### HybridAppPreference
@@ -2024,6 +2025,7 @@ The status and pressure of the tires.
 |`innerLeftRear`|SingleTireStatus|True|The status of the inner left rear.|
 |`innerRightRear`|SingleTireStatus|True|The status of the inner right rear.|
 
+
 ### StabilityControlsStatus
 ##### Parameters
 
@@ -2031,6 +2033,7 @@ The status and pressure of the tires.
 | ---------- | ---------- |:-----------: |:-----------:|
 |`escSystem`|VehicleDataStatus|False|true if vehicle stability control is ON, else false|
 |`trailerSwayControl`|VehicleDataStatus|False|true if vehicle trailer sway control is ON, else false|
+
 
 ### GPSData
 Struct with the GPS data.
@@ -3849,6 +3852,7 @@ Subscribes for specific published data items. The data will be only sent if it h
 |`clusterModeStatus`|Boolean|False|The status modes of the cluster|
 |`myKey`|Boolean|False|Information related to the MyKey feature|
 |`windowStatus`|Boolean|False|See WindowStatus|
+|`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
 
 
 ### SubscribeVehicleData
@@ -3893,6 +3897,7 @@ Message Type: **response**
 |`clusterModes`|VehicleDataResult|False|The status modes of the cluster|
 |`myKey`|VehicleDataResult|False|Information related to the MyKey feature|
 |`windowStatus`|VehicleDataResult|False|See WindowStatus|
+|`handsOffSteering`|VehicleDataResult|False|To indicate whether driver hands are off the steering wheel|
 
 
 ### UnsubscribeVehicleData
@@ -3936,6 +3941,7 @@ This function is used to unsubscribe the notifications from the subscribeVehicle
 |`clusterModeStatus`|Boolean|False|The status modes of the cluster|
 |`myKey`|Boolean|False|Information related to the MyKey feature|
 |`windowStatus`|Boolean|False|See WindowStatus|
+|`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
 
 
 ### UnsubscribeVehicleData
@@ -3980,6 +3986,7 @@ Message Type: **response**
 |`clusterModes`|VehicleDataResult|False|The status modes of the cluster|
 |`myKey`|VehicleDataResult|False|Information related to the MyKey feature|
 |`windowStatus`|VehicleDataResult|False|See WindowStatus|
+|`handsOffSteering`|VehicleDataResult|False|To indicate whether driver hands are off the steering wheel|
 
 
 ### GetVehicleData
@@ -4024,6 +4031,7 @@ Non periodic vehicle data read request.
 |`clusterModeStatus`|Boolean|False|The status modes of the cluster|
 |`myKey`|Boolean|False|Information related to the MyKey feature|
 |`windowStatus`|Boolean|False|See WindowStatus|
+|`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
 
 
 ### GetVehicleData
@@ -4069,6 +4077,7 @@ Message Type: **response**
 |`clusterModeStatus`|ClusterModeStatus|False|The status modes of the cluster|
 |`myKey`|MyKey|False|Information related to the MyKey feature|
 |`windowStatus`|WindowStatus[]|False|See WindowStatus|
+|`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
 
 
 ### ReadDID
@@ -5118,6 +5127,7 @@ Callback for the periodic and non periodic vehicle data read function.
 |`clusterModeStatus`|ClusterModeStatus|False|The status modes of the cluster|
 |`myKey`|MyKey|False|Information related to the MyKey feature|
 |`windowStatus`|WindowStatus[]|False|See WindowStatus|
+|`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
 
 
 ### OnCommand
@@ -5339,4 +5349,5 @@ Callback including encoded data of any SyncP packets that SYNC needs to send bac
 |`data`|String[]|True|Contains base64 encoded string of SyncP packets.|
 |`URL`|String|False|If blank, the SyncP data shall be forwarded to the app. If not blank, the SyncP data shall be forwarded to the provided URL.|
 |`Timeout`|Integer|False|If blank, the SyncP data shall be forwarded to the app. If not blank, the SyncP data shall be forwarded with the provided timeout in seconds.|
+
 
