@@ -598,11 +598,13 @@ The list of potential character sets
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`TYPE2SET`|See [@TODO: create file ref]|
-|`TYPE5SET`|See [@TODO: create file ref]|
-|`CID1SET`|See [@TODO: create file ref]|
-|`CID2SET`|See [@TODO: create file ref]|
-
+|`TYPE2SET`||
+|`TYPE5SET`||
+|`CID1SET`||
+|`CID2SET`||
+|`ASCII`|ASCII as defined in https://en.wikipedia.org/wiki/ASCII as defined in codes 0-127.<br>Non-printable characters such as tabs and back spaces are ignored.|
+|`ISO_8859_1`|Latin-1, as defined in https://en.wikipedia.org/wiki/ISO/IEC_8859-1|
+|`UTF_8`|The UTF-8 character set that uses variable bytes per code point.<br>See https://en.wikipedia.org/wiki/UTF-8 for more details.<br>This is the preferred character set.|
 
 ### TextAlignment
 The list of possible alignments, left, right, or centered
@@ -2103,7 +2105,7 @@ Individual requested DID result and data
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`name`|TextFieldName|True|The name that identifies the field. See TextFieldName.|
-|`characterSet`|CharacterSet|True|The character set that is supported in this field. See CharacterSet.|
+|`characterSet`|CharacterSet|True|The set of characters that are supported by this text field.<br>All text is sent in UTF-8 format, but not all systems may support all of the characters expressed by UTF-8.<br>All systems will support at least ASCII, but they may support more, either the LATIN-1 character set, or the full UTF-8 character set.|
 |`width`|Integer|True|The number of characters in one row of this field.|
 |`rows`|Integer|True|The number of rows of this field.|
 
