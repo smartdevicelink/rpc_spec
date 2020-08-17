@@ -568,6 +568,9 @@ See DAES for further infos regarding the displays
 |`locationDescription`|Optional description of intended location / establishment (if applicable) for SendLocation.|
 |`addressLines`|Optional location address (if applicable) for SendLocation.|
 |`phoneNumber`|Optional phone number of intended location / establishment (if applicable) for SendLocation.|
+|`subtleAlertText1`|The first line of the subtle alert text field; applies to `SubtleAlert` `alertText1`|
+|`subtleAlertText2`|The second line of the subtle alert text field; applies to `SubtleAlert` `alertText2`|
+|`subtleAlertSoftButtonText`|A text field in the soft button of a subtle alert; applies to `SubtleAlert` `softButtons`|
 
 
 ### ImageFieldName
@@ -589,6 +592,7 @@ See DAES for further infos regarding the displays
 |`showConstantTBTNextTurnIcon`|The secondary image field for ShowConstantTBT|
 |`locationImage`|The optional image of a destination / location|
 |`alertIcon`|The image field for Alert|
+|`subtleAlertIcon`|The image of the subtle alert; applies to `SubtleAlert` `alertIcon`|
 
 
 ### CharacterSet
@@ -1463,6 +1467,7 @@ Enumeration linking function names with function IDs in SmartDeviceLink protocol
 |`DeleteWindowID`||
 |`GetInteriorVehicleDataConsentID`||
 |`ReleaseInteriorVehicleDataModuleID`||
+|`SubtleAlertID`||
 |`OnHMIStatusID`||
 |`OnAppInterfaceUnregisteredID`||
 |`OnButtonEventID`||
@@ -1483,6 +1488,7 @@ Enumeration linking function names with function IDs in SmartDeviceLink protocol
 |`OnRCStatusID`||
 |`OnAppServiceDataID`||
 |`OnSystemCapabilityUpdatedID`||
+|`OnSubtleAlertPressedID`||
 |`EncodedSyncPDataID`||
 |`SyncPDataID`||
 |`OnEncodedSyncPDataID`||
@@ -3626,6 +3632,43 @@ Message Type: **response**
 |`tryAgainTime`|Integer|False|Amount of time (in seconds) that an app must wait before resending an alert. If provided, another system event or overlay currently has a higher priority than this alert. An app must not send an alert without waiting at least the amount of time dictated.|
 
 
+### SubtleAlert
+Message Type: **request**
+
+Shows an alert which typically consists of text-to-speech message and text on the display. At least either alertText1, alertText2 or ttsChunks need to be provided.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`alertText1`|String|False|The first line of the alert text field|
+|`alertText2`|String|False|The second line of the alert text field|
+|`alertIcon`|Image|False|Image to be displayed for the corresponding alert. See Image. If omitted on supported displays, no (or the default if applicable) icon should be displayed.|
+|`ttsChunks`|TTSChunk[]|False|An array of text chunks of type TTSChunk. See TTSChunk. The array must have at least one item.|
+|`duration`|Integer|False|Timeout in milliseconds. Typical timeouts are 3-5 seconds. If omitted, timeout is set to 5s.|
+|`softButtons`|SoftButton[]|False|App defined SoftButtons. If omitted on supported displays, the displayed alert shall not have any SoftButtons.|
+|`cancelID`|Integer|False|An ID for this specific alert to allow cancellation through the `CancelInteraction` RPC.|
+
+
+### SubtleAlert
+Message Type: **response**
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`success`|Boolean|True|true if successful; false, if failed|
+|`resultCode`|Result|True|See Result|
+|`info`|String|False|Provides additional human readable info regarding the result.|
+|`tryAgainTime`|Integer|False|Amount of time (in milliseconds) that an app must wait before resending an alert. If provided, another system event or overlay currently has a higher priority than this alert. An app must not send an alert without waiting at least the amount of time dictated.|
+
+
+### OnSubtleAlertPressed
+Message Type: **notification**
+
+Sent when the alert itself is touched (outside of a soft button). Touching (or otherwise selecting) the alert should open the app before sending this notification.
+
+
 ### Show
 Message Type: **request**
 
@@ -5000,7 +5043,7 @@ Close an active interaction on the HMI.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`cancelID`|Integer|False|The ID of the specific interaction you want to dismiss. If not set, the most recent of the RPC type set in functionID will be dismissed.|
-|`functionID`|Integer|True|The ID of the type of interaction the developer wants to dismiss. Only values 10, (PerformInteractionID), 12 (AlertID), 25 (ScrollableMessageID), and 26 (SliderID) are permitted.|
+|`functionID`|Integer|True|The ID of the type of interaction the developer wants to dismiss. Only values 10, (PerformInteractionID), 12 (AlertID), 25 (ScrollableMessageID), 26 (SliderID), and 64 (SubtleAlertID) are permitted.|
 
 
 ### CancelInteraction
