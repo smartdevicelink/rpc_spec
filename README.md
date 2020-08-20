@@ -568,6 +568,9 @@ See DAES for further infos regarding the displays
 |`locationDescription`|Optional description of intended location / establishment (if applicable) for SendLocation.|
 |`addressLines`|Optional location address (if applicable) for SendLocation.|
 |`phoneNumber`|Optional phone number of intended location / establishment (if applicable) for SendLocation.|
+|`subtleAlertText1`|The first line of the subtle alert text field; applies to `SubtleAlert` `alertText1`|
+|`subtleAlertText2`|The second line of the subtle alert text field; applies to `SubtleAlert` `alertText2`|
+|`subtleAlertSoftButtonText`|A text field in the soft button of a subtle alert; applies to `SubtleAlert` `softButtons`|
 
 
 ### ImageFieldName
@@ -590,6 +593,7 @@ See DAES for further infos regarding the displays
 |`locationImage`|The optional image of a destination / location|
 |`alertIcon`|The image field for Alert|
 |`subMenuIcon`|The image field for AddSubMenu.menuIcon|
+|`subtleAlertIcon`|The image of the subtle alert; applies to `SubtleAlert` `alertIcon`|
 
 
 ### CharacterSet
@@ -599,10 +603,13 @@ The list of potential character sets
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`TYPE2SET`|See [@TODO: create file ref]|
-|`TYPE5SET`|See [@TODO: create file ref]|
-|`CID1SET`|See [@TODO: create file ref]|
-|`CID2SET`|See [@TODO: create file ref]|
+|`TYPE2SET`||
+|`TYPE5SET`||
+|`CID1SET`||
+|`CID2SET`||
+|`ASCII`|ASCII as defined in https://en.wikipedia.org/wiki/ASCII as defined in codes 0-127. Non-printable characters such as tabs and back spaces are ignored.|
+|`ISO_8859_1`|Latin-1, as defined in https://en.wikipedia.org/wiki/ISO/IEC_8859-1|
+|`UTF_8`|The UTF-8 character set that uses variable bytes per code point. See https://en.wikipedia.org/wiki/UTF-8 for more details. This is the preferred character set.|
 
 
 ### TextAlignment
@@ -1462,6 +1469,7 @@ Enumeration linking function names with function IDs in SmartDeviceLink protocol
 |`DeleteWindowID`||
 |`GetInteriorVehicleDataConsentID`||
 |`ReleaseInteriorVehicleDataModuleID`||
+|`SubtleAlertID`||
 |`OnHMIStatusID`||
 |`OnAppInterfaceUnregisteredID`||
 |`OnButtonEventID`||
@@ -1482,6 +1490,7 @@ Enumeration linking function names with function IDs in SmartDeviceLink protocol
 |`OnRCStatusID`||
 |`OnAppServiceDataID`||
 |`OnSystemCapabilityUpdatedID`||
+|`OnSubtleAlertPressedID`||
 |`OnUpdateFileID`||
 |`OnUpdateSubMenuID`||
 |`EncodedSyncPDataID`||
@@ -1527,6 +1536,7 @@ Enumerations of all available system capability types
 |`APP_SERVICES`||
 |`SEAT_LOCATION`||
 |`DISPLAYS`||
+|`DRIVER_DISTRACTION`||
 
 
 ### MassageZone
@@ -2106,7 +2116,7 @@ Individual requested DID result and data
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`name`|TextFieldName|True|The name that identifies the field. See TextFieldName.|
-|`characterSet`|CharacterSet|True|The character set that is supported in this field. See CharacterSet.|
+|`characterSet`|CharacterSet|True|The set of characters that are supported by this text field. All text is sent in UTF-8 format, but not all systems may support all of the characters expressed by UTF-8. All systems will support at least ASCII, but they may support more, either the LATIN-1 character set, or the full UTF-8 character set.|
 |`width`|Integer|True|The number of characters in one row of this field.|
 |`rows`|Integer|True|The number of rows of this field.|
 
@@ -2359,6 +2369,7 @@ Contains information about on-screen preset capabilities.
 |`appServices`|Boolean|False|Availability of App Services functionality. True: Available, False: Not Available|
 |`displays`|Boolean|False|Availability of displays capability. True: Available, False: Not Available|
 |`seatLocation`|Boolean|False|Availability of seat location feature. True: Available, False: Not Available|
+|`driverDistraction`|Boolean|False|Availability of driver distraction capability. True: Available, False: Not Available|
 
 
 ### MenuParams
@@ -2533,6 +2544,15 @@ Contains information about this system's video streaming capabilities.
 |`diagonalScreenSize`|Float|False|The diagonal screen size in inches.|
 |`pixelPerInch`|Float|False|PPI is the diagonal resolution in pixels divided by the diagonal screen size in inches.|
 |`scale`|Float|False|The scaling factor the app should use to change the size of the projecting view.|
+
+
+### DriverDistractionCapability
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`menuLength`|Integer|False|The number of items allowed in a Choice Set or Command menu while the driver is distracted|
+|`subMenuDepth`|Integer|False|The depth of submenus allowed when the driver is distracted. e.g. 3 == top level menu -> submenu -> submenu; 1 == top level menu only|
 
 
 ### RGBColor
@@ -3188,6 +3208,7 @@ The systemCapabilityType identifies which data object exists in this struct. For
 |`appServicesCapabilities`|AppServicesCapabilities|False|An array of currently available services. If this is an update to the capability the affected services will include an update reason in that item|
 |`seatLocationCapability`|SeatLocationCapability|False|Contains information about the locations of each seat|
 |`displayCapabilities`|DisplayCapability[]|False||
+|`driverDistractionCapability`|DriverDistractionCapability|False|Describes capabilities when the driver is distracted|
 
 
 ### GearStatus
@@ -3456,6 +3477,7 @@ Adds a sub menu to the in-application menu.
 |`menuName`|String|True|Text to show in the menu for this sub menu.|
 |`menuIcon`|Image|False|The image field for AddSubMenu|
 |`menuLayout`|MenuLayout|False|Sets the layout of the submenu screen.|
+|`parentID`|Integer|False|unique ID of the sub menu, the command will be added to. If not provided or 0, it will be provided to the top level of the in application menu.|
 
 
 ### AddSubMenu
@@ -3635,6 +3657,43 @@ Message Type: **response**
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 |`tryAgainTime`|Integer|False|Amount of time (in seconds) that an app must wait before resending an alert. If provided, another system event or overlay currently has a higher priority than this alert. An app must not send an alert without waiting at least the amount of time dictated.|
+
+
+### SubtleAlert
+Message Type: **request**
+
+Shows an alert which typically consists of text-to-speech message and text on the display. At least either alertText1, alertText2 or ttsChunks need to be provided.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`alertText1`|String|False|The first line of the alert text field|
+|`alertText2`|String|False|The second line of the alert text field|
+|`alertIcon`|Image|False|Image to be displayed for the corresponding alert. See Image. If omitted on supported displays, no (or the default if applicable) icon should be displayed.|
+|`ttsChunks`|TTSChunk[]|False|An array of text chunks of type TTSChunk. See TTSChunk. The array must have at least one item.|
+|`duration`|Integer|False|Timeout in milliseconds. Typical timeouts are 3-5 seconds. If omitted, timeout is set to 5s.|
+|`softButtons`|SoftButton[]|False|App defined SoftButtons. If omitted on supported displays, the displayed alert shall not have any SoftButtons.|
+|`cancelID`|Integer|False|An ID for this specific alert to allow cancellation through the `CancelInteraction` RPC.|
+
+
+### SubtleAlert
+Message Type: **response**
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`success`|Boolean|True|true if successful; false, if failed|
+|`resultCode`|Result|True|See Result|
+|`info`|String|False|Provides additional human readable info regarding the result.|
+|`tryAgainTime`|Integer|False|Amount of time (in milliseconds) that an app must wait before resending an alert. If provided, another system event or overlay currently has a higher priority than this alert. An app must not send an alert without waiting at least the amount of time dictated.|
+
+
+### OnSubtleAlertPressed
+Message Type: **notification**
+
+Sent when the alert itself is touched (outside of a soft button). Touching (or otherwise selecting) the alert should open the app before sending this notification.
 
 
 ### Show
@@ -5011,7 +5070,7 @@ Close an active interaction on the HMI.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`cancelID`|Integer|False|The ID of the specific interaction you want to dismiss. If not set, the most recent of the RPC type set in functionID will be dismissed.|
-|`functionID`|Integer|True|The ID of the type of interaction the developer wants to dismiss. Only values 10, (PerformInteractionID), 12 (AlertID), 25 (ScrollableMessageID), and 26 (SliderID) are permitted.|
+|`functionID`|Integer|True|The ID of the type of interaction the developer wants to dismiss. Only values 10, (PerformInteractionID), 12 (AlertID), 25 (ScrollableMessageID), 26 (SliderID), and 64 (SubtleAlertID) are permitted.|
 
 
 ### CancelInteraction
