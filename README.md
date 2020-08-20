@@ -592,6 +592,7 @@ See DAES for further infos regarding the displays
 |`showConstantTBTNextTurnIcon`|The secondary image field for ShowConstantTBT|
 |`locationImage`|The optional image of a destination / location|
 |`alertIcon`|The image field for Alert|
+|`subMenuIcon`|The image field for AddSubMenu.menuIcon|
 |`subtleAlertIcon`|The image of the subtle alert; applies to `SubtleAlert` `alertIcon`|
 
 
@@ -606,9 +607,10 @@ The list of potential character sets
 |`TYPE5SET`||
 |`CID1SET`||
 |`CID2SET`||
-|`ASCII`|ASCII as defined in https://en.wikipedia.org/wiki/ASCII as defined in codes 0-127.<br>Non-printable characters such as tabs and back spaces are ignored.|
+|`ASCII`|ASCII as defined in https://en.wikipedia.org/wiki/ASCII as defined in codes 0-127. Non-printable characters such as tabs and back spaces are ignored.|
 |`ISO_8859_1`|Latin-1, as defined in https://en.wikipedia.org/wiki/ISO/IEC_8859-1|
-|`UTF_8`|The UTF-8 character set that uses variable bytes per code point.<br>See https://en.wikipedia.org/wiki/UTF-8 for more details.<br>This is the preferred character set.|
+|`UTF_8`|The UTF-8 character set that uses variable bytes per code point. See https://en.wikipedia.org/wiki/UTF-8 for more details. This is the preferred character set.|
+
 
 ### TextAlignment
 The list of possible alignments, left, right, or centered
@@ -1489,6 +1491,8 @@ Enumeration linking function names with function IDs in SmartDeviceLink protocol
 |`OnAppServiceDataID`||
 |`OnSystemCapabilityUpdatedID`||
 |`OnSubtleAlertPressedID`||
+|`OnUpdateFileID`||
+|`OnUpdateSubMenuID`||
 |`EncodedSyncPDataID`||
 |`SyncPDataID`||
 |`OnEncodedSyncPDataID`||
@@ -1532,6 +1536,7 @@ Enumerations of all available system capability types
 |`APP_SERVICES`||
 |`SEAT_LOCATION`||
 |`DISPLAYS`||
+|`DRIVER_DISTRACTION`||
 
 
 ### MassageZone
@@ -2111,7 +2116,7 @@ Individual requested DID result and data
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`name`|TextFieldName|True|The name that identifies the field. See TextFieldName.|
-|`characterSet`|CharacterSet|True|The set of characters that are supported by this text field.<br>All text is sent in UTF-8 format, but not all systems may support all of the characters expressed by UTF-8.<br>All systems will support at least ASCII, but they may support more, either the LATIN-1 character set, or the full UTF-8 character set.|
+|`characterSet`|CharacterSet|True|The set of characters that are supported by this text field. All text is sent in UTF-8 format, but not all systems may support all of the characters expressed by UTF-8. All systems will support at least ASCII, but they may support more, either the LATIN-1 character set, or the full UTF-8 character set.|
 |`width`|Integer|True|The number of characters in one row of this field.|
 |`rows`|Integer|True|The number of rows of this field.|
 
@@ -2307,6 +2312,15 @@ Contains information about on-screen preset capabilities.
 |`onScreenPresetsAvailable`|Boolean|True|Onscreen custom presets are available.|
 
 
+### DynamicUpdateCapabilities
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`supportedDynamicImageFieldNames`|ImageFieldName[]|False|An array of ImageFieldName values for which the system supports sending OnFileUpdate notifications. If you send an Image struct for that image field with a name without having uploaded the image data using PutFile that matches that name, the system will request that you upload the data with PutFile at a later point when the HMI needs it. The HMI will then display the image in the appropriate field. If not sent, assume false.|
+|`supportsDynamicSubMenus`|Boolean|False|If true, the head unit supports dynamic sub-menus by sending OnUpdateSubMenu notifications. If true, you should not send AddCommands that attach to a parentID for an AddSubMenu until OnUpdateSubMenu is received with the menuID. At that point, you should send all AddCommands with a parentID that match the menuID. If not set, assume false.|
+
+
 ### WindowCapability
 ##### Parameters
 
@@ -2321,6 +2335,7 @@ Contains information about on-screen preset capabilities.
 |`buttonCapabilities`|ButtonCapabilities[]|False|The number of buttons and the capabilities of each on-window button.|
 |`softButtonCapabilities`|SoftButtonCapabilities[]|False|The number of soft buttons available on-window and the capabilities for each button.|
 |`menuLayoutsAvailable`|MenuLayout[]|False|An array of available menu layouts. If this parameter is not provided, only the `LIST` layout is assumed to be available|
+|`dynamicUpdateCapabilities`|DynamicUpdateCapabilities|False|Contains the head unit's capabilities for dynamic updating features declaring if the module will send dynamic update RPCs.|
 
 
 ### WindowTypeCapabilities
@@ -2354,6 +2369,7 @@ Contains information about on-screen preset capabilities.
 |`appServices`|Boolean|False|Availability of App Services functionality. True: Available, False: Not Available|
 |`displays`|Boolean|False|Availability of displays capability. True: Available, False: Not Available|
 |`seatLocation`|Boolean|False|Availability of seat location feature. True: Available, False: Not Available|
+|`driverDistraction`|Boolean|False|Availability of driver distraction capability. True: Available, False: Not Available|
 
 
 ### MenuParams
@@ -2528,6 +2544,15 @@ Contains information about this system's video streaming capabilities.
 |`diagonalScreenSize`|Float|False|The diagonal screen size in inches.|
 |`pixelPerInch`|Float|False|PPI is the diagonal resolution in pixels divided by the diagonal screen size in inches.|
 |`scale`|Float|False|The scaling factor the app should use to change the size of the projecting view.|
+
+
+### DriverDistractionCapability
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`menuLength`|Integer|False|The number of items allowed in a Choice Set or Command menu while the driver is distracted|
+|`subMenuDepth`|Integer|False|The depth of submenus allowed when the driver is distracted. e.g. 3 == top level menu -> submenu -> submenu; 1 == top level menu only|
 
 
 ### RGBColor
@@ -3183,6 +3208,7 @@ The systemCapabilityType identifies which data object exists in this struct. For
 |`appServicesCapabilities`|AppServicesCapabilities|False|An array of currently available services. If this is an update to the capability the affected services will include an update reason in that item|
 |`seatLocationCapability`|SeatLocationCapability|False|Contains information about the locations of each seat|
 |`displayCapabilities`|DisplayCapability[]|False||
+|`driverDistractionCapability`|DriverDistractionCapability|False|Describes capabilities when the driver is distracted|
 
 
 ### GearStatus
@@ -3451,6 +3477,7 @@ Adds a sub menu to the in-application menu.
 |`menuName`|String|True|Text to show in the menu for this sub menu.|
 |`menuIcon`|Image|False|The image field for AddSubMenu|
 |`menuLayout`|MenuLayout|False|Sets the layout of the submenu screen.|
+|`parentID`|Integer|False|unique ID of the sub menu, the command will be added to. If not provided or 0, it will be provided to the top level of the in application menu.|
 
 
 ### AddSubMenu
@@ -5356,6 +5383,31 @@ A notification to inform the connected device that a specific system capability 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`systemCapability`|SystemCapability|True|The system capability that has been updated|
+
+
+### OnUpdateFile
+Message Type: **notification**
+
+This notification tells an app to upload and update a file with a given name.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`fileName`|String|True|File reference name.|
+
+
+### OnUpdateSubMenu
+Message Type: **notification**
+
+This notification tells an app to update the AddSubMenu or its 'sub' AddCommand and AddSubMenus with the requested data
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`menuID`|Integer|True|This menuID must match a menuID in the current menu structure|
+|`updateSubCells`|Boolean|False|If not set, assume false. If true, the app should send AddCommands with parentIDs matching the menuID. These AddCommands will then be attached to the submenu and displayed if the submenu is selected.|
 
 
 ### EncodedSyncPData
