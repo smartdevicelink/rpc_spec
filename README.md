@@ -274,7 +274,7 @@ Error code, which comes from the module side.
 |`APP_UNAUTHORIZED`||
 |`PROTOCOL_VIOLATION`||
 |`UNSUPPORTED_HMI_RESOURCE`||
-
+|`RESOURCE_CONSTRAINT`||
 
 ### TriggerSource
 Indicates the source from where the command was triggered.
@@ -1368,6 +1368,7 @@ Enumeration listing possible app types.
 |`SYSTEM`||
 |`PROJECTION`||
 |`REMOTE_CONTROL`||
+|`WEB_VIEW`||
 
 
 ### PredefinedLayout
@@ -1397,6 +1398,7 @@ Predefined screen layout.
 |`LARGE_GRAPHIC_WITH_SOFTBUTTONS`|Custom root template screen containing a large graphic and SoftButtons. Can be set as a root screen.|
 |`DOUBLE_GRAPHIC_WITH_SOFTBUTTONS`|Custom root template screen containing two graphics and SoftButtons. Can be set as a root screen.|
 |`LARGE_GRAPHIC_ONLY`|Custom root template screen containing only a large graphic. Can be set as a root screen.|
+|`WEB_VIEW`|Custom root template allowing in-vehicle WebEngine applications with appropriate permissions to show the application's own web view.|
 
 
 ### FunctionID
