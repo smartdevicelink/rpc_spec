@@ -1536,7 +1536,7 @@ List possible cushions of a multi-contour massage seat.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`SAVE`|Save current seat postions and settings to seat memory.|
+|`SAVE`|Save current seat positions and settings to seat memory.|
 |`RESTORE`|Restore / apply the seat memory settings to the current seat. |
 |`NONE`|No action to be performed.|
 
@@ -2240,7 +2240,7 @@ Contains information about on-screen preset capabilities.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`windowID`|Integer|False|The specified ID of the window. This ID is either one used when sending the CreateWindow request,                 or one of the predefined window ID values from the enum PredefinedWindows. If ommited, value is                 assumed to be the main window on the main display.            |
+|`windowID`|Integer|False|The specified ID of the window. This ID is either one used when sending the CreateWindow request,                 or one of the predefined window ID values from the enum PredefinedWindows. If omitted, value is                 assumed to be the main window on the main display.            |
 |`textFields`|TextField[]|False|A set of all fields that support text data. See TextField|
 |`imageFields`|ImageField[]|False|A set of all fields that support images. See ImageField|
 |`imageTypeSupported`|ImageType[]|False|Provides information about image types supported by the system.|
@@ -2290,7 +2290,7 @@ Contains information about on-screen preset capabilities.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`parentID`|Integer|False|unique ID of the sub menu, the command will be added to.                If not provided, it will be provided to the top level of the in application menu.            |
-|`position`|Integer|False|Position within the items that are are at top level of the in application menu.                0 will insert at the front.                1 will insert at the second position.                if position is greater or equal than the number of items on top level, the sub menu will be appended to the end.                If this param was omitted the entry will be added at the end.            |
+|`position`|Integer|False|Position within the items that are at top level of the in application menu.                0 will insert at the front.                1 will insert at the second position.                if position is greater or equal than the number of items on top level, the sub menu will be appended to the end.                If this param was omitted the entry will be added at the end.            |
 |`menuName`|String|True|Text to show in the menu for this sub menu.|
 
 
@@ -2337,7 +2337,7 @@ Configuration of on-screen keyboard (if available).
 |`keypressMode`|KeypressMode|False|Desired keypress mode.                If omitted, this value will be set to RESEND_CURRENT_ENTRY.            |
 |`limitedCharacterList`|String[]|False|Array of keyboard characters to enable.|
 |`autoCompleteText`|String|False|Deprecated, use autoCompleteList instead.|
-|`autoCompleteList`|String[]|False|Allows an app to prepopulate the text field with a list of suggested or completed entries as the user types.                 If empty, the auto-complete list will be removed from the screen.            |
+|`autoCompleteList`|String[]|False|Allows an app to pre-populate the text field with a list of suggested or completed entries as the user types.                 If empty, the auto-complete list will be removed from the screen.            |
 
 
 ### DeviceInfo
@@ -2703,7 +2703,7 @@ Contains information about a radio control module's capabilities.
 |`signalChangeThresholdAvailable`|Boolean|False|Availability of the getting the signal Change Threshold.                True: Available, False: Not Available, Not present: Not Available.            |
 |`sisDataAvailable`|Boolean|False|Availability of the getting HD radio Station Information Service (SIS) data.                True: Available, False: Not Available, Not present: Not Available.            |
 |`hdRadioEnableAvailable`|Boolean|False|Availability of the control of enable/disable HD radio.                True: Available, False: Not Available, Not present: Not Available.            |
-|`siriusxmRadioAvailable`|Boolean|False|Availability of sirius XM radio.                True: Available, False: Not Available, Not present: Not Available.            |
+|`siriusxmRadioAvailable`|Boolean|False|Availability of Sirius XM radio.                True: Available, False: Not Available, Not present: Not Available.            |
 
 
 ### ClimateControlCapabilities
