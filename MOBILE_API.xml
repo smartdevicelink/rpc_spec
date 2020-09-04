@@ -7867,6 +7867,7 @@
             <element name="DISALLOWED"/>
             <element name="USER_DISALLOWED"/>
             <element name="UNSUPPORTED_RESOURCE"/>
+            <element name="WARNINGS"/>		
         </param>
         <param name="info" type="String" maxlength="1000" mandatory="false">
         </param>
