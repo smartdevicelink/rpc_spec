@@ -733,8 +733,6 @@ class RPCBase(ABC):
                              "Need format of major_version.minor_version or major_version.minor_version.patch_version")
 
         version_array = version.split(".")
-        if len(version_array) == 2:
-            version_array.append("0")
         dot_str = "."
         return dot_str.join(version_array)
 
