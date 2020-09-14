@@ -2384,7 +2384,7 @@
         <param name="windowID" type="Integer" mandatory="false">
             <description>
                 The specified ID of the window. This ID is either one used when sending the CreateWindow request, 
-                or one of the predefined window ID values from the enum PredefinedWindows. If ommited, value is 
+                or one of the predefined window ID values from the enum PredefinedWindows. If omitted, value is 
                 assumed to be the main window on the main display.
             </description>
         </param>
@@ -2433,7 +2433,7 @@
               GetSystemCapability still allows requesting window capabilities of all windows.
               After registration, only windows with capabilities changed will be included. Following cases will cause only affected windows to be included:
               1. App creates a new window. After the window is created, a system capability notification will be sent related only to the created window.
-              2. App sets a new layout to the window. The new layout changes window capabilties. The notification will reflect those changes to the single window.
+              2. App sets a new layout to the window. The new layout changes window capabilities. The notification will reflect those changes to the single window.
             </description>
         </param>
     </struct>
@@ -2471,7 +2471,7 @@
         </param>         
         <param name="position" type="Integer" minvalue="0" maxvalue="1000" mandatory="false">
             <description>
-                Position within the items that are are at top level of the in application menu.
+                Position within the items that are at top level of the in application menu.
                 0 will insert at the front.
                 1 will insert at the second position.
                 if position is greater or equal than the number of items on top level, the sub menu will be appended to the end.
@@ -5617,7 +5617,7 @@
             <description>
                 See StartTime.
                 endTime can be provided for "COUNTUP" and "COUNTDOWN"; to be used to calculate any visual progress bar (if not provided, this feature is ignored)
-                If endTime is greater then startTime for COUNTDOWN or less than startTime for COUNTUP, then the request will return an INVALID_DATA.
+                If endTime is greater than startTime for COUNTDOWN or less than startTime for COUNTUP, then the request will return an INVALID_DATA.
                 endTime will be ignored for "RESUME", and "CLEAR"
                 endTime can be sent for "PAUSE", in which case it will update the paused endTime
             </description>
