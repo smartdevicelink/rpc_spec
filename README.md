@@ -12,7 +12,7 @@
 | ---------- |:-----------:|
 |`SUCCESS`|The request succeeded|
 |`UNSUPPORTED_REQUEST`|The request is not supported by the headunit|
-|`UNSUPPORTED_RESOURCE`|A button that was requested for subscription is not supported under the current system.|
+|`UNSUPPORTED_RESOURCE`|One or more of the items (phoneme type, button name, image type, etc.) in the request is not supported by the HMI.|
 |`DISALLOWED`|RPC is not authorized in local policy table.|
 |`REJECTED`|The requested command was rejected, e.g. because mobile app is in background and cannot perform any HMI commands. Or an HMI command (e.g. Speak) is rejected because a higher priority HMI command (e.g. Alert) is playing.|
 |`ABORTED`|A command was aborted, for example due to user interaction (e.g. user pressed button). Or an HMI command (e.g. Speak) is aborted because a higher priority HMI command (e.g. Alert) was requested.|
@@ -274,7 +274,8 @@ Error code, which comes from the module side.
 |`APP_UNAUTHORIZED`||
 |`PROTOCOL_VIOLATION`||
 |`UNSUPPORTED_HMI_RESOURCE`||
-|`RESOURCE_CONSTRAINT`||
+|`RESOURCE_CONSTRAINT`|By sending this value, SDL unregisters the application to allow the HMI to close the application.|
+
 
 ### TriggerSource
 Indicates the source from where the command was triggered.
@@ -1583,7 +1584,7 @@ List possible cushions of a multi-contour massage seat.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`SAVE`|Save current seat postions and settings to seat memory.|
+|`SAVE`|Save current seat positions and settings to seat memory.|
 |`RESTORE`|Restore / apply the seat memory settings to the current seat.|
 |`NONE`|No action to be performed.|
 
@@ -2328,7 +2329,7 @@ Contains information about on-screen preset capabilities.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`windowID`|Integer|False|The specified ID of the window. This ID is either one used when sending the CreateWindow request, or one of the predefined window ID values from the enum PredefinedWindows. If ommited, value is assumed to be the main window on the main display.|
+|`windowID`|Integer|False|The specified ID of the window. This ID is either one used when sending the CreateWindow request, or one of the predefined window ID values from the enum PredefinedWindows. If omitted, value is assumed to be the main window on the main display.|
 |`textFields`|TextField[]|False|A set of all fields that support text data. See TextField|
 |`imageFields`|ImageField[]|False|A set of all fields that support images. See ImageField|
 |`imageTypeSupported`|ImageType[]|False|Provides information about image types supported by the system.|
@@ -2356,7 +2357,7 @@ Contains information about on-screen preset capabilities.
 | ---------- | ---------- |:-----------: |:-----------:|
 |`displayName`|String|False||
 |`windowTypeSupported`|WindowTypeCapabilities[]|False|Informs the application how many windows the app is allowed to create per type.|
-|`windowCapabilities`|WindowCapability[]|False|Contains a list of capabilities of all windows related to the app. Once the app has registered the capabilities of all windows are provided. GetSystemCapability still allows requesting window capabilities of all windows. After registration, only windows with capabilities changed will be included. Following cases will cause only affected windows to be included: 1. App creates a new window. After the window is created, a system capability notification will be sent related only to the created window. 2. App sets a new layout to the window. The new layout changes window capabilties. The notification will reflect those changes to the single window.|
+|`windowCapabilities`|WindowCapability[]|False|Contains a list of capabilities of all windows related to the app. Once the app has registered the capabilities of all windows are provided. GetSystemCapability still allows requesting window capabilities of all windows. After registration, only windows with capabilities changed will be included. Following cases will cause only affected windows to be included: 1. App creates a new window. After the window is created, a system capability notification will be sent related only to the created window. 2. App sets a new layout to the window. The new layout changes window capabilities. The notification will reflect those changes to the single window.|
 
 
 ### HMICapabilities
@@ -2380,7 +2381,7 @@ Contains information about on-screen preset capabilities.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`parentID`|Integer|False|unique ID of the sub menu, the command will be added to. If not provided, it will be provided to the top level of the in application menu.|
-|`position`|Integer|False|Position within the items that are are at top level of the in application menu. 0 will insert at the front. 1 will insert at the second position. if position is greater or equal than the number of items on top level, the sub menu will be appended to the end. If this param was omitted the entry will be added at the end.|
+|`position`|Integer|False|Position within the items that are at top level of the in application menu. 0 will insert at the front. 1 will insert at the second position. if position is greater or equal than the number of items on top level, the sub menu will be appended to the end. If this param was omitted the entry will be added at the end.|
 |`menuName`|String|True|Text to show in the menu for this sub menu.|
 
 
@@ -2427,7 +2428,7 @@ Configuration of on-screen keyboard (if available).
 |`keypressMode`|KeypressMode|False|Desired keypress mode. If omitted, this value will be set to RESEND_CURRENT_ENTRY.|
 |`limitedCharacterList`|String[]|False|Array of keyboard characters to enable. All omitted characters will be greyed out (disabled) on the keyboard. If omitted, the entire keyboard will be enabled.|
 |`autoCompleteText`|String|False|Deprecated, use autoCompleteList instead.|
-|`autoCompleteList`|String[]|False|Allows an app to prepopulate the text field with a list of suggested or completed entries as the user types. If empty, the auto-complete list will be removed from the screen.|
+|`autoCompleteList`|String[]|False|Allows an app to pre-populate the text field with a list of suggested or completed entries as the user types. If empty, the auto-complete list will be removed from the screen.|
 
 
 ### DeviceInfo
@@ -2801,7 +2802,7 @@ Contains information about a radio control module's capabilities.
 |`signalChangeThresholdAvailable`|Boolean|False|Availability of the getting the signal Change Threshold. True: Available, False: Not Available, Not present: Not Available.|
 |`sisDataAvailable`|Boolean|False|Availability of the getting HD radio Station Information Service (SIS) data. True: Available, False: Not Available, Not present: Not Available.|
 |`hdRadioEnableAvailable`|Boolean|False|Availability of the control of enable/disable HD radio. True: Available, False: Not Available, Not present: Not Available.|
-|`siriusxmRadioAvailable`|Boolean|False|Availability of sirius XM radio. True: Available, False: Not Available, Not present: Not Available.|
+|`siriusxmRadioAvailable`|Boolean|False|Availability of Sirius XM radio. True: Available, False: Not Available, Not present: Not Available.|
 
 
 ### ClimateControlCapabilities
@@ -3475,7 +3476,7 @@ Adds a sub menu to the in-application menu.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`menuID`|Integer|True|unique ID of the sub menu to add.|
-|`position`|Integer|False|Position within the items that are are at top level of the in application menu. 0 will insert at the front. 1 will insert at the second position. If position is greater or equal than the number of items on top level, the sub menu will be appended to the end. Position of any submenu will always be located before the return and exit options If this param was omitted the entry will be added at the end.|
+|`position`|Integer|False|Position within the items that are at top level of the in application menu. 0 will insert at the front. 1 will insert at the second position. If position is greater or equal than the number of items on top level, the sub menu will be appended to the end. Position of any submenu will always be located before the return and exit options If this param was omitted the entry will be added at the end.|
 |`menuName`|String|True|Text to show in the menu for this sub menu.|
 |`menuIcon`|Image|False|The image field for AddSubMenu|
 |`menuLayout`|MenuLayout|False|Sets the layout of the submenu screen.|
@@ -3771,7 +3772,7 @@ Sets the initial media clock value and automatic update method.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`startTime`|StartTime|False|See StartTime. startTime must be provided for "COUNTUP" and "COUNTDOWN". startTime will be ignored for "RESUME", and "CLEAR" startTime can be sent for "PAUSE", in which case it will update the paused startTime|
-|`endTime`|StartTime|False|See StartTime. endTime can be provided for "COUNTUP" and "COUNTDOWN"; to be used to calculate any visual progress bar (if not provided, this feature is ignored) If endTime is greater then startTime for COUNTDOWN or less than startTime for COUNTUP, then the request will return an INVALID_DATA. endTime will be ignored for "RESUME", and "CLEAR" endTime can be sent for "PAUSE", in which case it will update the paused endTime|
+|`endTime`|StartTime|False|See StartTime. endTime can be provided for "COUNTUP" and "COUNTDOWN"; to be used to calculate any visual progress bar (if not provided, this feature is ignored) If endTime is greater than startTime for COUNTDOWN or less than startTime for COUNTUP, then the request will return an INVALID_DATA. endTime will be ignored for "RESUME", and "CLEAR" endTime can be sent for "PAUSE", in which case it will update the paused endTime|
 |`updateMode`|UpdateMode|True|Enumeration to control the media clock. In case of pause, resume, or clear, the start time value is ignored and shall be left out. For resume, the time continues with the same value as it was when paused.|
 |`audioStreamingIndicator`|AudioStreamingIndicator|False|Enumeration for the indicator icon on a play/pause button. see AudioStreamingIndicator.|
 
