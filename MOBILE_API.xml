@@ -11,7 +11,7 @@
         </element>
         <element name="UNSUPPORTED_RESOURCE">
             <description>
-                A button that was requested for subscription is not supported under the current system.
+                One or more of the items (phoneme type, button name, image type, etc.) in the request is not supported by the HMI.
             </description>
         </element>
         <element name="DISALLOWED">
