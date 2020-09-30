@@ -5540,7 +5540,7 @@
         <param name="playTone" type="Boolean" mandatory="false">
             <description>
                 Defines if tone should be played. Tone is played before TTS.
-                If omitted, no tone is played.
+                If omitted or provided without ttsChunks, no tone is played.
             </description>
         </param>
         
