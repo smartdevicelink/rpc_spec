@@ -3642,7 +3642,7 @@ Shows an alert which typically consists of text-to-speech message and text on th
 |`alertText3`|String|False|The optional third line of the alert text field|
 |`ttsChunks`|TTSChunk[]|False|An array of text chunks of type TTSChunk. See TTSChunk. The array must have at least one item.|
 |`duration`|Integer|False|Timeout in milliseconds. Typical timeouts are 3-5 seconds. If omitted, timeout is set to 5s.|
-|`playTone`|Boolean|False|Defines if tone should be played. Tone is played before TTS. If omitted, no tone is played.|
+|`playTone`|Boolean|False|Defines if tone should be played. Tone is played before TTS. If omitted or provided without ttsChunks, no tone is played.|
 |`progressIndicator`|Boolean|False|If supported on the given platform, the alert GUI will include some sort of animation indicating that loading of a feature is progressing. e.g. a spinning wheel or hourglass, etc.|
 |`softButtons`|SoftButton[]|False|App defined SoftButtons. If omitted on supported displays, the displayed alert shall not have any SoftButtons.|
 |`alertIcon`|Image|False|Image struct determining whether static or dynamic icon. If omitted on supported displays, no (or the default if applicable) icon should be displayed.|
