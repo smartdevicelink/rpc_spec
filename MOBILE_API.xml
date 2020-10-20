@@ -365,7 +365,7 @@
 
     <enum name="PredefinedWindows" since="6.0">
         <description>
-            Specifies IDs for windows are predefined and automatically created.
+            Specifies IDs for windows which are predefined and pre-created.
             The mobile libraries and SDL Core use the integer value when referencing these elements.
         </description>
         <element name="DEFAULT_WINDOW" value="0">
