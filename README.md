@@ -418,7 +418,7 @@ Defines the hard (physical) and soft (touchscreen) buttons available from the mo
 |`SEEKRIGHT`||
 |`TUNEUP`||
 |`TUNEDOWN`||
-|`PRESET_0`||
+|`PRESET_0`| This is Preset 0: the first in the list. Not Preset 10|
 |`PRESET_1`||
 |`PRESET_2`||
 |`PRESET_3`||
@@ -3323,7 +3323,7 @@ Updates the persistent display. Supported fields depend on display capabilities.
 |`graphic`|Image|False|Image struct determining whether static or dynamic image to display in app.                If omitted on supported displays, the displayed graphic shall not change.            |
 |`secondaryGraphic`|Image|False|Image struct determining whether static or dynamic secondary image to display in app.                If omitted on supported displays, the displayed secondary graphic shall not change.            |
 |`softButtons`|SoftButton[]|False|App defined SoftButtons.                If omitted on supported displays, the currently displayed SoftButton values will not change.            |
-|`customPresets`|String[]|False|App labeled on-screen presets (i.e. on-screen media presets or dynamic search suggestions).                If omitted on supported displays, the presets will be shown as not defined.            |
+|`customPresets`|String[]|False|App labeled on-screen presets. (i.e. on-screen media presets or dynamic search suggestions). If all 10 presets are available the order will be 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.               If omitted on supported displays, the presets will be shown as Preset {number}.            |
 |`metadataTags`|MetadataTags|False|App defined metadata information. See MetadataStruct. Uses mainField1, mainField2, mainField3, mainField4.                If omitted on supported displays, the currently set metadata tags will not change.                If any text field contains no tags or the none tag, the metadata tag for that textfield should be removed.|
 
 
