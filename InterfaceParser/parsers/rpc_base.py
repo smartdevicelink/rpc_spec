@@ -1,4 +1,3 @@
-
 """RPC XML base parser.
 
 Contains base parser for SDLRPC v1/v2 and JSON RPC XML format.
