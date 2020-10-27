@@ -1,3 +1,4 @@
+
 """RPC XML base parser.
 
 Contains base parser for SDLRPC v1/v2 and JSON RPC XML format.
@@ -443,7 +444,16 @@ class RPCBase(ABC):
         params, subelements, attrib = self._parse_param_base_item(element, prefix)
 
         default_value = None
-        default_value_string = self._extract_attrib(attrib, "defvalue")
+        default_value_string = None
+
+        default_value_param_key = "default_value"
+        if default_value_param_key in params:
+            default_value_param = params[default_value_param_key]
+            if isinstance(default_value_param, EnumElement):
+                default_value_string = default_value_param.name
+            else:
+                default_value_string = str(default_value_param)
+
         if default_value_string is not None:
             param_type = params["param_type"]
             if isinstance(param_type, Boolean):
@@ -690,10 +700,9 @@ class RPCBase(ABC):
         :param bool_string: string with attribute value
         :return: converted value.
         """
-
-        if bool_string in ['0', 'false']:
+        if bool_string.lower() in ['0', 'false']:
             value = False
-        elif bool_string in ['1', 'true']:
+        elif bool_string.lower() in ['1', 'true']:
             value = True
         else:
             raise ParseError("Invalid value for bool: '{}'".format(bool_string))
