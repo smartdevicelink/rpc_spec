@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="no"?>
 <?xml-stylesheet type="text/xml" href="protocol2html.xsl"?>
 
-<interface name="SmartDeviceLink RAPI" version="6.0.0" minVersion="1.0" date="2019-03-19">
+<interface name="SmartDeviceLink RAPI" version="7.0.0" minVersion="1.0" date="2020-11-04">
     <enum name="Result" internal_scope="base" since="1.0">
         <element name="SUCCESS">
             <description>The request succeeded</description>
@@ -11,7 +11,7 @@
         </element>
         <element name="UNSUPPORTED_RESOURCE">
             <description>
-                A button that was requested for subscription is not supported under the current system.
+                One or more of the items (phoneme type, button name, image type, etc.) in the request is not supported by the HMI.
             </description>
         </element>
         <element name="DISALLOWED">
@@ -364,6 +364,10 @@
     </enum>
 
     <enum name="PredefinedWindows" since="6.0">
+        <description>
+            Specifies IDs for windows which are predefined and pre-created.
+            The mobile libraries and SDL Core use the integer value when referencing these elements.
+        </description>
         <element name="DEFAULT_WINDOW" value="0">
             <description>The default window is a main window pre-created on behalf of the app.</description>
         </element>
@@ -449,6 +453,9 @@
         <element name="APP_UNAUTHORIZED" since="2.0" />
         <element name="PROTOCOL_VIOLATION" since="4.0" />
         <element name="UNSUPPORTED_HMI_RESOURCE" since="4.1" />
+        <element name="RESOURCE_CONSTRAINT" since="7.0">
+             <description>By sending this value, SDL unregisters the application to allow the HMI to close the application.</description>
+        </element>
     </enum>
     
     <enum name="TriggerSource" since="1.0">
@@ -540,12 +547,13 @@
         </element>
         <element name="VEHICLEDATA_SPEED" />
         <element name="VEHICLEDATA_RPM" />
-        <element name="VEHICLEDATA_FUELLEVEL" />
-        <element name="VEHICLEDATA_FUELLEVEL_STATE" />
+        <element name="VEHICLEDATA_FUELLEVEL" until="7.0"/>
+        <element name="VEHICLEDATA_FUELLEVEL_STATE" until="7.0"/>
         <element name="VEHICLEDATA_FUELCONSUMPTION" />
         <element name="VEHICLEDATA_EXTERNTEMP" />
         <element name="VEHICLEDATA_VIN" />
-        <element name="VEHICLEDATA_PRNDL" />
+        <element name="VEHICLEDATA_GEARSTATUS" since="7.0"/>
+        <element name="VEHICLEDATA_PRNDL" until="7.0"/>
         <element name="VEHICLEDATA_TIREPRESSURE" />
         <element name="VEHICLEDATA_ODOMETER" />
         <element name="VEHICLEDATA_BELTSTATUS" />
@@ -569,6 +577,9 @@
         <element name="VEHICLEDATA_ELECTRONICPARKBRAKESTATUS" since="5.0" />
         <element name="VEHICLEDATA_CLOUDAPPVEHICLEID" since="5.1"/>
         <element name="VEHICLEDATA_OEM_CUSTOM_DATA" since="6.0"/>
+        <element name="VEHICLEDATA_STABILITYCONTROLSSTATUS" since="7.0"/>
+        <element name="VEHICLEDATA_WINDOWSTATUS" since="7.0"/>
+        <element name="VEHICLEDATA_HANDSOFFSTEERING" since="7.0"/>
     </enum>
 
     <enum name="HybridAppPreference" since="5.1">
@@ -576,6 +587,12 @@
         <element name="MOBILE" />
         <element name="CLOUD" />
         <element name="BOTH" />
+    </enum>
+
+    <enum name="CapacityUnit" since="7.0">
+        <element name="LITERS" />
+        <element name="KILOWATTHOURS" />
+        <element name="KILOGRAMS" />
     </enum>
 
     <struct name="CloudAppProperties" since="5.1">
@@ -864,9 +881,21 @@
         </element>
         
         <element name="phoneNumber" since="4.0">
-            <description> Optional hone number of intended location / establishment (if applicable) for SendLocation.</description>
+            <description> Optional phone number of intended location / establishment (if applicable) for SendLocation.</description>
         </element>
-        
+
+        <element name="subtleAlertText1" since="7.0">
+            <description>The first line of the subtle alert text field; applies to `SubtleAlert` `alertText1`</description>
+        </element>
+
+        <element name="subtleAlertText2" since="7.0">
+            <description>The second line of the subtle alert text field; applies to `SubtleAlert` `alertText2`</description>
+        </element>
+
+        <element name="subtleAlertSoftButtonText" since="7.0">
+            <description>A text field in the soft button of a subtle alert; applies to `SubtleAlert` `softButtons`</description>
+        </element>
+
     </enum>
     
     <enum name="ImageFieldName" since="3.0">
@@ -926,21 +955,53 @@
             <description>The image field for Alert</description>
         </element>
 
+        <element name="subMenuIcon" since="7.0">
+            <description>The image field for AddSubMenu.menuIcon</description>
+        </element>
+
+        <element name="subtleAlertIcon" since="7.0">
+            <description>The image of the subtle alert; applies to `SubtleAlert` `alertIcon`</description>
+        </element>
+
     </enum>
     
     <enum name="CharacterSet" since="1.0">
         <description>The list of potential character sets</description>
-        <element name="TYPE2SET">
-            <description>See [@TODO: create file ref]</description>
+        <element name="TYPE2SET" deprecated="true" since="7.0">
+            <history>
+                <element name="TYPE2SET" since="1.0" until="7.0"/>
+            </history>
         </element>
-        <element name="TYPE5SET">
-            <description>See [@TODO: create file ref]</description>
+        <element name="TYPE5SET" deprecated="true" since="7.0">
+            <history>
+                <element name="TYPE5SET" since="1.0" until="7.0"/>
+            </history>
         </element>
-        <element name="CID1SET">
-            <description>See [@TODO: create file ref]</description>
+        <element name="CID1SET" deprecated="true" since="7.0">
+            <history>
+                <element name="CID1SET" since="1.0" until="7.0"/>
+            </history>
         </element>
-        <element name="CID2SET">
-            <description>See [@TODO: create file ref]</description>
+        <element name="CID2SET" deprecated="true" since="7.0">
+            <history>
+                <element name="CID2SET" since="1.0" until="7.0"/>
+            </history>
+        </element>
+        <element name="ASCII" since="7.0">
+            <description>
+                ASCII as defined in https://en.wikipedia.org/wiki/ASCII as defined in codes 0-127.
+                Non-printable characters such as tabs and back spaces are ignored.
+            </description>
+        </element>
+        <element name="ISO_8859_1" since="7.0">
+            <description>Latin-1, as defined in https://en.wikipedia.org/wiki/ISO/IEC_8859-1</description>
+        </element>
+        <element name="UTF_8" since="7.0">
+            <description>
+                The UTF-8 character set that uses variable bytes per code point.
+                See https://en.wikipedia.org/wiki/UTF-8 for more details.
+                This is the preferred character set.
+            </description>
         </element>
     </enum>
     
@@ -1186,7 +1247,7 @@
             <description>Longitude and latitude and altitude</description>
         </element>
     </enum>
-    
+
     <enum name="PRNDL" since="2.0">
         <description>The selected gear.</description>
         <element name="PARK">
@@ -1199,6 +1260,7 @@
             <description>No gear</description>
         </element>
         <element name="DRIVE">
+            <description>Regular Drive mode</description>
         </element>
         <element name="SPORT">
             <description>Drive Sport mode</description>
@@ -1222,12 +1284,44 @@
         </element>
         <element name="EIGHTH">
         </element>
+        <element name="NINTH" since="7.0">
+        </element>
+        <element name="TENTH" since="7.0">
+        </element>
         <element name="UNKNOWN">
         </element>
         <element name="FAULT">
         </element>
     </enum>
-    
+
+    <enum name="TransmissionType" since="7.0">
+        <description>Type of transmission used in the vehicle.</description>
+        <element name="MANUAL">
+            <description>Manual transmission.</description>
+        </element>
+        <element name="AUTOMATIC">
+            <description>Automatic transmission.</description>
+        </element>
+        <element name="SEMI_AUTOMATIC">
+            <description>Semi automatic transmission.</description>
+        </element>
+        <element name="DUAL_CLUTCH">
+            <description>Dual clutch transmission.</description>
+        </element>
+        <element name="CONTINUOUSLY_VARIABLE">
+            <description>Continuously variable transmission(CVT).</description>
+        </element>
+        <element name="INFINITELY_VARIABLE">
+            <description>Infinitely variable transmission.</description>
+        </element>
+        <element name="ELECTRIC_VARIABLE">
+            <description>Electric variable transmission.</description>
+        </element>
+        <element name="DIRECT_DRIVE">
+            <description>Direct drive between engine and wheels.</description>
+        </element>
+    </enum>
+
     <enum name="ComponentVolumeStatus" since="2.0">
         <description>The volume status of a vehicle component.</description>
         <element name="UNKNOWN" internal_name="CVS_UNKNOWN">
@@ -1298,6 +1392,18 @@
             <description>
                 The estimate range in KM the vehicle can travel based on fuel level and consumption.
             </description>
+        </param>
+        <param name="level" type="Float" minvalue="-6" maxvalue="1000000" mandatory="false" since="7.0">
+           <description>The relative remaining capacity of this fuel type (percentage).</description>
+        </param>
+        <param name="levelState" type="ComponentVolumeStatus" mandatory="false" since="7.0">
+            <description>The fuel level state</description>
+        </param>
+        <param name="capacity" type="Float" minvalue="0" maxvalue="1000000" mandatory="false" since="7.0">
+            <description>The absolute capacity of this fuel type.</description>
+            </param>
+        <param name="capacityUnit" type="CapacityUnit" mandatory="false" since="7.0">
+            <description>The unit of the capacity of this fuel type such as liters for gasoline or kWh for batteries.</description>
         </param>
     </struct>
 
@@ -1943,6 +2049,15 @@
             <description>The status of the inner right rear.</description>
         </param>
     </struct>
+
+    <struct name="StabilityControlsStatus" since="7.0">
+        <param name="escSystem" type="VehicleDataStatus" mandatory="false">
+            <description>true if vehicle stability control is ON, else false</description>
+        </param>
+        <param name="trailerSwayControl" type="VehicleDataStatus" mandatory="false">
+            <description>true if vehicle trailer sway control is ON, else false</description>
+        </param>
+    </struct>
     
     <enum name="TurnSignal" since="5.0">
         <description>Enumeration that describes the status of the turn light indicator.</description>
@@ -2122,7 +2237,11 @@
             <description>The name that identifies the field. See TextFieldName.</description>
         </param>
         <param name="characterSet" type="CharacterSet" mandatory="true">
-            <description>The character set that is supported in this field. See CharacterSet.</description>
+            <description>
+                The set of characters that are supported by this text field.
+                All text is sent in UTF-8 format, but not all systems may support all of the characters expressed by UTF-8.
+                All systems will support at least ASCII, but they may support more, either the LATIN-1 character set, or the full UTF-8 character set.
+            </description>
         </param>
         <param name="width" type="Integer" minvalue="1" maxvalue="500" mandatory="true">
             <description>The number of characters in one row of this field.</description>
@@ -2296,6 +2415,21 @@
         </param>
     </struct>
 
+    <struct name="WindowState" since="7.0">
+      <param name="approximatePosition" type="Integer" minvalue="0" maxvalue="100" mandatory="true">
+        <description>The approximate percentage that the window is open - 0 being fully closed, 100 being fully open</description>
+      </param>
+      <param name="deviation" type="Integer" minvalue="0" maxvalue="100" mandatory="true">
+        <description>The percentage deviation of the approximatePosition. e.g. If the approximatePosition is 50 and the deviation is 10, then the window's location is somewhere between 40 and 60.</description>
+      </param>
+    </struct>
+
+    <struct name="WindowStatus" since="7.0">
+      <description>Describes the status of a window of a door/liftgate etc.</description>
+      <param name="location" type="Grid" mandatory="true"/>
+      <param name="state" type="WindowState" mandatory="true"/>     
+    </struct>
+
     <struct name="ModuleInfo" since="6.0">
         <description>Information about a RC module</description>
         <param name="moduleId" type="String" maxlength="100" mandatory="true">
@@ -2378,13 +2512,23 @@
         <param name="onScreenPresetsAvailable" type="Boolean" mandatory="true">
             <description>Onscreen custom presets are available.</description>
         </param>
-    </struct>         
+    </struct>
+
+    <struct name="DynamicUpdateCapabilities" since="7.0">
+        <param name="supportedDynamicImageFieldNames" type="ImageFieldName" array="true" mandatory="false" minsize="1">
+            <description>An array of ImageFieldName values for which the system supports sending OnFileUpdate notifications. If you send an Image struct for that image field with a name without having uploaded the image data using PutFile that matches that name, the system will request that you upload the data with PutFile at a later point when the HMI needs it. The HMI will then display the image in the appropriate field. If not sent, assume false.</description>
+        </param>
+
+        <param name="supportsDynamicSubMenus" type="Boolean" mandatory="false">
+            <description>If true, the head unit supports dynamic sub-menus by sending OnUpdateSubMenu notifications. If true, you should not send AddCommands that attach to a parentID for an AddSubMenu until OnUpdateSubMenu is received with the menuID. At that point, you should send all AddCommands with a parentID that match the menuID. If not set, assume false.</description>
+        </param>
+    </struct>  
 
     <struct name="WindowCapability" since="6.0">
         <param name="windowID" type="Integer" mandatory="false">
             <description>
                 The specified ID of the window. This ID is either one used when sending the CreateWindow request, 
-                or one of the predefined window ID values from the enum PredefinedWindows. If ommited, value is 
+                or one of the predefined window ID values from the enum PredefinedWindows. If omitted, value is 
                 assumed to be the main window on the main display.
             </description>
         </param>
@@ -2412,6 +2556,9 @@
         <param name="menuLayoutsAvailable" type="MenuLayout" array="true" minsize="1" maxsize="1000" mandatory="false" since="6.0">
             <description>An array of available menu layouts. If this parameter is not provided, only the `LIST` layout is assumed to be available</description>
         </param>
+        <param name="dynamicUpdateCapabilities" type="DynamicUpdateCapabilities" mandatory="false" since="7.0">
+            <description>Contains the head unit's capabilities for dynamic updating features declaring if the module will send dynamic update RPCs.</description>
+        </param>
     </struct>
 
     <struct name="WindowTypeCapabilities" since="6.0">
@@ -2433,7 +2580,7 @@
               GetSystemCapability still allows requesting window capabilities of all windows.
               After registration, only windows with capabilities changed will be included. Following cases will cause only affected windows to be included:
               1. App creates a new window. After the window is created, a system capability notification will be sent related only to the created window.
-              2. App sets a new layout to the window. The new layout changes window capabilties. The notification will reflect those changes to the single window.
+              2. App sets a new layout to the window. The new layout changes window capabilities. The notification will reflect those changes to the single window.
             </description>
         </param>
     </struct>
@@ -2460,6 +2607,9 @@
         <param name="seatLocation" type="Boolean" mandatory="false" since="6.0">
             <description>Availability of seat location feature. True: Available, False: Not Available</description>
         </param>
+        <param name="driverDistraction" type="Boolean" mandatory="false" since="7.0">
+            <description>Availability of driver distraction capability. True: Available, False: Not Available</description>
+        </param>
     </struct>
 
     <struct name="MenuParams" since="1.0">
@@ -2471,7 +2621,7 @@
         </param>         
         <param name="position" type="Integer" minvalue="0" maxvalue="1000" mandatory="false">
             <description>
-                Position within the items that are are at top level of the in application menu.
+                Position within the items that are at top level of the in application menu.
                 0 will insert at the front.
                 1 will insert at the second position.
                 if position is greater or equal than the number of items on top level, the sub menu will be appended to the end.
@@ -2577,7 +2727,7 @@
         </param>
         <param name="autoCompleteList" type="String" maxlength="1000" minsize="0" maxsize="100" array="true" mandatory="false" since="6.0">
             <description>
-                Allows an app to prepopulate the text field with a list of suggested or completed entries as the user types. 
+                Allows an app to pre-populate the text field with a list of suggested or completed entries as the user types. 
                 If empty, the auto-complete list will be removed from the screen.
             </description>
         </param>
@@ -2645,6 +2795,7 @@
         <element name="SYSTEM" />
         <element name="PROJECTION" since="4.5" />
         <element name="REMOTE_CONTROL" since="4.5" />
+        <element name="WEB_VIEW" since="7.0" />
     </enum>         
 
     <enum name="PredefinedLayout" platform="documentation" since="3.0">
@@ -2769,6 +2920,12 @@
                 Can be set as a root screen.
             </description>
         </element>
+        <element name="WEB_VIEW" rootscreen="true" since="7.0">
+            <description>
+                Custom root template allowing in-vehicle WebEngine applications with
+                appropriate permissions to show the application's own web view.
+            </description>
+        </element>
     </enum>         
    
     <enum name="FunctionID" internal_scope="base" since="1.0">
@@ -2839,7 +2996,8 @@
         <element name="CreateWindowID" value="60" hexvalue="3C" since="6.0" />
         <element name="DeleteWindowID" value="61" hexvalue="3D" since="6.0" />
         <element name="GetInteriorVehicleDataConsentID" value="62" hexvalue="3E" since="6.0" />
-        <element name="ReleaseInteriorVehicleDataModuleID" value="63" hexvalue="3F" since="6.0" /> 
+        <element name="ReleaseInteriorVehicleDataModuleID" value="63" hexvalue="3F" since="6.0" />
+        <element name="SubtleAlertID" value="64" hexvalue="40" since="7.0" />
         
         <!--
          Base Notifications
@@ -2866,6 +3024,9 @@
         <element name="OnRCStatusID" value="32785" hexvalue="8011" since="5.0" />
         <element name="OnAppServiceDataID" value="32786" hexvalue="8012" since="5.1" />
         <element name="OnSystemCapabilityUpdatedID" value="32787" hexvalue="8013" since="5.1" />
+        <element name="OnSubtleAlertPressedID" value="32788" hexvalue="8014" since="7.0" />
+        <element name="OnUpdateFileID" value="32789" hexvalue="8015" since="7.0" />
+        <element name="OnUpdateSubMenuID" value="32790" hexvalue="8016" since="7.0" />
 
         <!--
          Ford Specific Request / Response RPCs
@@ -2888,6 +3049,7 @@
         <description>
             Enumeration linking message types with function types in WiPro protocol.
             Assumes enumeration starts at value 0.
+            The integer value is used in the protocol binary header.
         </description>
         <element name="request" value="0" />
         <element name="response" value="1" />
@@ -3026,6 +3188,7 @@
         <element name="APP_SERVICES" since="5.1"/>
         <element name="SEAT_LOCATION" since="6.0"/>
         <element name="DISPLAYS" since="6.0"/>
+        <element name="DRIVER_DISTRACTION" since="7.0"/>
     </enum>
     
     <struct name="NavigationCapability" since="4.5">
@@ -3077,6 +3240,15 @@
         </param>
         <param name="scale" type="Float" minvalue="1" maxvalue="10" mandatory="false" since="6.0">
             <description>The scaling factor the app should use to change the size of the projecting view.</description>
+        </param>
+    </struct>
+
+    <struct name="DriverDistractionCapability" since="7.0">
+        <param name="menuLength" type="Integer" mandatory="false">
+            <description>The number of items allowed in a Choice Set or Command menu while the driver is distracted</description>
+        </param>
+        <param name="subMenuDepth" type="Integer" minvalue="1" mandatory="false">
+            <description>The depth of submenus allowed when the driver is distracted. e.g. 3 == top level menu -> submenu -> submenu; 1 == top level menu only</description>
         </param>
     </struct>
 
@@ -3171,7 +3343,7 @@
 
     <enum name="SeatMemoryActionType" since="5.0">
         <element name="SAVE">
-            <description>Save current seat postions and settings to seat memory.</description>
+            <description>Save current seat positions and settings to seat memory.</description>
         </element>
         <element name="RESTORE">
             <description>Restore / apply the seat memory settings to the current seat. </description>
@@ -3502,7 +3674,7 @@
         </param>
         <param name="siriusxmRadioAvailable" type="Boolean" mandatory="false" since="5.0">
             <description>
-                Availability of sirius XM radio.
+                Availability of Sirius XM radio.
                 True: Available, False: Not Available, Not present: Not Available.
             </description>
         </param>
@@ -3683,6 +3855,10 @@
     </struct>
 
     <enum name="LightName" since="5.0">
+        <description>
+            Enumeration that describes possible values of light name.
+            The mobile libraries and SDL Core use the name string when referencing these elements.
+        </description>
         <!-- Common Single Light 0~500 -->
         <element name="FRONT_LEFT_HIGH_BEAM" value="0"/>
         <element name="FRONT_RIGHT_HIGH_BEAM" value="1"/>
@@ -4417,16 +4593,16 @@
             <description>Used as a descriptor of what data to expect in this struct. The corresponding param to this enum should be included and the only other param included.</description>
         </param>
         <param name="navigationCapability" type="NavigationCapability" mandatory="false">
-            <description>Describes extended capabilities for onboard navigation system </description>
+            <description>Describes extended capabilities for onboard navigation system</description>
         </param>
         <param name="phoneCapability" type="PhoneCapability" mandatory="false">
             <description>Describes extended capabilities of the module's phone feature</description>
         </param>
         <param name="videoStreamingCapability" type="VideoStreamingCapability" mandatory="false">
-            <description>Describes extended capabilities of the module's phone feature</description>
+            <description>Contains information about the module's video streaming capabilities</description>
         </param>
         <param name="remoteControlCapability" type="RemoteControlCapabilities" mandatory="false">
-            <description>Describes extended capabilities of the module's phone feature</description>
+            <description>Contains information about the module's remote control feature</description>
         </param>
         <param name="appServicesCapabilities" type="AppServicesCapabilities" mandatory="false" since="5.1">
             <description>An array of currently available services. If this is an update to the capability the affected services will include an update reason in that item</description>
@@ -4435,6 +4611,21 @@
             <description>Contains information about the locations of each seat</description>
         </param>
         <param name="displayCapabilities" type="DisplayCapability" array="true" minsize="1" maxsize="1000" mandatory="false" since="6.0"/>
+        <param name="driverDistractionCapability" type="DriverDistractionCapability" mandatory="false" since="7.0">
+            <description>Describes capabilities when the driver is distracted</description>
+        </param>
+    </struct>
+
+    <struct name="GearStatus" since="7.0">
+        <param name="userSelectedGear" type="PRNDL" mandatory="false">
+            <description>Gear position selected by the user i.e. Park, Drive, Reverse</description>
+        </param>
+        <param name="actualGear" type="PRNDL" mandatory="false">
+            <description>Actual Gear in use by the transmission</description>
+        </param>
+        <param name="transmissionType" type="TransmissionType" mandatory="false">
+            <description>Tells the transmission type</description>
+        </param>
     </struct>
 
     <!-- Requests/Responses -->
@@ -5019,7 +5210,7 @@
         
         <param name="position" type="Integer" minvalue="0" maxvalue="1000" defvalue="1000" mandatory="false">
             <description>
-                Position within the items that are are at top level of the in application menu.
+                Position within the items that are at top level of the in application menu.
                 0 will insert at the front.
                 1 will insert at the second position.
                 If position is greater or equal than the number of items on top level, the sub menu will be appended to the end.
@@ -5038,6 +5229,13 @@
 
         <param name="menuLayout" type="MenuLayout" mandatory="false" since="6.0">
             <description>Sets the layout of the submenu screen.</description>
+        </param>
+
+        <param name="parentID" type="Integer" minvalue="0" maxvalue="2000000000" defvalue="0" mandatory="false" since="7.0">
+            <description>
+                unique ID of the sub menu, the command will be added to.
+                If not provided or 0, it will be provided to the top level of the in application menu.
+            </description>
         </param>
     </function>
     
@@ -5351,7 +5549,7 @@
         <param name="playTone" type="Boolean" mandatory="false">
             <description>
                 Defines if tone should be played. Tone is played before TTS.
-                If omitted, no tone is played.
+                If omitted or provided without ttsChunks, no tone is played.
             </description>
         </param>
         
@@ -5417,6 +5615,96 @@
             </description>
         </param>
         
+    </function>
+    
+    <function name="SubtleAlert" functionID="SubtleAlertID" messagetype="request" since="7.0">
+        <description>Shows an alert which typically consists of text-to-speech message and text on the display. At least either alertText1, alertText2 or ttsChunks need to be provided.</description>
+        
+        <param name="alertText1" type="String" maxlength="500" mandatory="false">
+            <description>The first line of the alert text field</description>
+        </param>
+        
+        <param name="alertText2" type="String" maxlength="500" mandatory="false">
+            <description>The second line of the alert text field</description>
+        </param>
+
+        <param name="alertIcon" type="Image" mandatory="false">
+            <description>
+                Image to be displayed for the corresponding alert. See Image.
+                If omitted on supported displays, no (or the default if applicable) icon should be displayed.
+            </description>
+        </param>
+
+        <param name="ttsChunks" type="TTSChunk" minsize="1" maxsize="100" array="true" mandatory="false">
+            <description>
+                An array of text chunks of type TTSChunk. See TTSChunk.
+                The array must have at least one item.
+            </description>
+        </param>
+        
+        <param name="duration" type="Integer" minvalue="3000" maxvalue="10000" defvalue="5000" mandatory="false">
+            <description>
+                Timeout in milliseconds.
+                Typical timeouts are 3-5 seconds.
+                If omitted, timeout is set to 5s.
+            </description>
+        </param>
+        
+        <param name="softButtons" type="SoftButton" minsize="0" maxsize="2" array="true" mandatory="false">
+            <description>
+                App defined SoftButtons.
+                If omitted on supported displays, the displayed alert shall not have any SoftButtons.
+            </description>
+        </param>
+
+        <param name="cancelID" type="Integer" mandatory="false">
+            <description>
+                An ID for this specific alert to allow cancellation through the `CancelInteraction` RPC.
+            </description>
+        </param>
+        
+    </function>
+    
+    <function name="SubtleAlert" functionID="SubtleAlertID" messagetype="response" since="7.0">
+        
+        <param name="success" type="Boolean" platform="documentation" mandatory="true">
+            <description> true if successful; false, if failed </description>
+        </param>
+        
+        <param name="resultCode" type="Result" platform="documentation" mandatory="true">
+            <description>See Result</description>
+            <element name="SUCCESS"/>
+            <element name="INVALID_DATA"/>
+            <element name="OUT_OF_MEMORY"/>
+            <element name="TOO_MANY_PENDING_REQUESTS"/>
+            <element name="APPLICATION_NOT_REGISTERED"/>
+            <element name="GENERIC_ERROR"/>
+            <element name="REJECTED"/>
+            <element name="ABORTED"/>
+            <element name="DISALLOWED"/>
+            <element name="USER_DISALLOWED"/>
+            <element name="UNSUPPORTED_RESOURCE"/>
+            <element name="WARNINGS"/>
+        </param>
+        
+        <param name="info" type="String" maxlength="1000" mandatory="false" platform="documentation">
+            <description>Provides additional human readable info regarding the result.</description>
+        </param>
+        
+        <param name="tryAgainTime" type="Integer" minvalue="0" maxvalue="2000000000" mandatory="false">
+            <description>
+                Amount of time (in milliseconds) that an app must wait before resending an alert.
+                If provided, another system event or overlay currently has a higher priority than this alert.
+                An app must not send an alert without waiting at least the amount of time dictated.
+            </description>
+        </param>
+        
+    </function>
+
+    <function name="OnSubtleAlertPressed" functionID="OnSubtleAlertPressedID" messagetype="notification" since="7.0">
+        <description>
+            Sent when the alert itself is touched (outside of a soft button). Touching (or otherwise selecting) the alert should open the app before sending this notification.
+        </description>
     </function>
     
     <function name="Show" functionID="ShowID" messagetype="request" since="1.0">
@@ -5617,7 +5905,7 @@
             <description>
                 See StartTime.
                 endTime can be provided for "COUNTUP" and "COUNTDOWN"; to be used to calculate any visual progress bar (if not provided, this feature is ignored)
-                If endTime is greater then startTime for COUNTDOWN or less than startTime for COUNTUP, then the request will return an INVALID_DATA.
+                If endTime is greater than startTime for COUNTDOWN or less than startTime for COUNTUP, then the request will return an INVALID_DATA.
                 endTime will be ignored for "RESUME", and "CLEAR"
                 endTime can be sent for "PAUSE", in which case it will update the paused endTime
             </description>
@@ -5829,17 +6117,26 @@
         <param name="rpm" type="Boolean" mandatory="false">
             <description>The number of revolutions per minute of the engine</description>
         </param>
-        <param name="fuelLevel" type="Boolean" mandatory="false">
-            <description>The fuel level in the tank (percentage)</description>
+        <param name="fuelLevel" type="Boolean" mandatory="false" deprecated="true" since="7.0">
+            <description>The fuel level in the tank (percentage). This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.</description>
+            <history>
+                <param name="fuelLevel" type="Boolean" mandatory="false" since="2.0" until="7.0"/>
+            </history>
         </param>
-        <param name="fuelLevel_State" type="Boolean" mandatory="false">
-            <description>The fuel level state</description>
+        <param name="fuelLevel_State" type="Boolean" mandatory="false" deprecated="true" since="7.0">
+            <description>The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.</description>
+            <history>
+                <param name="fuelLevel_State" type="Boolean" mandatory="false" since="2.0" until="7.0"/>
+            </history>
         </param>
         <param name="instantFuelConsumption" type="Boolean" mandatory="false">
             <description>The instantaneous fuel consumption in microlitres</description>
         </param>
         <param name="fuelRange" type="Boolean" mandatory="false" since="5.0">
-            <description>The estimate range in KM the vehicle can travel based on fuel level and consumption</description>
+            <description>
+                The fuel type, estimated range in KM, fuel level/capacity and fuel level state for the vehicle.
+                See struct FuelRange for details.
+            </description>
         </param>
         <param name="externalTemperature" type="Boolean" mandatory="false">
             <description>The external temperature in degrees celsius</description>
@@ -5847,8 +6144,14 @@
         <param name="turnSignal" type="Boolean" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
         </param>
-        <param name="prndl" type="Boolean" mandatory="false">
-            <description>See PRNDL</description>
+        <param name="gearStatus" type="Boolean" mandatory="false" since="7.0">
+            <description>See GearStatus</description>
+        </param>
+        <param name="prndl" type="Boolean" mandatory="false" deprecated="true" since="7.0">
+            <description>See PRNDL. This parameter is deprecated and it is now covered in `gearStatus`</description>
+            <history>
+                <param name="prndl" type="Boolean" mandatory="false" since="2.0" until="7.0"/>
+            </history>
         </param>
         <param name="tirePressure" type="Boolean" mandatory="false">
             <description>See TireStatus</description>
@@ -5892,6 +6195,9 @@
         <param name="cloudAppVehicleID" type="Boolean" mandatory="false" since="5.1">
             <description>Parameter used by cloud apps to identify a head unit</description>
         </param>
+        <param name="stabilityControlsStatus" type="Boolean" mandatory="false" since="7.0">
+	        <description>See StabilityControlsStatus</description>
+        </param>
         <param name="eCallInfo" type="Boolean" mandatory="false">
             <description>Emergency Call notification and confirmation data</description>
         </param>
@@ -5906,6 +6212,12 @@
         </param>
         <param name="myKey" type="Boolean" mandatory="false">
             <description>Information related to the MyKey feature</description>
+        </param>
+        <param name="windowStatus" type="Boolean" mandatory="false" since="7.0">
+            <description>See WindowStatus</description>
+        </param>
+        <param name="handsOffSteering" type="Boolean" mandatory="false" since="7.0">
+            <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
     </function>
     
@@ -5942,17 +6254,26 @@
         <param name="rpm" type="VehicleDataResult" mandatory="false">
             <description>The number of revolutions per minute of the engine</description>
         </param>
-        <param name="fuelLevel" type="VehicleDataResult" mandatory="false">
-            <description>The fuel level in the tank (percentage)</description>
+        <param name="fuelLevel" type="VehicleDataResult" mandatory="false" deprecated="true" since="7.0">
+            <description>The fuel level in the tank (percentage). This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.</description>
+            <history>
+                <param name="fuelLevel" type="VehicleDataResult" mandatory="false" since="2.0" until="7.0"/>
+            </history>
         </param>
-        <param name="fuelLevel_State" type="VehicleDataResult" mandatory="false">
-            <description>The fuel level state</description>
+        <param name="fuelLevel_State" type="VehicleDataResult" mandatory="false" deprecated="true" since="7.0">
+            <description>The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.</description>
+            <history>
+                <param name="fuelLevel_State" type="VehicleDataResult" mandatory="false" since="2.0" until="7.0"/>
+            </history>
         </param>
         <param name="instantFuelConsumption" type="VehicleDataResult" mandatory="false">
             <description>The instantaneous fuel consumption in microlitres</description>
         </param>
         <param name="fuelRange" type="VehicleDataResult" mandatory="false" since="5.0">
-            <description>The estimate range in KM the vehicle can travel based on fuel level and consumption</description>
+            <description>
+                The fuel type, estimated range in KM, fuel level/capacity and fuel level state for the vehicle.
+                See struct FuelRange for details.
+            </description>
         </param>
         <param name="externalTemperature" type="VehicleDataResult" mandatory="false">
             <description>The external temperature in degrees celsius.</description>
@@ -5960,8 +6281,14 @@
         <param name="turnSignal" type="VehicleDataResult" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
         </param>
-        <param name="prndl" type="VehicleDataResult" mandatory="false">
-            <description>See PRNDL</description>
+        <param name="gearStatus" type="VehicleDataResult" mandatory="false" since="7.0">
+            <description>See GearStatus</description>
+        </param>
+        <param name="prndl" type="VehicleDataResult" mandatory="false" deprecated="true" since="7.0">
+            <description>See PRNDL. This parameter is deprecated and it is now covered in `gearStatus`</description>
+            <history>
+                <param name="prndl" type="VehicleDataResult" mandatory="false" since="2.0" until="7.0"/>
+            </history>
         </param>
         <param name="tirePressure" type="VehicleDataResult" mandatory="false">
             <description>See TireStatus</description>
@@ -6005,6 +6332,9 @@
         <param name="cloudAppVehicleID" type="VehicleDataResult" mandatory="false" since="5.1">
             <description>Parameter used by cloud apps to identify a head unit</description>
         </param>
+        <param name="stabilityControlsStatus" type="VehicleDataResult" mandatory="false" since="7.0">
+	        <description>See StabilityControlsStatus</description>
+        </param>
         <param name="eCallInfo" type="VehicleDataResult" mandatory="false">
             <description>Emergency Call notification and confirmation data</description>
         </param>
@@ -6020,6 +6350,12 @@
         <param name="myKey" type="VehicleDataResult" mandatory="false">
             <description>Information related to the MyKey feature</description>
         </param>
+        <param name="windowStatus" type="VehicleDataResult" mandatory="false" since="7.0">
+            <description>See WindowStatus</description>
+        </param>
+        <param name="handsOffSteering" type="VehicleDataResult" mandatory="false" since="7.0">
+            <description>To indicate whether driver hands are off the steering wheel</description>
+        </param>
     </function>
     
     <function name="UnsubscribeVehicleData" functionID="UnsubscribeVehicleDataID" messagetype="request" since="2.0">
@@ -6034,17 +6370,26 @@
         <param name="rpm" type="Boolean" mandatory="false">
             <description>The number of revolutions per minute of the engine</description>
         </param>
-        <param name="fuelLevel" type="Boolean" mandatory="false">
-            <description>The fuel level in the tank (percentage)</description>
+        <param name="fuelLevel" type="Boolean" mandatory="false" deprecated="true" since="7.0">
+            <description>The fuel level in the tank (percentage). This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.</description>
+            <history>
+                <param name="fuelLevel" type="Boolean" mandatory="false" since="2.0" until="7.0"/>
+            </history>
         </param>
-        <param name="fuelLevel_State" type="Boolean" mandatory="false">
-            <description>The fuel level state</description>
+        <param name="fuelLevel_State" type="Boolean" mandatory="false" deprecated="true" since="7.0">
+            <description>The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.</description>
+            <history>
+                <param name="fuelLevel_State" type="Boolean" mandatory="false" since="2.0" until="7.0"/>
+            </history>
         </param>
         <param name="instantFuelConsumption" type="Boolean" mandatory="false">
             <description>The instantaneous fuel consumption in microlitres</description>
         </param>
         <param name="fuelRange" type="Boolean" mandatory="false" since="5.0">
-            <description>The estimate range in KM the vehicle can travel based on fuel level and consumption</description>
+            <description>
+                The fuel type, estimated range in KM, fuel level/capacity and fuel level state for the vehicle.
+                See struct FuelRange for details.
+            </description>
         </param>
         <param name="externalTemperature" type="Boolean" mandatory="false">
             <description>The external temperature in degrees celsius.</description>
@@ -6052,8 +6397,14 @@
         <param name="turnSignal" type="Boolean" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
         </param>
-        <param name="prndl" type="Boolean" mandatory="false">
-            <description>See PRNDL</description>
+        <param name="gearStatus" type="Boolean" mandatory="false" since="7.0">
+            <description>See GearStatus</description>
+        </param>
+        <param name="prndl" type="Boolean" mandatory="false" deprecated="true" since="7.0">
+            <description>See PRNDL. This parameter is deprecated and it is now covered in `gearStatus`</description>
+            <history>
+                <param name="prndl" type="Boolean" mandatory="false" since="2.0" until="7.0"/>
+            </history>
         </param>
         <param name="tirePressure" type="Boolean" mandatory="false">
             <description>See TireStatus</description>
@@ -6097,6 +6448,9 @@
         <param name="cloudAppVehicleID" type="Boolean" mandatory="false" since="5.1">
             <description>Parameter used by cloud apps to identify a head unit</description>
         </param>
+        <param name="stabilityControlsStatus" type="Boolean" mandatory="false" since="7.0">
+	        <description>See StabilityControlsStatus</description>
+        </param>
         <param name="eCallInfo" type="Boolean" mandatory="false">
             <description>Emergency Call notification and confirmation data</description>
         </param>
@@ -6111,6 +6465,12 @@
         </param>
         <param name="myKey" type="Boolean" mandatory="false">
             <description>Information related to the MyKey feature</description>
+        </param>
+        <param name="windowStatus" type="Boolean" mandatory="false" since="7.0">
+            <description>See WindowStatus</description>
+        </param>
+        <param name="handsOffSteering" type="Boolean" mandatory="false" since="7.0">
+            <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
     </function>
     
@@ -6146,17 +6506,26 @@
         <param name="rpm" type="VehicleDataResult" mandatory="false">
             <description>The number of revolutions per minute of the engine</description>
         </param>
-        <param name="fuelLevel" type="VehicleDataResult" mandatory="false">
-            <description>The fuel level in the tank (percentage)</description>
+        <param name="fuelLevel" type="VehicleDataResult" mandatory="false" deprecated="true" since="7.0">
+            <description>The fuel level in the tank (percentage). This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.</description>
+            <history>
+                <param name="fuelLevel" type="VehicleDataResult" mandatory="false" since="2.0" until="7.0"/>
+            </history>
         </param>
-        <param name="fuelLevel_State" type="VehicleDataResult" mandatory="false">
-            <description>The fuel level state</description>
+        <param name="fuelLevel_State" type="VehicleDataResult" mandatory="false" deprecated="true" since="7.0">
+            <description>The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.</description>
+            <history>
+                <param name="fuelLevel_State" type="VehicleDataResult" mandatory="false" since="2.0" until="7.0"/>
+            </history>
         </param>
         <param name="instantFuelConsumption" type="VehicleDataResult" mandatory="false">
             <description>The instantaneous fuel consumption in microlitres</description>
         </param>
         <param name="fuelRange" type="VehicleDataResult" mandatory="false" since="5.0">
-            <description>The estimate range in KM the vehicle can travel based on fuel level and consumption</description>
+            <description>
+                The fuel type, estimated range in KM, fuel level/capacity and fuel level state for the vehicle.
+                See struct FuelRange for details.
+            </description>
         </param>
         <param name="externalTemperature" type="VehicleDataResult" mandatory="false">
             <description>The external temperature in degrees celsius</description>
@@ -6164,8 +6533,14 @@
         <param name="turnSignal" type="VehicleDataResult" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
         </param>
-        <param name="prndl" type="VehicleDataResult" mandatory="false">
-            <description>See PRNDL</description>
+        <param name="gearStatus" type="VehicleDataResult" mandatory="false" since="7.0">
+            <description>See GearStatus</description>
+        </param>
+        <param name="prndl" type="VehicleDataResult" mandatory="false" deprecated="true" since="7.0">
+            <description>See PRNDL. This parameter is deprecated and it is now covered in `gearStatus`</description>
+            <history>
+                <param name="prndl" type="VehicleDataResult" mandatory="false" since="2.0" until="7.0"/>
+            </history>
         </param>
         <param name="tirePressure" type="VehicleDataResult" mandatory="false">
             <description>See TireStatus</description>
@@ -6209,6 +6584,9 @@
         <param name="cloudAppVehicleID" type="VehicleDataResult" mandatory="false" since="5.1">
             <description>Parameter used by cloud apps to identify a head unit</description>
         </param>
+         <param name="stabilityControlsStatus" type="VehicleDataResult" mandatory="false" since="7.0">
+	        <description>See StabilityControlsStatus</description>
+        </param>
         <param name="eCallInfo" type="VehicleDataResult" mandatory="false">
             <description>Emergency Call notification and confirmation data</description>
         </param>
@@ -6224,6 +6602,12 @@
         <param name="myKey" type="VehicleDataResult" mandatory="false">
             <description>Information related to the MyKey feature</description>
         </param>
+        <param name="windowStatus" type="VehicleDataResult" mandatory="false" since="7.0">
+            <description>See WindowStatus</description>
+        </param>
+        <param name="handsOffSteering" type="VehicleDataResult" mandatory="false" since="7.0">
+            <description>To indicate whether driver hands are off the steering wheel</description>
+        </param>
     </function>
     
     <function name="GetVehicleData" functionID="GetVehicleDataID" messagetype="request" since="2.0">
@@ -6238,17 +6622,26 @@
         <param name="rpm" type="Boolean" mandatory="false">
             <description>The number of revolutions per minute of the engine</description>
         </param>
-        <param name="fuelLevel" type="Boolean" mandatory="false">
-            <description>The fuel level in the tank (percentage)</description>
+        <param name="fuelLevel" type="Boolean" mandatory="false" deprecated="true" since="7.0">
+            <description>The fuel level in the tank (percentage). This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.</description>
+            <history>
+                <param name="fuelLevel" type="Boolean" mandatory="false" since="2.0" until="7.0"/>
+            </history>
         </param>
-        <param name="fuelLevel_State" type="Boolean" mandatory="false">
-            <description>The fuel level state</description>
+        <param name="fuelLevel_State" type="Boolean" mandatory="false" deprecated="true" since="7.0">
+            <description>The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.</description>
+            <history>
+                <param name="fuelLevel_State" type="Boolean" mandatory="false" since="2.0" until="7.0"/>
+            </history>
         </param>
         <param name="instantFuelConsumption" type="Boolean" mandatory="false">
             <description>The instantaneous fuel consumption in microlitres</description>
         </param>
         <param name="fuelRange" type="Boolean" mandatory="false" since="5.0">
-            <description>The estimate range in KM the vehicle can travel based on fuel level and consumption</description>
+            <description>
+                The fuel type, estimated range in KM, fuel level/capacity and fuel level state for the vehicle.
+                See struct FuelRange for details.
+            </description>
         </param>
         <param name="externalTemperature" type="Boolean" mandatory="false">
             <description>The external temperature in degrees celsius</description>
@@ -6259,8 +6652,14 @@
         <param name="vin" type="Boolean" mandatory="false">
             <description>Vehicle identification number</description>
         </param>
-        <param name="prndl" type="Boolean" mandatory="false">
-            <description>See PRNDL</description>
+        <param name="gearStatus" type="Boolean" mandatory="false" since="7.0">
+            <description>See GearStatus</description>
+        </param>
+        <param name="prndl" type="Boolean" mandatory="false" deprecated="true" since="7.0">
+            <description>See PRNDL. This parameter is deprecated and it is now covered in `gearStatus`</description>
+            <history>
+                <param name="prndl" type="Boolean" mandatory="false" since="2.0" until="7.0"/>
+            </history>
         </param>
         <param name="tirePressure" type="Boolean" mandatory="false">
             <description>See TireStatus</description>
@@ -6304,6 +6703,9 @@
         <param name="cloudAppVehicleID" type="Boolean" mandatory="false" since="5.1">
             <description>Parameter used by cloud apps to identify a head unit</description>
         </param>
+        <param name="stabilityControlsStatus" type="Boolean" mandatory="false" since="7.0">
+	        <description>See StabilityControlsStatus</description>
+        </param>
         <param name="eCallInfo" type="Boolean" mandatory="false">
             <description>Emergency Call notification and confirmation data</description>
         </param>
@@ -6318,6 +6720,12 @@
         </param>
         <param name="myKey" type="Boolean" mandatory="false">
             <description>Information related to the MyKey feature</description>
+        </param>
+        <param name="windowStatus" type="Boolean" mandatory="false" since="7.0">
+            <description>See WindowStatus</description>
+        </param>
+        <param name="handsOffSteering" type="Boolean" mandatory="false" since="7.0">
+            <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
     </function>
     
@@ -6354,17 +6762,26 @@
         <param name="rpm" type="Integer" minvalue="0" maxvalue="20000" mandatory="false">
             <description>The number of revolutions per minute of the engine</description>
         </param>
-        <param name="fuelLevel" type="Float" minvalue="-6" maxvalue="106" mandatory="false">
-            <description>The fuel level in the tank (percentage)</description>
+        <param name="fuelLevel" type="Float" minvalue="-6" maxvalue="106" mandatory="false" deprecated="true" since="7.0">
+            <description>The fuel level in the tank (percentage). This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.</description>
+            <history>
+                <param name="fuelLevel" type="Float" minvalue="-6" maxvalue="106" mandatory="false" since="2.0" until="7.0"/>
+            </history>
         </param>
-        <param name="fuelLevel_State" type="ComponentVolumeStatus" mandatory="false">
-            <description>The fuel level state</description>
+        <param name="fuelLevel_State" type="ComponentVolumeStatus" mandatory="false" deprecated="true" since="7.0">
+            <description>The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.</description>
+            <history>
+                <param name="fuelLevel_State" type="ComponentVolumeStatus" mandatory="false" since="2.0" until="7.0"/>
+            </history>
         </param>
         <param name="instantFuelConsumption" type="Float" minvalue="0" maxvalue="25575" mandatory="false">
             <description>The instantaneous fuel consumption in microlitres</description>
         </param>
         <param name="fuelRange" type="FuelRange" minsize="0" maxsize="100" array="true" mandatory="false" since="5.0">
-            <description>The estimate range in KM the vehicle can travel based on fuel level and consumption</description>
+            <description>
+                The fuel type, estimated range in KM, fuel level/capacity and fuel level state for the vehicle.
+                See struct FuelRange for details.
+            </description>
         </param>
         <param name="externalTemperature" type="Float" minvalue="-40" maxvalue="100" mandatory="false">
             <description>The external temperature in degrees celsius</description>
@@ -6375,8 +6792,14 @@
         <param name="vin" type="String" maxlength="17" mandatory="false">
             <description>Vehicle identification number</description>
         </param>
-        <param name="prndl" type="PRNDL" mandatory="false">
-            <description>See PRNDL</description>
+        <param name="gearStatus" type="GearStatus" mandatory="false" since="7.0">
+            <description>See GearStatus</description>
+        </param>
+        <param name="prndl" type="PRNDL" mandatory="false" deprecated="true" since="7.0">
+            <description>See PRNDL. This parameter is deprecated and it is now covered in `gearStatus`</description>
+            <history>
+                <param name="prndl" type="PRNDL" mandatory="false" since="2.0" until="7.0"/>
+            </history>
         </param>
         <param name="tirePressure" type="TireStatus" mandatory="false">
             <description>See TireStatus</description>
@@ -6420,6 +6843,9 @@
         <param name="cloudAppVehicleID" type="String" mandatory="false" since="5.1">
             <description>Parameter used by cloud apps to identify a head unit</description>
         </param>
+        <param name="stabilityControlsStatus" type="StabilityControlsStatus" mandatory="false" since="7.0">
+	        <description>See StabilityControlsStatus</description>
+        </param>
         <param name="eCallInfo" type="ECallInfo" mandatory="false">
             <description>Emergency Call notification and confirmation data</description>
         </param>
@@ -6434,6 +6860,12 @@
         </param>
         <param name="myKey" type="MyKey" mandatory="false">
             <description>Information related to the MyKey feature</description>
+        </param>
+        <param name="windowStatus" type="WindowStatus" array="true" minsize="0" maxsize="100" mandatory="false" since="7.0">
+            <description>See WindowStatus</description>
+        </param>
+        <param name="handsOffSteering" type="Boolean" mandatory="false" since="7.0">
+            <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
     </function>
     
@@ -6842,10 +7274,7 @@
     
     <function name="ChangeRegistration" functionID="ChangeRegistrationID" messagetype="response" since="2.0">
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
-            <description>
-                true, if successful
-                false, if failed
-            </description>
+            <description> true, if successful; false, if failed </description>
         </param>
         
         <param name="resultCode" type="Result" platform="documentation" mandatory="true">
@@ -7354,8 +7783,7 @@
     
     <function name="DialNumber" functionID="DialNumberID" messagetype="response" since="3.0">
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
-            <description>true, if successful</description>
-            <description>false, if failed</description>
+            <description> true, if successful; false, if failed </description>
         </param>
         
         <param name="resultCode" type="Result" platform="documentation" mandatory="true">
@@ -7448,6 +7876,7 @@
             <element name="DISALLOWED"/>
             <element name="USER_DISALLOWED"/>
             <element name="UNSUPPORTED_RESOURCE"/>
+            <element name="WARNINGS"/>		
         </param>
         <param name="info" type="String" maxlength="1000" mandatory="false">
         </param>
@@ -7927,7 +8356,7 @@
 
         <param name="functionID" type="Integer" mandatory="true">
             <description>
-                The ID of the type of interaction the developer wants to dismiss. Only values 10, (PerformInteractionID), 12 (AlertID), 25 (ScrollableMessageID), and 26 (SliderID) are permitted.
+                The ID of the type of interaction the developer wants to dismiss. Only values 10, (PerformInteractionID), 12 (AlertID), 25 (ScrollableMessageID), 26 (SliderID), and 64 (SubtleAlertID) are permitted.
             </description>
         </param>
     </function>
@@ -8052,17 +8481,26 @@
         <param name="rpm" type="Integer" minvalue="0" maxvalue="20000" mandatory="false">
             <description>The number of revolutions per minute of the engine</description>
         </param>
-        <param name="fuelLevel" type="Float" minvalue="-6" maxvalue="106" mandatory="false">
-            <description>The fuel level in the tank (percentage)</description>
+        <param name="fuelLevel" type="Float" minvalue="-6" maxvalue="106" mandatory="false" deprecated="true" since="7.0">
+            <description>The fuel level in the tank (percentage). This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.</description>
+            <history>
+                <param name="fuelLevel" type="Float" minvalue="-6" maxvalue="106" mandatory="false" since="2.0" until="7.0"/>
+            </history>
         </param>
-        <param name="fuelLevel_State" type="ComponentVolumeStatus" mandatory="false">
-            <description>The fuel level state</description>
+        <param name="fuelLevel_State" type="ComponentVolumeStatus" mandatory="false" deprecated="true" since="7.0">
+            <description>The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.</description>
+            <history>
+                <param name="fuelLevel_State" type="ComponentVolumeStatus" mandatory="false" since="2.0" until="7.0"/>
+            </history>
         </param>
         <param name="instantFuelConsumption" type="Float" minvalue="0" maxvalue="25575" mandatory="false">
             <description>The instantaneous fuel consumption in microlitres</description>
         </param>
         <param name="fuelRange" type="FuelRange" minsize="0" maxsize="100" array="true" mandatory="false" since="5.0">
-            <description>The estimate range in KM the vehicle can travel based on fuel level and consumption</description>
+            <description>
+                The fuel type, estimated range in KM, fuel level/capacity and fuel level state for the vehicle.
+                See struct FuelRange for details.
+            </description>
         </param>
         <param name="externalTemperature" type="Float" minvalue="-40" maxvalue="100" mandatory="false">
             <description>The external temperature in degrees celsius</description>
@@ -8073,8 +8511,14 @@
         <param name="vin" type="String" maxlength="17" mandatory="false">
             <description>Vehicle identification number.</description>
         </param>
-        <param name="prndl" type="PRNDL" mandatory="false">
-            <description>See PRNDL</description>
+        <param name="gearStatus" type="GearStatus" mandatory="false" since="7.0">
+            <description>See GearStatus</description>
+        </param>
+        <param name="prndl" type="PRNDL" mandatory="false" deprecated="true" since="7.0">
+            <description>See PRNDL. This parameter is deprecated and it is now covered in `gearStatus`</description>
+            <history>
+                <param name="prndl" type="PRNDL" mandatory="false" since="2.0" until="7.0"/>
+            </history>
         </param>
         <param name="tirePressure" type="TireStatus" mandatory="false">
             <description>See TireStatus</description>
@@ -8118,6 +8562,9 @@
         <param name="cloudAppVehicleID" type="String" mandatory="false" since="5.1">
             <description>Parameter used by cloud apps to identify a head unit</description>
         </param>
+        <param name="stabilityControlsStatus" type="StabilityControlsStatus" mandatory="false" since="7.0">
+	        <description>See StabilityControlsStatus</description>
+        </param>
         <param name="eCallInfo" type="ECallInfo" mandatory="false">
             <description>Emergency Call notification and confirmation data</description>
         </param>
@@ -8132,6 +8579,12 @@
         </param>
         <param name="myKey" type="MyKey" mandatory="false">
             <description>Information related to the MyKey feature</description>
+        </param>
+        <param name="windowStatus" type="WindowStatus" array="true" minsize="0" maxsize="100" mandatory="false" since="7.0">
+            <description>See WindowStatus</description>
+        </param>
+        <param name="handsOffSteering" type="Boolean" mandatory="false" since="7.0">
+            <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
     </function>
     
@@ -8236,12 +8689,15 @@
                 This parameter is filled for supporting OEM proprietary data exchanges.
             </description>
         </param>
-        <param name="url" type="String" maxlength="1000" mandatory="false">
+        <param name="url" type="String" mandatory="false" since="7.0">
             <description>
                 Optional URL for HTTP requests.
                 If blank, the binary data shall be forwarded to the app.
                 If not blank, the binary data shall be forwarded to the url with a provided timeout in seconds.
             </description>
+            <history>
+                <param name="url" type="String" maxlength="1000" mandatory="false" since="3.0" until="7.0"/>
+            </history>
         </param>
         <param name="timeout" type="Integer" minvalue="0" maxvalue="2000000000" mandatory="false">
             <description>
@@ -8305,6 +8761,26 @@
         <description>A notification to inform the connected device that a specific system capability has changed.</description>
         <param name="systemCapability" type="SystemCapability" mandatory="true">
             <description>The system capability that has been updated</description>
+        </param>
+    </function>
+
+    <function name="OnUpdateFile" functionID="OnUpdateFileID" messagetype="notification" since="7.0">
+        <description>This notification tells an app to upload and update a file with a given name.</description>
+
+        <param name="fileName" type="String" maxlength="255" mandatory="true">
+            <description>File reference name.</description>
+        </param>
+    </function>
+
+    <function name="OnUpdateSubMenu" functionID="OnUpdateSubMenuID" messagetype="notification" since="7.0">
+        <description>This notification tells an app to update the AddSubMenu or its 'sub' AddCommand and AddSubMenus with the requested data</description>
+
+        <param name="menuID" type="Integer" minvalue="0" maxvalue="2000000000" mandatory="true">
+            <description>This menuID must match a menuID in the current menu structure</description>
+        </param>
+
+        <param name="updateSubCells" type="Boolean" mandatory="false">
+            <description>If not set, assume false. If true, the app should send AddCommands with parentIDs matching the menuID. These AddCommands will then be attached to the submenu and displayed if the submenu is selected.</description>
         </param>
     </function>
     
