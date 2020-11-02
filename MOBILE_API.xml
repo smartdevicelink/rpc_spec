@@ -4316,7 +4316,9 @@
     </struct>
 
     <struct name="WeatherData" since="5.1">
-        <param name="currentTemperature" type="Temperature" mandatory="false"/>
+        <param name="currentTemperature" type="Temperature" mandatory="false">
+            <description>This parameter may be populated with a forecasted temperature even when the high and low parameters are not available.</description>
+        </param>
         <param name="temperatureHigh" type="Temperature" mandatory="false"/>
         <param name="temperatureLow" type="Temperature" mandatory="false"/>
         <param name="apparentTemperature" type="Temperature" mandatory="false"/>
