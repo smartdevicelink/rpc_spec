@@ -173,6 +173,8 @@ For touchscreen interactions, the mode of how the choices are presented.
 
 
 ### PredefinedWindows
+Specifies IDs for windows which are predefined and pre-created. The mobile libraries and SDL Core use the integer value when referencing these elements.
+
 ##### Elements
 
 | Value | Description | 
@@ -1503,7 +1505,7 @@ Enumeration linking function names with function IDs in SmartDeviceLink protocol
 
 
 ### messageType
-Enumeration linking message types with function types in WiPro protocol. Assumes enumeration starts at value 0.
+Enumeration linking message types with function types in WiPro protocol. Assumes enumeration starts at value 0. The integer value is used in the protocol binary header.
 
 ##### Elements
 
@@ -1602,6 +1604,8 @@ List possible seats that is a remote controllable seat.
 
 
 ### LightName
+Enumeration that describes possible values of light name. The mobile libraries and SDL Core use the name string when referencing these elements.
+
 ##### Elements
 
 | Value | Description | 
@@ -2278,9 +2282,7 @@ Information about an RC module
 
 
 ### ButtonCapabilities
-Contains information about a button's capabilities.
-
-NOTE: Multiple button capabilities can exist for the same ButtonName with different moduleIds.
+Contains information about a button's capabilities. NOTE: Multiple button capabilities can exist for the same ButtonName with different moduleIds.
 
 ##### Parameters
 
@@ -2954,14 +2956,13 @@ The moduleType indicates which type of data should be changed and identifies whi
 
 
 ### RemoteControlCapabilities
-
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`climateControlCapabilities`|ClimateControlCapabilities[]|False|If included, the platform supports RC climate controls. For this baseline version, maxsize=1. i.e. only one climate control module is supported.|
-|`radioControlCapabilities`|RadioControlCapabilities[]|False|If included, the platform supports RC radio controls.For this baseline version, maxsize=1. i.e. only one radio control module is supported.|
-|`buttonCapabilities`|ButtonCapabilities[]|False|If included, the platform supports RC button controls with the included button names. NOTE: Multiple button capabilities can exist for the same ButtonName with different moduleIds.|
+|`radioControlCapabilities`|RadioControlCapabilities[]|False|If included, the platform supports RC radio controls.For this baseline version, maxsize=1. i.e. only one radio control module is supported. NOTE: Multiple button capabilities can exist for the same ButtonName with different moduleIds.|
+|`buttonCapabilities`|ButtonCapabilities[]|False|If included, the platform supports RC button controls with the included button names.|
 |`audioControlCapabilities`|AudioControlCapabilities[]|False|If included, the platform supports audio controls.|
 |`hmiSettingsControlCapabilities`|HMISettingsControlCapabilities|False|If included, the platform supports hmi setting controls.|
 |`lightControlCapabilities`|LightControlCapabilities|False|If included, the platform supports light controls.|
@@ -4674,7 +4675,7 @@ Message Type: **response**
 ### ButtonPress
 Message Type: **request**
 
-NOTE: Certain ButtonNames are tied to specific module types. See `ButtonName`.
+NOTE: Certain ButtonNames are tied to specific module types. See ButtonName
 
 ##### Parameters
 
@@ -4705,7 +4706,7 @@ Message Type: **request**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`moduleType`|ModuleType|True|The type of a RC module to retrieve module data from the vehicle. In the future, this should be the Identification of a module.|
+|`moduleType`|ModuleType|True|The type of an RC module to retrieve module data from the vehicle. In the future, this should be the Identification of a module.|
 |`moduleId`|String|False|Id of a module, published by System Capability.|
 |`subscribe`|Boolean|False|If subscribe is true, the head unit will register OnInteriorVehicleData notifications for the requested module (moduleId and moduleType). If subscribe is false, the head unit will unregister OnInteriorVehicleData notifications for the requested module (moduleId and moduleType). If subscribe is not included, the subscription status of the app for the requested module (moduleId and moduleType) will remain unchanged.|
 

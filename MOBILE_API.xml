@@ -647,44 +647,106 @@
         <element name="CUSTOM_BUTTON" />
         <element name="SEARCH" />
         <!-- Climate Buttons -->
-        <element name="AC_MAX" since="4.5" />
-        <element name="AC" since="4.5" />
-        <element name="RECIRCULATE" since="4.5" />
-        <element name="FAN_UP" since="4.5" />
-        <element name="FAN_DOWN" since="4.5" />
-        <element name="TEMP_UP" since="4.5" />
-        <element name="TEMP_DOWN" since="4.5" />
-        <element name="DEFROST_MAX" since="4.5" />
-        <element name="DEFROST" since="4.5" />
-        <element name="DEFROST_REAR" since="4.5" />
-        <element name="UPPER_VENT" since="4.5" />
-        <element name="LOWER_VENT" since="4.5" />
-        <!-- Radio Buttons -->
-        <element name="VOLUME_UP" since="4.5" />
-        <element name="VOLUME_DOWN" since="4.5" />
-        <element name="EJECT" since="4.5" />
-        <element name="SOURCE" since="4.5" />
-        <element name="SHUFFLE" since="4.5" />
-        <element name="REPEAT" since="4.5" />
-        <!-- Navigation Buttons -->
-        <element name="NAV_CENTER_LOCATION" since="6.0" />
-        <element name="NAV_ZOOM_IN" since="6.0" />
-        <element name="NAV_ZOOM_OUT" since="6.0" />
-        <element name="NAV_PAN_UP" since="6.0" />
-        <element name="NAV_PAN_UP_RIGHT" since="6.0" />
-        <element name="NAV_PAN_RIGHT" since="6.0" />
-        <element name="NAV_PAN_DOWN_RIGHT" since="6.0" />
-        <element name="NAV_PAN_DOWN" since="6.0" />
-        <element name="NAV_PAN_DOWN_LEFT" since="6.0" />
-        <element name="NAV_PAN_LEFT" since="6.0" />
-        <element name="NAV_PAN_UP_LEFT" since="6.0" />
-        <element name="NAV_TILT_TOGGLE" since="6.0" >
-            <description>If supported, this toggles between a top-down view and an angled/3D view. If your app supports different, but substantially similar options, then you may implement those. If you don't implement these or similar options, do not subscribe to this button.</description>
+        <element name="AC_MAX" since="4.5">
+            <description>Tied to CLIMATE modules.</description>
         </element>
-        <element name="NAV_ROTATE_CLOCKWISE" since="6.0" />
-        <element name="NAV_ROTATE_COUNTERCLOCKWISE" since="6.0" />
+        <element name="AC" since="4.5">
+            <description>Tied to CLIMATE modules.</description>
+        </element>
+        <element name="RECIRCULATE" since="4.5">
+            <description>Tied to CLIMATE modules.</description>
+        </element>
+        <element name="FAN_UP" since="4.5">
+            <description>Tied to CLIMATE modules.</description>
+        </element>
+        <element name="FAN_DOWN" since="4.5">
+            <description>Tied to CLIMATE modules.</description>
+        </element>
+        <element name="TEMP_UP" since="4.5">
+            <description>Tied to CLIMATE modules.</description>
+        </element>
+        <element name="TEMP_DOWN" since="4.5">
+            <description>Tied to CLIMATE modules.</description>
+        </element>
+        <element name="DEFROST_MAX" since="4.5">
+            <description>Tied to CLIMATE modules.</description>
+        </element>
+        <element name="DEFROST" since="4.5">
+            <description>Tied to CLIMATE modules.</description>
+        </element>
+        <element name="DEFROST_REAR" since="4.5">
+            <description>Tied to CLIMATE modules.</description>
+        </element>
+        <element name="UPPER_VENT" since="4.5">
+            <description>Tied to CLIMATE modules.</description>
+        </element>
+        <element name="LOWER_VENT" since="4.5">
+            <description>Tied to CLIMATE modules.</description>
+        </element>
+        <!-- Radio Buttons -->
+        <element name="VOLUME_UP" since="4.5">
+            <description>Tied to RADIO modules.</description>
+        </element>
+        <element name="VOLUME_DOWN" since="4.5">
+            <description>Tied to RADIO modules.</description>
+        </element>
+        <element name="EJECT" since="4.5">
+            <description>Tied to RADIO modules.</description>
+        </element>
+        <element name="SOURCE" since="4.5">
+            <description>Tied to RADIO modules.</description>
+        </element>
+        <element name="SHUFFLE" since="4.5">
+            <description>Tied to RADIO modules.</description>
+        </element>
+        <element name="REPEAT" since="4.5">
+            <description>Tied to RADIO modules.</description>
+        </element>
+        <!-- Navigation Buttons -->
+        <element name="NAV_CENTER_LOCATION" since="6.0">
+            <description>Tied to NAVIGATION modules.</description>
+        </element>
+        <element name="NAV_ZOOM_IN" since="6.0">
+            <description>Tied to NAVIGATION modules.</description>
+        </element>
+        <element name="NAV_ZOOM_OUT" since="6.0">
+            <description>Tied to NAVIGATION modules.</description>
+        </element>
+        <element name="NAV_PAN_UP" since="6.0">
+            <description>Tied to NAVIGATION modules.</description>
+        </element>
+        <element name="NAV_PAN_UP_RIGHT" since="6.0">
+            <description>Tied to NAVIGATION modules.</description>
+        </element>
+        <element name="NAV_PAN_RIGHT" since="6.0">
+            <description>Tied to NAVIGATION modules.</description>
+        </element>
+        <element name="NAV_PAN_DOWN_RIGHT" since="6.0">
+            <description>Tied to NAVIGATION modules.</description>
+        </element>
+        <element name="NAV_PAN_DOWN" since="6.0">
+            <description>Tied to NAVIGATION modules.</description>
+        </element>
+        <element name="NAV_PAN_DOWN_LEFT" since="6.0">
+            <description>Tied to NAVIGATION modules.</description>
+        </element>
+        <element name="NAV_PAN_LEFT" since="6.0">
+            <description>Tied to NAVIGATION modules.</description>
+        </element>
+        <element name="NAV_PAN_UP_LEFT" since="6.0">
+            <description>Tied to NAVIGATION modules.</description>
+        </element>
+        <element name="NAV_TILT_TOGGLE" since="6.0" >
+            <description>Tied to NAVIGATION modules. If supported, this toggles between a top-down view and an angled/3D view. If your app supports different, but substantially similar options, then you may implement those. If you don't implement these or similar options, do not subscribe to this button.</description>
+        </element>
+        <element name="NAV_ROTATE_CLOCKWISE" since="6.0">
+            <description>Tied to NAVIGATION modules.</description>
+        </element>
+        <element name="NAV_ROTATE_COUNTERCLOCKWISE" since="6.0">
+            <description>Tied to NAVIGATION modules.</description>
+        </element>
         <element name="NAV_HEADING_TOGGLE" since="6.0" >
-            <description>If supported, this toggles between locking the orientation to north or to the vehicle's heading. If your app supports different, but substantially similar options, then you may implement those. If you don't implement these or similar options, do not subscribe to this button.</description>
+            <description>Tied to NAVIGATION modules. If supported, this toggles between locking the orientation to north or to the vehicle's heading. If your app supports different, but substantially similar options, then you may implement those. If you don't implement these or similar options, do not subscribe to this button.</description>
         </element>
     </enum>
     
