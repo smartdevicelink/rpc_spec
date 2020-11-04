@@ -2431,9 +2431,9 @@
     </struct>
 
     <struct name="ModuleInfo" since="6.0">
-        <description>Information about a RC module</description>
+        <description>Information about an RC module</description>
         <param name="moduleId" type="String" maxlength="100" mandatory="true">
-            <description> uuid of a module. "moduleId + moduleType" uniquely identify a module.</description>
+            <description> UUID of a module. "moduleId + moduleType" uniquely identify a module.</description>
         </param>
         <param name="location" type="Grid" mandatory="false">
            <description>Location of a module.</description>
@@ -2447,12 +2447,15 @@
     </struct>
 
     <struct name="ButtonCapabilities" since="1.0">
-        <description>Contains information about a button's capabilities.</description>
+        <description>
+            Contains information about a button's capabilities.
+            NOTE: Multiple button capabilities can exist for the same ButtonName with different moduleIds.
+        </description>
         <param name="name" type="ButtonName" mandatory="true">
             <description>The name of the button. See ButtonName.</description>
         </param>
         <param name="moduleInfo" type="ModuleInfo" mandatory="false" since="6.0">
-            <description>Information about a RC module, including its id. </description>
+            <description>Information about an RC module, including its id. </description>
         </param>
         <param name="shortPressAvailable" type="Boolean" mandatory="true">
             <description>
@@ -3405,7 +3408,7 @@
             </description>
         </param>
         <param name="moduleInfo" type="ModuleInfo" mandatory="false" since="6.0">
-            <description>Information about a RC module, including its id. </description>
+            <description>Information about an RC module, including its id. </description>
         </param>
         <param name="heatingEnabledAvailable" type="Boolean" mandatory="false">
         </param>
@@ -3595,7 +3598,7 @@
             </description>
         </param>
         <param name="moduleInfo" type="ModuleInfo" mandatory="false" since="6.0">
-            <description>Information about a RC module, including its id. </description>
+            <description>Information about an RC module, including its id. </description>
         </param>
         <param name="radioEnableAvailable" type="Boolean" mandatory="false">
             <description>
@@ -3687,7 +3690,7 @@
                 It should not be used to identify a module by mobile application.</description>
         </param>
         <param name="moduleInfo" type="ModuleInfo" mandatory="false" since="6.0">
-            <description>Information about a RC module, including its id. </description>
+            <description>Information about an RC module, including its id. </description>
         </param>
         <param name="currentTemperatureAvailable" type="Boolean" mandatory="false" since="5.0">
             <description>
@@ -3835,7 +3838,7 @@
             </description>
         </param>
         <param name="moduleInfo" type="ModuleInfo" mandatory="false" since="6.0">
-            <description>Information about a RC module, including its id. </description>
+            <description>Information about an RC module, including its id. </description>
         </param>
         <param name="sourceAvailable" type="Boolean" mandatory="false">
             <description>Availability of the control of audio source. </description>
@@ -3994,7 +3997,7 @@
             </description>
         </param>
         <param name="moduleInfo" type="ModuleInfo" mandatory="false" since="6.0">
-            <description>Information about a RC module, including its id. </description>
+            <description>Information about an RC module, including its id. </description>
         </param>
         <param name="supportedLights" type="LightCapabilities" minsize="1" maxsize="100" array="true" mandatory="true">
             <description> An array of available LightCapabilities that are controllable. </description>
@@ -4042,7 +4045,7 @@
             </description>
         </param>
         <param name="moduleInfo" type="ModuleInfo" mandatory="false" since="6.0">
-            <description>Information about a RC module, including its id. </description>
+            <description>Information about an RC module, including its id. </description>
         </param>
         <param name="distanceUnitAvailable" type="Boolean" mandatory="false">
             <description>Availability of the control of distance unit. </description>
@@ -4081,7 +4084,10 @@
             <description>If included, the platform supports RC climate controls. For this baseline version, maxsize=1. i.e. only one climate control module is supported.</description>
         </param>
         <param name="radioControlCapabilities" type="RadioControlCapabilities" mandatory="false" minsize="1" maxsize="100" array="true">
-            <description>If included, the platform supports RC radio controls.For this baseline version, maxsize=1. i.e. only one radio control module is supported.</description>
+            <description>
+                If included, the platform supports RC radio controls.For this baseline version, maxsize=1. i.e. only one radio control module is supported.
+                NOTE: Multiple button capabilities can exist for the same ButtonName with different moduleIds.    
+            </description>
         </param>
         <param name="buttonCapabilities" type="ButtonCapabilities"  mandatory="false" minsize="1" maxsize="100" array="true">
             <description>If included, the platform supports RC button controls with the included button names.</description>
@@ -7803,14 +7809,15 @@
     </function>
     
     <function name="ButtonPress" functionID="ButtonPressID" messagetype="request" since="4.5">
+        <description>NOTE: Certain ButtonNames are tied to specific module types. See ButtonName</description>
         <param name="moduleType" type="ModuleType" mandatory="true">
             <description>The module where the button should be pressed</description>
         </param>
         <param name="moduleId" type="String" maxlength="100" mandatory="false" since="6.0">
-            <description>Id of a module, published by System Capability. </description>
+            <description>Id of a module in the published ButtonCapabilities</description>
         </param>
         <param name="buttonName" type="ButtonName" mandatory="true">
-            <description>The name of supported RC climate or radio button.</description>
+            <description>The name of the supported RC button.</description>
         </param>
         <param name="buttonPressMode" type="ButtonPressMode" mandatory="true">
             <description>Indicates whether this is a LONG or SHORT button press event.</description>
@@ -7841,7 +7848,7 @@
     <function name="GetInteriorVehicleData" functionID="GetInteriorVehicleDataID" messagetype="request" since="4.5">
         <param name="moduleType" type="ModuleType" mandatory="true">
             <description>
-                The type of a RC module to retrieve module data from the vehicle.
+                The type of an RC module to retrieve module data from the vehicle.
                 In the future, this should be the Identification of a module.
             </description>
         </param>
