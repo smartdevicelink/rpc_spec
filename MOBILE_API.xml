@@ -2495,7 +2495,7 @@
     <struct name="ModuleInfo" since="6.0">
         <description>Information about an RC module</description>
         <param name="moduleId" type="String" maxlength="100" mandatory="true">
-            <description> UUID of a module. "moduleId + moduleType" uniquely identify a module.</description>
+            <description>UUID of a module. "moduleId + moduleType" uniquely identify a module.</description>
         </param>
         <param name="location" type="Grid" mandatory="false">
            <description>Location of a module.</description>
@@ -7871,7 +7871,7 @@
     </function>
     
     <function name="ButtonPress" functionID="ButtonPressID" messagetype="request" since="4.5">
-        <description>NOTE: Certain ButtonNames are tied to specific module types. See ButtonName</description>
+        <description>NOTE: Certain ButtonNames are tied to specific RC module types. See ButtonName</description>
         <param name="moduleType" type="ModuleType" mandatory="true">
             <description>The module where the button should be pressed</description>
         </param>
