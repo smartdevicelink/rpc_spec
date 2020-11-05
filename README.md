@@ -499,7 +499,7 @@ Defines the hard (physical) and soft (touchscreen) buttons available from the mo
 |`NAV_TILT_TOGGLE`|If supported, this toggles between a top-down view and an angled/3D view. If your app supports different, but substantially similar options, then you may implement those. If you don't implement these or similar options, do not subscribe to this button.|
 |`NAV_ROTATE_CLOCKWISE`||
 |`NAV_ROTATE_COUNTERCLOCKWISE`||
-|`NAV_HEADING_TOGGLE`||
+|`NAV_HEADING_TOGGLE`|If supported, this toggles between locking the orientation to north or to the vehicle's heading. If your app supports different, but substantially similar options, then you may implement those. If you don't implement these or similar options, do not subscribe to this button.|
 
 
 ### MediaClockFormat
@@ -4675,7 +4675,7 @@ Message Type: **response**
 ### ButtonPress
 Message Type: **request**
 
-NOTE: Certain ButtonNames are tied to specific module types. See ButtonName
+NOTE: Certain ButtonNames are tied to specific RC module types. See ButtonName
 
 ##### Parameters
 
