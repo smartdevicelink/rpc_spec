@@ -2498,7 +2498,7 @@
     <struct name="ButtonCapabilities" since="1.0">
         <description>
             Contains information about a button's capabilities.
-            NOTE: Multiple button capabilities can exist for the same ButtonName with different moduleIds.
+            NOTE: Multiple button capabilities can exist for the same ButtonName with different module ids. The module Id for a button should match the module id for a "primary" module type, such as a climate module or a radio module. Whichever module the id matches the button's id is the module the button will control.
         </description>
         <param name="name" type="ButtonName" mandatory="true">
             <description>The name of the button. See ButtonName.</description>
@@ -4138,7 +4138,7 @@
         <param name="buttonCapabilities" type="ButtonCapabilities"  mandatory="false" minsize="1" maxsize="100" array="true">
             <description>
                 If included, the platform supports RC button controls with the included button names.
-                NOTE: Multiple button capabilities can exist for the same ButtonName with different moduleIds.
+                NOTE: Multiple button capabilities can exist for the same ButtonName with different module ids. The module Id for a button should match the module id for a "primary" module type, such as a climate module or a radio module. Whichever module the id matches the button's id is the module the button will control.
             </description>
         </param>
         <param name="audioControlCapabilities" type="AudioControlCapabilities" mandatory="false" minsize="1" maxsize="100" array="true" since="5.0">
