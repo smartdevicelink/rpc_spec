@@ -2282,7 +2282,7 @@ Information about an RC module
 
 
 ### ButtonCapabilities
-Contains information about a button's capabilities. NOTE: Multiple button capabilities can exist for the same ButtonName with different moduleIds.
+Contains information about a button's capabilities. NOTE: Multiple button capabilities can exist for the same ButtonName with different module ids. The module Id for a button should match the module id for a "primary" module type, such as a climate module or a radio module. Whichever module the id matches the button's id is the module the button will control.
 
 ##### Parameters
 
@@ -2962,7 +2962,7 @@ The moduleType indicates which type of data should be changed and identifies whi
 | ---------- | ---------- |:-----------: |:-----------:|
 |`climateControlCapabilities`|ClimateControlCapabilities[]|False|If included, the platform supports RC climate controls. For this baseline version, maxsize=1. i.e. only one climate control module is supported.|
 |`radioControlCapabilities`|RadioControlCapabilities[]|False|If included, the platform supports RC radio controls.|
-|`buttonCapabilities`|ButtonCapabilities[]|False|If included, the platform supports RC button controls with the included button names. NOTE: Multiple button capabilities can exist for the same ButtonName with different moduleIds.|
+|`buttonCapabilities`|ButtonCapabilities[]|False|If included, the platform supports RC button controls with the included button names. NOTE: Multiple button capabilities can exist for the same ButtonName with different module ids. The module Id for a button should match the module id for a "primary" module type, such as a climate module or a radio module. Whichever module the id matches the button's id is the module the button will control.|
 |`audioControlCapabilities`|AudioControlCapabilities[]|False|If included, the platform supports audio controls.|
 |`hmiSettingsControlCapabilities`|HMISettingsControlCapabilities|False|If included, the platform supports hmi setting controls.|
 |`lightControlCapabilities`|LightControlCapabilities|False|If included, the platform supports light controls.|
