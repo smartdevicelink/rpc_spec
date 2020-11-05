@@ -467,24 +467,24 @@ Defines the hard (physical) and soft (touchscreen) buttons available from the mo
 |`PRESET_9`||
 |`CUSTOM_BUTTON`||
 |`SEARCH`||
-|`AC_MAX`||
-|`AC`||
-|`RECIRCULATE`||
-|`FAN_UP`||
-|`FAN_DOWN`||
-|`TEMP_UP`||
-|`TEMP_DOWN`||
-|`DEFROST_MAX`||
-|`DEFROST`||
-|`DEFROST_REAR`||
-|`UPPER_VENT`||
-|`LOWER_VENT`||
-|`VOLUME_UP`||
-|`VOLUME_DOWN`||
-|`EJECT`||
-|`SOURCE`||
-|`SHUFFLE`||
-|`REPEAT`||
+|`AC_MAX`|Tied to CLIMATE RC modules.|
+|`AC`|Tied to CLIMATE RC modules.|
+|`RECIRCULATE`|Tied to CLIMATE RC modules.|
+|`FAN_UP`|Tied to CLIMATE RC modules.|
+|`FAN_DOWN`|Tied to CLIMATE RC modules.|
+|`TEMP_UP`|Tied to CLIMATE RC modules.|
+|`TEMP_DOWN`|Tied to CLIMATE RC modules.|
+|`DEFROST_MAX`|Tied to CLIMATE RC modules.|
+|`DEFROST`|Tied to CLIMATE RC modules.|
+|`DEFROST_REAR`|Tied to CLIMATE RC modules.|
+|`UPPER_VENT`|Tied to CLIMATE RC modules.|
+|`LOWER_VENT`|Tied to CLIMATE RC modules.|
+|`VOLUME_UP`|Tied to RADIO RC modules.|
+|`VOLUME_DOWN`|Tied to RADIO RC modules.|
+|`EJECT`|Tied to RADIO RC modules.|
+|`SOURCE`|Tied to RADIO RC modules.|
+|`SHUFFLE`|Tied to RADIO RC modules.|
+|`REPEAT`|Tied to RADIO RC modules.|
 |`NAV_CENTER_LOCATION`||
 |`NAV_ZOOM_IN`||
 |`NAV_ZOOM_OUT`||
@@ -2269,27 +2269,27 @@ Describes the status of a window of a door/liftgate etc.
 
 
 ### ModuleInfo
-Information about a RC module
+Information about an RC module
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`moduleId`|String|True|uuid of a module. "moduleId + moduleType" uniquely identify a module.|
+|`moduleId`|String|True|UUID of a module. "moduleId + moduleType" uniquely identify a module.|
 |`location`|Grid|False|Location of a module.|
 |`serviceArea`|Grid|False|Service area of a module.|
 |`allowMultipleAccess`|Boolean|False|allow multiple users/apps to access the module or not|
 
 
 ### ButtonCapabilities
-Contains information about a button's capabilities.
+Contains information about a button's capabilities. NOTE: Multiple button capabilities can exist for the same ButtonName with different module ids. The module Id for a button should match the module id for a "primary" module type, such as a climate module or a radio module. Whichever module the id matches the button's id is the module the button will control.
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`name`|ButtonName|True|The name of the button. See ButtonName.|
-|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
+|`moduleInfo`|ModuleInfo|False|Information about an RC module, including its id.|
 |`shortPressAvailable`|Boolean|True|The button supports a short press. Whenever the button is pressed short, onButtonPressed( SHORT) will be invoked.|
 |`longPressAvailable`|Boolean|True|The button supports a LONG press. Whenever the button is pressed long, onButtonPressed( LONG) will be invoked.|
 |`upDownAvailable`|Boolean|True|The button supports "button down" and "button up". Whenever the button is pressed, onButtonEvent( DOWN) will be invoked. Whenever the button is released, onButtonEvent( UP) will be invoked.|
@@ -2680,7 +2680,7 @@ Seat control data corresponds to "SEAT" ModuleType.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleName`|String|True|The short friendly name of the light control module. It should not be used to identify a module by mobile application.|
-|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
+|`moduleInfo`|ModuleInfo|False|Information about an RC module, including its id.|
 |`heatingEnabledAvailable`|Boolean|False||
 |`coolingEnabledAvailable`|Boolean|False||
 |`heatingLevelAvailable`|Boolean|False||
@@ -2793,7 +2793,7 @@ Contains information about a radio control module's capabilities.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleName`|String|True|The short friendly name of the climate control module. It should not be used to identify a module by mobile application.|
-|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
+|`moduleInfo`|ModuleInfo|False|Information about an RC module, including its id.|
 |`radioEnableAvailable`|Boolean|False|Availability of the control of enable/disable radio. True: Available, False: Not Available, Not present: Not Available.|
 |`radioBandAvailable`|Boolean|False|Availability of the control of radio band. True: Available, False: Not Available, Not present: Not Available.|
 |`radioFrequencyAvailable`|Boolean|False|Availability of the control of radio frequency. True: Available, False: Not Available, Not present: Not Available.|
@@ -2817,7 +2817,7 @@ Contains information about a climate control module's capabilities.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleName`|String|True|The short friendly name of the climate control module. It should not be used to identify a module by mobile application.|
-|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
+|`moduleInfo`|ModuleInfo|False|Information about an RC module, including its id.|
 |`currentTemperatureAvailable`|Boolean|False|Availability of the reading of current temperature. True: Available, False: Not Available, Not present: Not Available.|
 |`fanSpeedAvailable`|Boolean|False|Availability of the control of fan speed. True: Available, False: Not Available, Not present: Not Available.|
 |`desiredTemperatureAvailable`|Boolean|False|Availability of the control of desired temperature. True: Available, False: Not Available, Not present: Not Available.|
@@ -2866,7 +2866,7 @@ Defines the each Equalizer channel settings.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleName`|String|True|The short friendly name of the light control module. It should not be used to identify a module by mobile application.|
-|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
+|`moduleInfo`|ModuleInfo|False|Information about an RC module, including its id.|
 |`sourceAvailable`|Boolean|False|Availability of the control of audio source.|
 |`keepContextAvailable`|Boolean|False|Availability of the keepContext parameter.|
 |`volumeAvailable`|Boolean|False|Availability of the control of audio volume.|
@@ -2891,7 +2891,7 @@ Defines the each Equalizer channel settings.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleName`|String|True|The short friendly name of the light control module. It should not be used to identify a module by mobile application.|
-|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
+|`moduleInfo`|ModuleInfo|False|Information about an RC module, including its id.|
 |`supportedLights`|LightCapabilities[]|True|An array of available LightCapabilities that are controllable.|
 
 
@@ -2932,7 +2932,7 @@ Corresponds to "HMI_SETTINGS" ModuleType
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleName`|String|True|The short friendly name of the hmi setting module. It should not be used to identify a module by mobile application.|
-|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
+|`moduleInfo`|ModuleInfo|False|Information about an RC module, including its id.|
 |`distanceUnitAvailable`|Boolean|False|Availability of the control of distance unit.|
 |`temperatureUnitAvailable`|Boolean|False|Availability of the control of temperature unit.|
 |`displayModeUnitAvailable`|Boolean|False|Availability of the control of HMI display mode.|
@@ -2961,8 +2961,8 @@ The moduleType indicates which type of data should be changed and identifies whi
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`climateControlCapabilities`|ClimateControlCapabilities[]|False|If included, the platform supports RC climate controls. For this baseline version, maxsize=1. i.e. only one climate control module is supported.|
-|`radioControlCapabilities`|RadioControlCapabilities[]|False|If included, the platform supports RC radio controls.For this baseline version, maxsize=1. i.e. only one radio control module is supported.|
-|`buttonCapabilities`|ButtonCapabilities[]|False|If included, the platform supports RC button controls with the included button names.|
+|`radioControlCapabilities`|RadioControlCapabilities[]|False|If included, the platform supports RC radio controls.|
+|`buttonCapabilities`|ButtonCapabilities[]|False|If included, the platform supports RC button controls with the included button names. NOTE: Multiple button capabilities can exist for the same ButtonName with different module ids. The module Id for a button should match the module id for a "primary" module type, such as a climate module or a radio module. Whichever module the id matches the button's id is the module the button will control.|
 |`audioControlCapabilities`|AudioControlCapabilities[]|False|If included, the platform supports audio controls.|
 |`hmiSettingsControlCapabilities`|HMISettingsControlCapabilities|False|If included, the platform supports hmi setting controls.|
 |`lightControlCapabilities`|LightControlCapabilities|False|If included, the platform supports light controls.|
@@ -4675,13 +4675,15 @@ Message Type: **response**
 ### ButtonPress
 Message Type: **request**
 
+NOTE: Certain ButtonNames are tied to specific RC module types. See ButtonName
+
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleType`|ModuleType|True|The module where the button should be pressed|
-|`moduleId`|String|False|Id of a module, published by System Capability.|
-|`buttonName`|ButtonName|True|The name of supported RC climate or radio button.|
+|`moduleId`|String|False|Id of a module in the published ButtonCapabilities|
+|`buttonName`|ButtonName|True|The name of the supported RC button.|
 |`buttonPressMode`|ButtonPressMode|True|Indicates whether this is a LONG or SHORT button press event.|
 
 
@@ -4704,7 +4706,7 @@ Message Type: **request**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`moduleType`|ModuleType|True|The type of a RC module to retrieve module data from the vehicle. In the future, this should be the Identification of a module.|
+|`moduleType`|ModuleType|True|The type of an RC module to retrieve module data from the vehicle. In the future, this should be the Identification of a module.|
 |`moduleId`|String|False|Id of a module, published by System Capability.|
 |`subscribe`|Boolean|False|If subscribe is true, the head unit will register OnInteriorVehicleData notifications for the requested module (moduleId and moduleType). If subscribe is false, the head unit will unregister OnInteriorVehicleData notifications for the requested module (moduleId and moduleType). If subscribe is not included, the subscription status of the app for the requested module (moduleId and moduleType) will remain unchanged.|
 

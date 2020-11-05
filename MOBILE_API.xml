@@ -647,42 +647,91 @@
         <element name="CUSTOM_BUTTON" />
         <element name="SEARCH" />
         <!-- Climate Buttons -->
-        <element name="AC_MAX" since="4.5" />
-        <element name="AC" since="4.5" />
-        <element name="RECIRCULATE" since="4.5" />
-        <element name="FAN_UP" since="4.5" />
-        <element name="FAN_DOWN" since="4.5" />
-        <element name="TEMP_UP" since="4.5" />
-        <element name="TEMP_DOWN" since="4.5" />
-        <element name="DEFROST_MAX" since="4.5" />
-        <element name="DEFROST" since="4.5" />
-        <element name="DEFROST_REAR" since="4.5" />
-        <element name="UPPER_VENT" since="4.5" />
-        <element name="LOWER_VENT" since="4.5" />
+        <element name="AC_MAX" since="4.5">
+            <description>Tied to CLIMATE RC modules.</description>
+        </element>
+        <element name="AC" since="4.5">
+            <description>Tied to CLIMATE RC modules.</description>
+        </element>
+        <element name="RECIRCULATE" since="4.5">
+            <description>Tied to CLIMATE RC modules.</description>
+        </element>
+        <element name="FAN_UP" since="4.5">
+            <description>Tied to CLIMATE RC modules.</description>
+        </element>
+        <element name="FAN_DOWN" since="4.5">
+            <description>Tied to CLIMATE RC modules.</description>
+        </element>
+        <element name="TEMP_UP" since="4.5">
+            <description>Tied to CLIMATE RC modules.</description>
+        </element>
+        <element name="TEMP_DOWN" since="4.5">
+            <description>Tied to CLIMATE RC modules.</description>
+        </element>
+        <element name="DEFROST_MAX" since="4.5">
+            <description>Tied to CLIMATE RC modules.</description>
+        </element>
+        <element name="DEFROST" since="4.5">
+            <description>Tied to CLIMATE RC modules.</description>
+        </element>
+        <element name="DEFROST_REAR" since="4.5">
+            <description>Tied to CLIMATE RC modules.</description>
+        </element>
+        <element name="UPPER_VENT" since="4.5">
+            <description>Tied to CLIMATE RC modules.</description>
+        </element>
+        <element name="LOWER_VENT" since="4.5">
+            <description>Tied to CLIMATE RC modules.</description>
+        </element>
         <!-- Radio Buttons -->
-        <element name="VOLUME_UP" since="4.5" />
-        <element name="VOLUME_DOWN" since="4.5" />
-        <element name="EJECT" since="4.5" />
-        <element name="SOURCE" since="4.5" />
-        <element name="SHUFFLE" since="4.5" />
-        <element name="REPEAT" since="4.5" />
+        <element name="VOLUME_UP" since="4.5">
+            <description>Tied to RADIO RC modules.</description>
+        </element>
+        <element name="VOLUME_DOWN" since="4.5">
+            <description>Tied to RADIO RC modules.</description>
+        </element>
+        <element name="EJECT" since="4.5">
+            <description>Tied to RADIO RC modules.</description>
+        </element>
+        <element name="SOURCE" since="4.5">
+            <description>Tied to RADIO RC modules.</description>
+        </element>
+        <element name="SHUFFLE" since="4.5">
+            <description>Tied to RADIO RC modules.</description>
+        </element>
+        <element name="REPEAT" since="4.5">
+            <description>Tied to RADIO RC modules.</description>
+        </element>
         <!-- Navigation Buttons -->
-        <element name="NAV_CENTER_LOCATION" since="6.0" />
-        <element name="NAV_ZOOM_IN" since="6.0" />
-        <element name="NAV_ZOOM_OUT" since="6.0" />
-        <element name="NAV_PAN_UP" since="6.0" />
-        <element name="NAV_PAN_UP_RIGHT" since="6.0" />
-        <element name="NAV_PAN_RIGHT" since="6.0" />
-        <element name="NAV_PAN_DOWN_RIGHT" since="6.0" />
-        <element name="NAV_PAN_DOWN" since="6.0" />
-        <element name="NAV_PAN_DOWN_LEFT" since="6.0" />
-        <element name="NAV_PAN_LEFT" since="6.0" />
-        <element name="NAV_PAN_UP_LEFT" since="6.0" />
+        <element name="NAV_CENTER_LOCATION" since="6.0">
+        </element>
+        <element name="NAV_ZOOM_IN" since="6.0">
+        </element>
+        <element name="NAV_ZOOM_OUT" since="6.0">
+        </element>
+        <element name="NAV_PAN_UP" since="6.0">
+        </element>
+        <element name="NAV_PAN_UP_RIGHT" since="6.0">
+        </element>
+        <element name="NAV_PAN_RIGHT" since="6.0">
+        </element>
+        <element name="NAV_PAN_DOWN_RIGHT" since="6.0">
+        </element>
+        <element name="NAV_PAN_DOWN" since="6.0">
+        </element>
+        <element name="NAV_PAN_DOWN_LEFT" since="6.0">
+        </element>
+        <element name="NAV_PAN_LEFT" since="6.0">
+        </element>
+        <element name="NAV_PAN_UP_LEFT" since="6.0">
+        </element>
         <element name="NAV_TILT_TOGGLE" since="6.0" >
             <description>If supported, this toggles between a top-down view and an angled/3D view. If your app supports different, but substantially similar options, then you may implement those. If you don't implement these or similar options, do not subscribe to this button.</description>
         </element>
-        <element name="NAV_ROTATE_CLOCKWISE" since="6.0" />
-        <element name="NAV_ROTATE_COUNTERCLOCKWISE" since="6.0" />
+        <element name="NAV_ROTATE_CLOCKWISE" since="6.0">
+        </element>
+        <element name="NAV_ROTATE_COUNTERCLOCKWISE" since="6.0">
+        </element>
         <element name="NAV_HEADING_TOGGLE" since="6.0" >
             <description>If supported, this toggles between locking the orientation to north or to the vehicle's heading. If your app supports different, but substantially similar options, then you may implement those. If you don't implement these or similar options, do not subscribe to this button.</description>
         </element>
@@ -2431,9 +2480,9 @@
     </struct>
 
     <struct name="ModuleInfo" since="6.0">
-        <description>Information about a RC module</description>
+        <description>Information about an RC module</description>
         <param name="moduleId" type="String" maxlength="100" mandatory="true">
-            <description> uuid of a module. "moduleId + moduleType" uniquely identify a module.</description>
+            <description>UUID of a module. "moduleId + moduleType" uniquely identify a module.</description>
         </param>
         <param name="location" type="Grid" mandatory="false">
            <description>Location of a module.</description>
@@ -2447,12 +2496,15 @@
     </struct>
 
     <struct name="ButtonCapabilities" since="1.0">
-        <description>Contains information about a button's capabilities.</description>
+        <description>
+            Contains information about a button's capabilities.
+            NOTE: Multiple button capabilities can exist for the same ButtonName with different module ids. The module Id for a button should match the module id for a "primary" module type, such as a climate module or a radio module. Whichever module the id matches the button's id is the module the button will control.
+        </description>
         <param name="name" type="ButtonName" mandatory="true">
             <description>The name of the button. See ButtonName.</description>
         </param>
         <param name="moduleInfo" type="ModuleInfo" mandatory="false" since="6.0">
-            <description>Information about a RC module, including its id. </description>
+            <description>Information about an RC module, including its id. </description>
         </param>
         <param name="shortPressAvailable" type="Boolean" mandatory="true">
             <description>
@@ -3405,7 +3457,7 @@
             </description>
         </param>
         <param name="moduleInfo" type="ModuleInfo" mandatory="false" since="6.0">
-            <description>Information about a RC module, including its id. </description>
+            <description>Information about an RC module, including its id. </description>
         </param>
         <param name="heatingEnabledAvailable" type="Boolean" mandatory="false">
         </param>
@@ -3595,7 +3647,7 @@
             </description>
         </param>
         <param name="moduleInfo" type="ModuleInfo" mandatory="false" since="6.0">
-            <description>Information about a RC module, including its id. </description>
+            <description>Information about an RC module, including its id. </description>
         </param>
         <param name="radioEnableAvailable" type="Boolean" mandatory="false">
             <description>
@@ -3687,7 +3739,7 @@
                 It should not be used to identify a module by mobile application.</description>
         </param>
         <param name="moduleInfo" type="ModuleInfo" mandatory="false" since="6.0">
-            <description>Information about a RC module, including its id. </description>
+            <description>Information about an RC module, including its id. </description>
         </param>
         <param name="currentTemperatureAvailable" type="Boolean" mandatory="false" since="5.0">
             <description>
@@ -3835,7 +3887,7 @@
             </description>
         </param>
         <param name="moduleInfo" type="ModuleInfo" mandatory="false" since="6.0">
-            <description>Information about a RC module, including its id. </description>
+            <description>Information about an RC module, including its id. </description>
         </param>
         <param name="sourceAvailable" type="Boolean" mandatory="false">
             <description>Availability of the control of audio source. </description>
@@ -3994,7 +4046,7 @@
             </description>
         </param>
         <param name="moduleInfo" type="ModuleInfo" mandatory="false" since="6.0">
-            <description>Information about a RC module, including its id. </description>
+            <description>Information about an RC module, including its id. </description>
         </param>
         <param name="supportedLights" type="LightCapabilities" minsize="1" maxsize="100" array="true" mandatory="true">
             <description> An array of available LightCapabilities that are controllable. </description>
@@ -4042,7 +4094,7 @@
             </description>
         </param>
         <param name="moduleInfo" type="ModuleInfo" mandatory="false" since="6.0">
-            <description>Information about a RC module, including its id. </description>
+            <description>Information about an RC module, including its id. </description>
         </param>
         <param name="distanceUnitAvailable" type="Boolean" mandatory="false">
             <description>Availability of the control of distance unit. </description>
@@ -4081,10 +4133,13 @@
             <description>If included, the platform supports RC climate controls. For this baseline version, maxsize=1. i.e. only one climate control module is supported.</description>
         </param>
         <param name="radioControlCapabilities" type="RadioControlCapabilities" mandatory="false" minsize="1" maxsize="100" array="true">
-            <description>If included, the platform supports RC radio controls.For this baseline version, maxsize=1. i.e. only one radio control module is supported.</description>
+            <description>If included, the platform supports RC radio controls.</description>
         </param>
         <param name="buttonCapabilities" type="ButtonCapabilities"  mandatory="false" minsize="1" maxsize="100" array="true">
-            <description>If included, the platform supports RC button controls with the included button names.</description>
+            <description>
+                If included, the platform supports RC button controls with the included button names.
+                NOTE: Multiple button capabilities can exist for the same ButtonName with different module ids. The module Id for a button should match the module id for a "primary" module type, such as a climate module or a radio module. Whichever module the id matches the button's id is the module the button will control.
+            </description>
         </param>
         <param name="audioControlCapabilities" type="AudioControlCapabilities" mandatory="false" minsize="1" maxsize="100" array="true" since="5.0">
             <description>If included, the platform supports audio controls.</description>
@@ -7805,14 +7860,15 @@
     </function>
     
     <function name="ButtonPress" functionID="ButtonPressID" messagetype="request" since="4.5">
+        <description>NOTE: Certain ButtonNames are tied to specific RC module types. See ButtonName</description>
         <param name="moduleType" type="ModuleType" mandatory="true">
             <description>The module where the button should be pressed</description>
         </param>
         <param name="moduleId" type="String" maxlength="100" mandatory="false" since="6.0">
-            <description>Id of a module, published by System Capability. </description>
+            <description>Id of a module in the published ButtonCapabilities</description>
         </param>
         <param name="buttonName" type="ButtonName" mandatory="true">
-            <description>The name of supported RC climate or radio button.</description>
+            <description>The name of the supported RC button.</description>
         </param>
         <param name="buttonPressMode" type="ButtonPressMode" mandatory="true">
             <description>Indicates whether this is a LONG or SHORT button press event.</description>
@@ -7843,7 +7899,7 @@
     <function name="GetInteriorVehicleData" functionID="GetInteriorVehicleDataID" messagetype="request" since="4.5">
         <param name="moduleType" type="ModuleType" mandatory="true">
             <description>
-                The type of a RC module to retrieve module data from the vehicle.
+                The type of an RC module to retrieve module data from the vehicle.
                 In the future, this should be the Identification of a module.
             </description>
         </param>
