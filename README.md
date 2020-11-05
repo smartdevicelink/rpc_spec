@@ -467,39 +467,39 @@ Defines the hard (physical) and soft (touchscreen) buttons available from the mo
 |`PRESET_9`||
 |`CUSTOM_BUTTON`||
 |`SEARCH`||
-|`AC_MAX`|Tied to CLIMATE modules.|
-|`AC`|Tied to CLIMATE modules.|
-|`RECIRCULATE`|Tied to CLIMATE modules.|
-|`FAN_UP`|Tied to CLIMATE modules.|
-|`FAN_DOWN`|Tied to CLIMATE modules.|
-|`TEMP_UP`|Tied to CLIMATE modules.|
-|`TEMP_DOWN`|Tied to CLIMATE modules.|
-|`DEFROST_MAX`|Tied to CLIMATE modules.|
-|`DEFROST`|Tied to CLIMATE modules.|
-|`DEFROST_REAR`|Tied to CLIMATE modules.|
-|`UPPER_VENT`|Tied to CLIMATE modules.|
-|`LOWER_VENT`|Tied to CLIMATE modules.|
-|`VOLUME_UP`|Tied to RADIO modules.|
-|`VOLUME_DOWN`|Tied to RADIO modules.|
-|`EJECT`|Tied to RADIO modules.|
-|`SOURCE`|Tied to RADIO modules.|
-|`SHUFFLE`|Tied to RADIO modules.|
-|`REPEAT`|Tied to RADIO modules.|
-|`NAV_CENTER_LOCATION`|Tied to NAVIGATION modules.|
-|`NAV_ZOOM_IN`|Tied to NAVIGATION modules.|
-|`NAV_ZOOM_OUT`|Tied to NAVIGATION modules.|
-|`NAV_PAN_UP`|Tied to NAVIGATION modules.|
-|`NAV_PAN_UP_RIGHT`|Tied to NAVIGATION modules.|
-|`NAV_PAN_RIGHT`|Tied to NAVIGATION modules.|
-|`NAV_PAN_DOWN_RIGHT`|Tied to NAVIGATION modules.|
-|`NAV_PAN_DOWN`|Tied to NAVIGATION modules.|
-|`NAV_PAN_DOWN_LEFT`|Tied to NAVIGATION modules.|
-|`NAV_PAN_LEFT`|Tied to NAVIGATION modules.|
-|`NAV_PAN_UP_LEFT`|Tied to NAVIGATION modules.|
-|`NAV_TILT_TOGGLE`|Tied to NAVIGATION modules. If supported, this toggles between a top-down view and an angled/3D view. If your app supports different, but substantially similar options, then you may implement those. If you don't implement these or similar options, do not subscribe to this button.|
-|`NAV_ROTATE_CLOCKWISE`|Tied to NAVIGATION modules.|
-|`NAV_ROTATE_COUNTERCLOCKWISE`|Tied to NAVIGATION modules.|
-|`NAV_HEADING_TOGGLE`|Tied to NAVIGATION modules. If supported, this toggles between locking the orientation to north or to the vehicle's heading. If your app supports different, but substantially similar options, then you may implement those. If you don't implement these or similar options, do not subscribe to this button.|
+|`AC_MAX`|Tied to CLIMATE RC modules.|
+|`AC`|Tied to CLIMATE RC modules.|
+|`RECIRCULATE`|Tied to CLIMATE RC modules.|
+|`FAN_UP`|Tied to CLIMATE RC modules.|
+|`FAN_DOWN`|Tied to CLIMATE RC modules.|
+|`TEMP_UP`|Tied to CLIMATE RC modules.|
+|`TEMP_DOWN`|Tied to CLIMATE RC modules.|
+|`DEFROST_MAX`|Tied to CLIMATE RC modules.|
+|`DEFROST`|Tied to CLIMATE RC modules.|
+|`DEFROST_REAR`|Tied to CLIMATE RC modules.|
+|`UPPER_VENT`|Tied to CLIMATE RC modules.|
+|`LOWER_VENT`|Tied to CLIMATE RC modules.|
+|`VOLUME_UP`|Tied to RADIO RC modules.|
+|`VOLUME_DOWN`|Tied to RADIO RC modules.|
+|`EJECT`|Tied to RADIO RC modules.|
+|`SOURCE`|Tied to RADIO RC modules.|
+|`SHUFFLE`|Tied to RADIO RC modules.|
+|`REPEAT`|Tied to RADIO RC modules.|
+|`NAV_CENTER_LOCATION`||
+|`NAV_ZOOM_IN`||
+|`NAV_ZOOM_OUT`||
+|`NAV_PAN_UP`||
+|`NAV_PAN_UP_RIGHT`||
+|`NAV_PAN_RIGHT`||
+|`NAV_PAN_DOWN_RIGHT`||
+|`NAV_PAN_DOWN`||
+|`NAV_PAN_DOWN_LEFT`||
+|`NAV_PAN_LEFT`||
+|`NAV_PAN_UP_LEFT`||
+|`NAV_TILT_TOGGLE`|If supported, this toggles between a top-down view and an angled/3D view. If your app supports different, but substantially similar options, then you may implement those. If you don't implement these or similar options, do not subscribe to this button.|
+|`NAV_ROTATE_CLOCKWISE`||
+|`NAV_ROTATE_COUNTERCLOCKWISE`||
+|`NAV_HEADING_TOGGLE`||
 
 
 ### MediaClockFormat
@@ -2961,8 +2961,8 @@ The moduleType indicates which type of data should be changed and identifies whi
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`climateControlCapabilities`|ClimateControlCapabilities[]|False|If included, the platform supports RC climate controls. For this baseline version, maxsize=1. i.e. only one climate control module is supported.|
-|`radioControlCapabilities`|RadioControlCapabilities[]|False|If included, the platform supports RC radio controls.For this baseline version, maxsize=1. i.e. only one radio control module is supported. NOTE: Multiple button capabilities can exist for the same ButtonName with different moduleIds.|
-|`buttonCapabilities`|ButtonCapabilities[]|False|If included, the platform supports RC button controls with the included button names.|
+|`radioControlCapabilities`|RadioControlCapabilities[]|False|If included, the platform supports RC radio controls.|
+|`buttonCapabilities`|ButtonCapabilities[]|False|If included, the platform supports RC button controls with the included button names. NOTE: Multiple button capabilities can exist for the same ButtonName with different moduleIds.|
 |`audioControlCapabilities`|AudioControlCapabilities[]|False|If included, the platform supports audio controls.|
 |`hmiSettingsControlCapabilities`|HMISettingsControlCapabilities|False|If included, the platform supports hmi setting controls.|
 |`lightControlCapabilities`|LightControlCapabilities|False|If included, the platform supports light controls.|

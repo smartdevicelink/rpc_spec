@@ -648,105 +648,91 @@
         <element name="SEARCH" />
         <!-- Climate Buttons -->
         <element name="AC_MAX" since="4.5">
-            <description>Tied to CLIMATE modules.</description>
+            <description>Tied to CLIMATE RC modules.</description>
         </element>
         <element name="AC" since="4.5">
-            <description>Tied to CLIMATE modules.</description>
+            <description>Tied to CLIMATE RC modules.</description>
         </element>
         <element name="RECIRCULATE" since="4.5">
-            <description>Tied to CLIMATE modules.</description>
+            <description>Tied to CLIMATE RC modules.</description>
         </element>
         <element name="FAN_UP" since="4.5">
-            <description>Tied to CLIMATE modules.</description>
+            <description>Tied to CLIMATE RC modules.</description>
         </element>
         <element name="FAN_DOWN" since="4.5">
-            <description>Tied to CLIMATE modules.</description>
+            <description>Tied to CLIMATE RC modules.</description>
         </element>
         <element name="TEMP_UP" since="4.5">
-            <description>Tied to CLIMATE modules.</description>
+            <description>Tied to CLIMATE RC modules.</description>
         </element>
         <element name="TEMP_DOWN" since="4.5">
-            <description>Tied to CLIMATE modules.</description>
+            <description>Tied to CLIMATE RC modules.</description>
         </element>
         <element name="DEFROST_MAX" since="4.5">
-            <description>Tied to CLIMATE modules.</description>
+            <description>Tied to CLIMATE RC modules.</description>
         </element>
         <element name="DEFROST" since="4.5">
-            <description>Tied to CLIMATE modules.</description>
+            <description>Tied to CLIMATE RC modules.</description>
         </element>
         <element name="DEFROST_REAR" since="4.5">
-            <description>Tied to CLIMATE modules.</description>
+            <description>Tied to CLIMATE RC modules.</description>
         </element>
         <element name="UPPER_VENT" since="4.5">
-            <description>Tied to CLIMATE modules.</description>
+            <description>Tied to CLIMATE RC modules.</description>
         </element>
         <element name="LOWER_VENT" since="4.5">
-            <description>Tied to CLIMATE modules.</description>
+            <description>Tied to CLIMATE RC modules.</description>
         </element>
         <!-- Radio Buttons -->
         <element name="VOLUME_UP" since="4.5">
-            <description>Tied to RADIO modules.</description>
+            <description>Tied to RADIO RC modules.</description>
         </element>
         <element name="VOLUME_DOWN" since="4.5">
-            <description>Tied to RADIO modules.</description>
+            <description>Tied to RADIO RC modules.</description>
         </element>
         <element name="EJECT" since="4.5">
-            <description>Tied to RADIO modules.</description>
+            <description>Tied to RADIO RC modules.</description>
         </element>
         <element name="SOURCE" since="4.5">
-            <description>Tied to RADIO modules.</description>
+            <description>Tied to RADIO RC modules.</description>
         </element>
         <element name="SHUFFLE" since="4.5">
-            <description>Tied to RADIO modules.</description>
+            <description>Tied to RADIO RC modules.</description>
         </element>
         <element name="REPEAT" since="4.5">
-            <description>Tied to RADIO modules.</description>
+            <description>Tied to RADIO RC modules.</description>
         </element>
         <!-- Navigation Buttons -->
         <element name="NAV_CENTER_LOCATION" since="6.0">
-            <description>Tied to NAVIGATION modules.</description>
         </element>
         <element name="NAV_ZOOM_IN" since="6.0">
-            <description>Tied to NAVIGATION modules.</description>
         </element>
         <element name="NAV_ZOOM_OUT" since="6.0">
-            <description>Tied to NAVIGATION modules.</description>
         </element>
         <element name="NAV_PAN_UP" since="6.0">
-            <description>Tied to NAVIGATION modules.</description>
         </element>
         <element name="NAV_PAN_UP_RIGHT" since="6.0">
-            <description>Tied to NAVIGATION modules.</description>
         </element>
         <element name="NAV_PAN_RIGHT" since="6.0">
-            <description>Tied to NAVIGATION modules.</description>
         </element>
         <element name="NAV_PAN_DOWN_RIGHT" since="6.0">
-            <description>Tied to NAVIGATION modules.</description>
         </element>
         <element name="NAV_PAN_DOWN" since="6.0">
-            <description>Tied to NAVIGATION modules.</description>
         </element>
         <element name="NAV_PAN_DOWN_LEFT" since="6.0">
-            <description>Tied to NAVIGATION modules.</description>
         </element>
         <element name="NAV_PAN_LEFT" since="6.0">
-            <description>Tied to NAVIGATION modules.</description>
         </element>
         <element name="NAV_PAN_UP_LEFT" since="6.0">
-            <description>Tied to NAVIGATION modules.</description>
         </element>
         <element name="NAV_TILT_TOGGLE" since="6.0" >
-            <description>Tied to NAVIGATION modules. If supported, this toggles between a top-down view and an angled/3D view. If your app supports different, but substantially similar options, then you may implement those. If you don't implement these or similar options, do not subscribe to this button.</description>
+            <description>If supported, this toggles between a top-down view and an angled/3D view. If your app supports different, but substantially similar options, then you may implement those. If you don't implement these or similar options, do not subscribe to this button.</description>
         </element>
         <element name="NAV_ROTATE_CLOCKWISE" since="6.0">
-            <description>Tied to NAVIGATION modules.</description>
         </element>
         <element name="NAV_ROTATE_COUNTERCLOCKWISE" since="6.0">
-            <description>Tied to NAVIGATION modules.</description>
         </element>
         <element name="NAV_HEADING_TOGGLE" since="6.0" >
-            <description>Tied to NAVIGATION modules. If supported, this toggles between locking the orientation to north or to the vehicle's heading. If your app supports different, but substantially similar options, then you may implement those. If you don't implement these or similar options, do not subscribe to this button.</description>
         </element>
     </enum>
     
@@ -4146,13 +4132,13 @@
             <description>If included, the platform supports RC climate controls. For this baseline version, maxsize=1. i.e. only one climate control module is supported.</description>
         </param>
         <param name="radioControlCapabilities" type="RadioControlCapabilities" mandatory="false" minsize="1" maxsize="100" array="true">
-            <description>
-                If included, the platform supports RC radio controls.For this baseline version, maxsize=1. i.e. only one radio control module is supported.
-                NOTE: Multiple button capabilities can exist for the same ButtonName with different moduleIds.    
-            </description>
+            <description>If included, the platform supports RC radio controls.</description>
         </param>
         <param name="buttonCapabilities" type="ButtonCapabilities"  mandatory="false" minsize="1" maxsize="100" array="true">
-            <description>If included, the platform supports RC button controls with the included button names.</description>
+            <description>
+                If included, the platform supports RC button controls with the included button names.
+                NOTE: Multiple button capabilities can exist for the same ButtonName with different moduleIds.
+            </description>
         </param>
         <param name="audioControlCapabilities" type="AudioControlCapabilities" mandatory="false" minsize="1" maxsize="100" array="true" since="5.0">
             <description>If included, the platform supports audio controls.</description>
