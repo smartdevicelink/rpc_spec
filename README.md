@@ -173,6 +173,8 @@ For touchscreen interactions, the mode of how the choices are presented.
 
 
 ### PredefinedWindows
+Specifies IDs for windows which are predefined and pre-created. The mobile libraries and SDL Core use the integer value when referencing these elements.
+
 ##### Elements
 
 | Value | Description | 
@@ -1503,7 +1505,7 @@ Enumeration linking function names with function IDs in SmartDeviceLink protocol
 
 
 ### messageType
-Enumeration linking message types with function types in WiPro protocol. Assumes enumeration starts at value 0.
+Enumeration linking message types with function types in WiPro protocol. Assumes enumeration starts at value 0. The integer value is used in the protocol binary header.
 
 ##### Elements
 
@@ -1602,6 +1604,8 @@ List possible seats that is a remote controllable seat.
 
 
 ### LightName
+Enumeration that describes possible values of light name. The mobile libraries and SDL Core use the name string when referencing these elements.
+
 ##### Elements
 
 | Value | Description | 
@@ -3052,7 +3056,7 @@ This data is related to what a media service should provide
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`currentTemperature`|Temperature|False||
+|`currentTemperature`|Temperature|False|The central temperature depending on the context of the weather data. It could be the present temperature, the temperature of a future minute, the temperature of a future hour, or an average temperature of a future day, for example.|
 |`temperatureHigh`|Temperature|False||
 |`temperatureLow`|Temperature|False||
 |`apparentTemperature`|Temperature|False||
