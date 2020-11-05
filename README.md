@@ -3056,7 +3056,7 @@ This data is related to what a media service should provide
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`currentTemperature`|Temperature|False|This parameter may be populated with a forecasted temperature even when the high and low parameters are not available.|
+|`currentTemperature`|Temperature|False|The central temperature depending on the context of the weather data. It could be the present temperature, the temperature of a future minute, the temperature of a future hour, or an average temperature of a future day, for example.|
 |`temperatureHigh`|Temperature|False||
 |`temperatureLow`|Temperature|False||
 |`apparentTemperature`|Temperature|False||
