@@ -580,6 +580,7 @@
         <element name="VEHICLEDATA_STABILITYCONTROLSSTATUS" since="7.0"/>
         <element name="VEHICLEDATA_WINDOWSTATUS" since="7.0"/>
         <element name="VEHICLEDATA_HANDSOFFSTEERING" since="7.0"/>
+        <element name="VEHICLEDATA_SEATOCCUPANCY" since="7.1"/>
     </enum>
 
     <enum name="HybridAppPreference" since="5.1">
@@ -4685,6 +4686,21 @@
         </param>
     </struct>
 
+    <struct name="SeatStatus" since="7.1">
+      <description>Describes the status of a parameter of seat.</description>
+      <param name="seatLocation" type="SeatLocation" mandatory="true"/>
+      <param name="conditionActive" type="Boolean"  mandatory="true"/>
+    </struct>
+
+    <struct name="SeatOccupancy" since="7.1">
+      <param name="seatsOccupied" type="SeatStatus" array="true" minsize="0" maxsize="100" mandatory="false">
+        <description>Seat status array containing location and whether the seats are occupied.</description>
+      </param>
+      <param name="seatsBelted" type="SeatStatus" array="true" minsize="0" maxsize="100" mandatory="false">
+        <description>Seat status array containing location and whether the seats are belted.</description>
+      </param>
+    </struct>
+
     <!-- Requests/Responses -->
     
     <function name="RegisterAppInterface" functionID="RegisterAppInterfaceID" messagetype="request" since="1.0">
@@ -6276,6 +6292,9 @@
         <param name="handsOffSteering" type="Boolean" mandatory="false" since="7.0">
             <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
+        <param name="seatOccupancy" type="Boolean" mandatory="false" since="7.1">
+          <description>See SeatOccupancy</description>
+        </param>
     </function>
     
     <function name="SubscribeVehicleData" functionID="SubscribeVehicleDataID" messagetype="response" since="2.0">
@@ -6413,6 +6432,9 @@
         <param name="handsOffSteering" type="VehicleDataResult" mandatory="false" since="7.0">
             <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
+        <param name="seatOccupancy" type="VehicleDataResult" mandatory="false" since="7.1">
+          <description>See SeatOccupancy</description>
+        </param>
     </function>
     
     <function name="UnsubscribeVehicleData" functionID="UnsubscribeVehicleDataID" messagetype="request" since="2.0">
@@ -6528,6 +6550,9 @@
         </param>
         <param name="handsOffSteering" type="Boolean" mandatory="false" since="7.0">
             <description>To indicate whether driver hands are off the steering wheel</description>
+        </param>
+        <param name="seatOccupancy" type="Boolean" mandatory="false" since="7.1">
+          <description>See SeatOccupancy</description>
         </param>
     </function>
     
@@ -6665,6 +6690,9 @@
         <param name="handsOffSteering" type="VehicleDataResult" mandatory="false" since="7.0">
             <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
+        <param name="seatOccupancy" type="VehicleDataResult" mandatory="false" since="7.1">
+          <description>See SeatOccupancy</description>
+        </param>
     </function>
     
     <function name="GetVehicleData" functionID="GetVehicleDataID" messagetype="request" since="2.0">
@@ -6783,6 +6811,9 @@
         </param>
         <param name="handsOffSteering" type="Boolean" mandatory="false" since="7.0">
             <description>To indicate whether driver hands are off the steering wheel</description>
+        </param>
+        <param name="seatOccupancy" type="Boolean" mandatory="false" since="7.1">
+          <description>See SeatOccupancy</description>
         </param>
     </function>
     
@@ -6923,6 +6954,9 @@
         </param>
         <param name="handsOffSteering" type="Boolean" mandatory="false" since="7.0">
             <description>To indicate whether driver hands are off the steering wheel</description>
+        </param>
+        <param name="seatOccupancy" type="SeatOccupancy" mandatory="false" since="7.1">
+          <description>See SeatOccupancy</description>
         </param>
     </function>
     
@@ -8643,6 +8677,9 @@
         </param>
         <param name="handsOffSteering" type="Boolean" mandatory="false" since="7.0">
             <description>To indicate whether driver hands are off the steering wheel</description>
+        </param>
+        <param name="seatOccupancy" type="SeatOccupancy" mandatory="false" since="7.1">
+          <description>See SeatOccupancy</description>
         </param>
     </function>
     
