@@ -418,6 +418,7 @@ Defines the data types that can be published and subscribed to.
 |`VEHICLEDATA_STABILITYCONTROLSSTATUS`||
 |`VEHICLEDATA_WINDOWSTATUS`||
 |`VEHICLEDATA_HANDSOFFSTEERING`||
+|`VEHICLEDATA_SEATOCCUPANCY`||
 
 
 ### HybridAppPreference
@@ -2267,6 +2268,23 @@ Describes the status of a window of a door/liftgate etc.
 |`location`|Grid|True||
 |`state`|WindowState|True||
 
+### SeatStatus
+Describes the status of a parameter of seat.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description |
+| ---------- | ---------- |:-----------: |:-----------:|
+|`seatLocation`|SeatLocation|True||
+|`conditionActive`|Boolean|True||
+
+### SeatOccupancy
+##### Parameters
+
+| Value |  Type | Mandatory | Description |
+| ---------- | ---------- |:-----------: |:-----------:|
+|`seatsOccupied`|SeatStatus|False||Seat status array containing location and whether the seats are occupied.
+|`seatsBelted`|SeatStatus|False||Seat status array containing location and whether the seats are belted.
 
 ### ModuleInfo
 Information about an RC module
@@ -3931,6 +3949,7 @@ Subscribes for specific published data items. The data will be only sent if it h
 |`clusterModeStatus`|Boolean|False|The status modes of the cluster|
 |`myKey`|Boolean|False|Information related to the MyKey feature|
 |`windowStatus`|Boolean|False|See WindowStatus|
+|`seatOccupancy`|Boolean|False|See SeatOccupancy|
 |`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
 
 
@@ -3976,6 +3995,7 @@ Message Type: **response**
 |`clusterModes`|VehicleDataResult|False|The status modes of the cluster|
 |`myKey`|VehicleDataResult|False|Information related to the MyKey feature|
 |`windowStatus`|VehicleDataResult|False|See WindowStatus|
+|`seatOccupancy`|VehicleDataResult|False|See SeatOccupancy|
 |`handsOffSteering`|VehicleDataResult|False|To indicate whether driver hands are off the steering wheel|
 
 
@@ -4020,8 +4040,8 @@ This function is used to unsubscribe the notifications from the subscribeVehicle
 |`clusterModeStatus`|Boolean|False|The status modes of the cluster|
 |`myKey`|Boolean|False|Information related to the MyKey feature|
 |`windowStatus`|Boolean|False|See WindowStatus|
+|`seatOccupancy`|Boolean|False|See SeatOccupancy|
 |`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
-
 
 ### UnsubscribeVehicleData
 Message Type: **response**
@@ -4065,6 +4085,7 @@ Message Type: **response**
 |`clusterModes`|VehicleDataResult|False|The status modes of the cluster|
 |`myKey`|VehicleDataResult|False|Information related to the MyKey feature|
 |`windowStatus`|VehicleDataResult|False|See WindowStatus|
+|`seatOccupancy`|VehicleDataResult|False|See SeatOccupancy|
 |`handsOffSteering`|VehicleDataResult|False|To indicate whether driver hands are off the steering wheel|
 
 
@@ -4110,6 +4131,7 @@ Non periodic vehicle data read request.
 |`clusterModeStatus`|Boolean|False|The status modes of the cluster|
 |`myKey`|Boolean|False|Information related to the MyKey feature|
 |`windowStatus`|Boolean|False|See WindowStatus|
+|`seatOccupancy`|Boolean|False|See SeatOccupancy|
 |`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
 
 
@@ -4156,6 +4178,7 @@ Message Type: **response**
 |`clusterModeStatus`|ClusterModeStatus|False|The status modes of the cluster|
 |`myKey`|MyKey|False|Information related to the MyKey feature|
 |`windowStatus`|WindowStatus[]|False|See WindowStatus|
+|`seatOccupancy`|SeatOccupancy|False|See SeatOccupancy|
 |`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
 
 
@@ -5208,6 +5231,7 @@ Callback for the periodic and non periodic vehicle data read function.
 |`clusterModeStatus`|ClusterModeStatus|False|The status modes of the cluster|
 |`myKey`|MyKey|False|Information related to the MyKey feature|
 |`windowStatus`|WindowStatus[]|False|See WindowStatus|
+|`seatOccupancy`|SeatOccupancy|False|See SeatOccupancy|
 |`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
 
 
