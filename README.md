@@ -1112,6 +1112,17 @@ Reflects the status of the ambient light sensor.
 |`CELSIUS`||
 
 
+### DoorStatusType
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`CLOSED`||
+|`LOCKED`||
+|`AJAR`||
+|`REMOVED`||
+
+
 ### FileType
 Enumeration listing possible file types.
 
@@ -1919,6 +1930,64 @@ Specifies the version number of the SmartDeviceLink protocol that is supported b
 |`middleRow1BuckleBelted`|VehicleDataEventStatus|True|References signal "VedsRw1mBckl_D_Ltchd". See VehicleDataEventStatus.|
 
 
+### Grid
+Describes a location (origin coordinates and span) of a vehicle component.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`col`|Integer|True||
+|`row`|Integer|True||
+|`level`|Integer|False||
+|`colspan`|Integer|False||
+|`rowspan`|Integer|False||
+|`levelspan`|Integer|False||
+
+
+### DoorStatus
+Describes the status of a parameter of door.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`location`|Grid|True||
+|`status`|DoorStatusType|True||
+
+
+### GateStatus
+Describes the status of a parameter of trunk/hood/etc.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`location`|Grid|True||
+|`status`|DoorStatusType|True||
+
+
+### WindowState
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`approximatePosition`|Integer|True|The approximate percentage that the window is open - 0 being fully closed, 100 being fully open|
+|`deviation`|Integer|True|The percentage deviation of the approximatePosition. e.g. If the approximatePosition is 50 and the deviation is 10, then the window's location is somewhere between 40 and 60.|
+
+
+### RoofStatus
+Describes the status of a parameter of roof/convertible roof/sunroof/moonroof etc. If roof is open (AJAR), state will determine percentage of roof open.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`location`|Grid|True||
+|`status`|DoorStatusType|True||
+|`state`|WindowState|False||
+
+
 ### BodyInformation
 ##### Parameters
 
@@ -1927,10 +1996,13 @@ Specifies the version number of the SmartDeviceLink protocol that is supported b
 |`parkBrakeActive`|Boolean|True|References signal "PrkBrkActv_B_Actl".|
 |`ignitionStableStatus`|IgnitionStableStatus|True|References signal "Ignition_Switch_Stable". See IgnitionStableStatus.|
 |`ignitionStatus`|IgnitionStatus|True|References signal "Ignition_status". See IgnitionStatus.|
-|`driverDoorAjar`|Boolean|False|References signal "DrStatDrv_B_Actl".|
-|`passengerDoorAjar`|Boolean|False|References signal "DrStatPsngr_B_Actl".|
-|`rearLeftDoorAjar`|Boolean|False|References signal "DrStatRl_B_Actl".|
-|`rearRightDoorAjar`|Boolean|False|References signal "DrStatRr_B_Actl".|
+|`driverDoorAjar`|Boolean|False|References signal "DrStatDrv_B_Actl". Deprecated starting with RPC Spec 7.1.0.|
+|`passengerDoorAjar`|Boolean|False|References signal "DrStatPsngr_B_Actl". Deprecated starting with RPC Spec 7.1.0.|
+|`rearLeftDoorAjar`|Boolean|False|References signal "DrStatRl_B_Actl". Deprecated starting with RPC Spec 7.1.0.|
+|`rearRightDoorAjar`|Boolean|False|References signal "DrStatRr_B_Actl". Deprecated starting with RPC Spec 7.1.0.|
+|`doorStatuses`|DoorStatus[]|False|Provides status for doors if Ajar/Closed/Locked|
+|`gateStatuses`|GateStatus[]|False|Provides status for trunk/hood/etc. if Ajar/Closed/Locked|
+|`roofStatuses`|RoofStatus[]|False|Provides status for roof/convertible roof/sunroof/moonroof etc., if Closed/Ajar/Removed etc.|
 
 
 ### DeviceStatus
@@ -2231,30 +2303,6 @@ Contains information about the display capabilities. This struct is deprecated; 
 |`templatesAvailable`|String[]|False|A set of all predefined persistent display templates available on headunit. To be referenced in SetDisplayLayout.|
 |`screenParams`|ScreenParams|False|A set of all parameters related to a prescribed screen area (e.g. for video / touch input).|
 |`numCustomPresetsAvailable`|Integer|False|The number of on-screen custom presets available (if any); otherwise omitted.|
-
-
-### Grid
-Describes a location (origin coordinates and span) of a vehicle component.
-
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-|`col`|Integer|True||
-|`row`|Integer|True||
-|`level`|Integer|False||
-|`colspan`|Integer|False||
-|`rowspan`|Integer|False||
-|`levelspan`|Integer|False||
-
-
-### WindowState
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-|`approximatePosition`|Integer|True|The approximate percentage that the window is open - 0 being fully closed, 100 being fully open|
-|`deviation`|Integer|True|The percentage deviation of the approximatePosition. e.g. If the approximatePosition is 50 and the deviation is 10, then the window's location is somewhere between 40 and 60.|
 
 
 ### WindowStatus
