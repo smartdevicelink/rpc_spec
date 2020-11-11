@@ -2076,26 +2076,47 @@
     <struct name="TireStatus" since="2.0">
         <description>The status and pressure of the tires.</description>
         
-        <param name="pressureTelltale" type="WarningLightStatus" mandatory="true">
+        <param name="pressureTelltale" type="WarningLightStatus" mandatory="false" since="7.1">
             <description>Status of the Tire Pressure Telltale. See WarningLightStatus.</description>
+            <history>
+                <param name="pressureTelltale" type="WarningLightStatus" mandatory="true" since="2.0" until="7.1"/>
+            </history>
         </param>
-        <param name="leftFront" type="SingleTireStatus" mandatory="true">
+        <param name="leftFront" type="SingleTireStatus" mandatory="false" since="7.1">
             <description>The status of the left front tire.</description>
+            <history>
+                <param name="leftFront" type="SingleTireStatus" mandatory="true" since="2.0" until="7.1"/>
+            </history>
         </param>
-        <param name="rightFront" type="SingleTireStatus" mandatory="true">
+        <param name="rightFront" type="SingleTireStatus" mandatory="false" since="7.1">
             <description>The status of the right front tire.</description>
+            <history>
+                <param name="rightFront" type="SingleTireStatus" mandatory="true" since="2.0" until="7.1"/>
+            </history>
         </param>
-        <param name="leftRear" type="SingleTireStatus" mandatory="true">
+        <param name="leftRear" type="SingleTireStatus" mandatory="false" since="7.1">
             <description>The status of the left rear tire.</description>
+            <history>
+                <param name="leftRear" type="SingleTireStatus" mandatory="true" since="2.0" until="7.1"/>
+            </history>
         </param>
-        <param name="rightRear" type="SingleTireStatus" mandatory="true">
+        <param name="rightRear" type="SingleTireStatus" mandatory="false" since="7.1">
             <description>The status of the right rear tire.</description>
+            <history>
+                <param name="rightRear" type="SingleTireStatus" mandatory="true" since="2.0" until="7.1"/>
+            </history>
         </param>
-        <param name="innerLeftRear" type="SingleTireStatus" mandatory="true">
+        <param name="innerLeftRear" type="SingleTireStatus" mandatory="false" since="7.1">
             <description>The status of the inner left rear.</description>
+            <history>
+                <param name="innerLeftRear" type="SingleTireStatus" mandatory="true" since="2.0" until="7.1"/>
+            </history>
         </param>
-        <param name="innerRightRear" type="SingleTireStatus" mandatory="true">
+        <param name="innerRightRear" type="SingleTireStatus" mandatory="false" since="7.1">
             <description>The status of the inner right rear.</description>
+            <history>
+                <param name="innerRightRear" type="SingleTireStatus" mandatory="true" since="2.0" until="7.1"/>
+            </history>
         </param>
     </struct>
 
