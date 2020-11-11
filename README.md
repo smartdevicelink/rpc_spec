@@ -2037,13 +2037,13 @@ The status and pressure of the tires.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`pressureTelltale`|WarningLightStatus|True|Status of the Tire Pressure Telltale. See WarningLightStatus.|
-|`leftFront`|SingleTireStatus|True|The status of the left front tire.|
-|`rightFront`|SingleTireStatus|True|The status of the right front tire.|
-|`leftRear`|SingleTireStatus|True|The status of the left rear tire.|
-|`rightRear`|SingleTireStatus|True|The status of the right rear tire.|
-|`innerLeftRear`|SingleTireStatus|True|The status of the inner left rear.|
-|`innerRightRear`|SingleTireStatus|True|The status of the inner right rear.|
+|`pressureTelltale`|WarningLightStatus|False|Status of the Tire Pressure Telltale. See WarningLightStatus.|
+|`leftFront`|SingleTireStatus|False|The status of the left front tire.|
+|`rightFront`|SingleTireStatus|False|The status of the right front tire.|
+|`leftRear`|SingleTireStatus|False|The status of the left rear tire.|
+|`rightRear`|SingleTireStatus|False|The status of the right rear tire.|
+|`innerLeftRear`|SingleTireStatus|False|The status of the inner left rear.|
+|`innerRightRear`|SingleTireStatus|False|The status of the inner right rear.|
 
 
 ### StabilityControlsStatus
