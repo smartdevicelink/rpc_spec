@@ -4696,7 +4696,7 @@
         </description>
 
         <param name="type" type="SeekIndicatorType" mandatory="true" />
-        <param name="seekTime" type="Int" minvalue="1" maxValue="99" mandatory="false">
+        <param name="seekTime" type="Int" minvalue="1" maxvalue="99" mandatory="false">
             <description>If the type is TIME, this number of seconds may be present alongside the skip indicator. It will indicate the number of seconds that the currently playing media will skip forward or backward.</description>
         </param>
     </struct>
