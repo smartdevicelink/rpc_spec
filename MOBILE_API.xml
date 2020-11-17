@@ -945,6 +945,22 @@
             <description>A text field in the soft button of a subtle alert; applies to `SubtleAlert` `softButtons`</description>
         </element>
 
+        <element name="menuCommandSecondaryText" since="7.1">
+            <description>Secondary text for AddCommand</description>
+        </element>
+
+        <element name="menuCommandTertiaryText" since="7.1">
+            <description>Tertiary text for AddCommand</description>
+        </element>
+
+        <element name="menuSubMenuSecondaryText" since="7.1">
+            <description>Secondary text for AddSubMenu</description>
+        </element>
+
+        <element name="menuSubMenuTertiaryText" since="7.1">
+            <description>Tertiary text for AddSubMenu</description>
+        </element>
+
     </enum>
     
     <enum name="ImageFieldName" since="3.0">
@@ -1010,6 +1026,14 @@
 
         <element name="subtleAlertIcon" since="7.0">
             <description>The image of the subtle alert; applies to `SubtleAlert` `alertIcon`</description>
+        </element>
+
+        <element name="menuCommandSecondaryImage" since = "7.1">
+            <description>The secondary image field for AddCommand</description>
+        </element>
+
+        <element name="menuSubMenuSecondaryImage" since = "7.1">
+            <description>The secondary image field for AddSubMenu</description>
         </element>
 
     </enum>
@@ -2682,6 +2706,12 @@
         </param>         
         <param name="menuName" type="String" maxlength="500" mandatory="true">
             <description>Text to show in the menu for this sub menu.</description>
+        </param>
+        <param name="secondaryText" maxlength="500" type="String" mandatory="false" since="7.1">
+            <description>Optional secondary text to display</description>
+        </param>
+        <param name="tertiaryText" maxlength="500" type="String" mandatory="false" since="7.1">
+            <description>Optional tertiary text to display</description>
         </param>
     </struct>
     
@@ -5194,7 +5224,10 @@
                 If omitted on supported displays, no (or the default if applicable) icon shall be displayed.
             </description>
         </param>
-        
+
+        <param name="secondaryImage" type="Image" mandatory="false" since="7.1">
+            <description>Optional secondary image struct for menu cell</description>
+        </param>
     </function>
     
     <function name="AddCommand" functionID="AddCommandID" messagetype="response" since="1.0">
@@ -5293,6 +5326,18 @@
                 unique ID of the sub menu, the command will be added to.
                 If not provided or 0, it will be provided to the top level of the in application menu.
             </description>
+        </param>
+
+        <param name="secondaryText" maxlength="500" type="String" mandatory="false" since="7.1">
+            <description>Optional secondary text to display</description>
+        </param>
+
+        <param name="tertiaryText" maxlength="500" type="String" mandatory="false" since="7.1">
+            <description>Optional tertiary text to display</description>
+        </param>
+
+        <param name="secondaryImage" type="Image" mandatory="false" since="7.1">
+            <description>Optional secondary image struct for sub-menu cell</description>
         </param>
     </function>
     
