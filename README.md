@@ -12,7 +12,7 @@
 | ---------- |:-----------:|
 |`SUCCESS`|The request succeeded|
 |`UNSUPPORTED_REQUEST`|The request is not supported by the headunit|
-|`UNSUPPORTED_RESOURCE`|A button that was requested for subscription is not supported under the current system.|
+|`UNSUPPORTED_RESOURCE`|One or more of the items (phoneme type, button name, image type, etc.) in the request is not supported by the HMI.|
 |`DISALLOWED`|RPC is not authorized in local policy table.|
 |`REJECTED`|The requested command was rejected, e.g. because mobile app is in background and cannot perform any HMI commands. Or an HMI command (e.g. Speak) is rejected because a higher priority HMI command (e.g. Alert) is playing.|
 |`ABORTED`|A command was aborted, for example due to user interaction (e.g. user pressed button). Or an HMI command (e.g. Speak) is aborted because a higher priority HMI command (e.g. Alert) was requested.|
@@ -173,6 +173,8 @@ For touchscreen interactions, the mode of how the choices are presented.
 
 
 ### PredefinedWindows
+Specifies IDs for windows which are predefined and pre-created. The mobile libraries and SDL Core use the integer value when referencing these elements.
+
 ##### Elements
 
 | Value | Description | 
@@ -274,6 +276,7 @@ Error code, which comes from the module side.
 |`APP_UNAUTHORIZED`||
 |`PROTOCOL_VIOLATION`||
 |`UNSUPPORTED_HMI_RESOURCE`||
+|`RESOURCE_CONSTRAINT`|By sending this value, SDL unregisters the application to allow the HMI to close the application.|
 
 
 ### TriggerSource
@@ -413,6 +416,8 @@ Defines the data types that can be published and subscribed to.
 |`VEHICLEDATA_CLOUDAPPVEHICLEID`||
 |`VEHICLEDATA_OEM_CUSTOM_DATA`||
 |`VEHICLEDATA_STABILITYCONTROLSSTATUS`||
+|`VEHICLEDATA_WINDOWSTATUS`||
+|`VEHICLEDATA_HANDSOFFSTEERING`||
 
 
 ### HybridAppPreference
@@ -462,24 +467,24 @@ Defines the hard (physical) and soft (touchscreen) buttons available from the mo
 |`PRESET_9`||
 |`CUSTOM_BUTTON`||
 |`SEARCH`||
-|`AC_MAX`||
-|`AC`||
-|`RECIRCULATE`||
-|`FAN_UP`||
-|`FAN_DOWN`||
-|`TEMP_UP`||
-|`TEMP_DOWN`||
-|`DEFROST_MAX`||
-|`DEFROST`||
-|`DEFROST_REAR`||
-|`UPPER_VENT`||
-|`LOWER_VENT`||
-|`VOLUME_UP`||
-|`VOLUME_DOWN`||
-|`EJECT`||
-|`SOURCE`||
-|`SHUFFLE`||
-|`REPEAT`||
+|`AC_MAX`|Tied to CLIMATE RC modules.|
+|`AC`|Tied to CLIMATE RC modules.|
+|`RECIRCULATE`|Tied to CLIMATE RC modules.|
+|`FAN_UP`|Tied to CLIMATE RC modules.|
+|`FAN_DOWN`|Tied to CLIMATE RC modules.|
+|`TEMP_UP`|Tied to CLIMATE RC modules.|
+|`TEMP_DOWN`|Tied to CLIMATE RC modules.|
+|`DEFROST_MAX`|Tied to CLIMATE RC modules.|
+|`DEFROST`|Tied to CLIMATE RC modules.|
+|`DEFROST_REAR`|Tied to CLIMATE RC modules.|
+|`UPPER_VENT`|Tied to CLIMATE RC modules.|
+|`LOWER_VENT`|Tied to CLIMATE RC modules.|
+|`VOLUME_UP`|Tied to RADIO RC modules.|
+|`VOLUME_DOWN`|Tied to RADIO RC modules.|
+|`EJECT`|Tied to RADIO RC modules.|
+|`SOURCE`|Tied to RADIO RC modules.|
+|`SHUFFLE`|Tied to RADIO RC modules.|
+|`REPEAT`|Tied to RADIO RC modules.|
 |`NAV_CENTER_LOCATION`||
 |`NAV_ZOOM_IN`||
 |`NAV_ZOOM_OUT`||
@@ -566,6 +571,9 @@ See DAES for further infos regarding the displays
 |`locationDescription`|Optional description of intended location / establishment (if applicable) for SendLocation.|
 |`addressLines`|Optional location address (if applicable) for SendLocation.|
 |`phoneNumber`|Optional phone number of intended location / establishment (if applicable) for SendLocation.|
+|`subtleAlertText1`|The first line of the subtle alert text field; applies to `SubtleAlert` `alertText1`|
+|`subtleAlertText2`|The second line of the subtle alert text field; applies to `SubtleAlert` `alertText2`|
+|`subtleAlertSoftButtonText`|A text field in the soft button of a subtle alert; applies to `SubtleAlert` `softButtons`|
 
 
 ### ImageFieldName
@@ -587,6 +595,8 @@ See DAES for further infos regarding the displays
 |`showConstantTBTNextTurnIcon`|The secondary image field for ShowConstantTBT|
 |`locationImage`|The optional image of a destination / location|
 |`alertIcon`|The image field for Alert|
+|`subMenuIcon`|The image field for AddSubMenu.menuIcon|
+|`subtleAlertIcon`|The image of the subtle alert; applies to `SubtleAlert` `alertIcon`|
 
 
 ### CharacterSet
@@ -596,10 +606,13 @@ The list of potential character sets
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`TYPE2SET`|See [@TODO: create file ref]|
-|`TYPE5SET`|See [@TODO: create file ref]|
-|`CID1SET`|See [@TODO: create file ref]|
-|`CID2SET`|See [@TODO: create file ref]|
+|`TYPE2SET`||
+|`TYPE5SET`||
+|`CID1SET`||
+|`CID2SET`||
+|`ASCII`|ASCII as defined in https://en.wikipedia.org/wiki/ASCII as defined in codes 0-127. Non-printable characters such as tabs and back spaces are ignored.|
+|`ISO_8859_1`|Latin-1, as defined in https://en.wikipedia.org/wiki/ISO/IEC_8859-1|
+|`UTF_8`|The UTF-8 character set that uses variable bytes per code point. See https://en.wikipedia.org/wiki/UTF-8 for more details. This is the preferred character set.|
 
 
 ### TextAlignment
@@ -1358,6 +1371,7 @@ Enumeration listing possible app types.
 |`SYSTEM`||
 |`PROJECTION`||
 |`REMOTE_CONTROL`||
+|`WEB_VIEW`||
 
 
 ### PredefinedLayout
@@ -1387,6 +1401,7 @@ Predefined screen layout.
 |`LARGE_GRAPHIC_WITH_SOFTBUTTONS`|Custom root template screen containing a large graphic and SoftButtons. Can be set as a root screen.|
 |`DOUBLE_GRAPHIC_WITH_SOFTBUTTONS`|Custom root template screen containing two graphics and SoftButtons. Can be set as a root screen.|
 |`LARGE_GRAPHIC_ONLY`|Custom root template screen containing only a large graphic. Can be set as a root screen.|
+|`WEB_VIEW`|Custom root template allowing in-vehicle WebEngine applications with appropriate permissions to show the application's own web view.|
 
 
 ### FunctionID
@@ -1459,6 +1474,7 @@ Enumeration linking function names with function IDs in SmartDeviceLink protocol
 |`DeleteWindowID`||
 |`GetInteriorVehicleDataConsentID`||
 |`ReleaseInteriorVehicleDataModuleID`||
+|`SubtleAlertID`||
 |`OnHMIStatusID`||
 |`OnAppInterfaceUnregisteredID`||
 |`OnButtonEventID`||
@@ -1479,6 +1495,9 @@ Enumeration linking function names with function IDs in SmartDeviceLink protocol
 |`OnRCStatusID`||
 |`OnAppServiceDataID`||
 |`OnSystemCapabilityUpdatedID`||
+|`OnSubtleAlertPressedID`||
+|`OnUpdateFileID`||
+|`OnUpdateSubMenuID`||
 |`EncodedSyncPDataID`||
 |`SyncPDataID`||
 |`OnEncodedSyncPDataID`||
@@ -1486,7 +1505,7 @@ Enumeration linking function names with function IDs in SmartDeviceLink protocol
 
 
 ### messageType
-Enumeration linking message types with function types in WiPro protocol. Assumes enumeration starts at value 0.
+Enumeration linking message types with function types in WiPro protocol. Assumes enumeration starts at value 0. The integer value is used in the protocol binary header.
 
 ##### Elements
 
@@ -1522,6 +1541,7 @@ Enumerations of all available system capability types
 |`APP_SERVICES`||
 |`SEAT_LOCATION`||
 |`DISPLAYS`||
+|`DRIVER_DISTRACTION`||
 
 
 ### MassageZone
@@ -1566,7 +1586,7 @@ List possible cushions of a multi-contour massage seat.
 
 | Value | Description | 
 | ---------- |:-----------:|
-|`SAVE`|Save current seat postions and settings to seat memory.|
+|`SAVE`|Save current seat positions and settings to seat memory.|
 |`RESTORE`|Restore / apply the seat memory settings to the current seat.|
 |`NONE`|No action to be performed.|
 
@@ -1584,6 +1604,8 @@ List possible seats that is a remote controllable seat.
 
 
 ### LightName
+Enumeration that describes possible values of light name. The mobile libraries and SDL Core use the name string when referencing these elements.
+
 ##### Elements
 
 | Value | Description | 
@@ -2023,6 +2045,7 @@ The status and pressure of the tires.
 |`innerLeftRear`|SingleTireStatus|True|The status of the inner left rear.|
 |`innerRightRear`|SingleTireStatus|True|The status of the inner right rear.|
 
+
 ### StabilityControlsStatus
 ##### Parameters
 
@@ -2030,6 +2053,7 @@ The status and pressure of the tires.
 | ---------- | ---------- |:-----------: |:-----------:|
 |`escSystem`|VehicleDataStatus|False|true if vehicle stability control is ON, else false|
 |`trailerSwayControl`|VehicleDataStatus|False|true if vehicle trailer sway control is ON, else false|
+
 
 ### GPSData
 Struct with the GPS data.
@@ -2099,7 +2123,7 @@ Individual requested DID result and data
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`name`|TextFieldName|True|The name that identifies the field. See TextFieldName.|
-|`characterSet`|CharacterSet|True|The character set that is supported in this field. See CharacterSet.|
+|`characterSet`|CharacterSet|True|The set of characters that are supported by this text field. All text is sent in UTF-8 format, but not all systems may support all of the characters expressed by UTF-8. All systems will support at least ASCII, but they may support more, either the LATIN-1 character set, or the full UTF-8 character set.|
 |`width`|Integer|True|The number of characters in one row of this field.|
 |`rows`|Integer|True|The number of rows of this field.|
 
@@ -2224,28 +2248,48 @@ Describes a location (origin coordinates and span) of a vehicle component.
 |`levelspan`|Integer|False||
 
 
-### ModuleInfo
-Information about a RC module
+### WindowState
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`approximatePosition`|Integer|True|The approximate percentage that the window is open - 0 being fully closed, 100 being fully open|
+|`deviation`|Integer|True|The percentage deviation of the approximatePosition. e.g. If the approximatePosition is 50 and the deviation is 10, then the window's location is somewhere between 40 and 60.|
+
+
+### WindowStatus
+Describes the status of a window of a door/liftgate etc.
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`moduleId`|String|True|uuid of a module. "moduleId + moduleType" uniquely identify a module.|
+|`location`|Grid|True||
+|`state`|WindowState|True||
+
+
+### ModuleInfo
+Information about an RC module
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`moduleId`|String|True|UUID of a module. "moduleId + moduleType" uniquely identify a module.|
 |`location`|Grid|False|Location of a module.|
 |`serviceArea`|Grid|False|Service area of a module.|
 |`allowMultipleAccess`|Boolean|False|allow multiple users/apps to access the module or not|
 
 
 ### ButtonCapabilities
-Contains information about a button's capabilities.
+Contains information about a button's capabilities. NOTE: Multiple button capabilities can exist for the same ButtonName with different module ids. The module Id for a button should match the module id for a "primary" module type, such as a climate module or a radio module. Whichever module the id matches the button's id is the module the button will control.
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`name`|ButtonName|True|The name of the button. See ButtonName.|
-|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
+|`moduleInfo`|ModuleInfo|False|Information about an RC module, including its id.|
 |`shortPressAvailable`|Boolean|True|The button supports a short press. Whenever the button is pressed short, onButtonPressed( SHORT) will be invoked.|
 |`longPressAvailable`|Boolean|True|The button supports a LONG press. Whenever the button is pressed long, onButtonPressed( LONG) will be invoked.|
 |`upDownAvailable`|Boolean|True|The button supports "button down" and "button up". Whenever the button is pressed, onButtonEvent( DOWN) will be invoked. Whenever the button is released, onButtonEvent( UP) will be invoked.|
@@ -2275,12 +2319,21 @@ Contains information about on-screen preset capabilities.
 |`onScreenPresetsAvailable`|Boolean|True|Onscreen custom presets are available.|
 
 
+### DynamicUpdateCapabilities
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`supportedDynamicImageFieldNames`|ImageFieldName[]|False|An array of ImageFieldName values for which the system supports sending OnFileUpdate notifications. If you send an Image struct for that image field with a name without having uploaded the image data using PutFile that matches that name, the system will request that you upload the data with PutFile at a later point when the HMI needs it. The HMI will then display the image in the appropriate field. If not sent, assume false.|
+|`supportsDynamicSubMenus`|Boolean|False|If true, the head unit supports dynamic sub-menus by sending OnUpdateSubMenu notifications. If true, you should not send AddCommands that attach to a parentID for an AddSubMenu until OnUpdateSubMenu is received with the menuID. At that point, you should send all AddCommands with a parentID that match the menuID. If not set, assume false.|
+
+
 ### WindowCapability
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`windowID`|Integer|False|The specified ID of the window. This ID is either one used when sending the CreateWindow request, or one of the predefined window ID values from the enum PredefinedWindows. If ommited, value is assumed to be the main window on the main display.|
+|`windowID`|Integer|False|The specified ID of the window. This ID is either one used when sending the CreateWindow request, or one of the predefined window ID values from the enum PredefinedWindows. If omitted, value is assumed to be the main window on the main display.|
 |`textFields`|TextField[]|False|A set of all fields that support text data. See TextField|
 |`imageFields`|ImageField[]|False|A set of all fields that support images. See ImageField|
 |`imageTypeSupported`|ImageType[]|False|Provides information about image types supported by the system.|
@@ -2289,6 +2342,7 @@ Contains information about on-screen preset capabilities.
 |`buttonCapabilities`|ButtonCapabilities[]|False|The number of buttons and the capabilities of each on-window button.|
 |`softButtonCapabilities`|SoftButtonCapabilities[]|False|The number of soft buttons available on-window and the capabilities for each button.|
 |`menuLayoutsAvailable`|MenuLayout[]|False|An array of available menu layouts. If this parameter is not provided, only the `LIST` layout is assumed to be available|
+|`dynamicUpdateCapabilities`|DynamicUpdateCapabilities|False|Contains the head unit's capabilities for dynamic updating features declaring if the module will send dynamic update RPCs.|
 
 
 ### WindowTypeCapabilities
@@ -2307,7 +2361,7 @@ Contains information about on-screen preset capabilities.
 | ---------- | ---------- |:-----------: |:-----------:|
 |`displayName`|String|False||
 |`windowTypeSupported`|WindowTypeCapabilities[]|False|Informs the application how many windows the app is allowed to create per type.|
-|`windowCapabilities`|WindowCapability[]|False|Contains a list of capabilities of all windows related to the app. Once the app has registered the capabilities of all windows are provided. GetSystemCapability still allows requesting window capabilities of all windows. After registration, only windows with capabilities changed will be included. Following cases will cause only affected windows to be included: 1. App creates a new window. After the window is created, a system capability notification will be sent related only to the created window. 2. App sets a new layout to the window. The new layout changes window capabilties. The notification will reflect those changes to the single window.|
+|`windowCapabilities`|WindowCapability[]|False|Contains a list of capabilities of all windows related to the app. Once the app has registered the capabilities of all windows are provided. GetSystemCapability still allows requesting window capabilities of all windows. After registration, only windows with capabilities changed will be included. Following cases will cause only affected windows to be included: 1. App creates a new window. After the window is created, a system capability notification will be sent related only to the created window. 2. App sets a new layout to the window. The new layout changes window capabilities. The notification will reflect those changes to the single window.|
 
 
 ### HMICapabilities
@@ -2322,6 +2376,7 @@ Contains information about on-screen preset capabilities.
 |`appServices`|Boolean|False|Availability of App Services functionality. True: Available, False: Not Available|
 |`displays`|Boolean|False|Availability of displays capability. True: Available, False: Not Available|
 |`seatLocation`|Boolean|False|Availability of seat location feature. True: Available, False: Not Available|
+|`driverDistraction`|Boolean|False|Availability of driver distraction capability. True: Available, False: Not Available|
 
 
 ### MenuParams
@@ -2330,7 +2385,7 @@ Contains information about on-screen preset capabilities.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`parentID`|Integer|False|unique ID of the sub menu, the command will be added to. If not provided, it will be provided to the top level of the in application menu.|
-|`position`|Integer|False|Position within the items that are are at top level of the in application menu. 0 will insert at the front. 1 will insert at the second position. if position is greater or equal than the number of items on top level, the sub menu will be appended to the end. If this param was omitted the entry will be added at the end.|
+|`position`|Integer|False|Position within the items that are at top level of the in application menu. 0 will insert at the front. 1 will insert at the second position. if position is greater or equal than the number of items on top level, the sub menu will be appended to the end. If this param was omitted the entry will be added at the end.|
 |`menuName`|String|True|Text to show in the menu for this sub menu.|
 
 
@@ -2377,7 +2432,7 @@ Configuration of on-screen keyboard (if available).
 |`keypressMode`|KeypressMode|False|Desired keypress mode. If omitted, this value will be set to RESEND_CURRENT_ENTRY.|
 |`limitedCharacterList`|String[]|False|Array of keyboard characters to enable. All omitted characters will be greyed out (disabled) on the keyboard. If omitted, the entire keyboard will be enabled.|
 |`autoCompleteText`|String|False|Deprecated, use autoCompleteList instead.|
-|`autoCompleteList`|String[]|False|Allows an app to prepopulate the text field with a list of suggested or completed entries as the user types. If empty, the auto-complete list will be removed from the screen.|
+|`autoCompleteList`|String[]|False|Allows an app to pre-populate the text field with a list of suggested or completed entries as the user types. If empty, the auto-complete list will be removed from the screen.|
 
 
 ### DeviceInfo
@@ -2498,6 +2553,15 @@ Contains information about this system's video streaming capabilities.
 |`scale`|Float|False|The scaling factor the app should use to change the size of the projecting view.|
 
 
+### DriverDistractionCapability
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`menuLength`|Integer|False|The number of items allowed in a Choice Set or Command menu while the driver is distracted|
+|`subMenuDepth`|Integer|False|The depth of submenus allowed when the driver is distracted. e.g. 3 == top level menu -> submenu -> submenu; 1 == top level menu only|
+
+
 ### RGBColor
 ##### Parameters
 
@@ -2616,7 +2680,7 @@ Seat control data corresponds to "SEAT" ModuleType.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleName`|String|True|The short friendly name of the light control module. It should not be used to identify a module by mobile application.|
-|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
+|`moduleInfo`|ModuleInfo|False|Information about an RC module, including its id.|
 |`heatingEnabledAvailable`|Boolean|False||
 |`coolingEnabledAvailable`|Boolean|False||
 |`heatingLevelAvailable`|Boolean|False||
@@ -2729,7 +2793,7 @@ Contains information about a radio control module's capabilities.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleName`|String|True|The short friendly name of the climate control module. It should not be used to identify a module by mobile application.|
-|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
+|`moduleInfo`|ModuleInfo|False|Information about an RC module, including its id.|
 |`radioEnableAvailable`|Boolean|False|Availability of the control of enable/disable radio. True: Available, False: Not Available, Not present: Not Available.|
 |`radioBandAvailable`|Boolean|False|Availability of the control of radio band. True: Available, False: Not Available, Not present: Not Available.|
 |`radioFrequencyAvailable`|Boolean|False|Availability of the control of radio frequency. True: Available, False: Not Available, Not present: Not Available.|
@@ -2742,7 +2806,7 @@ Contains information about a radio control module's capabilities.
 |`signalChangeThresholdAvailable`|Boolean|False|Availability of the getting the signal Change Threshold. True: Available, False: Not Available, Not present: Not Available.|
 |`sisDataAvailable`|Boolean|False|Availability of the getting HD radio Station Information Service (SIS) data. True: Available, False: Not Available, Not present: Not Available.|
 |`hdRadioEnableAvailable`|Boolean|False|Availability of the control of enable/disable HD radio. True: Available, False: Not Available, Not present: Not Available.|
-|`siriusxmRadioAvailable`|Boolean|False|Availability of sirius XM radio. True: Available, False: Not Available, Not present: Not Available.|
+|`siriusxmRadioAvailable`|Boolean|False|Availability of Sirius XM radio. True: Available, False: Not Available, Not present: Not Available.|
 
 
 ### ClimateControlCapabilities
@@ -2753,7 +2817,7 @@ Contains information about a climate control module's capabilities.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleName`|String|True|The short friendly name of the climate control module. It should not be used to identify a module by mobile application.|
-|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
+|`moduleInfo`|ModuleInfo|False|Information about an RC module, including its id.|
 |`currentTemperatureAvailable`|Boolean|False|Availability of the reading of current temperature. True: Available, False: Not Available, Not present: Not Available.|
 |`fanSpeedAvailable`|Boolean|False|Availability of the control of fan speed. True: Available, False: Not Available, Not present: Not Available.|
 |`desiredTemperatureAvailable`|Boolean|False|Availability of the control of desired temperature. True: Available, False: Not Available, Not present: Not Available.|
@@ -2802,7 +2866,7 @@ Defines the each Equalizer channel settings.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleName`|String|True|The short friendly name of the light control module. It should not be used to identify a module by mobile application.|
-|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
+|`moduleInfo`|ModuleInfo|False|Information about an RC module, including its id.|
 |`sourceAvailable`|Boolean|False|Availability of the control of audio source.|
 |`keepContextAvailable`|Boolean|False|Availability of the keepContext parameter.|
 |`volumeAvailable`|Boolean|False|Availability of the control of audio volume.|
@@ -2827,7 +2891,7 @@ Defines the each Equalizer channel settings.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleName`|String|True|The short friendly name of the light control module. It should not be used to identify a module by mobile application.|
-|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
+|`moduleInfo`|ModuleInfo|False|Information about an RC module, including its id.|
 |`supportedLights`|LightCapabilities[]|True|An array of available LightCapabilities that are controllable.|
 
 
@@ -2868,7 +2932,7 @@ Corresponds to "HMI_SETTINGS" ModuleType
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleName`|String|True|The short friendly name of the hmi setting module. It should not be used to identify a module by mobile application.|
-|`moduleInfo`|ModuleInfo|False|Information about a RC module, including its id.|
+|`moduleInfo`|ModuleInfo|False|Information about an RC module, including its id.|
 |`distanceUnitAvailable`|Boolean|False|Availability of the control of distance unit.|
 |`temperatureUnitAvailable`|Boolean|False|Availability of the control of temperature unit.|
 |`displayModeUnitAvailable`|Boolean|False|Availability of the control of HMI display mode.|
@@ -2897,8 +2961,8 @@ The moduleType indicates which type of data should be changed and identifies whi
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`climateControlCapabilities`|ClimateControlCapabilities[]|False|If included, the platform supports RC climate controls. For this baseline version, maxsize=1. i.e. only one climate control module is supported.|
-|`radioControlCapabilities`|RadioControlCapabilities[]|False|If included, the platform supports RC radio controls.For this baseline version, maxsize=1. i.e. only one radio control module is supported.|
-|`buttonCapabilities`|ButtonCapabilities[]|False|If included, the platform supports RC button controls with the included button names.|
+|`radioControlCapabilities`|RadioControlCapabilities[]|False|If included, the platform supports RC radio controls.|
+|`buttonCapabilities`|ButtonCapabilities[]|False|If included, the platform supports RC button controls with the included button names. NOTE: Multiple button capabilities can exist for the same ButtonName with different module ids. The module Id for a button should match the module id for a "primary" module type, such as a climate module or a radio module. Whichever module the id matches the button's id is the module the button will control.|
 |`audioControlCapabilities`|AudioControlCapabilities[]|False|If included, the platform supports audio controls.|
 |`hmiSettingsControlCapabilities`|HMISettingsControlCapabilities|False|If included, the platform supports hmi setting controls.|
 |`lightControlCapabilities`|LightControlCapabilities|False|If included, the platform supports light controls.|
@@ -2992,7 +3056,7 @@ This data is related to what a media service should provide
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`currentTemperature`|Temperature|False||
+|`currentTemperature`|Temperature|False|The central temperature depending on the context of the weather data. It could be the present temperature, the temperature of a future minute, the temperature of a future hour, or an average temperature of a future day, for example.|
 |`temperatureHigh`|Temperature|False||
 |`temperatureLow`|Temperature|False||
 |`apparentTemperature`|Temperature|False||
@@ -3146,11 +3210,12 @@ The systemCapabilityType identifies which data object exists in this struct. For
 |`systemCapabilityType`|SystemCapabilityType|True|Used as a descriptor of what data to expect in this struct. The corresponding param to this enum should be included and the only other param included.|
 |`navigationCapability`|NavigationCapability|False|Describes extended capabilities for onboard navigation system|
 |`phoneCapability`|PhoneCapability|False|Describes extended capabilities of the module's phone feature|
-|`videoStreamingCapability`|VideoStreamingCapability|False|Describes extended capabilities of the module's phone feature|
-|`remoteControlCapability`|RemoteControlCapabilities|False|Describes extended capabilities of the module's phone feature|
+|`videoStreamingCapability`|VideoStreamingCapability|False|Contains information about the module's video streaming capabilities|
+|`remoteControlCapability`|RemoteControlCapabilities|False|Contains information about the module's remote control feature|
 |`appServicesCapabilities`|AppServicesCapabilities|False|An array of currently available services. If this is an update to the capability the affected services will include an update reason in that item|
 |`seatLocationCapability`|SeatLocationCapability|False|Contains information about the locations of each seat|
 |`displayCapabilities`|DisplayCapability[]|False||
+|`driverDistractionCapability`|DriverDistractionCapability|False|Describes capabilities when the driver is distracted|
 
 
 ### GearStatus
@@ -3415,10 +3480,11 @@ Adds a sub menu to the in-application menu.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`menuID`|Integer|True|unique ID of the sub menu to add.|
-|`position`|Integer|False|Position within the items that are are at top level of the in application menu. 0 will insert at the front. 1 will insert at the second position. If position is greater or equal than the number of items on top level, the sub menu will be appended to the end. Position of any submenu will always be located before the return and exit options If this param was omitted the entry will be added at the end.|
+|`position`|Integer|False|Position within the items that are at top level of the in application menu. 0 will insert at the front. 1 will insert at the second position. If position is greater or equal than the number of items on top level, the sub menu will be appended to the end. Position of any submenu will always be located before the return and exit options If this param was omitted the entry will be added at the end.|
 |`menuName`|String|True|Text to show in the menu for this sub menu.|
 |`menuIcon`|Image|False|The image field for AddSubMenu|
 |`menuLayout`|MenuLayout|False|Sets the layout of the submenu screen.|
+|`parentID`|Integer|False|unique ID of the sub menu, the command will be added to. If not provided or 0, it will be provided to the top level of the in application menu.|
 
 
 ### AddSubMenu
@@ -3580,7 +3646,7 @@ Shows an alert which typically consists of text-to-speech message and text on th
 |`alertText3`|String|False|The optional third line of the alert text field|
 |`ttsChunks`|TTSChunk[]|False|An array of text chunks of type TTSChunk. See TTSChunk. The array must have at least one item.|
 |`duration`|Integer|False|Timeout in milliseconds. Typical timeouts are 3-5 seconds. If omitted, timeout is set to 5s.|
-|`playTone`|Boolean|False|Defines if tone should be played. Tone is played before TTS. If omitted, no tone is played.|
+|`playTone`|Boolean|False|Defines if tone should be played. Tone is played before TTS. If omitted or provided without ttsChunks, no tone is played.|
 |`progressIndicator`|Boolean|False|If supported on the given platform, the alert GUI will include some sort of animation indicating that loading of a feature is progressing. e.g. a spinning wheel or hourglass, etc.|
 |`softButtons`|SoftButton[]|False|App defined SoftButtons. If omitted on supported displays, the displayed alert shall not have any SoftButtons.|
 |`alertIcon`|Image|False|Image struct determining whether static or dynamic icon. If omitted on supported displays, no (or the default if applicable) icon should be displayed.|
@@ -3598,6 +3664,43 @@ Message Type: **response**
 |`resultCode`|Result|True|See Result|
 |`info`|String|False|Provides additional human readable info regarding the result.|
 |`tryAgainTime`|Integer|False|Amount of time (in seconds) that an app must wait before resending an alert. If provided, another system event or overlay currently has a higher priority than this alert. An app must not send an alert without waiting at least the amount of time dictated.|
+
+
+### SubtleAlert
+Message Type: **request**
+
+Shows an alert which typically consists of text-to-speech message and text on the display. At least either alertText1, alertText2 or ttsChunks need to be provided.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`alertText1`|String|False|The first line of the alert text field|
+|`alertText2`|String|False|The second line of the alert text field|
+|`alertIcon`|Image|False|Image to be displayed for the corresponding alert. See Image. If omitted on supported displays, no (or the default if applicable) icon should be displayed.|
+|`ttsChunks`|TTSChunk[]|False|An array of text chunks of type TTSChunk. See TTSChunk. The array must have at least one item.|
+|`duration`|Integer|False|Timeout in milliseconds. Typical timeouts are 3-5 seconds. If omitted, timeout is set to 5s.|
+|`softButtons`|SoftButton[]|False|App defined SoftButtons. If omitted on supported displays, the displayed alert shall not have any SoftButtons.|
+|`cancelID`|Integer|False|An ID for this specific alert to allow cancellation through the `CancelInteraction` RPC.|
+
+
+### SubtleAlert
+Message Type: **response**
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`success`|Boolean|True|true if successful; false, if failed|
+|`resultCode`|Result|True|See Result|
+|`info`|String|False|Provides additional human readable info regarding the result.|
+|`tryAgainTime`|Integer|False|Amount of time (in milliseconds) that an app must wait before resending an alert. If provided, another system event or overlay currently has a higher priority than this alert. An app must not send an alert without waiting at least the amount of time dictated.|
+
+
+### OnSubtleAlertPressed
+Message Type: **notification**
+
+Sent when the alert itself is touched (outside of a soft button). Touching (or otherwise selecting) the alert should open the app before sending this notification.
 
 
 ### Show
@@ -3673,7 +3776,7 @@ Sets the initial media clock value and automatic update method.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`startTime`|StartTime|False|See StartTime. startTime must be provided for "COUNTUP" and "COUNTDOWN". startTime will be ignored for "RESUME", and "CLEAR" startTime can be sent for "PAUSE", in which case it will update the paused startTime|
-|`endTime`|StartTime|False|See StartTime. endTime can be provided for "COUNTUP" and "COUNTDOWN"; to be used to calculate any visual progress bar (if not provided, this feature is ignored) If endTime is greater then startTime for COUNTDOWN or less than startTime for COUNTUP, then the request will return an INVALID_DATA. endTime will be ignored for "RESUME", and "CLEAR" endTime can be sent for "PAUSE", in which case it will update the paused endTime|
+|`endTime`|StartTime|False|See StartTime. endTime can be provided for "COUNTUP" and "COUNTDOWN"; to be used to calculate any visual progress bar (if not provided, this feature is ignored) If endTime is greater than startTime for COUNTDOWN or less than startTime for COUNTUP, then the request will return an INVALID_DATA. endTime will be ignored for "RESUME", and "CLEAR" endTime can be sent for "PAUSE", in which case it will update the paused endTime|
 |`updateMode`|UpdateMode|True|Enumeration to control the media clock. In case of pause, resume, or clear, the start time value is ignored and shall be left out. For resume, the time continues with the same value as it was when paused.|
 |`audioStreamingIndicator`|AudioStreamingIndicator|False|Enumeration for the indicator icon on a play/pause button. see AudioStreamingIndicator.|
 
@@ -3827,6 +3930,8 @@ Subscribes for specific published data items. The data will be only sent if it h
 |`emergencyEvent`|Boolean|False|Information related to an emergency event (and if it occurred)|
 |`clusterModeStatus`|Boolean|False|The status modes of the cluster|
 |`myKey`|Boolean|False|Information related to the MyKey feature|
+|`windowStatus`|Boolean|False|See WindowStatus|
+|`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
 
 
 ### SubscribeVehicleData
@@ -3870,6 +3975,8 @@ Message Type: **response**
 |`emergencyEvent`|VehicleDataResult|False|Information related to an emergency event (and if it occurred)|
 |`clusterModes`|VehicleDataResult|False|The status modes of the cluster|
 |`myKey`|VehicleDataResult|False|Information related to the MyKey feature|
+|`windowStatus`|VehicleDataResult|False|See WindowStatus|
+|`handsOffSteering`|VehicleDataResult|False|To indicate whether driver hands are off the steering wheel|
 
 
 ### UnsubscribeVehicleData
@@ -3912,6 +4019,8 @@ This function is used to unsubscribe the notifications from the subscribeVehicle
 |`emergencyEvent`|Boolean|False|Information related to an emergency event (and if it occurred)|
 |`clusterModeStatus`|Boolean|False|The status modes of the cluster|
 |`myKey`|Boolean|False|Information related to the MyKey feature|
+|`windowStatus`|Boolean|False|See WindowStatus|
+|`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
 
 
 ### UnsubscribeVehicleData
@@ -3955,6 +4064,8 @@ Message Type: **response**
 |`emergencyEvent`|VehicleDataResult|False|Information related to an emergency event (and if it occurred)|
 |`clusterModes`|VehicleDataResult|False|The status modes of the cluster|
 |`myKey`|VehicleDataResult|False|Information related to the MyKey feature|
+|`windowStatus`|VehicleDataResult|False|See WindowStatus|
+|`handsOffSteering`|VehicleDataResult|False|To indicate whether driver hands are off the steering wheel|
 
 
 ### GetVehicleData
@@ -3998,6 +4109,8 @@ Non periodic vehicle data read request.
 |`emergencyEvent`|Boolean|False|Information related to an emergency event (and if it occurred)|
 |`clusterModeStatus`|Boolean|False|The status modes of the cluster|
 |`myKey`|Boolean|False|Information related to the MyKey feature|
+|`windowStatus`|Boolean|False|See WindowStatus|
+|`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
 
 
 ### GetVehicleData
@@ -4042,6 +4155,8 @@ Message Type: **response**
 |`emergencyEvent`|EmergencyEvent|False|Information related to an emergency event (and if it occurred)|
 |`clusterModeStatus`|ClusterModeStatus|False|The status modes of the cluster|
 |`myKey`|MyKey|False|Information related to the MyKey feature|
+|`windowStatus`|WindowStatus[]|False|See WindowStatus|
+|`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
 
 
 ### ReadDID
@@ -4560,13 +4675,15 @@ Message Type: **response**
 ### ButtonPress
 Message Type: **request**
 
+NOTE: Certain ButtonNames are tied to specific RC module types. See ButtonName
+
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`moduleType`|ModuleType|True|The module where the button should be pressed|
-|`moduleId`|String|False|Id of a module, published by System Capability.|
-|`buttonName`|ButtonName|True|The name of supported RC climate or radio button.|
+|`moduleId`|String|False|Id of a module in the published ButtonCapabilities|
+|`buttonName`|ButtonName|True|The name of the supported RC button.|
 |`buttonPressMode`|ButtonPressMode|True|Indicates whether this is a LONG or SHORT button press event.|
 
 
@@ -4589,7 +4706,7 @@ Message Type: **request**
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`moduleType`|ModuleType|True|The type of a RC module to retrieve module data from the vehicle. In the future, this should be the Identification of a module.|
+|`moduleType`|ModuleType|True|The type of an RC module to retrieve module data from the vehicle. In the future, this should be the Identification of a module.|
 |`moduleId`|String|False|Id of a module, published by System Capability.|
 |`subscribe`|Boolean|False|If subscribe is true, the head unit will register OnInteriorVehicleData notifications for the requested module (moduleId and moduleType). If subscribe is false, the head unit will unregister OnInteriorVehicleData notifications for the requested module (moduleId and moduleType). If subscribe is not included, the subscription status of the app for the requested module (moduleId and moduleType) will remain unchanged.|
 
@@ -4962,7 +5079,7 @@ Close an active interaction on the HMI.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`cancelID`|Integer|False|The ID of the specific interaction you want to dismiss. If not set, the most recent of the RPC type set in functionID will be dismissed.|
-|`functionID`|Integer|True|The ID of the type of interaction the developer wants to dismiss. Only values 10, (PerformInteractionID), 12 (AlertID), 25 (ScrollableMessageID), and 26 (SliderID) are permitted.|
+|`functionID`|Integer|True|The ID of the type of interaction the developer wants to dismiss. Only values 10, (PerformInteractionID), 12 (AlertID), 25 (ScrollableMessageID), 26 (SliderID), and 64 (SubtleAlertID) are permitted.|
 
 
 ### CancelInteraction
@@ -5090,6 +5207,8 @@ Callback for the periodic and non periodic vehicle data read function.
 |`emergencyEvent`|EmergencyEvent|False|Information related to an emergency event (and if it occurred)|
 |`clusterModeStatus`|ClusterModeStatus|False|The status modes of the cluster|
 |`myKey`|MyKey|False|Information related to the MyKey feature|
+|`windowStatus`|WindowStatus[]|False|See WindowStatus|
+|`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
 
 
 ### OnCommand
@@ -5275,6 +5394,31 @@ A notification to inform the connected device that a specific system capability 
 |`systemCapability`|SystemCapability|True|The system capability that has been updated|
 
 
+### OnUpdateFile
+Message Type: **notification**
+
+This notification tells an app to upload and update a file with a given name.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`fileName`|String|True|File reference name.|
+
+
+### OnUpdateSubMenu
+Message Type: **notification**
+
+This notification tells an app to update the AddSubMenu or its 'sub' AddCommand and AddSubMenus with the requested data
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`menuID`|Integer|True|This menuID must match a menuID in the current menu structure|
+|`updateSubCells`|Boolean|False|If not set, assume false. If true, the app should send AddCommands with parentIDs matching the menuID. These AddCommands will then be attached to the submenu and displayed if the submenu is selected.|
+
+
 ### EncodedSyncPData
 Message Type: **request**
 
@@ -5311,4 +5455,5 @@ Callback including encoded data of any SyncP packets that SYNC needs to send bac
 |`data`|String[]|True|Contains base64 encoded string of SyncP packets.|
 |`URL`|String|False|If blank, the SyncP data shall be forwarded to the app. If not blank, the SyncP data shall be forwarded to the provided URL.|
 |`Timeout`|Integer|False|If blank, the SyncP data shall be forwarded to the app. If not blank, the SyncP data shall be forwarded with the provided timeout in seconds.|
+
 

@@ -11,7 +11,7 @@
         </element>
         <element name="UNSUPPORTED_RESOURCE">
             <description>
-                A button that was requested for subscription is not supported under the current system.
+                One or more of the items (phoneme type, button name, image type, etc.) in the request is not supported by the HMI.
             </description>
         </element>
         <element name="DISALLOWED">
@@ -364,6 +364,10 @@
     </enum>
 
     <enum name="PredefinedWindows" since="6.0">
+        <description>
+            Specifies IDs for windows which are predefined and pre-created.
+            The mobile libraries and SDL Core use the integer value when referencing these elements.
+        </description>
         <element name="DEFAULT_WINDOW" value="0">
             <description>The default window is a main window pre-created on behalf of the app.</description>
         </element>
@@ -449,6 +453,9 @@
         <element name="APP_UNAUTHORIZED" since="2.0" />
         <element name="PROTOCOL_VIOLATION" since="4.0" />
         <element name="UNSUPPORTED_HMI_RESOURCE" since="4.1" />
+        <element name="RESOURCE_CONSTRAINT" since="7.0">
+             <description>By sending this value, SDL unregisters the application to allow the HMI to close the application.</description>
+        </element>
     </enum>
     
     <enum name="TriggerSource" since="1.0">
@@ -571,6 +578,8 @@
         <element name="VEHICLEDATA_CLOUDAPPVEHICLEID" since="5.1"/>
         <element name="VEHICLEDATA_OEM_CUSTOM_DATA" since="6.0"/>
         <element name="VEHICLEDATA_STABILITYCONTROLSSTATUS" since="7.0"/>
+        <element name="VEHICLEDATA_WINDOWSTATUS" since="7.0"/>
+        <element name="VEHICLEDATA_HANDSOFFSTEERING" since="7.0"/>
     </enum>
 
     <enum name="HybridAppPreference" since="5.1">
@@ -580,7 +589,7 @@
         <element name="BOTH" />
     </enum>
 
-    <enum name="AppCapabilityType" since="7.0">
+    <enum name="AppCapabilityType" since="7.1">
         <description>Enumerations of all available app capability types</description>
         <element name="VIDEO_STREAMING"/>
     </enum>
@@ -643,42 +652,91 @@
         <element name="CUSTOM_BUTTON" />
         <element name="SEARCH" />
         <!-- Climate Buttons -->
-        <element name="AC_MAX" since="4.5" />
-        <element name="AC" since="4.5" />
-        <element name="RECIRCULATE" since="4.5" />
-        <element name="FAN_UP" since="4.5" />
-        <element name="FAN_DOWN" since="4.5" />
-        <element name="TEMP_UP" since="4.5" />
-        <element name="TEMP_DOWN" since="4.5" />
-        <element name="DEFROST_MAX" since="4.5" />
-        <element name="DEFROST" since="4.5" />
-        <element name="DEFROST_REAR" since="4.5" />
-        <element name="UPPER_VENT" since="4.5" />
-        <element name="LOWER_VENT" since="4.5" />
+        <element name="AC_MAX" since="4.5">
+            <description>Tied to CLIMATE RC modules.</description>
+        </element>
+        <element name="AC" since="4.5">
+            <description>Tied to CLIMATE RC modules.</description>
+        </element>
+        <element name="RECIRCULATE" since="4.5">
+            <description>Tied to CLIMATE RC modules.</description>
+        </element>
+        <element name="FAN_UP" since="4.5">
+            <description>Tied to CLIMATE RC modules.</description>
+        </element>
+        <element name="FAN_DOWN" since="4.5">
+            <description>Tied to CLIMATE RC modules.</description>
+        </element>
+        <element name="TEMP_UP" since="4.5">
+            <description>Tied to CLIMATE RC modules.</description>
+        </element>
+        <element name="TEMP_DOWN" since="4.5">
+            <description>Tied to CLIMATE RC modules.</description>
+        </element>
+        <element name="DEFROST_MAX" since="4.5">
+            <description>Tied to CLIMATE RC modules.</description>
+        </element>
+        <element name="DEFROST" since="4.5">
+            <description>Tied to CLIMATE RC modules.</description>
+        </element>
+        <element name="DEFROST_REAR" since="4.5">
+            <description>Tied to CLIMATE RC modules.</description>
+        </element>
+        <element name="UPPER_VENT" since="4.5">
+            <description>Tied to CLIMATE RC modules.</description>
+        </element>
+        <element name="LOWER_VENT" since="4.5">
+            <description>Tied to CLIMATE RC modules.</description>
+        </element>
         <!-- Radio Buttons -->
-        <element name="VOLUME_UP" since="4.5" />
-        <element name="VOLUME_DOWN" since="4.5" />
-        <element name="EJECT" since="4.5" />
-        <element name="SOURCE" since="4.5" />
-        <element name="SHUFFLE" since="4.5" />
-        <element name="REPEAT" since="4.5" />
+        <element name="VOLUME_UP" since="4.5">
+            <description>Tied to RADIO RC modules.</description>
+        </element>
+        <element name="VOLUME_DOWN" since="4.5">
+            <description>Tied to RADIO RC modules.</description>
+        </element>
+        <element name="EJECT" since="4.5">
+            <description>Tied to RADIO RC modules.</description>
+        </element>
+        <element name="SOURCE" since="4.5">
+            <description>Tied to RADIO RC modules.</description>
+        </element>
+        <element name="SHUFFLE" since="4.5">
+            <description>Tied to RADIO RC modules.</description>
+        </element>
+        <element name="REPEAT" since="4.5">
+            <description>Tied to RADIO RC modules.</description>
+        </element>
         <!-- Navigation Buttons -->
-        <element name="NAV_CENTER_LOCATION" since="6.0" />
-        <element name="NAV_ZOOM_IN" since="6.0" />
-        <element name="NAV_ZOOM_OUT" since="6.0" />
-        <element name="NAV_PAN_UP" since="6.0" />
-        <element name="NAV_PAN_UP_RIGHT" since="6.0" />
-        <element name="NAV_PAN_RIGHT" since="6.0" />
-        <element name="NAV_PAN_DOWN_RIGHT" since="6.0" />
-        <element name="NAV_PAN_DOWN" since="6.0" />
-        <element name="NAV_PAN_DOWN_LEFT" since="6.0" />
-        <element name="NAV_PAN_LEFT" since="6.0" />
-        <element name="NAV_PAN_UP_LEFT" since="6.0" />
+        <element name="NAV_CENTER_LOCATION" since="6.0">
+        </element>
+        <element name="NAV_ZOOM_IN" since="6.0">
+        </element>
+        <element name="NAV_ZOOM_OUT" since="6.0">
+        </element>
+        <element name="NAV_PAN_UP" since="6.0">
+        </element>
+        <element name="NAV_PAN_UP_RIGHT" since="6.0">
+        </element>
+        <element name="NAV_PAN_RIGHT" since="6.0">
+        </element>
+        <element name="NAV_PAN_DOWN_RIGHT" since="6.0">
+        </element>
+        <element name="NAV_PAN_DOWN" since="6.0">
+        </element>
+        <element name="NAV_PAN_DOWN_LEFT" since="6.0">
+        </element>
+        <element name="NAV_PAN_LEFT" since="6.0">
+        </element>
+        <element name="NAV_PAN_UP_LEFT" since="6.0">
+        </element>
         <element name="NAV_TILT_TOGGLE" since="6.0" >
             <description>If supported, this toggles between a top-down view and an angled/3D view. If your app supports different, but substantially similar options, then you may implement those. If you don't implement these or similar options, do not subscribe to this button.</description>
         </element>
-        <element name="NAV_ROTATE_CLOCKWISE" since="6.0" />
-        <element name="NAV_ROTATE_COUNTERCLOCKWISE" since="6.0" />
+        <element name="NAV_ROTATE_CLOCKWISE" since="6.0">
+        </element>
+        <element name="NAV_ROTATE_COUNTERCLOCKWISE" since="6.0">
+        </element>
         <element name="NAV_HEADING_TOGGLE" since="6.0" >
             <description>If supported, this toggles between locking the orientation to north or to the vehicle's heading. If your app supports different, but substantially similar options, then you may implement those. If you don't implement these or similar options, do not subscribe to this button.</description>
         </element>
@@ -879,7 +937,19 @@
         <element name="phoneNumber" since="4.0">
             <description> Optional phone number of intended location / establishment (if applicable) for SendLocation.</description>
         </element>
-        
+
+        <element name="subtleAlertText1" since="7.0">
+            <description>The first line of the subtle alert text field; applies to `SubtleAlert` `alertText1`</description>
+        </element>
+
+        <element name="subtleAlertText2" since="7.0">
+            <description>The second line of the subtle alert text field; applies to `SubtleAlert` `alertText2`</description>
+        </element>
+
+        <element name="subtleAlertSoftButtonText" since="7.0">
+            <description>A text field in the soft button of a subtle alert; applies to `SubtleAlert` `softButtons`</description>
+        </element>
+
     </enum>
     
     <enum name="ImageFieldName" since="3.0">
@@ -939,21 +1009,53 @@
             <description>The image field for Alert</description>
         </element>
 
+        <element name="subMenuIcon" since="7.0">
+            <description>The image field for AddSubMenu.menuIcon</description>
+        </element>
+
+        <element name="subtleAlertIcon" since="7.0">
+            <description>The image of the subtle alert; applies to `SubtleAlert` `alertIcon`</description>
+        </element>
+
     </enum>
     
     <enum name="CharacterSet" since="1.0">
         <description>The list of potential character sets</description>
-        <element name="TYPE2SET">
-            <description>See [@TODO: create file ref]</description>
+        <element name="TYPE2SET" deprecated="true" since="7.0">
+            <history>
+                <element name="TYPE2SET" since="1.0" until="7.0"/>
+            </history>
         </element>
-        <element name="TYPE5SET">
-            <description>See [@TODO: create file ref]</description>
+        <element name="TYPE5SET" deprecated="true" since="7.0">
+            <history>
+                <element name="TYPE5SET" since="1.0" until="7.0"/>
+            </history>
         </element>
-        <element name="CID1SET">
-            <description>See [@TODO: create file ref]</description>
+        <element name="CID1SET" deprecated="true" since="7.0">
+            <history>
+                <element name="CID1SET" since="1.0" until="7.0"/>
+            </history>
         </element>
-        <element name="CID2SET">
-            <description>See [@TODO: create file ref]</description>
+        <element name="CID2SET" deprecated="true" since="7.0">
+            <history>
+                <element name="CID2SET" since="1.0" until="7.0"/>
+            </history>
+        </element>
+        <element name="ASCII" since="7.0">
+            <description>
+                ASCII as defined in https://en.wikipedia.org/wiki/ASCII as defined in codes 0-127.
+                Non-printable characters such as tabs and back spaces are ignored.
+            </description>
+        </element>
+        <element name="ISO_8859_1" since="7.0">
+            <description>Latin-1, as defined in https://en.wikipedia.org/wiki/ISO/IEC_8859-1</description>
+        </element>
+        <element name="UTF_8" since="7.0">
+            <description>
+                The UTF-8 character set that uses variable bytes per code point.
+                See https://en.wikipedia.org/wiki/UTF-8 for more details.
+                This is the preferred character set.
+            </description>
         </element>
     </enum>
     
@@ -2189,7 +2291,11 @@
             <description>The name that identifies the field. See TextFieldName.</description>
         </param>
         <param name="characterSet" type="CharacterSet" mandatory="true">
-            <description>The character set that is supported in this field. See CharacterSet.</description>
+            <description>
+                The set of characters that are supported by this text field.
+                All text is sent in UTF-8 format, but not all systems may support all of the characters expressed by UTF-8.
+                All systems will support at least ASCII, but they may support more, either the LATIN-1 character set, or the full UTF-8 character set.
+            </description>
         </param>
         <param name="width" type="Integer" minvalue="1" maxvalue="500" mandatory="true">
             <description>The number of characters in one row of this field.</description>
@@ -2363,10 +2469,25 @@
         </param>
     </struct>
 
+    <struct name="WindowState" since="7.0">
+      <param name="approximatePosition" type="Integer" minvalue="0" maxvalue="100" mandatory="true">
+        <description>The approximate percentage that the window is open - 0 being fully closed, 100 being fully open</description>
+      </param>
+      <param name="deviation" type="Integer" minvalue="0" maxvalue="100" mandatory="true">
+        <description>The percentage deviation of the approximatePosition. e.g. If the approximatePosition is 50 and the deviation is 10, then the window's location is somewhere between 40 and 60.</description>
+      </param>
+    </struct>
+
+    <struct name="WindowStatus" since="7.0">
+      <description>Describes the status of a window of a door/liftgate etc.</description>
+      <param name="location" type="Grid" mandatory="true"/>
+      <param name="state" type="WindowState" mandatory="true"/>     
+    </struct>
+
     <struct name="ModuleInfo" since="6.0">
-        <description>Information about a RC module</description>
+        <description>Information about an RC module</description>
         <param name="moduleId" type="String" maxlength="100" mandatory="true">
-            <description> uuid of a module. "moduleId + moduleType" uniquely identify a module.</description>
+            <description>UUID of a module. "moduleId + moduleType" uniquely identify a module.</description>
         </param>
         <param name="location" type="Grid" mandatory="false">
            <description>Location of a module.</description>
@@ -2380,12 +2501,15 @@
     </struct>
 
     <struct name="ButtonCapabilities" since="1.0">
-        <description>Contains information about a button's capabilities.</description>
+        <description>
+            Contains information about a button's capabilities.
+            NOTE: Multiple button capabilities can exist for the same ButtonName with different module ids. The module Id for a button should match the module id for a "primary" module type, such as a climate module or a radio module. Whichever module the id matches the button's id is the module the button will control.
+        </description>
         <param name="name" type="ButtonName" mandatory="true">
             <description>The name of the button. See ButtonName.</description>
         </param>
         <param name="moduleInfo" type="ModuleInfo" mandatory="false" since="6.0">
-            <description>Information about a RC module, including its id. </description>
+            <description>Information about an RC module, including its id. </description>
         </param>
         <param name="shortPressAvailable" type="Boolean" mandatory="true">
             <description>
@@ -2445,13 +2569,23 @@
         <param name="onScreenPresetsAvailable" type="Boolean" mandatory="true">
             <description>Onscreen custom presets are available.</description>
         </param>
-    </struct>         
+    </struct>
+
+    <struct name="DynamicUpdateCapabilities" since="7.0">
+        <param name="supportedDynamicImageFieldNames" type="ImageFieldName" array="true" mandatory="false" minsize="1">
+            <description>An array of ImageFieldName values for which the system supports sending OnFileUpdate notifications. If you send an Image struct for that image field with a name without having uploaded the image data using PutFile that matches that name, the system will request that you upload the data with PutFile at a later point when the HMI needs it. The HMI will then display the image in the appropriate field. If not sent, assume false.</description>
+        </param>
+
+        <param name="supportsDynamicSubMenus" type="Boolean" mandatory="false">
+            <description>If true, the head unit supports dynamic sub-menus by sending OnUpdateSubMenu notifications. If true, you should not send AddCommands that attach to a parentID for an AddSubMenu until OnUpdateSubMenu is received with the menuID. At that point, you should send all AddCommands with a parentID that match the menuID. If not set, assume false.</description>
+        </param>
+    </struct>  
 
     <struct name="WindowCapability" since="6.0">
         <param name="windowID" type="Integer" mandatory="false">
             <description>
                 The specified ID of the window. This ID is either one used when sending the CreateWindow request, 
-                or one of the predefined window ID values from the enum PredefinedWindows. If ommited, value is 
+                or one of the predefined window ID values from the enum PredefinedWindows. If omitted, value is 
                 assumed to be the main window on the main display.
             </description>
         </param>
@@ -2479,6 +2613,9 @@
         <param name="menuLayoutsAvailable" type="MenuLayout" array="true" minsize="1" maxsize="1000" mandatory="false" since="6.0">
             <description>An array of available menu layouts. If this parameter is not provided, only the `LIST` layout is assumed to be available</description>
         </param>
+        <param name="dynamicUpdateCapabilities" type="DynamicUpdateCapabilities" mandatory="false" since="7.0">
+            <description>Contains the head unit's capabilities for dynamic updating features declaring if the module will send dynamic update RPCs.</description>
+        </param>
     </struct>
 
     <struct name="WindowTypeCapabilities" since="6.0">
@@ -2500,7 +2637,7 @@
               GetSystemCapability still allows requesting window capabilities of all windows.
               After registration, only windows with capabilities changed will be included. Following cases will cause only affected windows to be included:
               1. App creates a new window. After the window is created, a system capability notification will be sent related only to the created window.
-              2. App sets a new layout to the window. The new layout changes window capabilties. The notification will reflect those changes to the single window.
+              2. App sets a new layout to the window. The new layout changes window capabilities. The notification will reflect those changes to the single window.
             </description>
         </param>
     </struct>
@@ -2527,6 +2664,9 @@
         <param name="seatLocation" type="Boolean" mandatory="false" since="6.0">
             <description>Availability of seat location feature. True: Available, False: Not Available</description>
         </param>
+        <param name="driverDistraction" type="Boolean" mandatory="false" since="7.0">
+            <description>Availability of driver distraction capability. True: Available, False: Not Available</description>
+        </param>
     </struct>
 
     <struct name="MenuParams" since="1.0">
@@ -2538,7 +2678,7 @@
         </param>         
         <param name="position" type="Integer" minvalue="0" maxvalue="1000" mandatory="false">
             <description>
-                Position within the items that are are at top level of the in application menu.
+                Position within the items that are at top level of the in application menu.
                 0 will insert at the front.
                 1 will insert at the second position.
                 if position is greater or equal than the number of items on top level, the sub menu will be appended to the end.
@@ -2644,7 +2784,7 @@
         </param>
         <param name="autoCompleteList" type="String" maxlength="1000" minsize="0" maxsize="100" array="true" mandatory="false" since="6.0">
             <description>
-                Allows an app to prepopulate the text field with a list of suggested or completed entries as the user types. 
+                Allows an app to pre-populate the text field with a list of suggested or completed entries as the user types. 
                 If empty, the auto-complete list will be removed from the screen.
             </description>
         </param>
@@ -2712,6 +2852,7 @@
         <element name="SYSTEM" />
         <element name="PROJECTION" since="4.5" />
         <element name="REMOTE_CONTROL" since="4.5" />
+        <element name="WEB_VIEW" since="7.0" />
     </enum>         
 
     <enum name="PredefinedLayout" platform="documentation" since="3.0">
@@ -2836,6 +2977,12 @@
                 Can be set as a root screen.
             </description>
         </element>
+        <element name="WEB_VIEW" rootscreen="true" since="7.0">
+            <description>
+                Custom root template allowing in-vehicle WebEngine applications with
+                appropriate permissions to show the application's own web view.
+            </description>
+        </element>
     </enum>         
    
     <enum name="FunctionID" internal_scope="base" since="1.0">
@@ -2906,7 +3053,8 @@
         <element name="CreateWindowID" value="60" hexvalue="3C" since="6.0" />
         <element name="DeleteWindowID" value="61" hexvalue="3D" since="6.0" />
         <element name="GetInteriorVehicleDataConsentID" value="62" hexvalue="3E" since="6.0" />
-        <element name="ReleaseInteriorVehicleDataModuleID" value="63" hexvalue="3F" since="6.0" /> 
+        <element name="ReleaseInteriorVehicleDataModuleID" value="63" hexvalue="3F" since="6.0" />
+        <element name="SubtleAlertID" value="64" hexvalue="40" since="7.0" />
         
         <!--
          Base Notifications
@@ -2933,7 +3081,10 @@
         <element name="OnRCStatusID" value="32785" hexvalue="8011" since="5.0" />
         <element name="OnAppServiceDataID" value="32786" hexvalue="8012" since="5.1" />
         <element name="OnSystemCapabilityUpdatedID" value="32787" hexvalue="8013" since="5.1" />
-        <element name="OnAppCapabilityUpdatedID" value="32788" hexvalue="8014" since="7.0"/>
+        <element name="OnSubtleAlertPressedID" value="32788" hexvalue="8014" since="7.0" />
+        <element name="OnUpdateFileID" value="32789" hexvalue="8015" since="7.0" />
+        <element name="OnUpdateSubMenuID" value="32790" hexvalue="8016" since="7.0" />
+        <element name="OnAppCapabilityUpdatedID" value="32791" hexvalue="8017" since="7.1"/>
 
         <!--
          Ford Specific Request / Response RPCs
@@ -2956,6 +3107,7 @@
         <description>
             Enumeration linking message types with function types in WiPro protocol.
             Assumes enumeration starts at value 0.
+            The integer value is used in the protocol binary header.
         </description>
         <element name="request" value="0" />
         <element name="response" value="1" />
@@ -3094,6 +3246,7 @@
         <element name="APP_SERVICES" since="5.1"/>
         <element name="SEAT_LOCATION" since="6.0"/>
         <element name="DISPLAYS" since="6.0"/>
+        <element name="DRIVER_DISTRACTION" since="7.0"/>
     </enum>
     
     <struct name="NavigationCapability" since="4.5">
@@ -3146,7 +3299,16 @@
         <param name="scale" type="Float" minvalue="1" maxvalue="10" mandatory="false" since="6.0">
             <description>The scaling factor the app should use to change the size of the projecting view.</description>
         </param>
-        <param name="additionalVideoStreamingCapabilities" type="VideoStreamingCapability" array="true" minsize="1" maxsize="100" mandatory="false" since="7.0">
+        <param name="additionalVideoStreamingCapabilities" type="VideoStreamingCapability" array="true" minsize="1" maxsize="100" mandatory="false" since="7.1">
+        </param>
+    </struct>
+
+    <struct name="DriverDistractionCapability" since="7.0">
+        <param name="menuLength" type="Integer" mandatory="false">
+            <description>The number of items allowed in a Choice Set or Command menu while the driver is distracted</description>
+        </param>
+        <param name="subMenuDepth" type="Integer" minvalue="1" mandatory="false">
+            <description>The depth of submenus allowed when the driver is distracted. e.g. 3 == top level menu -> submenu -> submenu; 1 == top level menu only</description>
         </param>
     </struct>
 
@@ -3241,7 +3403,7 @@
 
     <enum name="SeatMemoryActionType" since="5.0">
         <element name="SAVE">
-            <description>Save current seat postions and settings to seat memory.</description>
+            <description>Save current seat positions and settings to seat memory.</description>
         </element>
         <element name="RESTORE">
             <description>Restore / apply the seat memory settings to the current seat. </description>
@@ -3303,7 +3465,7 @@
             </description>
         </param>
         <param name="moduleInfo" type="ModuleInfo" mandatory="false" since="6.0">
-            <description>Information about a RC module, including its id. </description>
+            <description>Information about an RC module, including its id. </description>
         </param>
         <param name="heatingEnabledAvailable" type="Boolean" mandatory="false">
         </param>
@@ -3493,7 +3655,7 @@
             </description>
         </param>
         <param name="moduleInfo" type="ModuleInfo" mandatory="false" since="6.0">
-            <description>Information about a RC module, including its id. </description>
+            <description>Information about an RC module, including its id. </description>
         </param>
         <param name="radioEnableAvailable" type="Boolean" mandatory="false">
             <description>
@@ -3572,7 +3734,7 @@
         </param>
         <param name="siriusxmRadioAvailable" type="Boolean" mandatory="false" since="5.0">
             <description>
-                Availability of sirius XM radio.
+                Availability of Sirius XM radio.
                 True: Available, False: Not Available, Not present: Not Available.
             </description>
         </param>
@@ -3585,7 +3747,7 @@
                 It should not be used to identify a module by mobile application.</description>
         </param>
         <param name="moduleInfo" type="ModuleInfo" mandatory="false" since="6.0">
-            <description>Information about a RC module, including its id. </description>
+            <description>Information about an RC module, including its id. </description>
         </param>
         <param name="currentTemperatureAvailable" type="Boolean" mandatory="false" since="5.0">
             <description>
@@ -3733,7 +3895,7 @@
             </description>
         </param>
         <param name="moduleInfo" type="ModuleInfo" mandatory="false" since="6.0">
-            <description>Information about a RC module, including its id. </description>
+            <description>Information about an RC module, including its id. </description>
         </param>
         <param name="sourceAvailable" type="Boolean" mandatory="false">
             <description>Availability of the control of audio source. </description>
@@ -3753,6 +3915,10 @@
     </struct>
 
     <enum name="LightName" since="5.0">
+        <description>
+            Enumeration that describes possible values of light name.
+            The mobile libraries and SDL Core use the name string when referencing these elements.
+        </description>
         <!-- Common Single Light 0~500 -->
         <element name="FRONT_LEFT_HIGH_BEAM" value="0"/>
         <element name="FRONT_RIGHT_HIGH_BEAM" value="1"/>
@@ -3888,7 +4054,7 @@
             </description>
         </param>
         <param name="moduleInfo" type="ModuleInfo" mandatory="false" since="6.0">
-            <description>Information about a RC module, including its id. </description>
+            <description>Information about an RC module, including its id. </description>
         </param>
         <param name="supportedLights" type="LightCapabilities" minsize="1" maxsize="100" array="true" mandatory="true">
             <description> An array of available LightCapabilities that are controllable. </description>
@@ -3936,7 +4102,7 @@
             </description>
         </param>
         <param name="moduleInfo" type="ModuleInfo" mandatory="false" since="6.0">
-            <description>Information about a RC module, including its id. </description>
+            <description>Information about an RC module, including its id. </description>
         </param>
         <param name="distanceUnitAvailable" type="Boolean" mandatory="false">
             <description>Availability of the control of distance unit. </description>
@@ -3975,10 +4141,13 @@
             <description>If included, the platform supports RC climate controls. For this baseline version, maxsize=1. i.e. only one climate control module is supported.</description>
         </param>
         <param name="radioControlCapabilities" type="RadioControlCapabilities" mandatory="false" minsize="1" maxsize="100" array="true">
-            <description>If included, the platform supports RC radio controls.For this baseline version, maxsize=1. i.e. only one radio control module is supported.</description>
+            <description>If included, the platform supports RC radio controls.</description>
         </param>
         <param name="buttonCapabilities" type="ButtonCapabilities"  mandatory="false" minsize="1" maxsize="100" array="true">
-            <description>If included, the platform supports RC button controls with the included button names.</description>
+            <description>
+                If included, the platform supports RC button controls with the included button names.
+                NOTE: Multiple button capabilities can exist for the same ButtonName with different module ids. The module Id for a button should match the module id for a "primary" module type, such as a climate module or a radio module. Whichever module the id matches the button's id is the module the button will control.
+            </description>
         </param>
         <param name="audioControlCapabilities" type="AudioControlCapabilities" mandatory="false" minsize="1" maxsize="100" array="true" since="5.0">
             <description>If included, the platform supports audio controls.</description>
@@ -4210,7 +4379,9 @@
     </struct>
 
     <struct name="WeatherData" since="5.1">
-        <param name="currentTemperature" type="Temperature" mandatory="false"/>
+        <param name="currentTemperature" type="Temperature" mandatory="false">
+            <description>The central temperature depending on the context of the weather data. It could be the present temperature, the temperature of a future minute, the temperature of a future hour, or an average temperature of a future day, for example.</description>
+        </param>
         <param name="temperatureHigh" type="Temperature" mandatory="false"/>
         <param name="temperatureLow" type="Temperature" mandatory="false"/>
         <param name="apparentTemperature" type="Temperature" mandatory="false"/>
@@ -4487,16 +4658,16 @@
             <description>Used as a descriptor of what data to expect in this struct. The corresponding param to this enum should be included and the only other param included.</description>
         </param>
         <param name="navigationCapability" type="NavigationCapability" mandatory="false">
-            <description>Describes extended capabilities for onboard navigation system </description>
+            <description>Describes extended capabilities for onboard navigation system</description>
         </param>
         <param name="phoneCapability" type="PhoneCapability" mandatory="false">
             <description>Describes extended capabilities of the module's phone feature</description>
         </param>
         <param name="videoStreamingCapability" type="VideoStreamingCapability" mandatory="false">
-            <description>Describes extended capabilities of the module's phone feature</description>
+            <description>Contains information about the module's video streaming capabilities</description>
         </param>
         <param name="remoteControlCapability" type="RemoteControlCapabilities" mandatory="false">
-            <description>Describes extended capabilities of the module's phone feature</description>
+            <description>Contains information about the module's remote control feature</description>
         </param>
         <param name="appServicesCapabilities" type="AppServicesCapabilities" mandatory="false" since="5.1">
             <description>An array of currently available services. If this is an update to the capability the affected services will include an update reason in that item</description>
@@ -4505,6 +4676,9 @@
             <description>Contains information about the locations of each seat</description>
         </param>
         <param name="displayCapabilities" type="DisplayCapability" array="true" minsize="1" maxsize="1000" mandatory="false" since="6.0"/>
+        <param name="driverDistractionCapability" type="DriverDistractionCapability" mandatory="false" since="7.0">
+            <description>Describes capabilities when the driver is distracted</description>
+        </param>
     </struct>
 
     <struct name="GearStatus" since="7.0">
@@ -4519,7 +4693,7 @@
         </param>
     </struct>
 
-    <struct name="AppCapability" since="7.0">
+    <struct name="AppCapability" since="7.1">
         <param name="appCapabilityType" type="AppCapabilityType" mandatory="true">
             <description>
                 Used as a descriptor of what data to expect in this struct.
@@ -5113,7 +5287,7 @@
         
         <param name="position" type="Integer" minvalue="0" maxvalue="1000" defvalue="1000" mandatory="false">
             <description>
-                Position within the items that are are at top level of the in application menu.
+                Position within the items that are at top level of the in application menu.
                 0 will insert at the front.
                 1 will insert at the second position.
                 If position is greater or equal than the number of items on top level, the sub menu will be appended to the end.
@@ -5132,6 +5306,13 @@
 
         <param name="menuLayout" type="MenuLayout" mandatory="false" since="6.0">
             <description>Sets the layout of the submenu screen.</description>
+        </param>
+
+        <param name="parentID" type="Integer" minvalue="0" maxvalue="2000000000" defvalue="0" mandatory="false" since="7.0">
+            <description>
+                unique ID of the sub menu, the command will be added to.
+                If not provided or 0, it will be provided to the top level of the in application menu.
+            </description>
         </param>
     </function>
     
@@ -5445,7 +5626,7 @@
         <param name="playTone" type="Boolean" mandatory="false">
             <description>
                 Defines if tone should be played. Tone is played before TTS.
-                If omitted, no tone is played.
+                If omitted or provided without ttsChunks, no tone is played.
             </description>
         </param>
         
@@ -5511,6 +5692,96 @@
             </description>
         </param>
         
+    </function>
+    
+    <function name="SubtleAlert" functionID="SubtleAlertID" messagetype="request" since="7.0">
+        <description>Shows an alert which typically consists of text-to-speech message and text on the display. At least either alertText1, alertText2 or ttsChunks need to be provided.</description>
+        
+        <param name="alertText1" type="String" maxlength="500" mandatory="false">
+            <description>The first line of the alert text field</description>
+        </param>
+        
+        <param name="alertText2" type="String" maxlength="500" mandatory="false">
+            <description>The second line of the alert text field</description>
+        </param>
+
+        <param name="alertIcon" type="Image" mandatory="false">
+            <description>
+                Image to be displayed for the corresponding alert. See Image.
+                If omitted on supported displays, no (or the default if applicable) icon should be displayed.
+            </description>
+        </param>
+
+        <param name="ttsChunks" type="TTSChunk" minsize="1" maxsize="100" array="true" mandatory="false">
+            <description>
+                An array of text chunks of type TTSChunk. See TTSChunk.
+                The array must have at least one item.
+            </description>
+        </param>
+        
+        <param name="duration" type="Integer" minvalue="3000" maxvalue="10000" defvalue="5000" mandatory="false">
+            <description>
+                Timeout in milliseconds.
+                Typical timeouts are 3-5 seconds.
+                If omitted, timeout is set to 5s.
+            </description>
+        </param>
+        
+        <param name="softButtons" type="SoftButton" minsize="0" maxsize="2" array="true" mandatory="false">
+            <description>
+                App defined SoftButtons.
+                If omitted on supported displays, the displayed alert shall not have any SoftButtons.
+            </description>
+        </param>
+
+        <param name="cancelID" type="Integer" mandatory="false">
+            <description>
+                An ID for this specific alert to allow cancellation through the `CancelInteraction` RPC.
+            </description>
+        </param>
+        
+    </function>
+    
+    <function name="SubtleAlert" functionID="SubtleAlertID" messagetype="response" since="7.0">
+        
+        <param name="success" type="Boolean" platform="documentation" mandatory="true">
+            <description> true if successful; false, if failed </description>
+        </param>
+        
+        <param name="resultCode" type="Result" platform="documentation" mandatory="true">
+            <description>See Result</description>
+            <element name="SUCCESS"/>
+            <element name="INVALID_DATA"/>
+            <element name="OUT_OF_MEMORY"/>
+            <element name="TOO_MANY_PENDING_REQUESTS"/>
+            <element name="APPLICATION_NOT_REGISTERED"/>
+            <element name="GENERIC_ERROR"/>
+            <element name="REJECTED"/>
+            <element name="ABORTED"/>
+            <element name="DISALLOWED"/>
+            <element name="USER_DISALLOWED"/>
+            <element name="UNSUPPORTED_RESOURCE"/>
+            <element name="WARNINGS"/>
+        </param>
+        
+        <param name="info" type="String" maxlength="1000" mandatory="false" platform="documentation">
+            <description>Provides additional human readable info regarding the result.</description>
+        </param>
+        
+        <param name="tryAgainTime" type="Integer" minvalue="0" maxvalue="2000000000" mandatory="false">
+            <description>
+                Amount of time (in milliseconds) that an app must wait before resending an alert.
+                If provided, another system event or overlay currently has a higher priority than this alert.
+                An app must not send an alert without waiting at least the amount of time dictated.
+            </description>
+        </param>
+        
+    </function>
+
+    <function name="OnSubtleAlertPressed" functionID="OnSubtleAlertPressedID" messagetype="notification" since="7.0">
+        <description>
+            Sent when the alert itself is touched (outside of a soft button). Touching (or otherwise selecting) the alert should open the app before sending this notification.
+        </description>
     </function>
     
     <function name="Show" functionID="ShowID" messagetype="request" since="1.0">
@@ -5711,7 +5982,7 @@
             <description>
                 See StartTime.
                 endTime can be provided for "COUNTUP" and "COUNTDOWN"; to be used to calculate any visual progress bar (if not provided, this feature is ignored)
-                If endTime is greater then startTime for COUNTDOWN or less than startTime for COUNTUP, then the request will return an INVALID_DATA.
+                If endTime is greater than startTime for COUNTDOWN or less than startTime for COUNTUP, then the request will return an INVALID_DATA.
                 endTime will be ignored for "RESUME", and "CLEAR"
                 endTime can be sent for "PAUSE", in which case it will update the paused endTime
             </description>
@@ -6019,6 +6290,12 @@
         <param name="myKey" type="Boolean" mandatory="false">
             <description>Information related to the MyKey feature</description>
         </param>
+        <param name="windowStatus" type="Boolean" mandatory="false" since="7.0">
+            <description>See WindowStatus</description>
+        </param>
+        <param name="handsOffSteering" type="Boolean" mandatory="false" since="7.0">
+            <description>To indicate whether driver hands are off the steering wheel</description>
+        </param>
     </function>
     
     <function name="SubscribeVehicleData" functionID="SubscribeVehicleDataID" messagetype="response" since="2.0">
@@ -6150,6 +6427,12 @@
         <param name="myKey" type="VehicleDataResult" mandatory="false">
             <description>Information related to the MyKey feature</description>
         </param>
+        <param name="windowStatus" type="VehicleDataResult" mandatory="false" since="7.0">
+            <description>See WindowStatus</description>
+        </param>
+        <param name="handsOffSteering" type="VehicleDataResult" mandatory="false" since="7.0">
+            <description>To indicate whether driver hands are off the steering wheel</description>
+        </param>
     </function>
     
     <function name="UnsubscribeVehicleData" functionID="UnsubscribeVehicleDataID" messagetype="request" since="2.0">
@@ -6259,6 +6542,12 @@
         </param>
         <param name="myKey" type="Boolean" mandatory="false">
             <description>Information related to the MyKey feature</description>
+        </param>
+        <param name="windowStatus" type="Boolean" mandatory="false" since="7.0">
+            <description>See WindowStatus</description>
+        </param>
+        <param name="handsOffSteering" type="Boolean" mandatory="false" since="7.0">
+            <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
     </function>
     
@@ -6390,6 +6679,12 @@
         <param name="myKey" type="VehicleDataResult" mandatory="false">
             <description>Information related to the MyKey feature</description>
         </param>
+        <param name="windowStatus" type="VehicleDataResult" mandatory="false" since="7.0">
+            <description>See WindowStatus</description>
+        </param>
+        <param name="handsOffSteering" type="VehicleDataResult" mandatory="false" since="7.0">
+            <description>To indicate whether driver hands are off the steering wheel</description>
+        </param>
     </function>
     
     <function name="GetVehicleData" functionID="GetVehicleDataID" messagetype="request" since="2.0">
@@ -6502,6 +6797,12 @@
         </param>
         <param name="myKey" type="Boolean" mandatory="false">
             <description>Information related to the MyKey feature</description>
+        </param>
+        <param name="windowStatus" type="Boolean" mandatory="false" since="7.0">
+            <description>See WindowStatus</description>
+        </param>
+        <param name="handsOffSteering" type="Boolean" mandatory="false" since="7.0">
+            <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
     </function>
     
@@ -6636,6 +6937,12 @@
         </param>
         <param name="myKey" type="MyKey" mandatory="false">
             <description>Information related to the MyKey feature</description>
+        </param>
+        <param name="windowStatus" type="WindowStatus" array="true" minsize="0" maxsize="100" mandatory="false" since="7.0">
+            <description>See WindowStatus</description>
+        </param>
+        <param name="handsOffSteering" type="Boolean" mandatory="false" since="7.0">
+            <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
     </function>
     
@@ -7573,14 +7880,15 @@
     </function>
     
     <function name="ButtonPress" functionID="ButtonPressID" messagetype="request" since="4.5">
+        <description>NOTE: Certain ButtonNames are tied to specific RC module types. See ButtonName</description>
         <param name="moduleType" type="ModuleType" mandatory="true">
             <description>The module where the button should be pressed</description>
         </param>
         <param name="moduleId" type="String" maxlength="100" mandatory="false" since="6.0">
-            <description>Id of a module, published by System Capability. </description>
+            <description>Id of a module in the published ButtonCapabilities</description>
         </param>
         <param name="buttonName" type="ButtonName" mandatory="true">
-            <description>The name of supported RC climate or radio button.</description>
+            <description>The name of the supported RC button.</description>
         </param>
         <param name="buttonPressMode" type="ButtonPressMode" mandatory="true">
             <description>Indicates whether this is a LONG or SHORT button press event.</description>
@@ -7611,7 +7919,7 @@
     <function name="GetInteriorVehicleData" functionID="GetInteriorVehicleDataID" messagetype="request" since="4.5">
         <param name="moduleType" type="ModuleType" mandatory="true">
             <description>
-                The type of a RC module to retrieve module data from the vehicle.
+                The type of an RC module to retrieve module data from the vehicle.
                 In the future, this should be the Identification of a module.
             </description>
         </param>
@@ -7646,6 +7954,7 @@
             <element name="DISALLOWED"/>
             <element name="USER_DISALLOWED"/>
             <element name="UNSUPPORTED_RESOURCE"/>
+            <element name="WARNINGS"/>		
         </param>
         <param name="info" type="String" maxlength="1000" mandatory="false">
         </param>
@@ -8125,7 +8434,7 @@
 
         <param name="functionID" type="Integer" mandatory="true">
             <description>
-                The ID of the type of interaction the developer wants to dismiss. Only values 10, (PerformInteractionID), 12 (AlertID), 25 (ScrollableMessageID), and 26 (SliderID) are permitted.
+                The ID of the type of interaction the developer wants to dismiss. Only values 10, (PerformInteractionID), 12 (AlertID), 25 (ScrollableMessageID), 26 (SliderID), and 64 (SubtleAlertID) are permitted.
             </description>
         </param>
     </function>
@@ -8349,6 +8658,12 @@
         <param name="myKey" type="MyKey" mandatory="false">
             <description>Information related to the MyKey feature</description>
         </param>
+        <param name="windowStatus" type="WindowStatus" array="true" minsize="0" maxsize="100" mandatory="false" since="7.0">
+            <description>See WindowStatus</description>
+        </param>
+        <param name="handsOffSteering" type="Boolean" mandatory="false" since="7.0">
+            <description>To indicate whether driver hands are off the steering wheel</description>
+        </param>
     </function>
     
     <function name="OnCommand" functionID="OnCommandID" messagetype="notification" since="1.0">
@@ -8452,12 +8767,15 @@
                 This parameter is filled for supporting OEM proprietary data exchanges.
             </description>
         </param>
-        <param name="url" type="String" maxlength="1000" mandatory="false">
+        <param name="url" type="String" mandatory="false" since="7.0">
             <description>
                 Optional URL for HTTP requests.
                 If blank, the binary data shall be forwarded to the app.
                 If not blank, the binary data shall be forwarded to the url with a provided timeout in seconds.
             </description>
+            <history>
+                <param name="url" type="String" maxlength="1000" mandatory="false" since="3.0" until="7.0"/>
+            </history>
         </param>
         <param name="timeout" type="Integer" minvalue="0" maxvalue="2000000000" mandatory="false">
             <description>
@@ -8523,14 +8841,34 @@
             <description>The system capability that has been updated</description>
         </param>
     </function>
-    
-    <function name="OnAppCapabilityUpdated" functionID="OnAppCapabilityUpdatedID" messagetype="notification" since="7.0">
+      
+    <function name="OnAppCapabilityUpdated" functionID="OnAppCapabilityUpdatedID" messagetype="notification" since="7.1">
         <description>A notification to inform SDL Core that a specific app capability has changed.</description>
         <param name="appCapability" type="AppCapability" mandatory="true">
             <description>The app capability that has been updated</description>
         </param>
     </function>
 
+    <function name="OnUpdateFile" functionID="OnUpdateFileID" messagetype="notification" since="7.0">
+        <description>This notification tells an app to upload and update a file with a given name.</description>
+
+        <param name="fileName" type="String" maxlength="255" mandatory="true">
+            <description>File reference name.</description>
+        </param>
+    </function>
+
+    <function name="OnUpdateSubMenu" functionID="OnUpdateSubMenuID" messagetype="notification" since="7.0">
+        <description>This notification tells an app to update the AddSubMenu or its 'sub' AddCommand and AddSubMenus with the requested data</description>
+
+        <param name="menuID" type="Integer" minvalue="0" maxvalue="2000000000" mandatory="true">
+            <description>This menuID must match a menuID in the current menu structure</description>
+        </param>
+
+        <param name="updateSubCells" type="Boolean" mandatory="false">
+            <description>If not set, assume false. If true, the app should send AddCommands with parentIDs matching the menuID. These AddCommands will then be attached to the submenu and displayed if the submenu is selected.</description>
+        </param>
+    </function>
+    
     <!-- ~~~~~~~~~~~~~~~~~~ -->
     <!-- Ford Specific APIs -->
     <!-- ~~~~~~~~~~~~~~~~~~ -->
