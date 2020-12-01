@@ -432,6 +432,16 @@ Enumeration for the user's preference of which app type to use when both are ava
 |`BOTH`||
 
 
+### AppCapabilityType
+Enumerations of all available app capability types
+
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`VIDEO_STREAMING`||
+
+
 ### CapacityUnit
 ##### Elements
 
@@ -1498,6 +1508,7 @@ Enumeration linking function names with function IDs in SmartDeviceLink protocol
 |`OnSubtleAlertPressedID`||
 |`OnUpdateFileID`||
 |`OnUpdateSubMenuID`||
+|`OnAppCapabilityUpdatedID`||
 |`EncodedSyncPDataID`||
 |`SyncPDataID`||
 |`OnEncodedSyncPDataID`||
@@ -2551,6 +2562,7 @@ Contains information about this system's video streaming capabilities.
 |`diagonalScreenSize`|Float|False|The diagonal screen size in inches.|
 |`pixelPerInch`|Float|False|PPI is the diagonal resolution in pixels divided by the diagonal screen size in inches.|
 |`scale`|Float|False|The scaling factor the app should use to change the size of the projecting view.|
+|`additionalVideoStreamingCapabilities`|VideoStreamingCapability[]|False||
 
 
 ### DriverDistractionCapability
@@ -3226,6 +3238,15 @@ The systemCapabilityType identifies which data object exists in this struct. For
 |`userSelectedGear`|PRNDL|False|Gear position selected by the user i.e. Park, Drive, Reverse|
 |`actualGear`|PRNDL|False|Actual Gear in use by the transmission|
 |`transmissionType`|TransmissionType|False|Tells the transmission type|
+
+
+### AppCapability
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`appCapabilityType`|AppCapabilityType|True|Used as a descriptor of what data to expect in this struct. The corresponding param to this enum should be included and the only other param included.|
+|`videoStreamingCapability`|VideoStreamingCapability|False|Describes supported capabilities for video streaming|
 
 
 
@@ -5392,6 +5413,18 @@ A notification to inform the connected device that a specific system capability 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`systemCapability`|SystemCapability|True|The system capability that has been updated|
+
+
+### OnAppCapabilityUpdated
+Message Type: **notification**
+
+A notification to inform SDL Core that a specific app capability has changed.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`appCapability`|AppCapability|True|The app capability that has been updated|
 
 
 ### OnUpdateFile
