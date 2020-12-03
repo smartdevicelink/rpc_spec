@@ -251,7 +251,6 @@ try
 alignas
 alignof
 and
-and
 and_eq
 asm
 atomic_cancel
