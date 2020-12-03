@@ -256,7 +256,7 @@ asm
 atomic_cancel
 atomic_commit
 atomic_noexcept
-auto(1)
+auto
 bitand
 bitor
 bool
@@ -264,13 +264,16 @@ break
 case
 catch
 char
+char8_t
 char16_t
 char32_t
 class
 compl
 concept
 const
+consteval
 constexpr
+constinit
 const_cast
 continue
 co_await
@@ -294,7 +297,7 @@ friend
 goto
 if
 import
-inline(1)
+inline
 int
 long
 module
