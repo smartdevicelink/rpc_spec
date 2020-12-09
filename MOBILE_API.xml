@@ -932,22 +932,6 @@
         <element name="phoneNumber" since="4.0">
             <description> Optional phone number of intended location / establishment (if applicable) for SendLocation.</description>
         </element>
-
-        <element name="subtleAlertText1" since="7.0">
-            <description>The first line of the subtle alert text field; applies to `SubtleAlert` `alertText1`</description>
-        </element>
-
-        <element name="subtleAlertText2" since="7.0">
-            <description>The second line of the subtle alert text field; applies to `SubtleAlert` `alertText2`</description>
-        </element>
-
-        <element name="subtleAlertSoftButtonText" since="7.0">
-            <description>A text field in the soft button of a subtle alert; applies to `SubtleAlert` `softButtons`</description>
-        </element>
-        
-        <element name="phoneNumber" since="4.0">
-          <description> Optional phone number of intended location / establishment (if applicable) for SendLocation.</description>
-        </element>
         
         <element name="timeToDestination" since="7.1">
             <description>Optional time to destination field for navigationTexts parameter in ShowConstantTB</description>
@@ -959,6 +943,18 @@
         
         <element name="navigationText" since="7.1">
           <description>Navigation text for turnList parameter of UpdateTurnList</description>
+        </element>
+
+        <element name="subtleAlertText1" since="7.0">
+            <description>The first line of the subtle alert text field; applies to `SubtleAlert` `alertText1`</description>
+        </element>
+
+        <element name="subtleAlertText2" since="7.0">
+            <description>The second line of the subtle alert text field; applies to `SubtleAlert` `alertText2`</description>
+        </element>
+
+        <element name="subtleAlertSoftButtonText" since="7.0">
+            <description>A text field in the soft button of a subtle alert; applies to `SubtleAlert` `softButtons`</description>
         </element>
 
     </enum>
