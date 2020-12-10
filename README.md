@@ -1293,6 +1293,7 @@ Enumeration listing possible keyboard layouts.
 |`QWERTY`||
 |`QWERTZ`||
 |`AZERTY`||
+|`NUMERIC`||
 
 
 ### KeyboardEvent
@@ -1307,6 +1308,8 @@ Enumeration listing possible keyboard events.
 |`ENTRY_VOICE`||
 |`ENTRY_CANCELLED`||
 |`ENTRY_ABORTED`||
+|`INPUT_KEY_MASK_ENABLED`||
+|`INPUT_KEY_MASK_DISABLED`||
 
 
 ### KeypressMode
@@ -1319,6 +1322,18 @@ Enumeration listing possible keyboard events.
 |`SINGLE_KEYPRESS`|Each keypress is individually sent as the user presses the keyboard keys.|
 |`QUEUE_KEYPRESSES`|The keypresses are queued and a string is eventually sent once the user chooses to submit their entry.|
 |`RESEND_CURRENT_ENTRY`|The keypresses are queue and a string is sent each time the user presses a keyboard key; the string contains the entire current entry.|
+
+
+### KeyboardInputMask
+Enumeration listing possible input character masking.
+
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`ENABLE_INPUT_KEY_MASK`||
+|`DISABLE_INPUT_KEY_MASK`||
+|`USER_CHOICE_INPUT_KEY_MASK`||
 
 
 ### RequestType
@@ -2328,6 +2343,27 @@ Contains information about on-screen preset capabilities.
 |`supportsDynamicSubMenus`|Boolean|False|If true, the head unit supports dynamic sub-menus by sending OnUpdateSubMenu notifications. If true, you should not send AddCommands that attach to a parentID for an AddSubMenu until OnUpdateSubMenu is received with the menuID. At that point, you should send all AddCommands with a parentID that match the menuID. If not set, assume false.|
 
 
+### ConfigurableKeyboards
+Describes number of configurable Keys for Special characters.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`keyboardLayout`|KeyboardLayout|True||
+|`numConfigurableKeys`|Integer|True||
+
+
+### KeyboardCapabilities
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`maskInputCharactersSupported`|Boolean|False|Availability of capability to mask input characters using keyboard. True: Available, False: Not Available|
+|`supportedKeyboardLayouts`|KeyboardLayout[]|False|Supported keyboard layouts by HMI.|
+|`configurableKeys`|ConfigurableKeyboards[]|False|Get Number of Keys for Special characters, App can customize as per their needs.|
+
+
 ### WindowCapability
 ##### Parameters
 
@@ -2343,6 +2379,7 @@ Contains information about on-screen preset capabilities.
 |`softButtonCapabilities`|SoftButtonCapabilities[]|False|The number of soft buttons available on-window and the capabilities for each button.|
 |`menuLayoutsAvailable`|MenuLayout[]|False|An array of available menu layouts. If this parameter is not provided, only the `LIST` layout is assumed to be available|
 |`dynamicUpdateCapabilities`|DynamicUpdateCapabilities|False|Contains the head unit's capabilities for dynamic updating features declaring if the module will send dynamic update RPCs.|
+|`keyboardCapabilities`|KeyboardCapabilities|False|See KeyboardCapabilities|
 
 
 ### WindowTypeCapabilities
@@ -2433,6 +2470,8 @@ Configuration of on-screen keyboard (if available).
 |`limitedCharacterList`|String[]|False|Array of keyboard characters to enable. All omitted characters will be greyed out (disabled) on the keyboard. If omitted, the entire keyboard will be enabled.|
 |`autoCompleteText`|String|False|Deprecated, use autoCompleteList instead.|
 |`autoCompleteList`|String[]|False|Allows an app to pre-populate the text field with a list of suggested or completed entries as the user types. If empty, the auto-complete list will be removed from the screen.|
+|`maskInputCharacters`|KeyboardInputMask|False|Allows an app to mask entered characters on HMI|
+|`customizeKeys`|String[]|False|Array of special characters to show in customizable Keys. If omitted, keyboard will show default special characters|
 
 
 ### DeviceInfo
