@@ -2574,7 +2574,35 @@
         <param name="supportsDynamicSubMenus" type="Boolean" mandatory="false">
             <description>If true, the head unit supports dynamic sub-menus by sending OnUpdateSubMenu notifications. If true, you should not send AddCommands that attach to a parentID for an AddSubMenu until OnUpdateSubMenu is received with the menuID. At that point, you should send all AddCommands with a parentID that match the menuID. If not set, assume false.</description>
         </param>
-    </struct>  
+    </struct>
+
+    <enum name="KeyboardLayout" since="3.0">
+        <description>Enumeration listing possible keyboard layouts.</description>
+        <element name="QWERTY" />
+        <element name="QWERTZ" />
+        <element name="AZERTY" />
+        <element name="NUMERIC" since="7.1"/>
+    </enum>
+
+    <struct name="ConfigurableKeyboards" since="7.1">
+        <description>
+          Describes number of configurable Keys for Special characters.
+        </description>
+        <param name="keyboardLayout" type="KeyboardLayout" mandatory="true"/>
+        <param name="numConfigurableKeys" type="Integer" mandatory="true"/>
+    </struct>
+
+    <struct name="KeyboardCapabilities" since="7.1">
+        <param name="maskInputCharactersSupported" type="Boolean" mandatory="false" since="7.1" >
+            <description>Availability of capability to mask input characters using keyboard. True: Available, False: Not Available</description>
+        </param>
+        <param name="supportedKeyboardLayouts" type="KeyboardLayout" minsize="1" maxsize="1000" array="true" mandatory="false" since="7.1" >
+            <description>Supported keyboard layouts by HMI.</description>
+        </param>
+        <param name="configurableKeys" type="ConfigurableKeyboards" minsize="1" maxsize="1000" array="true" mandatory="false" since="7.1" >
+            <description>Get Number of Keys for Special characters, App can customize as per their needs.</description>
+        </param>
+    </struct>
 
     <struct name="WindowCapability" since="6.0">
         <param name="windowID" type="Integer" mandatory="false">
@@ -2610,6 +2638,9 @@
         </param>
         <param name="dynamicUpdateCapabilities" type="DynamicUpdateCapabilities" mandatory="false" since="7.0">
             <description>Contains the head unit's capabilities for dynamic updating features declaring if the module will send dynamic update RPCs.</description>
+        </param>
+        <param name="keyboardCapabilities"  type="KeyboardCapabilities" mandatory="false" since="7.1">
+            <description>See KeyboardCapabilities</description>
         </param>
     </struct>
 
@@ -2721,14 +2752,7 @@
         <param name="trim" type="String" maxlength="500" mandatory="false">
             <description>Trim of the vehicle, e.g. SE</description>
         </param>
-    </struct>   
-
-    <enum name="KeyboardLayout" since="3.0">
-        <description>Enumeration listing possible keyboard layouts.</description>
-        <element name="QWERTY" />
-        <element name="QWERTZ" />
-        <element name="AZERTY" />
-    </enum>         
+    </struct>    
     
     <enum name="KeyboardEvent" since="3.0">
         <description>Enumeration listing possible keyboard events.</description>
@@ -2737,6 +2761,8 @@
         <element name="ENTRY_VOICE" />
         <element name="ENTRY_CANCELLED" />
         <element name="ENTRY_ABORTED" />
+        <element name="INPUT_KEY_MASK_ENABLED" since="7.1"/>
+        <element name="INPUT_KEY_MASK_DISABLED" since="7.1"/>
     </enum>         
 
     <enum name="KeypressMode" since="3.0">
@@ -2751,6 +2777,13 @@
             <description>The keypresses are queue and a string is sent each time the user presses a keyboard key; the string contains the entire current entry.</description>
         </element>
     </enum>         
+
+    <enum name="KeyboardInputMask" since="7.1">
+        <description>Enumeration listing possible input character masking.</description>
+        <element name="ENABLE_INPUT_KEY_MASK" />
+        <element name="DISABLE_INPUT_KEY_MASK" />
+        <element name="USER_CHOICE_INPUT_KEY_MASK" />
+    </enum>
 
     <struct name="KeyboardProperties" since="3.0">
         <description>Configuration of on-screen keyboard (if available).</description>         
@@ -2782,6 +2815,13 @@
                 Allows an app to pre-populate the text field with a list of suggested or completed entries as the user types. 
                 If empty, the auto-complete list will be removed from the screen.
             </description>
+        </param>
+        <param name="maskInputCharacters" type="KeyboardInputMask" mandatory="false" since="7.1">
+            <description>Allows an app to mask entered characters on HMI</description>
+        </param>
+        <param name="customizeKeys" type="String" maxlength="1" minsize="1" maxsize="10" array="true" mandatory="false"  since="7.1">
+            <description>Array of special characters to show in customizable Keys.</description>
+            <description>If omitted, keyboard will show default special characters</description>
         </param>
     </struct>
 
