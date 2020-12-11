@@ -1,7 +1,7 @@
 # SmartDeviceLink
 # RPC Spec
 
-###### Version: 7.0.0
+###### Version: 7.1.0
 
 ## Enumerations
 
