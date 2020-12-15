@@ -571,6 +571,9 @@ See DAES for further infos regarding the displays
 |`locationDescription`|Optional description of intended location / establishment (if applicable) for SendLocation.|
 |`addressLines`|Optional location address (if applicable) for SendLocation.|
 |`phoneNumber`|Optional phone number of intended location / establishment (if applicable) for SendLocation.|
+|`timeToDestination`|Optional time to destination field for navigationTexts parameter in ShowConstantTB|
+|`turnText`|Turn text for turnList parameter of UpdateTurnList|
+|`navigationText`|Navigation text for turnList parameter of UpdateTurnList|
 |`subtleAlertText1`|The first line of the subtle alert text field; applies to `SubtleAlert` `alertText1`|
 |`subtleAlertText2`|The second line of the subtle alert text field; applies to `SubtleAlert` `alertText2`|
 |`subtleAlertSoftButtonText`|A text field in the soft button of a subtle alert; applies to `SubtleAlert` `softButtons`|
