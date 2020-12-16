@@ -6002,7 +6002,7 @@
         </param>
         <param name="backSeekIndicator" type="SeekStreamingIndicator" mandatory="false" since="7.1">
             <description>
-                Used to control the forward seek button to either skip back a set amount of time or to the previous track.
+                Used to control the back seek button to either skip back a set amount of time or to the previous track.
             </description>
         </param>
     </function>
