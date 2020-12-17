@@ -934,15 +934,11 @@
         </element>
         
         <element name="timeToDestination" since="7.1">
-            <description>Optional time to destination field for navigationTexts parameter in ShowConstantTB</description>
+            <description>Optional time to destination field for navigationTexts parameter in ShowConstantTBT</description>
         </element>
         
         <element name="turnText" since="7.1">
             <description>Turn text for turnList parameter of UpdateTurnList</description>
-        </element>
-        
-        <element name="navigationText" since="7.1">
-          <description>Navigation text for turnList parameter of UpdateTurnList</description>
         </element>
 
         <element name="subtleAlertText1" since="7.0">
