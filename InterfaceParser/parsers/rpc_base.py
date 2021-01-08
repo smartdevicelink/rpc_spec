@@ -626,7 +626,7 @@ class RPCBase(ABC):
         if len(subelement.attrib) != 1:
             raise ParseError("Unexpected attributes for element '{}' of parameter '{}'"
                              .format(element_name, params["name"]))
-        children = subelement.getchildren()
+        children = list(subelement)
         for child in children:
             if child.tag == "description":
                 children.remove(child)
