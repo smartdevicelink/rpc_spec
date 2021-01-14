@@ -4311,8 +4311,8 @@ Message Type: **request**
 |`totalDistance`|String|False||
 |`turnIcon`|Image|False||
 |`nextTurnIcon`|Image|False||
-|`distanceToManeuver`|Float|False|Fraction of distance till next maneuver (starting from when AlertManeuver is triggered). Used to calculate progress bar.|
-|`distanceToManeuverScale`|Float|False|Distance till next maneuver (starting from) from previous maneuver. Used to calculate progress bar.|
+|`distanceToManeuver`|Float|False|Distance (in meters) until next maneuver. May be used to calculate progress bar.|
+|`distanceToManeuverScale`|Float|False|Distance (in meters) from previous maneuver to next maneuver. May be used to calculate progress bar.|
 |`maneuverComplete`|Boolean|False|If and when a maneuver has completed while an AlertManeuver is active, the app must send this value set to TRUE in order to clear the AlertManeuver overlay. If omitted the value will be assumed as FALSE.|
 |`softButtons`|SoftButton[]|False|Three dynamic SoftButtons available (first SoftButton is fixed to "Turns"). If omitted on supported displays, the currently displayed SoftButton values will not change.|
 
