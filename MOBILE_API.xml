@@ -840,7 +840,7 @@
         <element name="mediaClock" deprecated="true" since="7.1">
             <description>Text value for MediaClock field; applies to "Show"</description>
             <history>
-                <element name="mediaClock" since="1.0" until="7.1">
+                <element name="mediaClock" since="1.0" until="7.1"/>
             </history>
         </element>
         
@@ -5819,7 +5819,7 @@
                 If this text is set, any automatic media clock updates previously set with SetMediaClockTimer will be stopped.
             </description>
             <history>
-                <param name="mediaClock" type="String" minlength="0" maxlength="500" mandatory="false" since="1.0" until="7.1">
+                <param name="mediaClock" type="String" minlength="0" maxlength="500" mandatory="false" since="1.0" until="7.1"/>
             </history>
         </param>
         
