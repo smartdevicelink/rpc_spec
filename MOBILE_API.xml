@@ -837,8 +837,11 @@
             <description>The status bar on NGN; applies to "Show"</description>
         </element>
         
-        <element name="mediaClock">
+        <element name="mediaClock" deprecated="true" since="7.1">
             <description>Text value for MediaClock field; applies to "Show"</description>
+            <history>
+                <element name="mediaClock" since="1.0" until="7.1">
+            </history>
         </element>
         
         <element name="mediaTrack">
@@ -5810,11 +5813,14 @@
             <description>Requires investigation regarding the nav display capabilities. Potentially lower lowerStatusBar, upperStatusBar, titleBar, etc.</description>
         </param>
         
-        <param name="mediaClock" type="String" minlength="0" maxlength="500" mandatory="false" since="1.0">
+        <param name="mediaClock" type="String" minlength="0" maxlength="500" mandatory="false" deprecated="true" since="7.1">
             <description>
                 Text value for MediaClock field. Has to be properly formatted by Mobile App according to the module's capabilities.
                 If this text is set, any automatic media clock updates previously set with SetMediaClockTimer will be stopped.
             </description>
+            <history>
+                <param name="mediaClock" type="String" minlength="0" maxlength="500" mandatory="false" since="1.0" until="7.1">
+            </history>
         </param>
         
         <param name="mediaTrack" type="String" minlength="0" maxlength="500" mandatory="false" since="1.0">
