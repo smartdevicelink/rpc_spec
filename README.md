@@ -5423,6 +5423,7 @@ This notification tells an app to update the AddSubMenu or its 'sub' AddCommand 
 ### EncodedSyncPData
 Message Type: **request**
 
+deprecated since 7.1.0
 Allows encoded data in the form of SyncP packets to be sent to the SYNC module. Legacy / v1 Protocol implementation; use SyncPData instead. *** DEPRECATED ***
 
 ##### Parameters
@@ -5435,6 +5436,7 @@ Allows encoded data in the form of SyncP packets to be sent to the SYNC module. 
 ### EncodedSyncPData
 Message Type: **response**
 
+deprecated since 7.1.0
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
@@ -5447,6 +5449,7 @@ Message Type: **response**
 ### OnEncodedSyncPData
 Message Type: **notification**
 
+deprecated since 7.1.0
 Callback including encoded data of any SyncP packets that SYNC needs to send back to the mobile device. Legacy / v1 Protocol implementation; responds to EncodedSyncPData. *** DEPRECATED ***
 
 ##### Parameters

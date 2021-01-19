@@ -8850,7 +8850,7 @@
     
     <function name="EncodedSyncPData" functionID="EncodedSyncPDataID" messagetype="request" deprecated="true" since="7.1">
         <history>
-            <function name="EncodedSyncPData" functionID="EncodedSyncPDataID" messagetype="request" since="1.0" until="7.1">
+            <function name="EncodedSyncPData" functionID="EncodedSyncPDataID" messagetype="request" since="1.0" until="7.1"/>
         </history>
         <description>
             Allows encoded data in the form of SyncP packets to be sent to the SYNC module.
@@ -8866,7 +8866,7 @@
     
     <function name="EncodedSyncPData" functionID="EncodedSyncPDataID" messagetype="response" deprecated="true" since="7.1">
         <history>
-            <function name="EncodedSyncPData" functionID="EncodedSyncPDataID" messagetype="response" since="1.0" until="7.1">
+            <function name="EncodedSyncPData" functionID="EncodedSyncPDataID" messagetype="response" since="1.0" until="7.1"/>
         </history>
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
             <description> true, if successful; false, if failed </description>
@@ -8920,7 +8920,7 @@
     
     <function name="OnEncodedSyncPData" functionID="OnEncodedSyncPDataID" messagetype="notification" deprecated="true" since="7.1">
         <history>
-            <function name="OnEncodedSyncPData" functionID="OnEncodedSyncPDataID" messagetype="notification" since="1.0" until="7.1">
+            <function name="OnEncodedSyncPData" functionID="OnEncodedSyncPDataID" messagetype="notification" since="1.0" until="7.1"/>
         </history>
         <description>
             Callback including encoded data of any SyncP packets that SYNC needs to send back to the mobile device.
