@@ -517,7 +517,8 @@ Defines the hard (physical) and soft (touchscreen) buttons available from the mo
 
 
 ### DisplayType
-deprecated since 5.0.0
+###### Deprecated since: 5.0.0
+
 See DAES for further infos regarding the displays
 
 ##### Elements
@@ -1592,7 +1593,8 @@ List possible cushions of a multi-contour massage seat.
 
 
 ### SupportedSeat
-deprecated since 6.0.0
+###### Deprecated since: 6.0.0
+
 List possible seats that is a remote controllable seat.
 
 ##### Elements
@@ -2215,7 +2217,8 @@ Individual requested DID result and data
 
 
 ### DisplayCapabilities
-deprecated since 6.0.0
+###### Deprecated since: 6.0.0
+
 Contains information about the display capabilities. This struct is deprecated; please see the new SystemCapability DISPLAYS and corresponding struct DisplayCapability
 
 ##### Parameters
@@ -4561,7 +4564,8 @@ Response is sent, when the file data was copied (success case). Or when an error
 ### SetDisplayLayout
 Message Type: **request**
 
-deprecated since 6.0.0
+###### Deprecated since: 6.0.0
+
 This RPC is deprecated. Use Show RPC to change layout.
 
 ##### Parameters
@@ -4576,7 +4580,8 @@ This RPC is deprecated. Use Show RPC to change layout.
 ### SetDisplayLayout
 Message Type: **response**
 
-deprecated since 6.0.0
+###### Deprecated since: 6.0.0
+
 This RPC is deprecated. Use Show RPC to change layout.
 
 ##### Parameters
@@ -5423,7 +5428,8 @@ This notification tells an app to update the AddSubMenu or its 'sub' AddCommand 
 ### EncodedSyncPData
 Message Type: **request**
 
-deprecated since 7.1.0
+###### Deprecated since: 7.1.0
+
 Allows encoded data in the form of SyncP packets to be sent to the SYNC module. Legacy / v1 Protocol implementation; use SyncPData instead. *** DEPRECATED ***
 
 ##### Parameters
@@ -5436,7 +5442,8 @@ Allows encoded data in the form of SyncP packets to be sent to the SYNC module. 
 ### EncodedSyncPData
 Message Type: **response**
 
-deprecated since 7.1.0
+###### Deprecated since: 7.1.0
+
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
@@ -5449,7 +5456,8 @@ deprecated since 7.1.0
 ### OnEncodedSyncPData
 Message Type: **notification**
 
-deprecated since 7.1.0
+###### Deprecated since: 7.1.0
+
 Callback including encoded data of any SyncP packets that SYNC needs to send back to the mobile device. Legacy / v1 Protocol implementation; responds to EncodedSyncPData. *** DEPRECATED ***
 
 ##### Parameters
