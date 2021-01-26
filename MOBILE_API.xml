@@ -551,7 +551,7 @@
         <element name="VEHICLEDATA_FUELLEVEL_STATE" until="7.0"/>
         <element name="VEHICLEDATA_FUELCONSUMPTION" />
         <element name="VEHICLEDATA_CLIMATEDATA" since="7.1"/>
-        <element name="VEHICLEDATA_EXTERNTEMP" until="7.1">
+        <element name="VEHICLEDATA_EXTERNTEMP" deprecated="true" since="7.1">
             <history>
                 <element name="VEHICLEDATA_EXTERNTEMP" since="2.0" until="7.1"/>
             </history>
