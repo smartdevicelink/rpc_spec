@@ -1763,7 +1763,7 @@
         <param name="middleRow1BuckleBelted" type="VehicleDataEventStatus" mandatory="true">
             <description>References signal "VedsRw1mBckl_D_Ltchd". See VehicleDataEventStatus.</description>
         </param>
-    </struct>  
+    </struct>
 
     <enum name="DoorStatusType" since="7.1">
         <element name="CLOSED"/>
@@ -4738,6 +4738,21 @@
         </param>
     </struct>
 
+    <enum name="SeekIndicatorType" since="7.1">
+        <element name="TRACK"/>
+        <element name="TIME"/>
+    </enum>
+
+    <struct name="SeekStreamingIndicator" since="7.1">
+        <description>
+            The seek next / skip previous subscription buttons' content
+        </description>
+        <param name="type" type="SeekIndicatorType" mandatory="true" />
+        <param name="seekTime" type="Integer" minvalue="1" maxvalue="99" mandatory="false">
+            <description>If the type is TIME, this number of seconds may be present alongside the skip indicator. It will indicate the number of seconds that the currently playing media will skip forward or backward.</description>
+        </param>
+    </struct>
+
     <!-- Requests/Responses -->
     
     <function name="RegisterAppInterface" functionID="RegisterAppInterfaceID" messagetype="request" since="1.0">
@@ -6037,6 +6052,18 @@
             </description>
         </param>
 
+        <param name="forwardSeekIndicator" type="SeekStreamingIndicator" mandatory="false" since="7.1">
+            <description>
+                Used to control the forward seek button to either skip forward a set amount of time or to the next track.
+            </description>
+        </param>
+
+        <param name="backSeekIndicator" type="SeekStreamingIndicator" mandatory="false" since="7.1">
+            <description>
+                Used to control the back seek button to either skip back a set amount of time or to the previous track.
+            </description>
+        </param>
+
         <param name="countRate" type="Float" minvalue="0.1" maxvalue="100.0" defvalue="1.0" mandatory="false" since="7.1">
             <description>
                 The value of this parameter is the amount that the media clock timer will advance per 1.0 seconds of real time.
@@ -7260,10 +7287,16 @@
         <param name="nextTurnIcon" type="Image" mandatory="false" since="3.0">
         </param>
         <param name="distanceToManeuver" type="Float" minvalue="0" maxvalue="1000000000" mandatory="false" since="2.0">
-            <description>Distance (in meters) until next maneuver. May be used to calculate progress bar.</description>
+            <description>
+                Fraction of distance till next maneuver (starting from when AlertManeuver is triggered).
+                Used to calculate progress bar.
+            </description>
         </param>
         <param name="distanceToManeuverScale" type="Float" minvalue="0" maxvalue="1000000000" mandatory="false" since="2.0">
-            <description>Distance (in meters) from previous maneuver to next maneuver. May be used to calculate progress bar.</description>
+            <description>
+                Distance till next maneuver (starting from) from previous maneuver.
+                Used to calculate progress bar.
+            </description>
         </param>
         <param name="maneuverComplete" type="Boolean" mandatory="false" since="2.0">
             <description>
@@ -8904,10 +8937,7 @@
     <!-- Ford Specific APIs -->
     <!-- ~~~~~~~~~~~~~~~~~~ -->
     
-    <function name="EncodedSyncPData" functionID="EncodedSyncPDataID" messagetype="request" deprecated="true" since="7.1">
-        <history>
-            <function name="EncodedSyncPData" functionID="EncodedSyncPDataID" messagetype="request" since="1.0" until="7.1"/>
-        </history>
+    <function name="EncodedSyncPData" functionID="EncodedSyncPDataID" messagetype="request" since="1.0">
         <description>
             Allows encoded data in the form of SyncP packets to be sent to the SYNC module.
             Legacy / v1 Protocol implementation; use SyncPData instead.
@@ -8920,10 +8950,7 @@
         </param>
     </function>
     
-    <function name="EncodedSyncPData" functionID="EncodedSyncPDataID" messagetype="response" deprecated="true" since="7.1">
-        <history>
-            <function name="EncodedSyncPData" functionID="EncodedSyncPDataID" messagetype="response" since="1.0" until="7.1"/>
-        </history>
+    <function name="EncodedSyncPData" functionID="EncodedSyncPDataID" messagetype="response" since="1.0">
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
             <description> true, if successful; false, if failed </description>
         </param>
@@ -8974,10 +9001,7 @@
      </function>
      -->
     
-    <function name="OnEncodedSyncPData" functionID="OnEncodedSyncPDataID" messagetype="notification" deprecated="true" since="7.1">
-        <history>
-            <function name="OnEncodedSyncPData" functionID="OnEncodedSyncPDataID" messagetype="notification" since="1.0" until="7.1"/>
-        </history>
+    <function name="OnEncodedSyncPData" functionID="OnEncodedSyncPDataID" messagetype="notification" since="1.0">
         <description>
             Callback including encoded data of any SyncP packets that SYNC needs to send back to the mobile device.
             Legacy / v1 Protocol implementation; responds to EncodedSyncPData.
