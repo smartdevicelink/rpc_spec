@@ -517,7 +517,8 @@ Defines the hard (physical) and soft (touchscreen) buttons available from the mo
 
 
 ### DisplayType
-deprecated since 5.0.0
+###### Deprecated since: 5.0.0
+
 See DAES for further infos regarding the displays
 
 ##### Elements
@@ -1112,6 +1113,17 @@ Reflects the status of the ambient light sensor.
 |`CELSIUS`||
 
 
+### DoorStatusType
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`CLOSED`||
+|`LOCKED`||
+|`AJAR`||
+|`REMOVED`||
+
+
 ### FileType
 Enumeration listing possible file types.
 
@@ -1592,7 +1604,8 @@ List possible cushions of a multi-contour massage seat.
 
 
 ### SupportedSeat
-deprecated since 6.0.0
+###### Deprecated since: 6.0.0
+
 List possible seats that is a remote controllable seat.
 
 ##### Elements
@@ -1782,15 +1795,6 @@ Enumeration that describes possible values of light name. The mobile libraries a
 |`MANIFEST_UPDATE`|The service has updated its manifest. This could imply updated capabilities|
 
 
-### SeekIndicatorType
-##### Elements
-
-| Value | Description | 
-| ---------- |:-----------:|
-|`TRACK`||
-|`TIME`||
-
-
 
 <div style="page-break-after: always;"></div>
 
@@ -1928,6 +1932,64 @@ Specifies the version number of the SmartDeviceLink protocol that is supported b
 |`middleRow1BuckleBelted`|VehicleDataEventStatus|True|References signal "VedsRw1mBckl_D_Ltchd". See VehicleDataEventStatus.|
 
 
+### Grid
+Describes a location (origin coordinates and span) of a vehicle component.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`col`|Integer|True||
+|`row`|Integer|True||
+|`level`|Integer|False||
+|`colspan`|Integer|False||
+|`rowspan`|Integer|False||
+|`levelspan`|Integer|False||
+
+
+### DoorStatus
+Describes the status of a parameter of door.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`location`|Grid|True||
+|`status`|DoorStatusType|True||
+
+
+### GateStatus
+Describes the status of a parameter of trunk/hood/etc.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`location`|Grid|True||
+|`status`|DoorStatusType|True||
+
+
+### WindowState
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`approximatePosition`|Integer|True|The approximate percentage that the window is open - 0 being fully closed, 100 being fully open|
+|`deviation`|Integer|True|The percentage deviation of the approximatePosition. e.g. If the approximatePosition is 50 and the deviation is 10, then the window's location is somewhere between 40 and 60.|
+
+
+### RoofStatus
+Describes the status of a parameter of roof/convertible roof/sunroof/moonroof etc. If roof is open (AJAR), state will determine percentage of roof open.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`location`|Grid|True||
+|`status`|DoorStatusType|True||
+|`state`|WindowState|False||
+
+
 ### BodyInformation
 ##### Parameters
 
@@ -1936,10 +1998,13 @@ Specifies the version number of the SmartDeviceLink protocol that is supported b
 |`parkBrakeActive`|Boolean|True|References signal "PrkBrkActv_B_Actl".|
 |`ignitionStableStatus`|IgnitionStableStatus|True|References signal "Ignition_Switch_Stable". See IgnitionStableStatus.|
 |`ignitionStatus`|IgnitionStatus|True|References signal "Ignition_status". See IgnitionStatus.|
-|`driverDoorAjar`|Boolean|False|References signal "DrStatDrv_B_Actl".|
-|`passengerDoorAjar`|Boolean|False|References signal "DrStatPsngr_B_Actl".|
-|`rearLeftDoorAjar`|Boolean|False|References signal "DrStatRl_B_Actl".|
-|`rearRightDoorAjar`|Boolean|False|References signal "DrStatRr_B_Actl".|
+|`driverDoorAjar`|Boolean|False|References signal "DrStatDrv_B_Actl". Deprecated starting with RPC Spec 7.1.0.|
+|`passengerDoorAjar`|Boolean|False|References signal "DrStatPsngr_B_Actl". Deprecated starting with RPC Spec 7.1.0.|
+|`rearLeftDoorAjar`|Boolean|False|References signal "DrStatRl_B_Actl". Deprecated starting with RPC Spec 7.1.0.|
+|`rearRightDoorAjar`|Boolean|False|References signal "DrStatRr_B_Actl". Deprecated starting with RPC Spec 7.1.0.|
+|`doorStatuses`|DoorStatus[]|False|Provides status for doors if Ajar/Closed/Locked|
+|`gateStatuses`|GateStatus[]|False|Provides status for trunk/hood/etc. if Ajar/Closed/Locked|
+|`roofStatuses`|RoofStatus[]|False|Provides status for roof/convertible roof/sunroof/moonroof etc., if Closed/Ajar/Removed etc.|
 
 
 ### DeviceStatus
@@ -2224,7 +2289,8 @@ Individual requested DID result and data
 
 
 ### DisplayCapabilities
-deprecated since 6.0.0
+###### Deprecated since: 6.0.0
+
 Contains information about the display capabilities. This struct is deprecated; please see the new SystemCapability DISPLAYS and corresponding struct DisplayCapability
 
 ##### Parameters
@@ -2240,30 +2306,6 @@ Contains information about the display capabilities. This struct is deprecated; 
 |`templatesAvailable`|String[]|False|A set of all predefined persistent display templates available on headunit. To be referenced in SetDisplayLayout.|
 |`screenParams`|ScreenParams|False|A set of all parameters related to a prescribed screen area (e.g. for video / touch input).|
 |`numCustomPresetsAvailable`|Integer|False|The number of on-screen custom presets available (if any); otherwise omitted.|
-
-
-### Grid
-Describes a location (origin coordinates and span) of a vehicle component.
-
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-|`col`|Integer|True||
-|`row`|Integer|True||
-|`level`|Integer|False||
-|`colspan`|Integer|False||
-|`rowspan`|Integer|False||
-|`levelspan`|Integer|False||
-
-
-### WindowState
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-|`approximatePosition`|Integer|True|The approximate percentage that the window is open - 0 being fully closed, 100 being fully open|
-|`deviation`|Integer|True|The percentage deviation of the approximatePosition. e.g. If the approximatePosition is 50 and the deviation is 10, then the window's location is somewhere between 40 and 60.|
 
 
 ### WindowStatus
@@ -3237,17 +3279,6 @@ The systemCapabilityType identifies which data object exists in this struct. For
 |`transmissionType`|TransmissionType|False|Tells the transmission type|
 
 
-### SeekStreamingIndicator
-The seek next / skip previous subscription buttons' content
-
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-|`type`|SeekIndicatorType|True||
-|`seekTime`|Integer|False|If the type is TIME, this number of seconds may be present alongside the skip indicator. It will indicate the number of seconds that the currently playing media will skip forward or backward.|
-
-
 
 <div style="page-break-after: always;"></div>
 
@@ -3801,6 +3832,7 @@ Sets the initial media clock value and automatic update method.
 |`audioStreamingIndicator`|AudioStreamingIndicator|False|Enumeration for the indicator icon on a play/pause button. see AudioStreamingIndicator.|
 |`forwardSeekIndicator`|SeekStreamingIndicator|False|Used to control the forward seek button to either skip forward a set amount of time or to the next track.|
 |`backSeekIndicator`|SeekStreamingIndicator|False|Used to control the forward seek button to either skip back a set amount of time or to the previous track.|
+|`countRate`|Float|False|The value of this parameter is the amount that the media clock timer will advance per 1.0 seconds of real time. Values less than 1.0 will therefore advance the timer slower than real-time, while values greater than 1.0 will advance the timer faster than real-time. e.g. If this parameter is set to `0.5`, the timer will advance one second per two seconds real-time, or at 50% speed. If this parameter is set to `2.0`, the timer will advance two seconds per one second real-time, or at 200% speed.|
 
 
 ### SetMediaClockTimer
@@ -4332,8 +4364,8 @@ Message Type: **request**
 |`totalDistance`|String|False||
 |`turnIcon`|Image|False||
 |`nextTurnIcon`|Image|False||
-|`distanceToManeuver`|Float|False|Fraction of distance till next maneuver (starting from when AlertManeuver is triggered). Used to calculate progress bar.|
-|`distanceToManeuverScale`|Float|False|Distance till next maneuver (starting from) from previous maneuver. Used to calculate progress bar.|
+|`distanceToManeuver`|Float|False|Distance (in meters) until next maneuver. May be used to calculate progress bar.|
+|`distanceToManeuverScale`|Float|False|Distance (in meters) from previous maneuver to next maneuver. May be used to calculate progress bar.|
 |`maneuverComplete`|Boolean|False|If and when a maneuver has completed while an AlertManeuver is active, the app must send this value set to TRUE in order to clear the AlertManeuver overlay. If omitted the value will be assumed as FALSE.|
 |`softButtons`|SoftButton[]|False|Three dynamic SoftButtons available (first SoftButton is fixed to "Turns"). If omitted on supported displays, the currently displayed SoftButton values will not change.|
 
@@ -4582,7 +4614,8 @@ Response is sent, when the file data was copied (success case). Or when an error
 ### SetDisplayLayout
 Message Type: **request**
 
-deprecated since 6.0.0
+###### Deprecated since: 6.0.0
+
 This RPC is deprecated. Use Show RPC to change layout.
 
 ##### Parameters
@@ -4597,7 +4630,8 @@ This RPC is deprecated. Use Show RPC to change layout.
 ### SetDisplayLayout
 Message Type: **response**
 
-deprecated since 6.0.0
+###### Deprecated since: 6.0.0
+
 This RPC is deprecated. Use Show RPC to change layout.
 
 ##### Parameters
@@ -5444,6 +5478,8 @@ This notification tells an app to update the AddSubMenu or its 'sub' AddCommand 
 ### EncodedSyncPData
 Message Type: **request**
 
+###### Deprecated since: 7.1.0
+
 Allows encoded data in the form of SyncP packets to be sent to the SYNC module. Legacy / v1 Protocol implementation; use SyncPData instead. *** DEPRECATED ***
 
 ##### Parameters
@@ -5456,6 +5492,8 @@ Allows encoded data in the form of SyncP packets to be sent to the SYNC module. 
 ### EncodedSyncPData
 Message Type: **response**
 
+###### Deprecated since: 7.1.0
+
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
@@ -5467,6 +5505,8 @@ Message Type: **response**
 
 ### OnEncodedSyncPData
 Message Type: **notification**
+
+###### Deprecated since: 7.1.0
 
 Callback including encoded data of any SyncP packets that SYNC needs to send back to the mobile device. Legacy / v1 Protocol implementation; responds to EncodedSyncPData. *** DEPRECATED ***
 
