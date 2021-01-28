@@ -1806,6 +1806,15 @@ Enumeration that describes possible values of light name. The mobile libraries a
 |`MANIFEST_UPDATE`|The service has updated its manifest. This could imply updated capabilities|
 
 
+### SeekIndicatorType
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`TRACK`||
+|`TIME`||
+
+
 
 <div style="page-break-after: always;"></div>
 
@@ -3291,6 +3300,17 @@ The systemCapabilityType identifies which data object exists in this struct. For
 |`transmissionType`|TransmissionType|False|Tells the transmission type|
 
 
+### SeekStreamingIndicator
+The seek next / skip previous subscription buttons' content
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`type`|SeekIndicatorType|True||
+|`seekTime`|Integer|False|If the type is TIME, this number of seconds may be present alongside the skip indicator. It will indicate the number of seconds that the currently playing media will skip forward or backward.|
+
+
 ### AppCapability
 ##### Parameters
 
@@ -3851,6 +3871,8 @@ Sets the initial media clock value and automatic update method.
 |`endTime`|StartTime|False|See StartTime. endTime can be provided for "COUNTUP" and "COUNTDOWN"; to be used to calculate any visual progress bar (if not provided, this feature is ignored) If endTime is greater than startTime for COUNTDOWN or less than startTime for COUNTUP, then the request will return an INVALID_DATA. endTime will be ignored for "RESUME", and "CLEAR" endTime can be sent for "PAUSE", in which case it will update the paused endTime|
 |`updateMode`|UpdateMode|True|Enumeration to control the media clock. In case of pause, resume, or clear, the start time value is ignored and shall be left out. For resume, the time continues with the same value as it was when paused.|
 |`audioStreamingIndicator`|AudioStreamingIndicator|False|Enumeration for the indicator icon on a play/pause button. see AudioStreamingIndicator.|
+|`forwardSeekIndicator`|SeekStreamingIndicator|False|Used to control the forward seek button to either skip forward a set amount of time or to the next track.|
+|`backSeekIndicator`|SeekStreamingIndicator|False|Used to control the back seek button to either skip back a set amount of time or to the previous track.|
 |`countRate`|Float|False|The value of this parameter is the amount that the media clock timer will advance per 1.0 seconds of real time. Values less than 1.0 will therefore advance the timer slower than real-time, while values greater than 1.0 will advance the timer faster than real-time. e.g. If this parameter is set to `0.5`, the timer will advance one second per two seconds real-time, or at 50% speed. If this parameter is set to `2.0`, the timer will advance two seconds per one second real-time, or at 200% speed.|
 
 
