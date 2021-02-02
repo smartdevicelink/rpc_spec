@@ -418,6 +418,7 @@ Defines the data types that can be published and subscribed to.
 |`VEHICLEDATA_STABILITYCONTROLSSTATUS`||
 |`VEHICLEDATA_WINDOWSTATUS`||
 |`VEHICLEDATA_HANDSOFFSTEERING`||
+|`VEHICLEDATA_SEATOCCUPANCY`||
 
 
 ### HybridAppPreference
@@ -3287,6 +3288,26 @@ The systemCapabilityType identifies which data object exists in this struct. For
 |`actualGear`|PRNDL|False|Actual Gear in use by the transmission|
 |`transmissionType`|TransmissionType|False|Tells the transmission type|
 
+### SeatStatus
+Describes the status of a parameter of seat.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`seatLocation`|SeatLocation|True||
+|`conditionActive`|Boolean|True||
+
+
+### SeatOccupancy
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`seatsOccupied`|SeatStatus[]|False|Seat status array containing location and whether the seats are occupied.|
+|`seatsBelted`|SeatStatus[]|False|Seat status array containing location and whether the seats are belted.|
+
+
 
 ### SeekStreamingIndicator
 The seek next / skip previous subscription buttons' content
@@ -4006,6 +4027,7 @@ Subscribes for specific published data items. The data will be only sent if it h
 |`myKey`|Boolean|False|Information related to the MyKey feature|
 |`windowStatus`|Boolean|False|See WindowStatus|
 |`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
+|`seatOccupancy`|Boolean|False|See SeatOccupancy|
 
 
 ### SubscribeVehicleData
@@ -4051,6 +4073,7 @@ Message Type: **response**
 |`myKey`|VehicleDataResult|False|Information related to the MyKey feature|
 |`windowStatus`|VehicleDataResult|False|See WindowStatus|
 |`handsOffSteering`|VehicleDataResult|False|To indicate whether driver hands are off the steering wheel|
+|`seatOccupancy`|VehicleDataResult|False|See SeatOccupancy|
 
 
 ### UnsubscribeVehicleData
@@ -4095,6 +4118,7 @@ This function is used to unsubscribe the notifications from the subscribeVehicle
 |`myKey`|Boolean|False|Information related to the MyKey feature|
 |`windowStatus`|Boolean|False|See WindowStatus|
 |`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
+|`seatOccupancy`|Boolean|False|See SeatOccupancy|
 
 
 ### UnsubscribeVehicleData
@@ -4140,6 +4164,7 @@ Message Type: **response**
 |`myKey`|VehicleDataResult|False|Information related to the MyKey feature|
 |`windowStatus`|VehicleDataResult|False|See WindowStatus|
 |`handsOffSteering`|VehicleDataResult|False|To indicate whether driver hands are off the steering wheel|
+|`seatOccupancy`|VehicleDataResult|False|See SeatOccupancy|
 
 
 ### GetVehicleData
@@ -4185,6 +4210,7 @@ Non periodic vehicle data read request.
 |`myKey`|Boolean|False|Information related to the MyKey feature|
 |`windowStatus`|Boolean|False|See WindowStatus|
 |`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
+|`seatOccupancy`|Boolean|False|See SeatOccupancy|
 
 
 ### GetVehicleData
@@ -4231,6 +4257,7 @@ Message Type: **response**
 |`myKey`|MyKey|False|Information related to the MyKey feature|
 |`windowStatus`|WindowStatus[]|False|See WindowStatus|
 |`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
+|`seatOccupancy`|SeatOccupancy|False|See SeatOccupancy|
 
 
 ### ReadDID
@@ -5285,6 +5312,7 @@ Callback for the periodic and non periodic vehicle data read function.
 |`myKey`|MyKey|False|Information related to the MyKey feature|
 |`windowStatus`|WindowStatus[]|False|See WindowStatus|
 |`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
+|`seatOccupancy`|SeatOccupancy|False|See SeatOccupancy|
 
 
 ### OnCommand
