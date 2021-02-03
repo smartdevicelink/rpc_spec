@@ -573,7 +573,7 @@ See DAES for further infos regarding the displays
 |`locationDescription`|Optional description of intended location / establishment (if applicable) for SendLocation.|
 |`addressLines`|Optional location address (if applicable) for SendLocation.|
 |`phoneNumber`|Optional phone number of intended location / establishment (if applicable) for SendLocation.|
-|`timeToDestination`|Optional time to destination field for navigationTexts parameter in ShowConstantTBT|
+|`timeToDestination`|Optional time to destination field for ShowConstantTBT|
 |`turnText`|Turn text for turnList parameter of UpdateTurnList|
 |`subtleAlertText1`|The first line of the subtle alert text field; applies to `SubtleAlert` `alertText1`|
 |`subtleAlertText2`|The second line of the subtle alert text field; applies to `SubtleAlert` `alertText2`|
@@ -3291,6 +3291,7 @@ The systemCapabilityType identifies which data object exists in this struct. For
 |`actualGear`|PRNDL|False|Actual Gear in use by the transmission|
 |`transmissionType`|TransmissionType|False|Tells the transmission type|
 
+
 ### SeatStatus
 Describes the status of a parameter of seat.
 
@@ -3309,7 +3310,6 @@ Describes the status of a parameter of seat.
 | ---------- | ---------- |:-----------: |:-----------:|
 |`seatsOccupied`|SeatStatus[]|False|Seat status array containing location and whether the seats are occupied.|
 |`seatsBelted`|SeatStatus[]|False|Seat status array containing location and whether the seats are belted.|
-
 
 
 ### SeekStreamingIndicator
