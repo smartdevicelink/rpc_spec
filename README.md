@@ -2612,6 +2612,7 @@ Contains information about this system's video streaming capabilities.
 |`diagonalScreenSize`|Float|False|The diagonal screen size in inches.|
 |`pixelPerInch`|Float|False|PPI is the diagonal resolution in pixels divided by the diagonal screen size in inches.|
 |`scale`|Float|False|The scaling factor the app should use to change the size of the projecting view.|
+|`preferredFPS`|Integer|False|The preferred frame rate per second of the head unit. The mobile application / app library may take other factors into account that constrain the frame rate lower than this value, but it should not perform streaming at a higher frame rate than this value.|
 
 
 ### DriverDistractionCapability
