@@ -934,7 +934,7 @@
         </element>
         
         <element name="timeToDestination" since="7.1">
-            <description>Optional time to destination field for navigationTexts parameter in ShowConstantTBT</description>
+            <description>Optional time to destination field for ShowConstantTBT</description>
         </element>
         
         <element name="turnText" since="7.1">
