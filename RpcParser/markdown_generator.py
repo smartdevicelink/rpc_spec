@@ -199,7 +199,7 @@ class Markdown:
                         if isinstance(item, Function):
                             mark_down.write('\nMessage Type: **{}**\n'.format(item.message_type.name))
                         if item.deprecated and item.since:
-                            mark_down.write('\ndeprecated since ' + item.since)
+                            mark_down.write('\n###### Deprecated since: {}\n'.format(item.since))
                         if item.description:
                             mark_down.write('\n{}\n'.format(re.sub(r'\s{2,}', ' ', ' '.join(item.description)).strip()))
 
