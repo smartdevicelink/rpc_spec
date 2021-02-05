@@ -2404,15 +2404,15 @@ Contains information about on-screen preset capabilities.
 |`supportsDynamicSubMenus`|Boolean|False|If true, the head unit supports dynamic sub-menus by sending OnUpdateSubMenu notifications. If true, you should not send AddCommands that attach to a parentID for an AddSubMenu until OnUpdateSubMenu is received with the menuID. At that point, you should send all AddCommands with a parentID that match the menuID. If not set, assume false.|
 
 
-### ConfigurableKeyboards
-Describes number of configurable Keys for Special characters.
+### KeyboardLayoutCapability
+Describes the capabilities of a single keyboard layout.
 
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`keyboardLayout`|KeyboardLayout|True||
-|`numConfigurableKeys`|Integer|True||
+|`numConfigurableKeys`|Integer|True|Number of keys available for special characters, App can customize as per their needs.|
 
 
 ### KeyboardCapabilities
@@ -2421,8 +2421,7 @@ Describes number of configurable Keys for Special characters.
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`maskInputCharactersSupported`|Boolean|False|Availability of capability to mask input characters using keyboard. True: Available, False: Not Available|
-|`supportedKeyboardLayouts`|KeyboardLayout[]|False|Supported keyboard layouts by HMI.|
-|`configurableKeys`|ConfigurableKeyboards[]|False|Get Number of Keys for Special characters, App can customize as per their needs.|
+|`supportedKeyboards`|KeyboardLayoutCapability[]|False|Capabilities of supported keyboard layouts by HMI.|
 
 
 ### WindowCapability
@@ -2532,7 +2531,7 @@ Configuration of on-screen keyboard (if available).
 |`autoCompleteText`|String|False|Deprecated, use autoCompleteList instead.|
 |`autoCompleteList`|String[]|False|Allows an app to pre-populate the text field with a list of suggested or completed entries as the user types. If empty, the auto-complete list will be removed from the screen.|
 |`maskInputCharacters`|KeyboardInputMask|False|Allows an app to mask entered characters on HMI|
-|`customizeKeys`|String[]|False|Array of special characters to show in customizable Keys. If omitted, keyboard will show default special characters|
+|`customKeys`|String[]|False|Array of special characters to show in customizable keys. If omitted, keyboard will show default special characters|
 
 
 ### DeviceInfo
