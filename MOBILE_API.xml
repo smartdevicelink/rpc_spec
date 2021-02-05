@@ -580,6 +580,7 @@
         <element name="VEHICLEDATA_STABILITYCONTROLSSTATUS" since="7.0"/>
         <element name="VEHICLEDATA_WINDOWSTATUS" since="7.0"/>
         <element name="VEHICLEDATA_HANDSOFFSTEERING" since="7.0"/>
+        <element name="VEHICLEDATA_SEATOCCUPANCY" since="7.1"/>
     </enum>
 
     <enum name="HybridAppPreference" since="5.1">
@@ -837,8 +838,11 @@
             <description>The status bar on NGN; applies to "Show"</description>
         </element>
         
-        <element name="mediaClock">
+        <element name="mediaClock" deprecated="true" since="7.1">
             <description>Text value for MediaClock field; applies to "Show"</description>
+            <history>
+                <element name="mediaClock" since="1.0" until="7.1"/>
+            </history>
         </element>
         
         <element name="mediaTrack">
@@ -1761,6 +1765,60 @@
             <description>References signal "VedsRw1mBckl_D_Ltchd". See VehicleDataEventStatus.</description>
         </param>
     </struct>
+
+    <enum name="DoorStatusType" since="7.1">
+        <element name="CLOSED"/>
+        <element name="LOCKED"/>
+        <element name="AJAR"/>
+        <element name="REMOVED"/>
+    </enum>
+
+    <struct name="Grid" since="6.0">
+        <description>Describes a location (origin coordinates and span) of a vehicle component.</description>
+        <param name="col" type="Integer" mandatory="true" minvalue="-1" maxvalue="100">
+        </param>
+        <param name="row" type="Integer"  mandatory="true" minvalue="-1" maxvalue="100">
+        </param>
+        <param name="level" type="Integer" mandatory="false"  defvalue="0" minvalue="-1" maxvalue="100" >
+        </param>
+        <param name="colspan" type="Integer" mandatory="false" defvalue="1" minvalue="1" maxvalue="100">
+        </param>
+        <param name="rowspan" type="Integer" mandatory="false" defvalue="1" minvalue="1" maxvalue="100">
+        </param>
+        <param name="levelspan" type="Integer" mandatory="false" defvalue="1" minvalue="1" maxvalue="100">
+        </param>
+    </struct>
+
+    <struct name="DoorStatus" since="7.1">
+        <description>Describes the status of a parameter of door.</description>
+        <param name="location" type="Grid" mandatory="true"/>
+        <param name="status" type="DoorStatusType" mandatory="true"/>
+    </struct>
+
+    <struct name="GateStatus" since="7.1">
+        <description>Describes the status of a parameter of trunk/hood/etc.</description>
+        <param name="location" type="Grid" mandatory="true"/>
+        <param name="status" type="DoorStatusType" mandatory="true"/>
+    </struct>
+
+    <struct name="WindowState" since="7.0">
+      <param name="approximatePosition" type="Integer" minvalue="0" maxvalue="100" mandatory="true">
+        <description>The approximate percentage that the window is open - 0 being fully closed, 100 being fully open</description>
+      </param>
+      <param name="deviation" type="Integer" minvalue="0" maxvalue="100" mandatory="true">
+        <description>The percentage deviation of the approximatePosition. e.g. If the approximatePosition is 50 and the deviation is 10, then the window's location is somewhere between 40 and 60.</description>
+      </param>
+    </struct>
+
+    <struct name="RoofStatus" since="7.1">
+        <description>
+        Describes the status of a parameter of roof/convertible roof/sunroof/moonroof etc.
+        If roof is open (AJAR), state will determine percentage of roof open.
+        </description>
+        <param name="location" type="Grid" mandatory="true"/>
+        <param name="status" type="DoorStatusType" mandatory="true"/>
+        <param name="state" type="WindowState" mandatory="false"/>
+    </struct>
     
     <struct name="BodyInformation" since="2.0">
         <param name="parkBrakeActive" type="Boolean" mandatory="true">
@@ -1772,17 +1830,38 @@
         <param name="ignitionStatus" type="IgnitionStatus" mandatory="true">
             <description>References signal "Ignition_status". See IgnitionStatus.</description>
         </param>
-        <param name="driverDoorAjar" type="Boolean" mandatory="false">
-            <description>References signal "DrStatDrv_B_Actl".</description>
+        <param name="driverDoorAjar" type="Boolean" mandatory="false" deprecated="true" since="7.1">
+            <description>References signal "DrStatDrv_B_Actl". Deprecated starting with RPC Spec 7.1.0.</description>
+            <history>
+            	<param name="driverDoorAjar" type="Boolean" mandatory="false" since="2.0" until="7.1" />
+            </history>
         </param>
-        <param name="passengerDoorAjar" type="Boolean" mandatory="false">
-            <description>References signal "DrStatPsngr_B_Actl".</description>
+        <param name="passengerDoorAjar" type="Boolean" mandatory="false" deprecated="true" since="7.1">
+            <description>References signal "DrStatPsngr_B_Actl". Deprecated starting with RPC Spec 7.1.0.</description>
+            <history>
+            	<param name="passengerDoorAjar" type="Boolean" mandatory="false" since="2.0" until="7.1" />
+            </history>
         </param>
-        <param name="rearLeftDoorAjar" type="Boolean" mandatory="false">
-            <description>References signal "DrStatRl_B_Actl".</description>
+        <param name="rearLeftDoorAjar" type="Boolean" mandatory="false" deprecated="true" since="7.1">
+            <description>References signal "DrStatRl_B_Actl". Deprecated starting with RPC Spec 7.1.0.</description>
+            <history>
+            	<param name="rearLeftDoorAjar" type="Boolean" mandatory="false" since="2.0" until="7.1" />
+            </history>
         </param>
-        <param name="rearRightDoorAjar" type="Boolean" mandatory="false">
-            <description>References signal "DrStatRr_B_Actl".</description>
+        <param name="rearRightDoorAjar" type="Boolean" mandatory="false" deprecated="true" since="7.1">
+            <description>References signal "DrStatRr_B_Actl". Deprecated starting with RPC Spec 7.1.0.</description>
+            <history>
+            	<param name="rearRightDoorAjar" type="Boolean" mandatory="false" since="2.0" until="7.1" />
+            </history>
+        </param>
+        <param name="doorStatuses" type="DoorStatus" array="true" minsize="0" maxsize="100" mandatory="false" since="7.1">
+            <description>Provides status for doors if Ajar/Closed/Locked</description>
+        </param>
+        <param name="gateStatuses" type="GateStatus" array="true" minsize="0" maxsize="100" mandatory="false" since="7.1">
+            <description>Provides status for trunk/hood/etc. if Ajar/Closed/Locked</description>
+        </param>
+        <param name="roofStatuses" type="RoofStatus" array="true" minsize="0" maxsize="100" mandatory="false" since="7.1">
+            <description>Provides status for roof/convertible roof/sunroof/moonroof etc., if Closed/Ajar/Removed etc.</description>
         </param>
     </struct>
     
@@ -2446,31 +2525,6 @@
             <description>The number of on-screen custom presets available (if any); otherwise omitted.</description>
         </param>
         <!-- TODO:  Add pixel density? -->
-    </struct>
-
-    <struct name="Grid" since="6.0">
-        <description>Describes a location (origin coordinates and span) of a vehicle component.</description>
-        <param name="col" type="Integer" mandatory="true" minvalue="-1" maxvalue="100">
-        </param>
-        <param name="row" type="Integer"  mandatory="true" minvalue="-1" maxvalue="100">
-        </param>
-        <param name="level" type="Integer" mandatory="false"  defvalue="0" minvalue="-1" maxvalue="100" >
-        </param>
-        <param name="colspan" type="Integer" mandatory="false" defvalue="1" minvalue="1" maxvalue="100">
-        </param>
-        <param name="rowspan" type="Integer" mandatory="false" defvalue="1" minvalue="1" maxvalue="100">
-        </param>
-        <param name="levelspan" type="Integer" mandatory="false" defvalue="1" minvalue="1" maxvalue="100">
-        </param>
-    </struct>
-
-    <struct name="WindowState" since="7.0">
-      <param name="approximatePosition" type="Integer" minvalue="0" maxvalue="100" mandatory="true">
-        <description>The approximate percentage that the window is open - 0 being fully closed, 100 being fully open</description>
-      </param>
-      <param name="deviation" type="Integer" minvalue="0" maxvalue="100" mandatory="true">
-        <description>The percentage deviation of the approximatePosition. e.g. If the approximatePosition is 50 and the deviation is 10, then the window's location is somewhere between 40 and 60.</description>
-      </param>
     </struct>
 
     <struct name="WindowStatus" since="7.0">
@@ -3332,6 +3386,9 @@
         </param>
         <param name="scale" type="Float" minvalue="1" maxvalue="10" mandatory="false" since="6.0">
             <description>The scaling factor the app should use to change the size of the projecting view.</description>
+        </param>
+        <param name="preferredFPS" type="Integer" minvalue="0" maxvalue="2147483647" mandatory="false" since="7.1">
+            <description>The preferred frame rate per second of the head unit. The mobile application / app library may take other factors into account that constrain the frame rate lower than this value, but it should not perform streaming at a higher frame rate than this value.</description>
         </param>
     </struct>
 
@@ -4725,6 +4782,36 @@
         </param>
     </struct>
 
+    <struct name="SeatStatus" since="7.1">
+      <description>Describes the status of a parameter of seat.</description>
+      <param name="seatLocation" type="SeatLocation" mandatory="true"/>
+      <param name="conditionActive" type="Boolean" mandatory="true"/>
+    </struct>
+
+    <struct name="SeatOccupancy" since="7.1">
+      <param name="seatsOccupied" type="SeatStatus" array="true" minsize="0" maxsize="100" mandatory="false">
+        <description>Seat status array containing location and whether the seats are occupied.</description>
+      </param>
+      <param name="seatsBelted" type="SeatStatus" array="true" minsize="0" maxsize="100" mandatory="false">
+        <description>Seat status array containing location and whether the seats are belted.</description>
+      </param>
+    </struct>
+
+    <enum name="SeekIndicatorType" since="7.1">
+        <element name="TRACK"/>
+        <element name="TIME"/>
+    </enum>
+
+    <struct name="SeekStreamingIndicator" since="7.1">
+        <description>
+            The seek next / skip previous subscription buttons' content
+        </description>
+        <param name="type" type="SeekIndicatorType" mandatory="true" />
+        <param name="seekTime" type="Integer" minvalue="1" maxvalue="99" mandatory="false">
+            <description>If the type is TIME, this number of seconds may be present alongside the skip indicator. It will indicate the number of seconds that the currently playing media will skip forward or backward.</description>
+        </param>
+    </struct>
+
     <!-- Requests/Responses -->
     
     <function name="RegisterAppInterface" functionID="RegisterAppInterfaceID" messagetype="request" since="1.0">
@@ -4823,7 +4910,7 @@
         <param name="fullAppID" type="String" maxlength="100" mandatory="false" since="5.0">
             <description>ID used to validate app with policy table entries</description>
         </param>
-        <param name="appInfo" type="AppInfo" mandatory="false" since="2.0">
+        <param name="appInfo" type="AppInfo" mandatory="false" since="4.2">
             <description>
                 See AppInfo.
             </description>
@@ -5850,11 +5937,14 @@
             <description>Requires investigation regarding the nav display capabilities. Potentially lower lowerStatusBar, upperStatusBar, titleBar, etc.</description>
         </param>
         
-        <param name="mediaClock" type="String" minlength="0" maxlength="500" mandatory="false" since="1.0">
+        <param name="mediaClock" type="String" minlength="0" maxlength="500" mandatory="false" deprecated="true" since="7.1">
             <description>
                 Text value for MediaClock field. Has to be properly formatted by Mobile App according to the module's capabilities.
                 If this text is set, any automatic media clock updates previously set with SetMediaClockTimer will be stopped.
             </description>
+            <history>
+                <param name="mediaClock" type="String" minlength="0" maxlength="500" mandatory="false" since="1.0" until="7.1"/>
+            </history>
         </param>
         
         <param name="mediaTrack" type="String" minlength="0" maxlength="500" mandatory="false" since="1.0">
@@ -6018,6 +6108,26 @@
         <param name="audioStreamingIndicator" type="AudioStreamingIndicator" mandatory="false" since="5.0">
             <description>
                 Enumeration for the indicator icon on a play/pause button. see AudioStreamingIndicator.
+            </description>
+        </param>
+
+        <param name="forwardSeekIndicator" type="SeekStreamingIndicator" mandatory="false" since="7.1">
+            <description>
+                Used to control the forward seek button to either skip forward a set amount of time or to the next track.
+            </description>
+        </param>
+
+        <param name="backSeekIndicator" type="SeekStreamingIndicator" mandatory="false" since="7.1">
+            <description>
+                Used to control the back seek button to either skip back a set amount of time or to the previous track.
+            </description>
+        </param>
+
+        <param name="countRate" type="Float" minvalue="0.1" maxvalue="100.0" defvalue="1.0" mandatory="false" since="7.1">
+            <description>
+                The value of this parameter is the amount that the media clock timer will advance per 1.0 seconds of real time.
+                Values less than 1.0 will therefore advance the timer slower than real-time, while values greater than 1.0 will advance the timer faster than real-time.
+                e.g. If this parameter is set to `0.5`, the timer will advance one second per two seconds real-time, or at 50% speed. If this parameter is set to `2.0`, the timer will advance two seconds per one second real-time, or at 200% speed.
             </description>
         </param>
     </function>
@@ -6316,6 +6426,9 @@
         <param name="handsOffSteering" type="Boolean" mandatory="false" since="7.0">
             <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
+        <param name="seatOccupancy" type="Boolean" mandatory="false" since="7.1">
+          <description>See SeatOccupancy</description>
+        </param>
     </function>
     
     <function name="SubscribeVehicleData" functionID="SubscribeVehicleDataID" messagetype="response" since="2.0">
@@ -6453,6 +6566,9 @@
         <param name="handsOffSteering" type="VehicleDataResult" mandatory="false" since="7.0">
             <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
+        <param name="seatOccupancy" type="VehicleDataResult" mandatory="false" since="7.1">
+          <description>See SeatOccupancy</description>
+        </param>
     </function>
     
     <function name="UnsubscribeVehicleData" functionID="UnsubscribeVehicleDataID" messagetype="request" since="2.0">
@@ -6568,6 +6684,9 @@
         </param>
         <param name="handsOffSteering" type="Boolean" mandatory="false" since="7.0">
             <description>To indicate whether driver hands are off the steering wheel</description>
+        </param>
+        <param name="seatOccupancy" type="Boolean" mandatory="false" since="7.1">
+          <description>See SeatOccupancy</description>
         </param>
     </function>
     
@@ -6705,6 +6824,9 @@
         <param name="handsOffSteering" type="VehicleDataResult" mandatory="false" since="7.0">
             <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
+        <param name="seatOccupancy" type="VehicleDataResult" mandatory="false" since="7.1">
+          <description>See SeatOccupancy</description>
+        </param>
     </function>
     
     <function name="GetVehicleData" functionID="GetVehicleDataID" messagetype="request" since="2.0">
@@ -6823,6 +6945,9 @@
         </param>
         <param name="handsOffSteering" type="Boolean" mandatory="false" since="7.0">
             <description>To indicate whether driver hands are off the steering wheel</description>
+        </param>
+        <param name="seatOccupancy" type="Boolean" mandatory="false" since="7.1">
+          <description>See SeatOccupancy</description>
         </param>
     </function>
     
@@ -6963,6 +7088,9 @@
         </param>
         <param name="handsOffSteering" type="Boolean" mandatory="false" since="7.0">
             <description>To indicate whether driver hands are off the steering wheel</description>
+        </param>
+        <param name="seatOccupancy" type="SeatOccupancy" mandatory="false" since="7.1">
+          <description>See SeatOccupancy</description>
         </param>
     </function>
     
@@ -7236,16 +7364,10 @@
         <param name="nextTurnIcon" type="Image" mandatory="false" since="3.0">
         </param>
         <param name="distanceToManeuver" type="Float" minvalue="0" maxvalue="1000000000" mandatory="false" since="2.0">
-            <description>
-                Fraction of distance till next maneuver (starting from when AlertManeuver is triggered).
-                Used to calculate progress bar.
-            </description>
+            <description>Distance (in meters) until next maneuver. May be used to calculate progress bar.</description>
         </param>
         <param name="distanceToManeuverScale" type="Float" minvalue="0" maxvalue="1000000000" mandatory="false" since="2.0">
-            <description>
-                Distance till next maneuver (starting from) from previous maneuver.
-                Used to calculate progress bar.
-            </description>
+            <description>Distance (in meters) from previous maneuver to next maneuver. May be used to calculate progress bar.</description>
         </param>
         <param name="maneuverComplete" type="Boolean" mandatory="false" since="2.0">
             <description>
@@ -8684,6 +8806,9 @@
         <param name="handsOffSteering" type="Boolean" mandatory="false" since="7.0">
             <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
+        <param name="seatOccupancy" type="SeatOccupancy" mandatory="false" since="7.1">
+          <description>See SeatOccupancy</description>
+        </param>
     </function>
     
     <function name="OnCommand" functionID="OnCommandID" messagetype="notification" since="1.0">
@@ -8886,7 +9011,10 @@
     <!-- Ford Specific APIs -->
     <!-- ~~~~~~~~~~~~~~~~~~ -->
     
-    <function name="EncodedSyncPData" functionID="EncodedSyncPDataID" messagetype="request" since="1.0">
+    <function name="EncodedSyncPData" functionID="EncodedSyncPDataID" messagetype="request" deprecated="true" since="7.1">
+        <history>	
+            <function name="EncodedSyncPData" functionID="EncodedSyncPDataID" messagetype="request" since="1.0" until="7.1"/>	
+        </history>
         <description>
             Allows encoded data in the form of SyncP packets to be sent to the SYNC module.
             Legacy / v1 Protocol implementation; use SyncPData instead.
@@ -8899,7 +9027,10 @@
         </param>
     </function>
     
-    <function name="EncodedSyncPData" functionID="EncodedSyncPDataID" messagetype="response" since="1.0">
+    <function name="EncodedSyncPData" functionID="EncodedSyncPDataID" messagetype="response" deprecated="true" since="7.1">
+        <history>	
+            <function name="EncodedSyncPData" functionID="EncodedSyncPDataID" messagetype="response" since="1.0" until="7.1"/>	
+        </history>
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
             <description> true, if successful; false, if failed </description>
         </param>
@@ -8950,7 +9081,10 @@
      </function>
      -->
     
-    <function name="OnEncodedSyncPData" functionID="OnEncodedSyncPDataID" messagetype="notification" since="1.0">
+    <function name="OnEncodedSyncPData" functionID="OnEncodedSyncPDataID" messagetype="notification" deprecated="true" since="7.1">
+        <history>	
+            <function name="OnEncodedSyncPData" functionID="OnEncodedSyncPDataID" messagetype="notification" since="1.0" until="7.1"/>	
+        </history>
         <description>
             Callback including encoded data of any SyncP packets that SYNC needs to send back to the mobile device.
             Legacy / v1 Protocol implementation; responds to EncodedSyncPData.
