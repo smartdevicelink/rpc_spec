@@ -550,7 +550,12 @@
         <element name="VEHICLEDATA_FUELLEVEL" until="7.0"/>
         <element name="VEHICLEDATA_FUELLEVEL_STATE" until="7.0"/>
         <element name="VEHICLEDATA_FUELCONSUMPTION" />
-        <element name="VEHICLEDATA_EXTERNTEMP" />
+        <element name="VEHICLEDATA_CLIMATEDATA" since="7.1"/>
+        <element name="VEHICLEDATA_EXTERNTEMP" deprecated="true" since="7.1">
+            <history>
+                <element name="VEHICLEDATA_EXTERNTEMP" since="2.0" until="7.1"/>
+            </history>
+        </element>
         <element name="VEHICLEDATA_VIN" />
         <element name="VEHICLEDATA_GEARSTATUS" since="7.0"/>
         <element name="VEHICLEDATA_PRNDL" until="7.0"/>
@@ -4730,6 +4735,18 @@
         </param>
     </struct>
 
+    <struct name="ClimateData" since="7.1">
+        <param name="externalTemperature" type="Temperature" mandatory="false">
+            <description>The external temperature in degrees celsius</description>
+        </param>
+        <param name="cabinTemperature" type="Temperature" mandatory="false">
+            <description>Internal ambient cabin temperature in degrees celsius</description>
+        </param>
+        <param name="atmosphericPressure" type="Float" minvalue="0" maxvalue="2000" mandatory="false">
+            <description>Current atmospheric pressure in mBar</description>
+        </param>
+    </struct>
+
     <struct name="GearStatus" since="7.0">
         <param name="userSelectedGear" type="PRNDL" mandatory="false">
             <description>Gear position selected by the user i.e. Park, Drive, Reverse</description>
@@ -6305,8 +6322,14 @@
                 See struct FuelRange for details.
             </description>
         </param>
-        <param name="externalTemperature" type="Boolean" mandatory="false">
-            <description>The external temperature in degrees celsius</description>
+        <param name="climateData" type="Boolean" mandatory="false" since="7.1">
+            <description>See ClimateData</description>
+        </param>
+        <param name="externalTemperature" type="Boolean" mandatory="false" deprecated="true" since="7.1">
+            <description>The external temperature in degrees celsius. This parameter is deprecated starting RPC Spec 7.1, please see climateData.</description>
+            <history>
+                <param name="externalTemperature" type="Boolean" mandatory="false" since="2.0" until="7.1" />
+            </history>
         </param>
         <param name="turnSignal" type="Boolean" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
@@ -6445,8 +6468,14 @@
                 See struct FuelRange for details.
             </description>
         </param>
-        <param name="externalTemperature" type="VehicleDataResult" mandatory="false">
-            <description>The external temperature in degrees celsius.</description>
+        <param name="climateData" type="VehicleDataResult" mandatory="false" since="7.1">
+            <description>See ClimateData</description>
+        </param>
+        <param name="externalTemperature" type="VehicleDataResult" mandatory="false" deprecated="true" since="7.1">
+            <description>The external temperature in degrees celsius. This parameter is deprecated starting RPC Spec 7.1, please see climateData.</description>
+            <history>
+                <param name="externalTemperature" type="VehicleDataResult" mandatory="false" since="2.0" until="7.1" />
+            </history>
         </param>
         <param name="turnSignal" type="VehicleDataResult" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
@@ -6564,8 +6593,14 @@
                 See struct FuelRange for details.
             </description>
         </param>
-        <param name="externalTemperature" type="Boolean" mandatory="false">
-            <description>The external temperature in degrees celsius.</description>
+        <param name="climateData" type="Boolean" mandatory="false" since="7.1">
+            <description>See ClimateData</description>
+        </param>
+        <param name="externalTemperature" type="Boolean" mandatory="false" deprecated="true" since="7.1">
+            <description>The external temperature in degrees celsius. This parameter is deprecated starting RPC Spec 7.1, please see climateData.</description>
+            <history>
+                <param name="externalTemperature" type="Boolean" mandatory="false" since="2.0" until="7.1" />
+            </history>
         </param>
         <param name="turnSignal" type="Boolean" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
@@ -6703,8 +6738,14 @@
                 See struct FuelRange for details.
             </description>
         </param>
-        <param name="externalTemperature" type="VehicleDataResult" mandatory="false">
-            <description>The external temperature in degrees celsius</description>
+        <param name="climateData" type="VehicleDataResult" mandatory="false" since="7.1">
+            <description>See ClimateData</description>
+        </param>
+        <param name="externalTemperature" type="VehicleDataResult" mandatory="false" deprecated="true" since="7.1">
+            <description>The external temperature in degrees celsius. This parameter is deprecated starting RPC Spec 7.1, please see climateData.</description>
+            <history>
+                <param name="externalTemperature" type="VehicleDataResult" mandatory="false" since="2.0" until="7.1" />
+            </history>
         </param>
         <param name="turnSignal" type="VehicleDataResult" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
@@ -6822,8 +6863,14 @@
                 See struct FuelRange for details.
             </description>
         </param>
-        <param name="externalTemperature" type="Boolean" mandatory="false">
-            <description>The external temperature in degrees celsius</description>
+        <param name="climateData" type="Boolean" mandatory="false" since="7.1">
+            <description>See ClimateData</description>
+        </param>
+        <param name="externalTemperature" type="Boolean" mandatory="false" deprecated="true" since="7.1">
+            <description>The external temperature in degrees celsius. This parameter is deprecated starting RPC Spec 7.1, please see climateData.</description>
+            <history>
+                <param name="externalTemperature" type="Boolean" mandatory="false" since="2.0" until="7.1" />
+            </history>
         </param>
         <param name="turnSignal" type="Boolean" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
@@ -6965,8 +7012,14 @@
                 See struct FuelRange for details.
             </description>
         </param>
-        <param name="externalTemperature" type="Float" minvalue="-40" maxvalue="100" mandatory="false">
-            <description>The external temperature in degrees celsius</description>
+        <param name="climateData" type="ClimateData" mandatory="false" since="7.1">
+            <description>See ClimateData</description>
+        </param>
+        <param name="externalTemperature" type="Float" minvalue="-40" maxvalue="100" mandatory="false" deprecated="true" since="7.1">
+            <description>The external temperature in degrees celsius. This parameter is deprecated starting RPC Spec 7.1, please see climateData.</description>
+            <history>
+                <param name="externalTemperature" type="Float" minvalue="-40" maxvalue="100" mandatory="false" since="2.0" until="7.1" />
+            </history>
         </param>
         <param name="turnSignal" type="TurnSignal" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
@@ -8682,8 +8735,14 @@
                 See struct FuelRange for details.
             </description>
         </param>
-        <param name="externalTemperature" type="Float" minvalue="-40" maxvalue="100" mandatory="false">
-            <description>The external temperature in degrees celsius</description>
+        <param name="climateData" type="ClimateData" mandatory="false" since="7.1">
+            <description>See ClimateData</description>
+        </param>
+        <param name="externalTemperature" type="Float" minvalue="-40" maxvalue="100" mandatory="false" deprecated="true" since="7.1">
+            <description>The external temperature in degrees celsius. This parameter is deprecated starting RPC Spec 7.1, please see climateData.</description>
+            <history>
+                <param name="externalTemperature" type="Float" minvalue="-40" maxvalue="100" mandatory="false" since="2.0" until="7.1" />
+            </history>
         </param>
         <param name="turnSignal" type="TurnSignal" mandatory="false" since="5.0">
             <description>See TurnSignal</description>

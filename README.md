@@ -388,6 +388,7 @@ Defines the data types that can be published and subscribed to.
 |`VEHICLEDATA_FUELLEVEL`||
 |`VEHICLEDATA_FUELLEVEL_STATE`||
 |`VEHICLEDATA_FUELCONSUMPTION`||
+|`VEHICLEDATA_CLIMATEDATA`||
 |`VEHICLEDATA_EXTERNTEMP`||
 |`VEHICLEDATA_VIN`||
 |`VEHICLEDATA_GEARSTATUS`||
@@ -3280,6 +3281,16 @@ The systemCapabilityType identifies which data object exists in this struct. For
 |`driverDistractionCapability`|DriverDistractionCapability|False|Describes capabilities when the driver is distracted|
 
 
+### ClimateData
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`externalTemperature`|Temperature|False|The external temperature in degrees celsius|
+|`cabinTemperature`|Temperature|False|Internal ambient cabin temperature in degrees celsius|
+|`atmosphericPressure`|Float|False|Current atmospheric pressure in mBar|
+
+
 ### GearStatus
 ##### Parameters
 
@@ -4002,7 +4013,8 @@ Subscribes for specific published data items. The data will be only sent if it h
 |`fuelLevel_State`|Boolean|False|The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.|
 |`instantFuelConsumption`|Boolean|False|The instantaneous fuel consumption in microlitres|
 |`fuelRange`|Boolean|False|The fuel type, estimated range in KM, fuel level/capacity and fuel level state for the vehicle. See struct FuelRange for details.|
-|`externalTemperature`|Boolean|False|The external temperature in degrees celsius|
+|`climateData`|Boolean|False|See ClimateData|
+|`externalTemperature`|Boolean|False|The external temperature in degrees celsius. This parameter is deprecated starting RPC Spec 7.1, please see climateData.|
 |`turnSignal`|Boolean|False|See TurnSignal|
 |`gearStatus`|Boolean|False|See GearStatus|
 |`prndl`|Boolean|False|See PRNDL. This parameter is deprecated and it is now covered in `gearStatus`|
@@ -4048,7 +4060,8 @@ Message Type: **response**
 |`fuelLevel_State`|VehicleDataResult|False|The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.|
 |`instantFuelConsumption`|VehicleDataResult|False|The instantaneous fuel consumption in microlitres|
 |`fuelRange`|VehicleDataResult|False|The fuel type, estimated range in KM, fuel level/capacity and fuel level state for the vehicle. See struct FuelRange for details.|
-|`externalTemperature`|VehicleDataResult|False|The external temperature in degrees celsius.|
+|`climateData`|VehicleDataResult|False|See ClimateData|
+|`externalTemperature`|VehicleDataResult|False|The external temperature in degrees celsius. This parameter is deprecated starting RPC Spec 7.1, please see climateData.|
 |`turnSignal`|VehicleDataResult|False|See TurnSignal|
 |`gearStatus`|VehicleDataResult|False|See GearStatus|
 |`prndl`|VehicleDataResult|False|See PRNDL. This parameter is deprecated and it is now covered in `gearStatus`|
@@ -4093,7 +4106,8 @@ This function is used to unsubscribe the notifications from the subscribeVehicle
 |`fuelLevel_State`|Boolean|False|The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.|
 |`instantFuelConsumption`|Boolean|False|The instantaneous fuel consumption in microlitres|
 |`fuelRange`|Boolean|False|The fuel type, estimated range in KM, fuel level/capacity and fuel level state for the vehicle. See struct FuelRange for details.|
-|`externalTemperature`|Boolean|False|The external temperature in degrees celsius.|
+|`climateData`|Boolean|False|See ClimateData|
+|`externalTemperature`|Boolean|False|The external temperature in degrees celsius. This parameter is deprecated starting RPC Spec 7.1, please see climateData.|
 |`turnSignal`|Boolean|False|See TurnSignal|
 |`gearStatus`|Boolean|False|See GearStatus|
 |`prndl`|Boolean|False|See PRNDL. This parameter is deprecated and it is now covered in `gearStatus`|
@@ -4139,7 +4153,8 @@ Message Type: **response**
 |`fuelLevel_State`|VehicleDataResult|False|The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.|
 |`instantFuelConsumption`|VehicleDataResult|False|The instantaneous fuel consumption in microlitres|
 |`fuelRange`|VehicleDataResult|False|The fuel type, estimated range in KM, fuel level/capacity and fuel level state for the vehicle. See struct FuelRange for details.|
-|`externalTemperature`|VehicleDataResult|False|The external temperature in degrees celsius|
+|`climateData`|VehicleDataResult|False|See ClimateData|
+|`externalTemperature`|VehicleDataResult|False|The external temperature in degrees celsius. This parameter is deprecated starting RPC Spec 7.1, please see climateData.|
 |`turnSignal`|VehicleDataResult|False|See TurnSignal|
 |`gearStatus`|VehicleDataResult|False|See GearStatus|
 |`prndl`|VehicleDataResult|False|See PRNDL. This parameter is deprecated and it is now covered in `gearStatus`|
@@ -4184,7 +4199,8 @@ Non periodic vehicle data read request.
 |`fuelLevel_State`|Boolean|False|The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.|
 |`instantFuelConsumption`|Boolean|False|The instantaneous fuel consumption in microlitres|
 |`fuelRange`|Boolean|False|The fuel type, estimated range in KM, fuel level/capacity and fuel level state for the vehicle. See struct FuelRange for details.|
-|`externalTemperature`|Boolean|False|The external temperature in degrees celsius|
+|`climateData`|Boolean|False|See ClimateData|
+|`externalTemperature`|Boolean|False|The external temperature in degrees celsius. This parameter is deprecated starting RPC Spec 7.1, please see climateData.|
 |`turnSignal`|Boolean|False|See TurnSignal|
 |`vin`|Boolean|False|Vehicle identification number|
 |`gearStatus`|Boolean|False|See GearStatus|
@@ -4231,7 +4247,8 @@ Message Type: **response**
 |`fuelLevel_State`|ComponentVolumeStatus|False|The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.|
 |`instantFuelConsumption`|Float|False|The instantaneous fuel consumption in microlitres|
 |`fuelRange`|FuelRange[]|False|The fuel type, estimated range in KM, fuel level/capacity and fuel level state for the vehicle. See struct FuelRange for details.|
-|`externalTemperature`|Float|False|The external temperature in degrees celsius|
+|`climateData`|ClimateData|False|See ClimateData|
+|`externalTemperature`|Float|False|The external temperature in degrees celsius. This parameter is deprecated starting RPC Spec 7.1, please see climateData.|
 |`turnSignal`|TurnSignal|False|See TurnSignal|
 |`vin`|String|False|Vehicle identification number|
 |`gearStatus`|GearStatus|False|See GearStatus|
@@ -5286,7 +5303,8 @@ Callback for the periodic and non periodic vehicle data read function.
 |`fuelLevel_State`|ComponentVolumeStatus|False|The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.|
 |`instantFuelConsumption`|Float|False|The instantaneous fuel consumption in microlitres|
 |`fuelRange`|FuelRange[]|False|The fuel type, estimated range in KM, fuel level/capacity and fuel level state for the vehicle. See struct FuelRange for details.|
-|`externalTemperature`|Float|False|The external temperature in degrees celsius|
+|`climateData`|ClimateData|False|See ClimateData|
+|`externalTemperature`|Float|False|The external temperature in degrees celsius. This parameter is deprecated starting RPC Spec 7.1, please see climateData.|
 |`turnSignal`|TurnSignal|False|See TurnSignal|
 |`vin`|String|False|Vehicle identification number.|
 |`gearStatus`|GearStatus|False|See GearStatus|
