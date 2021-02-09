@@ -2649,7 +2649,7 @@
     </struct>
 
     <struct name="KeyboardCapabilities" since="7.1">
-        <param name="maskInputCharactersSupported" type="Boolean" mandatory="false" since="7.1" >
+        <param name="maskInputCharactersSupported" type="Boolean" mandatory="false">
             <description>Availability of capability to mask input characters using keyboard. True: Available, False: Not Available</description>
         </param>
         <param name="supportedKeyboards" type="KeyboardLayoutCapability" minsize="1" maxsize="1000" array="true" mandatory="false">
@@ -2872,11 +2872,11 @@
         <param name="maskInputCharacters" type="KeyboardInputMask" mandatory="false" since="7.1">
             <description>Allows an app to mask entered characters on HMI</description>
         </param>
-        <param name="customKeys" type="String" maxlength="1" minsize="1" maxsize="10" array="true" mandatory="false"  since="7.1">
-        <description>
-            Array of special characters to show in customizable keys.
-            If omitted, keyboard will show default special characters
-        </description>
+        <param name="customKeys" type="String" maxlength="1" minsize="1" maxsize="10" array="true" mandatory="false" since="7.1">
+            <description>
+                Array of special characters to show in customizable keys.
+                If omitted, keyboard will show default special characters
+            </description>
         </param>
     </struct>
 
