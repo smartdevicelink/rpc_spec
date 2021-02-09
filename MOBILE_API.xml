@@ -941,6 +941,14 @@
         <element name="phoneNumber" since="4.0">
             <description> Optional phone number of intended location / establishment (if applicable) for SendLocation.</description>
         </element>
+        
+        <element name="timeToDestination" since="7.1">
+            <description>Optional time to destination field for ShowConstantTBT</description>
+        </element>
+        
+        <element name="turnText" since="7.1">
+            <description>Turn text for turnList parameter of UpdateTurnList</description>
+        </element>
 
         <element name="subtleAlertText1" since="7.0">
             <description>The first line of the subtle alert text field; applies to `SubtleAlert` `alertText1`</description>
