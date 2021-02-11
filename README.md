@@ -579,6 +579,10 @@ See DAES for further infos regarding the displays
 |`subtleAlertText1`|The first line of the subtle alert text field; applies to `SubtleAlert` `alertText1`|
 |`subtleAlertText2`|The second line of the subtle alert text field; applies to `SubtleAlert` `alertText2`|
 |`subtleAlertSoftButtonText`|A text field in the soft button of a subtle alert; applies to `SubtleAlert` `softButtons`|
+|`menuCommandSecondaryText`|Secondary text for AddCommand|
+|`menuCommandTertiaryText`|Tertiary text for AddCommand|
+|`menuSubMenuSecondaryText`|Secondary text for AddSubMenu|
+|`menuSubMenuTertiaryText`|Tertiary text for AddSubMenu|
 
 
 ### ImageFieldName
@@ -602,6 +606,8 @@ See DAES for further infos regarding the displays
 |`alertIcon`|The image field for Alert|
 |`subMenuIcon`|The image field for AddSubMenu.menuIcon|
 |`subtleAlertIcon`|The image of the subtle alert; applies to `SubtleAlert` `alertIcon`|
+|`menuCommandSecondaryImage`|The secondary image field for AddCommand|
+|`menuSubMenuSecondaryImage`|The secondary image field for AddSubMenu|
 
 
 ### CharacterSet
@@ -2487,6 +2493,8 @@ Describes the capabilities of a single keyboard layout.
 |`parentID`|Integer|False|unique ID of the sub menu, the command will be added to. If not provided, it will be provided to the top level of the in application menu.|
 |`position`|Integer|False|Position within the items that are at top level of the in application menu. 0 will insert at the front. 1 will insert at the second position. if position is greater or equal than the number of items on top level, the sub menu will be appended to the end. If this param was omitted the entry will be added at the end.|
 |`menuName`|String|True|Text to show in the menu for this sub menu.|
+|`secondaryText`|String|False|Optional secondary text to display|
+|`tertiaryText`|String|False|Optional tertiary text to display|
 
 
 ### TTSChunk
@@ -3576,6 +3584,7 @@ Adds a command to the in application menu. Either menuParams or vrCommands must 
 |`menuParams`|MenuParams|False|Optional sub value containing menu parameters|
 |`vrCommands`|String[]|False|An array of strings to be used as VR synonyms for this command. If this array is provided, it may not be empty.|
 |`cmdIcon`|Image|False|Image struct determining whether static or dynamic icon. If omitted on supported displays, no (or the default if applicable) icon shall be displayed.|
+|`secondaryImage`|Image|False|Optional secondary image struct for menu cell|
 
 
 ### AddCommand
@@ -3629,6 +3638,9 @@ Adds a sub menu to the in-application menu.
 |`menuIcon`|Image|False|The image field for AddSubMenu|
 |`menuLayout`|MenuLayout|False|Sets the layout of the submenu screen.|
 |`parentID`|Integer|False|unique ID of the sub menu, the command will be added to. If not provided or 0, it will be provided to the top level of the in application menu.|
+|`secondaryText`|String|False|Optional secondary text to display|
+|`tertiaryText`|String|False|Optional tertiary text to display|
+|`secondaryImage`|Image|False|Optional secondary image struct for sub-menu cell|
 
 
 ### AddSubMenu
