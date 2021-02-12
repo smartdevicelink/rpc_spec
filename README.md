@@ -434,6 +434,16 @@ Enumeration for the user's preference of which app type to use when both are ava
 |`BOTH`||
 
 
+### AppCapabilityType
+Enumerations of all available app capability types
+
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`VIDEO_STREAMING`||
+
+
 ### CapacityUnit
 ##### Elements
 
@@ -1535,6 +1545,7 @@ Enumeration linking function names with function IDs in SmartDeviceLink protocol
 |`OnSubtleAlertPressedID`||
 |`OnUpdateFileID`||
 |`OnUpdateSubMenuID`||
+|`OnAppCapabilityUpdatedID`||
 |`EncodedSyncPDataID`||
 |`SyncPDataID`||
 |`OnEncodedSyncPDataID`||
@@ -2662,6 +2673,7 @@ Contains information about this system's video streaming capabilities.
 |`pixelPerInch`|Float|False|PPI is the diagonal resolution in pixels divided by the diagonal screen size in inches.|
 |`scale`|Float|False|The scaling factor the app should use to change the size of the projecting view.|
 |`preferredFPS`|Integer|False|The preferred frame rate per second of the head unit. The mobile application / app library may take other factors into account that constrain the frame rate lower than this value, but it should not perform streaming at a higher frame rate than this value.|
+|`additionalVideoStreamingCapabilities`|VideoStreamingCapability[]|False||
 
 
 ### DriverDistractionCapability
@@ -3378,6 +3390,15 @@ The seek next / skip previous subscription buttons' content
 | ---------- | ---------- |:-----------: |:-----------:|
 |`type`|SeekIndicatorType|True||
 |`seekTime`|Integer|False|If the type is TIME, this number of seconds may be present alongside the skip indicator. It will indicate the number of seconds that the currently playing media will skip forward or backward.|
+
+
+### AppCapability
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`appCapabilityType`|AppCapabilityType|True|Used as a descriptor of what data to expect in this struct. The corresponding param to this enum should be included and the only other param included.|
+|`videoStreamingCapability`|VideoStreamingCapability|False|Describes supported capabilities for video streaming|
 
 
 
@@ -5567,6 +5588,18 @@ A notification to inform the connected device that a specific system capability 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
 |`systemCapability`|SystemCapability|True|The system capability that has been updated|
+
+
+### OnAppCapabilityUpdated
+Message Type: **notification**
+
+A notification to inform SDL Core that a specific app capability has changed.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`appCapability`|AppCapability|True|The app capability that has been updated|
 
 
 ### OnUpdateFile

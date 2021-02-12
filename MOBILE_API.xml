@@ -595,6 +595,11 @@
         <element name="BOTH" />
     </enum>
 
+    <enum name="AppCapabilityType" since="7.1">
+        <description>Enumerations of all available app capability types</description>
+        <element name="VIDEO_STREAMING"/>
+    </enum>
+
     <enum name="CapacityUnit" since="7.0">
         <element name="LITERS" />
         <element name="KILOWATTHOURS" />
@@ -3217,6 +3222,7 @@
         <element name="OnSubtleAlertPressedID" value="32788" hexvalue="8014" since="7.0" />
         <element name="OnUpdateFileID" value="32789" hexvalue="8015" since="7.0" />
         <element name="OnUpdateSubMenuID" value="32790" hexvalue="8016" since="7.0" />
+        <element name="OnAppCapabilityUpdatedID" value="32791" hexvalue="8017" since="7.1"/>
 
         <!--
          Ford Specific Request / Response RPCs
@@ -3433,6 +3439,8 @@
         </param>
         <param name="preferredFPS" type="Integer" minvalue="0" maxvalue="2147483647" mandatory="false" since="7.1">
             <description>The preferred frame rate per second of the head unit. The mobile application / app library may take other factors into account that constrain the frame rate lower than this value, but it should not perform streaming at a higher frame rate than this value.</description>
+        </param>
+        <param name="additionalVideoStreamingCapabilities" type="VideoStreamingCapability" array="true" minsize="1" maxsize="100" mandatory="false" since="7.1">
         </param>
     </struct>
 
@@ -4865,6 +4873,18 @@
         <param name="type" type="SeekIndicatorType" mandatory="true" />
         <param name="seekTime" type="Integer" minvalue="1" maxvalue="99" mandatory="false">
             <description>If the type is TIME, this number of seconds may be present alongside the skip indicator. It will indicate the number of seconds that the currently playing media will skip forward or backward.</description>
+        </param>
+    </struct>
+
+    <struct name="AppCapability" since="7.1">
+        <param name="appCapabilityType" type="AppCapabilityType" mandatory="true">
+            <description>
+                Used as a descriptor of what data to expect in this struct.
+                The corresponding param to this enum should be included and the only other param included.
+            </description>
+        </param>
+        <param name="videoStreamingCapability" type="VideoStreamingCapability" mandatory="false">
+            <description>Describes supported capabilities for video streaming </description>
         </param>
     </struct>
 
@@ -9106,6 +9126,13 @@
         </param>
     </function>
 
+    <function name="OnAppCapabilityUpdated" functionID="OnAppCapabilityUpdatedID" messagetype="notification" since="7.1">
+        <description>A notification to inform SDL Core that a specific app capability has changed.</description>
+        <param name="appCapability" type="AppCapability" mandatory="true">
+            <description>The app capability that has been updated</description>
+        </param>
+    </function>
+
     <function name="OnUpdateFile" functionID="OnUpdateFileID" messagetype="notification" since="7.0">
         <description>This notification tells an app to upload and update a file with a given name.</description>
 
@@ -9131,8 +9158,8 @@
     <!-- ~~~~~~~~~~~~~~~~~~ -->
     
     <function name="EncodedSyncPData" functionID="EncodedSyncPDataID" messagetype="request" deprecated="true" since="7.1">
-        <history>	
-            <function name="EncodedSyncPData" functionID="EncodedSyncPDataID" messagetype="request" since="1.0" until="7.1"/>	
+        <history>
+            <function name="EncodedSyncPData" functionID="EncodedSyncPDataID" messagetype="request" since="1.0" until="7.1"/>
         </history>
         <description>
             Allows encoded data in the form of SyncP packets to be sent to the SYNC module.
@@ -9147,8 +9174,8 @@
     </function>
     
     <function name="EncodedSyncPData" functionID="EncodedSyncPDataID" messagetype="response" deprecated="true" since="7.1">
-        <history>	
-            <function name="EncodedSyncPData" functionID="EncodedSyncPDataID" messagetype="response" since="1.0" until="7.1"/>	
+        <history>
+            <function name="EncodedSyncPData" functionID="EncodedSyncPDataID" messagetype="response" since="1.0" until="7.1"/>
         </history>
         <param name="success" type="Boolean" platform="documentation" mandatory="true">
             <description> true, if successful; false, if failed </description>
@@ -9201,8 +9228,8 @@
      -->
     
     <function name="OnEncodedSyncPData" functionID="OnEncodedSyncPDataID" messagetype="notification" deprecated="true" since="7.1">
-        <history>	
-            <function name="OnEncodedSyncPData" functionID="OnEncodedSyncPDataID" messagetype="notification" since="1.0" until="7.1"/>	
+        <history>
+            <function name="OnEncodedSyncPData" functionID="OnEncodedSyncPDataID" messagetype="notification" since="1.0" until="7.1"/>
         </history>
         <description>
             Callback including encoded data of any SyncP packets that SYNC needs to send back to the mobile device.
