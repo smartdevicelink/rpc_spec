@@ -550,7 +550,12 @@
         <element name="VEHICLEDATA_FUELLEVEL" until="7.0"/>
         <element name="VEHICLEDATA_FUELLEVEL_STATE" until="7.0"/>
         <element name="VEHICLEDATA_FUELCONSUMPTION" />
-        <element name="VEHICLEDATA_EXTERNTEMP" />
+        <element name="VEHICLEDATA_CLIMATEDATA" since="7.1"/>
+        <element name="VEHICLEDATA_EXTERNTEMP" deprecated="true" since="7.1">
+            <history>
+                <element name="VEHICLEDATA_EXTERNTEMP" since="2.0" until="7.1"/>
+            </history>
+        </element>
         <element name="VEHICLEDATA_VIN" />
         <element name="VEHICLEDATA_GEARSTATUS" since="7.0"/>
         <element name="VEHICLEDATA_PRNDL" until="7.0"/>
@@ -580,6 +585,7 @@
         <element name="VEHICLEDATA_STABILITYCONTROLSSTATUS" since="7.0"/>
         <element name="VEHICLEDATA_WINDOWSTATUS" since="7.0"/>
         <element name="VEHICLEDATA_HANDSOFFSTEERING" since="7.0"/>
+        <element name="VEHICLEDATA_SEATOCCUPANCY" since="7.1"/>
     </enum>
 
     <enum name="HybridAppPreference" since="5.1">
@@ -940,6 +946,14 @@
         <element name="phoneNumber" since="4.0">
             <description> Optional phone number of intended location / establishment (if applicable) for SendLocation.</description>
         </element>
+        
+        <element name="timeToDestination" since="7.1">
+            <description>Optional time to destination field for ShowConstantTBT</description>
+        </element>
+        
+        <element name="turnText" since="7.1">
+            <description>Turn text for turnList parameter of UpdateTurnList</description>
+        </element>
 
         <element name="subtleAlertText1" since="7.0">
             <description>The first line of the subtle alert text field; applies to `SubtleAlert` `alertText1`</description>
@@ -951,6 +965,22 @@
 
         <element name="subtleAlertSoftButtonText" since="7.0">
             <description>A text field in the soft button of a subtle alert; applies to `SubtleAlert` `softButtons`</description>
+        </element>
+
+        <element name="menuCommandSecondaryText" since="7.1">
+            <description>Secondary text for AddCommand</description>
+        </element>
+
+        <element name="menuCommandTertiaryText" since="7.1">
+            <description>Tertiary text for AddCommand</description>
+        </element>
+
+        <element name="menuSubMenuSecondaryText" since="7.1">
+            <description>Secondary text for AddSubMenu</description>
+        </element>
+
+        <element name="menuSubMenuTertiaryText" since="7.1">
+            <description>Tertiary text for AddSubMenu</description>
         </element>
 
     </enum>
@@ -1018,6 +1048,14 @@
 
         <element name="subtleAlertIcon" since="7.0">
             <description>The image of the subtle alert; applies to `SubtleAlert` `alertIcon`</description>
+        </element>
+
+        <element name="menuCommandSecondaryImage" since = "7.1">
+            <description>The secondary image field for AddCommand</description>
+        </element>
+
+        <element name="menuSubMenuSecondaryImage" since = "7.1">
+            <description>The secondary image field for AddSubMenu</description>
         </element>
 
     </enum>
@@ -1768,7 +1806,7 @@
         <param name="middleRow1BuckleBelted" type="VehicleDataEventStatus" mandatory="true">
             <description>References signal "VedsRw1mBckl_D_Ltchd". See VehicleDataEventStatus.</description>
         </param>
-    </struct>  
+    </struct>
 
     <enum name="DoorStatusType" since="7.1">
         <element name="CLOSED"/>
@@ -2632,7 +2670,34 @@
         <param name="supportsDynamicSubMenus" type="Boolean" mandatory="false">
             <description>If true, the head unit supports dynamic sub-menus by sending OnUpdateSubMenu notifications. If true, you should not send AddCommands that attach to a parentID for an AddSubMenu until OnUpdateSubMenu is received with the menuID. At that point, you should send all AddCommands with a parentID that match the menuID. If not set, assume false.</description>
         </param>
-    </struct>  
+    </struct>
+
+    <enum name="KeyboardLayout" since="3.0">
+        <description>Enumeration listing possible keyboard layouts.</description>
+        <element name="QWERTY" />
+        <element name="QWERTZ" />
+        <element name="AZERTY" />
+        <element name="NUMERIC" since="7.1"/>
+    </enum>
+
+    <struct name="KeyboardLayoutCapability" since="7.1">
+        <description>
+            Describes the capabilities of a single keyboard layout.
+        </description>
+        <param name="keyboardLayout" type="KeyboardLayout" mandatory="true"/>
+        <param name="numConfigurableKeys" type="Integer" minvalue="0" maxvalue="10" mandatory="true">
+            <description>Number of keys available for special characters, App can customize as per their needs.</description>
+        </param>
+    </struct>
+
+    <struct name="KeyboardCapabilities" since="7.1">
+        <param name="maskInputCharactersSupported" type="Boolean" mandatory="false">
+            <description>Availability of capability to mask input characters using keyboard. True: Available, False: Not Available</description>
+        </param>
+        <param name="supportedKeyboards" type="KeyboardLayoutCapability" minsize="1" maxsize="1000" array="true" mandatory="false">
+            <description>Capabilities of supported keyboard layouts by HMI.</description>
+        </param>
+    </struct>
 
     <struct name="WindowCapability" since="6.0">
         <param name="windowID" type="Integer" mandatory="false">
@@ -2668,6 +2733,9 @@
         </param>
         <param name="dynamicUpdateCapabilities" type="DynamicUpdateCapabilities" mandatory="false" since="7.0">
             <description>Contains the head unit's capabilities for dynamic updating features declaring if the module will send dynamic update RPCs.</description>
+        </param>
+        <param name="keyboardCapabilities"  type="KeyboardCapabilities" mandatory="false" since="7.1">
+            <description>See KeyboardCapabilities</description>
         </param>
     </struct>
 
@@ -2741,6 +2809,12 @@
         <param name="menuName" type="String" maxlength="500" mandatory="true">
             <description>Text to show in the menu for this sub menu.</description>
         </param>
+        <param name="secondaryText" maxlength="500" type="String" mandatory="false" since="7.1">
+            <description>Optional secondary text to display</description>
+        </param>
+        <param name="tertiaryText" maxlength="500" type="String" mandatory="false" since="7.1">
+            <description>Optional tertiary text to display</description>
+        </param>
     </struct>
     
     <struct name="TTSChunk" since="1.0">
@@ -2779,14 +2853,7 @@
         <param name="trim" type="String" maxlength="500" mandatory="false">
             <description>Trim of the vehicle, e.g. SE</description>
         </param>
-    </struct>   
-
-    <enum name="KeyboardLayout" since="3.0">
-        <description>Enumeration listing possible keyboard layouts.</description>
-        <element name="QWERTY" />
-        <element name="QWERTZ" />
-        <element name="AZERTY" />
-    </enum>         
+    </struct>    
     
     <enum name="KeyboardEvent" since="3.0">
         <description>Enumeration listing possible keyboard events.</description>
@@ -2795,6 +2862,8 @@
         <element name="ENTRY_VOICE" />
         <element name="ENTRY_CANCELLED" />
         <element name="ENTRY_ABORTED" />
+        <element name="INPUT_KEY_MASK_ENABLED" since="7.1"/>
+        <element name="INPUT_KEY_MASK_DISABLED" since="7.1"/>
     </enum>         
 
     <enum name="KeypressMode" since="3.0">
@@ -2809,6 +2878,13 @@
             <description>The keypresses are queue and a string is sent each time the user presses a keyboard key; the string contains the entire current entry.</description>
         </element>
     </enum>         
+
+    <enum name="KeyboardInputMask" since="7.1">
+        <description>Enumeration listing possible input character masking.</description>
+        <element name="ENABLE_INPUT_KEY_MASK" />
+        <element name="DISABLE_INPUT_KEY_MASK" />
+        <element name="USER_CHOICE_INPUT_KEY_MASK" />
+    </enum>
 
     <struct name="KeyboardProperties" since="3.0">
         <description>Configuration of on-screen keyboard (if available).</description>         
@@ -2839,6 +2915,15 @@
             <description>
                 Allows an app to pre-populate the text field with a list of suggested or completed entries as the user types. 
                 If empty, the auto-complete list will be removed from the screen.
+            </description>
+        </param>
+        <param name="maskInputCharacters" type="KeyboardInputMask" mandatory="false" since="7.1">
+            <description>Allows an app to mask entered characters on HMI</description>
+        </param>
+        <param name="customKeys" type="String" maxlength="1" minsize="1" maxsize="10" array="true" mandatory="false" since="7.1">
+            <description>
+                Array of special characters to show in customizable keys.
+                If omitted, keyboard will show default special characters
             </description>
         </param>
     </struct>
@@ -3351,6 +3436,9 @@
         </param>
         <param name="scale" type="Float" minvalue="1" maxvalue="10" mandatory="false" since="6.0">
             <description>The scaling factor the app should use to change the size of the projecting view.</description>
+        </param>
+        <param name="preferredFPS" type="Integer" minvalue="0" maxvalue="2147483647" mandatory="false" since="7.1">
+            <description>The preferred frame rate per second of the head unit. The mobile application / app library may take other factors into account that constrain the frame rate lower than this value, but it should not perform streaming at a higher frame rate than this value.</description>
         </param>
         <param name="additionalVideoStreamingCapabilities" type="VideoStreamingCapability" array="true" minsize="1" maxsize="100" mandatory="false" since="7.1">
         </param>
@@ -4734,6 +4822,18 @@
         </param>
     </struct>
 
+    <struct name="ClimateData" since="7.1">
+        <param name="externalTemperature" type="Temperature" mandatory="false">
+            <description>The external temperature in degrees celsius</description>
+        </param>
+        <param name="cabinTemperature" type="Temperature" mandatory="false">
+            <description>Internal ambient cabin temperature in degrees celsius</description>
+        </param>
+        <param name="atmosphericPressure" type="Float" minvalue="0" maxvalue="2000" mandatory="false">
+            <description>Current atmospheric pressure in mBar</description>
+        </param>
+    </struct>
+
     <struct name="GearStatus" since="7.0">
         <param name="userSelectedGear" type="PRNDL" mandatory="false">
             <description>Gear position selected by the user i.e. Park, Drive, Reverse</description>
@@ -4744,6 +4844,21 @@
         <param name="transmissionType" type="TransmissionType" mandatory="false">
             <description>Tells the transmission type</description>
         </param>
+    </struct>
+
+    <struct name="SeatStatus" since="7.1">
+      <description>Describes the status of a parameter of seat.</description>
+      <param name="seatLocation" type="SeatLocation" mandatory="true"/>
+      <param name="conditionActive" type="Boolean" mandatory="true"/>
+    </struct>
+
+    <struct name="SeatOccupancy" since="7.1">
+      <param name="seatsOccupied" type="SeatStatus" array="true" minsize="0" maxsize="100" mandatory="false">
+        <description>Seat status array containing location and whether the seats are occupied.</description>
+      </param>
+      <param name="seatsBelted" type="SeatStatus" array="true" minsize="0" maxsize="100" mandatory="false">
+        <description>Seat status array containing location and whether the seats are belted.</description>
+      </param>
     </struct>
 
     <enum name="SeekIndicatorType" since="7.1">
@@ -4981,9 +5096,12 @@
             <description>See AudioPassThruCapability</description>
         </param>
         
-        <param name="vehicleType" type="VehicleType" mandatory="false" since="2.0">
-            <description>Specifies the vehicle's type. See VehicleType.</description>
-        </param>
+        <param name="vehicleType" type="VehicleType" mandatory="false" since="7.1" deprecated="true">
+        	<description>Specifies the vehicle's type. See VehicleType.</description>
+        	<history>
+            <param name="vehicleType" type="VehicleType" mandatory="false" since="2.0" until="7.1" />
+        	</history>
+    	</param>
         
         <param name="supportedDiagModes" type="Integer" minvalue="0" maxvalue="255" array="true" minsize="1" maxsize="100" mandatory="false" since="3.0">
             <description>
@@ -5000,9 +5118,12 @@
             <description>The SmartDeviceLink version.</description>
         </param>
         
-        <param name="systemSoftwareVersion" type="String" maxlength="100" mandatory="false" platform="documentation" since="3.0">
-            <description>The software version of the system that implements the SmartDeviceLink core.</description>
-        </param>
+        <param name="systemSoftwareVersion" type="String" maxlength="100" mandatory="false" platform="documentation" since="7.1" deprecated="true">
+        	<description>The software version of the system that implements the SmartDeviceLink core.</description>
+        	<history>
+            <param name="systemSoftwareVersion" type="String" maxlength="100" mandatory="false" platform="documentation" since="3.0" until="7.1" />
+        	</history>
+    	</param>
 
         <param name="iconResumed" type="Boolean" mandatory="false" since="5.0">
             <description>
@@ -5282,7 +5403,10 @@
                 If omitted on supported displays, no (or the default if applicable) icon shall be displayed.
             </description>
         </param>
-        
+
+        <param name="secondaryImage" type="Image" mandatory="false" since="7.1">
+            <description>Optional secondary image struct for menu cell</description>
+        </param>
     </function>
     
     <function name="AddCommand" functionID="AddCommandID" messagetype="response" since="1.0">
@@ -5381,6 +5505,18 @@
                 unique ID of the sub menu, the command will be added to.
                 If not provided or 0, it will be provided to the top level of the in application menu.
             </description>
+        </param>
+
+        <param name="secondaryText" maxlength="500" type="String" mandatory="false" since="7.1">
+            <description>Optional secondary text to display</description>
+        </param>
+
+        <param name="tertiaryText" maxlength="500" type="String" mandatory="false" since="7.1">
+            <description>Optional tertiary text to display</description>
+        </param>
+
+        <param name="secondaryImage" type="Image" mandatory="false" since="7.1">
+            <description>Optional secondary image struct for sub-menu cell</description>
         </param>
     </function>
     
@@ -6306,8 +6442,14 @@
                 See struct FuelRange for details.
             </description>
         </param>
-        <param name="externalTemperature" type="Boolean" mandatory="false">
-            <description>The external temperature in degrees celsius</description>
+        <param name="climateData" type="Boolean" mandatory="false" since="7.1">
+            <description>See ClimateData</description>
+        </param>
+        <param name="externalTemperature" type="Boolean" mandatory="false" deprecated="true" since="7.1">
+            <description>The external temperature in degrees celsius. This parameter is deprecated starting RPC Spec 7.1, please see climateData.</description>
+            <history>
+                <param name="externalTemperature" type="Boolean" mandatory="false" since="2.0" until="7.1" />
+            </history>
         </param>
         <param name="turnSignal" type="Boolean" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
@@ -6387,6 +6529,9 @@
         <param name="handsOffSteering" type="Boolean" mandatory="false" since="7.0">
             <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
+        <param name="seatOccupancy" type="Boolean" mandatory="false" since="7.1">
+          <description>See SeatOccupancy</description>
+        </param>
     </function>
     
     <function name="SubscribeVehicleData" functionID="SubscribeVehicleDataID" messagetype="response" since="2.0">
@@ -6443,8 +6588,14 @@
                 See struct FuelRange for details.
             </description>
         </param>
-        <param name="externalTemperature" type="VehicleDataResult" mandatory="false">
-            <description>The external temperature in degrees celsius.</description>
+        <param name="climateData" type="VehicleDataResult" mandatory="false" since="7.1">
+            <description>See ClimateData</description>
+        </param>
+        <param name="externalTemperature" type="VehicleDataResult" mandatory="false" deprecated="true" since="7.1">
+            <description>The external temperature in degrees celsius. This parameter is deprecated starting RPC Spec 7.1, please see climateData.</description>
+            <history>
+                <param name="externalTemperature" type="VehicleDataResult" mandatory="false" since="2.0" until="7.1" />
+            </history>
         </param>
         <param name="turnSignal" type="VehicleDataResult" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
@@ -6524,6 +6675,9 @@
         <param name="handsOffSteering" type="VehicleDataResult" mandatory="false" since="7.0">
             <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
+        <param name="seatOccupancy" type="VehicleDataResult" mandatory="false" since="7.1">
+          <description>See SeatOccupancy</description>
+        </param>
     </function>
     
     <function name="UnsubscribeVehicleData" functionID="UnsubscribeVehicleDataID" messagetype="request" since="2.0">
@@ -6559,8 +6713,14 @@
                 See struct FuelRange for details.
             </description>
         </param>
-        <param name="externalTemperature" type="Boolean" mandatory="false">
-            <description>The external temperature in degrees celsius.</description>
+        <param name="climateData" type="Boolean" mandatory="false" since="7.1">
+            <description>See ClimateData</description>
+        </param>
+        <param name="externalTemperature" type="Boolean" mandatory="false" deprecated="true" since="7.1">
+            <description>The external temperature in degrees celsius. This parameter is deprecated starting RPC Spec 7.1, please see climateData.</description>
+            <history>
+                <param name="externalTemperature" type="Boolean" mandatory="false" since="2.0" until="7.1" />
+            </history>
         </param>
         <param name="turnSignal" type="Boolean" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
@@ -6640,6 +6800,9 @@
         <param name="handsOffSteering" type="Boolean" mandatory="false" since="7.0">
             <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
+        <param name="seatOccupancy" type="Boolean" mandatory="false" since="7.1">
+          <description>See SeatOccupancy</description>
+        </param>
     </function>
     
     <function name="UnsubscribeVehicleData" functionID="UnsubscribeVehicleDataID" messagetype="response" since="2.0">
@@ -6695,8 +6858,14 @@
                 See struct FuelRange for details.
             </description>
         </param>
-        <param name="externalTemperature" type="VehicleDataResult" mandatory="false">
-            <description>The external temperature in degrees celsius</description>
+        <param name="climateData" type="VehicleDataResult" mandatory="false" since="7.1">
+            <description>See ClimateData</description>
+        </param>
+        <param name="externalTemperature" type="VehicleDataResult" mandatory="false" deprecated="true" since="7.1">
+            <description>The external temperature in degrees celsius. This parameter is deprecated starting RPC Spec 7.1, please see climateData.</description>
+            <history>
+                <param name="externalTemperature" type="VehicleDataResult" mandatory="false" since="2.0" until="7.1" />
+            </history>
         </param>
         <param name="turnSignal" type="VehicleDataResult" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
@@ -6776,6 +6945,9 @@
         <param name="handsOffSteering" type="VehicleDataResult" mandatory="false" since="7.0">
             <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
+        <param name="seatOccupancy" type="VehicleDataResult" mandatory="false" since="7.1">
+          <description>See SeatOccupancy</description>
+        </param>
     </function>
     
     <function name="GetVehicleData" functionID="GetVehicleDataID" messagetype="request" since="2.0">
@@ -6811,8 +6983,14 @@
                 See struct FuelRange for details.
             </description>
         </param>
-        <param name="externalTemperature" type="Boolean" mandatory="false">
-            <description>The external temperature in degrees celsius</description>
+        <param name="climateData" type="Boolean" mandatory="false" since="7.1">
+            <description>See ClimateData</description>
+        </param>
+        <param name="externalTemperature" type="Boolean" mandatory="false" deprecated="true" since="7.1">
+            <description>The external temperature in degrees celsius. This parameter is deprecated starting RPC Spec 7.1, please see climateData.</description>
+            <history>
+                <param name="externalTemperature" type="Boolean" mandatory="false" since="2.0" until="7.1" />
+            </history>
         </param>
         <param name="turnSignal" type="Boolean" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
@@ -6895,6 +7073,9 @@
         <param name="handsOffSteering" type="Boolean" mandatory="false" since="7.0">
             <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
+        <param name="seatOccupancy" type="Boolean" mandatory="false" since="7.1">
+          <description>See SeatOccupancy</description>
+        </param>
     </function>
     
     <function name="GetVehicleData" functionID="GetVehicleDataID" messagetype="response" since="2.0">
@@ -6951,8 +7132,14 @@
                 See struct FuelRange for details.
             </description>
         </param>
-        <param name="externalTemperature" type="Float" minvalue="-40" maxvalue="100" mandatory="false">
-            <description>The external temperature in degrees celsius</description>
+        <param name="climateData" type="ClimateData" mandatory="false" since="7.1">
+            <description>See ClimateData</description>
+        </param>
+        <param name="externalTemperature" type="Float" minvalue="-40" maxvalue="100" mandatory="false" deprecated="true" since="7.1">
+            <description>The external temperature in degrees celsius. This parameter is deprecated starting RPC Spec 7.1, please see climateData.</description>
+            <history>
+                <param name="externalTemperature" type="Float" minvalue="-40" maxvalue="100" mandatory="false" since="2.0" until="7.1" />
+            </history>
         </param>
         <param name="turnSignal" type="TurnSignal" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
@@ -7034,6 +7221,9 @@
         </param>
         <param name="handsOffSteering" type="Boolean" mandatory="false" since="7.0">
             <description>To indicate whether driver hands are off the steering wheel</description>
+        </param>
+        <param name="seatOccupancy" type="SeatOccupancy" mandatory="false" since="7.1">
+          <description>See SeatOccupancy</description>
         </param>
     </function>
     
@@ -8665,8 +8855,14 @@
                 See struct FuelRange for details.
             </description>
         </param>
-        <param name="externalTemperature" type="Float" minvalue="-40" maxvalue="100" mandatory="false">
-            <description>The external temperature in degrees celsius</description>
+        <param name="climateData" type="ClimateData" mandatory="false" since="7.1">
+            <description>See ClimateData</description>
+        </param>
+        <param name="externalTemperature" type="Float" minvalue="-40" maxvalue="100" mandatory="false" deprecated="true" since="7.1">
+            <description>The external temperature in degrees celsius. This parameter is deprecated starting RPC Spec 7.1, please see climateData.</description>
+            <history>
+                <param name="externalTemperature" type="Float" minvalue="-40" maxvalue="100" mandatory="false" since="2.0" until="7.1" />
+            </history>
         </param>
         <param name="turnSignal" type="TurnSignal" mandatory="false" since="5.0">
             <description>See TurnSignal</description>
@@ -8748,6 +8944,9 @@
         </param>
         <param name="handsOffSteering" type="Boolean" mandatory="false" since="7.0">
             <description>To indicate whether driver hands are off the steering wheel</description>
+        </param>
+        <param name="seatOccupancy" type="SeatOccupancy" mandatory="false" since="7.1">
+          <description>See SeatOccupancy</description>
         </param>
     </function>
     
