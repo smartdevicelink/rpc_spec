@@ -212,7 +212,7 @@ class RPCBase(ABC):
         :return: an instance of model.Struct
         """
         params, subelements, attrib = self._parse_base_item(element, prefix)
-        
+
         # Create an empty object for new type to types collection.
         # This is needed for parser to apply type for struct members
         # that consist of its own type.
@@ -221,7 +221,7 @@ class RPCBase(ABC):
         #      ...
         #      VideoStreamingCapability additionalVideoStreamingCapabilities[]
         #     }
-        
+
         struct = Struct(**params)
         self._add_type(struct)
 

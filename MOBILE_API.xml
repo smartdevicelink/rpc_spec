@@ -9125,7 +9125,7 @@
             <description>The system capability that has been updated</description>
         </param>
     </function>
-      
+
     <function name="OnAppCapabilityUpdated" functionID="OnAppCapabilityUpdatedID" messagetype="notification" since="7.1">
         <description>A notification to inform SDL Core that a specific app capability has changed.</description>
         <param name="appCapability" type="AppCapability" mandatory="true">
