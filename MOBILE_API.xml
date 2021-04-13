@@ -4847,18 +4847,18 @@
     </struct>
 
     <struct name="SeatStatus" since="7.1">
-      <description>Describes the status of a parameter of seat.</description>
-      <param name="seatLocation" type="SeatLocation" mandatory="true"/>
-      <param name="conditionActive" type="Boolean" mandatory="true"/>
+        <description>Describes the status of a parameter of seat.</description>
+        <param name="seatLocation" type="SeatLocation" mandatory="true"/>
+        <param name="conditionActive" type="Boolean" mandatory="true"/>
     </struct>
 
     <struct name="SeatOccupancy" since="7.1">
-      <param name="seatsOccupied" type="SeatStatus" array="true" minsize="0" maxsize="100" mandatory="false">
-        <description>Seat status array containing location and whether the seats are occupied.</description>
-      </param>
-      <param name="seatsBelted" type="SeatStatus" array="true" minsize="0" maxsize="100" mandatory="false">
-        <description>Seat status array containing location and whether the seats are belted.</description>
-      </param>
+        <param name="seatsOccupied" type="SeatStatus" array="true" minsize="0" maxsize="100" mandatory="false">
+            <description>Seat status array containing location and whether the seats are occupied.</description>
+        </param>
+        <param name="seatsBelted" type="SeatStatus" array="true" minsize="0" maxsize="100" mandatory="false">
+            <description>Seat status array containing location and whether the seats are belted.</description>
+        </param>
     </struct>
 
     <enum name="SeekIndicatorType" since="7.1">
@@ -5097,11 +5097,11 @@
         </param>
         
         <param name="vehicleType" type="VehicleType" mandatory="false" since="7.1" deprecated="true">
-        	<description>Specifies the vehicle's type. See VehicleType.</description>
-        	<history>
-            <param name="vehicleType" type="VehicleType" mandatory="false" since="2.0" until="7.1" />
-        	</history>
-    	</param>
+            <description>Specifies the vehicle's type. See VehicleType.</description>
+            <history>
+                <param name="vehicleType" type="VehicleType" mandatory="false" since="2.0" until="7.1" />
+            </history>
+        </param>
         
         <param name="supportedDiagModes" type="Integer" minvalue="0" maxvalue="255" array="true" minsize="1" maxsize="100" mandatory="false" since="3.0">
             <description>
@@ -5119,11 +5119,11 @@
         </param>
         
         <param name="systemSoftwareVersion" type="String" maxlength="100" mandatory="false" platform="documentation" since="7.1" deprecated="true">
-        	<description>The software version of the system that implements the SmartDeviceLink core.</description>
-        	<history>
-            <param name="systemSoftwareVersion" type="String" maxlength="100" mandatory="false" platform="documentation" since="3.0" until="7.1" />
-        	</history>
-    	</param>
+            <description>The software version of the system that implements the SmartDeviceLink core.</description>
+            <history>
+                <param name="systemSoftwareVersion" type="String" maxlength="100" mandatory="false" platform="documentation" since="3.0" until="7.1" />
+            </history>
+        </param>
 
         <param name="iconResumed" type="Boolean" mandatory="false" since="5.0">
             <description>
@@ -6530,7 +6530,7 @@
             <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
         <param name="seatOccupancy" type="Boolean" mandatory="false" since="7.1">
-          <description>See SeatOccupancy</description>
+            <description>See SeatOccupancy</description>
         </param>
     </function>
     
@@ -6676,7 +6676,7 @@
             <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
         <param name="seatOccupancy" type="VehicleDataResult" mandatory="false" since="7.1">
-          <description>See SeatOccupancy</description>
+            <description>See SeatOccupancy</description>
         </param>
     </function>
     
@@ -6801,7 +6801,7 @@
             <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
         <param name="seatOccupancy" type="Boolean" mandatory="false" since="7.1">
-          <description>See SeatOccupancy</description>
+            <description>See SeatOccupancy</description>
         </param>
     </function>
     
@@ -6946,7 +6946,7 @@
             <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
         <param name="seatOccupancy" type="VehicleDataResult" mandatory="false" since="7.1">
-          <description>See SeatOccupancy</description>
+            <description>See SeatOccupancy</description>
         </param>
     </function>
     
@@ -7074,7 +7074,7 @@
             <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
         <param name="seatOccupancy" type="Boolean" mandatory="false" since="7.1">
-          <description>See SeatOccupancy</description>
+            <description>See SeatOccupancy</description>
         </param>
     </function>
     
@@ -7223,7 +7223,7 @@
             <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
         <param name="seatOccupancy" type="SeatOccupancy" mandatory="false" since="7.1">
-          <description>See SeatOccupancy</description>
+            <description>See SeatOccupancy</description>
         </param>
     </function>
     
@@ -8946,7 +8946,7 @@
             <description>To indicate whether driver hands are off the steering wheel</description>
         </param>
         <param name="seatOccupancy" type="SeatOccupancy" mandatory="false" since="7.1">
-          <description>See SeatOccupancy</description>
+            <description>See SeatOccupancy</description>
         </param>
     </function>
     
