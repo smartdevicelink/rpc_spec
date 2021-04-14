@@ -1,7 +1,7 @@
 # SmartDeviceLink
 # RPC Spec
 
-###### Version: 7.0.0
+###### Version: 7.1.0
 
 ## Enumerations
 
@@ -388,6 +388,7 @@ Defines the data types that can be published and subscribed to.
 |`VEHICLEDATA_FUELLEVEL`||
 |`VEHICLEDATA_FUELLEVEL_STATE`||
 |`VEHICLEDATA_FUELCONSUMPTION`||
+|`VEHICLEDATA_CLIMATEDATA`||
 |`VEHICLEDATA_EXTERNTEMP`||
 |`VEHICLEDATA_VIN`||
 |`VEHICLEDATA_GEARSTATUS`||
@@ -418,6 +419,7 @@ Defines the data types that can be published and subscribed to.
 |`VEHICLEDATA_STABILITYCONTROLSSTATUS`||
 |`VEHICLEDATA_WINDOWSTATUS`||
 |`VEHICLEDATA_HANDSOFFSTEERING`||
+|`VEHICLEDATA_SEATOCCUPANCY`||
 
 
 ### HybridAppPreference
@@ -430,6 +432,16 @@ Enumeration for the user's preference of which app type to use when both are ava
 |`MOBILE`||
 |`CLOUD`||
 |`BOTH`||
+
+
+### AppCapabilityType
+Enumerations of all available app capability types
+
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`VIDEO_STREAMING`||
 
 
 ### CapacityUnit
@@ -517,7 +529,8 @@ Defines the hard (physical) and soft (touchscreen) buttons available from the mo
 
 
 ### DisplayType
-deprecated since 5.0.0
+###### Deprecated since: 5.0.0
+
 See DAES for further infos regarding the displays
 
 ##### Elements
@@ -571,9 +584,15 @@ See DAES for further infos regarding the displays
 |`locationDescription`|Optional description of intended location / establishment (if applicable) for SendLocation.|
 |`addressLines`|Optional location address (if applicable) for SendLocation.|
 |`phoneNumber`|Optional phone number of intended location / establishment (if applicable) for SendLocation.|
+|`timeToDestination`|Optional time to destination field for ShowConstantTBT|
+|`turnText`|Turn text for turnList parameter of UpdateTurnList|
 |`subtleAlertText1`|The first line of the subtle alert text field; applies to `SubtleAlert` `alertText1`|
 |`subtleAlertText2`|The second line of the subtle alert text field; applies to `SubtleAlert` `alertText2`|
 |`subtleAlertSoftButtonText`|A text field in the soft button of a subtle alert; applies to `SubtleAlert` `softButtons`|
+|`menuCommandSecondaryText`|Secondary text for AddCommand|
+|`menuCommandTertiaryText`|Tertiary text for AddCommand|
+|`menuSubMenuSecondaryText`|Secondary text for AddSubMenu|
+|`menuSubMenuTertiaryText`|Tertiary text for AddSubMenu|
 
 
 ### ImageFieldName
@@ -597,6 +616,8 @@ See DAES for further infos regarding the displays
 |`alertIcon`|The image field for Alert|
 |`subMenuIcon`|The image field for AddSubMenu.menuIcon|
 |`subtleAlertIcon`|The image of the subtle alert; applies to `SubtleAlert` `alertIcon`|
+|`menuCommandSecondaryImage`|The secondary image field for AddCommand|
+|`menuSubMenuSecondaryImage`|The secondary image field for AddSubMenu|
 
 
 ### CharacterSet
@@ -1112,6 +1133,17 @@ Reflects the status of the ambient light sensor.
 |`CELSIUS`||
 
 
+### DoorStatusType
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`CLOSED`||
+|`LOCKED`||
+|`AJAR`||
+|`REMOVED`||
+
+
 ### FileType
 Enumeration listing possible file types.
 
@@ -1293,6 +1325,7 @@ Enumeration listing possible keyboard layouts.
 |`QWERTY`||
 |`QWERTZ`||
 |`AZERTY`||
+|`NUMERIC`||
 
 
 ### KeyboardEvent
@@ -1307,6 +1340,8 @@ Enumeration listing possible keyboard events.
 |`ENTRY_VOICE`||
 |`ENTRY_CANCELLED`||
 |`ENTRY_ABORTED`||
+|`INPUT_KEY_MASK_ENABLED`||
+|`INPUT_KEY_MASK_DISABLED`||
 
 
 ### KeypressMode
@@ -1319,6 +1354,18 @@ Enumeration listing possible keyboard events.
 |`SINGLE_KEYPRESS`|Each keypress is individually sent as the user presses the keyboard keys.|
 |`QUEUE_KEYPRESSES`|The keypresses are queued and a string is eventually sent once the user chooses to submit their entry.|
 |`RESEND_CURRENT_ENTRY`|The keypresses are queue and a string is sent each time the user presses a keyboard key; the string contains the entire current entry.|
+
+
+### KeyboardInputMask
+Enumeration listing possible input character masking.
+
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`ENABLE_INPUT_KEY_MASK`||
+|`DISABLE_INPUT_KEY_MASK`||
+|`USER_CHOICE_INPUT_KEY_MASK`||
 
 
 ### RequestType
@@ -1498,6 +1545,7 @@ Enumeration linking function names with function IDs in SmartDeviceLink protocol
 |`OnSubtleAlertPressedID`||
 |`OnUpdateFileID`||
 |`OnUpdateSubMenuID`||
+|`OnAppCapabilityUpdatedID`||
 |`EncodedSyncPDataID`||
 |`SyncPDataID`||
 |`OnEncodedSyncPDataID`||
@@ -1592,7 +1640,8 @@ List possible cushions of a multi-contour massage seat.
 
 
 ### SupportedSeat
-deprecated since 6.0.0
+###### Deprecated since: 6.0.0
+
 List possible seats that is a remote controllable seat.
 
 ##### Elements
@@ -1782,6 +1831,15 @@ Enumeration that describes possible values of light name. The mobile libraries a
 |`MANIFEST_UPDATE`|The service has updated its manifest. This could imply updated capabilities|
 
 
+### SeekIndicatorType
+##### Elements
+
+| Value | Description | 
+| ---------- |:-----------:|
+|`TRACK`||
+|`TIME`||
+
+
 
 <div style="page-break-after: always;"></div>
 
@@ -1919,6 +1977,64 @@ Specifies the version number of the SmartDeviceLink protocol that is supported b
 |`middleRow1BuckleBelted`|VehicleDataEventStatus|True|References signal "VedsRw1mBckl_D_Ltchd". See VehicleDataEventStatus.|
 
 
+### Grid
+Describes a location (origin coordinates and span) of a vehicle component.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`col`|Integer|True||
+|`row`|Integer|True||
+|`level`|Integer|False||
+|`colspan`|Integer|False||
+|`rowspan`|Integer|False||
+|`levelspan`|Integer|False||
+
+
+### DoorStatus
+Describes the status of a parameter of door.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`location`|Grid|True||
+|`status`|DoorStatusType|True||
+
+
+### GateStatus
+Describes the status of a parameter of trunk/hood/etc.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`location`|Grid|True||
+|`status`|DoorStatusType|True||
+
+
+### WindowState
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`approximatePosition`|Integer|True|The approximate percentage that the window is open - 0 being fully closed, 100 being fully open|
+|`deviation`|Integer|True|The percentage deviation of the approximatePosition. e.g. If the approximatePosition is 50 and the deviation is 10, then the window's location is somewhere between 40 and 60.|
+
+
+### RoofStatus
+Describes the status of a parameter of roof/convertible roof/sunroof/moonroof etc. If roof is open (AJAR), state will determine percentage of roof open.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`location`|Grid|True||
+|`status`|DoorStatusType|True||
+|`state`|WindowState|False||
+
+
 ### BodyInformation
 ##### Parameters
 
@@ -1927,10 +2043,13 @@ Specifies the version number of the SmartDeviceLink protocol that is supported b
 |`parkBrakeActive`|Boolean|True|References signal "PrkBrkActv_B_Actl".|
 |`ignitionStableStatus`|IgnitionStableStatus|True|References signal "Ignition_Switch_Stable". See IgnitionStableStatus.|
 |`ignitionStatus`|IgnitionStatus|True|References signal "Ignition_status". See IgnitionStatus.|
-|`driverDoorAjar`|Boolean|False|References signal "DrStatDrv_B_Actl".|
-|`passengerDoorAjar`|Boolean|False|References signal "DrStatPsngr_B_Actl".|
-|`rearLeftDoorAjar`|Boolean|False|References signal "DrStatRl_B_Actl".|
-|`rearRightDoorAjar`|Boolean|False|References signal "DrStatRr_B_Actl".|
+|`driverDoorAjar`|Boolean|False|References signal "DrStatDrv_B_Actl". Deprecated starting with RPC Spec 7.1.0.|
+|`passengerDoorAjar`|Boolean|False|References signal "DrStatPsngr_B_Actl". Deprecated starting with RPC Spec 7.1.0.|
+|`rearLeftDoorAjar`|Boolean|False|References signal "DrStatRl_B_Actl". Deprecated starting with RPC Spec 7.1.0.|
+|`rearRightDoorAjar`|Boolean|False|References signal "DrStatRr_B_Actl". Deprecated starting with RPC Spec 7.1.0.|
+|`doorStatuses`|DoorStatus[]|False|Provides status for doors if Ajar/Closed/Locked|
+|`gateStatuses`|GateStatus[]|False|Provides status for trunk/hood/etc. if Ajar/Closed/Locked|
+|`roofStatuses`|RoofStatus[]|False|Provides status for roof/convertible roof/sunroof/moonroof etc., if Closed/Ajar/Removed etc.|
 
 
 ### DeviceStatus
@@ -2215,7 +2334,8 @@ Individual requested DID result and data
 
 
 ### DisplayCapabilities
-deprecated since 6.0.0
+###### Deprecated since: 6.0.0
+
 Contains information about the display capabilities. This struct is deprecated; please see the new SystemCapability DISPLAYS and corresponding struct DisplayCapability
 
 ##### Parameters
@@ -2231,30 +2351,6 @@ Contains information about the display capabilities. This struct is deprecated; 
 |`templatesAvailable`|String[]|False|A set of all predefined persistent display templates available on headunit. To be referenced in SetDisplayLayout.|
 |`screenParams`|ScreenParams|False|A set of all parameters related to a prescribed screen area (e.g. for video / touch input).|
 |`numCustomPresetsAvailable`|Integer|False|The number of on-screen custom presets available (if any); otherwise omitted.|
-
-
-### Grid
-Describes a location (origin coordinates and span) of a vehicle component.
-
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-|`col`|Integer|True||
-|`row`|Integer|True||
-|`level`|Integer|False||
-|`colspan`|Integer|False||
-|`rowspan`|Integer|False||
-|`levelspan`|Integer|False||
-
-
-### WindowState
-##### Parameters
-
-| Value |  Type | Mandatory | Description | 
-| ---------- | ---------- |:-----------: |:-----------:|
-|`approximatePosition`|Integer|True|The approximate percentage that the window is open - 0 being fully closed, 100 being fully open|
-|`deviation`|Integer|True|The percentage deviation of the approximatePosition. e.g. If the approximatePosition is 50 and the deviation is 10, then the window's location is somewhere between 40 and 60.|
 
 
 ### WindowStatus
@@ -2328,6 +2424,26 @@ Contains information about on-screen preset capabilities.
 |`supportsDynamicSubMenus`|Boolean|False|If true, the head unit supports dynamic sub-menus by sending OnUpdateSubMenu notifications. If true, you should not send AddCommands that attach to a parentID for an AddSubMenu until OnUpdateSubMenu is received with the menuID. At that point, you should send all AddCommands with a parentID that match the menuID. If not set, assume false.|
 
 
+### KeyboardLayoutCapability
+Describes the capabilities of a single keyboard layout.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`keyboardLayout`|KeyboardLayout|True||
+|`numConfigurableKeys`|Integer|True|Number of keys available for special characters, App can customize as per their needs.|
+
+
+### KeyboardCapabilities
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`maskInputCharactersSupported`|Boolean|False|Availability of capability to mask input characters using keyboard. True: Available, False: Not Available|
+|`supportedKeyboards`|KeyboardLayoutCapability[]|False|Capabilities of supported keyboard layouts by HMI.|
+
+
 ### WindowCapability
 ##### Parameters
 
@@ -2343,6 +2459,7 @@ Contains information about on-screen preset capabilities.
 |`softButtonCapabilities`|SoftButtonCapabilities[]|False|The number of soft buttons available on-window and the capabilities for each button.|
 |`menuLayoutsAvailable`|MenuLayout[]|False|An array of available menu layouts. If this parameter is not provided, only the `LIST` layout is assumed to be available|
 |`dynamicUpdateCapabilities`|DynamicUpdateCapabilities|False|Contains the head unit's capabilities for dynamic updating features declaring if the module will send dynamic update RPCs.|
+|`keyboardCapabilities`|KeyboardCapabilities|False|See KeyboardCapabilities|
 
 
 ### WindowTypeCapabilities
@@ -2387,6 +2504,8 @@ Contains information about on-screen preset capabilities.
 |`parentID`|Integer|False|unique ID of the sub menu, the command will be added to. If not provided, it will be provided to the top level of the in application menu.|
 |`position`|Integer|False|Position within the items that are at top level of the in application menu. 0 will insert at the front. 1 will insert at the second position. if position is greater or equal than the number of items on top level, the sub menu will be appended to the end. If this param was omitted the entry will be added at the end.|
 |`menuName`|String|True|Text to show in the menu for this sub menu.|
+|`secondaryText`|String|False|Optional secondary text to display|
+|`tertiaryText`|String|False|Optional tertiary text to display|
 
 
 ### TTSChunk
@@ -2433,6 +2552,8 @@ Configuration of on-screen keyboard (if available).
 |`limitedCharacterList`|String[]|False|Array of keyboard characters to enable. All omitted characters will be greyed out (disabled) on the keyboard. If omitted, the entire keyboard will be enabled.|
 |`autoCompleteText`|String|False|Deprecated, use autoCompleteList instead.|
 |`autoCompleteList`|String[]|False|Allows an app to pre-populate the text field with a list of suggested or completed entries as the user types. If empty, the auto-complete list will be removed from the screen.|
+|`maskInputCharacters`|KeyboardInputMask|False|Allows an app to mask entered characters on HMI|
+|`customKeys`|String[]|False|Array of special characters to show in customizable keys. If omitted, keyboard will show default special characters|
 
 
 ### DeviceInfo
@@ -2551,6 +2672,8 @@ Contains information about this system's video streaming capabilities.
 |`diagonalScreenSize`|Float|False|The diagonal screen size in inches.|
 |`pixelPerInch`|Float|False|PPI is the diagonal resolution in pixels divided by the diagonal screen size in inches.|
 |`scale`|Float|False|The scaling factor the app should use to change the size of the projecting view.|
+|`preferredFPS`|Integer|False|The preferred frame rate per second of the head unit. The mobile application / app library may take other factors into account that constrain the frame rate lower than this value, but it should not perform streaming at a higher frame rate than this value.|
+|`additionalVideoStreamingCapabilities`|VideoStreamingCapability[]|False||
 
 
 ### DriverDistractionCapability
@@ -3218,6 +3341,16 @@ The systemCapabilityType identifies which data object exists in this struct. For
 |`driverDistractionCapability`|DriverDistractionCapability|False|Describes capabilities when the driver is distracted|
 
 
+### ClimateData
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`externalTemperature`|Temperature|False|The external temperature in degrees celsius|
+|`cabinTemperature`|Temperature|False|Internal ambient cabin temperature in degrees celsius|
+|`atmosphericPressure`|Float|False|Current atmospheric pressure in mBar|
+
+
 ### GearStatus
 ##### Parameters
 
@@ -3226,6 +3359,46 @@ The systemCapabilityType identifies which data object exists in this struct. For
 |`userSelectedGear`|PRNDL|False|Gear position selected by the user i.e. Park, Drive, Reverse|
 |`actualGear`|PRNDL|False|Actual Gear in use by the transmission|
 |`transmissionType`|TransmissionType|False|Tells the transmission type|
+
+
+### SeatStatus
+Describes the status of a parameter of seat.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`seatLocation`|SeatLocation|True||
+|`conditionActive`|Boolean|True||
+
+
+### SeatOccupancy
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`seatsOccupied`|SeatStatus[]|False|Seat status array containing location and whether the seats are occupied.|
+|`seatsBelted`|SeatStatus[]|False|Seat status array containing location and whether the seats are belted.|
+
+
+### SeekStreamingIndicator
+The seek next / skip previous subscription buttons' content
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`type`|SeekIndicatorType|True||
+|`seekTime`|Integer|False|If the type is TIME, this number of seconds may be present alongside the skip indicator. It will indicate the number of seconds that the currently playing media will skip forward or backward.|
+
+
+### AppCapability
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`appCapabilityType`|AppCapabilityType|True|Used as a descriptor of what data to expect in this struct. The corresponding param to this enum should be included and the only other param included.|
+|`videoStreamingCapability`|VideoStreamingCapability|False|Describes supported capabilities for video streaming|
 
 
 
@@ -3432,6 +3605,7 @@ Adds a command to the in application menu. Either menuParams or vrCommands must 
 |`menuParams`|MenuParams|False|Optional sub value containing menu parameters|
 |`vrCommands`|String[]|False|An array of strings to be used as VR synonyms for this command. If this array is provided, it may not be empty.|
 |`cmdIcon`|Image|False|Image struct determining whether static or dynamic icon. If omitted on supported displays, no (or the default if applicable) icon shall be displayed.|
+|`secondaryImage`|Image|False|Optional secondary image struct for menu cell|
 
 
 ### AddCommand
@@ -3485,6 +3659,9 @@ Adds a sub menu to the in-application menu.
 |`menuIcon`|Image|False|The image field for AddSubMenu|
 |`menuLayout`|MenuLayout|False|Sets the layout of the submenu screen.|
 |`parentID`|Integer|False|unique ID of the sub menu, the command will be added to. If not provided or 0, it will be provided to the top level of the in application menu.|
+|`secondaryText`|String|False|Optional secondary text to display|
+|`tertiaryText`|String|False|Optional tertiary text to display|
+|`secondaryImage`|Image|False|Optional secondary image struct for sub-menu cell|
 
 
 ### AddSubMenu
@@ -3779,6 +3956,9 @@ Sets the initial media clock value and automatic update method.
 |`endTime`|StartTime|False|See StartTime. endTime can be provided for "COUNTUP" and "COUNTDOWN"; to be used to calculate any visual progress bar (if not provided, this feature is ignored) If endTime is greater than startTime for COUNTDOWN or less than startTime for COUNTUP, then the request will return an INVALID_DATA. endTime will be ignored for "RESUME", and "CLEAR" endTime can be sent for "PAUSE", in which case it will update the paused endTime|
 |`updateMode`|UpdateMode|True|Enumeration to control the media clock. In case of pause, resume, or clear, the start time value is ignored and shall be left out. For resume, the time continues with the same value as it was when paused.|
 |`audioStreamingIndicator`|AudioStreamingIndicator|False|Enumeration for the indicator icon on a play/pause button. see AudioStreamingIndicator.|
+|`forwardSeekIndicator`|SeekStreamingIndicator|False|Used to control the forward seek button to either skip forward a set amount of time or to the next track.|
+|`backSeekIndicator`|SeekStreamingIndicator|False|Used to control the back seek button to either skip back a set amount of time or to the previous track.|
+|`countRate`|Float|False|The value of this parameter is the amount that the media clock timer will advance per 1.0 seconds of real time. Values less than 1.0 will therefore advance the timer slower than real-time, while values greater than 1.0 will advance the timer faster than real-time. e.g. If this parameter is set to `0.5`, the timer will advance one second per two seconds real-time, or at 50% speed. If this parameter is set to `2.0`, the timer will advance two seconds per one second real-time, or at 200% speed.|
 
 
 ### SetMediaClockTimer
@@ -3906,7 +4086,8 @@ Subscribes for specific published data items. The data will be only sent if it h
 |`fuelLevel_State`|Boolean|False|The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.|
 |`instantFuelConsumption`|Boolean|False|The instantaneous fuel consumption in microlitres|
 |`fuelRange`|Boolean|False|The fuel type, estimated range in KM, fuel level/capacity and fuel level state for the vehicle. See struct FuelRange for details.|
-|`externalTemperature`|Boolean|False|The external temperature in degrees celsius|
+|`climateData`|Boolean|False|See ClimateData|
+|`externalTemperature`|Boolean|False|The external temperature in degrees celsius. This parameter is deprecated starting RPC Spec 7.1, please see climateData.|
 |`turnSignal`|Boolean|False|See TurnSignal|
 |`gearStatus`|Boolean|False|See GearStatus|
 |`prndl`|Boolean|False|See PRNDL. This parameter is deprecated and it is now covered in `gearStatus`|
@@ -3932,6 +4113,7 @@ Subscribes for specific published data items. The data will be only sent if it h
 |`myKey`|Boolean|False|Information related to the MyKey feature|
 |`windowStatus`|Boolean|False|See WindowStatus|
 |`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
+|`seatOccupancy`|Boolean|False|See SeatOccupancy|
 
 
 ### SubscribeVehicleData
@@ -3951,7 +4133,8 @@ Message Type: **response**
 |`fuelLevel_State`|VehicleDataResult|False|The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.|
 |`instantFuelConsumption`|VehicleDataResult|False|The instantaneous fuel consumption in microlitres|
 |`fuelRange`|VehicleDataResult|False|The fuel type, estimated range in KM, fuel level/capacity and fuel level state for the vehicle. See struct FuelRange for details.|
-|`externalTemperature`|VehicleDataResult|False|The external temperature in degrees celsius.|
+|`climateData`|VehicleDataResult|False|See ClimateData|
+|`externalTemperature`|VehicleDataResult|False|The external temperature in degrees celsius. This parameter is deprecated starting RPC Spec 7.1, please see climateData.|
 |`turnSignal`|VehicleDataResult|False|See TurnSignal|
 |`gearStatus`|VehicleDataResult|False|See GearStatus|
 |`prndl`|VehicleDataResult|False|See PRNDL. This parameter is deprecated and it is now covered in `gearStatus`|
@@ -3977,6 +4160,7 @@ Message Type: **response**
 |`myKey`|VehicleDataResult|False|Information related to the MyKey feature|
 |`windowStatus`|VehicleDataResult|False|See WindowStatus|
 |`handsOffSteering`|VehicleDataResult|False|To indicate whether driver hands are off the steering wheel|
+|`seatOccupancy`|VehicleDataResult|False|See SeatOccupancy|
 
 
 ### UnsubscribeVehicleData
@@ -3995,7 +4179,8 @@ This function is used to unsubscribe the notifications from the subscribeVehicle
 |`fuelLevel_State`|Boolean|False|The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.|
 |`instantFuelConsumption`|Boolean|False|The instantaneous fuel consumption in microlitres|
 |`fuelRange`|Boolean|False|The fuel type, estimated range in KM, fuel level/capacity and fuel level state for the vehicle. See struct FuelRange for details.|
-|`externalTemperature`|Boolean|False|The external temperature in degrees celsius.|
+|`climateData`|Boolean|False|See ClimateData|
+|`externalTemperature`|Boolean|False|The external temperature in degrees celsius. This parameter is deprecated starting RPC Spec 7.1, please see climateData.|
 |`turnSignal`|Boolean|False|See TurnSignal|
 |`gearStatus`|Boolean|False|See GearStatus|
 |`prndl`|Boolean|False|See PRNDL. This parameter is deprecated and it is now covered in `gearStatus`|
@@ -4021,6 +4206,7 @@ This function is used to unsubscribe the notifications from the subscribeVehicle
 |`myKey`|Boolean|False|Information related to the MyKey feature|
 |`windowStatus`|Boolean|False|See WindowStatus|
 |`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
+|`seatOccupancy`|Boolean|False|See SeatOccupancy|
 
 
 ### UnsubscribeVehicleData
@@ -4040,7 +4226,8 @@ Message Type: **response**
 |`fuelLevel_State`|VehicleDataResult|False|The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.|
 |`instantFuelConsumption`|VehicleDataResult|False|The instantaneous fuel consumption in microlitres|
 |`fuelRange`|VehicleDataResult|False|The fuel type, estimated range in KM, fuel level/capacity and fuel level state for the vehicle. See struct FuelRange for details.|
-|`externalTemperature`|VehicleDataResult|False|The external temperature in degrees celsius|
+|`climateData`|VehicleDataResult|False|See ClimateData|
+|`externalTemperature`|VehicleDataResult|False|The external temperature in degrees celsius. This parameter is deprecated starting RPC Spec 7.1, please see climateData.|
 |`turnSignal`|VehicleDataResult|False|See TurnSignal|
 |`gearStatus`|VehicleDataResult|False|See GearStatus|
 |`prndl`|VehicleDataResult|False|See PRNDL. This parameter is deprecated and it is now covered in `gearStatus`|
@@ -4066,6 +4253,7 @@ Message Type: **response**
 |`myKey`|VehicleDataResult|False|Information related to the MyKey feature|
 |`windowStatus`|VehicleDataResult|False|See WindowStatus|
 |`handsOffSteering`|VehicleDataResult|False|To indicate whether driver hands are off the steering wheel|
+|`seatOccupancy`|VehicleDataResult|False|See SeatOccupancy|
 
 
 ### GetVehicleData
@@ -4084,7 +4272,8 @@ Non periodic vehicle data read request.
 |`fuelLevel_State`|Boolean|False|The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.|
 |`instantFuelConsumption`|Boolean|False|The instantaneous fuel consumption in microlitres|
 |`fuelRange`|Boolean|False|The fuel type, estimated range in KM, fuel level/capacity and fuel level state for the vehicle. See struct FuelRange for details.|
-|`externalTemperature`|Boolean|False|The external temperature in degrees celsius|
+|`climateData`|Boolean|False|See ClimateData|
+|`externalTemperature`|Boolean|False|The external temperature in degrees celsius. This parameter is deprecated starting RPC Spec 7.1, please see climateData.|
 |`turnSignal`|Boolean|False|See TurnSignal|
 |`vin`|Boolean|False|Vehicle identification number|
 |`gearStatus`|Boolean|False|See GearStatus|
@@ -4111,6 +4300,7 @@ Non periodic vehicle data read request.
 |`myKey`|Boolean|False|Information related to the MyKey feature|
 |`windowStatus`|Boolean|False|See WindowStatus|
 |`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
+|`seatOccupancy`|Boolean|False|See SeatOccupancy|
 
 
 ### GetVehicleData
@@ -4130,7 +4320,8 @@ Message Type: **response**
 |`fuelLevel_State`|ComponentVolumeStatus|False|The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.|
 |`instantFuelConsumption`|Float|False|The instantaneous fuel consumption in microlitres|
 |`fuelRange`|FuelRange[]|False|The fuel type, estimated range in KM, fuel level/capacity and fuel level state for the vehicle. See struct FuelRange for details.|
-|`externalTemperature`|Float|False|The external temperature in degrees celsius|
+|`climateData`|ClimateData|False|See ClimateData|
+|`externalTemperature`|Float|False|The external temperature in degrees celsius. This parameter is deprecated starting RPC Spec 7.1, please see climateData.|
 |`turnSignal`|TurnSignal|False|See TurnSignal|
 |`vin`|String|False|Vehicle identification number|
 |`gearStatus`|GearStatus|False|See GearStatus|
@@ -4157,6 +4348,7 @@ Message Type: **response**
 |`myKey`|MyKey|False|Information related to the MyKey feature|
 |`windowStatus`|WindowStatus[]|False|See WindowStatus|
 |`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
+|`seatOccupancy`|SeatOccupancy|False|See SeatOccupancy|
 
 
 ### ReadDID
@@ -4310,8 +4502,8 @@ Message Type: **request**
 |`totalDistance`|String|False||
 |`turnIcon`|Image|False||
 |`nextTurnIcon`|Image|False||
-|`distanceToManeuver`|Float|False|Fraction of distance till next maneuver (starting from when AlertManeuver is triggered). Used to calculate progress bar.|
-|`distanceToManeuverScale`|Float|False|Distance till next maneuver (starting from) from previous maneuver. Used to calculate progress bar.|
+|`distanceToManeuver`|Float|False|Distance (in meters) until next maneuver. May be used to calculate progress bar.|
+|`distanceToManeuverScale`|Float|False|Distance (in meters) from previous maneuver to next maneuver. May be used to calculate progress bar.|
 |`maneuverComplete`|Boolean|False|If and when a maneuver has completed while an AlertManeuver is active, the app must send this value set to TRUE in order to clear the AlertManeuver overlay. If omitted the value will be assumed as FALSE.|
 |`softButtons`|SoftButton[]|False|Three dynamic SoftButtons available (first SoftButton is fixed to "Turns"). If omitted on supported displays, the currently displayed SoftButton values will not change.|
 
@@ -4560,7 +4752,8 @@ Response is sent, when the file data was copied (success case). Or when an error
 ### SetDisplayLayout
 Message Type: **request**
 
-deprecated since 6.0.0
+###### Deprecated since: 6.0.0
+
 This RPC is deprecated. Use Show RPC to change layout.
 
 ##### Parameters
@@ -4575,7 +4768,8 @@ This RPC is deprecated. Use Show RPC to change layout.
 ### SetDisplayLayout
 Message Type: **response**
 
-deprecated since 6.0.0
+###### Deprecated since: 6.0.0
+
 This RPC is deprecated. Use Show RPC to change layout.
 
 ##### Parameters
@@ -5182,7 +5376,8 @@ Callback for the periodic and non periodic vehicle data read function.
 |`fuelLevel_State`|ComponentVolumeStatus|False|The fuel level state. This parameter is deprecated starting RPC Spec 7.0, please see fuelRange.|
 |`instantFuelConsumption`|Float|False|The instantaneous fuel consumption in microlitres|
 |`fuelRange`|FuelRange[]|False|The fuel type, estimated range in KM, fuel level/capacity and fuel level state for the vehicle. See struct FuelRange for details.|
-|`externalTemperature`|Float|False|The external temperature in degrees celsius|
+|`climateData`|ClimateData|False|See ClimateData|
+|`externalTemperature`|Float|False|The external temperature in degrees celsius. This parameter is deprecated starting RPC Spec 7.1, please see climateData.|
 |`turnSignal`|TurnSignal|False|See TurnSignal|
 |`vin`|String|False|Vehicle identification number.|
 |`gearStatus`|GearStatus|False|See GearStatus|
@@ -5209,6 +5404,7 @@ Callback for the periodic and non periodic vehicle data read function.
 |`myKey`|MyKey|False|Information related to the MyKey feature|
 |`windowStatus`|WindowStatus[]|False|See WindowStatus|
 |`handsOffSteering`|Boolean|False|To indicate whether driver hands are off the steering wheel|
+|`seatOccupancy`|SeatOccupancy|False|See SeatOccupancy|
 
 
 ### OnCommand
@@ -5394,6 +5590,18 @@ A notification to inform the connected device that a specific system capability 
 |`systemCapability`|SystemCapability|True|The system capability that has been updated|
 
 
+### OnAppCapabilityUpdated
+Message Type: **notification**
+
+A notification to inform SDL Core that a specific app capability has changed.
+
+##### Parameters
+
+| Value |  Type | Mandatory | Description | 
+| ---------- | ---------- |:-----------: |:-----------:|
+|`appCapability`|AppCapability|True|The app capability that has been updated|
+
+
 ### OnUpdateFile
 Message Type: **notification**
 
@@ -5422,6 +5630,8 @@ This notification tells an app to update the AddSubMenu or its 'sub' AddCommand 
 ### EncodedSyncPData
 Message Type: **request**
 
+###### Deprecated since: 7.1.0
+
 Allows encoded data in the form of SyncP packets to be sent to the SYNC module. Legacy / v1 Protocol implementation; use SyncPData instead. *** DEPRECATED ***
 
 ##### Parameters
@@ -5434,6 +5644,8 @@ Allows encoded data in the form of SyncP packets to be sent to the SYNC module. 
 ### EncodedSyncPData
 Message Type: **response**
 
+###### Deprecated since: 7.1.0
+
 ##### Parameters
 
 | Value |  Type | Mandatory | Description | 
@@ -5445,6 +5657,8 @@ Message Type: **response**
 
 ### OnEncodedSyncPData
 Message Type: **notification**
+
+###### Deprecated since: 7.1.0
 
 Callback including encoded data of any SyncP packets that SYNC needs to send back to the mobile device. Legacy / v1 Protocol implementation; responds to EncodedSyncPData. *** DEPRECATED ***
 

@@ -213,6 +213,18 @@ class RPCBase(ABC):
         """
         params, subelements, attrib = self._parse_base_item(element, prefix)
 
+        # Create an empty object for new type to types collection.
+        # This is needed for parser to apply type for struct members
+        # that consist of its own type.
+        # E.g.:
+        #     struct VideoStreamingCapability {
+        #      ...
+        #      VideoStreamingCapability additionalVideoStreamingCapabilities[]
+        #     }
+
+        struct = Struct(**params)
+        self._add_type(struct)
+
         for attribute in attrib:
             if attribute in ["scope", "deprecated", "removed"]:
                 params[attribute] = attrib[attribute]
@@ -228,6 +240,12 @@ class RPCBase(ABC):
             else:
                 raise ParseError("Unexpected subelement '{}' in struct '{}'".format(subelement.name, params["name"]))
         params["members"] = members
+
+        # Remove empty object for new type to prevent errors of adding such type twice (see self._add_type).
+        # After return statement of current method is done the new type with all its params
+        # will be added into types collection.
+
+        self._types.pop(struct.name, None)
 
         return Struct(**params)
 
@@ -443,7 +461,16 @@ class RPCBase(ABC):
         params, subelements, attrib = self._parse_param_base_item(element, prefix)
 
         default_value = None
-        default_value_string = self._extract_attrib(attrib, "defvalue")
+        default_value_string = None
+
+        default_value_param_key = "default_value"
+        if default_value_param_key in params:
+            default_value_param = params[default_value_param_key]
+            if isinstance(default_value_param, EnumElement):
+                default_value_string = default_value_param.name
+            else:
+                default_value_string = str(default_value_param)
+
         if default_value_string is not None:
             param_type = params["param_type"]
             if isinstance(param_type, Boolean):
@@ -617,7 +644,7 @@ class RPCBase(ABC):
         if len(subelement.attrib) != 1:
             raise ParseError("Unexpected attributes for element '{}' of parameter '{}'"
                              .format(element_name, params["name"]))
-        children = subelement.getchildren()
+        children = list(subelement)
         for child in children:
             if child.tag == "description":
                 children.remove(child)
@@ -690,10 +717,9 @@ class RPCBase(ABC):
         :param bool_string: string with attribute value
         :return: converted value.
         """
-
-        if bool_string in ['0', 'false']:
+        if bool_string.lower() in ['0', 'false']:
             value = False
-        elif bool_string in ['1', 'true']:
+        elif bool_string.lower() in ['1', 'true']:
             value = True
         else:
             raise ParseError("Invalid value for bool: '{}'".format(bool_string))
