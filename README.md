@@ -1,7 +1,7 @@
 # SmartDeviceLink
 # RPC Spec
 
-###### Version: 7.1.0
+###### Version: 8.0.0
 
 ## Enumerations
 
@@ -111,6 +111,7 @@
 |`VI-VN`|Vietnamese - Vietnam|
 |`MS-MY`|Malay - Malaysia|
 |`HI-IN`|Hindi - India|
+|`EN-IE`|English - Ireland|
 
 
 ### UpdateMode

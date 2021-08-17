@@ -285,6 +285,9 @@
         <element name="HI-IN" internal_name="HI_IN" since="4.5">
             <description>Hindi - India</description>
         </element>
+        <element name="EN-IE" internal_name="EN-IE" since="8.0">
+            <description>English - Ireland</description>
+        </element>
     </enum>
     
     <enum name="UpdateMode" since="1.0">
