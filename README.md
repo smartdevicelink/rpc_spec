@@ -1,7 +1,7 @@
 # SmartDeviceLink
 # RPC Spec
 
-###### Version: 7.1.0
+###### Version: 8.0.0
 
 ## Enumerations
 
@@ -2802,7 +2802,7 @@ Seat control data corresponds to "SEAT" ModuleType.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`moduleName`|String|True|The short friendly name of the light control module. It should not be used to identify a module by mobile application.|
+|`moduleName`|String|True|The short friendly name of the seat control module. It should not be used to identify a module by mobile application.|
 |`moduleInfo`|ModuleInfo|False|Information about an RC module, including its id.|
 |`heatingEnabledAvailable`|Boolean|False||
 |`coolingEnabledAvailable`|Boolean|False||
@@ -2915,7 +2915,7 @@ Contains information about a radio control module's capabilities.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`moduleName`|String|True|The short friendly name of the climate control module. It should not be used to identify a module by mobile application.|
+|`moduleName`|String|True|The short friendly name of the radio control module. It should not be used to identify a module by mobile application.|
 |`moduleInfo`|ModuleInfo|False|Information about an RC module, including its id.|
 |`radioEnableAvailable`|Boolean|False|Availability of the control of enable/disable radio. True: Available, False: Not Available, Not present: Not Available.|
 |`radioBandAvailable`|Boolean|False|Availability of the control of radio band. True: Available, False: Not Available, Not present: Not Available.|
