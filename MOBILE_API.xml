@@ -4052,7 +4052,7 @@
     <struct name="AudioControlCapabilities" since="5.0">
         <param name="moduleName" type="String" maxlength="100" mandatory="true">
             <description>
-                The short friendly name of the light control module.
+                The short friendly name of the audio control module.
                 It should not be used to identify a module by mobile application.
             </description>
         </param>
