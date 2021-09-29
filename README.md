@@ -2988,7 +2988,7 @@ Defines the each Equalizer channel settings.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`moduleName`|String|True|The short friendly name of the light control module. It should not be used to identify a module by mobile application.|
+|`moduleName`|String|True|The short friendly name of the audio control module. It should not be used to identify a module by mobile application.|
 |`moduleInfo`|ModuleInfo|False|Information about an RC module, including its id.|
 |`sourceAvailable`|Boolean|False|Availability of the control of audio source.|
 |`keepContextAvailable`|Boolean|False|Availability of the keepContext parameter.|
