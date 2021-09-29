@@ -111,6 +111,7 @@
 |`VI-VN`|Vietnamese - Vietnam|
 |`MS-MY`|Malay - Malaysia|
 |`HI-IN`|Hindi - India|
+|`EN-IE`|English - Ireland|
 
 
 ### UpdateMode
