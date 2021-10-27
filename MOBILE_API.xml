@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="no"?>
 <?xml-stylesheet type="text/xml" href="protocol2html.xsl"?>
 
-<interface name="SmartDeviceLink RAPI" version="7.1.0" minVersion="1.0" date="2021-04-14">
+<interface name="SmartDeviceLink RAPI" version="8.0.0" minVersion="1.0" date="2021-10-27">
     <enum name="Result" internal_scope="base" since="1.0">
         <element name="SUCCESS">
             <description>The request succeeded</description>
@@ -2197,26 +2197,47 @@
     <struct name="TireStatus" since="2.0">
         <description>The status and pressure of the tires.</description>
         
-        <param name="pressureTelltale" type="WarningLightStatus" mandatory="true">
+        <param name="pressureTelltale" type="WarningLightStatus" mandatory="false" since="8.0">
             <description>Status of the Tire Pressure Telltale. See WarningLightStatus.</description>
+            <history>
+                <param name="pressureTelltale" type="WarningLightStatus" mandatory="true" since="2.0" until="8.0"/>
+            </history>
         </param>
-        <param name="leftFront" type="SingleTireStatus" mandatory="true">
+        <param name="leftFront" type="SingleTireStatus" mandatory="false" since="8.0">
             <description>The status of the left front tire.</description>
+            <history>
+                <param name="leftFront" type="SingleTireStatus" mandatory="true" since="2.0" until="8.0"/>
+            </history>
         </param>
-        <param name="rightFront" type="SingleTireStatus" mandatory="true">
+        <param name="rightFront" type="SingleTireStatus" mandatory="false" since="8.0">
             <description>The status of the right front tire.</description>
+            <history>
+                <param name="rightFront" type="SingleTireStatus" mandatory="true" since="2.0" until="8.0"/>
+            </history>
         </param>
-        <param name="leftRear" type="SingleTireStatus" mandatory="true">
+        <param name="leftRear" type="SingleTireStatus" mandatory="false" since="8.0">
             <description>The status of the left rear tire.</description>
+            <history>
+                <param name="leftRear" type="SingleTireStatus" mandatory="true" since="2.0" until="8.0"/>
+            </history>
         </param>
-        <param name="rightRear" type="SingleTireStatus" mandatory="true">
+        <param name="rightRear" type="SingleTireStatus" mandatory="false" since="8.0">
             <description>The status of the right rear tire.</description>
+            <history>
+                <param name="rightRear" type="SingleTireStatus" mandatory="true" since="2.0" until="8.0"/>
+            </history>
         </param>
-        <param name="innerLeftRear" type="SingleTireStatus" mandatory="true">
+        <param name="innerLeftRear" type="SingleTireStatus" mandatory="false" since="8.0">
             <description>The status of the inner left rear.</description>
+            <history>
+                <param name="innerLeftRear" type="SingleTireStatus" mandatory="true" since="2.0" until="8.0"/>
+            </history>
         </param>
-        <param name="innerRightRear" type="SingleTireStatus" mandatory="true">
+        <param name="innerRightRear" type="SingleTireStatus" mandatory="false" since="8.0">
             <description>The status of the inner right rear.</description>
+            <history>
+                <param name="innerRightRear" type="SingleTireStatus" mandatory="true" since="2.0" until="8.0"/>
+            </history>
         </param>
     </struct>
 
@@ -3601,7 +3622,7 @@
     <struct name="SeatControlCapabilities" since="5.0">
         <param name="moduleName" type="String" maxlength="100"  mandatory="true">
             <description>
-            The short friendly name of the light control module.
+            The short friendly name of the seat control module.
             It should not be used to identify a module by mobile application.
             </description>
         </param>
@@ -3791,7 +3812,7 @@
         <description>Contains information about a radio control module's capabilities.</description>
         <param name="moduleName" type="String" maxlength="100" mandatory="true">
             <description>
-                The short friendly name of the climate control module.
+                The short friendly name of the radio control module.
                 It should not be used to identify a module by mobile application.
             </description>
         </param>
@@ -4031,7 +4052,7 @@
     <struct name="AudioControlCapabilities" since="5.0">
         <param name="moduleName" type="String" maxlength="100" mandatory="true">
             <description>
-                The short friendly name of the light control module.
+                The short friendly name of the audio control module.
                 It should not be used to identify a module by mobile application.
             </description>
         </param>

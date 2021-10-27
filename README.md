@@ -1,7 +1,7 @@
 # SmartDeviceLink
 # RPC Spec
 
-###### Version: 7.1.0
+###### Version: 8.0.0
 
 ## Enumerations
 
@@ -2156,13 +2156,13 @@ The status and pressure of the tires.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`pressureTelltale`|WarningLightStatus|True|Status of the Tire Pressure Telltale. See WarningLightStatus.|
-|`leftFront`|SingleTireStatus|True|The status of the left front tire.|
-|`rightFront`|SingleTireStatus|True|The status of the right front tire.|
-|`leftRear`|SingleTireStatus|True|The status of the left rear tire.|
-|`rightRear`|SingleTireStatus|True|The status of the right rear tire.|
-|`innerLeftRear`|SingleTireStatus|True|The status of the inner left rear.|
-|`innerRightRear`|SingleTireStatus|True|The status of the inner right rear.|
+|`pressureTelltale`|WarningLightStatus|False|Status of the Tire Pressure Telltale. See WarningLightStatus.|
+|`leftFront`|SingleTireStatus|False|The status of the left front tire.|
+|`rightFront`|SingleTireStatus|False|The status of the right front tire.|
+|`leftRear`|SingleTireStatus|False|The status of the left rear tire.|
+|`rightRear`|SingleTireStatus|False|The status of the right rear tire.|
+|`innerLeftRear`|SingleTireStatus|False|The status of the inner left rear.|
+|`innerRightRear`|SingleTireStatus|False|The status of the inner right rear.|
 
 
 ### StabilityControlsStatus
@@ -2802,7 +2802,7 @@ Seat control data corresponds to "SEAT" ModuleType.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`moduleName`|String|True|The short friendly name of the light control module. It should not be used to identify a module by mobile application.|
+|`moduleName`|String|True|The short friendly name of the seat control module. It should not be used to identify a module by mobile application.|
 |`moduleInfo`|ModuleInfo|False|Information about an RC module, including its id.|
 |`heatingEnabledAvailable`|Boolean|False||
 |`coolingEnabledAvailable`|Boolean|False||
@@ -2915,7 +2915,7 @@ Contains information about a radio control module's capabilities.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`moduleName`|String|True|The short friendly name of the climate control module. It should not be used to identify a module by mobile application.|
+|`moduleName`|String|True|The short friendly name of the radio control module. It should not be used to identify a module by mobile application.|
 |`moduleInfo`|ModuleInfo|False|Information about an RC module, including its id.|
 |`radioEnableAvailable`|Boolean|False|Availability of the control of enable/disable radio. True: Available, False: Not Available, Not present: Not Available.|
 |`radioBandAvailable`|Boolean|False|Availability of the control of radio band. True: Available, False: Not Available, Not present: Not Available.|
@@ -2988,7 +2988,7 @@ Defines the each Equalizer channel settings.
 
 | Value |  Type | Mandatory | Description | 
 | ---------- | ---------- |:-----------: |:-----------:|
-|`moduleName`|String|True|The short friendly name of the light control module. It should not be used to identify a module by mobile application.|
+|`moduleName`|String|True|The short friendly name of the audio control module. It should not be used to identify a module by mobile application.|
 |`moduleInfo`|ModuleInfo|False|Information about an RC module, including its id.|
 |`sourceAvailable`|Boolean|False|Availability of the control of audio source.|
 |`keepContextAvailable`|Boolean|False|Availability of the keepContext parameter.|
